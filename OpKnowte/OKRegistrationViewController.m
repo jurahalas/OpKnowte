@@ -29,7 +29,7 @@
     _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
     _nameTextField.text = @"";
     _emailTextField.text = @"";
-    _MDTextField.text = @"";
+    _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:0]];
     _passwordTextField.text = @"";
     _confirmPasswordField.text = @"";
     
