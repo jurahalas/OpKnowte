@@ -93,6 +93,7 @@
     }
     
     if(textField.tag == _MDTextField.tag) {
+        //[self.view endEditing:YES];
         [textField resignFirstResponder];
         _MDPiker.hidden = NO;
         [textField resignFirstResponder];
@@ -133,6 +134,10 @@
 
 #pragma mark - IBActions
 - (IBAction)continueButton:(id)sender {
+}
+- (IBAction)navBarBackButton:(id)sender {
+    //[self.view endEditing:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
