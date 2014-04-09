@@ -136,7 +136,7 @@
 - (IBAction)continueButton:(id)sender {
 }
 - (IBAction)navBarBackButton:(id)sender {
-    //[self.view endEditing:YES];
+    [self.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
