@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
+		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
 		E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DF18F529E9008421D4 /* CoreGraphics.framework */; };
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKRegistrationViewController.h; sourceTree = "<group>"; };
+		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
+		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
+		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
 		E10023DA18F529E9008421D4 /* OpKnowte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpKnowte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10023DD18F529E9008421D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E10023DF18F529E9008421D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,6 +87,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */,
+				007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */,
+				E10023F518F529E9008421D4 /* OKViewController.h */,
+				E10023F618F529E9008421D4 /* OKViewController.m */,
+				007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */,
+				007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		E10023D118F529E9008421D4 = {
 			isa = PBXGroup;
 			children = (
@@ -118,8 +137,7 @@
 				E10023ED18F529E9008421D4 /* OKAppDelegate.m */,
 				E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */,
 				E10023F218F529E9008421D4 /* Main_iPad.storyboard */,
-				E10023F518F529E9008421D4 /* OKViewController.h */,
-				E10023F618F529E9008421D4 /* OKViewController.m */,
+				007A0C9918F53AB100D183F1 /* ViewControllers */,
 				E10023F818F529E9008421D4 /* Images.xcassets */,
 				E10023E418F529E9008421D4 /* Supporting Files */,
 			);
@@ -255,7 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
+				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
+				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +414,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpKnowte/OpKnowte-Prefix.pch";
 				INFOPLIST_FILE = "OpKnowte/OpKnowte-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -407,6 +428,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpKnowte/OpKnowte-Prefix.pch";
 				INFOPLIST_FILE = "OpKnowte/OpKnowte-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,6 +493,7 @@
 				E100241118F529E9008421D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E100241218F529E9008421D4 /* Build configuration list for PBXNativeTarget "OpKnowteTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +502,7 @@
 				E100241418F529E9008421D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

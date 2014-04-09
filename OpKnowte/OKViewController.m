@@ -9,6 +9,11 @@
 #import "OKViewController.h"
 
 @interface OKViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
+@property (strong, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
 
@@ -25,5 +30,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)loginButton:(id)sender {
+}
+
+- (IBAction)forgetPasswordButton:(id)sender {
+}
+
+- (IBAction)registerButton:(id)sender {
+}
+
 
 @end

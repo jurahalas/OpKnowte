@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2B3270E7-B559-42A4-8ED2-7A1B8C5981F3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OpKnowte</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>68151A40-B6C0-43B3-86AA-13E20EDD73E1</key>
+		<string>https://github.com/ffizzik/OpKnowte.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>OpKnowte.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>68151A40-B6C0-43B3-86AA-13E20EDD73E1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ffizzik/OpKnowte.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>68151A40-B6C0-43B3-86AA-13E20EDD73E1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>68151A40-B6C0-43B3-86AA-13E20EDD73E1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OpKnowte</string>
+		</dict>
+	</array>
+</dict>
+</plist>
