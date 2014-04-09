@@ -21,6 +21,9 @@
 
 - (void)viewDidLoad
 {
+    _passwordTextField.text = @"";
+    _emailTextField.text = @"";
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -38,6 +41,9 @@
 
 - (IBAction)registerButton:(id)sender {
 }
-
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

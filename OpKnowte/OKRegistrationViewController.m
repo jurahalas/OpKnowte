@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *confirmPasswordField;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIPickerView *MDPiker;
-@property (strong, nonatomic) NSDictionary *MDDictionary;
+@property (strong, nonatomic) NSArray *MDPickerData;
 
 @end
 
@@ -26,7 +26,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
+    _nameTextField.text = @"";
+    _emailTextField.text = @"";
+    _MDTextField.text = @"";
+    _passwordTextField.text = @"";
+    _confirmPasswordField.text = @"";
     
+    _nameTextField.tag = 1;
+    _emailTextField.tag = 2;
+    _MDTextField.tag = 3;
+    _passwordTextField.tag = 4;
+    _confirmPasswordField.tag = 5;
+
 	// Do any additional setup after loading the view.
 }
 
@@ -45,53 +57,77 @@
 }
 
 
-
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    //t_field=textField;
-    NSInteger nextTag = textField.tag + 1;
-    // Try to find next responder
-    if (nextTag ==3 )
-    {
-        ////  dropDownTable.hidden = FALSE;
-        
-        picker_.hidden=NO;
-        
-        [textField resignFirstResponder];
-        return NO;
-    }
-    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
-    if (nextResponder) {
-        
-        // Found next responder, so set it.
-        [nextResponder becomeFirstResponder];
-    } else {
-        
-        
-        // Not found, so remove keyboard.
-        [textField resignFirstResponder];
-    }
-    return NO;
+#pragma mark - textField methods
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up {
+    const int movementDistance = 70;// tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    int movement = (up ? -movementDistance : movementDistance);
+    [UIView animateWithDuration:movementDuration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    } completion:nil];
 }
 
 
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    UIResponder* nextResponder = [textField.superview viewWithTag:(textField.tag + 1)];
+    if (textField.tag != _confirmPasswordField.tag && textField.tag != _emailTextField.tag) {
+        [textField resignFirstResponder];
+        [nextResponder becomeFirstResponder];
+    } else if (textField.tag == _emailTextField.tag){
+        _MDPiker.hidden = NO;
+        [textField resignFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return YES;
+
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField.tag == _confirmPasswordField.tag) {
+        textField.returnKeyType = UIReturnKeyDone;
+    } else {
+        textField.returnKeyType = UIReturnKeyNext;
+    }
+    
+    if(textField.tag == _MDTextField.tag) {
+        _MDPiker.hidden = NO;
+    } else {
+        _MDPiker.hidden = YES;
+    }
+    if (textField.tag >3){
+        [self animateTextField: textField up: YES];
+    }
+    
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField.tag >3){
+        [self animateTextField: textField up: NO];
+    }
+}
 #pragma mark - Picker methods
 
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    return 0;
+    return 1;
 }
 
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return 0;
+    NSUInteger numRows=[_MDPickerData count];
+    return numRows;
 }
 
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
+}
 
-
-
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    // Handle the selection
+    _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
+}
 
 #pragma mark - IBActions
 - (IBAction)continueButton:(id)sender {
