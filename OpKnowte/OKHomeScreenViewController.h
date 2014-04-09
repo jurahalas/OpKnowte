@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OKHomeScreenViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+
 
 @end
