@@ -93,7 +93,9 @@
     }
     
     if(textField.tag == _MDTextField.tag) {
+        [textField resignFirstResponder];
         _MDPiker.hidden = NO;
+        [textField resignFirstResponder];
     } else {
         _MDPiker.hidden = YES;
     }
