@@ -1,0 +1,22 @@
+//
+//  OKHomeScreenViewController.h
+//  OpKnowte
+//
+//  Created by Artem Frolow on 4/9/14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "OKBaseViewController.h"
+
+<<<<<<< HEAD
+@interface OKHomeScreenViewController : OKBaseViewController
+=======
+@interface OKHomeScreenViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+
+>>>>>>> 80d37dea8bc35b6665b4abeaf0c7718d91962556
+
+@end
