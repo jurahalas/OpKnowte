@@ -7,6 +7,7 @@
 //
 
 #import "OKHomeScreenViewController.h"
+#import "OKBottomTabBarView.h"
 
 @interface OKHomeScreenViewController ()
 
@@ -26,6 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    OKBottomTabBarView *bottomTabBarView = [[OKBottomTabBarView alloc] init];
+    [bottomTabBarView drawBottomTabBar];
+    [self.view addSubview:bottomTabBarView];
 	// Do any additional setup after loading the view.
 }
 
