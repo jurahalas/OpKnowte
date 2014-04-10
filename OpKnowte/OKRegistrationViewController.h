@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKBaseViewController.h"
 
-@interface OKRegistrationViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+@interface OKRegistrationViewController : OKBaseViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
 @end

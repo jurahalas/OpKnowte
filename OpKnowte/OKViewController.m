@@ -30,6 +30,8 @@
 
 - (void)viewDidLoad
 {
+    [self setAllDesign];
+    [self.navigationController setNavigationBarHidden:YES animated:YES ];
     _passwordTextField.text = @"";
     _emailTextField.text = @"";
     _forgotPasswordViewTextField.text = @"";
@@ -60,10 +62,6 @@
     
     UITapGestureRecognizer *forgotPasswordViewBackgroundTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordViewBackgroundTapAction:)];
     [self.forgotPasswordViewBackground addGestureRecognizer:forgotPasswordViewBackgroundTap];
-    
-
-    
-    
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -136,6 +134,32 @@
     [_forgotPasswordView addSubview:_forgotPasswordViewTextField];
     [_forgotPasswordView addSubview:_forgotPasswordViewButton];
     [_forgotPasswordView addSubview:_forgotPasswordViewLabel];
+}
+-(void) setAllDesign {
+    [self setTextFieldsDesign];
+}
+-(void) setTextFieldsDesign {
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    _emailTextField.backgroundColor = [UIColor clearColor];
+    _emailTextField.layer.borderColor =[UIColor whiteColor].CGColor;
+    _emailTextField.layer.borderWidth = 1.f;
+    _emailTextField.leftView = paddingView;
+    _emailTextField.leftViewMode = UITextFieldViewModeAlways;
+    [_emailTextField setTextColor:[UIColor whiteColor]];
+    _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:15.0f]}];
+    _emailTextField.layer.cornerRadius = 10;
+    _emailTextField.clipsToBounds = YES;
+    
+    
+    _passwordTextField.backgroundColor = [UIColor clearColor];
+    _passwordTextField.layer.borderColor =[UIColor whiteColor].CGColor;
+    _passwordTextField.layer.borderWidth = 1.f;
+    _passwordTextField.leftView = paddingView;
+    _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+    _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:15.0f]}];
+    _passwordTextField.layer.cornerRadius = 10;
+    _passwordTextField.clipsToBounds = YES;
+    _passwordTextField.secureTextEntry = YES;
 }
 
 - (IBAction)registerButton:(id)sender {

@@ -1,19 +1,18 @@
 //
-//  OKHomeScreenViewController.m
+//  OKBaseViewController.m
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/9/14.
+//  Created by Artem Frolow on 4/10/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKHomeScreenViewController.h"
-#import "OKBottomTabBarView.h"
+#import "OKBaseViewController.h"
 
-@interface OKHomeScreenViewController ()
+@interface OKBaseViewController ()
 
 @end
 
-@implementation OKHomeScreenViewController
+@implementation OKBaseViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self addBottomTabBar];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 	// Do any additional setup after loading the view.
 }
 
@@ -37,7 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) addBottomTabBar{
+    OKBottomTabBarView *bottomTabBarView = [[OKBottomTabBarView alloc] init];
+    [bottomTabBarView drawBottomTabBar];
+    [self.view addSubview:bottomTabBarView];
+}
 
 
 @end
-

@@ -14,6 +14,9 @@
 		00BEAB1718F67E2400E0C6B2 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BEAB1318F67E2400E0C6B2 /* info.png */; };
 		00BEAB1818F67E2400E0C6B2 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BEAB1418F67E2400E0C6B2 /* logout.png */; };
 		00BEAB1918F67E2400E0C6B2 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BEAB1518F67E2400E0C6B2 /* settings.png */; };
+		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
+		00BEAB1E18F69F9800E0C6B2 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BEAB1D18F69F9800E0C6B2 /* bg@2x.png */; };
+		00BEAB2018F69F9E00E0C6B2 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 00BEAB1F18F69F9E00E0C6B2 /* bg.png */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
 		E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DF18F529E9008421D4 /* CoreGraphics.framework */; };
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
@@ -52,6 +55,10 @@
 		00BEAB1318F67E2400E0C6B2 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		00BEAB1418F67E2400E0C6B2 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
 		00BEAB1518F67E2400E0C6B2 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
+		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
+		00BEAB1D18F69F9800E0C6B2 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		00BEAB1F18F69F9E00E0C6B2 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		E10023DA18F529E9008421D4 /* OpKnowte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpKnowte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10023DD18F529E9008421D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E10023DF18F529E9008421D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,6 +116,8 @@
 				007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */,
 				00BEAB0E18F678BE00E0C6B2 /* OKBottomTabBarView.h */,
 				00BEAB0F18F678BE00E0C6B2 /* OKBottomTabBarView.m */,
+				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
+				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -116,6 +125,8 @@
 		00BEAB1118F67DCE00E0C6B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00BEAB1F18F69F9E00E0C6B2 /* bg.png */,
+				00BEAB1D18F69F9800E0C6B2 /* bg@2x.png */,
 				00BEAB1218F67E2400E0C6B2 /* home.png */,
 				00BEAB1318F67E2400E0C6B2 /* info.png */,
 				00BEAB1418F67E2400E0C6B2 /* logout.png */,
@@ -275,6 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BEAB2018F69F9E00E0C6B2 /* bg.png in Resources */,
+				00BEAB1E18F69F9800E0C6B2 /* bg@2x.png in Resources */,
 				00BEAB1918F67E2400E0C6B2 /* settings.png in Resources */,
 				E10023F418F529E9008421D4 /* Main_iPad.storyboard in Resources */,
 				00BEAB1618F67E2400E0C6B2 /* home.png in Resources */,
@@ -306,6 +319,7 @@
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
+				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				00BEAB1018F678BE00E0C6B2 /* OKBottomTabBarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
