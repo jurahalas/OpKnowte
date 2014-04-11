@@ -11,4 +11,9 @@
 
 @interface OKApiClient : AFHTTPClient
 
+- (void)setUsername:(NSString *)username andPassword:(NSString *)password;
+
+
++ (OKApiClient *)sharedManager;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKApiClient.h"
 
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 
