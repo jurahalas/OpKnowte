@@ -26,8 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
-	// Do any additional setup after loading the view.
+    if ([[UIScreen mainScreen] bounds].size.height == 568.0) {
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_568"]];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+	}
+    
+    // Do any additional setup after loading the view.
+}
+-(UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning

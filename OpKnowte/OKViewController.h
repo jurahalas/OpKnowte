@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OKBaseViewController.h"
+#import "OKAppDelegate.h"
 
 @interface OKViewController : OKBaseViewController <UITextFieldDelegate>
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OKBottomTabBarView.h"
+#import "OKAppDelegate.h"
 
 @interface OKBaseViewController : UIViewController
 

@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UILabel *forgotPasswordViewLabel;
 @property (strong, nonatomic) UITextField *forgotPasswordViewTextField;
 @property (strong, nonatomic) UIButton *forgotPasswordViewButton;
+@property (nonatomic) BOOL animatedKeyboard;
 
 
 @end
@@ -66,6 +67,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+-(void) viewWillAppear:(BOOL)animated{
+     [self.navigationController setNavigationBarHidden:YES animated:YES ];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -82,15 +86,21 @@
     [UIView animateWithDuration:movementDuration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     } completion:nil];
+    if (up) {
+        _animatedKeyboard = YES;
+    } else {
+        _animatedKeyboard = NO;
+    }
+    
+    
 }
-
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == _emailTextField) {
         [textField resignFirstResponder];
         [_passwordTextField becomeFirstResponder];
     } else {
+        [self animateTextField: textField up: NO];
         [textField resignFirstResponder];
     }
     return YES;
@@ -101,16 +111,15 @@
 {
     if (textField == _emailTextField) {
         textField.returnKeyType = UIReturnKeyNext;
-        [self animateTextField: textField up: YES];
     } else {
         textField.returnKeyType = UIReturnKeyDone;
     }
-    
+    if (!_animatedKeyboard) {
+        [self animateTextField: textField up: YES];
+    }     
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField != _emailTextField) {
-        [self animateTextField: textField up: NO];
-    }
+
 }
 
 #pragma mark - Custom methods
@@ -135,38 +144,53 @@
     [_forgotPasswordView addSubview:_forgotPasswordViewButton];
     [_forgotPasswordView addSubview:_forgotPasswordViewLabel];
 }
--(void) setAllDesign {
-    [self setTextFieldsDesign];
-}
--(void) setTextFieldsDesign {
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    paddingView.backgroundColor = [UIColor clearColor];
-    
-    _emailTextField.leftView = paddingView;
-    _emailTextField.leftViewMode = UITextFieldViewModeAlways;
-    _emailTextField.backgroundColor = [UIColor clearColor];
-    _emailTextField.layer.borderColor =[UIColor whiteColor].CGColor;
-    _emailTextField.layer.borderWidth = 1.f;
-    [_emailTextField setTextColor:[UIColor whiteColor]];
-    _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:15.0f]}];
-    _emailTextField.layer.cornerRadius = 10;
-    _emailTextField.clipsToBounds = YES;
-    
-    UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    paddingView2.backgroundColor = [UIColor clearColor];
-    _passwordTextField.leftView = paddingView2;
-    _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
-    _passwordTextField.backgroundColor = [UIColor clearColor];
-    _passwordTextField.layer.borderColor =[UIColor whiteColor].CGColor;
-    _passwordTextField.layer.borderWidth = 1.f;
-    _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor], NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-Regular" size:15.0f]}];
-    _passwordTextField.layer.cornerRadius = 10;
-    _passwordTextField.clipsToBounds = YES;
-    _passwordTextField.secureTextEntry = YES;
-}
-
 
 - (IBAction)registerButton:(id)sender {
+    
+}
+#pragma mark - design
+-(void) setAllDesign {
+    
+    [self setDesignForTextField:_emailTextField Placeholder: @"Email" Secured:NO];
+    [self setDesignForTextField:_passwordTextField Placeholder:@"Password" Secured:YES];
+    
+    _loginButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
+    _loginButton.layer.cornerRadius = 14;
+    _loginButton.clipsToBounds = YES;
+    
+}
+
+-(void) setDesignForTextField:(UITextField*) textField  Placeholder:(NSString*) placeholder Secured:(BOOL) secured{
+    
+    
+    UIImageView *textFieldIcon = [[UIImageView alloc] init];
+    if ([placeholder isEqualToString:@"Email"]) {
+        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 19, 18)] ;
+        textFieldIcon.image = [UIImage imageNamed:@"nameTextFieldIcon"];
+    } else {
+        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(12, 0, 14, 18)] ;
+        textFieldIcon.image = [UIImage imageNamed:@"passwordTextFieldIcon"];
+    }
+    
+    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 18)];
+    textFieldIconView.backgroundColor = [UIColor clearColor];
+    [textFieldIconView addSubview:textFieldIcon];
+    
+    textField.tintColor = [UIColor whiteColor];
+    textField.leftView = textFieldIconView;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0f];
+    textField.backgroundColor = [UIColor clearColor];
+    textField.layer.borderColor =[UIColor whiteColor].CGColor;
+    textField.layer.borderWidth = 1.f;
+    [textField setTextColor:[UIColor whiteColor]];
+    textField.layer.cornerRadius = 14;
+    textField.clipsToBounds = YES;
+    textField.secureTextEntry = secured;
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{
+                                                                                                          NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                                                                                          NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-UltraLightItalic" size:14.0f]
+                                                                                                          }];
 }
 
 
