@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKApiClient.h"
 
 @interface OKViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *jsonButton;
+- (IBAction)json:(id)sender;
+
 
 @end
