@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OKBaseViewController.h"
 #import "OKBottomTabBarView.h"
-#import "OKCustomAlertView.h"
+
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

@@ -138,11 +138,25 @@
     
 }
 - (IBAction)forgetPasswordButton:(id)sender {
-    [self.view addSubview:_forgotPasswordViewBackground];
-    [self.view addSubview:_forgotPasswordView];
-    [_forgotPasswordView addSubview:_forgotPasswordViewTextField];
-    [_forgotPasswordView addSubview:_forgotPasswordViewButton];
-    [_forgotPasswordView addSubview:_forgotPasswordViewLabel];
+//    [self.view addSubview:_forgotPasswordViewBackground];
+//    [self.view addSubview:_forgotPasswordView];
+//    [_forgotPasswordView addSubview:_forgotPasswordViewTextField];
+//    [_forgotPasswordView addSubview:_forgotPasswordViewButton];
+//    [_forgotPasswordView addSubview:_forgotPasswordViewLabel];
+    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:@"Please confirm your Email Address.\rWe will send you your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
+    customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [customAlertView textFieldAtIndex:0].placeholder = @"Email";
+    [customAlertView show];
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+    }
+    if (buttonIndex == 1) {
+        NSLog(@"THE 'Send' BUTTON WAS PRESSED");
+    }
 }
 
 - (IBAction)registerButton:(id)sender {
