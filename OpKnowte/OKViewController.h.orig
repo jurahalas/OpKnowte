@@ -1,0 +1,23 @@
+//
+//  OKViewController.h
+//  OpKnowte
+//
+//  Created by Eugene on 09.04.14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+<<<<<<< HEAD
+#import "OKApiClient.h"
+
+@interface OKViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *jsonButton;
+- (IBAction)json:(id)sender;
+
+=======
+#import "OKAppDelegate.h"
+
+@interface OKViewController : OKBaseViewController <UITextFieldDelegate>
+>>>>>>> 66634f6e3a362aec7d37c37ee70d9a3778939d39
+
+@end
