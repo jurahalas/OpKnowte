@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
+#import <AFHTTPClient.h>
+
+#define BASE_URL @"http://localhost:3000"
 
 @interface OKApiClient : AFHTTPClient
 

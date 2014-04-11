@@ -7,6 +7,8 @@
 //
 
 #import "OKApiClient.h"
+#import <AFJSONRequestOperation.h>
+#import <AFNetworkActivityIndicatorManager.h>
 
 @implementation OKApiClient
 
@@ -40,7 +42,7 @@
     static dispatch_once_t pred;
     static OKApiClient *_sharedManager = nil;
     
-    dispatch_once(&pred, ^{ _sharedManager = [[self alloc] initWithBaseURL:[NSURL URLWithString:@"http://localhost:3000"]]; });
+    dispatch_once(&pred, ^{ _sharedManager = [[self alloc] initWithBaseURL:[NSURL URLWithString:BASE_URL]]; });
     
     return _sharedManager;
 }
