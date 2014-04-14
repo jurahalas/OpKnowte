@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+<<<<<<< HEAD
 #import "OKBaseViewController.h"
 #import "OKBottomTabBarView.h"
 #import "OKCustomAlertView.h"
+=======
 #import "OKApiClient.h"
 
+>>>>>>> e4e0eecefd9181eccb90b876bb1215bdf580153e
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
