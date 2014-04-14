@@ -20,6 +20,16 @@
 		0089508C18F6D0E30013F51F /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0089508618F6D0E30013F51F /* bg.png */; };
 		0089508D18F6D0E30013F51F /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0089508718F6D0E30013F51F /* bg@2x.png */; };
 		00B243C018FBC38700D9DCF1 /* OKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 00B243BF18FBC38700D9DCF1 /* OKConstants.m */; };
+		00B243CC18FBD25300D9DCF1 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C218FBD25300D9DCF1 /* home.png */; };
+		00B243CD18FBD25300D9DCF1 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C318FBD25300D9DCF1 /* home@2x.png */; };
+		00B243CE18FBD25300D9DCF1 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C418FBD25300D9DCF1 /* info.png */; };
+		00B243CF18FBD25300D9DCF1 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C518FBD25300D9DCF1 /* info@2x.png */; };
+		00B243D018FBD25300D9DCF1 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C618FBD25300D9DCF1 /* logout.png */; };
+		00B243D118FBD25300D9DCF1 /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C718FBD25300D9DCF1 /* logout@2x.png */; };
+		00B243D218FBD25300D9DCF1 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C818FBD25300D9DCF1 /* settings.png */; };
+		00B243D318FBD25300D9DCF1 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243C918FBD25300D9DCF1 /* settings@2x.png */; };
+		00B243D418FBD25300D9DCF1 /* tabbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243CA18FBD25300D9DCF1 /* tabbarBG.png */; };
+		00B243D518FBD25300D9DCF1 /* tabbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00B243CB18FBD25300D9DCF1 /* tabbarBG@2x.png */; };
 		00BEAB1018F678BE00E0C6B2 /* OKBottomTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB0F18F678BE00E0C6B2 /* OKBottomTabBarView.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00EE681218F6E473001A0BCA /* nameTextFieldIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EE680E18F6E473001A0BCA /* nameTextFieldIcon.png */; };
@@ -41,14 +51,6 @@
 		00EE683E18F80272001A0BCA /* navbarBG_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EE683C18F80272001A0BCA /* navbarBG_color.png */; };
 		00EE683F18F80272001A0BCA /* navbarBG_color@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00EE683D18F80272001A0BCA /* navbarBG_color@2x.png */; };
 		00EE684518F82298001A0BCA /* OKCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 00EE684418F82298001A0BCA /* OKCustomTextField.m */; };
-		00FBADFE18F83ED7002BBF43 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADF618F83ED7002BBF43 /* home.png */; };
-		00FBADFF18F83ED7002BBF43 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADF718F83ED7002BBF43 /* home@2x.png */; };
-		00FBAE0018F83ED7002BBF43 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADF818F83ED7002BBF43 /* info.png */; };
-		00FBAE0118F83ED7002BBF43 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADF918F83ED7002BBF43 /* info@2x.png */; };
-		00FBAE0218F83ED7002BBF43 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADFA18F83ED7002BBF43 /* logout.png */; };
-		00FBAE0318F83ED7002BBF43 /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADFB18F83ED7002BBF43 /* logout@2x.png */; };
-		00FBAE0418F83ED7002BBF43 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADFC18F83ED7002BBF43 /* settings.png */; };
-		00FBAE0518F83ED7002BBF43 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FBADFD18F83ED7002BBF43 /* settings@2x.png */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
 		E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DF18F529E9008421D4 /* CoreGraphics.framework */; };
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
@@ -93,6 +95,16 @@
 		0089508718F6D0E30013F51F /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
 		00B243BE18FBC38700D9DCF1 /* OKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKConstants.h; sourceTree = "<group>"; };
 		00B243BF18FBC38700D9DCF1 /* OKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKConstants.m; sourceTree = "<group>"; };
+		00B243C218FBD25300D9DCF1 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		00B243C318FBD25300D9DCF1 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		00B243C418FBD25300D9DCF1 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		00B243C518FBD25300D9DCF1 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
+		00B243C618FBD25300D9DCF1 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		00B243C718FBD25300D9DCF1 /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@2x.png"; sourceTree = "<group>"; };
+		00B243C818FBD25300D9DCF1 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		00B243C918FBD25300D9DCF1 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		00B243CA18FBD25300D9DCF1 /* tabbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbarBG.png; sourceTree = "<group>"; };
+		00B243CB18FBD25300D9DCF1 /* tabbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBG@2x.png"; sourceTree = "<group>"; };
 		00BEAB0E18F678BE00E0C6B2 /* OKBottomTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBottomTabBarView.h; sourceTree = "<group>"; };
 		00BEAB0F18F678BE00E0C6B2 /* OKBottomTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBottomTabBarView.m; sourceTree = "<group>"; };
 		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
@@ -117,14 +129,6 @@
 		00EE683D18F80272001A0BCA /* navbarBG_color@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbarBG_color@2x.png"; sourceTree = "<group>"; };
 		00EE684318F82298001A0BCA /* OKCustomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCustomTextField.h; sourceTree = "<group>"; };
 		00EE684418F82298001A0BCA /* OKCustomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCustomTextField.m; sourceTree = "<group>"; };
-		00FBADF618F83ED7002BBF43 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
-		00FBADF718F83ED7002BBF43 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
-		00FBADF818F83ED7002BBF43 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
-		00FBADF918F83ED7002BBF43 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
-		00FBADFA18F83ED7002BBF43 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
-		00FBADFB18F83ED7002BBF43 /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logout@2x.png"; sourceTree = "<group>"; };
-		00FBADFC18F83ED7002BBF43 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
-		00FBADFD18F83ED7002BBF43 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		E10023DA18F529E9008421D4 /* OpKnowte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpKnowte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10023DD18F529E9008421D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E10023DF18F529E9008421D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -180,29 +184,38 @@
 				E10023F618F529E9008421D4 /* OKViewController.m */,
 				007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */,
 				007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */,
-				00BEAB0E18F678BE00E0C6B2 /* OKBottomTabBarView.h */,
-				00BEAB0F18F678BE00E0C6B2 /* OKBottomTabBarView.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		00B243C118FBCCAB00D9DCF1 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				00BEAB0E18F678BE00E0C6B2 /* OKBottomTabBarView.h */,
+				00BEAB0F18F678BE00E0C6B2 /* OKBottomTabBarView.m */,
 				00EE684318F82298001A0BCA /* OKCustomTextField.h */,
 				00EE684418F82298001A0BCA /* OKCustomTextField.m */,
 				00B243BE18FBC38700D9DCF1 /* OKConstants.h */,
 				00B243BF18FBC38700D9DCF1 /* OKConstants.m */,
 			);
-			name = ViewControllers;
+			name = CustomClasses;
 			sourceTree = "<group>";
 		};
 		00BEAB1118F67DCE00E0C6B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				00FBADF618F83ED7002BBF43 /* home.png */,
-				00FBADF718F83ED7002BBF43 /* home@2x.png */,
-				00FBADF818F83ED7002BBF43 /* info.png */,
-				00FBADF918F83ED7002BBF43 /* info@2x.png */,
-				00FBADFA18F83ED7002BBF43 /* logout.png */,
-				00FBADFB18F83ED7002BBF43 /* logout@2x.png */,
-				00FBADFC18F83ED7002BBF43 /* settings.png */,
-				00FBADFD18F83ED7002BBF43 /* settings@2x.png */,
+				00B243C218FBD25300D9DCF1 /* home.png */,
+				00B243C318FBD25300D9DCF1 /* home@2x.png */,
+				00B243C418FBD25300D9DCF1 /* info.png */,
+				00B243C518FBD25300D9DCF1 /* info@2x.png */,
+				00B243C618FBD25300D9DCF1 /* logout.png */,
+				00B243C718FBD25300D9DCF1 /* logout@2x.png */,
+				00B243C818FBD25300D9DCF1 /* settings.png */,
+				00B243C918FBD25300D9DCF1 /* settings@2x.png */,
+				00B243CA18FBD25300D9DCF1 /* tabbarBG.png */,
+				00B243CB18FBD25300D9DCF1 /* tabbarBG@2x.png */,
 				00EE683C18F80272001A0BCA /* navbarBG_color.png */,
 				00EE683D18F80272001A0BCA /* navbarBG_color@2x.png */,
 				00EE683418F7F96E001A0BCA /* navbarBG_64.png */,
@@ -272,6 +285,7 @@
 				E10023ED18F529E9008421D4 /* OKAppDelegate.m */,
 				E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */,
 				E10023F218F529E9008421D4 /* Main_iPad.storyboard */,
+				00B243C118FBCCAB00D9DCF1 /* CustomClasses */,
 				007A0C9918F53AB100D183F1 /* ViewControllers */,
 				E10023F818F529E9008421D4 /* Images.xcassets */,
 				00BEAB1118F67DCE00E0C6B2 /* Resources */,
@@ -387,11 +401,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				00EE681318F6E473001A0BCA /* nameTextFieldIcon@2x.png in Resources */,
-				00FBAE0018F83ED7002BBF43 /* info.png in Resources */,
+				00B243CE18FBD25300D9DCF1 /* info.png in Resources */,
 				0089508C18F6D0E30013F51F /* bg.png in Resources */,
-				00FBADFE18F83ED7002BBF43 /* home.png in Resources */,
+				00B243CC18FBD25300D9DCF1 /* home.png in Resources */,
 				00EE683B18F7F96E001A0BCA /* navbarBG@2x.png in Resources */,
-				00FBAE0518F83ED7002BBF43 /* settings@2x.png in Resources */,
+				00B243D318FBD25300D9DCF1 /* settings@2x.png in Resources */,
 				0071B29818F6D8890080F0C3 /* forgotPassword@2x.png in Resources */,
 				00EE681518F6E473001A0BCA /* passwordTextFieldIcon@2x.png in Resources */,
 				00EE682C18F7ED22001A0BCA /* MDTextFieldIcon.png in Resources */,
@@ -402,28 +416,30 @@
 				00EE682B18F7ED22001A0BCA /* emailTextFieldIcon@2x.png in Resources */,
 				0071B29618F6D8890080F0C3 /* back@2x.png in Resources */,
 				00EE683818F7F96E001A0BCA /* navbarBG_64.png in Resources */,
+				00B243D418FBD25300D9DCF1 /* tabbarBG.png in Resources */,
 				E10023F918F529E9008421D4 /* Images.xcassets in Resources */,
 				E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */,
 				00EE682A18F7ED22001A0BCA /* emailTextFieldIcon.png in Resources */,
 				00EE682818F7ED22001A0BCA /* down.png in Resources */,
 				00EE683F18F80272001A0BCA /* navbarBG_color@2x.png in Resources */,
 				0071B29A18F6D8890080F0C3 /* logo@2x.png in Resources */,
-				00FBAE0218F83ED7002BBF43 /* logout.png in Resources */,
+				00B243D518FBD25300D9DCF1 /* tabbarBG@2x.png in Resources */,
+				00B243D018FBD25300D9DCF1 /* logout.png in Resources */,
 				00EE681818F6E935001A0BCA /* bg_568.png in Resources */,
 				0071B29518F6D8890080F0C3 /* back.png in Resources */,
 				0071B29718F6D8890080F0C3 /* forgotPassword.png in Resources */,
-				00FBAE0118F83ED7002BBF43 /* info@2x.png in Resources */,
+				00B243CF18FBD25300D9DCF1 /* info@2x.png in Resources */,
 				00EE681418F6E473001A0BCA /* passwordTextFieldIcon.png in Resources */,
 				0071B29918F6D8890080F0C3 /* logo.png in Resources */,
 				0071B29C18F6D8890080F0C3 /* register@2x.png in Resources */,
 				E10023E818F529E9008421D4 /* InfoPlist.strings in Resources */,
-				00FBAE0318F83ED7002BBF43 /* logout@2x.png in Resources */,
+				00B243D118FBD25300D9DCF1 /* logout@2x.png in Resources */,
 				00EE682D18F7ED22001A0BCA /* MDTextFieldIcon@2x.png in Resources */,
 				0071B29B18F6D8890080F0C3 /* register.png in Resources */,
 				00EE683918F7F96E001A0BCA /* navbarBG_64@2x.png in Resources */,
 				00EE682918F7ED22001A0BCA /* down@2x.png in Resources */,
-				00FBADFF18F83ED7002BBF43 /* home@2x.png in Resources */,
-				00FBAE0418F83ED7002BBF43 /* settings.png in Resources */,
+				00B243CD18FBD25300D9DCF1 /* home@2x.png in Resources */,
+				00B243D218FBD25300D9DCF1 /* settings.png in Resources */,
 				00EE681918F6E935001A0BCA /* bg_568@2x.png in Resources */,
 				00EE681218F6E473001A0BCA /* nameTextFieldIcon.png in Resources */,
 			);

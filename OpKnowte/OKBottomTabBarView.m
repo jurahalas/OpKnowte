@@ -28,7 +28,8 @@
 }
 -(void) drawHomeButton {
     _homeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _homeButton.frame = CGRectMake(0, 0, 80, 80);
+    _homeButton.frame = CGRectMake(0, 0, 80, 51);
+    
     _homeButton.tintColor = [UIColor whiteColor];
     [self.homeButton setImage:[UIImage imageNamed:@"home"] forState:UIControlStateNormal];
     [_homeButton addTarget:self action:@selector(homeButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -37,7 +38,8 @@
 
 -(void) drawInfoButton {
     _infoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _infoButton.frame = CGRectMake(80, 0, 80, 80);
+    _infoButton.frame = CGRectMake(80, 0, 80, 51);
+    
     _infoButton.tintColor = [UIColor whiteColor];
     [self.infoButton setImage:[UIImage imageNamed:@"info"] forState:UIControlStateNormal];
     [_infoButton addTarget:self action:@selector(infoButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -46,7 +48,8 @@
 
 -(void) drawSettingsButton {
     _settingsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _settingsButton.frame = CGRectMake(160, 0, 80, 80);
+    _settingsButton.frame = CGRectMake(160, 0, 80, 51);
+    
     _settingsButton.tintColor = [UIColor whiteColor];
     [self.settingsButton setImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
     [_settingsButton addTarget:self action:@selector(settingsButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -55,15 +58,16 @@
 
 -(void) drawLogoutButton {
     _logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _logoutButton.frame = CGRectMake(240, 0, 80, 80);
+    _logoutButton.frame = CGRectMake(240, 0, 80, 51);
+    
     _logoutButton.tintColor = [UIColor whiteColor];
     [self.logoutButton setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
     [_logoutButton addTarget:self action:@selector(logoutButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_logoutButton];
 }
 -(void) drawView {
-    self.backgroundColor = [UIColor colorWithRed:40/255.0 green:55/255.0 blue:76/255.0 alpha:1];
-    self.frame = CGRectMake(0, 488, 320, 80);
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];;
+    self.frame = CGRectMake(0, 517, 320, 51);
 }
 -(void)homeButton:(id)sender{
     
