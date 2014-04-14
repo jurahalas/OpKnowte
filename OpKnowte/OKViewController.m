@@ -36,30 +36,6 @@
     _passwordTextField.text = @"";
     _emailTextField.text = @"";
     _forgotPasswordViewTextField.text = @"";
-    CGRect forgotPasswordViewBackgroundRect = CGRectMake(0, 0, 320, 568);
-    _forgotPasswordViewBackground = [[UIView alloc] initWithFrame:forgotPasswordViewBackgroundRect];
-    _forgotPasswordViewBackground.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    CGRect forgotPasswordViewRect = CGRectMake(20, 200, 280, 200);
-    _forgotPasswordView = [[UIView alloc] initWithFrame:forgotPasswordViewRect];
-    _forgotPasswordView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
-    CGRect forgotPasswordViewTextFieldRect = CGRectMake(20, 90, 240, 30);
-    _forgotPasswordViewTextField = [[UITextField alloc] initWithFrame:forgotPasswordViewTextFieldRect];
-    _forgotPasswordViewTextField.borderStyle = UITextBorderStyleRoundedRect;
-    _forgotPasswordViewTextField.text = @"";
-    CGRect forgotPasswordViewButtonRect = CGRectMake(20, 130, 240, 30);
-    _forgotPasswordViewButton = [[UIButton alloc] initWithFrame:forgotPasswordViewButtonRect];
-    [_forgotPasswordViewButton setTitle:@"Send" forState:UIControlStateNormal];
-    [_forgotPasswordViewButton addTarget:self action:@selector(forgotPasswordViewButton:) forControlEvents:UIControlEventTouchUpInside];
-    //_forgotPasswordViewButton.backgroundColor = [UIColor greenColor];
-    [_forgotPasswordViewButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    CGRect forgotPasswordViewLabelRect = CGRectMake(20, 10, 240, 70);
-    _forgotPasswordViewLabel = [[UILabel alloc] initWithFrame:forgotPasswordViewLabelRect];
-    _forgotPasswordViewLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:13.0f];
-    _forgotPasswordViewLabel.textAlignment = NSTextAlignmentCenter;
-    _forgotPasswordViewLabel.text = @"Please confirm your Email Address.\rWe will send you your password.";
-    _forgotPasswordViewLabel.numberOfLines = 0;
-    
-    
     
     UITapGestureRecognizer *forgotPasswordViewBackgroundTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordViewBackgroundTapAction:)];
     [self.forgotPasswordViewBackground addGestureRecognizer:forgotPasswordViewBackgroundTap];
@@ -131,6 +107,12 @@
 
 #pragma mark - IBActions
 - (IBAction)loginButton:(id)sender {
+    
+    OKUserManager *usermanager = [OKUserManager sharedManager];
+    [usermanager signinWithEmail:@"frolow.artem@gmail.com" password:@"987654123369" handler:^(NSString* error){
+        NSLog(@"error - %@", error);
+    }];
+    
 }
 - (void)forgotPasswordViewButton:(id)sender{
     [_forgotPasswordViewBackground removeFromSuperview];

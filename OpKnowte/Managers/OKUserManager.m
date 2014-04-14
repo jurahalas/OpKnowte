@@ -22,10 +22,11 @@
 }
 
 
--(void)signinWithUserName:(NSString*)userName password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
+-(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
 {
-    NSDictionary *params = @{};
-    [self requestWithMethod:@"POST" path:@"/sd/login" params:params handler:^(NSError *error, id json) {
+    NSDictionary *params = @{@"email": email, @"password": password};
+    
+    [self requestWithMethod:@"POST" path:@"/login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
     }];
 }

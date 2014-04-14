@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AFHTTPClient.h>
 
-#define BASE_URL @"http://localhost:3000"
+#define BASE_URL @"http://knowte.esy.es/"
 
 @interface OKApiClient : AFHTTPClient
 
