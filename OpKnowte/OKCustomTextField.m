@@ -24,7 +24,12 @@
 }
 -(void) drawCustomTextField{
     
-    self.tintColor = [UIColor whiteColor];
+    
+    if (IS_IOS7) {
+        self.tintColor = [UIColor whiteColor];
+    } else {
+        [[self valueForKey:@"textInputTraits"] setValue:[UIColor whiteColor] forKey:@"insertionPointColor"];
+    }
     self.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0f];
     self.backgroundColor = [UIColor clearColor];
     self.layer.borderColor =[UIColor whiteColor].CGColor;

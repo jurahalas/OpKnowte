@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKAppDelegate.h"
 
 @interface OKCustomTextField : UITextField
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow;

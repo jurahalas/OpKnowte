@@ -10,6 +10,7 @@
 #import "OKBaseViewController.h"
 #import "OKBottomTabBarView.h"
 #import "OKCustomTextField.h"
+#import "OKConstants.h"
 
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 

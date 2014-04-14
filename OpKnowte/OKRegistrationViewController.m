@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
-    [self setNeedsStatusBarAppearanceUpdate];
+    
     [self setAllDesign];
     _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
     _nameTextField.text = @"";
@@ -76,9 +76,6 @@
         _animatedKeyboard = NO;
     }
 }
-
-
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     UIResponder* nextResponder = [textField.superview viewWithTag:(textField.tag + 1)];
     if (textField.tag != _confirmPasswordField.tag && textField.tag != _emailTextField.tag) {
@@ -94,7 +91,6 @@
     return YES;
 
 }
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
@@ -136,8 +132,14 @@
 
 
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    UIColor *pickerFontColor = [[UIColor alloc] init];
+    if (IS_IOS7) {
+        pickerFontColor = [UIColor whiteColor];
+    } else {
+        pickerFontColor = [UIColor blackColor];
+    }
     NSString *pickerString = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
-    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: pickerFontColor}];
     return pickerAttributedString;
 }
 
@@ -169,6 +171,9 @@
     [_MDTextField setCustomTextFieldPlaceholder: @"MD" Secured:NO DownArrow:YES];
     [_passwordTextField setCustomTextFieldPlaceholder:@"your password..." Secured:YES DownArrow:NO];
     [_confirmPasswordField setCustomTextFieldPlaceholder:@"once again..." Secured:YES DownArrow:NO];
+    
+
+    
     
     _continueButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
     _continueButton.layer.cornerRadius = 14;
