@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-@interface OKSelectProcedureViewController : OKBaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface OKSelectProcedureViewController : OKBaseViewController <UITableViewDelegate, UITableViewDataSource>
+
 
 @end

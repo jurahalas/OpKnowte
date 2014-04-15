@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKAppDelegate.h"
 
 @interface OKSelectProcedureCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *cellTitle;
+@property (strong, nonatomic) IBOutlet UILabel *procedureLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *rightArrowCellImage;
+
+-(void) setCellTitleOlo;
+-(void) setCellUserIntaractionDisabled;
+
 @end

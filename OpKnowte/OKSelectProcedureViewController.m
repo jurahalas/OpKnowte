@@ -24,12 +24,18 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     
-    _selectProcedureTableView.backgroundColor = [UIColor clearColor];
+    
     [super viewDidLoad];
 	[self.navigationController setNavigationBarHidden:NO animated:YES ];
+    _selectProcedureTableView.backgroundColor = [UIColor clearColor];
+    
+    self.selectProcedureTableView.dataSource = self;
+    self.selectProcedureTableView.delegate = self;
+    [self.selectProcedureTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,7 +45,7 @@
 }
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
-     [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - Table View methods
 
@@ -51,16 +57,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"procedureCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OKSelectProcedureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[OKSelectProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     
-    
-    
+    [cell setCellTitleOlo];
+    if (indexPath.row >3) {
+        [cell setCellUserIntaractionDisabled];
+    }
     
     return cell;
 }

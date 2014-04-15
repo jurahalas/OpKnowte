@@ -9,16 +9,11 @@
 #import "OKViewController.h"
 
 @interface OKViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *emailTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
-@property (strong, nonatomic) UIView *forgotPasswordView;
-@property (strong, nonatomic) UIView *forgotPasswordViewBackground;
-@property (strong, nonatomic) UILabel *forgotPasswordViewLabel;
-@property (strong, nonatomic) UITextField *forgotPasswordViewTextField;
-@property (strong, nonatomic) UIButton *forgotPasswordViewButton;
 @property (nonatomic) BOOL animatedKeyboard;
 
 
@@ -35,10 +30,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
     _passwordTextField.text = @"";
     _emailTextField.text = @"";
-    _forgotPasswordViewTextField.text = @"";
-    
-    UITapGestureRecognizer *forgotPasswordViewBackgroundTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(forgotPasswordViewBackgroundTapAction:)];
-    [self.forgotPasswordViewBackground addGestureRecognizer:forgotPasswordViewBackgroundTap];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -100,44 +91,51 @@
 
 #pragma mark - Custom methods
 
--(void) forgotPasswordViewBackgroundTapAction: (UITapGestureRecognizer *) recognizer {
-    [_forgotPasswordViewBackground removeFromSuperview];
-    [_forgotPasswordView removeFromSuperview];
-}
+
 
 #pragma mark - IBActions
 - (IBAction)loginButton:(id)sender {
     
     OKUserManager *usermanager = [OKUserManager sharedManager];
-    [usermanager signinWithEmail:@"frolow.artem@gmail.com" password:@"987654123369" handler:^(NSString* error){
+//    [usermanager signinWithEmail:@"f_zhenya@i.ua" password:@"12341234" handler:^(NSString* error){
+//        NSLog(@"error - %@", error);
+//    }];
+    [usermanager signinWithEmail:@"myname@i.ua" password:@"1234" handler:^(NSString* error){
         NSLog(@"error - %@", error);
     }];
     
 }
-- (void)forgotPasswordViewButton:(id)sender{
-    [_forgotPasswordViewBackground removeFromSuperview];
-    [_forgotPasswordView removeFromSuperview];
-    
-}
+
 - (IBAction)forgetPasswordButton:(id)sender {
-    [self.view addSubview:_forgotPasswordViewBackground];
-    [self.view addSubview:_forgotPasswordView];
-    [_forgotPasswordView addSubview:_forgotPasswordViewTextField];
-    [_forgotPasswordView addSubview:_forgotPasswordViewButton];
-    [_forgotPasswordView addSubview:_forgotPasswordViewLabel];
+    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:@"Please confirm your Email Address.\rWe will send you your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
+    customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [customAlertView textFieldAtIndex:0].placeholder = @"Email";
+    [customAlertView show];
 }
 
 - (IBAction)registerButton:(id)sender {
-    OKUserManager *usermanager = [OKUserManager sharedManager];
-    [usermanager recoverPasswordWithEmail:@"frolow.artem@gmail.com" handler:^(NSString* error){
-       NSLog(@"error - %@", error);
-    }];
+
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+    }
+    if (buttonIndex == 1) {
+        NSLog(@"THE 'Send' BUTTON WAS PRESSED");
+        OKUserManager *usermanager = [OKUserManager sharedManager];
+        [usermanager recoverPasswordWithEmail:@"frolow.artem@gmail.com" handler:^(NSString* error){
+            NSLog(@"error - %@", error);
+        }];
+    }
+}
+
 #pragma mark - design
 -(void) setAllDesign {
     
-    [self setDesignForTextField:_emailTextField Placeholder: @"Email" Secured:NO];
-    [self setDesignForTextField:_passwordTextField Placeholder:@"Password" Secured:YES];
+    [_emailTextField setCustomTextFieldPlaceholder:@"Email" Secured:NO DownArrow:NO];
+    [_passwordTextField setCustomTextFieldPlaceholder:@"Password" Secured:YES DownArrow:NO];
     
     _loginButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
     _loginButton.layer.cornerRadius = 14;
@@ -145,38 +143,7 @@
     
 }
 
--(void) setDesignForTextField:(UITextField*) textField  Placeholder:(NSString*) placeholder Secured:(BOOL) secured{
-    
-    
-    UIImageView *textFieldIcon = [[UIImageView alloc] init];
-    if ([placeholder isEqualToString:@"Email"]) {
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 19, 18)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"nameTextFieldIcon"];
-    } else {
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(12, 0, 14, 18)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"passwordTextFieldIcon"];
-    }
-    
-    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 18)];
-    textFieldIconView.backgroundColor = [UIColor clearColor];
-    [textFieldIconView addSubview:textFieldIcon];
-    
-    textField.tintColor = [UIColor whiteColor];
-    textField.leftView = textFieldIconView;
-    textField.leftViewMode = UITextFieldViewModeAlways;
-    textField.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0f];
-    textField.backgroundColor = [UIColor clearColor];
-    textField.layer.borderColor =[UIColor whiteColor].CGColor;
-    textField.layer.borderWidth = 1.f;
-    [textField setTextColor:[UIColor whiteColor]];
-    textField.layer.cornerRadius = 14;
-    textField.clipsToBounds = YES;
-    textField.secureTextEntry = secured;
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{
-                                                                                                          NSForegroundColorAttributeName: [UIColor lightGrayColor],
-                                                                                                          NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-UltraLightItalic" size:14.0f]
-                                                                                                          }];
-}
+
 
 
 @end

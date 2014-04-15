@@ -29,6 +29,7 @@
     
     [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
     }];
 }
 -(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler
@@ -38,6 +39,7 @@
     
     [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
     }];
 }
 
