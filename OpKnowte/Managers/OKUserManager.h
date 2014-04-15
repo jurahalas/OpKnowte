@@ -12,10 +12,8 @@
 
 +(OKUserManager*)instance;
 
-
--(void)signinWithUserName:(NSString*)userName password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
-
++(OKUserManager *)sharedManager;
+-(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
 - (void)signupWithUserName:(NSString*)userName firstName:(NSString*)firstName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler;
-
-
+-(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler;
 @end

@@ -16,11 +16,11 @@
 
 
 @interface OKRegistrationViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
-@property (strong, nonatomic) IBOutlet UITextField *MDTextField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (strong, nonatomic) IBOutlet UITextField *confirmPasswordField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *nameTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *emailTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *MDTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *passwordTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *confirmPasswordField;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
 @property (strong, nonatomic) IBOutlet UIPickerView *MDPiker;
 @property (strong, nonatomic) NSArray *MDPickerData;
@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
-    [self setNeedsStatusBarAppearanceUpdate];
+
     [self setAllDesign];
     _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
     _nameTextField.text = @"";
@@ -226,69 +226,22 @@
 #pragma mark - design
 -(void) setAllDesign {
     
-    [self setDesignForTextField:_nameTextField Placeholder: @"your name..." Secured:NO DownArrow:NO];
-    [self setDesignForTextField:_emailTextField Placeholder: @"your email..." Secured:NO DownArrow:NO];
-    [self setDesignForTextField:_MDTextField Placeholder: @"MD" Secured:NO DownArrow:YES];
-    [self setDesignForTextField:_passwordTextField Placeholder:@"your password..." Secured:YES DownArrow:NO];
-    [self setDesignForTextField:_confirmPasswordField Placeholder:@"once again..." Secured:YES DownArrow:NO];
+    [_nameTextField setCustomTextFieldPlaceholder: @"your name..." Secured:NO DownArrow:NO];
+    [_emailTextField setCustomTextFieldPlaceholder: @"your email..." Secured:NO DownArrow:NO];
+    [_MDTextField setCustomTextFieldPlaceholder: @"MD" Secured:NO DownArrow:YES];
+    [_passwordTextField setCustomTextFieldPlaceholder:@"your password..." Secured:YES DownArrow:NO];
+    [_confirmPasswordField setCustomTextFieldPlaceholder:@"once again..." Secured:YES DownArrow:NO];
+    
+    
+    
     
     _continueButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
     _continueButton.layer.cornerRadius = 14;
     _continueButton.clipsToBounds = YES;
+
     
 }
 
--(void) setDesignForTextField:(UITextField*) textField  Placeholder:(NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
-    
-    
-    UIImageView *textFieldIcon = [[UIImageView alloc] init];
-    
-    if ([placeholder isEqualToString:@"your name..."]) {
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 19, 18)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"nameTextFieldIcon"];
-    } else if ([placeholder isEqualToString:@"your email..."]){
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(11, 3, 18, 12)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"emailTextFieldIcon"];
-    } else if ([placeholder isEqualToString:@"MD"]){
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 1, 19, 16)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"MDTextFieldIcon"];
-    } else {
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(12, 0, 14, 18)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"passwordTextFieldIcon"];
-    }
-    
-    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 18)];
-    textFieldIconView.backgroundColor = [UIColor clearColor];
-    [textFieldIconView addSubview:textFieldIcon];
-    
-    
-    UIView *textFieldDownArrowView = [[UIView alloc] init];
-    if (downArrow) {
-        UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(11, 3, 18, 11)] ;
-        textFieldDownArrow.image = [UIImage imageNamed:@"down"];
-        textFieldDownArrowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 18)];
-        textFieldDownArrowView.backgroundColor = [UIColor clearColor];
-        [textFieldDownArrowView addSubview:textFieldDownArrow];
-        textField.rightView = textFieldDownArrowView;
-        textField.rightViewMode = UITextFieldViewModeAlways;
-    }
-    
-    
-    textField.tintColor = [UIColor whiteColor];
-    textField.leftView = textFieldIconView;
-    textField.leftViewMode = UITextFieldViewModeAlways;
-    textField.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0f];
-    textField.backgroundColor = [UIColor clearColor];
-    textField.layer.borderColor =[UIColor whiteColor].CGColor;
-    textField.layer.borderWidth = 1.f;
-    [textField setTextColor:[UIColor whiteColor]];
-    textField.layer.cornerRadius = 14;
-    textField.clipsToBounds = YES;
-    textField.secureTextEntry = secured;
-    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{
-                                                                                                          NSForegroundColorAttributeName: [UIColor lightGrayColor],
-                                                                                                          NSFontAttributeName: [UIFont fontWithName:@"AvenirNext-UltraLightItalic" size:14.0f]
-                                                                                                          }];
-}
+
 
 @end
