@@ -25,11 +25,20 @@
 -(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
 {
     NSDictionary *params = @{@"email": email, @"password": password};
+
     
-    [self requestWithMethod:@"POST" path:@"/login" params:params handler:^(NSError *error, id json) {
+    [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
     }];
 }
-
+-(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{};
+    NSString *url = [NSString stringWithFormat:@"getPassword?email=%@", email];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+    }];
+}
 
 @end
