@@ -12,4 +12,6 @@
 
 +(OKUserManager*)instance;
 
+-(void)signinWithUserName:(NSString*)userName password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
+
 @end

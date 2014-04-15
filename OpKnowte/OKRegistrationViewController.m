@@ -9,11 +9,10 @@
 #import "OKRegistrationViewController.h"
 #import "OKBaseManager.h"
 #import "OKApiClient.h"
+#import "OKUserManager.h"
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFJSONRequestOperation.h"
-
-#define     REGISTER_USER                   @"http://knowte.esy.es/signUpUser"
 
 
 @interface OKRegistrationViewController ()
@@ -49,11 +48,6 @@
     _MDTextField.tag = 3;
     _passwordTextField.tag = 4;
     _confirmPasswordField.tag = 5;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(registrationUser)
-                                                 name:@"AgreeToTerms"
-                                               object:nil];
-
 
 	// Do any additional setup after loading the view.
 }
@@ -172,72 +166,40 @@
 
 - (IBAction)continueButton:(id)sender
 {
-    BOOL isEmailValidate = [OKRegistrationViewController validateEmail:_emailTextField.text];
-    
-    if ([_nameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]) {
-        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
-    }
-    else if (!isEmailValidate) {
-        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
-    }
-    else if (![_passwordTextField.text isEqualToString:_confirmPasswordField.text]) {
-        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Password and re-password should be same"];
-    }
-    else {
+//    BOOL isEmailValidate = [OKRegistrationViewController validateEmail:_emailTextField.text];
+//    
+//    if ([_nameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]) {
+//        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
+//    }
+//    else if (!isEmailValidate) {
+//        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
+//    }
+//    else if (![_passwordTextField.text isEqualToString:_confirmPasswordField.text]) {
+//        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Password and re-password should be same"];
+//    }
+//    else {
 
     [self registrationUser];
-    }
+//    }
 }
 
 
 -(void)registrationUser
 {
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setObject:_emailTextField.text/*@"jekahy343@gmail.com"*/ forKey:@"email"];
-    [params setObject:_passwordTextField.text/*@"123456789"*/ forKey:@"password"];
-//    [params setObject:_confirmPasswordField.text/*@"123456789"*/ forKey:@"password_confirmation"];
-    [params setObject:_nameTextField.text /*@"123456789"*/ forKey:@"firstName"];
+    OKApiClient *usermanager = [OKApiClient sharedManager];
     
-    
-    NSError *error = nil;
-    NSData *json = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
-    
-    if (!error){
-        AFHTTPClient *client = [OKApiClient sharedManager];
-        NSString *path = [NSString stringWithFormat:@"http://knowte.esy.es/signUpUser"];
-        NSMutableURLRequest *request = [client requestWithMethod:@"POST" path:path parameters:nil];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:json];
-        [request setHTTPShouldHandleCookies:YES];
-        
-        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            
-            NSInteger success = [[JSON  objectForKey:@"success"]integerValue];
-            NSString *message;
-            if(success == 1){
-                message = [NSString stringWithFormat:@"Registration successful: %@",[JSON objectForKey:@"message"]];
-                message = @"Registration successful: Check your email and confirm registration.";
-            }else{
-                message = [NSString stringWithFormat:@"Registration unsuccessful: %@",[JSON objectForKey:@"errors"]];
-            }
-            
-            UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"REGISTRATION" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            
-            [av show];
-        }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            
-            NSString* errMsg = nil;
-            if (JSON != nil) {
-                errMsg = [JSON  objectForKey:@"info"];
-            } else {
-                errMsg = [error localizedDescription];
-            }
-            UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"REGISTRATION" message:[NSString stringWithFormat:@"Registration unsuccessful. Try again later."] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [av show];
-        }];
-        
-        [operation start];
-    }
+    NSDictionary *parameters = @{
+                                 @"username" : @"es",
+                                 @"password": @"pass",
+                                 };
+
+   [usermanager requestWithMethod:"POST" path:@"http://knowte.esy.es/signUpUser" parameters: parameters handler:^(NSString* error){
+                NSLog(@"error - %@", error);
+            }];
+
+//    [usermanager signinWithEmail:@"frolow.artem@gmail.com" password:@"987654123369" handler:^(NSString* error){
+//        NSLog(@"error - %@", error);
+//    }];
 }
 
 
