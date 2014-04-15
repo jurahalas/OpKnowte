@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0060D82E18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D82D18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.m */; };
+		0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */; };
 		0071B29518F6D8890080F0C3 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 0071B28D18F6D8890080F0C3 /* back.png */; };
 		0071B29618F6D8890080F0C3 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0071B28E18F6D8890080F0C3 /* back@2x.png */; };
 		0071B29718F6D8890080F0C3 /* forgotPassword.png in Resources */ = {isa = PBXBuildFile; fileRef = 0071B28F18F6D8890080F0C3 /* forgotPassword.png */; };
@@ -76,6 +78,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0060D82C18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectProcedureViewController.h; sourceTree = "<group>"; };
+		0060D82D18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectProcedureViewController.m; sourceTree = "<group>"; };
+		0060D82F18FD27BB00AFC7B4 /* OKSelectProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectProcedureCell.h; sourceTree = "<group>"; };
+		0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectProcedureCell.m; sourceTree = "<group>"; };
 		0071B28D18F6D8890080F0C3 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		0071B28E18F6D8890080F0C3 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		0071B28F18F6D8890080F0C3 /* forgotPassword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forgotPassword.png; sourceTree = "<group>"; };
@@ -188,6 +194,10 @@
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
 				00EE684018F8117D001A0BCA /* OKCustomAlertView.h */,
 				00EE684118F8117D001A0BCA /* OKCustomAlertView.m */,
+				0060D82C18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.h */,
+				0060D82D18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.m */,
+				0060D82F18FD27BB00AFC7B4 /* OKSelectProcedureCell.h */,
+				0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -496,11 +506,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
+				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
+				0060D82E18FD1F3C00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
