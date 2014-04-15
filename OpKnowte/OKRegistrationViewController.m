@@ -164,44 +164,25 @@
     }
 }
 
+
 - (IBAction)continueButton:(id)sender
 {
-//    BOOL isEmailValidate = [OKRegistrationViewController validateEmail:_emailTextField.text];
-//    
-//    if ([_nameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]) {
-//        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
-//    }
-//    else if (!isEmailValidate) {
-//        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
-//    }
-//    else if (![_passwordTextField.text isEqualToString:_confirmPasswordField.text]) {
-//        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Password and re-password should be same"];
-//    }
-//    else {
-
-    [self registrationUser];
-//    }
-}
-
-
--(void)registrationUser
-{
-    OKApiClient *usermanager = [OKApiClient sharedManager];
+    BOOL isEmailValidate = [OKRegistrationViewController validateEmail:_emailTextField.text];
     
-    NSDictionary *parameters = @{
-                                 @"username" : @"es",
-                                 @"password": @"pass",
-                                 };
-
-   [usermanager requestWithMethod:"POST" path:@"http://knowte.esy.es/signUpUser" parameters: parameters handler:^(NSString* error){
-                NSLog(@"error - %@", error);
-            }];
-
-//    [usermanager signinWithEmail:@"frolow.artem@gmail.com" password:@"987654123369" handler:^(NSString* error){
-//        NSLog(@"error - %@", error);
-//    }];
+    if ([_nameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]) {
+        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
+    }
+    else if (!isEmailValidate) {
+        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
+    }
+    else if (![_passwordTextField.text isEqualToString:_confirmPasswordField.text]) {
+        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Password and re-password should be same"];
+    }
+    else {
+        [[OKUserManager instance] signupWithUserName:@" " firstName:_nameTextField.text  userEmail:_emailTextField.text password:_passwordTextField.text userTitle:_MDTextField.text handler:^(NSString *errorMsg) {
+        }];
+    }
 }
-
 
 
 - (IBAction)navBarBackButton:(id)sender {

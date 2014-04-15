@@ -28,7 +28,7 @@
     
     [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [self setDefaultHeader:@"Accept" value:@"application/json"];
-    [self setParameterEncoding:AFJSONParameterEncoding];
+    [self setParameterEncoding:AFFormURLParameterEncoding];
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     

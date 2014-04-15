@@ -12,11 +12,17 @@
 
 @implementation OKBaseManager
 
+
 -(NSString*)getErrorMessageFromJSON:(id)json error:(NSError*)error
 {
-    NSString *errorMsg = nil;
-    if(error){
-        errorMsg = [error localizedDescription];
+    NSString *errorMsg = [json objectForKey:@"msg"];
+    NSString *status  = [json objectForKey:@"status"];
+    if([status isEqualToString:@"false"]){
+        if(!errorMsg){
+            errorMsg =[error localizedDescription];
+        }
+    }else{
+        errorMsg = nil;
     }
     return errorMsg;
 }

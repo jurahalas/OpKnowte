@@ -12,6 +12,10 @@
 
 +(OKUserManager*)instance;
 
+
 -(void)signinWithUserName:(NSString*)userName password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
+
+- (void)signupWithUserName:(NSString*)userName firstName:(NSString*)firstName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler;
+
 
 @end

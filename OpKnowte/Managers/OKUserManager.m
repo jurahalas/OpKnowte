@@ -11,11 +11,10 @@
 @implementation OKUserManager
 
 
-+ (OKUserManager *)sharedManager
++ (OKUserManager *)instance
 {
     static dispatch_once_t pred;
     static OKUserManager *manager = nil;
-    
     dispatch_once(&pred, ^{ manager = [[self alloc] init]; });
     
     return manager;
@@ -30,6 +29,19 @@
     }];
 }
 
+
+- (void)signupWithUserName:(NSString*)userName firstName:(NSString*)firstName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"firstName": firstName,
+                             @"lastName": userName,
+                             @"email": email,
+                             @"password": password,
+                             @"title" :title};
+    
+    [self requestWithMethod:@"POST" path:@"signUpUser" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+    }];
+}
 
 
 @end
