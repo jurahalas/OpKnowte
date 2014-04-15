@@ -14,5 +14,5 @@
 
 +(OKUserManager *)sharedManager;
 -(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
-
+-(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler;
 @end

@@ -128,7 +128,10 @@
 }
 
 - (IBAction)registerButton:(id)sender {
-    
+    OKUserManager *usermanager = [OKUserManager sharedManager];
+    [usermanager recoverPasswordWithEmail:@"frolow.artem@gmail.com" handler:^(NSString* error){
+       NSLog(@"error - %@", error);
+    }];
 }
 #pragma mark - design
 -(void) setAllDesign {
