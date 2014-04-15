@@ -59,6 +59,7 @@
 		0060D89C18FD4F4200AFC7B4 /* rightInvalid.png in Resources */ = {isa = PBXBuildFile; fileRef = 0060D89418FD4F4200AFC7B4 /* rightInvalid.png */; };
 		0060D89D18FD4F4200AFC7B4 /* rightInvalid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0060D89518FD4F4200AFC7B4 /* rightInvalid@2x.png */; };
 		0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D8A018FD59B800AFC7B4 /* OKBaseModel.m */; };
+		0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
@@ -152,6 +153,8 @@
 		0060D89518FD4F4200AFC7B4 /* rightInvalid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rightInvalid@2x.png"; path = "../rightInvalid@2x.png"; sourceTree = "<group>"; };
 		0060D89F18FD59B800AFC7B4 /* OKBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseModel.h; sourceTree = "<group>"; };
 		0060D8A018FD59B800AFC7B4 /* OKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseModel.m; sourceTree = "<group>"; };
+		0060D8A218FD5AA500AFC7B4 /* OKUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKUserModel.h; sourceTree = "<group>"; };
+		0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKUserModel.m; sourceTree = "<group>"; };
 		007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKRegistrationViewController.h; sourceTree = "<group>"; };
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 			children = (
 				0060D89F18FD59B800AFC7B4 /* OKBaseModel.h */,
 				0060D8A018FD59B800AFC7B4 /* OKBaseModel.m */,
+				0060D8A218FD5AA500AFC7B4 /* OKUserModel.h */,
+				0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 			files = (
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
+				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,

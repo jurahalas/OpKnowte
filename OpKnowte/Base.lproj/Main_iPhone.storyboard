@@ -47,7 +47,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sN6-kf-erR"/>
-                                    <segue destination="fua-jD-zoT" kind="push" id="1J8-a2-6KP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXz-dS-DzX" userLabel="forgotPasswordButton">
@@ -94,6 +93,7 @@
                         <outlet property="loginButton" destination="xlJ-np-vqZ" id="YWl-rx-G1V"/>
                         <outlet property="passwordTextField" destination="T6h-tb-goT" id="Y9l-Bk-gZf"/>
                         <outlet property="registerButton" destination="k9t-Pa-N8e" id="Lgc-NN-5vH"/>
+                        <segue destination="fua-jD-zoT" kind="push" identifier="loginSegue" id="L8b-jW-JSf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

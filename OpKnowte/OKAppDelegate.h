@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import "OKBaseViewController.h"
 #import "OKBottomTabBarView.h"
 #import "OKConstants.h"
@@ -18,7 +19,8 @@
 #import "OKUserManager.h"
 #import "OKBaseManager.h"
 
-
+#import "OKBaseModel.h"
+#import "OKUserModel.h"
 
 
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
