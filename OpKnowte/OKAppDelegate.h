@@ -21,6 +21,7 @@
 
 #import "OKBaseModel.h"
 #import "OKUserModel.h"
+#import "OKContactManager.h"
 
 
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>

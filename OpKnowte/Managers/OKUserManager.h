@@ -7,7 +7,7 @@
 //
 
 #import "OKBaseManager.h"
-#import "OKAppDelegate.h"
+#import "OKUserModel.h"
 
 @interface OKUserManager : OKBaseManager
 
