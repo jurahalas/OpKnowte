@@ -8,6 +8,7 @@
 
 #import "OKSelectProcedureCell.h"
 #import "OKProceduresManager.h"
+#import "OKSelectProcedureViewController.h"
 
 @implementation OKSelectProcedureCell
 
@@ -36,8 +37,7 @@
     // Configure the view for the selected state
 }
 -(void) setCellTitleOlo{
-    self.procedureLabel.text = @"ololo";
-    
+    self.procedureLabel.text = @"ololo";    
 }
 
 -(void) setCellUserIntaractionDisabled {

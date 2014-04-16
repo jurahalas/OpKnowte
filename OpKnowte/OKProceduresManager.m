@@ -7,6 +7,7 @@
 //
 
 #import "OKProceduresManager.h"
+#import "OKProcedureModel.h"
 
 @implementation OKProceduresManager
 
@@ -20,13 +21,22 @@
 }
 
 
-- (void)getAllProceduresWithId:(NSInteger)procedureId text:(NSString*)text abbreviation:(NSString*)abbreaviation handler:(void(^)(NSString *errorMsg))handler;
+- (void)getAllProceduresWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresArray))handler
 {
     NSDictionary *params = @{};
 
     [self requestWithMethod:@"GET" path:@"getAllProc" params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
+       
+        NSMutableArray *proceduresArray = [[NSMutableArray alloc] init];
+        
+        for (NSDictionary *procedure in json) {
+            OKProcedureModel *procModel = [[OKProcedureModel alloc] init];
+            [procModel setModelWithDictionary:procedure];
+            [proceduresArray addObject:procModel];
+        }
+        handler([self getErrorMessageFromJSON:json error:error], proceduresArray);
+       
     }];
 }
 

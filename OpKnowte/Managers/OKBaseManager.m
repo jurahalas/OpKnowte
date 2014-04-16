@@ -24,7 +24,7 @@
     }else{
         errorMsg = nil;
     }
-    return errorMsg;
+    return 0;
 }
 
 

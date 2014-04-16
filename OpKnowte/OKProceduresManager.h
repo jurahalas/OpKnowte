@@ -12,6 +12,6 @@
 
 + (OKProceduresManager *)instance;
 
-- (void)getAllProceduresWithId:(NSInteger)procedureId text:(NSString*)text abbreviation:(NSString*)abbreaviation handler:(void(^)(NSString *errorMsg))handler;;
+- (void)getAllProceduresWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresDict ) )handler;
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import "OKSelectProcedureViewController.h"
+#import "OKProceduresManager.h"
+#import "OKProcedureModel.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
-
+@property (strong, nonatomic) NSMutableArray *procArray;
 @end
 
 @implementation OKSelectProcedureViewController
@@ -27,16 +29,25 @@
 
 - (void)viewDidLoad
 {
-    
-    
     [super viewDidLoad];
-	[self.navigationController setNavigationBarHidden:NO animated:YES ];
+    [self.navigationController setNavigationBarHidden:NO animated:YES ];
     _selectProcedureTableView.backgroundColor = [UIColor clearColor];
     
     self.selectProcedureTableView.dataSource = self;
     self.selectProcedureTableView.delegate = self;
+    
+    OKProceduresManager *procedureManager = [OKProceduresManager instance];
+    
+    [procedureManager getAllProceduresWithHandler:^(NSString* error, NSMutableArray* proceduresArray){
+        NSLog(@"Error - %@", error);
+        
+        _procArray = proceduresArray;
+        
+    }];
+    
     [self.selectProcedureTableView reloadData];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,7 +61,8 @@
 #pragma mark - Table View methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    
+    return _procArray.count;
 }
 
 

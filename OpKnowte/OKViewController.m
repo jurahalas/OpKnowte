@@ -28,8 +28,8 @@
 {
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
-    _passwordTextField.text = @"";
-    _emailTextField.text = @"";
+    _passwordTextField.text = @"12341234";
+    _emailTextField.text = @"f_zhenya@i.ua";
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
