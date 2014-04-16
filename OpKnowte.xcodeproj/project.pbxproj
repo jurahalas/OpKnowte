@@ -63,6 +63,7 @@
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
+		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
 		18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18061C8118F7EBA6005197F9 /* OKApiClient.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
@@ -161,6 +162,8 @@
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
 		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
+		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
+		00CD5FD818FE7C9700334A24 /* OKContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactManager.m; sourceTree = "<group>"; };
 		03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpKnowte.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18061C8018F7EBA6005197F9 /* OKApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKApiClient.h; sourceTree = "<group>"; };
 		18061C8118F7EBA6005197F9 /* OKApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKApiClient.m; sourceTree = "<group>"; };
@@ -424,6 +427,8 @@
 				E106A53718F8626100BA4E35 /* OKBaseManager.m */,
 				E106A53A18F8652500BA4E35 /* OKUserManager.h */,
 				E106A53B18F8652500BA4E35 /* OKUserManager.m */,
+				00CD5FD718FE7C9700334A24 /* OKContactManager.h */,
+				00CD5FD818FE7C9700334A24 /* OKContactManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 			files = (
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
+				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
