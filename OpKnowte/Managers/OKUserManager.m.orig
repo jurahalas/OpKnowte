@@ -45,6 +45,8 @@
     }];
 }
 
+<<<<<<< HEAD
+=======
 
 - (void)signupWithUserName:(NSString*)userName firstName:(NSString*)firstName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler
 {
@@ -60,4 +62,5 @@
 }
 
 
+>>>>>>> fa02dd7fe888cbac7343a2d052d8a7bb6e8efef8
 @end
