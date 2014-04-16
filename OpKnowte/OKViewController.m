@@ -97,12 +97,23 @@
 - (IBAction)loginButton:(id)sender {
     
     OKUserManager *usermanager = [OKUserManager instance];
-//    [usermanager signinWithEmail:@"f_zhenya@i.ua" password:@"12341234" handler:^(NSString* error){
-//        NSLog(@"error - %@", error);
-//    }];
-    [usermanager signinWithEmail:@"myname@i.ua" password:@"1234" handler:^(NSString* error){
-        NSLog(@"error - %@", error);
-    }];
+    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
+        UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [loginFormAlertView show];
+    }else {
+        [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
+            if (error != nil) {
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [loginFormErrorAlertView show];
+            } else {
+                [self.view endEditing:YES];
+                [self performSegueWithIdentifier:@"loginSegue" sender:self];
+            }
+            
+        }];
+        
+    }
+
     
 }
 
@@ -124,7 +135,7 @@
     }
     if (buttonIndex == 1) {
         NSLog(@"THE 'Send' BUTTON WAS PRESSED");
-        OKUserManager *usermanager = [OKUserManager sharedManager];
+        OKUserManager *usermanager = [OKUserManager instance];
         [usermanager recoverPasswordWithEmail:@"frolow.artem@gmail.com" handler:^(NSString* error){
             NSLog(@"error - %@", error);
         }];

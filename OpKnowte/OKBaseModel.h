@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface OKBaseModel : NSObject
-
+-(void)setModelWithDictionary: (NSDictionary*) dictionary;
 @end

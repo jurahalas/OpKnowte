@@ -29,6 +29,11 @@
     [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
+        OKUserModel *loginedUser = [[OKUserModel alloc]init];
+        [loginedUser setModelWithDictionary:json];
+        NSLog(@"%@",loginedUser.firstName);
+        
+        
     }];
 }
 -(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler
