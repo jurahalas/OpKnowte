@@ -16,5 +16,5 @@
 
 -(void) setCellTitleOlo;
 -(void) setCellUserIntaractionDisabled;
-
+-(void) setCellUserIntaractionEnabled;
 @end

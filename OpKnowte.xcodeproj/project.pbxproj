@@ -363,15 +363,15 @@
 		E10023E318F529E9008421D4 /* OpKnowte */ = {
 			isa = PBXGroup;
 			children = (
+				E10023EC18F529E9008421D4 /* OKAppDelegate.h */,
+				E10023ED18F529E9008421D4 /* OKAppDelegate.m */,
+				E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */,
+				E10023F218F529E9008421D4 /* Main_iPad.storyboard */,
 				0060D89E18FD599900AFC7B4 /* Models */,
 				0060D83918FD2C2D00AFC7B4 /* Custom Classes */,
 				E106A53918F8626700BA4E35 /* Network */,
 				E106A53D18F8652B00BA4E35 /* Managers */,
 				007A0C9918F53AB100D183F1 /* ViewControllers */,
-				E10023EC18F529E9008421D4 /* OKAppDelegate.h */,
-				E10023ED18F529E9008421D4 /* OKAppDelegate.m */,
-				E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */,
-				E10023F218F529E9008421D4 /* Main_iPad.storyboard */,
 				E10023F818F529E9008421D4 /* Images.xcassets */,
 				00BEAB1118F67DCE00E0C6B2 /* Resources */,
 				E10023E418F529E9008421D4 /* Supporting Files */,

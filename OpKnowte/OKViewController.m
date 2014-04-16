@@ -28,8 +28,8 @@
 {
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
-    _passwordTextField.text = @"";
-    _emailTextField.text = @"";
+    _passwordTextField.text = @"1234";
+    _emailTextField.text = @"myname@i.ua";
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -134,11 +134,14 @@
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
     }
     if (buttonIndex == 1) {
-        NSLog(@"THE 'Send' BUTTON WAS PRESSED");
-        OKUserManager *usermanager = [OKUserManager instance];
-        [usermanager recoverPasswordWithEmail:@"frolow.artem@gmail.com" handler:^(NSString* error){
-            NSLog(@"error - %@", error);
-        }];
+        if ([alertView.title isEqualToString:@"Restore Password"]) {
+            OKUserManager *usermanager = [OKUserManager instance];
+            [usermanager recoverPasswordWithEmail:[alertView textFieldAtIndex:0].text handler:^(NSString* error){
+                NSLog(@"error - %@", error);
+            }];
+        } else {
+            NSLog(@"THE 'Second' BUTTON WAS PRESSED");
+        }
     }
 }
 
