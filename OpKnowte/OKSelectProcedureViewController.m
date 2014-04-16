@@ -42,10 +42,10 @@
         NSLog(@"Error - %@", error);
         
         _procArray = proceduresArray;
-        
+        [self.selectProcedureTableView reloadData];
+
     }];
     
-    [self.selectProcedureTableView reloadData];
 }
 
 
@@ -76,8 +76,9 @@
         cell = [[OKSelectProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     
-    [cell setCellTitleOlo];
+    cell.procedureLabel.text = procedure.procedureText;
     if (indexPath.row >3) {
         [cell setCellUserIntaractionDisabled];
     }

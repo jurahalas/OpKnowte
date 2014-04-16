@@ -15,16 +15,21 @@
 
 -(NSString*)getErrorMessageFromJSON:(id)json error:(NSError*)error
 {
-    NSString *errorMsg = [json objectForKey:@"msg"];
-    NSString *status  = [json objectForKey:@"status"];
-    if([status isEqualToString:@"false"]){
-        if(!errorMsg){
-            errorMsg =[error localizedDescription];
+    NSString *errorMsg = nil;
+    if([[json class]isSubclassOfClass:[NSDictionary class]]){
+        errorMsg = [json objectForKey:@"msg"];
+        NSString *status  = [json objectForKey:@"status"];
+        if(status && [status isEqualToString:@"false"]){
+            if(!errorMsg){
+                errorMsg =[error localizedDescription];
+            }
+        }else{
+            errorMsg = nil;
         }
     }else{
-        errorMsg = nil;
+        errorMsg =[error localizedDescription];
     }
-    return 0;
+    return errorMsg;
 }
 
 

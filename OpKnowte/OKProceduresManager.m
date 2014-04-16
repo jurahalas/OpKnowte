@@ -29,7 +29,6 @@
         NSLog(@"%@",json);
        
         NSMutableArray *proceduresArray = [[NSMutableArray alloc] init];
-        
         for (NSDictionary *procedure in json) {
             OKProcedureModel *procModel = [[OKProcedureModel alloc] init];
             [procModel setModelWithDictionary:procedure];
