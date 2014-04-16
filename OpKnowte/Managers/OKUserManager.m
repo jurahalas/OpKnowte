@@ -33,8 +33,6 @@
         OKUserModel *loginedUser = [[OKUserModel alloc]init];
         [loginedUser setModelWithDictionary:json];
         NSLog(@"%@",loginedUser.firstName);
-        
-        
     }];
 }
 -(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler
