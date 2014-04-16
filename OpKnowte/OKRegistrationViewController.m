@@ -12,7 +12,8 @@
 
 
 @interface OKRegistrationViewController ()
-@property (strong, nonatomic) IBOutlet OKCustomTextField *nameTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *firstNameTextField;
+@property (strong, nonatomic) IBOutlet OKCustomTextField *lastNameTextField;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *MDTextField;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *passwordTextField;
@@ -33,17 +34,19 @@
 
     [self setAllDesign];
     _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
-    _nameTextField.text = @"";
+    _firstNameTextField.text = @"";
+    _lastNameTextField.text = @"";
     _emailTextField.text = @"";
     _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:0]];
     _passwordTextField.text = @"";
     _confirmPasswordField.text = @"";
     
-    _nameTextField.tag = 1;
-    _emailTextField.tag = 2;
-    _MDTextField.tag = 3;
-    _passwordTextField.tag = 4;
-    _confirmPasswordField.tag = 5;
+    _firstNameTextField.tag = 1;
+    _lastNameTextField.tag = 2;
+    _emailTextField.tag = 3;
+    _MDTextField.tag = 4;
+    _passwordTextField.tag = 5;
+    _confirmPasswordField.tag = 6;
 
 
 
@@ -115,9 +118,9 @@
     } else {
         _MDPiker.hidden = YES;
     }
-    if (textField.tag >3 && !_animatedKeyboard){
+    if (textField.tag >4 && !_animatedKeyboard){
         [self animateTextField: textField up: YES];
-    } else if (textField.tag <=3 && _animatedKeyboard){
+    } else if (textField.tag <=4 && _animatedKeyboard){
         [self animateTextField: textField up: NO];
     }
     
@@ -176,7 +179,8 @@
 #pragma mark - design
 -(void) setAllDesign {
     
-    [_nameTextField setCustomTextFieldPlaceholder: @"your name..." Secured:NO DownArrow:NO];
+    [_firstNameTextField setCustomTextFieldPlaceholder: @"your first name..." Secured:NO DownArrow:NO];
+    [_lastNameTextField setCustomTextFieldPlaceholder: @"your last name..." Secured:NO DownArrow:NO];
     [_emailTextField setCustomTextFieldPlaceholder: @"your email..." Secured:NO DownArrow:NO];
     [_MDTextField setCustomTextFieldPlaceholder: @"MD" Secured:NO DownArrow:YES];
     [_passwordTextField setCustomTextFieldPlaceholder:@"your password..." Secured:YES DownArrow:NO];

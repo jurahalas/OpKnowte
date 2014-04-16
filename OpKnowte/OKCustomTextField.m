@@ -43,7 +43,7 @@
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
     UIImageView *textFieldIcon = [[UIImageView alloc] init];
     
-    if ([placeholder isEqualToString:@"your name..."] || [placeholder isEqualToString:@"Email"]) {
+    if ([placeholder isEqualToString:@"your first name..."] || [placeholder isEqualToString:@"your last name..."] || [placeholder isEqualToString:@"Email"]) {
         textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 19, 18)] ;
         textFieldIcon.image = [UIImage imageNamed:@"nameTextFieldIcon"];
     } else if ([placeholder isEqualToString:@"your email..."]){
