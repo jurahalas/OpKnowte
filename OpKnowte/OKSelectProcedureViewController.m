@@ -42,8 +42,14 @@
     NSLog(@"%f",_selectProcedureTableView.frame.size.height );
     [self addBottomTabBar];
     [self.selectProcedureTableView reloadData];
+    
 }
-
+-(void) viewDidAppear:(BOOL)animated{
+    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 51.f));
+}
+-(void) viewWillAppear:(BOOL)animated{
+    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 51.f));
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

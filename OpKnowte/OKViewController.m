@@ -106,6 +106,8 @@
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormErrorAlertView show];
             } else {
+                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [loginFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
             }
@@ -121,6 +123,7 @@
     UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:@"Please confirm your Email Address.\rWe will send you your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
     customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [customAlertView textFieldAtIndex:0].placeholder = @"Email";
+    [customAlertView textFieldAtIndex:0].text = @"frolow.artem@gmail.com";
     [customAlertView show];
 }
 
