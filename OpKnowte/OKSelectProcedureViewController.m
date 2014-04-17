@@ -85,8 +85,10 @@
 // Unselected cells
 //    if (indexPath.row >3) {
 //        [cell setCellUserIntaractionDisabled];
+//    } else {
+//        [cell setCellUserIntaractionEnabled];
 //    }
-    
+
     return cell;
     
 }
