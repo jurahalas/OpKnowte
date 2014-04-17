@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OKApiClient.h"
+#import <AFJSONRequestOperation.h>
 
 @interface OKBaseManager : NSObject
 

@@ -8,6 +8,7 @@
 
 #import "OKUserManager.h"
 
+
 @implementation OKUserManager
 
 
@@ -20,26 +21,41 @@
     return manager;
 }
 
-
--(void)signinWithUserName:(NSString*)userName password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
+-(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
 {
-    NSDictionary *params = @{};
-    [self requestWithMethod:@"POST" path:@"/sd/login" params:params handler:^(NSError *error, id json) {
+    NSDictionary *params = @{@"email": email, @"password": password};
+    [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+        OKUserModel *loginedUser = [[OKUserModel alloc]init];
+        [loginedUser setModelWithDictionary:json];
+        NSLog(@"%@",loginedUser.firstName);
     }];
 }
 
 
-- (void)signupWithUserName:(NSString*)userName firstName:(NSString*)firstName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler
+- (void)signupWithFirstName:(NSString*)firstName lastName:(NSString*)lastName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler
 {
     NSDictionary *params = @{@"firstName": firstName,
-                             @"lastName": userName,
+                             @"lastName": lastName,
                              @"email": email,
                              @"password": password,
                              @"title" :title};
     
     [self requestWithMethod:@"POST" path:@"signUpUser" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
+    }];
+}
+
+
+-(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler {
+    
+    NSDictionary *params = @{};
+    NSString *url = [NSString stringWithFormat:@"getPassword?email=%@", email];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
     }];
 }
 

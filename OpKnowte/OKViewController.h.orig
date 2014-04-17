@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-<<<<<<< HEAD
 #import "OKAppDelegate.h"
+#import "OKHomeScreenViewController.h"
 
 @interface OKViewController : OKBaseViewController <UITextFieldDelegate>
-=======
-#import "OKApiClient.h"
 
-@interface OKViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UIButton *jsonButton;
-- (IBAction)json:(id)sender;
-
->>>>>>> e4e0eecefd9181eccb90b876bb1215bdf580153e
+<<<<<<< HEAD
 
 @end
+=======
+@end
+>>>>>>> 7a55f6673aa1d478fce3f6ea42dd0497a26b1ac8
