@@ -17,11 +17,11 @@
 
 @implementation OKSelectProcedureViewController
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -36,6 +36,9 @@
     self.selectProcedureTableView.dataSource = self;
     self.selectProcedureTableView.delegate = self;
     
+    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
+    [self addBottomTabBar];
+    
     OKProceduresManager *procedureManager = [OKProceduresManager instance];
     
     [procedureManager getAllProceduresWithHandler:^(NSString* error, NSMutableArray* proceduresArray){
@@ -45,45 +48,46 @@
         [self.selectProcedureTableView reloadData];
 
     }];
-    
 }
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+
 #pragma mark - IBActions
-- (IBAction)backButton:(id)sender {
+- (IBAction)backButton:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
-#pragma mark - Table View methods
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+
+#pragma mark - Table View methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _procArray.count;
 }
 
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"procedureCell";
     OKSelectProcedureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
     if (!cell) {
         cell = [[OKSelectProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
-    
     cell.procedureLabel.text = procedure.procedureText;
-    if (indexPath.row >3) {
-        [cell setCellUserIntaractionDisabled];
-    }
+// Unselected cells
+//    if (indexPath.row >3) {
+//        [cell setCellUserIntaractionDisabled];
+//    }
     
     return cell;
 }
+
 
 @end

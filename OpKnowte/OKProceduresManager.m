@@ -11,12 +11,12 @@
 
 @implementation OKProceduresManager
 
+
 + (OKProceduresManager *)instance
 {
     static dispatch_once_t pred;
     static OKProceduresManager *manager = nil;
     dispatch_once(&pred, ^{ manager = [[self alloc] init]; });
-    
     return manager;
 }
 
@@ -35,8 +35,8 @@
             [proceduresArray addObject:procModel];
         }
         handler([self getErrorMessageFromJSON:json error:error], proceduresArray);
-       
     }];
 }
+
 
 @end
