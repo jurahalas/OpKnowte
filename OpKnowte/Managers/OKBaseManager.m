@@ -7,23 +7,23 @@
 //
 
 #import "OKBaseManager.h"
-#import "OKApiClient.h"
-#import <AFJSONRequestOperation.h>
+
 
 @implementation OKBaseManager
 
--(NSString*)getErrorMessageFromJSON:(id)json error:(NSError*)error
-{
+-(NSString*)getErrorMessageFromJSON:(id)json error:(NSError*)error {
+    
     NSString *errorMsg = nil;
     if(error){
         errorMsg = [error localizedDescription];
     }
     return errorMsg;
+    
 }
 
 
--(void)requestWithMethod:(NSString*)method path:(NSString*)path params:(NSDictionary*)params handler:(void(^)(NSError *error, id json))handler
-{
+-(void)requestWithMethod:(NSString*)method path:(NSString*)path params:(NSDictionary*)params handler:(void(^)(NSError *error, id json))handler {
+    
     NSMutableURLRequest *r = [[OKApiClient sharedManager]requestWithMethod:method path:path parameters:params];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:r success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         handler(nil, JSON);
@@ -31,6 +31,7 @@
         handler(error, JSON);
     } ];
     [operation start];
+    
 }
 
 @end

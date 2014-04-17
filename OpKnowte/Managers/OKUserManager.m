@@ -11,9 +11,8 @@
 
 @implementation OKUserManager
 
-
-+ (OKUserManager *)instance
-{
++ (OKUserManager *)instance {
+    
     static dispatch_once_t pred;
     static OKUserManager *manager = nil;
     
@@ -22,11 +21,9 @@
     return manager;
 }
 
-
--(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
-{
+-(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler {
+    
     NSDictionary *params = @{@"email": email, @"password": password};
-
     
     [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
@@ -35,9 +32,11 @@
         [loginedUser setModelWithDictionary:json];
         NSLog(@"%@",loginedUser.firstName);
     }];
+    
 }
--(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler
-{
+
+-(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler {
+    
     NSDictionary *params = @{};
     NSString *url = [NSString stringWithFormat:@"getPassword?email=%@", email];
     
@@ -45,6 +44,7 @@
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
     }];
+    
 }
 
 @end

@@ -8,9 +8,6 @@
 
 #import "OKRegistrationViewController.h"
 
-
-
-
 @interface OKRegistrationViewController ()
 @property (strong, nonatomic) IBOutlet OKCustomTextField *firstNameTextField;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *lastNameTextField;
@@ -131,20 +128,20 @@
 
 #pragma mark - Picker methods
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     
     return 1;
     
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     
     NSUInteger numRows=[_MDPickerData count];
     return numRows;
     
 }
 
--(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+-(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
     NSString *pickerString = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
     NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
@@ -196,6 +193,5 @@
     _continueButton.clipsToBounds = YES;
 
 }
-
 
 @end

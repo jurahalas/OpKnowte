@@ -15,17 +15,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (nonatomic) BOOL animatedKeyboard;
-
-
 @end
 
 @implementation OKViewController
 
 #pragma mark - view methods
 
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     
     [super viewDidLoad];
     [self setAllDesign];
@@ -34,19 +30,22 @@
     _emailTextField.text = @"myname@i.ua";
     
 }
--(void) viewWillAppear:(BOOL)animated{
+-(void) viewWillAppear:(BOOL)animated {
+    
      [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - textField methods
 
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up {
+    
     const int movementDistance = 55;// tweak as needed
     const float movementDuration = 0.3f; // tweak as needed
     int movement = (up ? -movementDistance : movementDistance);
@@ -58,9 +57,11 @@
     } else {
         _animatedKeyboard = NO;
     }
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
     if (textField == _emailTextField) {
         [textField resignFirstResponder];
         [_passwordTextField becomeFirstResponder];
@@ -72,8 +73,8 @@
     
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
     if (textField == _emailTextField) {
         textField.returnKeyType = UIReturnKeyNext;
     } else {
@@ -81,8 +82,10 @@
     }
     if (!_animatedKeyboard) {
         [self animateTextField: textField up: YES];
-    }     
+    }
+    
 }
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 
 }
@@ -171,6 +174,7 @@
 }
 
 #pragma mark - design
+
 -(void) setAllDesign {
     
     [_emailTextField setCustomTextFieldPlaceholder:@"Email" Secured:NO DownArrow:NO];
