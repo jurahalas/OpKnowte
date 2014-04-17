@@ -27,12 +27,13 @@
 @implementation OKRegistrationViewController
 
 #pragma mark - View methods
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
-
     [self setAllDesign];
+    
     _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
     _firstNameTextField.text = @"";
     _lastNameTextField.text = @"";
@@ -48,29 +49,27 @@
     _passwordTextField.tag = 5;
     _confirmPasswordField.tag = 6;
 
-
-
-	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
     return self;
+    
 }
 
-
-
 #pragma mark - textField methods
+
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up {
+    
     const int movementDistance = 70;// tweak as needed
     const float movementDuration = 0.3f; // tweak as needed
     int movement = (up ? -movementDistance : movementDistance);
@@ -82,11 +81,11 @@
     } else {
         _animatedKeyboard = NO;
     }
+    
 }
 
-
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
     UIResponder* nextResponder = [textField.superview viewWithTag:(textField.tag + 1)];
     if (textField.tag != _confirmPasswordField.tag && textField.tag != _emailTextField.tag) {
         [textField resignFirstResponder];
@@ -102,8 +101,7 @@
 
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     if (textField.tag == _confirmPasswordField.tag) {
         textField.returnKeyType = UIReturnKeyDone;
@@ -126,47 +124,53 @@
     
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    
     [textField resignFirstResponder];
-//    if (textField.tag >3){
-//        [self animateTextField: textField up: NO];
-//    }
+
 }
+
 #pragma mark - Picker methods
 
-// returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    
     return 1;
+    
 }
 
-// returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    
     NSUInteger numRows=[_MDPickerData count];
     return numRows;
+    
 }
 
-
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
     NSString *pickerString = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
     NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     return pickerAttributedString;
+    
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    // Handle the selection
+
     _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
+    
 }
 
 #pragma mark - IBActions
+
 - (IBAction)MDButton:(id)sender {
+    
     _MDPiker.hidden = NO;
     [self.view endEditing:YES];
     if (_animatedKeyboard) {
         [self animateTextField: _confirmPasswordField up: NO];
     }
+    
 }
 
-- (IBAction)continueButton:(id)sender
-{
+- (IBAction)continueButton:(id)sender {
 
 }
 
@@ -177,6 +181,7 @@
 
 
 #pragma mark - design
+
 -(void) setAllDesign {
     
     [_firstNameTextField setCustomTextFieldPlaceholder: @"your first name..." Secured:NO DownArrow:NO];
@@ -185,17 +190,12 @@
     [_MDTextField setCustomTextFieldPlaceholder: @"MD" Secured:NO DownArrow:YES];
     [_passwordTextField setCustomTextFieldPlaceholder:@"your password..." Secured:YES DownArrow:NO];
     [_confirmPasswordField setCustomTextFieldPlaceholder:@"once again..." Secured:YES DownArrow:NO];
-    
-    
-    
-    
+
     _continueButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
     _continueButton.layer.cornerRadius = 14;
     _continueButton.clipsToBounds = YES;
 
-    
 }
-
 
 
 @end

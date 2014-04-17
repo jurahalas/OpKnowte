@@ -35,7 +35,7 @@
     
     self.selectProcedureTableView.dataSource = self;
     self.selectProcedureTableView.delegate = self;
-    [self.selectProcedureTableView reloadData];
+    
     NSLog(@"%f",_selectProcedureTableView.frame.size.height );
     
     _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));

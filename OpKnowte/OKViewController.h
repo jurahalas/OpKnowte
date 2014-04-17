@@ -10,8 +10,6 @@
 #import "OKAppDelegate.h"
 #import "OKHomeScreenViewController.h"
 
-
 @interface OKViewController : OKBaseViewController <UITextFieldDelegate>
-
 
 @end

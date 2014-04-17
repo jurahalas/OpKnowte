@@ -26,14 +26,13 @@
 
 - (void)viewDidLoad
 {
+    
+    [super viewDidLoad];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
     _passwordTextField.text = @"1234";
     _emailTextField.text = @"myname@i.ua";
     
-
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 -(void) viewWillAppear:(BOOL)animated{
      [self.navigationController setNavigationBarHidden:YES animated:YES ];
@@ -59,8 +58,6 @@
     } else {
         _animatedKeyboard = NO;
     }
-    
-    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -112,20 +109,19 @@
                 [self.view endEditing:YES];
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
             }
-            
         }];
-        
     }
-
     
 }
 
 - (IBAction)forgetPasswordButton:(id)sender {
+    
     UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:@"Please confirm your Email Address.\rWe will send you your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
     customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [customAlertView textFieldAtIndex:0].placeholder = @"Email";
     [customAlertView textFieldAtIndex:0].text = @"frolow.artem@gmail.com";
     [customAlertView show];
+    
 }
 
 - (IBAction)registerButton:(id)sender {
@@ -171,6 +167,7 @@
             NSLog(@"THE 'Second' BUTTON WAS PRESSED");
         }
     }
+    
 }
 
 #pragma mark - design
@@ -184,8 +181,5 @@
     _loginButton.clipsToBounds = YES;
     
 }
-
-
-
 
 @end
