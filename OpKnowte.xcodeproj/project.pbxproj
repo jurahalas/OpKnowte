@@ -60,6 +60,9 @@
 		0060D89D18FD4F4200AFC7B4 /* rightInvalid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0060D89518FD4F4200AFC7B4 /* rightInvalid@2x.png */; };
 		0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D8A018FD59B800AFC7B4 /* OKBaseModel.m */; };
 		0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */; };
+		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
+		0065E883190032480016B94F /* skip.png in Resources */ = {isa = PBXBuildFile; fileRef = 0065E881190032480016B94F /* skip.png */; };
+		0065E884190032480016B94F /* skip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0065E882190032480016B94F /* skip@2x.png */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
@@ -160,6 +163,10 @@
 		0060D8A018FD59B800AFC7B4 /* OKBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseModel.m; sourceTree = "<group>"; };
 		0060D8A218FD5AA500AFC7B4 /* OKUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKUserModel.h; sourceTree = "<group>"; };
 		0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKUserModel.m; sourceTree = "<group>"; };
+		0065E87B190026900016B94F /* OKInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKInfoViewController.h; sourceTree = "<group>"; };
+		0065E87C190026900016B94F /* OKInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKInfoViewController.m; sourceTree = "<group>"; };
+		0065E881190032480016B94F /* skip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skip.png; sourceTree = "<group>"; };
+		0065E882190032480016B94F /* skip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skip@2x.png"; sourceTree = "<group>"; };
 		007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKRegistrationViewController.h; sourceTree = "<group>"; };
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
@@ -247,6 +254,8 @@
 		0060D83D18FD35ED00AFC7B4 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0065E881190032480016B94F /* skip.png */,
+				0065E882190032480016B94F /* skip@2x.png */,
 				0060D88E18FD4F4200AFC7B4 /* cellActiveBG.png */,
 				0060D88F18FD4F4200AFC7B4 /* cellActiveBG@2x.png */,
 				0060D89018FD4F4200AFC7B4 /* cellBG.png */,
@@ -321,6 +330,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		0065E87E190026A50016B94F /* Base View */ = {
+			isa = PBXGroup;
+			children = (
+				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
+				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+			);
+			name = "Base View";
+			sourceTree = "<group>";
+		};
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,8 +348,9 @@
 				E10023F618F529E9008421D4 /* OKViewController.m */,
 				007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */,
 				007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */,
-				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
-				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+				0065E87B190026900016B94F /* OKInfoViewController.h */,
+				0065E87C190026900016B94F /* OKInfoViewController.m */,
+				0065E87E190026A50016B94F /* Base View */,
 				185F82881900012700C5566A /* National Performance Data */,
 				0060D88A18FD39CF00AFC7B4 /* SelectProcedure */,
 			);
@@ -551,6 +570,7 @@
 				0060D88218FD35EE00AFC7B4 /* passwordTextFieldIcon.png in Resources */,
 				0060D86418FD35ED00AFC7B4 /* back.png in Resources */,
 				0060D86C18FD35EE00AFC7B4 /* emailTextFieldIcon.png in Resources */,
+				0065E884190032480016B94F /* skip@2x.png in Resources */,
 				0060D86918FD35EE00AFC7B4 /* bg_568@2x.png in Resources */,
 				E10023F918F529E9008421D4 /* Images.xcassets in Resources */,
 				0060D88018FD35EE00AFC7B4 /* navbarBG_color.png in Resources */,
@@ -569,6 +589,7 @@
 				E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */,
 				0060D87418FD35EE00AFC7B4 /* logo.png in Resources */,
 				0060D86D18FD35EE00AFC7B4 /* emailTextFieldIcon@2x.png in Resources */,
+				0065E883190032480016B94F /* skip.png in Resources */,
 				0060D87318FD35EE00AFC7B4 /* info@2x.png in Resources */,
 				0060D87218FD35EE00AFC7B4 /* info.png in Resources */,
 				0060D86618FD35ED00AFC7B4 /* bg.png in Resources */,
@@ -655,6 +676,7 @@
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
+				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
