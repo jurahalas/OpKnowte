@@ -1,0 +1,28 @@
+//
+//  OKUserManager.h
+//  OpKnowte
+//
+//  Created by Eugene on 11.04.14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
+//
+
+#import "OKBaseManager.h"
+#import "OKUserModel.h"
+
+@interface OKUserManager : OKBaseManager
+
++(OKUserManager*)instance;
+
+<<<<<<< HEAD
+
+-(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
+
+- (void)signupWithFirstName:(NSString*)firstName lastName:(NSString*)lastName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler;
+
+=======
+-(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
+- (void)signupWithUserName:(NSString*)userName firstName:(NSString*)firstName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler;
+>>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
+-(void)recoverPasswordWithEmail:(NSString*)email handler:(void(^)(NSString *errorMsg))handler;
+
+@end

@@ -12,11 +12,18 @@
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
+<<<<<<< HEAD
+=======
 @property (strong, nonatomic) NSMutableArray *procArray;
+>>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
 @end
 
 @implementation OKSelectProcedureViewController
 
+<<<<<<< HEAD
+- (void)viewDidLoad {
+    
+=======
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +36,7 @@
 
 - (void)viewDidLoad
 {
+>>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     _selectProcedureTableView.backgroundColor = [UIColor clearColor];
@@ -36,6 +44,21 @@
     self.selectProcedureTableView.dataSource = self;
     self.selectProcedureTableView.delegate = self;
     
+<<<<<<< HEAD
+    NSLog(@"%f",_selectProcedureTableView.frame.size.height );
+    
+    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
+    NSLog(@"%f",_selectProcedureTableView.frame.size.height );
+    [self addBottomTabBar];
+    [self.selectProcedureTableView reloadData];
+    
+}
+
+#pragma mark - IBActions
+
+- (IBAction)backButton:(id)sender {
+    
+=======
     _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
     [self addBottomTabBar];
     
@@ -60,10 +83,23 @@
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender
 {
+>>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     [self.navigationController popViewControllerAnimated:YES];
     
 }
 
+<<<<<<< HEAD
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 12;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellIdentifier = @"procedureCell";
+    OKSelectProcedureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+=======
 
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -76,16 +112,26 @@
 {
     static NSString *cellIdentifier = @"procedureCell";
     OKSelectProcedureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+>>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     if (!cell) {
         cell = [[OKSelectProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+<<<<<<< HEAD
+    [cell setCellTitleOlo];
+    if (indexPath.row >3) {
+        [cell setCellUserIntaractionDisabled];
+    } else {
+        [cell setCellUserIntaractionEnabled];
+    }
+=======
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
 // Unselected cells
 //    if (indexPath.row >3) {
 //        [cell setCellUserIntaractionDisabled];
 //    }
+>>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     
     return cell;
     

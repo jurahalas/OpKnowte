@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *procedureLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *rightArrowCellImage;
 
--(void) setCellTitleOlo;
 -(void) setCellUserIntaractionDisabled;
 -(void) setCellUserIntaractionEnabled;
 

@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface OKBaseModel : NSObject
+
+@property (nonatomic, strong) NSString *identifier;
+
 -(void)setModelWithDictionary: (NSDictionary*) dictionary;
 @end
