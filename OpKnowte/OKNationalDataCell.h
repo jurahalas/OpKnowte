@@ -11,10 +11,9 @@
 
 @interface OKNationalDataCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *nationalDataLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *nationalDataIcon;
+@property (strong, nonatomic) IBOutlet UILabel *nationalDataLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *nationalDataIcon;
 
--(void) setCellTitle;
 -(void) setCellUserIntaractionDisabled;
 -(void) setCellUserIntaractionEnabled;
 

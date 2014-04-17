@@ -315,7 +315,7 @@
             </objects>
             <point key="canvasLocation" x="48" y="720"/>
         </scene>
-        <!--National Performance Data View Controller-->
+        <!--National Performance Data View Controller - National Performance Data-->
         <scene sceneID="PBl-NU-zUv">
             <objects>
                 <viewController id="XYG-hE-q1g" customClass="OKNationalPerformanceDataViewController" sceneMemberID="viewController">
@@ -342,7 +342,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-z8-BlP">
                                                     <rect key="frame" x="20" y="18" width="250" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -356,8 +356,6 @@
                                         <connections>
                                             <outlet property="nationalDataIcon" destination="9YK-g6-X8S" id="JPN-6V-acF"/>
                                             <outlet property="nationalDataLabel" destination="hZS-z8-BlP" id="VSt-J0-mQQ"/>
-                                            <outlet property="procedureLabel" destination="hZS-z8-BlP" id="gDu-k5-Qsc"/>
-                                            <outlet property="rightArrowCellImage" destination="9YK-g6-X8S" id="TVs-61-9Wd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -369,7 +367,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="keZ-Q9-Coo"/>
+                    <navigationItem key="navigationItem" title="National Performance Data" id="81L-hX-2u3">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="kNq-df-tmg">
+                            <connections>
+                                <action selector="backButton:" destination="XYG-hE-q1g" id="UoD-aC-NCo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="nationalDataTableView" destination="AuB-v6-bFw" id="HdN-O9-ocC"/>
                     </connections>

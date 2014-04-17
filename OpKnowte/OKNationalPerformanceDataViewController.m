@@ -9,11 +9,12 @@
 #import "OKNationalPerformanceDataViewController.h"
 
 @interface OKNationalPerformanceDataViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *nationalDataTableView;
+@property (strong, nonatomic) IBOutlet UITableView *nationalDataTableView;
 
 @end
 
 @implementation OKNationalPerformanceDataViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,35 +25,25 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
+    
+    
     [super viewDidLoad];
 	[self.navigationController setNavigationBarHidden:NO animated:YES ];
     _nationalDataTableView.backgroundColor = [UIColor clearColor];
     
     self.nationalDataTableView.dataSource = self;
     self.nationalDataTableView.delegate = self;
-    [self.nationalDataTableView reloadData];
-    NSLog(@"%f",_nationalDataTableView.frame.size.height );
-    
-    _nationalDataTableView.frame = CGRectMake(_nationalDataTableView.frame.origin.x, _nationalDataTableView.frame.origin.y, _nationalDataTableView.frame.size.width, (_nationalDataTableView.frame.size.height - 51.f));
-    NSLog(@"%f",_nationalDataTableView.frame.size.height );
+    _nationalDataTableView.frame = CGRectMake(_nationalDataTableView.frame.origin.x, _nationalDataTableView.frame.origin.y, _nationalDataTableView.frame.size.width, (_nationalDataTableView.frame.size.height - 60.f));
     [self addBottomTabBar];
+    
     [self.nationalDataTableView reloadData];
-
+    
 }
 
--(void) viewDidAppear:(BOOL)animated{
-    _nationalDataTableView.frame = CGRectMake(_nationalDataTableView.frame.origin.x, _nationalDataTableView.frame.origin.y, _nationalDataTableView.frame.size.width, (_nationalDataTableView.frame.size.height - 51.f));
-}
--(void) viewWillAppear:(BOOL)animated{
-    _nationalDataTableView.frame = CGRectMake(_nationalDataTableView.frame.origin.x, _nationalDataTableView.frame.origin.y, _nationalDataTableView.frame.size.width, (_nationalDataTableView.frame.size.height - 51.f));
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -60,7 +51,7 @@
 #pragma mark - Table View methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 15;
 }
 
 
@@ -69,19 +60,37 @@
     static NSString *cellIdentifier = @"nationalDataCell";
     OKNationalDataCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
     if (!cell) {
         cell = [[OKNationalDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    [cell setCellTitle];
-    if (indexPath.row >3) {
-        [cell setCellUserIntaractionDisabled];
-    } else {
-        [cell setCellUserIntaractionEnabled];
-    }
-    
+     NSMutableArray *dataTitleArray = [[NSMutableArray alloc] initWithObjects:
+                                       @"Chest Xray",
+                                       @"Liver Enzymes",
+                                       @"Post Site Hernia",
+                                       @"CT Scan",
+                                       @"Bun",
+                                       @"Creatine",
+                                       @"Margins",
+                                       @"Change in BUN",
+                                       @"Deep Margins",
+                                       @"Average Creatine",
+                                       @"Tumor Characteristics",
+                                       @"Length Stay",
+                                       @"Complications",
+                                       @"Fuhrman Grade",
+                                       @"TNM", nil];
+
+    cell.nationalDataLabel.text = [dataTitleArray objectAtIndex:indexPath.row];
     return cell;
 }
 
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 @end
+
