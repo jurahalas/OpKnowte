@@ -187,6 +187,7 @@
         [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Password and re-password should be same"];
     }
     else {
+         _continueButton.enabled = NO;
         [[OKUserManager instance] signupWithFirstName:_firstNameTextField.text lastName:_lastNameTextField.text userEmail:_emailTextField.text password:_passwordTextField.text userTitle:_MDTextField.text handler:^(NSString *error) {
            
             if (error != nil) {
