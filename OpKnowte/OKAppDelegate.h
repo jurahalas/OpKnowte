@@ -13,9 +13,12 @@
 #import "OKBottomTabBarView.h"
 #import "OKConstants.h"
 #import "OKCustomTextField.h"
+
+// cells
 #import "OKSelectProcedureCell.h"
 #import "OKNationalDataTableViewCell.h"
 #import "OKSelectTimePointCell.h"
+#import "OKProcedureDetailSummaryCell.h"
 
 //networking
 #import "OKApiClient.h"

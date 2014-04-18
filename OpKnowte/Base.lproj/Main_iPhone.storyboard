@@ -146,7 +146,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tCK-Ww-VUj">
-                                <rect key="frame" x="20" y="317" width="125" height="30"/>
+                                <rect key="frame" x="20" y="269" width="125" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Procedure">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,7 +156,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5ES-1J-9KA">
-                                <rect key="frame" x="197" y="313" width="103" height="34"/>
+                                <rect key="frame" x="197" y="265" width="103" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="National Data">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -166,13 +166,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IfB-ZX-Cck">
-                                <rect key="frame" x="96" y="375" width="128" height="30"/>
+                                <rect key="frame" x="96" y="315" width="128" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Time Points">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="kGF-3f-Avh" kind="push" id="oYk-1x-QUH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4sX-aS-k7E">
+                                <rect key="frame" x="91" y="353" width="138" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Procedure summary">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="XTe-gD-PYM" kind="push" id="iYE-S8-xzH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -183,6 +193,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljw-JG-FBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944" y="55"/>
+        </scene>
+        <!--Procedure Detail Summary View Controller - Summary-->
+        <scene sceneID="K3O-ms-HFp">
+            <objects>
+                <viewController id="XTe-gD-PYM" customClass="OKProcedureDetailSummaryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WTl-wz-RgR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="5vJ-MZ-yBd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="577"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="procedureDetailSummaryCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="procedureDetailSummaryCell" id="J7W-d1-0YV" customClass="OKProcedureDetailSummaryCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="73"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7W-d1-0YV" id="aPK-s2-oE6">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GE8-JO-qgL">
+                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tAI-KI-xjr">
+                                                    <rect key="frame" x="20" y="40" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="procedureKeyLabel" destination="GE8-JO-qgL" id="3MJ-Ho-Zxi"/>
+                                            <outlet property="procedureValueLabel" destination="tAI-KI-xjr" id="Cjp-ou-Hp5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1"/>
+                    <connections>
+                        <outlet property="procedureDetailSummaryTableView" destination="5vJ-MZ-yBd" id="cNZ-hX-REV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482" y="-655"/>
         </scene>
         <!--Select Procedure View Controller - Select Procedure-->
         <scene sceneID="9ZL-h0-Udx">
@@ -506,9 +573,15 @@
     </scenes>
     <resources>
         <image name="back.png" width="10" height="17"/>
+        <image name="back.png" width="10" height="17"/>
+        <image name="back.png" width="10" height="17"/>
+        <image name="back.png" width="10" height="17"/>
         <image name="forgotPassword.png" width="125" height="23"/>
         <image name="logo.png" width="140" height="63"/>
+        <image name="logo.png" width="140" height="63"/>
         <image name="register.png" width="56" height="23"/>
+        <image name="right.png" width="11" height="18"/>
+        <image name="right.png" width="11" height="18"/>
         <image name="right.png" width="11" height="18"/>
         <image name="skip.png" width="29" height="23"/>
     </resources>

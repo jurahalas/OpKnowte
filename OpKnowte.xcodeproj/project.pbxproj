@@ -69,6 +69,8 @@
 		00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6619012AB400BEF07D /* OKTimePointsManager.m */; };
 		00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6D19012B6700BEF07D /* OKSelectTimePointViewController.m */; };
 		00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B7019012BF800BEF07D /* OKSelectTimePointCell.m */; };
+		00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B7319014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m */; };
+		00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B771901573F00BEF07D /* OKProcedureDetailSummaryCell.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
 		18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18061C8118F7EBA6005197F9 /* OKApiClient.m */; };
@@ -185,6 +187,10 @@
 		00A53B6D19012B6700BEF07D /* OKSelectTimePointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectTimePointViewController.m; sourceTree = "<group>"; };
 		00A53B6F19012BF800BEF07D /* OKSelectTimePointCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectTimePointCell.h; sourceTree = "<group>"; };
 		00A53B7019012BF800BEF07D /* OKSelectTimePointCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectTimePointCell.m; sourceTree = "<group>"; };
+		00A53B7219014BBE00BEF07D /* OKProcedureDetailSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureDetailSummaryViewController.h; sourceTree = "<group>"; };
+		00A53B7319014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureDetailSummaryViewController.m; sourceTree = "<group>"; };
+		00A53B761901573F00BEF07D /* OKProcedureDetailSummaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureDetailSummaryCell.h; sourceTree = "<group>"; };
+		00A53B771901573F00BEF07D /* OKProcedureDetailSummaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureDetailSummaryCell.m; sourceTree = "<group>"; };
 		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
 		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
@@ -352,7 +358,6 @@
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				00A53B6B19012B1C00BEF07D /* Select Time Point */,
 				007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */,
 				007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */,
 				E10023F518F529E9008421D4 /* OKViewController.h */,
@@ -364,8 +369,10 @@
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
 				185F828F1900099E00C5566A /* Loading View Controller */,
+				00A53B6B19012B1C00BEF07D /* Select Time Point */,
 				185F82881900012700C5566A /* National Performance Data */,
 				0060D88A18FD39CF00AFC7B4 /* SelectProcedure */,
+				00A53B75190156FD00BEF07D /* Procedure Detail Summary */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -379,6 +386,17 @@
 				00A53B7019012BF800BEF07D /* OKSelectTimePointCell.m */,
 			);
 			name = "Select Time Point";
+			sourceTree = "<group>";
+		};
+		00A53B75190156FD00BEF07D /* Procedure Detail Summary */ = {
+			isa = PBXGroup;
+			children = (
+				00A53B7219014BBE00BEF07D /* OKProcedureDetailSummaryViewController.h */,
+				00A53B7319014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m */,
+				00A53B761901573F00BEF07D /* OKProcedureDetailSummaryCell.h */,
+				00A53B771901573F00BEF07D /* OKProcedureDetailSummaryCell.m */,
+			);
+			name = "Procedure Detail Summary";
 			sourceTree = "<group>";
 		};
 		00BEAB1118F67DCE00E0C6B2 /* Resources */ = {
@@ -721,11 +739,13 @@
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
+				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */,
 				1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */,
+				00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
