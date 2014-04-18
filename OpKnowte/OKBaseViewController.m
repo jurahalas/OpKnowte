@@ -20,8 +20,8 @@
         // Custom initialization
     }
     return self;
-    
 }
+
 
 - (void)viewDidLoad {
     
@@ -31,10 +31,10 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 	}
-    
 }
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     return UIStatusBarStyleLightContent;
 }
 
