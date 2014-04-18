@@ -121,8 +121,6 @@
                 _loginButton.enabled = YES;
             }
             [[OKLoadingViewController instance] hide];
-
-
         }];
     }
 

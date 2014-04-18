@@ -13,7 +13,7 @@
 #import "AFHTTPClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFJSONRequestOperation.h"
-
+#import "OKLoadingViewController.h"
 
 @interface OKRegistrationViewController ()
 @property (strong, nonatomic) IBOutlet OKCustomTextField *firstNameTextField;
@@ -188,6 +188,7 @@
         [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Password and re-password should be same"];
     }
     else {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
          _continueButton.enabled = NO;
         [[OKUserManager instance] signupWithFirstName:_firstNameTextField.text lastName:_lastNameTextField.text userEmail:_emailTextField.text password:_passwordTextField.text userTitle:_MDTextField.text handler:^(NSString *error) {
            
@@ -196,10 +197,12 @@
                 [signUpFormErrorAlertView show];
                 _continueButton.enabled = YES;
             } else {
-                UIAlertView *signUpFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up Success" message:@"Congratulations! You are signed up." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *signUpFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up Success" message:@"Congratulations! You are signed up." delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [signUpFormSuccessAlertView show];
                 [self.view endEditing:YES];
+                [self performSegueWithIdentifier:@"registrationSegue" sender:self];
                 _continueButton.enabled = YES;
+                [[OKLoadingViewController instance] hide];
             }
         }];
     }
