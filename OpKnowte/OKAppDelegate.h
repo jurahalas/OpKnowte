@@ -15,6 +15,7 @@
 #import "OKCustomTextField.h"
 #import "OKSelectProcedureCell.h"
 #import "OKNationalDataTableViewCell.h"
+#import "OKSelectTimePointCell.h"
 
 //networking
 #import "OKApiClient.h"
