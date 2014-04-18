@@ -478,6 +478,7 @@
                         <outlet property="firstNameTextField" destination="J7Y-Vw-gSq" id="juu-eh-Ujr"/>
                         <outlet property="lastNameTextField" destination="SiX-j5-MVt" id="RMT-dy-pvp"/>
                         <outlet property="passwordTextField" destination="j9w-L7-cMy" id="Iku-Cc-B4w"/>
+                        <segue destination="5mR-vJ-NJu" kind="push" identifier="registrationSegue" id="dCD-SH-NGU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEm-0r-Hvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,9 +506,15 @@
     </scenes>
     <resources>
         <image name="back.png" width="10" height="17"/>
+        <image name="back.png" width="10" height="17"/>
+        <image name="back.png" width="10" height="17"/>
+        <image name="back.png" width="10" height="17"/>
         <image name="forgotPassword.png" width="125" height="23"/>
         <image name="logo.png" width="140" height="63"/>
+        <image name="logo.png" width="140" height="63"/>
         <image name="register.png" width="56" height="23"/>
+        <image name="right.png" width="11" height="18"/>
+        <image name="right.png" width="11" height="18"/>
         <image name="right.png" width="11" height="18"/>
         <image name="skip.png" width="29" height="23"/>
     </resources>
@@ -516,4 +523,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="dCD-SH-NGU"/>
+    </inferredMetricsTieBreakers>
 </document>

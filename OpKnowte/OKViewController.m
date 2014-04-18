@@ -7,6 +7,7 @@
 //
 
 #import "OKViewController.h"
+#import "OKLoadingViewController.h"
 
 @interface OKViewController ()
 @property (strong, nonatomic) IBOutlet OKCustomTextField *emailTextField;
@@ -98,16 +99,20 @@
 - (IBAction)loginButton:(id)sender {
     
     OKUserManager *usermanager = [OKUserManager instance];
+   
     if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
         UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [loginFormAlertView show];
     }else {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
         _loginButton.enabled = NO;
         [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
             if (error != nil) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormErrorAlertView show];
                 _loginButton.enabled = YES;
+               
             } else {
                 UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormSuccessAlertView show];
@@ -115,9 +120,10 @@
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
                 _loginButton.enabled = YES;
             }
+            [[OKLoadingViewController instance] hide];
         }];
     }
-    
+
 }
 
 - (IBAction)forgetPasswordButton:(id)sender {
