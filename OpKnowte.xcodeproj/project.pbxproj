@@ -344,15 +344,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		0065E87E190026A50016B94F /* Base View */ = {
-			isa = PBXGroup;
-			children = (
-				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
-				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
-			);
-			name = "Base View";
-			sourceTree = "<group>";
-		};
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,7 +356,8 @@
 				007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */,
 				0065E87B190026900016B94F /* OKInfoViewController.h */,
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
-				0065E87E190026A50016B94F /* Base View */,
+				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
+				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
 				185F82881900012700C5566A /* National Performance Data */,
 				0060D88A18FD39CF00AFC7B4 /* SelectProcedure */,
 			);
