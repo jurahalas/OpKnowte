@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
+
+#define DELEGATE ((OKAppDelegate*)[[UIApplication sharedApplication] delegate])
+
 #import "OKAppDelegate.h"
 
 @implementation OKAppDelegate
@@ -48,5 +51,24 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (UIViewController*)topViewController {
+    return [self topViewControllerWithRootViewController:[UIApplication sharedApplication].delegate.window.rootViewController];
+}
+
+
+- (UIViewController*)topViewControllerWithRootViewController:(UIViewController*)rootViewController {
+    
+    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController* navigationController = (UINavigationController*)rootViewController;
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    } else if (rootViewController.presentedViewController) {
+        UIViewController* presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    } else {
+        return rootViewController;
+    }
+}
+
 
 @end

@@ -9,6 +9,7 @@
 #import "OKSelectProcedureViewController.h"
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
+#import "OKLoadingViewController.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -38,15 +39,17 @@
     
     _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
     [self addBottomTabBar];
-    
+  
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
     OKProceduresManager *procedureManager = [OKProceduresManager instance];
-    
     [procedureManager getAllProceduresWithHandler:^(NSString* error, NSMutableArray* proceduresArray){
         NSLog(@"Error - %@", error);
         
         _procArray = proceduresArray;
         [self.selectProcedureTableView reloadData];
-
+        
+        [[OKLoadingViewController instance] hide];
     }];
 }
 

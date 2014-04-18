@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="LoginView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="OKViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="OKViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -89,53 +89,12 @@
                         <outlet property="loginButton" destination="xlJ-np-vqZ" id="YWl-rx-G1V"/>
                         <outlet property="passwordTextField" destination="T6h-tb-goT" id="Y9l-Bk-gZf"/>
                         <outlet property="registerButton" destination="k9t-Pa-N8e" id="Lgc-NN-5vH"/>
-                        <segue destination="5mR-vJ-NJu" kind="push" identifier="loginSegue" id="ytp-fp-EJd"/>
+                        <segue destination="fua-jD-zoT" kind="push" identifier="loginSegue" id="L8b-jW-JSf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-60" y="55"/>
-        </scene>
-        <!--Info View Controller-->
-        <scene sceneID="27P-QZ-WAL">
-            <objects>
-                <viewController id="5mR-vJ-NJu" customClass="OKInfoViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xab-oM-diD">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" id="8D0-wu-uvm">
-                                <rect key="frame" x="90" y="88" width="140" height="63"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fX5-Zx-82C">
-                                <rect key="frame" x="20" y="159" width="280" height="296"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cfx-Q1-jxx">
-                                <rect key="frame" x="118" y="450" width="84" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="skip.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="fua-jD-zoT" kind="push" id="ybZ-8n-45Y"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="qTF-fN-8Jn"/>
-                    <connections>
-                        <outlet property="infoTextLabel" destination="fX5-Zx-82C" id="13I-nN-YV9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qVc-g1-esM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="487" y="55"/>
         </scene>
         <!--Home Screen View Controller-->
         <scene sceneID="BZe-D5-AUt">
@@ -146,7 +105,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tCK-Ww-VUj">
-                                <rect key="frame" x="20" y="269" width="125" height="30"/>
+                                <rect key="frame" x="136" y="274" width="125" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Procedure">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -156,33 +115,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5ES-1J-9KA">
-                                <rect key="frame" x="197" y="265" width="103" height="34"/>
+                                <rect key="frame" x="124" y="391" width="148" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="National Data">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="dRe-bA-8t8" kind="push" id="tnU-SG-HGX"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IfB-ZX-Cck">
-                                <rect key="frame" x="96" y="315" width="128" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select Time Points">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="kGF-3f-Avh" kind="push" id="oYk-1x-QUH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4sX-aS-k7E">
-                                <rect key="frame" x="91" y="353" width="138" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Procedure summary">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="XTe-gD-PYM" kind="push" id="iYE-S8-xzH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -192,64 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljw-JG-FBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944" y="55"/>
-        </scene>
-        <!--Procedure Detail Summary View Controller - Summary-->
-        <scene sceneID="K3O-ms-HFp">
-            <objects>
-                <viewController id="XTe-gD-PYM" customClass="OKProcedureDetailSummaryViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="WTl-wz-RgR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="5vJ-MZ-yBd">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="577"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="procedureDetailSummaryCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="procedureDetailSummaryCell" id="J7W-d1-0YV" customClass="OKProcedureDetailSummaryCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="73"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7W-d1-0YV" id="aPK-s2-oE6">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GE8-JO-qgL">
-                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tAI-KI-xjr">
-                                                    <rect key="frame" x="20" y="40" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="procedureKeyLabel" destination="GE8-JO-qgL" id="3MJ-Ho-Zxi"/>
-                                            <outlet property="procedureValueLabel" destination="tAI-KI-xjr" id="Cjp-ou-Hp5"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1"/>
-                    <connections>
-                        <outlet property="procedureDetailSummaryTableView" destination="5vJ-MZ-yBd" id="cNZ-hX-REV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1482" y="-655"/>
+            <point key="canvasLocation" x="548" y="113"/>
         </scene>
         <!--Select Procedure View Controller - Select Procedure-->
         <scene sceneID="9ZL-h0-Udx">
@@ -308,66 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D8-zs-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="55"/>
-        </scene>
-        <!--Select Time Point View Controller - Time Points-->
-        <scene sceneID="jo8-Sc-jJd">
-            <objects>
-                <viewController id="kGF-3f-Avh" customClass="OKSelectTimePointViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="deI-mg-5a0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="gj0-ke-MrT">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="timePointCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePointCell" id="bVW-dO-dTR" customClass="OKSelectTimePointCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="57"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVW-dO-dTR" id="DMF-HL-eX4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="23w-KI-FES">
-                                                    <rect key="frame" x="20" y="18" width="250" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="bv0-RT-l4y">
-                                                    <rect key="frame" x="289" y="18" width="11" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="rightArrowCellImage" destination="bv0-RT-l4y" id="TwF-G9-Du7"/>
-                                            <outlet property="timePointLabel" destination="23w-KI-FES" id="b0K-xM-9As"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Time Points" id="Qi3-Pa-x25">
-                        <barButtonItem key="leftBarButtonItem" image="back.png" id="6Hs-GP-qSf">
-                            <connections>
-                                <action selector="backButton:" destination="kGF-3f-Avh" id="GfD-k9-te2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="selectTimePointTableView" destination="gj0-ke-MrT" id="y19-ef-GKA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dFv-iZ-7Pc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="944" y="900"/>
+            <point key="canvasLocation" x="1048" y="55"/>
         </scene>
         <!--National Data View Controller - National Performance Data-->
         <scene sceneID="Tsz-a6-9kq">
@@ -432,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJq-NT-Vdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="900"/>
+            <point key="canvasLocation" x="1006" y="900"/>
         </scene>
         <!--Registration View Controller - Register-->
         <scene sceneID="ZwV-jN-0Gn">
@@ -545,7 +368,7 @@
                         <outlet property="firstNameTextField" destination="J7Y-Vw-gSq" id="juu-eh-Ujr"/>
                         <outlet property="lastNameTextField" destination="SiX-j5-MVt" id="RMT-dy-pvp"/>
                         <outlet property="passwordTextField" destination="j9w-L7-cMy" id="Iku-Cc-B4w"/>
-                        <segue destination="5mR-vJ-NJu" kind="push" identifier="registrationSegue" id="dCD-SH-NGU"/>
+                        <segue destination="fua-jD-zoT" kind="push" identifier="registrationSegue" id="uge-zx-rto"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEm-0r-Hvf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -577,7 +400,6 @@
         <image name="logo.png" width="140" height="63"/>
         <image name="register.png" width="56" height="23"/>
         <image name="right.png" width="11" height="18"/>
-        <image name="skip.png" width="29" height="23"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -585,6 +407,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dCD-SH-NGU"/>
+        <segue reference="uge-zx-rto"/>
     </inferredMetricsTieBreakers>
 </document>
