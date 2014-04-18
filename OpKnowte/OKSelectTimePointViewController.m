@@ -38,14 +38,15 @@
     _selectTimePointTableView.frame = CGRectMake(_selectTimePointTableView.frame.origin.x, _selectTimePointTableView.frame.origin.y, _selectTimePointTableView.frame.size.width, (_selectTimePointTableView.frame.size.height - 60.f));
     [self addBottomTabBar];
     
-    OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     [timePointsManager getAllTimePointsWithHandler:     ^(NSString* error, NSMutableArray* timePointsArray){
         NSLog(@"Error - %@", error);
         
         _timePointsArray = timePointsArray;
         [self.selectTimePointTableView reloadData];
-        
+        [[OKLoadingViewController instance] hide];
     }];
      
      
