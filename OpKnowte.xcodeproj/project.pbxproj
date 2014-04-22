@@ -99,6 +99,10 @@
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
 		18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18061C8118F7EBA6005197F9 /* OKApiClient.m */; };
+		182659C719066A1700723D16 /* OKDashboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C619066A1700723D16 /* OKDashboardVC.m */; };
+		182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C919066C2600723D16 /* OKDashboardTableViewCell.m */; };
+		182659CD1906A36200723D16 /* dashboardBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 182659CB1906A36200723D16 /* dashboardBG.png */; };
+		182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182659CC1906A36200723D16 /* dashboardBG@2x.png */; };
 		185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F828A1900015400C5566A /* OKNationalDataViewController.m */; };
 		185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F828D1900017F00C5566A /* OKNationalDataTableViewCell.m */; };
 		185F829619000A7100C5566A /* OKLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F829519000A7100C5566A /* OKLoadingViewController.xib */; };
@@ -248,6 +252,12 @@
 		03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpKnowte.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18061C8018F7EBA6005197F9 /* OKApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKApiClient.h; sourceTree = "<group>"; };
 		18061C8118F7EBA6005197F9 /* OKApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKApiClient.m; sourceTree = "<group>"; };
+		182659C519066A1700723D16 /* OKDashboardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDashboardVC.h; sourceTree = "<group>"; };
+		182659C619066A1700723D16 /* OKDashboardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDashboardVC.m; sourceTree = "<group>"; };
+		182659C819066C2600723D16 /* OKDashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDashboardTableViewCell.h; sourceTree = "<group>"; };
+		182659C919066C2600723D16 /* OKDashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDashboardTableViewCell.m; sourceTree = "<group>"; };
+		182659CB1906A36200723D16 /* dashboardBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboardBG.png; sourceTree = "<group>"; };
+		182659CC1906A36200723D16 /* dashboardBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboardBG@2x.png"; sourceTree = "<group>"; };
 		185F82891900015400C5566A /* OKNationalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKNationalDataViewController.h; sourceTree = "<group>"; };
 		185F828A1900015400C5566A /* OKNationalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKNationalDataViewController.m; sourceTree = "<group>"; };
 		185F828C1900017F00C5566A /* OKNationalDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKNationalDataTableViewCell.h; sourceTree = "<group>"; };
@@ -363,6 +373,7 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+				18F4471F1906594E00C37F3D /* Dashboard View */,
 				185F828F1900099E00C5566A /* Loading View Controller */,
 				00A53B6B19012B1C00BEF07D /* Select Time Point */,
 				185F82881900012700C5566A /* National Performance Data */,
@@ -412,6 +423,8 @@
 				00A64D3119064DB400740DC7 /* logo */,
 				00A64D3819064DB400740DC7 /* navbarBG_color.png */,
 				00A64D3919064DB400740DC7 /* navbarBG_color@2x.png */,
+				182659CB1906A36200723D16 /* dashboardBG.png */,
+				182659CC1906A36200723D16 /* dashboardBG@2x.png */,
 				00A64D3A19064DB400740DC7 /* sliderPoint.png */,
 				00A64D3B19064DB400740DC7 /* sliderPoint@2x.png */,
 				00A64D3C19064DB400740DC7 /* tabbarBG.png */,
@@ -549,6 +562,17 @@
 				185F829519000A7100C5566A /* OKLoadingViewController.xib */,
 			);
 			name = "Loading View Controller";
+			sourceTree = "<group>";
+		};
+		18F4471F1906594E00C37F3D /* Dashboard View */ = {
+			isa = PBXGroup;
+			children = (
+				182659C519066A1700723D16 /* OKDashboardVC.h */,
+				182659C619066A1700723D16 /* OKDashboardVC.m */,
+				182659C819066C2600723D16 /* OKDashboardTableViewCell.h */,
+				182659C919066C2600723D16 /* OKDashboardTableViewCell.m */,
+			);
+			name = "Dashboard View";
 			sourceTree = "<group>";
 		};
 		E10023D118F529E9008421D4 = {
@@ -752,6 +776,7 @@
 				00A64D7F19064DB400740DC7 /* logoTB.png in Resources */,
 				00A64D7819064DB400740DC7 /* register@2x.png in Resources */,
 				00A64D6419064DB400740DC7 /* home@2x.png in Resources */,
+				182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */,
 				00A64D6819064DB400740DC7 /* knife@2x.png in Resources */,
 				00A64D7719064DB400740DC7 /* register.png in Resources */,
 				00A64D6019064DB400740DC7 /* email@2x.png in Resources */,
@@ -780,6 +805,7 @@
 				00A64D4219064DB400740DC7 /* down.png in Resources */,
 				00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */,
 				00A64D5619064DB400740DC7 /* redCross.png in Resources */,
+				182659CD1906A36200723D16 /* dashboardBG.png in Resources */,
 				00A64D4E19064DB400740DC7 /* selected.png in Resources */,
 				00A64D8419064DB400740DC7 /* sliderPoint@2x.png in Resources */,
 				00A64D4119064DB400740DC7 /* back@2x.png in Resources */,
@@ -872,6 +898,7 @@
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
+				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
@@ -894,6 +921,7 @@
 				185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */,
 				1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */,
 				00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */,
+				182659C719066A1700723D16 /* OKDashboardVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
