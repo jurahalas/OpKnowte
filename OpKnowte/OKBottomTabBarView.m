@@ -10,9 +10,9 @@
 
 @interface OKBottomTabBarView ()
 @property (strong, nonatomic) UIButton *homeButton;
-@property (strong, nonatomic) UIButton *infoButton;
+@property (strong, nonatomic) UIView *logoTBView;
 @property (strong, nonatomic) UIButton *settingsButton;
-@property (strong, nonatomic) UIButton *logoutButton;
+
 @end
 @implementation OKBottomTabBarView
 
@@ -21,9 +21,8 @@
     
     [self drawView];
     [self drawHomeButton];
-    [self drawInfoButton];
+    [self drawLogoTBImage];
     [self drawSettingsButton];
-    [self drawLogoutButton];
     
 }
 -(void) drawHomeButton {
@@ -36,19 +35,21 @@
     [self addSubview:_homeButton];
 }
 
--(void) drawInfoButton {
-    _infoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _infoButton.frame = CGRectMake(80, 0, 80, 51);
+-(void) drawLogoTBImage {
+    _logoTBView = [[UIView alloc] init];
+    _logoTBView.frame = CGRectMake(80, 0, 160, 51);
+    _logoTBView.backgroundColor = [UIColor clearColor];
     
-    _infoButton.tintColor = [UIColor whiteColor];
-    [self.infoButton setImage:[UIImage imageNamed:@"info"] forState:UIControlStateNormal];
-    [_infoButton addTarget:self action:@selector(infoButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_infoButton];
+    UIImageView *logoTBImage = [[UIImageView alloc] initWithFrame:CGRectMake(31, 13, 98, 25)];
+    logoTBImage.image = [UIImage imageNamed:@"logoTB"] ;
+    [_logoTBView addSubview:logoTBImage];
+    
+    [self addSubview:_logoTBView];
 }
 
 -(void) drawSettingsButton {
     _settingsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _settingsButton.frame = CGRectMake(160, 0, 80, 51);
+    _settingsButton.frame = CGRectMake(240, 0, 80, 51);
     
     _settingsButton.tintColor = [UIColor whiteColor];
     [self.settingsButton setImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
@@ -56,15 +57,6 @@
     [self addSubview:_settingsButton];
 }
 
--(void) drawLogoutButton {
-    _logoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    _logoutButton.frame = CGRectMake(240, 0, 80, 51);
-    
-    _logoutButton.tintColor = [UIColor whiteColor];
-    [self.logoutButton setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
-    [_logoutButton addTarget:self action:@selector(logoutButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_logoutButton];
-}
 -(void) drawView {
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];;
     self.frame = CGRectMake(0, 517, 320, 51);
@@ -72,13 +64,8 @@
 -(void)homeButton:(id)sender{
     
 }
--(void)infoButton:(id)sender{
-    
-}
 -(void)settingsButton:(id)sender{
     
 }
--(void)logoutButton:(id)sender{
-    
-}
+
 @end

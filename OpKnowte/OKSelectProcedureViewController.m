@@ -37,7 +37,7 @@
     self.selectProcedureTableView.dataSource = self;
     self.selectProcedureTableView.delegate = self;
     
-    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
+    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 57.f));
     [self addBottomTabBar];
   
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
@@ -85,12 +85,7 @@
     
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
-// Unselected cells
-//    if (indexPath.row >3) {
-//        [cell setCellUserIntaractionDisabled];
-//    } else {
-//        [cell setCellUserIntaractionEnabled];
-//    }
+    [cell setCellBGImageLight:indexPath.row];
 
     return cell;
     
