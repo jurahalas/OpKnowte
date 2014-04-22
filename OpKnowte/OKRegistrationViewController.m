@@ -247,14 +247,14 @@
 
 -(void) setAllDesign {
     
-    [_firstNameTextField setCustomTextFieldPlaceholder: @"your first name..." Secured:NO DownArrow:NO];
-    [_lastNameTextField setCustomTextFieldPlaceholder: @"your last name..." Secured:NO DownArrow:NO];
-    [_emailTextField setCustomTextFieldPlaceholder: @"your email..." Secured:NO DownArrow:NO];
+    [_firstNameTextField setCustomTextFieldPlaceholder: @"First name" Secured:NO DownArrow:NO];
+    [_lastNameTextField setCustomTextFieldPlaceholder: @"Last name" Secured:NO DownArrow:NO];
+    [_emailTextField setCustomTextFieldPlaceholder: @"Your email..." Secured:NO DownArrow:NO];
     [_MDTextField setCustomTextFieldPlaceholder: @"MD" Secured:NO DownArrow:YES];
-    [_passwordTextField setCustomTextFieldPlaceholder:@"your password..." Secured:YES DownArrow:NO];
-    [_confirmPasswordField setCustomTextFieldPlaceholder:@"once again..." Secured:YES DownArrow:NO];
+    [_passwordTextField setCustomTextFieldPlaceholder:@"Enter password..." Secured:YES DownArrow:NO];
+    [_confirmPasswordField setCustomTextFieldPlaceholder:@"Re-enter password..." Secured:YES DownArrow:NO];
 
-    _continueButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
+    _continueButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _continueButton.layer.cornerRadius = 14;
     _continueButton.clipsToBounds = YES;
 
