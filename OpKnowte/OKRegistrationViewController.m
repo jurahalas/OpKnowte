@@ -258,6 +258,7 @@
     _continueButton.layer.cornerRadius = 14;
     _continueButton.clipsToBounds = YES;
 
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoNB"]];
 }
 
 @end

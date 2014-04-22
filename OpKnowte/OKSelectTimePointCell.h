@@ -15,6 +15,6 @@
 
 -(void) setCellUserIntaractionDisabled;
 -(void) setCellUserIntaractionEnabled;
-
+-(void) setCellBGImageLight:(int) cellCount;
 
 @end

@@ -64,8 +64,11 @@
     
     cell.cellName.text = [dataTitleArray objectAtIndex:indexPath.row];
     cell.cellImage.image = [imageArray objectAtIndex:indexPath.row];
+    [cell setCellBGImageLight:indexPath.row];
+
     return cell;
 }
+
 
 
 - (void)didReceiveMemoryWarning

@@ -18,33 +18,45 @@
     }
     return self;
 }
+
+
 -(void)awakeFromNib{
-    UIImageView *cellIsNotSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellBG"]];
+    
     UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
     
     self.contentView.backgroundColor = [UIColor clearColor];
-    self.backgroundView = cellIsNotSelected;
+    
     self.selectedBackgroundView  = cellIsSelected;
     self.backgroundColor = [UIColor clearColor];
 }
 
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+}
+
+
+-(void) setCellBGImageLight:(int) cellCount {
+    UIImageView *cellBG = [[UIImageView alloc]init];
+    if (cellCount%2 == 1) {
+        cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellLight"]];
+    } else {
+        cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellDark"]];
+    }
     
-    // Configure the view for the selected state
+    self.backgroundView = cellBG;
 }
 
 
 -(void) setCellUserIntaractionDisabled {
     [self setUserInteractionEnabled:NO];
-    self.cellRightIcon.image = [UIImage imageNamed:@"rightInvalid"];
+    self.cellRightIcon.alpha = 0.3f;
     self.cellName.textColor = [UIColor colorWithWhite:1 alpha:.3f];
-    
 }
 -(void) setCellUserIntaractionEnabled {
     [self setUserInteractionEnabled:YES];
-    self.cellRightIcon.image = [UIImage imageNamed:@"right"];
+    self.cellRightIcon.alpha = 1.f;
     self.cellName.textColor = [UIColor colorWithWhite:1 alpha:1.f];
     
 }

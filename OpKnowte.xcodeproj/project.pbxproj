@@ -96,6 +96,10 @@
 		00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D3D19064DB400740DC7 /* tabbarBG@2x.png */; };
 		00A64D8719064DB400740DC7 /* userImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D3E19064DB400740DC7 /* userImage.png */; };
 		00A64D8819064DB400740DC7 /* userImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D3F19064DB400740DC7 /* userImage@2x.png */; };
+		00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D8919065A5400740DC7 /* cellActiveBG.png */; };
+		00A64D8C19065A5400740DC7 /* cellActiveBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D8A19065A5400740DC7 /* cellActiveBG@2x.png */; };
+		00A64D931906716C00740DC7 /* navbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D911906716C00740DC7 /* navbarBG.png */; };
+		00A64D941906716C00740DC7 /* navbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D921906716C00740DC7 /* navbarBG@2x.png */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
 		18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18061C8118F7EBA6005197F9 /* OKApiClient.m */; };
@@ -245,6 +249,10 @@
 		00A64D3D19064DB400740DC7 /* tabbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbarBG@2x.png"; sourceTree = "<group>"; };
 		00A64D3E19064DB400740DC7 /* userImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userImage.png; sourceTree = "<group>"; };
 		00A64D3F19064DB400740DC7 /* userImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userImage@2x.png"; sourceTree = "<group>"; };
+		00A64D8919065A5400740DC7 /* cellActiveBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cellActiveBG.png; path = ../cellActiveBG.png; sourceTree = "<group>"; };
+		00A64D8A19065A5400740DC7 /* cellActiveBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cellActiveBG@2x.png"; path = "../cellActiveBG@2x.png"; sourceTree = "<group>"; };
+		00A64D911906716C00740DC7 /* navbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarBG.png; sourceTree = "<group>"; };
+		00A64D921906716C00740DC7 /* navbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navbarBG@2x.png"; sourceTree = "<group>"; };
 		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
 		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
@@ -425,6 +433,8 @@
 				00A64D3919064DB400740DC7 /* navbarBG_color@2x.png */,
 				182659CB1906A36200723D16 /* dashboardBG.png */,
 				182659CC1906A36200723D16 /* dashboardBG@2x.png */,
+				00A64D911906716C00740DC7 /* navbarBG.png */,
+				00A64D921906716C00740DC7 /* navbarBG@2x.png */,
 				00A64D3A19064DB400740DC7 /* sliderPoint.png */,
 				00A64D3B19064DB400740DC7 /* sliderPoint@2x.png */,
 				00A64D3C19064DB400740DC7 /* tabbarBG.png */,
@@ -451,6 +461,8 @@
 		00A64CFC19064DB300740DC7 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				00A64D8919065A5400740DC7 /* cellActiveBG.png */,
+				00A64D8A19065A5400740DC7 /* cellActiveBG@2x.png */,
 				00A64CFD19064DB300740DC7 /* cellDark.png */,
 				00A64CFE19064DB300740DC7 /* cellDark@2x.png */,
 				00A64CFF19064DB300740DC7 /* cellLight.png */,
@@ -782,6 +794,7 @@
 				00A64D6019064DB400740DC7 /* email@2x.png in Resources */,
 				00A64D4A19064DB400740DC7 /* cellDark.png in Resources */,
 				00A64D8019064DB400740DC7 /* logoTB@2x.png in Resources */,
+				00A64D8C19065A5400740DC7 /* cellActiveBG@2x.png in Resources */,
 				00A64D8219064DB400740DC7 /* navbarBG_color@2x.png in Resources */,
 				00A64D6919064DB400740DC7 /* logout.png in Resources */,
 				00A64D6319064DB400740DC7 /* home.png in Resources */,
@@ -791,12 +804,14 @@
 				00A64D4619064DB400740DC7 /* bg.png in Resources */,
 				00A64D5119064DB400740DC7 /* unselected@2x.png in Resources */,
 				00A64D6719064DB400740DC7 /* knife.png in Resources */,
+				00A64D941906716C00740DC7 /* navbarBG@2x.png in Resources */,
 				00A64D6119064DB400740DC7 /* folder.png in Resources */,
 				00A64D6C19064DB400740DC7 /* magnifier@2x.png in Resources */,
 				00A64D4919064DB400740DC7 /* bg_568@2x.png in Resources */,
 				00A64D7B19064DB400740DC7 /* logo.png in Resources */,
 				00A64D6B19064DB400740DC7 /* magnifier.png in Resources */,
 				00A64D5B19064DB400740DC7 /* calendar.png in Resources */,
+				00A64D931906716C00740DC7 /* navbarBG.png in Resources */,
 				E10023F918F529E9008421D4 /* Images.xcassets in Resources */,
 				00A64D6A19064DB400740DC7 /* logout@2x.png in Resources */,
 				00A64D5C19064DB400740DC7 /* calendar@2x.png in Resources */,
@@ -829,6 +844,7 @@
 				00A64D8319064DB400740DC7 /* sliderPoint.png in Resources */,
 				00A64D5419064DB400740DC7 /* greenMagnifier.png in Resources */,
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
+				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
 				00A64D4819064DB400740DC7 /* bg_568.png in Resources */,
 				00A64D4719064DB400740DC7 /* bg@2x.png in Resources */,
 				E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */,
