@@ -40,8 +40,8 @@
 
 -(void) addBottomTabBar {
     OKBottomTabBarView *bottomTabBarView = [[OKBottomTabBarView alloc] init];
-    [bottomTabBarView drawBottomTabBar];
     [self.view addSubview:bottomTabBarView];
+    [bottomTabBarView drawBottomTabBar];
 }
 
 

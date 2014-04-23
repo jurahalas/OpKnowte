@@ -58,8 +58,8 @@
 }
 
 -(void) drawView {
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];;
-    self.frame = CGRectMake(0, 517, 320, 51);
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];
+    self.frame = CGRectMake(0, self.superview.frame.size.height-51 , 320, 51);
 }
 -(void)homeButton:(id)sender{
     

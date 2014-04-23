@@ -20,6 +20,8 @@
 #import "OKNationalDataTableViewCell.h"
 #import "OKSelectTimePointCell.h"
 #import "OKProcedureDetailSummaryCell.h"
+#import "OKSurgeonPerformanceDataComparisonContentCell.h"
+#import "OKSurgeonPerformanceDataComparisonTitleCell.h"
 
 //networking
 #import "OKApiClient.h"

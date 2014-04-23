@@ -121,7 +121,7 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoNB.png" id="8D0-wu-uvm">
                                 <rect key="frame" x="95" y="27" width="130" height="33"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -184,6 +184,7 @@
                                     <segue destination="XTe-gD-PYM" kind="push" id="iYE-S8-xzH"/>
                                 </connections>
                             </button>
+<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BI5-k9-5XR">
                                 <rect key="frame" x="114" y="401" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -192,6 +193,16 @@
                                 </state>
                                 <connections>
                                     <segue destination="1sY-Xu-fV5" kind="push" id="YOi-af-GRJ"/>
+=======
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UEg-df-rJq">
+                                <rect key="frame" x="26" y="413" width="269" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Surgeon performance data comparison">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wim-OD-ltN" kind="push" id="5mA-jN-bDY"/>
+>>>>>>> d2980a7d6df6f4df052d122bb6a8c0fa5a85abdc
                                 </connections>
                             </button>
                         </subviews>
@@ -202,6 +213,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljw-JG-FBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944" y="55"/>
+        </scene>
+        <!--Surgeon Performance Data Comparison View Controller - Surgeon performance data-->
+        <scene sceneID="M1U-KP-KlD">
+            <objects>
+                <viewController id="wim-OD-ltN" customClass="OKSurgeonPerformanceDataComparisonViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bfv-NZ-Gin">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GZa-gN-yhr">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="50" id="i12-8s-SLa" customClass="OKSurgeonPerformanceDataComparisonTitleCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i12-8s-SLa" id="FUe-tN-WkM">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average blood loss" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r1G-ez-Okr">
+                                                    <rect key="frame" x="20" y="14" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="r1G-ez-Okr" id="5lg-Iw-vol"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" rowHeight="100" id="SRi-mp-CqH" customClass="OKSurgeonPerformanceDataComparisonContentCell">
+                                        <rect key="frame" x="0.0" y="136" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SRi-mp-CqH" id="58z-sW-oDU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="National Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L6q-El-cPu">
+                                                    <rect key="frame" x="20" y="15" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Blood Loss - 179.9 (2.0 to 2523.0)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oNe-m6-kob">
+                                                    <rect key="frame" x="20" y="39" width="328" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample size (N=112)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="C5F-17-rCV">
+                                                    <rect key="frame" x="20" y="63" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="bloodLossLabel" destination="oNe-m6-kob" id="d72-xf-dUE"/>
+                                            <outlet property="dataLabel" destination="L6q-El-cPu" id="rAf-9Q-Nz6"/>
+                                            <outlet property="sampleSizeLabel" destination="C5F-17-rCV" id="Za3-KR-5Qo"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Surgeon performance data" id="Vfe-aU-c6J">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="RSw-CT-liu">
+                            <connections>
+                                <action selector="backButton:" destination="wim-OD-ltN" id="KRl-l3-H0E"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="info.png" id="Ta3-dv-kQH"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="surgeonPerformanceDataComparisonTableView" destination="GZa-gN-yhr" id="S6C-RF-IXC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FnC-VZ-4bk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944" y="-655"/>
         </scene>
         <!--Procedure Detail Summary View Controller - Summary-->
         <scene sceneID="K3O-ms-HFp">
@@ -252,6 +356,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="YbG-2J-oO7">
+                            <connections>
+                                <action selector="backButton:" destination="XTe-gD-PYM" id="irz-cd-ogQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="info.png" id="fsq-SX-mHD"/>
                     </navigationItem>
                     <connections>
@@ -657,6 +766,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Y2-tC-G7U">
+                                        <rect key="frame" x="280" y="26" width="20" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="info.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -678,24 +794,28 @@
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
+<<<<<<< HEAD
+        <image name="forgotPassword.png" width="125" height="23"/>
+        <image name="info.png" width="20" height="20"/>
+=======
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
         <image name="forgotPassword.png" width="125" height="23"/>
         <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
+        <image name="info.png" width="20" height="20"/>
+>>>>>>> d2980a7d6df6f4df052d122bb6a8c0fa5a85abdc
         <image name="logo.png" width="223" height="56"/>
-<<<<<<< HEAD
-        <image name="register.png" width="56" height="23"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="userImage.png" width="48" height="48"/>
-=======
         <image name="logoNB.png" width="130" height="33"/>
         <image name="register.png" width="56" height="23"/>
         <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
->>>>>>> 6eab36ff77f132d3c24be5dbcd50ea182bedbc55
+        <image name="userImage.png" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
