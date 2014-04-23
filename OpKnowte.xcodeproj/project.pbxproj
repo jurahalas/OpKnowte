@@ -17,6 +17,10 @@
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
+		008D5B541907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B521907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m */; };
+		008D5B551907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B531907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib */; };
+		008D5B671907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B651907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m */; };
+		008D5B681907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B661907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib */; };
 		00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6319012A9E00BEF07D /* OKTimePointModel.m */; };
 		00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6619012AB400BEF07D /* OKTimePointsManager.m */; };
 		00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6D19012B6700BEF07D /* OKSelectTimePointViewController.m */; };
@@ -167,6 +171,12 @@
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
+		008D5B511907DC500039E8B7 /* OKProceduresParserTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProceduresParserTextFieldViewController.h; sourceTree = "<group>"; };
+		008D5B521907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProceduresParserTextFieldViewController.m; sourceTree = "<group>"; };
+		008D5B531907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProceduresParserTextFieldViewController.xib; sourceTree = "<group>"; };
+		008D5B641907DE360039E8B7 /* OKProcedureParserSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureParserSwitcherViewController.h; sourceTree = "<group>"; };
+		008D5B651907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureParserSwitcherViewController.m; sourceTree = "<group>"; };
+		008D5B661907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureParserSwitcherViewController.xib; sourceTree = "<group>"; };
 		00A53B6219012A9E00BEF07D /* OKTimePointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointModel.h; sourceTree = "<group>"; };
 		00A53B6319012A9E00BEF07D /* OKTimePointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTimePointModel.m; sourceTree = "<group>"; };
 		00A53B6519012AB400BEF07D /* OKTimePointsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointsManager.h; sourceTree = "<group>"; };
@@ -397,8 +407,46 @@
 				0060D88A18FD39CF00AFC7B4 /* SelectProcedure */,
 				00A53B75190156FD00BEF07D /* Procedure Detail Summary */,
 				00A64D981906B80C00740DC7 /* Surgeon Performance Data Comparison */,
+				008D5B561907DC540039E8B7 /* Procedure Parser */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		008D5B561907DC540039E8B7 /* Procedure Parser */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B571907DC600039E8B7 /* Custom elements */,
+			);
+			name = "Procedure Parser";
+			sourceTree = "<group>";
+		};
+		008D5B571907DC600039E8B7 /* Custom elements */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B581907DC6F0039E8B7 /* Text Field */,
+				008D5B691907DE3C0039E8B7 /* Switcher */,
+			);
+			name = "Custom elements";
+			sourceTree = "<group>";
+		};
+		008D5B581907DC6F0039E8B7 /* Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B511907DC500039E8B7 /* OKProceduresParserTextFieldViewController.h */,
+				008D5B521907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m */,
+				008D5B531907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib */,
+			);
+			name = "Text Field";
+			sourceTree = "<group>";
+		};
+		008D5B691907DE3C0039E8B7 /* Switcher */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B641907DE360039E8B7 /* OKProcedureParserSwitcherViewController.h */,
+				008D5B651907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m */,
+				008D5B661907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib */,
+			);
+			name = Switcher;
 			sourceTree = "<group>";
 		};
 		00A53B6B19012B1C00BEF07D /* Select Time Point */ = {
@@ -842,6 +890,7 @@
 				00A64D4019064DB400740DC7 /* back.png in Resources */,
 				00A64D4219064DB400740DC7 /* down.png in Resources */,
 				00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */,
+				008D5B551907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib in Resources */,
 				00A64D5619064DB400740DC7 /* redCross.png in Resources */,
 				182659CD1906A36200723D16 /* dashboardBG.png in Resources */,
 				00A64D4E19064DB400740DC7 /* selected.png in Resources */,
@@ -866,6 +915,7 @@
 				00A64D8819064DB400740DC7 /* userImage@2x.png in Resources */,
 				00A64D8319064DB400740DC7 /* sliderPoint.png in Resources */,
 				00A64D5419064DB400740DC7 /* greenMagnifier.png in Resources */,
+				008D5B681907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib in Resources */,
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
 				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
 				00A64D4819064DB400740DC7 /* bg_568.png in Resources */,
@@ -939,6 +989,7 @@
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,
+				008D5B541907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
@@ -953,6 +1004,7 @@
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
+				008D5B671907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
