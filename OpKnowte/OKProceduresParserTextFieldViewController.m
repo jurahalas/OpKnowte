@@ -10,6 +10,7 @@
 
 @interface OKProceduresParserTextFieldViewController ()
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
+@property (nonatomic, strong) NSString *fieldName;
 
 @end
 
@@ -24,9 +25,25 @@
     return self;
 }
 
+-(void)setFieldName:(NSString*)name
+{
+    _fieldName = name;
+}
+-(void)setPlaceHolder:(NSString*)placeHolder{
+    _customTextField.placeholder = placeHolder;
+}
+-(void)setType:(enum OKProcedureTextFieldType)type{
+    if (OKProcedureSymbolicTF) {
+        _customTextField.keyboardType = UIKeyboardTypeDefault;
+    } else {
+        _customTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -1,5 +1,5 @@
 //
-//  OKProcedureParserSwitcherViewController.h
+//  OKProceduresParserDatePickerVC.h
 //  OpKnowte
 //
 //  Created by Artem Frolow on 4/23/14.
@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-@protocol OKProceduresParserSwitcherViewControllerDelegate <NSObject>
+
+@protocol OKProceduresParserDatePickerVCDelegate <NSObject>
 
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue;
 
 @end
-@interface OKProcedureParserSwitcherViewController : UIViewController
 
-@property (nonatomic, weak) id<OKProceduresParserSwitcherViewControllerDelegate>delegate;
+@interface OKProceduresParserDatePickerVC : UIViewController
 
+@property (nonatomic, weak) id<OKProceduresParserDatePickerVCDelegate>delegate;
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 
