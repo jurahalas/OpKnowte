@@ -36,7 +36,7 @@
     
     self.nationalData.dataSource = self;
     self.nationalData.delegate = self;
-    _nationalData.frame = CGRectMake(_nationalData.frame.origin.x, _nationalData.frame.origin.y, _nationalData.frame.size.width, (_nationalData.frame.size.height - 60.f));
+    _nationalData.frame = CGRectMake(_nationalData.frame.origin.x, _nationalData.frame.origin.y, _nationalData.frame.size.width, (_nationalData.frame.size.height - 57.f));
     [self addBottomTabBar];
     
     [self.nationalData reloadData];
@@ -48,6 +48,7 @@
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark - Table View methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -81,6 +82,7 @@
                                       @"TNM", nil];
     
     cell.nationalDataLabel.text = [dataTitleArray objectAtIndex:indexPath.row];
+    [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
 

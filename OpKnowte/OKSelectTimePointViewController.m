@@ -35,7 +35,7 @@
     self.selectTimePointTableView.dataSource = self;
     self.selectTimePointTableView.delegate = self;
     
-    _selectTimePointTableView.frame = CGRectMake(_selectTimePointTableView.frame.origin.x, _selectTimePointTableView.frame.origin.y, _selectTimePointTableView.frame.size.width, (_selectTimePointTableView.frame.size.height - 60.f));
+    _selectTimePointTableView.frame = CGRectMake(_selectTimePointTableView.frame.origin.x, _selectTimePointTableView.frame.origin.y, _selectTimePointTableView.frame.size.width, (_selectTimePointTableView.frame.size.height - 50.f));
     [self addBottomTabBar];
     
     
@@ -77,12 +77,7 @@
     
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
     cell.timePointLabel.text = timePoint.timePointName;
-    // Unselected cells
-    //    if (indexPath.row >3) {
-    //        [cell setCellUserIntaractionDisabled];
-    //    } else {
-    //        [cell setCellUserIntaractionEnabled];
-    //    }
+    [cell setCellBGImageLight:indexPath.row];
     
     return cell;
     

@@ -41,22 +41,22 @@
     
 }
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
-    UIImageView *textFieldIcon = [[UIImageView alloc] init];
     
-    if ([placeholder isEqualToString:@"your first name..."] || [placeholder isEqualToString:@"your last name..."] || [placeholder isEqualToString:@"Email"]) {
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 19, 18)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"nameTextFieldIcon"];
-    } else if ([placeholder isEqualToString:@"your email..."]){
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(11, 3, 18, 12)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"emailTextFieldIcon"];
+    UIImage *textFieldImage = [[UIImage alloc] init];
+    if ([placeholder isEqualToString:@"First name"] || [placeholder isEqualToString:@"Last name"] || [placeholder isEqualToString:@"Email"]) {
+        textFieldImage = [UIImage imageNamed:@"name"];
+    } else if ([placeholder isEqualToString:@"Your email..."]){
+        textFieldImage = [UIImage imageNamed:@"email"];
     } else if ([placeholder isEqualToString:@"MD"]){
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 1, 19, 16)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"MDTextFieldIcon"];
+        textFieldImage = [UIImage imageNamed:@"degree"];
     } else {
-        textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(12, 0, 14, 18)] ;
-        textFieldIcon.image = [UIImage imageNamed:@"passwordTextFieldIcon"];
+        textFieldImage = [UIImage imageNamed:@"password"];
     }
-    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 18)];
+    UIImageView *textFieldIcon = [[UIImageView alloc] init];
+    textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
+    textFieldIcon.image = textFieldImage;
+    
+    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
     textFieldIconView.backgroundColor = [UIColor clearColor];
     [textFieldIconView addSubview:textFieldIcon];
     self.leftView = textFieldIconView;
@@ -65,9 +65,9 @@
     
     if (downArrow) {
         UIView *textFieldDownArrowView = [[UIView alloc] init];
-        UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(11, 3, 18, 11)] ;
+        UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
         textFieldDownArrow.image = [UIImage imageNamed:@"down"];
-        textFieldDownArrowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 18)];
+        textFieldDownArrowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         textFieldDownArrowView.backgroundColor = [UIColor clearColor];
         [textFieldDownArrowView addSubview:textFieldDownArrow];
         self.rightView = textFieldDownArrowView;

@@ -189,7 +189,7 @@
     [_emailTextField setCustomTextFieldPlaceholder:@"Email" Secured:NO DownArrow:NO];
     [_passwordTextField setCustomTextFieldPlaceholder:@"Password" Secured:YES DownArrow:NO];
     
-    _loginButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
+    _loginButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _loginButton.layer.cornerRadius = 14;
     _loginButton.clipsToBounds = YES;
     

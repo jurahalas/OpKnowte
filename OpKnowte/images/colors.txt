@@ -1,0 +1,5 @@
+red buttons - 228/34/57/1
+home page nav bar his user icon and name - 34/59/85/0.75
+
+slider unselected color - 23/55/68/1
+slider selected color - 104/204/204/1
