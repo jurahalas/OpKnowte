@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Patient Data</string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>patientName</string>
+				<key>type</key>
+				<string>symbolicTextField</string>
+				<key>placeholder</key>
+				<string>Patient Name</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>PatientDOB</string>
+				<key>type</key>
+				<string>DatePicker</string>
+				<key>placeholder</key>
+				<string>Patient DOB</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>medicalRecordNumber</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Medical Record Number</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>DateOfService</string>
+				<key>type</key>
+				<string>DatePicker</string>
+				<key>placeholder</key>
+				<string>Date Of Service</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>sex</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Sex</string>
+				<key>items</key>
+				<array>
+					<string>Female</string>
+					<string>Male</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>anesthesia</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Anesthesia Performed</string>
+				<key>items</key>
+				<array>
+					<string>General</string>
+					<string>Sedation</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>rightOrLeft</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Right/Left</string>
+				<key>items</key>
+				<array>
+					<string>Right</string>
+					<string>Left</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>numberOfStones</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>No. of stones</string>
+				<key>items</key>
+				<array>
+					<string>1</string>
+					<string>2</string>
+					<string>3</string>
+					<string>4</string>
+					<string>5</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Stone Location</string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>stoneLocation</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Stone#n location</string>
+				<key>items</key>
+				<array>
+					<string>Upper pole, renal</string>
+					<string>Mid-renal</string>
+					<string>Lower pole, renal</string>
+					<string>Renal pelvis</string>
+					<string>Ureteropelvic Junction</string>
+					<string>Proximal ureter</string>
+					<string>Mid ureter</string>
+					<string>Distal ureter</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Stone Size</string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>stoneSize</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Stone#n size   milimeters</string>
+				<key>items</key>
+				<array>
+					<string>0,1</string>
+					<string>25</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>No. of Shockwaves</string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>numberOfShockwaves</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>No. of Shockwaves for stone#n</string>
+				<key>items</key>
+				<array/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Stone Fragmentations</string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>stoneFragmentations</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Degree of fragmentations for stone#n</string>
+				<key>items</key>
+				<array>
+					<string>excellent</string>
+					<string>good</string>
+					<string>moderate</string>
+					<string>poor</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>rateOfShockwaves</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Rate of shockwaves</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>voltageOfShockwaves</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>kV of shockwaves</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string> twoMinutesPausePerformed</string>
+				<key>type</key>
+				<string>switcher</string>
+				<key>placeholder</key>
+				<string>2 minutes pause performed</string>
+				<key>items</key>
+				<array>
+					<string>YES</string>
+					<string>NO</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>complications</string>
+				<key>type</key>
+				<string>switcher</string>
+				<key>placeholder</key>
+				<string>Complications?</string>
+				<key>items</key>
+				<array>
+					<string>YES</string>
+					<string>NO</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>complicationsDescriptions</string>
+				<key>type</key>
+				<string>symbolicTextField</string>
+				<key>placeholder</key>
+				<string>Complications description</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>followUp</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Follow up</string>
+				<key>items</key>
+				<array>
+					<string>2 weeks</string>
+					<string>6 months</string>
+					<string>12 months</string>
+					<string>18 months</string>
+					<string>24 months</string>
+					<string>30 months</string>
+					<string>36 months</string>
+					<string>42 months</string>
+					<string>48 months</string>
+					<string>54 months</string>
+					<string>60 months</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+</array>
+</plist>

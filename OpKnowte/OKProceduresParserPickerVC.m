@@ -28,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
     [self setTextFieldRightImage];
 }
 - (void) setTextFieldRightImage{

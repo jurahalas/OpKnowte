@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00360D40190904880019C058 /* OKBaseProcedureVC.m */; };
+		0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045ED761909408900D93914 /* OKProcedureTextField.m */; };
 		0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */; };
 		0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83318FD2C1500AFC7B4 /* OKConstants.m */; };
 		0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83518FD2C1500AFC7B4 /* OKCustomTextField.m */; };
@@ -17,11 +19,9 @@
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
-		008D5B541907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B521907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m */; };
-		008D5B551907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B531907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib */; };
+		008D5B551907DC500039E8B7 /* OKProcedureTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */; };
 		008D5B671907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B651907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m */; };
 		008D5B681907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B661907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib */; };
-		008D5B6F1907F3020039E8B7 /* OKBaseProcedureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B6E1907F3020039E8B7 /* OKBaseProcedureVC.m */; };
 		008D5B7A1908021C0039E8B7 /* OKProceduresParserDatePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B781908021C0039E8B7 /* OKProceduresParserDatePickerVC.m */; };
 		008D5B7B1908021C0039E8B7 /* OKProceduresParserDatePickerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B791908021C0039E8B7 /* OKProceduresParserDatePickerVC.xib */; };
 		008D5B80190807670039E8B7 /* OKProceduresParserPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008D5B7E190807670039E8B7 /* OKProceduresParserPickerVC.m */; };
@@ -114,6 +114,8 @@
 		00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
+		00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00F47DE219090D1F00E06F88 /* SLProcedure.plist */; };
+		00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */; };
 		18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18061C8118F7EBA6005197F9 /* OKApiClient.m */; };
 		182659C719066A1700723D16 /* OKDashboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C619066A1700723D16 /* OKDashboardVC.m */; };
 		182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C919066C2600723D16 /* OKDashboardTableViewCell.m */; };
@@ -156,6 +158,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00360D3F190904880019C058 /* OKBaseProcedureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseProcedureVC.h; sourceTree = "<group>"; };
+		00360D40190904880019C058 /* OKBaseProcedureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseProcedureVC.m; sourceTree = "<group>"; };
+		0045ED751909408900D93914 /* OKProcedureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTextField.h; sourceTree = "<group>"; };
+		0045ED761909408900D93914 /* OKProcedureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureTextField.m; sourceTree = "<group>"; };
 		0060D82F18FD27BB00AFC7B4 /* OKSelectProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectProcedureCell.h; sourceTree = "<group>"; };
 		0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectProcedureCell.m; sourceTree = "<group>"; };
 		0060D83218FD2C1500AFC7B4 /* OKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKConstants.h; sourceTree = "<group>"; };
@@ -176,14 +182,10 @@
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
-		008D5B511907DC500039E8B7 /* OKProceduresParserTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProceduresParserTextFieldViewController.h; sourceTree = "<group>"; };
-		008D5B521907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProceduresParserTextFieldViewController.m; sourceTree = "<group>"; };
-		008D5B531907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProceduresParserTextFieldViewController.xib; sourceTree = "<group>"; };
+		008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureTextField.xib; sourceTree = "<group>"; };
 		008D5B641907DE360039E8B7 /* OKProcedureParserSwitcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureParserSwitcherViewController.h; sourceTree = "<group>"; };
 		008D5B651907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureParserSwitcherViewController.m; sourceTree = "<group>"; };
 		008D5B661907DE360039E8B7 /* OKProcedureParserSwitcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureParserSwitcherViewController.xib; sourceTree = "<group>"; };
-		008D5B6D1907F3020039E8B7 /* OKBaseProcedureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseProcedureVC.h; sourceTree = "<group>"; };
-		008D5B6E1907F3020039E8B7 /* OKBaseProcedureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseProcedureVC.m; sourceTree = "<group>"; };
 		008D5B771908021C0039E8B7 /* OKProceduresParserDatePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProceduresParserDatePickerVC.h; sourceTree = "<group>"; };
 		008D5B781908021C0039E8B7 /* OKProceduresParserDatePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProceduresParserDatePickerVC.m; sourceTree = "<group>"; };
 		008D5B791908021C0039E8B7 /* OKProceduresParserDatePickerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProceduresParserDatePickerVC.xib; sourceTree = "<group>"; };
@@ -289,6 +291,9 @@
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
 		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
 		00CD5FD818FE7C9700334A24 /* OKContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactManager.m; sourceTree = "<group>"; };
+		00F47DE219090D1F00E06F88 /* SLProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SLProcedure.plist; sourceTree = "<group>"; };
+		00F47DE4190924F200E06F88 /* OKShockwaveLithotripsyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKShockwaveLithotripsyVC.h; sourceTree = "<group>"; };
+		00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKShockwaveLithotripsyVC.m; sourceTree = "<group>"; };
 		03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpKnowte.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18061C8018F7EBA6005197F9 /* OKApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKApiClient.h; sourceTree = "<group>"; };
 		18061C8118F7EBA6005197F9 /* OKApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKApiClient.m; sourceTree = "<group>"; };
@@ -429,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				008D5B571907DC600039E8B7 /* Custom elements */,
+				008D5B871908F8220039E8B7 /* Shockwave Lithotripsy */,
 			);
 			name = "Procedure Parser";
 			sourceTree = "<group>";
@@ -440,8 +446,8 @@
 				008D5B70190800D70039E8B7 /* Date picker */,
 				008D5B581907DC6F0039E8B7 /* Text Field */,
 				008D5B691907DE3C0039E8B7 /* Switcher */,
-				008D5B6D1907F3020039E8B7 /* OKBaseProcedureVC.h */,
-				008D5B6E1907F3020039E8B7 /* OKBaseProcedureVC.m */,
+				00360D3F190904880019C058 /* OKBaseProcedureVC.h */,
+				00360D40190904880019C058 /* OKBaseProcedureVC.m */,
 			);
 			name = "Custom elements";
 			sourceTree = "<group>";
@@ -449,9 +455,9 @@
 		008D5B581907DC6F0039E8B7 /* Text Field */ = {
 			isa = PBXGroup;
 			children = (
-				008D5B511907DC500039E8B7 /* OKProceduresParserTextFieldViewController.h */,
-				008D5B521907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m */,
-				008D5B531907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib */,
+				008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */,
+				0045ED751909408900D93914 /* OKProcedureTextField.h */,
+				0045ED761909408900D93914 /* OKProcedureTextField.m */,
 			);
 			name = "Text Field";
 			sourceTree = "<group>";
@@ -484,6 +490,15 @@
 				008D5B7F190807670039E8B7 /* OKProceduresParserPickerVC.xib */,
 			);
 			name = Picker;
+			sourceTree = "<group>";
+		};
+		008D5B871908F8220039E8B7 /* Shockwave Lithotripsy */ = {
+			isa = PBXGroup;
+			children = (
+				00F47DE4190924F200E06F88 /* OKShockwaveLithotripsyVC.h */,
+				00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */,
+			);
+			name = "Shockwave Lithotripsy";
 			sourceTree = "<group>";
 		};
 		00A53B6B19012B1C00BEF07D /* Select Time Point */ = {
@@ -658,6 +673,7 @@
 		00BEAB1118F67DCE00E0C6B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00F47DE219090D1F00E06F88 /* SLProcedure.plist */,
 				00A64CF019064DB300740DC7 /* images */,
 			);
 			name = Resources;
@@ -927,7 +943,7 @@
 				00A64D4019064DB400740DC7 /* back.png in Resources */,
 				00A64D4219064DB400740DC7 /* down.png in Resources */,
 				00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */,
-				008D5B551907DC500039E8B7 /* OKProceduresParserTextFieldViewController.xib in Resources */,
+				008D5B551907DC500039E8B7 /* OKProcedureTextField.xib in Resources */,
 				00A64D5619064DB400740DC7 /* redCross.png in Resources */,
 				182659CD1906A36200723D16 /* dashboardBG.png in Resources */,
 				00A64D4E19064DB400740DC7 /* selected.png in Resources */,
@@ -968,6 +984,7 @@
 				00A64D5F19064DB400740DC7 /* email.png in Resources */,
 				00A64D7A19064DB400740DC7 /* separator@2x.png in Resources */,
 				00A64D4B19064DB400740DC7 /* cellDark@2x.png in Resources */,
+				00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,14 +1040,15 @@
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
 				00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */,
+				00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */,
 				00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */,
+				00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */,
 				185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				008D5B7A1908021C0039E8B7 /* OKProceduresParserDatePickerVC.m in Sources */,
 				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,
-				008D5B541907DC500039E8B7 /* OKProceduresParserTextFieldViewController.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
@@ -1045,9 +1063,9 @@
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
+				0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */,
 				008D5B671907DE360039E8B7 /* OKProcedureParserSwitcherViewController.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
-				008D5B6F1907F3020039E8B7 /* OKBaseProcedureVC.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,

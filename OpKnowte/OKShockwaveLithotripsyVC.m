@@ -1,23 +1,19 @@
 //
-//  OKBaseProcedureVC.m
+//  OKShockwaveLithotripsyVC.m
 //  OpKnowte
 //
 //  Created by Artem Frolow on 4/24/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKBaseProcedureVC.h"
+#import "OKShockwaveLithotripsyVC.h"
 #import "OKProcedureTextField.h"
 
-
-@interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate>
-
-@property (nonatomic, strong) NSArray *interactionItems;
-@property (nonatomic, assign) NSInteger currentPage;
+@interface OKShockwaveLithotripsyVC ()
 
 @end
 
-@implementation OKBaseProcedureVC
+@implementation OKShockwaveLithotripsyVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,14 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-#pragma mark - OKProceduresParserTextFieldViewControllerDelegate
-
--(void)updateField:(NSString*)name withValue:(NSString*)newValue
-{
-
+    OKProcedureTextField *vc = [[OKProcedureTextField alloc] init];
+    vc.customView.frame = CGRectMake(0, 200, 320, 43);
+    [self.view addSubview:vc.customView];
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,7 +11,7 @@
 
 @protocol OKProceduresParserSwitcherViewControllerDelegate <NSObject>
 
--(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)updateField:(NSString*)name withValue:(BOOL)newValue;
 
 @end
 @interface OKProcedureParserSwitcherViewController : UIViewController

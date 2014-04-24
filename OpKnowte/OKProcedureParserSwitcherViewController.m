@@ -29,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.delegate updateField:self.fieldName withValue:self.customSwitcher.isOn];
+
 }
 -(void)setFieldName:(NSString*)name{
     _fieldName = name;
@@ -44,11 +45,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)switcherAction:(id)sender {
-    if (_customSwitcher.on) {
-        // switcher on
-    } else {
-        //switcher off
-    }
+    
+    [self.delegate updateField:self.fieldName withValue:self.customSwitcher.isOn];
 }
 
 @end

@@ -424,11 +424,30 @@
                     </navigationItem>
                     <connections>
                         <outlet property="selectProcedureTableView" destination="cGW-FH-NBW" id="iSw-iU-oej"/>
+                        <segue destination="uBG-8x-gsu" kind="push" identifier="shockwaveLithotripsy" id="3Le-s4-AGi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D8-zs-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1482" y="55"/>
+        </scene>
+        <!--Shockwave LithotripsyVC - Shockwave Lithotripsy-->
+        <scene sceneID="9Wt-uK-lX4">
+            <objects>
+                <viewController id="uBG-8x-gsu" customClass="OKShockwaveLithotripsyVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="piD-b1-a4g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Shockwave Lithotripsy" id="2Ss-vD-res">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="D1e-mr-zW4"/>
+                        <barButtonItem key="rightBarButtonItem" image="right.png" id="6uo-bx-k5W"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y34-oF-tB3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957" y="55"/>
         </scene>
         <!--Select Time Point View Controller - Time Points-->
         <scene sceneID="jo8-Sc-jJd">
@@ -808,6 +827,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dCD-SH-NGU"/>
+        <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>

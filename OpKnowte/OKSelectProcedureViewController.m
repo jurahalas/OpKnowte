@@ -10,6 +10,7 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
+#import "OKShockwaveLithotripsyVC.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -64,11 +65,19 @@
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 
 #pragma mark - Table View methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+        [self performSegueWithIdentifier:@"shockwaveLithotripsy" sender:self];
+    }
+    
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _procArray.count;
