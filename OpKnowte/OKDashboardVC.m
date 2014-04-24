@@ -22,6 +22,11 @@
 @implementation OKDashboardVC
 
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,6 +53,17 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60.f;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKDashboardTableViewCell *cell = [[OKDashboardTableViewCell alloc] init];
+    cell = (OKDashboardTableViewCell*)[_dashboardTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.cellName.text isEqualToString:@"Surgical Performance Data"]) {
+        
+        [self performSegueWithIdentifier:@"performance" sender:indexPath];
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"dashboardCell";
