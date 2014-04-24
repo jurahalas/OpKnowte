@@ -22,6 +22,7 @@ enum OKProcedureTextFieldType {
 
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
 @property (strong, nonatomic) IBOutlet UIView *customView;
+@property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
 @property (nonatomic, weak) id<OKProcedureTextFieldDelegate>delegate;
 

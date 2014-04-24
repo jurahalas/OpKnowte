@@ -27,9 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    OKProcedureTextField *vc = [[OKProcedureTextField alloc] init];
-    vc.customView.frame = CGRectMake(0, 200, 320, 43);
-    [self.view addSubview:vc.customView];
+    OKProcedureTextField *vc = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 200, 320, 43)];
+    
+    OKProcedureTextField *vc2 = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 300, 320, 43)];
+
+    [self.view addSubview:vc.view];
+    [self.view addSubview:vc2.view];
+
 }
 
 - (void)didReceiveMemoryWarning

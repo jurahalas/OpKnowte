@@ -10,24 +10,19 @@
 
 @implementation OKProcedureTextField
 
+
 - (id)initWithFrame:(CGRect)frame
 {
-    if(nil == (self = [super initWithFrame:frame]))
-        return nil;
-    [[NSBundle mainBundle] loadNibNamed:@"OKProcedureTextField" owner:self options:nil];
-    [self setup];
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        [[NSBundle mainBundle] loadNibNamed:@"OKProcedureTextField" owner:self options:nil];
+        self.view.frame = frame;
+        [self setup];
+    }
     return self;
 }
 
-
-- (id)initWithCoder:(NSCoder*)aDecoder
-{
-    if(nil == (self = [super initWithCoder:aDecoder]))
-        return nil;
-    [[NSBundle mainBundle] loadNibNamed:@"OKProcedureTextField" owner:self options:nil];
-    [self setup];
-    return self;
-}
 -(void) setup{
     _customTextField.text = @"";
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
