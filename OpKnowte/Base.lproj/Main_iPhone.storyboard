@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -648,6 +648,17 @@
                                     <outlet property="delegate" destination="FOF-g6-PJf" id="yrz-Yl-2wd"/>
                                 </connections>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ss1-Bm-POD">
+                                <rect key="frame" x="105" y="489" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Institute">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JBj-cb-b1Z" kind="push" id="3Jx-bd-fsq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -790,27 +801,149 @@
             </objects>
             <point key="canvasLocation" x="533" y="900"/>
         </scene>
+        <!--InstituteVC - Institute-->
+        <scene sceneID="oDw-t9-Thi">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JBj-cb-b1Z" customClass="OKInstituteVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c1u-OI-jwo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gC4-wP-hn0">
+                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="3R0-Us-1JU" userLabel="name" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="20" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="sna-UI-0Wh"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0cd-bw-6vG" userLabel="saveButton">
+                                        <rect key="frame" x="60" y="390" width="200" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="19"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="vGS-A3-Q3e" userLabel="fax" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="335" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="fY5-Ym-qxO"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="KWE-Wg-3SX" userLabel="email" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="290" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="HjB-Nf-fkE"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Zh4-ln-w9b" userLabel="country" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="245" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="QzM-Ae-6qm"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="jI3-mK-gav" userLabel="zip" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="200" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="25T-9A-IWw"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="ItL-nW-mdr" userLabel="state" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="155" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="RWm-6I-4H9"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="gec-BM-uZP" userLabel="city" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="110" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="3QI-fq-ie8"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="j0J-0p-mcY" userLabel="streetAddress" customClass="OKCustomTextField">
+                                        <rect key="frame" x="40" y="65" width="240" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="JBj-cb-b1Z" id="apV-3W-Duu"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="JBj-cb-b1Z" id="Hjr-5e-bke"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Institute" id="v1C-6h-BCC">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="kN4-cE-HHD">
+                            <connections>
+                                <action selector="backButton:" destination="JBj-cb-b1Z" id="LNF-7c-9H9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityTextField" destination="gec-BM-uZP" id="N7e-OC-fvc"/>
+                        <outlet property="countryTextField" destination="Zh4-ln-w9b" id="cSM-78-c9O"/>
+                        <outlet property="emailTextField" destination="KWE-Wg-3SX" id="cxU-lT-F9v"/>
+                        <outlet property="faxTextField" destination="vGS-A3-Q3e" id="MOe-C4-e1t"/>
+                        <outlet property="nameTextField" destination="3R0-Us-1JU" id="xl3-U8-MWi"/>
+                        <outlet property="saveButton" destination="0cd-bw-6vG" id="6dw-Co-E7y"/>
+                        <outlet property="scrollView" destination="gC4-wP-hn0" id="Yva-VX-j3r"/>
+                        <outlet property="stateTextField" destination="ItL-nW-mdr" id="LAj-6H-MpQ"/>
+                        <outlet property="streerAddressTextField" destination="j0J-0p-mcY" id="B1p-Wa-bgx"/>
+                        <outlet property="zipTextField" destination="jI3-mK-gav" id="mgu-C4-U7v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dm8-tn-hcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-66" y="1592"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
         <image name="forgotPassword.png" width="125" height="23"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="register.png" width="56" height="23"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
         <image name="userImage.png" width="48" height="48"/>
