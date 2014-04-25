@@ -79,6 +79,7 @@
     _selectVariablesButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _selectVariablesButton.layer.cornerRadius = 14;
     _selectVariablesButton.clipsToBounds = YES;
+ 
     
 }
 #pragma mark - tableView methods
