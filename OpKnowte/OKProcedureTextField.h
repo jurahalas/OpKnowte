@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
+
 enum OKProcedureTextFieldType {
     OKProcedureSymbolicTF = 0,
     OKProcedureNumericTF

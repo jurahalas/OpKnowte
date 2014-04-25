@@ -8,6 +8,10 @@
 
 #import "OKProcedureTextField.h"
 
+@interface OKProcedureTextField ()<UITextFieldDelegate>
+
+@end
+
 @implementation OKProcedureTextField
 
 
@@ -42,6 +46,10 @@
     }
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
