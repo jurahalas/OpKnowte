@@ -118,6 +118,8 @@
 		1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881B08418FDC77500F61CE8 /* OKProcedureModel.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
 		ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03369190A374600D4A144 /* OKSaveViewController.m */; };
+		ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */; };
+		ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
 		E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DF18F529E9008421D4 /* CoreGraphics.framework */; };
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
@@ -290,6 +292,10 @@
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
 		ACA03368190A374600D4A144 /* OKSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSaveViewController.h; sourceTree = "<group>"; };
 		ACA03369190A374600D4A144 /* OKSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSaveViewController.m; sourceTree = "<group>"; };
+		ACA0336C190A42ED00D4A144 /* OKSelectCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseViewController.h; sourceTree = "<group>"; };
+		ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectCaseViewController.m; sourceTree = "<group>"; };
+		ACA0336F190A436700D4A144 /* OKSelectCaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseTableViewCell.h; sourceTree = "<group>"; };
+		ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectCaseTableViewCell.m; sourceTree = "<group>"; };
 		E10023DA18F529E9008421D4 /* OpKnowte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpKnowte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10023DD18F529E9008421D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E10023DF18F529E9008421D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -393,6 +399,7 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+				ACA0336B190A42B500D4A144 /* Select Case View */,
 				ACA03367190A371700D4A144 /* Save View */,
 				18F4471F1906594E00C37F3D /* Dashboard View */,
 				185F828F1900099E00C5566A /* Loading View Controller */,
@@ -621,6 +628,17 @@
 				ACA03369190A374600D4A144 /* OKSaveViewController.m */,
 			);
 			name = "Save View";
+			sourceTree = "<group>";
+		};
+		ACA0336B190A42B500D4A144 /* Select Case View */ = {
+			isa = PBXGroup;
+			children = (
+				ACA0336C190A42ED00D4A144 /* OKSelectCaseViewController.h */,
+				ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */,
+				ACA0336F190A436700D4A144 /* OKSelectCaseTableViewCell.h */,
+				ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */,
+			);
+			name = "Select Case View";
 			sourceTree = "<group>";
 		};
 		E10023D118F529E9008421D4 = {
@@ -951,6 +969,7 @@
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
+				ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */,
 				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */,
@@ -961,6 +980,7 @@
 				00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
+				ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */,
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  OKSaveViewController.h
+//  OKSelectCaseViewController.h
 //  OpKnowte
 //
 //  Created by Olegek on 25.04.14.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OKAppDelegate.h"
 #import "OKBaseViewController.h"
 
-@interface OKSaveViewController : OKBaseViewController
+@interface OKSelectCaseViewController : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
 
 @end
