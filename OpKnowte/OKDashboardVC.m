@@ -49,6 +49,18 @@
     return 60.f;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKDashboardTableViewCell *cell = [[OKDashboardTableViewCell alloc] init];
+    cell = (OKDashboardTableViewCell*)[_dashboardTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]) {
+        
+        [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
+    }
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"dashboardCell";
     OKDashboardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
