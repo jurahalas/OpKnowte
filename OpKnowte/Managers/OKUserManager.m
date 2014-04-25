@@ -30,6 +30,9 @@
         OKUserModel *loginedUser = [[OKUserModel alloc]init];
         [loginedUser setModelWithDictionary:json];
         NSLog(@"%@",loginedUser.firstName);
+        NSLog(@"%@",loginedUser.userID);
+
+        
     }];
 }
 

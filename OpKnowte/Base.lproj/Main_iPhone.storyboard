@@ -204,6 +204,17 @@
                                     <segue destination="wim-OD-ltN" kind="push" id="5mA-jN-bDY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qhd-nm-6uO">
+                                <rect key="frame" x="105" y="408" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Institute">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JBj-cb-b1Z" kind="push" id="jDh-vb-NmK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -648,17 +659,6 @@
                                     <outlet property="delegate" destination="FOF-g6-PJf" id="yrz-Yl-2wd"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ss1-Bm-POD">
-                                <rect key="frame" x="105" y="489" width="111" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Institute">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="JBj-cb-b1Z" kind="push" id="3Jx-bd-fsq"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -831,14 +831,17 @@
                                         <state key="normal" title="Save">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="saveButton:" destination="JBj-cb-b1Z" eventType="touchUpInside" id="zwj-Ck-ulk"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="vGS-A3-Q3e" userLabel="fax" customClass="OKCustomTextField">
-                                        <rect key="frame" x="40" y="335" width="240" height="33"/>
+                                        <rect key="frame" x="40" y="331" width="240" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                         <connections>
                                             <outlet property="delegate" destination="JBj-cb-b1Z" id="fY5-Ym-qxO"/>
                                         </connections>
@@ -889,7 +892,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="JBj-cb-b1Z" id="3QI-fq-ie8"/>
                                         </connections>
@@ -925,7 +928,7 @@
                         <outlet property="emailTextField" destination="KWE-Wg-3SX" id="cxU-lT-F9v"/>
                         <outlet property="faxTextField" destination="vGS-A3-Q3e" id="MOe-C4-e1t"/>
                         <outlet property="nameTextField" destination="3R0-Us-1JU" id="xl3-U8-MWi"/>
-                        <outlet property="saveButton" destination="0cd-bw-6vG" id="6dw-Co-E7y"/>
+                        <outlet property="saveButton" destination="0cd-bw-6vG" id="3ve-j8-mcw"/>
                         <outlet property="scrollView" destination="gC4-wP-hn0" id="Yva-VX-j3r"/>
                         <outlet property="stateTextField" destination="ItL-nW-mdr" id="LAj-6H-MpQ"/>
                         <outlet property="streerAddressTextField" destination="j0J-0p-mcY" id="B1p-Wa-bgx"/>

@@ -11,5 +11,6 @@
 
 @interface OKInstituteVC : OKBaseViewController <UITextFieldDelegate>
 
+- (IBAction)saveButton:(id)sender;
 
 @end

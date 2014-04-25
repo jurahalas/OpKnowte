@@ -7,7 +7,9 @@
 //
 
 #import "OKInstituteVC.h"
-#import "OKCustomTextField.h"
+#import "OKContactManager.h"
+#import "OKUserModel.h"
+#import "OKContactModel.h"
 
 @interface OKInstituteVC ()
 
@@ -24,6 +26,12 @@
 @property (nonatomic) BOOL animatedKeyboard;
 @property (strong, nonatomic)  NSArray *elements;
 @property (nonatomic) UITextField *activeTextField;
+@property (nonatomic,retain) NSString *contactRoleID;
+@property (nonatomic,retain) NSString *contactID;
+@property (nonatomic,retain) NSString *updatedBy;
+@property (nonatomic,retain) OKContactModel *contactInfo;
+
+
 
 @end
 
@@ -47,6 +55,22 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
     [self addBottomTabBar];
+
+    
+    if (self.contactInfo != nil) {
+        if ([self.contactInfo contactID].length > 0) {
+            
+            [self.nameTextField setText:[self.contactInfo contactName]];
+            [self.emailTextField setText:[self.contactInfo contactEmail]];
+            [self.stateTextField setText:[self.contactInfo contactState]];
+            [self.cityTextField setText:[self.contactInfo contactCity]];
+            [self.countryTextField setText:[self.contactInfo contactCountry]];
+            [self.faxTextField setText:[self.contactInfo contactFax]];
+            [self.streerAddressTextField setText:[self.contactInfo contactStreetAddress]];
+            [self.zipTextField setText:[self.contactInfo contactZip]];
+            
+        }
+    }
 
 }
 
@@ -74,6 +98,25 @@
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)saveButton:(id)sender
+{
+
+    [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text contactID:@"167" updatedBy:@"121" handler:^(NSString *error){
+        
+        if (error != nil) {
+            UIAlertView *addInstitutionFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Add contact error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [addInstitutionFormErrorAlertView show];
+            _saveButton.enabled = YES;
+        } else {
+            UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added institution" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+            [addInstitutionFormSuccessAlertView show];
+            [self.view endEditing:YES];
+            _saveButton.enabled = YES;
+        }
+    }];
+
 }
 
 #pragma mark  - textField delegate
