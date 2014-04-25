@@ -33,6 +33,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+-(void) setCurrentPage:(NSInteger)currentPage{
+    _currentPage = currentPage;
+}
+-(NSInteger) getCurrentPage{
+    return _currentPage;
+}
 
 #pragma mark - OKProceduresParserTextFieldViewControllerDelegate
 

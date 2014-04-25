@@ -14,4 +14,8 @@
 
 @interface OKBaseProcedureVC : OKBaseViewController
 
+
+-(void) setCurrentPage:(NSInteger)currentPage;
+-(NSInteger) getCurrentPage;
+
 @end
