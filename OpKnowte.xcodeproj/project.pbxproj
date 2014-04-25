@@ -17,6 +17,13 @@
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
+		0092FD36190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD35190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m */; };
+		0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD39190A91AD00499F7E /* OKProcedureCell.m */; };
+		0092FD3D190A91C100499F7E /* OKListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD3C190A91C100499F7E /* OKListCell.m */; };
+		0092FD40190A9D6400499F7E /* whiteCellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD3E190A9D6400499F7E /* whiteCellBG.png */; };
+		0092FD41190A9D6400499F7E /* whiteCellBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */; };
+		0092FD44190AA15600499F7E /* gradientBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD42190AA15600499F7E /* gradientBG.png */; };
+		0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD43190AA15600499F7E /* gradientBG@2x.png */; };
 		00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6319012A9E00BEF07D /* OKTimePointModel.m */; };
 		00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6619012AB400BEF07D /* OKTimePointsManager.m */; };
 		00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6D19012B6700BEF07D /* OKSelectTimePointViewController.m */; };
@@ -167,6 +174,16 @@
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
+		0092FD34190A67E000499F7E /* OKSurgeonPerfomanceDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSurgeonPerfomanceDataVC.h; sourceTree = "<group>"; };
+		0092FD35190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgeonPerfomanceDataVC.m; sourceTree = "<group>"; };
+		0092FD38190A91AD00499F7E /* OKProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureCell.h; sourceTree = "<group>"; };
+		0092FD39190A91AD00499F7E /* OKProcedureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureCell.m; sourceTree = "<group>"; };
+		0092FD3B190A91C100499F7E /* OKListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKListCell.h; sourceTree = "<group>"; };
+		0092FD3C190A91C100499F7E /* OKListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKListCell.m; sourceTree = "<group>"; };
+		0092FD3E190A9D6400499F7E /* whiteCellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteCellBG.png; sourceTree = "<group>"; };
+		0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteCellBG@2x.png"; sourceTree = "<group>"; };
+		0092FD42190AA15600499F7E /* gradientBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBG.png; sourceTree = "<group>"; };
+		0092FD43190AA15600499F7E /* gradientBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradientBG@2x.png"; sourceTree = "<group>"; };
 		00A53B6219012A9E00BEF07D /* OKTimePointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointModel.h; sourceTree = "<group>"; };
 		00A53B6319012A9E00BEF07D /* OKTimePointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTimePointModel.m; sourceTree = "<group>"; };
 		00A53B6519012AB400BEF07D /* OKTimePointsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointsManager.h; sourceTree = "<group>"; };
@@ -397,8 +414,22 @@
 				0060D88A18FD39CF00AFC7B4 /* SelectProcedure */,
 				00A53B75190156FD00BEF07D /* Procedure Detail Summary */,
 				00A64D981906B80C00740DC7 /* Surgeon Performance Data Comparison */,
+				0092FD37190A67E500499F7E /* Surgeon Pefrormance Data */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0092FD37190A67E500499F7E /* Surgeon Pefrormance Data */ = {
+			isa = PBXGroup;
+			children = (
+				0092FD34190A67E000499F7E /* OKSurgeonPerfomanceDataVC.h */,
+				0092FD35190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m */,
+				0092FD38190A91AD00499F7E /* OKProcedureCell.h */,
+				0092FD39190A91AD00499F7E /* OKProcedureCell.m */,
+				0092FD3B190A91C100499F7E /* OKListCell.h */,
+				0092FD3C190A91C100499F7E /* OKListCell.m */,
+			);
+			name = "Surgeon Pefrormance Data";
 			sourceTree = "<group>";
 		};
 		00A53B6B19012B1C00BEF07D /* Select Time Point */ = {
@@ -426,6 +457,8 @@
 		00A64CF019064DB300740DC7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				0092FD42190AA15600499F7E /* gradientBG.png */,
+				0092FD43190AA15600499F7E /* gradientBG@2x.png */,
 				00A64CF119064DB300740DC7 /* arrows */,
 				00A64CF819064DB300740DC7 /* bg.png */,
 				00A64CF919064DB300740DC7 /* bg@2x.png */,
@@ -471,6 +504,8 @@
 		00A64CFC19064DB300740DC7 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				0092FD3E190A9D6400499F7E /* whiteCellBG.png */,
+				0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */,
 				00A64D8919065A5400740DC7 /* cellActiveBG.png */,
 				00A64D8A19065A5400740DC7 /* cellActiveBG@2x.png */,
 				00A64CFD19064DB300740DC7 /* cellDark.png */,
@@ -796,6 +831,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00A64D8719064DB400740DC7 /* userImage.png in Resources */,
+				0092FD40190A9D6400499F7E /* whiteCellBG.png in Resources */,
 				00A64D8119064DB400740DC7 /* navbarBG_color.png in Resources */,
 				00A64D4F19064DB400740DC7 /* selected@2x.png in Resources */,
 				00A64D7C19064DB400740DC7 /* logo@2x.png in Resources */,
@@ -809,6 +845,7 @@
 				00A64D6E19064DB400740DC7 /* name@2x.png in Resources */,
 				00A64D8519064DB400740DC7 /* tabbarBG.png in Resources */,
 				00A64D7F19064DB400740DC7 /* logoTB.png in Resources */,
+				0092FD44190AA15600499F7E /* gradientBG.png in Resources */,
 				00A64D7819064DB400740DC7 /* register@2x.png in Resources */,
 				00A64D6419064DB400740DC7 /* home@2x.png in Resources */,
 				182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */,
@@ -854,6 +891,7 @@
 				00A64D7E19064DB400740DC7 /* logoNB@2x.png in Resources */,
 				00A64D7219064DB400740DC7 /* settings@2x.png in Resources */,
 				00A64D5019064DB400740DC7 /* unselected.png in Resources */,
+				0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */,
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
 				00A64D4519064DB400740DC7 /* right@2x.png in Resources */,
 				00A64D7919064DB400740DC7 /* separator.png in Resources */,
@@ -875,6 +913,7 @@
 				00A64D4D19064DB400740DC7 /* cellLight@2x.png in Resources */,
 				00A64D7D19064DB400740DC7 /* logoNB.png in Resources */,
 				00A64D4C19064DB400740DC7 /* cellLight.png in Resources */,
+				0092FD41190A9D6400499F7E /* whiteCellBG@2x.png in Resources */,
 				00A64D7319064DB400740DC7 /* toc.png in Resources */,
 				00A64D5F19064DB400740DC7 /* email.png in Resources */,
 				00A64D7A19064DB400740DC7 /* separator@2x.png in Resources */,
@@ -942,6 +981,8 @@
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
+				0092FD36190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m in Sources */,
+				0092FD3D190A91C100499F7E /* OKListCell.m in Sources */,
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
 				185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */,
 				0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */,
@@ -952,6 +993,7 @@
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
+				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
