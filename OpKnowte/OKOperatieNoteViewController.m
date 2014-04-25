@@ -9,10 +9,12 @@
 #import "OKOperatieNoteViewController.h"
 
 @interface OKOperatieNoteViewController ()
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 @end
 
 @implementation OKOperatieNoteViewController
+@synthesize segmentControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,24 +28,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self addBottomTabBar];
+    
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark IBAction
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)backButton:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
+- (IBAction)segmentControlButton:(id)sender {
+    UIColor *selectedColor = [UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
+    UIColor *deselectedColor = [UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    
+    for (UIControl *subview in [segmentControl subviews]) {
+
+        if ([subview isSelected]){
+            [subview setTintColor:selectedColor];
+
+        }
+        else
+            [subview setTintColor:deselectedColor];
+             }
+}
 
 @end

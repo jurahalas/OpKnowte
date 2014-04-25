@@ -224,6 +224,16 @@
                                     <segue destination="WIT-md-SDl" kind="push" id="lPY-Bo-TiM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sM5-Vo-Vyy">
+                                <rect key="frame" x="89" y="437" width="142" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LRPN-Operatie Note">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="IWN-9Q-DMf" kind="push" id="PiA-pc-mLx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -683,6 +693,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJq-NT-Vdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1482" y="900"/>
+        </scene>
+        <!--Operatie Note View Controller - LRPN-Operatie Note-->
+        <scene sceneID="Tid-kT-53J">
+            <objects>
+                <viewController id="IWN-9Q-DMf" customClass="OKOperatieNoteViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VeE-Qj-gIC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" id="Par-eZ-aHM">
+                                <rect key="frame" x="31" y="78" width="259" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Case data"/>
+                                    <segment title="Indication"/>
+                                    <segment title="Procedure"/>
+                                </segments>
+                                <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentControlButton:" destination="IWN-9Q-DMf" eventType="valueChanged" id="sm7-GK-0qq"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="LRPN-Operatie Note" id="FKk-O9-qFk">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="FZz-Mk-9O7">
+                            <connections>
+                                <action selector="backButton:" destination="IWN-9Q-DMf" id="CLb-1o-MZy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="right.png" id="VGb-wK-aK3"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentControl" destination="Par-eZ-aHM" id="quE-6n-EDg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Sn-de-dlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1897" y="900"/>
         </scene>
         <!--Registration View Controller - Register-->
         <scene sceneID="ZwV-jN-0Gn">

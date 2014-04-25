@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKAppDelegate.h"
 
-@interface OKOperatieNoteViewController : UIViewController
+@interface OKOperatieNoteViewController : OKBaseViewController
 
 @end
