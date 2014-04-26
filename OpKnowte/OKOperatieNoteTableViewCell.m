@@ -1,14 +1,14 @@
 //
-//  OKProcedureDetailSummaryCell.m
+//  OKOperatieNoteTableViewCell.m
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/18/14.
+//  Created by Olegek on 26.04.14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKProcedureDetailSummaryCell.h"
+#import "OKOperatieNoteTableViewCell.h"
 
-@implementation OKProcedureDetailSummaryCell
+@implementation OKOperatieNoteTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -18,15 +18,16 @@
     }
     return self;
 }
--(void)awakeFromNib{
 
+-(void)awakeFromNib
+{
 
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
 }
 -(void) setLabels{
-    _procedureKeyLabel.text = @"Key";
-    _procedureValueLabel.text = @"Value";
+    self.caseDataKeyLabel.text = @"Key";
+    self.caseDataValueLabel.text = @"Value";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

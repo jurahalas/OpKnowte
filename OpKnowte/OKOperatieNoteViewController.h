@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
+#import "OKOperatieNoteTableViewCell.h"
 
-@interface OKOperatieNoteViewController : OKBaseViewController
+@interface OKOperatieNoteViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end
