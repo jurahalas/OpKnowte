@@ -10,6 +10,7 @@
 #import "OKContactManager.h"
 #import "OKUserModel.h"
 #import "OKContactModel.h"
+#import "OKUserManager.h"
 
 @interface OKInstituteVC ()
 
@@ -103,7 +104,7 @@
 -(IBAction)saveButton:(id)sender
 {
 
-    [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text contactID:@"167" updatedBy:@"121" handler:^(NSString *error){
+    [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[[OKUserManager instance] currentUser].userID handler:^(NSString *error){
         
         if (error != nil) {
             UIAlertView *addInstitutionFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Add contact error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

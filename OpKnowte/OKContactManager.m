@@ -22,7 +22,7 @@
 }
 
 
--(void)addContactWithName:(NSString *)name roleID:(NSString *)roleID email:(NSString *)email steetAddress:(NSString *)streetAddress city:(NSString *)city state:(NSString *)state zip:(NSString *)zip country:(NSString *)country fax:(NSString *)fax contactID:(NSString *)contactID updatedBy:(NSString *)updatedBy handler:(void(^)(NSString *errorMsg))handler
+-(void)addContactWithName:(NSString *)name roleID:(NSString *)roleID email:(NSString *)email steetAddress:(NSString *)streetAddress city:(NSString *)city state:(NSString *)state zip:(NSString *)zip country:(NSString *)country fax:(NSString *)fax updatedBy:(NSString *)updatedBy handler:(void(^)(NSString *errorMsg))handler
 {
 
     NSDictionary *params = @{
@@ -35,9 +35,7 @@
                              @"zip":            zip,
                              @"country":        country,
                              @"fax":            fax,
-                             @"contactID":      contactID,
                              @"updatedBy":      updatedBy,
-//                             @"contactNo":      @""
                              };
     
     [self requestWithMethod:@"POST" path:@"addContact" params:params handler:^(NSError *error, id json) {
