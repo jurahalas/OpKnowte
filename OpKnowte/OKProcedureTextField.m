@@ -50,6 +50,10 @@
 {
     
 }
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [_customTextField resignFirstResponder];
+    return YES;
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

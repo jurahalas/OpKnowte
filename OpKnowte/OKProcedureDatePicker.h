@@ -1,33 +1,29 @@
 //
-//  OKProcedureTextField.h
+//  OKProcedureDatePicker.h
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/24/14.
+//  Created by Artem Frolow on 4/27/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-enum OKProcedureTextFieldType {
-    OKProcedureSymbolicTF = 0,
-    OKProcedureNumericTF
-};
 
-@protocol OKProcedureTextFieldDelegate <NSObject>
+@protocol OKProcedureDatePickerDelegate <NSObject>
 
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue;
 
 @end
-@interface OKProcedureTextField : UIControl
-
+@interface OKProcedureDatePicker : UIControl
+@property (nonatomic, weak) id<OKProcedureDatePickerDelegate>delegate;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
+@property (strong, nonatomic) IBOutlet UIButton *customButton;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
-@property (nonatomic, weak) id<OKProcedureTextFieldDelegate>delegate;
+
+
 
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
--(void)setType:(enum OKProcedureTextFieldType)type;
-
 @end

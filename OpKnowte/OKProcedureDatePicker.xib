@@ -5,25 +5,28 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OKProceduresParserPickerVC">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OKProcedureDatePicker">
             <connections>
-                <outlet property="customButton" destination="M83-X9-yk1" id="hrh-Lw-dCA"/>
-                <outlet property="customTextField" destination="lja-YX-OcA" id="mQf-ro-eQp"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="customButton" destination="eh5-LY-gpK" id="blU-6a-Vd5"/>
+                <outlet property="customTextField" destination="fHG-6i-yrm" id="lQf-p4-U1j"/>
+                <outlet property="view" destination="1" id="6h0-rI-G27"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1">
+        <view contentMode="scaleToFill" id="1" customClass="OKProcedureDatePicker">
             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lja-YX-OcA" customClass="OKCustomTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fHG-6i-yrm" customClass="OKCustomTextField">
                     <rect key="frame" x="20" y="5" width="280" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="1" id="Pxj-tX-iq9"/>
+                    </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M83-X9-yk1">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh5-LY-gpK" userLabel="custom Button">
                     <rect key="frame" x="20" y="5" width="280" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -31,12 +34,15 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="customButtomAction:" destination="-1" eventType="touchUpInside" id="F74-4B-GLx"/>
+                        <action selector="customButton:" destination="-1" eventType="touchUpInside" id="sRx-p3-yY6"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="customButton" destination="eh5-LY-gpK" id="lbt-Do-wIa"/>
+                <outlet property="customTextField" destination="fHG-6i-yrm" id="zYE-Ap-9nd"/>
+            </connections>
         </view>
     </objects>
 </document>

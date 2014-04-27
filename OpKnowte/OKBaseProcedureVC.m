@@ -8,6 +8,9 @@
 
 #import "OKBaseProcedureVC.h"
 #import "OKProcedureTextField.h"
+#import "OKProcedureSwitcher.h"
+#import "OKProcedureDatePicker.h"
+#import "OKProcedurePicker.h"
 
 
 @interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate>

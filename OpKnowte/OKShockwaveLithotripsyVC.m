@@ -8,6 +8,9 @@
 
 #import "OKShockwaveLithotripsyVC.h"
 #import "OKProcedureTextField.h"
+#import "OKProcedureSwitcher.h"
+#import "OKProcedureDatePicker.h"
+#import "OKProcedurePicker.h"
 
 @interface OKShockwaveLithotripsyVC ()
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
@@ -38,11 +41,14 @@
     }
     
     OKProcedureTextField *vc = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 200, 320, 43)];
+    OKProcedureSwitcher *vc2 = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, 243, 320, 43)];
+    OKProcedureDatePicker*vc3 = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, 286, 320, 43)];
+    OKProcedurePicker *vc4 = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, 329, 320, 43)];
     
-    OKProcedureTextField *vc2 = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 300, 320, 43)];
-
     [self.view addSubview:vc.view];
     [self.view addSubview:vc2.view];
+    [self.view addSubview:vc3.view];
+    [self.view addSubview:vc4.view];
 
 }
 #pragma mark - IBActions
