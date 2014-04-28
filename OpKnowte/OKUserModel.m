@@ -11,6 +11,7 @@
 @implementation OKUserModel
 
 -(void) setModelWithDictionary:(NSDictionary *)dictionary {
+   
     _firstName = [dictionary valueForKey:@"FIRSTNAME"];
     _lastName = [dictionary valueForKey:@"LASTNAME"] ;
     _email = [dictionary valueForKey:@"EMAILADDRESS"];
