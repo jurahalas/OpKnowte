@@ -116,7 +116,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fua-jD-zoT" kind="push" id="ybZ-8n-45Y"/>
+                                    <segue destination="1sY-Xu-fV5" kind="push" id="DdX-qd-zVS"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoNB.png" id="8D0-wu-uvm">
@@ -136,7 +136,7 @@
             </objects>
             <point key="canvasLocation" x="487" y="55"/>
         </scene>
-        <!--Home Screen View Controller-->
+        <!--Home Screen View Controller - Dashboard-->
         <scene sceneID="BZe-D5-AUt">
             <objects>
                 <viewController id="fua-jD-zoT" customClass="OKHomeScreenViewController" sceneMemberID="viewController">
@@ -184,18 +184,8 @@
                                     <segue destination="XTe-gD-PYM" kind="push" id="iYE-S8-xzH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BI5-k9-5XR">
-                                <rect key="frame" x="119" y="295" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Dashboard">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1sY-Xu-fV5" kind="push" id="YOi-af-GRJ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UEg-df-rJq">
-                                <rect key="frame" x="31" y="333" width="269" height="30"/>
+                                <rect key="frame" x="31" y="295" width="269" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Surgeon performance data comparison">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -205,7 +195,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qhd-nm-6uO">
-                                <rect key="frame" x="113" y="144" width="111" height="30"/>
+                                <rect key="frame" x="105" y="144" width="111" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Institute">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -215,7 +205,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LOj-ho-q8q">
-                                <rect key="frame" x="130" y="371" width="71" height="30"/>
+                                <rect key="frame" x="130" y="333" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save View">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -225,7 +215,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pXR-o3-tWO">
-                                <rect key="frame" x="124" y="399" width="83" height="30"/>
+                                <rect key="frame" x="124" y="361" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Case">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -237,7 +227,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="U86-Kf-JG8"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="4h6-2E-mEO">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="aNy-TL-nQN">
+                            <connections>
+                                <action selector="backButton:" destination="fua-jD-zoT" id="d9Y-aT-jxw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljw-JG-FBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -258,7 +254,7 @@
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="50" id="i12-8s-SLa" customClass="OKSurgeonPerformanceDataComparisonTitleCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i12-8s-SLa" id="FUe-tN-WkM">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -279,7 +275,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" rowHeight="100" id="SRi-mp-CqH" customClass="OKSurgeonPerformanceDataComparisonContentCell">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="72" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SRi-mp-CqH" id="58z-sW-oDU">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -414,7 +410,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="procedureCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="procedureCell" id="VjX-jc-N7s" customClass="OKSelectProcedureCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VjX-jc-N7s" id="PTw-VP-3Ne">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -582,7 +578,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="timePointCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePointCell" id="bVW-dO-dTR" customClass="OKSelectTimePointCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVW-dO-dTR" id="DMF-HL-eX4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -642,7 +638,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nationalDataCell" id="IjG-z7-vqV" customClass="OKNationalDataTableViewCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IjG-z7-vqV" id="cnP-SK-YKk">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -968,6 +964,9 @@
                                         <state key="normal" image="info.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="fua-jD-zoT" kind="push" id="Cm8-3x-ohy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
