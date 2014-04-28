@@ -61,6 +61,8 @@
     if ([cell.cellName.text isEqualToString:@"Surgical Performance Data"]) {
         
         [self performSegueWithIdentifier:@"performance" sender:indexPath];
+    }else if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]){
+        [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
     }
 }
 
