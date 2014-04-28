@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OKProcedurePicker">
             <connections>
-                <outlet property="customButton" destination="M83-X9-yk1" id="XC3-5a-2TP"/>
                 <outlet property="customTextField" destination="lja-YX-OcA" id="bST-bv-swa"/>
                 <outlet property="view" destination="1" id="zF5-Gc-fZs"/>
             </connections>
@@ -35,13 +34,13 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="customButton:" destination="-1" eventType="touchUpInside" id="SCy-jz-DcU"/>
+                        <action selector="customButtonTapped:" destination="1" eventType="touchUpInside" id="9Ee-B9-QFU"/>
                     </connections>
                 </button>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="customButton" destination="M83-X9-yk1" id="KeO-wE-WKL"/>
+                <outlet property="button" destination="M83-X9-yk1" id="7NN-g7-1cL"/>
                 <outlet property="customTextField" destination="lja-YX-OcA" id="88G-H7-EA2"/>
             </connections>
         </view>

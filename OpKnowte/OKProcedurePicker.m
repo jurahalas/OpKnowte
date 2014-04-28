@@ -9,6 +9,7 @@
 #import "OKProcedurePicker.h"
 
 @interface OKProcedurePicker ()<UITextFieldDelegate>
+- (IBAction)customButtonTapped:(id)sender;
 
 @end
 @implementation OKProcedurePicker
@@ -30,7 +31,8 @@
     [self setTextFieldRightImage];
     
 }
-- (IBAction)customButton:(id)sender {
+- (IBAction)customButtonTapped:(id)sender {
+    
 }
 
 -(void)setFieldName:(NSString*)name

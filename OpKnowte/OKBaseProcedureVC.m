@@ -15,8 +15,6 @@
 
 @interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate, OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, OKProcedureSwitcherDelegate>
 
-@property (nonatomic, strong) NSArray *interactionItems;
-@property (nonatomic, assign) NSInteger currentPage;
 
 @end
 
@@ -52,6 +50,10 @@
 #pragma mark - OKProcedureSwitcherDelegate
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{
     
+}
+- (IBAction)backButtonTapped:(id)sender {
+}
+- (IBAction)rightButtonTapped:(id)sender {
 }
 
 

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *picker;
 @property (nonatomic,strong) NSArray *plistArray;
 @property (nonatomic, strong) OKShockwaveLithotripsyModel *SLModel;
+@property (nonatomic) int xPoint;
 @end
 
 @implementation OKShockwaveLithotripsyVC
@@ -35,53 +36,67 @@
 {
     [super viewDidLoad];
     _plistArray = [[NSArray alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SLProcedure" ofType:@"plist"]];
-    if (![self getCurrentPage]) {
-        [self setCurrentPage:0];
+    if (!self.currentPage) {
+       self.currentPage = 0;
     }
-    NSArray *currentPageFieldsArray =[[_plistArray objectAtIndex:[self getCurrentPage]] objectForKey:@"fields" ];
-    int xPoint = 80;
+    NSArray *currentPageFieldsArray =[[_plistArray objectAtIndex:self.currentPage] objectForKey:@"fields" ];
+    _xPoint = 80;
     
-    for (int i = 0; i< currentPageFieldsArray.count; i++) {
-//
-//        if (<#condition#>) {
-//            <#statements#>
-//        }
-        if ([[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"type"] isEqualToString:@"symbolicTextField"]) {
-            OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, xPoint, 320, 43)];
-            [self.view addSubview:symbolicTextField.view];
-            [symbolicTextField setFieldName:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"name"]];
-            [symbolicTextField setPlaceHolder:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"placeholder"] ];
-            [symbolicTextField setType:0];
-            
-        } else if ([[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
-            OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, xPoint, 320, 43)];
-            [self.view addSubview:numericTextField.view];
-            [numericTextField setFieldName:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"name"]];
-            [numericTextField setPlaceHolder:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"placeholder"] ];
-            [numericTextField setType:1];
+    for (int i = 0; i < currentPageFieldsArray.count; i++) {
 
-        } else if ([[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
-            OKProcedureDatePicker *datePicker = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, xPoint, 320, 43)];
-            [self.view addSubview:datePicker.view];
-            [datePicker setFieldName:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"name"]];
-            [datePicker setPlaceHolder:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"placeholder"] ];
-            
-        } else if ([[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"type"] isEqualToString:@"picker"]) {
-            OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, xPoint, 320, 43)];
-            [self.view addSubview:picker.view];
-            [picker setFieldName:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"name"]];
-            [picker setPlaceHolder:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"placeholder"] ];
-
-        } else {
-            OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, xPoint, 320, 43)];
-            [self.view addSubview:switcher.view];
-            [switcher setFieldName:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"name"]];
-            [switcher setPlaceHolder:[[currentPageFieldsArray objectAtIndex:i]objectForKey:@"placeholder"] ];
+        if (self.currentPage >=2 && self.currentPage <= 5) {
+            for (int j = 0; j < [_SLModel.stonesCount intValue]; j++) {
+                [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i]];
+            }
+        }else {
+            [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i]];
 
         }
-        xPoint += 43;
+        
+        
+        
     }
 }
+
+
+-(void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary {
+    if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"symbolicTextField"]) {
+        OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        [self.view addSubview:symbolicTextField.view];
+        [symbolicTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        [symbolicTextField setType:0];
+        
+    } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
+        OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        [self.view addSubview:numericTextField.view];
+        [numericTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [numericTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        [numericTextField setType:1];
+        
+    } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
+        OKProcedureDatePicker *datePicker = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        [self.view addSubview:datePicker.view];
+        [datePicker setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [datePicker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        
+    } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"picker"]) {
+        OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        [self.view addSubview:picker.view];
+        [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [picker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        
+    } else {
+        OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        [self.view addSubview:switcher.view];
+        [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        
+    }
+    _xPoint += 43;
+}
+
+
 #pragma mark - OKProcedureTextFieldDelegate
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue
 {
@@ -103,7 +118,7 @@
     } else if ([name isEqualToString:@"rightOrLeft"]){
         _SLModel.anesthesiaLocation = newValue;
     } else if ([name isEqualToString:@"numberOfStones"]){
-        _SLModel.sonesCount = newValue;
+        _SLModel.stonesCount = newValue;
     } else if ([name isEqualToString:@"stoneLocation"]){
         [_SLModel.stonesLocations addObject:newValue];
     } else if ([name isEqualToString:@"stoneSize"]){
@@ -141,12 +156,15 @@
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-
+    
+    if (self.currentPage > 0 ) {
+        self.currentPage = (self.currentPage - 1);
+    }
 }
 - (IBAction)nextButton:(id)sender {
     
-    if ([self getCurrentPage] < (_plistArray.count - 1) ) {
-        
+    if (self.currentPage < (_plistArray.count - 1) ) {
+        self.currentPage = (self.currentPage + 1);
     }
 }
 

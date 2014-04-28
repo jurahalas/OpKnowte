@@ -9,6 +9,7 @@
 #import "OKProcedureDatePicker.h"
 
 @interface OKProcedureDatePicker ()<UITextFieldDelegate>
+- (IBAction)customButtonTapped:(id)sender;
 
 @end
 @implementation OKProcedureDatePicker
@@ -31,7 +32,7 @@
     [self setTextFieldRightImage];
 
 }
-- (IBAction)customButton:(id)sender {
+- (IBAction)customButtonTapped:(id)sender {
 }
 -(void)setFieldName:(NSString*)name
 {

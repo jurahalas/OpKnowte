@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString *surgeonID;
 @property (nonatomic, retain) NSString *anesthesiaPerformed;
 @property (nonatomic, retain) NSString *anesthesiaLocation;
-@property (nonatomic, retain) NSString *sonesCount;
+@property (nonatomic, retain) NSString *stonesCount;
 @property (nonatomic, retain) NSMutableArray *stonesLocations;
 @property (nonatomic, retain) NSMutableArray *stonesSizes;
 @property (nonatomic, retain) NSMutableArray *totalShocks;

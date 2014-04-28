@@ -18,7 +18,7 @@
 @interface OKProcedurePicker : UIControl
 @property (nonatomic, weak) id<OKProcedurePickerDelegate>delegate;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
-@property (strong, nonatomic) IBOutlet UIButton *customButton;
+@property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
 
