@@ -14,8 +14,6 @@
 #import "OKShockwaveLithotripsyModel.h"
 
 @interface OKShockwaveLithotripsyVC ()
-@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (strong, nonatomic) IBOutlet UIPickerView *picker;
 @property (nonatomic,strong) NSArray *plistArray;
 @property (nonatomic, strong) OKShockwaveLithotripsyModel *SLModel;
 @property (nonatomic) int xPoint;
@@ -52,9 +50,6 @@
             [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i]];
 
         }
-        
-        
-        
     }
 }
 
@@ -101,41 +96,42 @@
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue
 {
 
-    if ([name isEqualToString:@"patientName"]) {
-        _SLModel.patientName = newValue;
-    } else if ([name isEqualToString:@"PatientDOB"]){
-        _SLModel.patientDOB = newValue;
-    } else if ([name isEqualToString:@"PatientDOB"]){
-        _SLModel.patientDOB = newValue;
-    } else if ([name isEqualToString:@"medicalRecordNumber"]){
-        _SLModel.mrNumber = newValue;
-    } else if ([name isEqualToString:@"DateOfService"]){
-        _SLModel.dateOfService = newValue;
-    } else if ([name isEqualToString:@"sex"]){
-        _SLModel.gender = newValue;
-    } else if ([name isEqualToString:@"anesthesia"]){
-        _SLModel.anesthesiaPerformed = newValue;
-    } else if ([name isEqualToString:@"rightOrLeft"]){
-        _SLModel.anesthesiaLocation = newValue;
-    } else if ([name isEqualToString:@"numberOfStones"]){
-        _SLModel.stonesCount = newValue;
-    } else if ([name isEqualToString:@"stoneLocation"]){
-        [_SLModel.stonesLocations addObject:newValue];
-    } else if ([name isEqualToString:@"stoneSize"]){
-        [_SLModel.stonesSizes addObject:newValue];
-    } else if ([name isEqualToString:@"numberOfShockwaves"]){
-        [_SLModel.totalShocks addObject:newValue];
-    } else if ([name isEqualToString:@"stoneFragmentations"]){
-        [_SLModel.degreeOfFragmentation addObject:newValue];
-    } else if ([name isEqualToString:@"rateOfShockwaves"]){
-        _SLModel.rateOfWaves = newValue;
-    } else if ([name isEqualToString:@"voltageOfShockwaves"]){
-        _SLModel.kvOfWaves = newValue;
-    } else if ([name isEqualToString:@"complicationsDescriptions"]){
-        _SLModel.complications = newValue;
-    } else if ([name isEqualToString:@"followUp"]){
-        _SLModel.followUp = newValue;
-    }
+    [self.SLModel setValue:newValue forKey:name];
+//    if ([name isEqualToString:@"patientName"]) {
+//        _SLModel.patientName = newValue;
+//    } else if ([name isEqualToString:@"PatientDOB"]){
+//        _SLModel.patientDOB = newValue;
+//    } else if ([name isEqualToString:@"PatientDOB"]){
+//        _SLModel.patientDOB = newValue;
+//    } else if ([name isEqualToString:@"medicalRecordNumber"]){
+//        _SLModel.mrNumber = newValue;
+//    } else if ([name isEqualToString:@"DateOfService"]){
+//        _SLModel.dateOfService = newValue;
+//    } else if ([name isEqualToString:@"sex"]){
+//        _SLModel.gender = newValue;
+//    } else if ([name isEqualToString:@"anesthesia"]){
+//        _SLModel.anesthesiaPerformed = newValue;
+//    } else if ([name isEqualToString:@"rightOrLeft"]){
+//        _SLModel.anesthesiaLocation = newValue;
+//    } else if ([name isEqualToString:@"numberOfStones"]){
+//        _SLModel.stonesCount = newValue;
+//    } else if ([name isEqualToString:@"stoneLocation"]){
+//        [_SLModel.stonesLocations addObject:newValue];
+//    } else if ([name isEqualToString:@"stoneSize"]){
+//        [_SLModel.stonesSizes addObject:newValue];
+//    } else if ([name isEqualToString:@"numberOfShockwaves"]){
+//        [_SLModel.totalShocks addObject:newValue];
+//    } else if ([name isEqualToString:@"stoneFragmentations"]){
+//        [_SLModel.degreeOfFragmentation addObject:newValue];
+//    } else if ([name isEqualToString:@"rateOfShockwaves"]){
+//        _SLModel.rateOfWaves = newValue;
+//    } else if ([name isEqualToString:@"voltageOfShockwaves"]){
+//        _SLModel.kvOfWaves = newValue;
+//    } else if ([name isEqualToString:@"complicationsDescriptions"]){
+//        _SLModel.complications = newValue;
+//    } else if ([name isEqualToString:@"followUp"]){
+//        _SLModel.followUp = newValue;
+//    }
 }
 #pragma mark - OKProcedureSwitcherDelegate
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{
@@ -148,7 +144,7 @@
     if ([name isEqualToString:@"twoMinutesPausePerformed"]) {
         _SLModel.pausePerformed = boolToString;
     } else if ([name isEqualToString:@"complications"]) {
-        
+//        [self.elements filteredArrayWithPredicate:[]]
     }
 }
 

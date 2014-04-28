@@ -14,5 +14,12 @@
 @property (nonatomic, strong) NSArray *interactionItems;
 @property (nonatomic, assign) NSInteger currentPage;
 
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UIPickerView *picker;
+
+@property (strong, nonatomic) id model;
+
+-(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 
 @end
