@@ -103,6 +103,7 @@
 
 -(IBAction)saveButton:(id)sender
 {
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
     [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[[OKUserManager instance] currentUser].userID handler:^(NSString *error){
         
@@ -115,6 +116,7 @@
             [addInstitutionFormSuccessAlertView show];
             [self.view endEditing:YES];
             _saveButton.enabled = YES;
+            [[OKLoadingViewController instance] hide];
         }
     }];
 
