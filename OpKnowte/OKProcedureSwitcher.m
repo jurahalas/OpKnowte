@@ -23,7 +23,7 @@
 }
 
 -(void) setup{
-    [self.delegate updateField:self.fieldName withValue:self.customSwitcher.isOn];
+    [self.delegate updateField:self.fieldName withBoolValue:self.customSwitcher.isOn];
 }
 
 -(void)setFieldName:(NSString*)name{
@@ -35,7 +35,7 @@
 
 - (IBAction)switcherAction:(id)sender {
     
-    [self.delegate updateField:self.fieldName withValue:self.customSwitcher.isOn];
+    [self.delegate updateField:self.fieldName withBoolValue:self.customSwitcher.isOn];
 }
 
 @end

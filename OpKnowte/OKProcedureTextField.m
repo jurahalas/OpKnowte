@@ -36,10 +36,10 @@
     _fieldName = name;
 }
 -(void)setPlaceHolder:(NSString*)placeHolder{
-    _customTextField.placeholder = placeHolder;
+    _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 -(void)setType:(enum OKProcedureTextFieldType)type{
-    if (OKProcedureSymbolicTF) {
+    if (type == OKProcedureSymbolicTF) {
         _customTextField.keyboardType = UIKeyboardTypeDefault;
     } else {
         _customTextField.keyboardType = UIKeyboardTypeDecimalPad;
@@ -54,13 +54,10 @@
     [_customTextField resignFirstResponder];
     return YES;
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (IBAction)textFieldChanged:(id)sender {
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
 }
-*/
+
+
 
 @end

@@ -22,6 +22,7 @@
 		00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862952190CF372006EBA9C /* OKProcedureSwitcher.m */; };
 		00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862955190D02F2006EBA9C /* OKProcedureDatePicker.m */; };
 		00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862958190D0885006EBA9C /* OKProcedurePicker.m */; };
+		0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */; };
 		008D5B551907DC500039E8B7 /* OKProcedureTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */; };
 		008D5B681907DE360039E8B7 /* OKProcedureSwitcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */; };
 		008D5B7B1908021C0039E8B7 /* OKProcedureDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */; };
@@ -188,6 +189,8 @@
 		00862955190D02F2006EBA9C /* OKProcedureDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureDatePicker.m; sourceTree = "<group>"; };
 		00862957190D0885006EBA9C /* OKProcedurePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedurePicker.h; sourceTree = "<group>"; };
 		00862958190D0885006EBA9C /* OKProcedurePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedurePicker.m; sourceTree = "<group>"; };
+		0086295A190E31A3006EBA9C /* OKShockwaveLithotripsyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKShockwaveLithotripsyModel.h; sourceTree = "<group>"; };
+		0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKShockwaveLithotripsyModel.m; sourceTree = "<group>"; };
 		008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureTextField.xib; sourceTree = "<group>"; };
 		008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureSwitcher.xib; sourceTree = "<group>"; };
 		008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureDatePicker.xib; sourceTree = "<group>"; };
@@ -401,6 +404,7 @@
 				0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */,
 				1881B08318FDC77500F61CE8 /* OKProcedureModel.h */,
 				1881B08418FDC77500F61CE8 /* OKProcedureModel.m */,
+				0086295D190E31A9006EBA9C /* Procedures */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -428,6 +432,15 @@
 				008D5B561907DC540039E8B7 /* Procedure Parser */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0086295D190E31A9006EBA9C /* Procedures */ = {
+			isa = PBXGroup;
+			children = (
+				0086295A190E31A3006EBA9C /* OKShockwaveLithotripsyModel.h */,
+				0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */,
+			);
+			name = Procedures;
 			sourceTree = "<group>";
 		};
 		008D5B561907DC540039E8B7 /* Procedure Parser */ = {
@@ -1044,6 +1057,7 @@
 				00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */,
 				185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
+				0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,

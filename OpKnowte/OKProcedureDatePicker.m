@@ -8,6 +8,9 @@
 
 #import "OKProcedureDatePicker.h"
 
+@interface OKProcedureDatePicker ()<UITextFieldDelegate>
+
+@end
 @implementation OKProcedureDatePicker
 
 
@@ -35,7 +38,7 @@
     _fieldName = name;
 }
 -(void)setPlaceHolder:(NSString*)placeHolder{
-    _customTextField.placeholder = placeHolder;
+  _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 - (void) setTextFieldRightImage{
     UIView *textFieldDownArrowView = [[UIView alloc] init];
@@ -47,4 +50,8 @@
     _customTextField.rightView = textFieldDownArrowView;
     _customTextField.rightViewMode = UITextFieldViewModeAlways;
 }
+- (IBAction)textFieldChanged:(id)sender {
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
+}
+
 @end

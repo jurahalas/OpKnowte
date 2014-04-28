@@ -11,7 +11,7 @@
 
 @protocol OKProcedureSwitcherDelegate <NSObject>
 
--(void)updateField:(NSString*)name withValue:(BOOL)newValue;
+-(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 
 @end
 @interface OKProcedureSwitcher : UIControl

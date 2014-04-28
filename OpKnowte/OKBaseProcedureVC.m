@@ -13,7 +13,7 @@
 #import "OKProcedurePicker.h"
 
 
-@interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate>
+@interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate, OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, OKProcedureSwitcherDelegate>
 
 @property (nonatomic, strong) NSArray *interactionItems;
 @property (nonatomic, assign) NSInteger currentPage;
@@ -43,12 +43,18 @@
     return _currentPage;
 }
 
-#pragma mark - OKProceduresParserTextFieldViewControllerDelegate
-
+#pragma mark - OKProcedureTextFieldDelegate
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue
 {
 
 }
+
+#pragma mark - OKProcedureSwitcherDelegate
+-(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
