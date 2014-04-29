@@ -28,7 +28,7 @@
     [self setTextColor:[UIColor whiteColor]];
     self.layer.cornerRadius = 14;
     self.clipsToBounds = YES;
-    
+    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     
 }
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
