@@ -155,20 +155,20 @@
 }
 
 
-
 - (IBAction)backButtonTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
     
-//    if (self.currentPage > 0 ) {
-//        self.currentPage = (self.currentPage - 1);
-//    }
+    //    if (self.currentPage > 0 ) {
+    //        self.currentPage = (self.currentPage - 1);
+    //    }
 }
 
 
 - (IBAction)rightButtonTapped:(id)sender {
-    if (self.currentPage < (_plistArray.count - 1) ) {
+    if (self.currentPage < (self.plistArray.count - 1) ) {
+        id nextVC = [self nextVC];
         
-        self.currentPage = (self.currentPage + 1);
+        [self.navigationController pushViewController:nextVC animated:YES];
     }
 }
 

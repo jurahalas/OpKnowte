@@ -75,6 +75,8 @@
 //    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
 //        [self performSegueWithIdentifier:@"shockwaveLithotripsy" sender:self];
 //    }
+    OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     
     
 }

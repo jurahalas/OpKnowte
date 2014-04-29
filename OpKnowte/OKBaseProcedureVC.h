@@ -24,4 +24,7 @@
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue;
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 -(void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary;
+-(id)nextVC;
+- (IBAction)backButtonTapped:(id)sender;
+- (IBAction)rightButtonTapped:(id)sender;
 @end

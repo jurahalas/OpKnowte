@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-
+@class OKProcedureDatePicker;
 @protocol OKProcedureDatePickerDelegate <NSObject>
 
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)showDatePickerWithDate:(NSDate*)date picker:( OKProcedureDatePicker * )datePickerObject;
 
 @end
 @interface OKProcedureDatePicker : UIControl
@@ -21,7 +22,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
-
 
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;

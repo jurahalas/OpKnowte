@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-
+@class OKProcedurePicker;
 @protocol OKProcedurePickerDelegate <NSObject>
 
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)showPickerWithData:(NSArray*)pickerData picker: (OKProcedurePicker *)pickerObject;
 
 @end
 @interface OKProcedurePicker : UIControl

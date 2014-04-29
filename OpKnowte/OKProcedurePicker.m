@@ -32,7 +32,7 @@
     
 }
 - (IBAction)customButtonTapped:(id)sender {
-    
+    [self.delegate showPickerWithData:_dataArray picker:self];
 }
 
 -(void)setFieldName:(NSString*)name

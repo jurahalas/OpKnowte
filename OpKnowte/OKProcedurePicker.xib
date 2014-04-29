@@ -22,7 +22,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="textFieldChanged:" destination="-1" eventType="editingChanged" id="JKM-JW-lnS"/>
+                        <action selector="textFieldChanged:" destination="1" eventType="editingChanged" id="7dz-Xl-Y1l"/>
                         <outlet property="delegate" destination="1" id="K6n-MV-NNW"/>
                     </connections>
                 </textField>

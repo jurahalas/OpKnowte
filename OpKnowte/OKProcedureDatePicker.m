@@ -33,6 +33,8 @@
 
 }
 - (IBAction)customButtonTapped:(id)sender {
+    [self.delegate showDatePickerWithDate:[NSDate date] picker:self];
+
 }
 -(void)setFieldName:(NSString*)name
 {

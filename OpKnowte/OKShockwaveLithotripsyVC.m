@@ -85,6 +85,13 @@
         }
     }
 }
+-(id) nextVC{
+    OKShockwaveLithotripsyVC *nextVC = [[OKShockwaveLithotripsyVC alloc] init];
+    nextVC.model = self.model;
+    nextVC.currentPage = (self.currentPage + 1);
+    return nextVC;
+}
+
 
 
 - (void)didReceiveMemoryWarning
