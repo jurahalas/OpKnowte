@@ -23,7 +23,7 @@
 @property (nonatomic, strong) NSString *fieldName;
 
 
-
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
+
 @end

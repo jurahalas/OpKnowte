@@ -19,7 +19,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>PatientDOB</string>
+				<string>patientDOB</string>
 				<key>type</key>
 				<string>DatePicker</string>
 				<key>placeholder</key>
@@ -29,7 +29,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>medicalRecordNumber</string>
+				<string>mrNumber</string>
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
@@ -39,7 +39,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>DateOfService</string>
+				<string>dateOfService</string>
 				<key>type</key>
 				<string>DatePicker</string>
 				<key>placeholder</key>
@@ -49,7 +49,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>sex</string>
+				<string>gender</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -69,7 +69,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>anesthesia</string>
+				<string>anesthesiaPerformed</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -82,7 +82,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>rightOrLeft</string>
+				<string>anesthesiaLocation</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -95,7 +95,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>numberOfStones</string>
+				<string>stonesCount</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -118,7 +118,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>stoneLocation</string>
+				<string>stonesLocations</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -144,7 +144,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>stoneSize</string>
+				<string>stonesSizes</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -164,7 +164,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>numberOfShockwaves</string>
+				<string>totalShocks</string>
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
@@ -181,7 +181,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>stoneFragmentations</string>
+				<string>degreeOfFragmentation</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -203,7 +203,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>rateOfShockwaves</string>
+				<string>rateOfWaves</string>
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
@@ -213,7 +213,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>voltageOfShockwaves</string>
+				<string>kvOfWaves</string>
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
@@ -223,7 +223,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string> twoMinutesPausePerformed</string>
+				<string>pausePerformed</string>
 				<key>type</key>
 				<string>switcher</string>
 				<key>placeholder</key>
@@ -236,7 +236,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>complications</string>
+				<string>complications?</string>
 				<key>type</key>
 				<string>switcher</string>
 				<key>placeholder</key>
@@ -249,7 +249,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>complicationsDescriptions</string>
+				<string>complications</string>
 				<key>type</key>
 				<string>symbolicTextField</string>
 				<key>placeholder</key>

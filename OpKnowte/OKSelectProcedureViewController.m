@@ -71,10 +71,10 @@
 #pragma mark - Table View methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
-    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
-        [self performSegueWithIdentifier:@"shockwaveLithotripsy" sender:self];
-    }
+//    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+//    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+//        [self performSegueWithIdentifier:@"shockwaveLithotripsy" sender:self];
+//    }
     
     
 }

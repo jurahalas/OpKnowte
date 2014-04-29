@@ -42,6 +42,9 @@
 -(void)setPlaceHolder:(NSString*)placeHolder{
     _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
+-(void) setDataArray:(NSMutableArray *)dataArray{
+    _dataArray = dataArray;
+}
 - (void) setTextFieldRightImage{
     UIView *textFieldDownArrowView = [[UIView alloc] init];
     UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;

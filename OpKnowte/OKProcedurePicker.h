@@ -21,9 +21,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
 
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
+-(void) setDataArray:(NSMutableArray *)dataArray;
 @end
