@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -87,6 +87,7 @@
                         <outlet property="passwordTextField" destination="T6h-tb-goT" id="Y9l-Bk-gZf"/>
                         <outlet property="registerButton" destination="k9t-Pa-N8e" id="Lgc-NN-5vH"/>
                         <segue destination="5mR-vJ-NJu" kind="push" identifier="loginSegue" id="ytp-fp-EJd"/>
+                        <segue destination="1sY-Xu-fV5" kind="push" identifier="dashboardSegue" id="aul-Pn-LEj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -116,7 +117,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fua-jD-zoT" kind="push" id="ybZ-8n-45Y"/>
+                                    <segue destination="1sY-Xu-fV5" kind="push" id="DdX-qd-zVS"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoNB.png" id="8D0-wu-uvm">
@@ -136,7 +137,7 @@
             </objects>
             <point key="canvasLocation" x="487" y="55"/>
         </scene>
-        <!--Home Screen View Controller-->
+        <!--Home Screen View Controller - Dashboard-->
         <scene sceneID="BZe-D5-AUt">
             <objects>
                 <viewController id="fua-jD-zoT" customClass="OKHomeScreenViewController" sceneMemberID="viewController">
@@ -184,18 +185,8 @@
                                     <segue destination="XTe-gD-PYM" kind="push" id="iYE-S8-xzH"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BI5-k9-5XR">
-                                <rect key="frame" x="119" y="295" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Dashboard">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1sY-Xu-fV5" kind="push" id="YOi-af-GRJ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UEg-df-rJq">
-                                <rect key="frame" x="31" y="333" width="269" height="30"/>
+                                <rect key="frame" x="31" y="295" width="269" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Surgeon performance data comparison">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -204,19 +195,18 @@
                                     <segue destination="wim-OD-ltN" kind="push" id="5mA-jN-bDY"/>
                                 </connections>
                             </button>
-<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qhd-nm-6uO">
-                                <rect key="frame" x="105" y="408" width="111" height="30"/>
+                                <rect key="frame" x="105" y="144" width="111" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Institute">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="JBj-cb-b1Z" kind="push" id="jDh-vb-NmK"/>
-=======
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LOj-ho-q8q">
-                                <rect key="frame" x="130" y="371" width="71" height="30"/>
+                                <rect key="frame" x="130" y="333" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save View">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,20 +216,35 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pXR-o3-tWO">
-                                <rect key="frame" x="124" y="399" width="83" height="30"/>
+                                <rect key="frame" x="124" y="361" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Case">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="WIT-md-SDl" kind="push" id="lPY-Bo-TiM"/>
->>>>>>> d4c860ffabb4867370ec207fe7542e11876fec61
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sM5-Vo-Vyy">
+                                <rect key="frame" x="89" y="437" width="142" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="LRPN-Operatie Note">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="IWN-9Q-DMf" kind="push" id="PiA-pc-mLx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="U86-Kf-JG8"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="4h6-2E-mEO">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="aNy-TL-nQN">
+                            <connections>
+                                <action selector="backButton:" destination="fua-jD-zoT" id="d9Y-aT-jxw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljw-JG-FBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -260,7 +265,7 @@
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="titleCell" rowHeight="50" id="i12-8s-SLa" customClass="OKSurgeonPerformanceDataComparisonTitleCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i12-8s-SLa" id="FUe-tN-WkM">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -281,7 +286,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" rowHeight="100" id="SRi-mp-CqH" customClass="OKSurgeonPerformanceDataComparisonContentCell">
-                                        <rect key="frame" x="0.0" y="136" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="72" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SRi-mp-CqH" id="58z-sW-oDU">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -416,7 +421,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="procedureCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="procedureCell" id="VjX-jc-N7s" customClass="OKSelectProcedureCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VjX-jc-N7s" id="PTw-VP-3Ne">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -584,7 +589,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="timePointCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="timePointCell" id="bVW-dO-dTR" customClass="OKSelectTimePointCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVW-dO-dTR" id="DMF-HL-eX4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -644,7 +649,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nationalDataCell" id="IjG-z7-vqV" customClass="OKNationalDataTableViewCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IjG-z7-vqV" id="cnP-SK-YKk">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -696,6 +701,7 @@
             </objects>
             <point key="canvasLocation" x="1482" y="900"/>
         </scene>
+<<<<<<< HEAD
         <!--Data Capture View Controller - Data Capture-->
         <scene sceneID="c2a-jf-JoD">
             <objects>
@@ -733,10 +739,93 @@
                                         <connections>
                                             <outlet property="dataCaptureIcon" destination="QQf-QI-Alq" id="0cj-EP-KZS"/>
                                             <outlet property="dataCaptureLable" destination="Yre-W2-hFc" id="QUo-JV-Odu"/>
+=======
+        <!--Operatie Note View Controller - LRPN-Operatie Note-->
+        <scene sceneID="Tid-kT-53J">
+            <objects>
+                <viewController id="IWN-9Q-DMf" customClass="OKOperatieNoteViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VeE-Qj-gIC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="sB1-gk-KcK">
+                                <rect key="frame" x="0.0" y="65" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" id="Par-eZ-aHM">
+                                        <rect key="frame" x="31" y="11" width="259" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Case data"/>
+                                            <segment title="Indication"/>
+                                            <segment title="Procedure"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="segmentControlButton:" destination="IWN-9Q-DMf" eventType="valueChanged" id="sm7-GK-0qq"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Svj-7t-IB1">
+                                <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="t4I-5L-Hli">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Laj-WO-IBV">
+                                                <rect key="frame" x="20" y="14" width="280" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vca-jc-CbK">
+                                <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="caseData" rowHeight="70" id="yJc-Ih-Vda" customClass="OKOperatieNoteTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yJc-Ih-Vda" id="NiY-wM-1wg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ubW-vW-yjF">
+                                                    <rect key="frame" x="20" y="9" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DjR-W5-RKu">
+                                                    <rect key="frame" x="20" y="38" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="caseDataKeyLabel" destination="ubW-vW-yjF" id="UOF-Uo-b2Y"/>
+                                            <outlet property="caseDataValueLabel" destination="DjR-W5-RKu" id="0Vc-E8-psF"/>
+>>>>>>> b955efd106a0d2d3eb2c66e14572a0fedfb3faa8
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+<<<<<<< HEAD
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -754,6 +843,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0j-TQ-0Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1888" y="900"/>
+=======
+                            <view contentMode="scaleToFill" id="m2c-rw-A5i">
+                                <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ufo-ep-Adc">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="454"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PlQ-ws-BTh">
+                                                <rect key="frame" x="20" y="14" width="280" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="LRPN-Operatie Note" id="FKk-O9-qFk">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="FZz-Mk-9O7">
+                            <connections>
+                                <action selector="backButton:" destination="IWN-9Q-DMf" id="CLb-1o-MZy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="right.png" id="VGb-wK-aK3"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="IndicationView" destination="m2c-rw-A5i" id="I9A-IK-fFg"/>
+                        <outlet property="caseDataTableView" destination="Vca-jc-CbK" id="UAa-85-uyc"/>
+                        <outlet property="indicationLabel" destination="PlQ-ws-BTh" id="odc-9Z-siU"/>
+                        <outlet property="indicationScrollView" destination="ufo-ep-Adc" id="Viw-3S-LEi"/>
+                        <outlet property="procedureLable" destination="Laj-WO-IBV" id="dSM-eq-iQc"/>
+                        <outlet property="procedureScrollView" destination="t4I-5L-Hli" id="tcA-D8-olM"/>
+                        <outlet property="procedureView" destination="Svj-7t-IB1" id="weM-BL-kFv"/>
+                        <outlet property="segmentControl" destination="Par-eZ-aHM" id="CRQ-wA-ZwN"/>
+                        <outlet property="segmentControllView" destination="sB1-gk-KcK" id="jYd-a8-t6D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Sn-de-dlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1897" y="900"/>
+>>>>>>> b955efd106a0d2d3eb2c66e14572a0fedfb3faa8
         </scene>
         <!--Registration View Controller - Register-->
         <scene sceneID="ZwV-jN-0Gn">
@@ -970,6 +1107,9 @@
                                         <state key="normal" image="info.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="fua-jD-zoT" kind="push" id="Cm8-3x-ohy"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1213,6 +1353,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dCD-SH-NGU"/>
+        <segue reference="aul-Pn-LEj"/>
+        <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>
