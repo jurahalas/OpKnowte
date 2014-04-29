@@ -18,7 +18,14 @@
 {
     [super viewDidLoad];
     [self addBottomTabBar];
+    [self.navigationController setNavigationBarHidden:NO];
+
 	// Do any additional setup after loading the view.
+}
+
+#pragma mark - IBActions
+- (IBAction)backButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

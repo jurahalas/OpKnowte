@@ -22,6 +22,11 @@
 @implementation OKDashboardVC
 
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,11 +37,14 @@
     _dashboardTableView.frame = CGRectMake(_dashboardTableView.frame.origin.x, _dashboardTableView.frame.origin.y, _dashboardTableView.frame.size.width, (_dashboardTableView.frame.size.height - 60.f));
     _userView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboardBG"]];;
     [self addBottomTabBar];
+  
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _userNameLabel.text = [defaults objectForKey:@"EMAILADDRESS"];
+    [defaults synchronize];
+    
     [self.dashboardTableView reloadData];
 }
 
-
-#pragma mark - IBActions
 
 #pragma mark - Table View methods
 
@@ -48,6 +56,19 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60.f;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKDashboardTableViewCell *cell = [[OKDashboardTableViewCell alloc] init];
+    cell = (OKDashboardTableViewCell*)[_dashboardTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.cellName.text isEqualToString:@"Surgical Performance Data"]) {
+        
+        [self performSegueWithIdentifier:@"performance" sender:indexPath];
+    }else if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]){
+        [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"dashboardCell";
