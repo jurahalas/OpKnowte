@@ -36,7 +36,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
+    self.navigationItem.rightBarButtonItem = nextButton;
 }
 
 
@@ -67,6 +70,7 @@
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"picker"]) {
         OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        picker.delegate = self;
         [self.view addSubview:picker.view];
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
@@ -100,21 +104,31 @@
 
 -(void)showPickerWithData:(NSArray*)pickerData picker:(OKProcedurePicker*)pickerObject
 {
-    self.pickerObject = pickerObject;
-    self.picker.hidden = NO;
-    self.datePicker.hidden = YES;
+    if (self.picker.hidden) {
+        self.pickerObject = pickerObject;
+        self.picker.hidden = NO;
+        self.datePicker.hidden = YES;
+    } else {
+        [self hidePicker];
+    }
+
 }
 
 
 -(void)showDatePickerWithDate:(NSDate*)date picker:(OKProcedureDatePicker*)datePickerObject
 {
-    self.datePickerObject = datePickerObject;
-    self.picker.hidden = YES;
-    self.datePicker.hidden = NO;
-    if(date)
-        [self.datePicker setDate:date];
-    else
-        [self.datePicker setDate:[NSDate date]];
+    if (self.datePicker.hidden) {
+        self.datePickerObject = datePickerObject;
+        self.picker.hidden = YES;
+        self.datePicker.hidden = NO;
+        if(date)
+            [self.datePicker setDate:date];
+        else
+            [self.datePicker setDate:[NSDate date]];
+    }else{
+        [self hideDatePicker];
+    }
+    
 }
 
 
