@@ -87,6 +87,7 @@
                         <outlet property="passwordTextField" destination="T6h-tb-goT" id="Y9l-Bk-gZf"/>
                         <outlet property="registerButton" destination="k9t-Pa-N8e" id="Lgc-NN-5vH"/>
                         <segue destination="5mR-vJ-NJu" kind="push" identifier="loginSegue" id="ytp-fp-EJd"/>
+                        <segue destination="1sY-Xu-fV5" kind="push" identifier="dashboardSegue" id="aul-Pn-LEj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -1210,6 +1211,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dCD-SH-NGU"/>
+        <segue reference="aul-Pn-LEj"/>
+        <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>

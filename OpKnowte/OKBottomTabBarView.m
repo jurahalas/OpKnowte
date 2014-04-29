@@ -64,8 +64,13 @@
 -(void)homeButton:(id)sender{
     
 }
--(void)settingsButton:(id)sender{
-    
+-(void)settingsButton:(id)sender
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"EMAILADDRESS"];
+    [defaults removeObjectForKey:@"PASSWORD"];
+    [defaults synchronize];
+    NSLog(@"session was destroyed");
 }
 
 @end
