@@ -116,6 +116,16 @@
 		185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F829819000AA400C5566A /* OKLoadingViewController.m */; };
 		1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */; };
 		1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881B08418FDC77500F61CE8 /* OKProcedureModel.m */; };
+		188608EB190FA1CB00BD1D77 /* emailIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E1190FA1CB00BD1D77 /* emailIcon@2x.png */; };
+		188608EC190FA1CB00BD1D77 /* faxIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E2190FA1CB00BD1D77 /* faxIcon.png */; };
+		188608ED190FA1CB00BD1D77 /* faxIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E3190FA1CB00BD1D77 /* faxIcon@2x.png */; };
+		188608EE190FA1CB00BD1D77 /* plusWhiteIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E4190FA1CB00BD1D77 /* plusWhiteIcon@2x.png */; };
+		188608EF190FA1CB00BD1D77 /* plusGreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E5190FA1CB00BD1D77 /* plusGreenIcon.png */; };
+		188608F0190FA1CB00BD1D77 /* emailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E6190FA1CB00BD1D77 /* emailIcon.png */; };
+		188608F1190FA1CB00BD1D77 /* plusWhiteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E7190FA1CB00BD1D77 /* plusWhiteIcon.png */; };
+		188608F2190FA1CB00BD1D77 /* plusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E8190FA1CB00BD1D77 /* plusGreenIcon@2x.png */; };
+		188608F3190FA1CB00BD1D77 /* minusGreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E9190FA1CB00BD1D77 /* minusGreenIcon.png */; };
+		188608F4190FA1CB00BD1D77 /* minusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608EA190FA1CB00BD1D77 /* minusGreenIcon@2x.png */; };
 		189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F450C190910D500372C55 /* OKPerformanceVC.m */; };
 		189F4510190911F400372C55 /* OKPerformanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F450F190911F400372C55 /* OKPerformanceTableViewCell.m */; };
 		189F45141909480700372C55 /* OKInstituteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F45131909480700372C55 /* OKInstituteVC.m */; };
@@ -295,6 +305,16 @@
 		1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProceduresManager.m; sourceTree = "<group>"; };
 		1881B08318FDC77500F61CE8 /* OKProcedureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureModel.h; sourceTree = "<group>"; };
 		1881B08418FDC77500F61CE8 /* OKProcedureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureModel.m; sourceTree = "<group>"; };
+		188608E1190FA1CB00BD1D77 /* emailIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emailIcon@2x.png"; sourceTree = "<group>"; };
+		188608E2190FA1CB00BD1D77 /* faxIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faxIcon.png; sourceTree = "<group>"; };
+		188608E3190FA1CB00BD1D77 /* faxIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faxIcon@2x.png"; sourceTree = "<group>"; };
+		188608E4190FA1CB00BD1D77 /* plusWhiteIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plusWhiteIcon@2x.png"; sourceTree = "<group>"; };
+		188608E5190FA1CB00BD1D77 /* plusGreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusGreenIcon.png; sourceTree = "<group>"; };
+		188608E6190FA1CB00BD1D77 /* emailIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emailIcon.png; sourceTree = "<group>"; };
+		188608E7190FA1CB00BD1D77 /* plusWhiteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusWhiteIcon.png; sourceTree = "<group>"; };
+		188608E8190FA1CB00BD1D77 /* plusGreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plusGreenIcon@2x.png"; sourceTree = "<group>"; };
+		188608E9190FA1CB00BD1D77 /* minusGreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusGreenIcon.png; sourceTree = "<group>"; };
+		188608EA190FA1CB00BD1D77 /* minusGreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minusGreenIcon@2x.png"; sourceTree = "<group>"; };
 		189F450B190910D500372C55 /* OKPerformanceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPerformanceVC.h; sourceTree = "<group>"; };
 		189F450C190910D500372C55 /* OKPerformanceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPerformanceVC.m; sourceTree = "<group>"; };
 		189F450E190911F400372C55 /* OKPerformanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPerformanceTableViewCell.h; sourceTree = "<group>"; };
@@ -522,6 +542,16 @@
 		00A64D0519064DB400740DC7 /* colorIcons */ = {
 			isa = PBXGroup;
 			children = (
+				188608E1190FA1CB00BD1D77 /* emailIcon@2x.png */,
+				188608E2190FA1CB00BD1D77 /* faxIcon.png */,
+				188608E3190FA1CB00BD1D77 /* faxIcon@2x.png */,
+				188608E4190FA1CB00BD1D77 /* plusWhiteIcon@2x.png */,
+				188608E5190FA1CB00BD1D77 /* plusGreenIcon.png */,
+				188608E6190FA1CB00BD1D77 /* emailIcon.png */,
+				188608E7190FA1CB00BD1D77 /* plusWhiteIcon.png */,
+				188608E8190FA1CB00BD1D77 /* plusGreenIcon@2x.png */,
+				188608E9190FA1CB00BD1D77 /* minusGreenIcon.png */,
+				188608EA190FA1CB00BD1D77 /* minusGreenIcon@2x.png */,
 				00A64D0619064DB400740DC7 /* greenGraph.png */,
 				00A64D0719064DB400740DC7 /* greenGraph@2x.png */,
 				00A64D0819064DB400740DC7 /* greenMagnifier.png */,
@@ -887,8 +917,10 @@
 				00A64D5519064DB400740DC7 /* greenMagnifier@2x.png in Resources */,
 				00A64D7619064DB400740DC7 /* forgotPassword@2x.png in Resources */,
 				00A64D6F19064DB400740DC7 /* password.png in Resources */,
+				188608EE190FA1CB00BD1D77 /* plusWhiteIcon@2x.png in Resources */,
 				00A64D7419064DB400740DC7 /* toc@2x.png in Resources */,
 				00A64D5A19064DB400740DC7 /* horizontalDevider@2x.png in Resources */,
+				188608ED190FA1CB00BD1D77 /* faxIcon@2x.png in Resources */,
 				00A64D5D19064DB400740DC7 /* degree.png in Resources */,
 				00A64D4419064DB400740DC7 /* right.png in Resources */,
 				00A64D6E19064DB400740DC7 /* name@2x.png in Resources */,
@@ -902,6 +934,7 @@
 				00A64D6019064DB400740DC7 /* email@2x.png in Resources */,
 				00A64D4A19064DB400740DC7 /* cellDark.png in Resources */,
 				00A64D8019064DB400740DC7 /* logoTB@2x.png in Resources */,
+				188608EB190FA1CB00BD1D77 /* emailIcon@2x.png in Resources */,
 				00A64D8C19065A5400740DC7 /* cellActiveBG@2x.png in Resources */,
 				00A64D8219064DB400740DC7 /* navbarBG_color@2x.png in Resources */,
 				00A64D6919064DB400740DC7 /* logout.png in Resources */,
@@ -942,7 +975,10 @@
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
 				00A64D4519064DB400740DC7 /* right@2x.png in Resources */,
 				00A64D7919064DB400740DC7 /* separator.png in Resources */,
+				188608F0190FA1CB00BD1D77 /* emailIcon.png in Resources */,
 				00A64D4319064DB400740DC7 /* down@2x.png in Resources */,
+				188608EC190FA1CB00BD1D77 /* faxIcon.png in Resources */,
+				188608EF190FA1CB00BD1D77 /* plusGreenIcon.png in Resources */,
 				00A64D5819064DB400740DC7 /* colors.txt in Resources */,
 				00A64D6D19064DB400740DC7 /* name.png in Resources */,
 				185F829619000A7100C5566A /* OKLoadingViewController.xib in Resources */,
@@ -953,14 +989,18 @@
 				00A64D5419064DB400740DC7 /* greenMagnifier.png in Resources */,
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
 				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
+				188608F1190FA1CB00BD1D77 /* plusWhiteIcon.png in Resources */,
 				00A64D4819064DB400740DC7 /* bg_568.png in Resources */,
 				00A64D4719064DB400740DC7 /* bg@2x.png in Resources */,
 				E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */,
+				188608F3190FA1CB00BD1D77 /* minusGreenIcon.png in Resources */,
 				E10023E818F529E9008421D4 /* InfoPlist.strings in Resources */,
 				00A64D4D19064DB400740DC7 /* cellLight@2x.png in Resources */,
 				00A64D7D19064DB400740DC7 /* logoNB.png in Resources */,
 				00A64D4C19064DB400740DC7 /* cellLight.png in Resources */,
+				188608F2190FA1CB00BD1D77 /* plusGreenIcon@2x.png in Resources */,
 				00A64D7319064DB400740DC7 /* toc.png in Resources */,
+				188608F4190FA1CB00BD1D77 /* minusGreenIcon@2x.png in Resources */,
 				00A64D5F19064DB400740DC7 /* email.png in Resources */,
 				00A64D7A19064DB400740DC7 /* separator@2x.png in Resources */,
 				00A64D4B19064DB400740DC7 /* cellDark@2x.png in Resources */,
