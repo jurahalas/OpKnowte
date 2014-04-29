@@ -628,6 +628,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateFromTF" destination="ipy-xW-lZd" id="ejh-fk-z9A"/>
+                        <outlet property="dateToTF" destination="c7g-g4-8vO" id="u9E-IE-uL6"/>
                         <outlet property="dateView" destination="eVK-V5-lHb" id="Aes-dF-P62"/>
                         <outlet property="diselectAllButton" destination="OV4-9O-MtH" id="Cax-Rv-Gvb"/>
                         <outlet property="diselectAllLabel" destination="F2c-m2-h58" id="5Ic-PX-rFd"/>
