@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet OKCustomTextField *ctScanPiker;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *outher;
 @property (strong, nonatomic) IBOutlet UIPickerView *MDPiker;
+@property (strong, nonatomic) IBOutlet UIView *PikerView;
 @property (strong, nonatomic) NSArray *MDPickerData;
 @property (nonatomic) BOOL animatedKeyboard;
 @property (nonatomic) int currentTextFieldTag;
@@ -27,7 +28,7 @@
 @end
 
 @implementation OKOngoingClinicalViewController
-@synthesize animatedKeyboard,updateButton,chestXrayPiker,chestXray,bun,creatinine,liverEnzymesPiker,liverEnzymes,portSiteHerniaPiker,ctScanPiker,outher,MDPickerData,MDPiker,currentTextFieldTag;
+@synthesize animatedKeyboard,updateButton,chestXrayPiker,chestXray,bun,creatinine,liverEnzymesPiker,liverEnzymes,portSiteHerniaPiker,ctScanPiker,outher,MDPickerData,MDPiker,currentTextFieldTag,PikerView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -47,7 +48,10 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     
     MDPickerData = [[NSArray alloc]init];
-    MDPiker.hidden = YES;
+    MDPiker.hidden = NO;
+    PikerView.hidden = YES;
+    
+    PikerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     chestXrayPiker.text = nil;
     chestXray.text = nil;
@@ -142,20 +146,24 @@
     [textFieldDownArrowView addSubview:textFieldDownArrow];
     textField.rightView = textFieldDownArrowView;
     textField.rightViewMode = UITextFieldViewModeAlways;
+    textField.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0f];
+    textField.layer.borderWidth = 1.f;
+    textField.clipsToBounds = YES;
+
     textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 -(void)design
 {
-    [self addRightArrowImageToTextField:chestXrayPiker withPlaceholder:@"  Chest X-ray  "];
-    chestXray.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"  Chest X-ray  " attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    bun.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"  Bun  " attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    creatinine.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"  Creatinine  " attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    [self addRightArrowImageToTextField:liverEnzymesPiker withPlaceholder:@"  Liver Enzymes  "];
-    liverEnzymes.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"  Liver Enzymes  " attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-    [self addRightArrowImageToTextField:portSiteHerniaPiker withPlaceholder:@"  Port Site Hernia  "];
-    [self addRightArrowImageToTextField:ctScanPiker withPlaceholder:@"  CT-Scan  "];
-    outher.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"  Outher  " attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    [self addRightArrowImageToTextField:chestXrayPiker withPlaceholder:@"Chest X-ray"];
+    chestXray.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Chest X-ray" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    bun.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Bun" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    creatinine.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Creatinine" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    [self addRightArrowImageToTextField:liverEnzymesPiker withPlaceholder:@"Liver Enzymes"];
+    liverEnzymes.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Liver Enzymes" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    [self addRightArrowImageToTextField:portSiteHerniaPiker withPlaceholder:@"Port Site Hernia"];
+    [self addRightArrowImageToTextField:ctScanPiker withPlaceholder:@"CT-Scan"];
+    outher.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Outher" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     
     updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     updateButton.layer.cornerRadius = 14;
@@ -178,6 +186,7 @@
 {
     NSString *pickerString = [NSString stringWithFormat:@"%@", [MDPickerData objectAtIndex:row]];
     NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
     return pickerAttributedString;
 }
 
@@ -204,38 +213,51 @@
 
 - (IBAction)chestXrayButton:(id)sender
 {
+    PikerView.hidden = !PikerView.hidden;
+    
     NSArray * xRay = [[NSArray alloc]initWithObjects:@"Positive",@"Negative", nil];
     MDPickerData = xRay;
-    MDPiker.hidden = NO;
     
-    outher.hidden= NO;
+    [self.view bringSubviewToFront:PikerView];
+    [MDPiker reloadAllComponents];
     [self.view endEditing:YES];
+    
     if (animatedKeyboard) {
         [self animateTextField: outher up: NO];
     }
     currentTextFieldTag = 1;
+        
 }
 - (IBAction)liverEnzumesButton:(id)sender
 {
+    PikerView.hidden = !PikerView.hidden;
+    
     NSArray * liver = [[NSArray alloc]initWithObjects:@"Normal",@"Abnormal", nil];
     MDPickerData = liver;
-    MDPiker.hidden = NO;
 
-    outher.hidden= NO;
+    [self.view bringSubviewToFront:PikerView];
+    [MDPiker reloadAllComponents];
+
     [self.view endEditing:YES];
+    
     if (animatedKeyboard) {
         [self animateTextField: outher up: NO];
     }
     currentTextFieldTag = 2;
+    
 }
 - (IBAction)postSiteHernia:(id)sender
 {
+    PikerView.hidden = !PikerView.hidden;
+    
     NSArray * postSH = [[NSArray alloc]initWithObjects:@"Yes",@"No", nil];
     MDPickerData = postSH;
-    MDPiker.hidden = NO;
     
-    outher.hidden= NO;
+    [self.view bringSubviewToFront:PikerView];
+    [MDPiker reloadAllComponents];
+
     [self.view endEditing:YES];
+    
     if (animatedKeyboard) {
         [self animateTextField: outher up: NO];
     }
@@ -243,12 +265,16 @@
 }
 - (IBAction)ctScan:(id)sender
 {
+    PikerView.hidden = !PikerView.hidden;
+    
     NSArray * ctScan = [[NSArray alloc]initWithObjects:@"No evidence of metastatic disease",@"Local recurrence",@"Lymphadenopathy",@"Liver metastasis",@"Bone metastasis",@"Brain metastasis",@"Not performed", nil];
     MDPickerData = ctScan;
-    MDPiker.hidden = NO;
     
-    outher.hidden= NO;
+    [self.view bringSubviewToFront:PikerView];
+    [MDPiker reloadAllComponents];
+
     [self.view endEditing:YES];
+    
     if (animatedKeyboard) {
         [self animateTextField: outher up: NO];
     }
