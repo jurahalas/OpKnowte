@@ -47,8 +47,9 @@
 {
     [super viewDidLoad];
     [self design];
-    [self addBottomTabBarButton];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
+    
+    bottonTabBarButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     
     MDPickerData = [[NSArray alloc]init];
     MDPiker.hidden = NO;
@@ -75,11 +76,6 @@
     portSiteHerniaPiker.tag = 7;
     ctScanPiker.tag = 8;
     outher.tag = 9;
-}
-
--(void)addBottomTabBarButton
-{
-  bottonTabBarButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
 }
 
 #pragma mark - Text Fields methods
