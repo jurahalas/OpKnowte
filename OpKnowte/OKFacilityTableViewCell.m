@@ -37,7 +37,7 @@
 
 - (IBAction)facilityButton:(id)sender
 {
-    if (!_selectFacilityButton) {
+    if (!_buttonIsTapped) {
         [_selectFacilityButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
         _buttonIsTapped = YES;
     } else {
