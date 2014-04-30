@@ -573,17 +573,23 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unselected.png" id="Ewu-sE-VaV">
-                                                    <rect key="frame" x="18" y="25" width="10" height="10"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G1c-5u-4Op">
+                                                    <rect key="frame" x="10" y="17" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="plusButtonTapped:" destination="QEp-Y7-g62" eventType="touchUpInside" id="RcA-T2-Xba"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="UaK-qQ-PEH" id="ItX-nl-OTn"/>
                                             <outlet property="nameLabel" destination="NqV-lq-b2j" id="PeV-Ep-Vbw"/>
-                                            <outlet property="selectImage" destination="Ewu-sE-VaV" id="Hvj-39-seh"/>
+                                            <outlet property="plusButton" destination="G1c-5u-4Op" id="aMH-e1-qgD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1043,7 +1049,6 @@
         <image name="register.png" width="56" height="23"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
-        <image name="unselected.png" width="10" height="10"/>
         <image name="userImage.png" width="48" height="48"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

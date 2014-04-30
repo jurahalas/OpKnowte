@@ -18,6 +18,10 @@
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		00862973190EABCD006EBA9C /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086296F190EABCD006EBA9C /* RangeSlider.m */; };
+		008F7EA91910E030004F57B6 /* minusGreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA51910E030004F57B6 /* minusGreenIcon.png */; };
+		008F7EAA1910E030004F57B6 /* minusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA61910E030004F57B6 /* minusGreenIcon@2x.png */; };
+		008F7EAB1910E030004F57B6 /* plusWhiteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA71910E030004F57B6 /* plusWhiteIcon.png */; };
+		008F7EAC1910E030004F57B6 /* plusWhiteIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA81910E030004F57B6 /* plusWhiteIcon@2x.png */; };
 		0092FD36190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD35190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m */; };
 		0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD39190A91AD00499F7E /* OKProcedureCell.m */; };
 		0092FD3D190A91C100499F7E /* OKListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD3C190A91C100499F7E /* OKListCell.m */; };
@@ -45,10 +49,6 @@
 		00A64D4B19064DB400740DC7 /* cellDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64CFE19064DB300740DC7 /* cellDark@2x.png */; };
 		00A64D4C19064DB400740DC7 /* cellLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64CFF19064DB300740DC7 /* cellLight.png */; };
 		00A64D4D19064DB400740DC7 /* cellLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0019064DB300740DC7 /* cellLight@2x.png */; };
-		00A64D4E19064DB400740DC7 /* selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0119064DB300740DC7 /* selected.png */; };
-		00A64D4F19064DB400740DC7 /* selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0219064DB400740DC7 /* selected@2x.png */; };
-		00A64D5019064DB400740DC7 /* unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0319064DB400740DC7 /* unselected.png */; };
-		00A64D5119064DB400740DC7 /* unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0419064DB400740DC7 /* unselected@2x.png */; };
 		00A64D5219064DB400740DC7 /* greenGraph.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0619064DB400740DC7 /* greenGraph.png */; };
 		00A64D5319064DB400740DC7 /* greenGraph@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0719064DB400740DC7 /* greenGraph@2x.png */; };
 		00A64D5419064DB400740DC7 /* greenMagnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A64D0819064DB400740DC7 /* greenMagnifier.png */; };
@@ -181,6 +181,10 @@
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
 		0086296E190EABCD006EBA9C /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSlider.h; sourceTree = "<group>"; };
 		0086296F190EABCD006EBA9C /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSlider.m; sourceTree = "<group>"; };
+		008F7EA51910E030004F57B6 /* minusGreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusGreenIcon.png; sourceTree = "<group>"; };
+		008F7EA61910E030004F57B6 /* minusGreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minusGreenIcon@2x.png"; sourceTree = "<group>"; };
+		008F7EA71910E030004F57B6 /* plusWhiteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusWhiteIcon.png; sourceTree = "<group>"; };
+		008F7EA81910E030004F57B6 /* plusWhiteIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plusWhiteIcon@2x.png"; sourceTree = "<group>"; };
 		0092FD34190A67E000499F7E /* OKSurgeonPerfomanceDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSurgeonPerfomanceDataVC.h; sourceTree = "<group>"; };
 		0092FD35190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgeonPerfomanceDataVC.m; sourceTree = "<group>"; };
 		0092FD38190A91AD00499F7E /* OKProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureCell.h; sourceTree = "<group>"; };
@@ -217,10 +221,6 @@
 		00A64CFE19064DB300740DC7 /* cellDark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellDark@2x.png"; sourceTree = "<group>"; };
 		00A64CFF19064DB300740DC7 /* cellLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellLight.png; sourceTree = "<group>"; };
 		00A64D0019064DB300740DC7 /* cellLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellLight@2x.png"; sourceTree = "<group>"; };
-		00A64D0119064DB300740DC7 /* selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selected.png; sourceTree = "<group>"; };
-		00A64D0219064DB400740DC7 /* selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected@2x.png"; sourceTree = "<group>"; };
-		00A64D0319064DB400740DC7 /* unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselected.png; sourceTree = "<group>"; };
-		00A64D0419064DB400740DC7 /* unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "unselected@2x.png"; sourceTree = "<group>"; };
 		00A64D0619064DB400740DC7 /* greenGraph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenGraph.png; sourceTree = "<group>"; };
 		00A64D0719064DB400740DC7 /* greenGraph@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenGraph@2x.png"; sourceTree = "<group>"; };
 		00A64D0819064DB400740DC7 /* greenMagnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenMagnifier.png; sourceTree = "<group>"; };
@@ -537,10 +537,6 @@
 				00A64CFE19064DB300740DC7 /* cellDark@2x.png */,
 				00A64CFF19064DB300740DC7 /* cellLight.png */,
 				00A64D0019064DB300740DC7 /* cellLight@2x.png */,
-				00A64D0119064DB300740DC7 /* selected.png */,
-				00A64D0219064DB400740DC7 /* selected@2x.png */,
-				00A64D0319064DB400740DC7 /* unselected.png */,
-				00A64D0419064DB400740DC7 /* unselected@2x.png */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -554,6 +550,10 @@
 				00A64D0919064DB400740DC7 /* greenMagnifier@2x.png */,
 				00A64D0A19064DB400740DC7 /* redCross.png */,
 				00A64D0B19064DB400740DC7 /* redCross@2x.png */,
+				008F7EA51910E030004F57B6 /* minusGreenIcon.png */,
+				008F7EA61910E030004F57B6 /* minusGreenIcon@2x.png */,
+				008F7EA71910E030004F57B6 /* plusWhiteIcon.png */,
+				008F7EA81910E030004F57B6 /* plusWhiteIcon@2x.png */,
 			);
 			path = colorIcons;
 			sourceTree = "<group>";
@@ -859,7 +859,6 @@
 				0092FD40190A9D6400499F7E /* whiteCellBG.png in Resources */,
 				00A64D8119064DB400740DC7 /* navbarBG_color.png in Resources */,
 				00FA8D94190F872600403429 /* fullrange.png in Resources */,
-				00A64D4F19064DB400740DC7 /* selected@2x.png in Resources */,
 				00A64D7C19064DB400740DC7 /* logo@2x.png in Resources */,
 				00A64D5519064DB400740DC7 /* greenMagnifier@2x.png in Resources */,
 				00A64D7619064DB400740DC7 /* forgotPassword@2x.png in Resources */,
@@ -883,14 +882,15 @@
 				00FA8D93190F872600403429 /* fillrange@2x.png in Resources */,
 				00A64D8019064DB400740DC7 /* logoTB@2x.png in Resources */,
 				00A64D8C19065A5400740DC7 /* cellActiveBG@2x.png in Resources */,
+				008F7EAC1910E030004F57B6 /* plusWhiteIcon@2x.png in Resources */,
 				00A64D8219064DB400740DC7 /* navbarBG_color@2x.png in Resources */,
+				008F7EA91910E030004F57B6 /* minusGreenIcon.png in Resources */,
 				00A64D6919064DB400740DC7 /* logout.png in Resources */,
 				00A64D6319064DB400740DC7 /* home.png in Resources */,
 				00A64D5319064DB400740DC7 /* greenGraph@2x.png in Resources */,
 				E10023F418F529E9008421D4 /* Main_iPad.storyboard in Resources */,
 				00A64D7019064DB400740DC7 /* password@2x.png in Resources */,
 				00A64D4619064DB400740DC7 /* bg.png in Resources */,
-				00A64D5119064DB400740DC7 /* unselected@2x.png in Resources */,
 				00A64D6719064DB400740DC7 /* knife.png in Resources */,
 				00A64D941906716C00740DC7 /* navbarBG@2x.png in Resources */,
 				00A64D6119064DB400740DC7 /* folder.png in Resources */,
@@ -910,7 +910,6 @@
 				00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */,
 				00A64D5619064DB400740DC7 /* redCross.png in Resources */,
 				182659CD1906A36200723D16 /* dashboardBG.png in Resources */,
-				00A64D4E19064DB400740DC7 /* selected.png in Resources */,
 				00A64D8419064DB400740DC7 /* rangethumb@2x.png in Resources */,
 				00A64D4119064DB400740DC7 /* back@2x.png in Resources */,
 				00A64D6619064DB400740DC7 /* info@2x.png in Resources */,
@@ -919,7 +918,6 @@
 				00A64D7119064DB400740DC7 /* settings.png in Resources */,
 				00A64D7E19064DB400740DC7 /* logoNB@2x.png in Resources */,
 				00A64D7219064DB400740DC7 /* settings@2x.png in Resources */,
-				00A64D5019064DB400740DC7 /* unselected.png in Resources */,
 				0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */,
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
 				00A64D4519064DB400740DC7 /* right@2x.png in Resources */,
@@ -932,10 +930,12 @@
 				00A64D7519064DB400740DC7 /* forgotPassword.png in Resources */,
 				00A64D8819064DB400740DC7 /* userImage@2x.png in Resources */,
 				00A64D8319064DB400740DC7 /* rangethumb.png in Resources */,
+				008F7EAA1910E030004F57B6 /* minusGreenIcon@2x.png in Resources */,
 				00A64D5419064DB400740DC7 /* greenMagnifier.png in Resources */,
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
 				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
 				00A64D4819064DB400740DC7 /* bg_568.png in Resources */,
+				008F7EAB1910E030004F57B6 /* plusWhiteIcon.png in Resources */,
 				00A64D4719064DB400740DC7 /* bg@2x.png in Resources */,
 				E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */,
 				E10023E818F529E9008421D4 /* InfoPlist.strings in Resources */,
