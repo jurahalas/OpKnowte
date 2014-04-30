@@ -11,6 +11,8 @@
 
 @interface OKUserManager : OKBaseManager
 
+@property (nonatomic, strong) OKUserModel* currentUser;
+
 +(OKUserManager*)instance;
 
 

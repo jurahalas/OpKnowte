@@ -10,15 +10,6 @@
 
 @implementation OKCustomTextField
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 -(void) awakeFromNib {
     [self drawCustomTextField];
 }
@@ -46,7 +37,9 @@
     
 }
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
-    
+   
+    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+
     UIImage *textFieldImage = [[UIImage alloc] init];
     if ([placeholder isEqualToString:@"First name"] || [placeholder isEqualToString:@"Last name"] || [placeholder isEqualToString:@"Email"]) {
         textFieldImage = [UIImage imageNamed:@"name"];
@@ -54,14 +47,40 @@
         textFieldImage = [UIImage imageNamed:@"email"];
     } else if ([placeholder isEqualToString:@"MD"]){
         textFieldImage = [UIImage imageNamed:@"degree"];
-    } else {
+    }else if ([placeholder isEqualToString:@"MD"]){
+        textFieldImage = [UIImage imageNamed:@"degree"];
+    }else if ([placeholder isEqualToString:@"Name:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Street Address:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"City:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"State:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Zip:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Country:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Email:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Fax:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else {
         textFieldImage = [UIImage imageNamed:@"password"];
     }
+    
     UIImageView *textFieldIcon = [[UIImageView alloc] init];
     textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
     textFieldIcon.image = textFieldImage;
     
-    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
     textFieldIconView.backgroundColor = [UIColor clearColor];
     [textFieldIconView addSubview:textFieldIcon];
     self.leftView = textFieldIconView;
