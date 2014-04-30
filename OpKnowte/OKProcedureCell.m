@@ -1,14 +1,14 @@
 //
-//  OKProcedureDetailSummaryCell.m
+//  OKProcedureCell.m
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/18/14.
+//  Created by Artem Frolow on 4/25/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKProcedureDetailSummaryCell.h"
+#import "OKProcedureCell.h"
 
-@implementation OKProcedureDetailSummaryCell
+@implementation OKProcedureCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -18,22 +18,22 @@
     }
     return self;
 }
+
+
 -(void)awakeFromNib{
-
-
+    UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellDark"]];
+    UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
+    
+    self.selectedBackgroundView  = cellIsSelected;
     self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundView = cellBG;
     self.backgroundColor = [UIColor clearColor];
 }
--(void) setLabels{
-    _procedureKeyLabel.text = @"Key";
-    _procedureValueLabel.text = @"Value";
-}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

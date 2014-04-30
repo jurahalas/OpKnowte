@@ -27,20 +27,31 @@
     [super viewDidLoad];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
-    _passwordTextField.text = @"1234";
-    _emailTextField.text = @"myname@i.ua";
+//    _passwordTextField.text = @"";
+//    _emailTextField.text = @"";
     
 }
+
+
 -(void) viewWillAppear:(BOOL)animated {
     
      [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }
 
-- (void)didReceiveMemoryWarning {
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    if([defaults objectForKey:@"EMAILADDRESS"]!=nil  && ![[defaults objectForKey:@"EMAILADDRESS"] isEqualToString:@""]){
+        [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
+    }
+}
+
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
 }
 
 #pragma mark - textField methods
@@ -114,6 +125,11 @@
                 _loginButton.enabled = YES;
                
             } else {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:_emailTextField.text forKey:@"EMAILADDRESS"];
+                [defaults setObject:_passwordTextField.text forKey:@"PASSWORD"];
+                [defaults synchronize];
+                
                 UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormSuccessAlertView show];
                 [self.view endEditing:YES];

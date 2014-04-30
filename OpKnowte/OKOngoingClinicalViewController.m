@@ -24,11 +24,14 @@
 @property (strong, nonatomic) NSArray *MDPickerData;
 @property (nonatomic) BOOL animatedKeyboard;
 @property (nonatomic) int currentTextFieldTag;
+@property (strong, nonatomic) IBOutlet UIView *bottonTabBarButton;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
 
 @end
 
 @implementation OKOngoingClinicalViewController
-@synthesize animatedKeyboard,updateButton,chestXrayPiker,chestXray,bun,creatinine,liverEnzymesPiker,liverEnzymes,portSiteHerniaPiker,ctScanPiker,outher,MDPickerData,MDPiker,currentTextFieldTag,PikerView;
+@synthesize animatedKeyboard,updateButton,chestXrayPiker,chestXray,bun,creatinine,liverEnzymesPiker,liverEnzymes,portSiteHerniaPiker,ctScanPiker,outher,MDPickerData,MDPiker,currentTextFieldTag,PikerView,bottonTabBarButton,scrollView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -43,8 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self addBottomTabBar];
     [self design];
+    [self addBottomTabBarButton];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     
     MDPickerData = [[NSArray alloc]init];
@@ -74,11 +77,16 @@
     outher.tag = 9;
 }
 
+-(void)addBottomTabBarButton
+{
+  bottonTabBarButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
+}
+
 #pragma mark - Text Fields methods
 
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
-    const int movementDistance = 120;
+    const int movementDistance = 180;
     const float movementDuration = 0.3f;
     int movement = (up ? -movementDistance : movementDistance);
     [UIView animateWithDuration:movementDuration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -89,6 +97,7 @@
     } else {
         animatedKeyboard = NO;
     }
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -104,6 +113,7 @@
         [textField resignFirstResponder];
         [self animateTextField: textField up: NO];
     }
+    
     return YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -116,13 +126,13 @@
     
     if(textField.tag == chestXrayPiker.tag || textField.tag == liverEnzymesPiker.tag || textField.tag == portSiteHerniaPiker.tag || textField.tag == ctScanPiker.tag) {
         [self.view endEditing:YES];
-        MDPiker.hidden = NO;
+        PikerView.hidden = NO;
         [chestXrayPiker resignFirstResponder];
         [liverEnzymesPiker resignFirstResponder];
         [portSiteHerniaPiker resignFirstResponder];
         [ctScanPiker resignFirstResponder];
     } else {
-        MDPiker.hidden = YES;
+        PikerView.hidden = YES;
     }
     if (textField.tag > 4  && !animatedKeyboard){
         [self animateTextField: textField up: YES];
@@ -219,7 +229,9 @@
     MDPickerData = xRay;
     
     [self.view bringSubviewToFront:PikerView];
+    
     [MDPiker reloadAllComponents];
+    
     [self.view endEditing:YES];
     
     if (animatedKeyboard) {
@@ -236,6 +248,7 @@
     MDPickerData = liver;
 
     [self.view bringSubviewToFront:PikerView];
+    
     [MDPiker reloadAllComponents];
 
     [self.view endEditing:YES];
@@ -254,6 +267,7 @@
     MDPickerData = postSH;
     
     [self.view bringSubviewToFront:PikerView];
+    
     [MDPiker reloadAllComponents];
 
     [self.view endEditing:YES];
@@ -266,11 +280,13 @@
 - (IBAction)ctScan:(id)sender
 {
     PikerView.hidden = !PikerView.hidden;
+
     
     NSArray * ctScan = [[NSArray alloc]initWithObjects:@"No evidence of metastatic disease",@"Local recurrence",@"Lymphadenopathy",@"Liver metastasis",@"Bone metastasis",@"Brain metastasis",@"Not performed", nil];
     MDPickerData = ctScan;
     
     [self.view bringSubviewToFront:PikerView];
+    
     [MDPiker reloadAllComponents];
 
     [self.view endEditing:YES];
@@ -280,6 +296,28 @@
     }
     currentTextFieldTag = 4;
 }
+
+- (void)scrollViewToOptimalPosition:(NSInteger)index
+{
+    CGRect scrollFrame = CGRectZero;
+    
+//    if(index < self.elements.count-1){
+//        scrollFrame = ((UIView*)[self.elements objectAtIndex:2]).superview.frame;
+//    }else{
+//        scrollFrame = ((UIView*)[self.elements lastObject]).frame;
+//    }
+    [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setContentSize: scrollFrame.size];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
+    [self.scrollView scrollsToTop];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
