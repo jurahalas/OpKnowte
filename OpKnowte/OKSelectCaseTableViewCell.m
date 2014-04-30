@@ -27,12 +27,13 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
+
+
 -(void) setCellBGImageLight:(int) cellCount {
     UIImageView *cellBG = [[UIImageView alloc]init];
     if (cellCount%2 == 1) {
