@@ -17,6 +17,8 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     self.selectedBackgroundView  = cellIsSelected;
     self.backgroundColor = [UIColor clearColor];
+    [_selectFacilityButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
+    _buttonIsTapped = NO;
   
     
 }
@@ -35,7 +37,13 @@
 
 - (IBAction)facilityButton:(id)sender
 {
-
+    if (!_selectFacilityButton) {
+        [_selectFacilityButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
+        _buttonIsTapped = YES;
+    } else {
+        [_selectFacilityButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
+        _buttonIsTapped = NO;
+    }
 }
 
 -(void) setCellUserIntaractionDisabled {

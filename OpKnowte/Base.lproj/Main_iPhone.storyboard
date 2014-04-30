@@ -1388,8 +1388,6 @@
                                                     <state key="normal" image="minusGreenIcon.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" image="plusWhiteIcon.png"/>
-                                                    <state key="highlighted" image="plusWhiteIcon.png"/>
                                                     <connections>
                                                         <action selector="facilityButton:" destination="M6C-wE-tlv" eventType="touchUpInside" id="MgU-aH-uEX"/>
                                                     </connections>
@@ -1411,7 +1409,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="450" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="450.00000021606684" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -1486,7 +1484,6 @@
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="minusGreenIcon.png" width="25" height="25"/>
-        <image name="plusWhiteIcon.png" width="25" height="25"/>
         <image name="register.png" width="56" height="23"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>

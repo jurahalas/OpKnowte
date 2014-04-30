@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *emailLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *rightIcon;
 - (IBAction)facilityButton:(id)sender;
+@property (nonatomic) BOOL buttonIsTapped;
+
 
 -(void) setCellUserIntaractionDisabled;
 -(void) setCellUserIntaractionEnabled;
