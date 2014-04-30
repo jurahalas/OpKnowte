@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UIView *dateView;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateFromTF;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateToTF;
+@property (strong, nonatomic) IBOutlet UILabel *caseFromLabel;
+@property (strong, nonatomic) IBOutlet UILabel *caseToLabel;
 
 @property (strong, nonatomic) IBOutlet UIView *searchView;
 @property (strong, nonatomic) IBOutlet UILabel *diselectAllLabel;
@@ -36,6 +38,7 @@
 
 @implementation OKSurgeonPerfomanceDataVC
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -44,6 +47,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -57,16 +61,25 @@
     [_procedureTableView reloadData];
     [_listTableView reloadData];
 }
+
+
 - (IBAction)selectVariablesButton:(id)sender {
 }
+
+
 - (IBAction)diselectAllButton:(id)sender {
 }
+
+
 - (IBAction)searchButton:(id)sender {
 }
+
+
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 
 }
+
 
 -(void) setDesign{
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
@@ -92,7 +105,7 @@
     
     
     
-    _slider = [[RangeSlider alloc] initWithFrame:CGRectMake(60, 100, 244, 20)]; // the slider enforces a height of 30, although I'm not sure that this is necessary
+    _slider = [[RangeSlider alloc] initWithFrame:CGRectMake(60, 90, 244, 20)]; // the slider enforces a height of 30, although I'm not sure that this is necessary
 	_slider.minimumRangeLength = .0005; // this property enforces a minimum range size. By default it is set to 0.0
 	[_slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]]; // the two thumb controls are given custom images
 	[_slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
@@ -100,16 +113,25 @@
 	[_slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
 	image = [UIImage imageNamed:@"fillrange.png"];
 	[_slider setInRangeTrackImage:image];
-    //[_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes
-	//reportLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 30, 310, 30)]; // a label to see the values of the slider in this demo
-	//reportLabel.adjustsFontSizeToFitWidth = YES;
-	//reportLabel.textAlignment = NSTextAlignmentCenter;
-	//[window addSubview:reportLabel];
-	//NSString *report = [NSString stringWithFormat:@"current slider range is %d to %d", (int)(slider.min*1000), (int)(slider.max*1000)];
-	//reportLabel.text = report;
+    [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes	
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*1000)];
+	_caseFromLabel.text = caseFromString;
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*1000)];
+    _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
     
 }
+
+
+- (void)report:(RangeSlider *)sender {
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*1000)];
+	_caseFromLabel.text = caseFromString;
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*1000)];
+    _caseToLabel.text = caseToString;
+
+}
+
+
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -129,21 +151,26 @@
         if (!cell) {
             cell = [[OKProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        
         return cell;
-
     }else{
         static NSString *cellIdentifier = @"listCell";
         OKListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         if (!cell) {
             cell = [[OKListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        
         return cell;
     }
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
+    [textField resignFirstResponder];
+    return YES;
     
 }
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

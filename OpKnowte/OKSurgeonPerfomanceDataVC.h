@@ -8,6 +8,6 @@
 
 #import "OKBaseViewController.h"
 
-@interface OKSurgeonPerfomanceDataVC : OKBaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface OKSurgeonPerfomanceDataVC : OKBaseViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @end
