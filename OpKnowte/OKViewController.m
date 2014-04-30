@@ -27,8 +27,8 @@
     [super viewDidLoad];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
-    _passwordTextField.text = @"1234";
-    _emailTextField.text = @"myname@i.ua";
+//    _passwordTextField.text = @"";
+//    _emailTextField.text = @"";
     
 }
 

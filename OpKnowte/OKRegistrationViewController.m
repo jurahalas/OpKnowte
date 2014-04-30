@@ -200,6 +200,10 @@
 
             } else {
                 [[OKLoadingViewController instance] showWithText:@"Loading..."];
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:_firstNameTextField.text forKey:@"firstName"];
+                [defaults synchronize];
 
                 UIAlertView *signUpFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up Success" message:@"Congratulations! You are signed up." delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [signUpFormSuccessAlertView show];
