@@ -20,7 +20,9 @@
     if (self)
     {
         [[NSBundle mainBundle] loadNibNamed:@"OKProcedurePicker" owner:self options:nil];
-        self.view.frame = frame;
+        self.frame = frame;
+        [self addSubview:self.view];
+        self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [self setup];
     }
     return self;

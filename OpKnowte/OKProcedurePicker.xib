@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OKProcedurePicker">
             <connections>
+                <outlet property="button" destination="M83-X9-yk1" id="5xC-E3-Y9u"/>
                 <outlet property="customTextField" destination="lja-YX-OcA" id="bST-bv-swa"/>
-                <outlet property="view" destination="1" id="zF5-Gc-fZs"/>
+                <outlet property="view" destination="1" id="kFH-l7-EXy"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1" customClass="OKProcedurePicker">
+        <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -22,27 +23,23 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="textFieldChanged:" destination="1" eventType="editingChanged" id="7dz-Xl-Y1l"/>
-                        <outlet property="delegate" destination="1" id="K6n-MV-NNW"/>
+                        <outlet property="delegate" destination="-1" id="8mn-b0-lSg"/>
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M83-X9-yk1" userLabel="custom Button">
                     <rect key="frame" x="20" y="5" width="280" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.57647058819999997" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="customButtonTapped:" destination="1" eventType="touchUpInside" id="9Ee-B9-QFU"/>
+                        <action selector="customButtonTapped:" destination="-1" eventType="touchUpInside" id="klc-gv-Ixn"/>
                     </connections>
                 </button>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="button" destination="M83-X9-yk1" id="7NN-g7-1cL"/>
-                <outlet property="customTextField" destination="lja-YX-OcA" id="88G-H7-EA2"/>
-            </connections>
         </view>
     </objects>
 </document>

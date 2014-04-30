@@ -71,7 +71,7 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"picker"]) {
         OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         picker.delegate = self;
-        [self.view addSubview:picker.view];
+        [self.view addSubview:picker];
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
