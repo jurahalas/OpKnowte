@@ -122,7 +122,7 @@
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Stone location #</string>
+				<string>Stone location (#</string>
 				<key>items</key>
 				<array>
 					<string>Upper pole, renal</string>

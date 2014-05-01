@@ -231,10 +231,7 @@
 
 - (IBAction)backButtonTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-    
-    //    if (self.currentPage > 0 ) {
-    //        self.currentPage = (self.currentPage - 1);
-    //    }
+
 }
 
 
