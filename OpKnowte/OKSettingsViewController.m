@@ -75,5 +75,13 @@
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKSettingsTableViewCell *cell = [[OKSettingsTableViewCell alloc] init];
+    cell = (OKSettingsTableViewCell*)[settingsTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.settingsLabel.text  isEqualToString:@"Access Settings"]) {
+        
+        [self performSegueWithIdentifier:@"aSettings" sender:indexPath];
+    }}
 
 @end

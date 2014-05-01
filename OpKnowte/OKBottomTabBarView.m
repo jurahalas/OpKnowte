@@ -7,6 +7,8 @@
 //
 
 #import "OKBottomTabBarView.h"
+#import "OKAccessSettingsViewController.h"
+#import "OKSettingsViewController.h"
 
 @interface OKBottomTabBarView ()
 @property (strong, nonatomic) UIButton *homeButton;
@@ -66,11 +68,14 @@
 }
 -(void)settingsButton:(id)sender
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"EMAILADDRESS"];
-    [defaults removeObjectForKey:@"PASSWORD"];
-    [defaults synchronize];
-    NSLog(@"session was destroyed");
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults removeObjectForKey:@"EMAILADDRESS"];
+//    [defaults removeObjectForKey:@"PASSWORD"];
+//    [defaults synchronize];
+//    NSLog(@"session was destroyed");
+
+    [self.delegate goToSettingsVC];
+    
 }
 
 @end

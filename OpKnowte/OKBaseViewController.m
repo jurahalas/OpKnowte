@@ -7,8 +7,9 @@
 //
 
 #import "OKBaseViewController.h"
+#import "OKSettingsViewController.h"
 
-@interface OKBaseViewController ()
+@interface OKBaseViewController () <OKBaseVCDelegate>
 
 @end
 
@@ -32,14 +33,21 @@
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 	}
 }
+-(void) goToSettingsVC{
+    OKSettingsViewController *vc = [[OKSettingsViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     return UIStatusBarStyleLightContent;
 }
 
+
 -(void) addBottomTabBar {
     OKBottomTabBarView *bottomTabBarView = [[OKBottomTabBarView alloc] init];
+    bottomTabBarView.delegate = self;
     [self.view addSubview:bottomTabBarView];
     [bottomTabBarView drawBottomTabBar];
 }
