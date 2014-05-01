@@ -21,27 +21,43 @@
     if (self)
     {
         [[NSBundle mainBundle] loadNibNamed:@"OKProcedureDatePicker" owner:self options:nil];
-        self.view.frame = frame;
+        self.frame = frame;
+        [self addSubview:self.view];
+        self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [self setup];
     }
     return self;
 }
+
+
 -(void) setup{
     _customTextField.text = @"";
-    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     [self setTextFieldRightImage];
 
 }
+
+
 - (IBAction)customButtonTapped:(id)sender {
+    
     [self.delegate showDatePickerWithDate:[NSDate date] picker:self];
 
 }
+
+
 -(void)setFieldName:(NSString*)name
 {
     _fieldName = name;
 }
+
+
 -(void)setPlaceHolder:(NSString*)placeHolder{
   _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+}
+
+
+-(void) setTagOfTextField:(NSInteger)tagOfTextField{
+    _tagOfTextField = tagOfTextField;
 }
 
 - (void) setTextFieldRightImage{
@@ -54,8 +70,10 @@
     _customTextField.rightView = textFieldDownArrowView;
     _customTextField.rightViewMode = UITextFieldViewModeAlways;
 }
+
+
 - (IBAction)textFieldChanged:(id)sender {
-    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
 
 @end

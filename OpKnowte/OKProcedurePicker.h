@@ -12,7 +12,7 @@
 @class OKProcedurePicker;
 @protocol OKProcedurePickerDelegate <NSObject>
 
--(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger) tag;
 -(void)showPickerWithData:(NSArray*)pickerData picker: (OKProcedurePicker *)pickerObject;
 
 @end
@@ -23,9 +23,13 @@
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic) NSInteger tagOfTextField;
+
 
 
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 -(void) setDataArray:(NSMutableArray *)dataArray;
+
+
 @end

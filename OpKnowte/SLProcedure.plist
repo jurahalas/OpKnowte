@@ -122,7 +122,7 @@
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Stone#n location</string>
+				<string>Stone location #</string>
 				<key>items</key>
 				<array>
 					<string>Upper pole, renal</string>
@@ -148,7 +148,7 @@
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Stone#n size   milimeters</string>
+				<string>Stone size in milimeters (#</string>
 				<key>items</key>
 				<array>
 					<string>0,1</string>
@@ -168,7 +168,7 @@
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
-				<string>No. of Shockwaves for stone#n</string>
+				<string>No. of Shockwaves for stone (#</string>
 				<key>items</key>
 				<array/>
 			</dict>
@@ -185,7 +185,7 @@
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Degree of fragmentations for stone#n</string>
+				<string>Degree of fragmentations for stone (#</string>
 				<key>items</key>
 				<array>
 					<string>excellent</string>

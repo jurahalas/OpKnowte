@@ -12,7 +12,7 @@
 @class OKProcedureDatePicker;
 @protocol OKProcedureDatePickerDelegate <NSObject>
 
--(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger) tag;
 -(void)showDatePickerWithDate:(NSDate*)date picker:( OKProcedureDatePicker * )datePickerObject;
 
 @end
@@ -22,8 +22,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
+@property (nonatomic) NSInteger tagOfTextField;
+@property (nonatomic) BOOL buttonTapped;
 
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
+-(void) setTagOfTextField:(NSInteger)tagOfTextField;
 
 @end

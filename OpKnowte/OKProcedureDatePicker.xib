@@ -7,12 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OKProcedureDatePicker">
             <connections>
-                <outlet property="customTextField" destination="fHG-6i-yrm" id="lQf-p4-U1j"/>
+                <outlet property="button" destination="eh5-LY-gpK" id="qOn-ML-hkd"/>
+                <outlet property="customTextField" destination="fHG-6i-yrm" id="EMc-ba-6Bq"/>
                 <outlet property="view" destination="1" id="6h0-rI-G27"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1" customClass="OKProcedureDatePicker">
+        <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -22,8 +23,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="textFieldChanged:" destination="1" eventType="editingChanged" id="Iig-Cy-PMJ"/>
-                        <outlet property="delegate" destination="1" id="Pxj-tX-iq9"/>
+                        <action selector="textFieldChanged:" destination="-1" eventType="valueChanged" id="MT8-Ey-QYr"/>
+                        <outlet property="delegate" destination="-1" id="C69-yW-uDv"/>
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh5-LY-gpK" userLabel="custom Button">
@@ -34,15 +35,11 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="customButtonTapped:" destination="1" eventType="touchUpInside" id="h0J-GQ-90q"/>
+                        <action selector="customButtonTapped:" destination="-1" eventType="touchUpInside" id="lRd-9k-FGa"/>
                     </connections>
                 </button>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="button" destination="eh5-LY-gpK" id="ZbI-xm-jtu"/>
-                <outlet property="customTextField" destination="fHG-6i-yrm" id="zYE-Ap-9nd"/>
-            </connections>
         </view>
     </objects>
 </document>

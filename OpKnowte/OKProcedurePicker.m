@@ -27,26 +27,42 @@
     }
     return self;
 }
+
+
 -(void) setup{
     _customTextField.text = @"";
-    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     [self setTextFieldRightImage];
     
 }
+
+
 - (IBAction)customButtonTapped:(id)sender {
     [self.delegate showPickerWithData:_dataArray picker:self];
 }
+
 
 -(void)setFieldName:(NSString*)name
 {
     _fieldName = name;
 }
+
+
 -(void)setPlaceHolder:(NSString*)placeHolder{
     _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
+
+
 -(void) setDataArray:(NSMutableArray *)dataArray{
     _dataArray = dataArray;
 }
+
+
+-(void) setTagOfTextField:(NSInteger)tagOfTextField{
+    _tagOfTextField = tagOfTextField;
+}
+
+
 - (void) setTextFieldRightImage{
     UIView *textFieldDownArrowView = [[UIView alloc] init];
     UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
@@ -57,8 +73,10 @@
     _customTextField.rightView = textFieldDownArrowView;
     _customTextField.rightViewMode = UITextFieldViewModeAlways;
 }
+
+
 - (IBAction)textFieldChanged:(id)sender {
-    [self.delegate updateField:self.fieldName withValue:self.customTextField.text];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
 
 

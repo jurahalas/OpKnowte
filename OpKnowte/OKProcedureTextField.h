@@ -16,7 +16,7 @@ enum OKProcedureTextFieldType {
 
 @protocol OKProcedureTextFieldDelegate <NSObject>
 
--(void)updateField:(NSString*)name withValue:(NSString*)newValue;
+-(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger) tag;
 
 @end
 @interface OKProcedureTextField : UIControl
@@ -25,9 +25,11 @@ enum OKProcedureTextFieldType {
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, strong) NSString *fieldName;
 @property (nonatomic, weak) id<OKProcedureTextFieldDelegate>delegate;
+@property (nonatomic) NSInteger tagOfTextField;
 
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 -(void)setType:(enum OKProcedureTextFieldType)type;
+-(void) setTagOfTextField:(NSInteger)tagOfTextField;
 
 @end

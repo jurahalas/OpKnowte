@@ -32,7 +32,9 @@
     }
     return self;
 }
-
+-(id) nextVC{
+    return nil;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,13 +42,34 @@
     self.navigationItem.leftBarButtonItem = backButton;
     UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
     self.navigationItem.rightBarButtonItem = nextButton;
+    self.interactionItems = [[NSMutableArray alloc] init];
+    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
+    self.picker.hidden = YES;
+    self.datePicker.hidden = YES;
+    self.picker.delegate = self;
+    self.picker.dataSource = self;
+    self.picker.showsSelectionIndicator = YES;
+    [self.view addSubview:self.datePicker];
+    [self.view addSubview:self.picker];
+
 }
 
 
--(void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary {
+-(void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary withTag:(int) tag{
+    
     if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"symbolicTextField"]) {
         OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
-        [self.view addSubview:symbolicTextField.view];
+        symbolicTextField.delegate = self;
+        [self.view addSubview:symbolicTextField];
+        [symbolicTextField setTagOfTextField:tag];
+        if (symbolicTextField.tagOfTextField >0) {
+            NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], symbolicTextField.tagOfTextField ];
+            [symbolicTextField setPlaceHolder: placeholder];
+        }else {
+            [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+
+        }
         [symbolicTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [symbolicTextField setType:0];
@@ -54,17 +77,33 @@
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
-        [self.view addSubview:numericTextField.view];
+        numericTextField.delegate = self;
+        [self.view addSubview:numericTextField];
+        [numericTextField setTagOfTextField:tag];
+        if (numericTextField.tagOfTextField >0) {
+            NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], numericTextField.tagOfTextField ];
+            [numericTextField setPlaceHolder: placeholder];
+        }else {
+            [numericTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+            
+        }
         [numericTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
-        [numericTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [numericTextField setType:1];
         [self.interactionItems addObject:numericTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
         OKProcedureDatePicker *datePicker = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
-        [self.view addSubview:datePicker.view];
+        datePicker.delegate = self;
+        [self.view addSubview:datePicker];
+        [datePicker setTagOfTextField:tag];
+        if (datePicker.tagOfTextField >0) {
+            NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], datePicker.tagOfTextField ];
+            [datePicker setPlaceHolder: placeholder];
+        }else {
+            [datePicker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+            
+        }
         [datePicker setFieldName:[customElementDictionary objectForKey:@"name"]];
-        [datePicker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [self.interactionItems addObject:datePicker];
         
         
@@ -72,15 +111,23 @@
         OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         picker.delegate = self;
         [self.view addSubview:picker];
+        [picker setTagOfTextField:tag];
+        if (picker.tagOfTextField >0) {
+            NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], picker.tagOfTextField ];
+            [picker setPlaceHolder: placeholder];
+        }else {
+            [picker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+            
+        }
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
-        [picker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
         [self.interactionItems addObject:picker];
 
 
     } else {
         OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
-        [self.view addSubview:switcher.view];
+        switcher.delegate = self;
+        [self.view addSubview:switcher];
         [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [self.interactionItems addObject:switcher];
@@ -90,7 +137,7 @@
 
 
 #pragma mark - OKProcedureTextFieldDelegate
--(void)updateField:(NSString*)name withValue:(NSString*)newValue
+-(void)updateField:(NSString*)name withValue:(NSString*)newValue  andTag:(NSInteger) tag
 {
 
 }
@@ -106,11 +153,14 @@
 {
     if (self.picker.hidden) {
         self.pickerObject = pickerObject;
+        self.pickerData = pickerData;
         self.picker.hidden = NO;
         self.datePicker.hidden = YES;
+        [self.picker reloadAllComponents];
     } else {
         [self hidePicker];
     }
+
 
 }
 
@@ -125,9 +175,10 @@
             [self.datePicker setDate:date];
         else
             [self.datePicker setDate:[NSDate date]];
-    }else{
+    }else {
         [self hideDatePicker];
     }
+
     
 }
 
@@ -142,30 +193,39 @@
 
 -(void)hideDatePicker
 {
-    self.pickerObject.customTextField.text = [NSString stringWithFormat:@"%@", self.datePicker.date];
+    self.datePickerObject.customTextField.text = [NSString stringWithFormat:@"%@", self.datePicker.date];
     self.datePicker.hidden = YES;
     self.pickerData = nil;
+
 }
 
 
 #pragma mark - picker data source
 
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return self.pickerData[row];
+
+
+-(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    NSString *pickerString = [NSString stringWithFormat:@"%@", self.pickerData[row]];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    return pickerAttributedString;
+    
 }
-
-
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     return self.pickerData.count;
+    
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
     self.pickerObject.customTextField.text = self.pickerData[row];
+    [self.pickerObject.delegate updateField:self.pickerObject.fieldName withValue:self.pickerObject.customTextField.text andTag:self.pickerObject.tagOfTextField];
+
     
 }
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
+    
 }
 
 
