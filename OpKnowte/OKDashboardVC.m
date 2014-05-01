@@ -39,7 +39,7 @@
     [self addBottomTabBar];
   
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _userNameLabel.text = [defaults objectForKey:@"EMAILADDRESS"];
+    _userNameLabel.text = [defaults objectForKey:@"firstName"];
     [defaults synchronize];
     
     [self.dashboardTableView reloadData];
