@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -243,6 +243,16 @@
                                 </state>
                                 <connections>
                                     <segue destination="Tpi-hs-yfW" kind="push" id="yWE-7a-vPz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hlz-5k-Ilf">
+                                <rect key="frame" x="142" y="469" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="LZG-Vd-OmX" kind="push" id="bXc-Iu-aUU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -817,7 +827,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Blb-S0-zb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2028" y="-595"/>
+            <point key="canvasLocation" x="1857" y="-655"/>
+        </scene>
+        <!--Settings View Controller - Settings-->
+        <scene sceneID="uZN-Rr-m30">
+            <objects>
+                <viewController id="LZG-Vd-OmX" customClass="OKSettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c90-Vo-znd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pjc-X1-Y8v">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings" rowHeight="60" id="Jvv-sv-j2f" customClass="OKSettingsTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jvv-sv-j2f" id="ZiQ-oB-RCU">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k2O-GY-yUj">
+                                                    <rect key="frame" x="20" y="19" width="230" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="mM2-H2-XIZ">
+                                                    <rect key="frame" x="280" y="15" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingsIcon" destination="mM2-H2-XIZ" id="GGs-Ph-oGp"/>
+                                            <outlet property="settingsLabel" destination="k2O-GY-yUj" id="3l9-Bz-QP5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="PLG-h3-mxm">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="weJ-tD-YQj">
+                            <connections>
+                                <action selector="backButton:" destination="LZG-Vd-OmX" id="Ycr-c4-iXb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="settingsTableView" destination="pjc-X1-Y8v" id="BR5-9M-xTg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-2e-rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2254" y="-655"/>
         </scene>
         <!--Select Time Point View Controller - Time Points-->
         <scene sceneID="jo8-Sc-jJd">
@@ -1581,43 +1649,16 @@
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
         <image name="calendar.png" width="20" height="20"/>
         <image name="folder.png" width="20" height="20"/>
         <image name="forgotPassword.png" width="125" height="23"/>
         <image name="greenMagnifier.png" width="25" height="25"/>
         <image name="horizontalDevider.png" width="280" height="1"/>
         <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="redCross.png" width="25" height="25"/>
         <image name="register.png" width="56" height="23"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
         <image name="userImage.png" width="48" height="48"/>
