@@ -793,11 +793,24 @@
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
+        <image name="back.png" width="20" height="20"/>
         <image name="forgotPassword.png" width="125" height="23"/>
+        <image name="info.png" width="20" height="20"/>
+        <image name="info.png" width="20" height="20"/>
+        <image name="info.png" width="20" height="20"/>
+        <image name="info.png" width="20" height="20"/>
+        <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="register.png" width="56" height="23"/>
+        <image name="right.png" width="20" height="20"/>
+        <image name="right.png" width="20" height="20"/>
+        <image name="right.png" width="20" height="20"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
         <image name="userImage.png" width="48" height="48"/>
