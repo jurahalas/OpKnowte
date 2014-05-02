@@ -7,6 +7,8 @@
 //
 
 #import "OKBaseViewController.h"
+#import "OKContactManager.h"
+#import "OKContactModel.h"
 
 @interface OKFacilityVC : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
 

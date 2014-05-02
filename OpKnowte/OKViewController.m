@@ -128,6 +128,7 @@
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 [defaults setObject:_emailTextField.text forKey:@"EMAILADDRESS"];
                 [defaults setObject:_passwordTextField.text forKey:@"PASSWORD"];
+                
                 [defaults synchronize];
                 
                 UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
