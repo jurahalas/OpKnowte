@@ -10,6 +10,7 @@
 #import "OKAppDelegate.h"
 
 @interface OKDashboardVC : OKBaseViewController <UITableViewDelegate, UITableViewDataSource>
+- (IBAction)logOutButton:(id)sender;
 
 
 @end

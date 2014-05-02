@@ -15,7 +15,7 @@
 {
     _contactID = [dictionary valueForKey:@"contactID"];
     _contactRoleID = [dictionary valueForKey:@"roleID"] ;
-    _contactName = [dictionary valueForKey:@"name"];
+    _name = [dictionary valueForKey:@"name"];
     _contactEmail = [dictionary valueForKey:@"emailAddress"];
     _contactNumber = [dictionary valueForKey:@"contactNo"] ;
     _contactStreetAddress = [dictionary valueForKey:@"streetAddress"] ;

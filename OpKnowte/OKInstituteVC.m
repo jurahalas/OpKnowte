@@ -61,7 +61,7 @@
     if (self.contactInfo != nil) {
         if ([self.contactInfo contactID].length > 0) {
             
-            [self.nameTextField setText:[self.contactInfo contactName]];
+            [self.nameTextField setText:[self.contactInfo name]];
             [self.emailTextField setText:[self.contactInfo contactEmail]];
             [self.stateTextField setText:[self.contactInfo contactState]];
             [self.cityTextField setText:[self.contactInfo contactCity]];
@@ -105,18 +105,30 @@
 {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-    [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text handler:^(NSString *error){
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[defaults objectForKey:@"userID"] handler:^(NSString *error){
         
-        if (error != nil) {
+        
+        if ([_nameTextField.text isEqual: @""] || [_emailTextField.text isEqual: @""] || [_streerAddressTextField.text isEqual: @""] || [_cityTextField.text isEqual: @""] || [_stateTextField.text isEqual: @""] || [_zipTextField.text isEqual: @""] || [_countryTextField.text isEqual: @""] || [_faxTextField.text isEqual: @""]){
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            [[OKLoadingViewController instance] hide];
+
+        }else if(error != nil){
+
             UIAlertView *addInstitutionFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Add contact error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [addInstitutionFormErrorAlertView show];
             _saveButton.enabled = YES;
-        } else {
+            [[OKLoadingViewController instance] hide];
+
+        }else{
             UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added institution" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
             [addInstitutionFormSuccessAlertView show];
             [self.view endEditing:YES];
             _saveButton.enabled = YES;
             [[OKLoadingViewController instance] hide];
+            [self performSegueWithIdentifier:@"backToDashboard" sender:self];
         }
     }];
 

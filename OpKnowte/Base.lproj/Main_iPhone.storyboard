@@ -1364,6 +1364,18 @@
                                             <segue destination="fua-jD-zoT" kind="push" id="Cm8-3x-ohy"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zTr-1F-2pE">
+                                        <rect key="frame" x="233" y="56" width="67" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.071478074599999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Log Out">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logOutButton:" destination="1sY-Xu-fV5" eventType="touchUpInside" id="3lN-Xi-IqU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -1378,6 +1390,7 @@
                         <outlet property="userView" destination="0ZL-oI-k3v" id="zt7-WN-kFf"/>
                         <segue destination="Nnj-5c-Xiu" kind="push" identifier="performance" id="zap-Oo-WO8"/>
                         <segue destination="f5b-Lb-hkP" kind="push" identifier="DataCapture" id="jeC-sK-VR3"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="logout" id="goQ-lN-Lsa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf7-tF-DbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1582,6 +1595,7 @@
                         <outlet property="stateTextField" destination="ItL-nW-mdr" id="LAj-6H-MpQ"/>
                         <outlet property="streerAddressTextField" destination="j0J-0p-mcY" id="B1p-Wa-bgx"/>
                         <outlet property="zipTextField" destination="jI3-mK-gav" id="mgu-C4-U7v"/>
+                        <segue destination="1sY-Xu-fV5" kind="push" identifier="backToDashboard" id="hs5-kv-qjd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dm8-tn-hcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1597,11 +1611,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="facilityCell" rowHeight="60" id="M6C-wE-tlv" customClass="OKFacilityTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="facilityCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="facilityCell" rowHeight="60" id="M6C-wE-tlv" customClass="OKFacilityTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M6C-wE-tlv" id="ma5-v5-y73">
@@ -1653,32 +1667,32 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="450.00000036653699" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
-                                        <rect key="frame" x="53" y="22" width="40" height="21"/>
+                                        <rect key="frame" x="53" y="12" width="40" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bja-6d-vzl">
-                                        <rect key="frame" x="196" y="22" width="54" height="21"/>
+                                        <rect key="frame" x="196" y="12" width="54" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IJJ-cM-EbO">
-                                        <rect key="frame" x="84" y="20" width="25" height="25"/>
+                                        <rect key="frame" x="84" y="10" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="faxIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g38-J0-RJW">
-                                        <rect key="frame" x="242" y="20" width="25" height="25"/>
+                                        <rect key="frame" x="242" y="10" width="25" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="emailIcon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1699,6 +1713,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="facilityTableView" destination="euz-Ib-NEC" id="MTe-Y3-qOa"/>
+                        <outlet property="faxAndEmailView" destination="HtI-AD-C69" id="jLT-sI-O2A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d34-4z-iot" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1743,7 +1758,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aul-Pn-LEj"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="goQ-lN-Lsa"/>
         <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>
