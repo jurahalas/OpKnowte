@@ -255,6 +255,16 @@
                                     <segue destination="Tpi-hs-yfW" kind="push" id="yWE-7a-vPz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jHo-bN-NrY">
+                                <rect key="frame" x="102" y="468" width="126" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Change Password">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gDA-KF-ACc" kind="push" id="UPB-XE-FGj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -827,7 +837,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Blb-S0-zb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2028" y="-595"/>
+            <point key="canvasLocation" x="1862" y="-655"/>
         </scene>
         <!--Select Time Point View Controller - Time Points-->
         <scene sceneID="jo8-Sc-jJd">
@@ -1653,7 +1663,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="450.00000036653699" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="450" width="320" height="60.000000911352828"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -1705,18 +1715,71 @@
             </objects>
             <point key="canvasLocation" x="2666" y="55"/>
         </scene>
-        <!--View Controller-->
+        <!--Change Password View Controller - Change Password-->
         <scene sceneID="LN7-T1-z11">
             <objects>
-                <viewController id="gDA-KF-ACc" sceneMemberID="viewController">
+                <viewController id="gDA-KF-ACc" customClass="OKChangePasswordViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pVC-Uf-XCf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2sz-oR-OaJ">
+                                <rect key="frame" x="61" y="459" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update Password">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updatePasswordButton:" destination="gDA-KF-ACc" eventType="touchUpInside" id="ndn-EB-5qv"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="jZs-4j-gJe" userLabel="old" customClass="OKCustomTextField">
+                                <rect key="frame" x="61" y="81" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gDA-KF-ACc" id="hRC-Nc-pgy"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Psv-ZC-Rfx" userLabel="new" customClass="OKCustomTextField">
+                                <rect key="frame" x="61" y="127" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gDA-KF-ACc" id="4Dx-nc-TOK"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="x5c-3v-c6L" userLabel="confirm" customClass="OKCustomTextField">
+                                <rect key="frame" x="61" y="172" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gDA-KF-ACc" id="PAW-2Y-ulR"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Change Password" id="9I9-es-vh4">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="GJv-vd-XIl">
+                            <connections>
+                                <action selector="backButton:" destination="gDA-KF-ACc" id="wMZ-Oe-FmD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="theConfirmPasswordTextField" destination="x5c-3v-c6L" id="oTK-H3-zH8"/>
+                        <outlet property="theNewPasswordTextField" destination="Psv-ZC-Rfx" id="Nuv-C3-G7K"/>
+                        <outlet property="theOldPasswordTextField" destination="jZs-4j-gJe" id="PCs-BL-O2k"/>
+                        <outlet property="updatePasswordButton" destination="2sz-oR-OaJ" id="ZaB-Wk-37D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-VE-X5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2248" y="-655"/>
         </scene>
     </scenes>
     <resources>
