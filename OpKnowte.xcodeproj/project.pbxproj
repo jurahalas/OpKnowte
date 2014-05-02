@@ -152,6 +152,8 @@
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
 		AC8F632419135AC800854D06 /* OKDataSharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F632319135AC800854D06 /* OKDataSharingViewController.m */; };
+		AC8F63281913621A00854D06 /* OKTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F63271913621A00854D06 /* OKTemplateViewController.m */; };
+		AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */; };
 		ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03369190A374600D4A144 /* OKSaveViewController.m */; };
 		ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */; };
 		ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */; };
@@ -375,6 +377,10 @@
 		AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOperatieNoteTableViewCell.m; sourceTree = "<group>"; };
 		AC8F632219135AC800854D06 /* OKDataSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataSharingViewController.h; sourceTree = "<group>"; };
 		AC8F632319135AC800854D06 /* OKDataSharingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataSharingViewController.m; sourceTree = "<group>"; };
+		AC8F63261913621A00854D06 /* OKTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplateViewController.h; sourceTree = "<group>"; };
+		AC8F63271913621A00854D06 /* OKTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateViewController.m; sourceTree = "<group>"; };
+		AC8F63291913623900854D06 /* OKTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplateTableViewCell.h; sourceTree = "<group>"; };
+		AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateTableViewCell.m; sourceTree = "<group>"; };
 		ACA03368190A374600D4A144 /* OKSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSaveViewController.h; sourceTree = "<group>"; };
 		ACA03369190A374600D4A144 /* OKSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSaveViewController.m; sourceTree = "<group>"; };
 		ACA0336C190A42ED00D4A144 /* OKSelectCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseViewController.h; sourceTree = "<group>"; };
@@ -488,6 +494,7 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+				AC8F6325191361F400854D06 /* Template View */,
 				AC8F632119135A9700854D06 /* Data Sharing View */,
 				189F45111909421800372C55 /* institute View */,
 				189F450A1909102700372C55 /* Performance Data View */,
@@ -818,6 +825,17 @@
 				AC8F632319135AC800854D06 /* OKDataSharingViewController.m */,
 			);
 			name = "Data Sharing View";
+			sourceTree = "<group>";
+		};
+		AC8F6325191361F400854D06 /* Template View */ = {
+			isa = PBXGroup;
+			children = (
+				AC8F63261913621A00854D06 /* OKTemplateViewController.h */,
+				AC8F63271913621A00854D06 /* OKTemplateViewController.m */,
+				AC8F63291913623900854D06 /* OKTemplateTableViewCell.h */,
+				AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */,
+			);
+			name = "Template View";
 			sourceTree = "<group>";
 		};
 		ACA03367190A371700D4A144 /* Save View */ = {
@@ -1215,6 +1233,7 @@
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
+				AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
@@ -1222,6 +1241,7 @@
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
+				AC8F63281913621A00854D06 /* OKTemplateViewController.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				188608F8190FCC1300BD1D77 /* OKFacilityVC.m in Sources */,
