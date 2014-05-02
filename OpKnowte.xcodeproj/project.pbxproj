@@ -157,6 +157,7 @@
 		ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03369190A374600D4A144 /* OKSaveViewController.m */; };
 		ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */; };
 		ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */; };
+		ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDE993A19136F730083232B /* OKLTemplateViewController.m */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
 		E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DF18F529E9008421D4 /* CoreGraphics.framework */; };
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
@@ -387,6 +388,8 @@
 		ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectCaseViewController.m; sourceTree = "<group>"; };
 		ACA0336F190A436700D4A144 /* OKSelectCaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseTableViewCell.h; sourceTree = "<group>"; };
 		ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectCaseTableViewCell.m; sourceTree = "<group>"; };
+		ACDE993919136F730083232B /* OKLTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLTemplateViewController.h; sourceTree = "<group>"; };
+		ACDE993A19136F730083232B /* OKLTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLTemplateViewController.m; sourceTree = "<group>"; };
 		E10023DA18F529E9008421D4 /* OpKnowte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpKnowte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10023DD18F529E9008421D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E10023DF18F529E9008421D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -830,6 +833,7 @@
 		AC8F6325191361F400854D06 /* Template View */ = {
 			isa = PBXGroup;
 			children = (
+				ACDE993819136F260083232B /* Template with Label View */,
 				AC8F63261913621A00854D06 /* OKTemplateViewController.h */,
 				AC8F63271913621A00854D06 /* OKTemplateViewController.m */,
 				AC8F63291913623900854D06 /* OKTemplateTableViewCell.h */,
@@ -856,6 +860,15 @@
 				ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */,
 			);
 			name = "Select Case View";
+			sourceTree = "<group>";
+		};
+		ACDE993819136F260083232B /* Template with Label View */ = {
+			isa = PBXGroup;
+			children = (
+				ACDE993919136F730083232B /* OKLTemplateViewController.h */,
+				ACDE993A19136F730083232B /* OKLTemplateViewController.m */,
+			);
+			name = "Template with Label View";
 			sourceTree = "<group>";
 		};
 		E10023D118F529E9008421D4 = {
@@ -1231,6 +1244,7 @@
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
 				AC8F632419135AC800854D06 /* OKDataSharingViewController.m in Sources */,
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
+				ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */,
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */,
