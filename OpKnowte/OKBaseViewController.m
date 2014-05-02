@@ -34,10 +34,12 @@
 	}
 }
 -(void) goToSettingsVC{
-    OKSettingsViewController *vc = [[OKSettingsViewController alloc]init];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
     [self.navigationController pushViewController:vc animated:YES];
-}
 
+}
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

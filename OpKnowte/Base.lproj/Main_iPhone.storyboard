@@ -245,16 +245,6 @@
                                     <segue destination="Tpi-hs-yfW" kind="push" id="yWE-7a-vPz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hlz-5k-Ilf">
-                                <rect key="frame" x="96" y="475" width="128" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="LZG-Vd-OmX" kind="push" id="bXc-Iu-aUU"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -832,7 +822,7 @@
         <!--Settings View Controller - Settings-->
         <scene sceneID="uZN-Rr-m30">
             <objects>
-                <viewController id="LZG-Vd-OmX" customClass="OKSettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LZG-Vd-OmX" customClass="OKSettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c90-Vo-znd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
