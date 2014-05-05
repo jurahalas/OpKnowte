@@ -111,13 +111,13 @@
     
     OKUserManager *usermanager = [OKUserManager instance];
    
-//    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
-//        UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [loginFormAlertView show];
-//    }else {
-//        [[OKLoadingViewController instance] showWithText:@"Loading..."];
-//
-//        _loginButton.enabled = NO;
+    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
+        UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [loginFormAlertView show];
+    }else {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
+        _loginButton.enabled = NO;
         [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
             if (error != nil) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -138,7 +138,7 @@
             }
             [[OKLoadingViewController instance] hide];
         }];
-//    }
+    }
 
 }
 
@@ -195,16 +195,21 @@
     if (buttonIndex == 1) {
 
         if ([alertView.title isEqualToString:@"Restore Password"]) {
+            [[OKLoadingViewController instance] showWithText:@"Loading..."];
             OKUserManager *usermanager = [OKUserManager instance];
             [usermanager recoverPasswordWithEmail:[alertView textFieldAtIndex:0].text handler:^(NSString* error){
                 if ([[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
                     UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@" Restore password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                     _forgotPasswordButton.enabled = YES;
+                    [[OKLoadingViewController instance] hide];
                 }else{
-                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Password Updated Successfully" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                 }
+                [[OKLoadingViewController instance] hide];
             }];
         }
     }
