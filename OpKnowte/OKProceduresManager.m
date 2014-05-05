@@ -8,7 +8,7 @@
 
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
-
+#import "OKProcedureTemplateVariablesModel.h"
 @implementation OKProceduresManager
 
 
@@ -52,6 +52,30 @@
 
 
 
+}
+-(void) getProcedureTemplateVariablesByProcedureID:(NSString *)procedureID handler:(void (^)(NSString *errorMsg, NSMutableArray *templateVariables))handler{
+    
+    NSDictionary *params = @{};
+    
+    NSString *url = [NSString stringWithFormat:@"getTemplateVariablesByProcedureID?procedureID=%@", procedureID];
+    
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        
+        NSMutableArray *variablesArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *variable in json) {
+            OKProcedureTemplateVariablesModel *model = [[OKProcedureTemplateVariablesModel alloc] init];
+            [model setModelWithDictionary:variable];
+            [variablesArray addObject:model];
+        }
+        handler([self getErrorMessageFromJSON:json error:error], variablesArray);
+    }];
+    
+    
+
+    
+    
 }
 
 

@@ -53,8 +53,6 @@
         
         [[OKLoadingViewController instance] hide];
     }];
-    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ] );
-
 }
 
 
