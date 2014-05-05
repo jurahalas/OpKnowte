@@ -144,8 +144,7 @@
             
             updatePasswordButton.enabled = YES;
         }
-
-        [[OKLoadingViewController instance] hide];
+            [[OKLoadingViewController instance] hide];
         }];
     }
 }
