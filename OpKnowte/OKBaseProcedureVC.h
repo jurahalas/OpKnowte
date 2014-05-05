@@ -11,6 +11,7 @@
 
 
 @interface OKBaseProcedureVC : OKBaseViewController
+
 @property (nonatomic, strong) NSMutableArray *interactionItems;
 @property (nonatomic, assign) NSInteger currentPage;
 

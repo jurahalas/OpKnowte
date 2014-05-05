@@ -11,34 +11,14 @@
 @interface OKProcedureMultiselect ()
 
 @property (strong, nonatomic) IBOutlet UIButton *button;
-@property (strong, nonatomic) NSString *placeHolder;
 
 @end
 
 @implementation OKProcedureMultiselect
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [[NSBundle mainBundle] loadNibNamed:@"OKProcedureMultiselect" owner:self options:nil];
-        self.frame = frame;
-        [self addSubview:self.view];
-        self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        [self setup];
-    }
-    return self;
-}
-
-
--(void) setup
-{
-}
-
-
 -(void)setPlaceHolder:(NSString*)placeHolder
 {
-    _placeHolder = placeHolder;
+    [super setPlaceHolder:placeHolder];
     [self.button setTitle:placeHolder forState:UIControlStateNormal];
 }
 
@@ -51,6 +31,13 @@
         [self.button setTitle:self.placeHolder forState:UIControlStateNormal];
     }
     [self.delegate updateField:field withData:data];
+}
+
+
+-(BOOL)becomeFirstResponder
+{
+    [self buttonTapped:nil];
+    return YES;
 }
 
 

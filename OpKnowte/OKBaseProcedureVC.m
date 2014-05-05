@@ -15,7 +15,7 @@
 #import "OKProcedureMultiselectVC.h"
 #import "OKProcedureMultiselect.h"
 
-@interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate, OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, OKProcedureSwitcherDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate>
+@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
@@ -76,7 +76,6 @@
         [symbolicTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [symbolicTextField setType:0];
-        [symbolicTextField setup];
         [self.interactionItems addObject:symbolicTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
@@ -92,8 +91,7 @@
             
         }
         [numericTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
-        [numericTextField setType:1];
-        [numericTextField setup];
+        [numericTextField setType:OKProcedureNumericTF];
 
         [self.interactionItems addObject:numericTextField];
         
@@ -110,7 +108,6 @@
             
         }
         [datePicker setFieldName:[customElementDictionary objectForKey:@"name"]];
-        [datePicker setup];
 
         [self.interactionItems addObject:datePicker];
         
@@ -129,7 +126,6 @@
         }
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
-        [picker setup];
 
         [self.interactionItems addObject:picker];
 
@@ -150,7 +146,6 @@
         [self.view addSubview:switcher];
         [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
-        [switcher setup];
 
         [self.interactionItems addObject:switcher];
     }
@@ -164,6 +159,23 @@
 
 }
 
+
+- (void)goToNextElementFrom:(id)sender
+{
+    OKProcedureTextField *nextItem = nil;
+    int rangeStart = [self.interactionItems indexOfObject:sender];
+    for (int index = rangeStart; index < self.interactionItems.count; index++){
+        UIView *view = self.interactionItems[index];
+        if([[view class]isSubclassOfClass:[OKProcedureTextField class]] && view != sender){
+            nextItem = (OKProcedureTextField*)view;
+            break;
+        }
+    }
+    if(nextItem)
+        [nextItem.customTextField becomeFirstResponder];
+    else
+        [sender resignFirstResponder];
+}
 
 #pragma mark - OKProcedureSwitcherDelegate
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{

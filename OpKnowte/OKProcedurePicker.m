@@ -7,27 +7,15 @@
 //
 
 #import "OKProcedurePicker.h"
+#import "OKCustomTextField.h"
 
 @interface OKProcedurePicker ()<UITextFieldDelegate>
+
 - (IBAction)customButtonTapped:(id)sender;
 
 @end
+
 @implementation OKProcedurePicker
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"OKProcedurePicker" owner:self options:nil];
-        self.frame = frame;
-        [self addSubview:self.view];
-        self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        [self setup];
-    }
-    return self;
-}
-
 
 -(void) setup{
     _customTextField.text = @"";
@@ -42,13 +30,9 @@
 }
 
 
--(void)setFieldName:(NSString*)name
+-(void)setPlaceHolder:(NSString*)placeHolder
 {
-    _fieldName = name;
-}
-
-
--(void)setPlaceHolder:(NSString*)placeHolder{
+    [super setPlaceHolder:placeHolder];
     _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 
@@ -74,6 +58,12 @@
     _customTextField.rightViewMode = UITextFieldViewModeAlways;
 }
 
+
+-(BOOL)becomeFirstResponder
+{
+    [self customButtonTapped:nil];
+    return YES;
+}
 
 - (IBAction)textFieldChanged:(id)sender {
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];

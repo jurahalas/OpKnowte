@@ -8,27 +8,7 @@
 
 #import "OKProcedureTextField.h"
 
-@interface OKProcedureTextField ()<UITextFieldDelegate>
-
-@end
-
 @implementation OKProcedureTextField
-
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"OKProcedureTextField" owner:self options:nil];
-        self.frame = frame;
-        [self addSubview:self.view];
-        self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        [self setup];
-    }
-    return self;
-}
-
 
 -(void) setup{
     _customTextField.text = @"";
@@ -36,13 +16,9 @@
 }
 
 
--(void)setFieldName:(NSString*)name
+-(void)setPlaceHolder:(NSString*)placeHolder
 {
-    _fieldName = name;
-}
-
-
--(void)setPlaceHolder:(NSString*)placeHolder{
+    [super setPlaceHolder:placeHolder];
     _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 
@@ -59,17 +35,19 @@
     _tagOfTextField = tagOfTextField;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    
-}
-
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [_customTextField resignFirstResponder];
+    
+    [self.delegate goToNextElementFrom:self];
     return YES;
 }
 
+
+-(BOOL)resignFirstResponder
+{
+    [self.customTextField resignFirstResponder];
+    return YES;
+}
 
 - (IBAction)textFieldChanged:(id)sender {
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];

@@ -187,6 +187,7 @@
 		E1DE705D19177CE30088913C /* OKProcedureMultiselect.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */; };
 		E1DE7061191780B00088913C /* OKProcedureMultiselectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */; };
 		E1DE7062191780B00088913C /* OKProcedureMultiselectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */; };
+		E1DE70681917CC9A0088913C /* OKBaseProcedureElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -449,6 +450,8 @@
 		E1DE705E191780B00088913C /* OKProcedureMultiselectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureMultiselectVC.h; sourceTree = "<group>"; };
 		E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureMultiselectVC.m; sourceTree = "<group>"; };
 		E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureMultiselectVC.xib; sourceTree = "<group>"; };
+		E1DE70661917CC9A0088913C /* OKBaseProcedureElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseProcedureElement.h; sourceTree = "<group>"; };
+		E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseProcedureElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -533,7 +536,7 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
-				189F45111909421800372C55 /* institute View */,
+				189F45111909421800372C55 /*  Institute View */,
 				189F450A1909102700372C55 /* Performance Data View */,
 				AC1D0780190AE1D100DC55FD /* Data Capture View */,
 				AC161A68190A79FE00D8572D /* Operative Note */,
@@ -616,6 +619,8 @@
 				008D5B581907DC6F0039E8B7 /* Text Field */,
 				008D5B691907DE3C0039E8B7 /* Switcher */,
 				00862960190E8C57006EBA9C /* Base Procedure VC */,
+				E1DE70661917CC9A0088913C /* OKBaseProcedureElement.h */,
+				E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */,
 			);
 			name = "Custom elements";
 			sourceTree = "<group>";
@@ -918,13 +923,13 @@
 			name = "Performance Data View";
 			sourceTree = "<group>";
 		};
-		189F45111909421800372C55 /* institute View */ = {
+		189F45111909421800372C55 /*  Institute View */ = {
 			isa = PBXGroup;
 			children = (
 				189F45121909480700372C55 /* OKInstituteVC.h */,
 				189F45131909480700372C55 /* OKInstituteVC.m */,
 			);
-			name = "institute View";
+			name = " Institute View";
 			sourceTree = "<group>";
 		};
 		18F4471F1906594E00C37F3D /* Dashboard View */ = {
@@ -1345,6 +1350,7 @@
 				00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */,
 				00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */,
 				00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */,
+				E1DE70681917CC9A0088913C /* OKBaseProcedureElement.m in Sources */,
 				185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */,
 				189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */,
 				AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */,

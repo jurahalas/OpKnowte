@@ -7,22 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKBaseProcedureElement.h"
 
-@protocol OKProcedureMultiselectDelegate <NSObject>
+@protocol OKProcedureMultiselectDelegate <OKBaseProcedureElementDelegate>
 
--(void)updateField:(NSString*)field withData:(NSArray*)data;
 -(void)showMultiselectVCForFieldWithName:(NSString*)fieldName withData:(NSArray*)data sender:(id)sender;
 
 @end
 
-@interface OKProcedureMultiselect : UIControl
+@interface OKProcedureMultiselect : OKBaseProcedureElement
 
-@property (nonatomic, strong) NSString *fieldName;
-@property (strong, nonatomic) IBOutlet UIView *view;
 @property (nonatomic, weak) id<OKProcedureMultiselectDelegate>delegate;
 @property (nonatomic, strong) NSArray *dataArray;
 
 - (IBAction)buttonTapped:(id)sender;
-- (void)setPlaceHolder:(NSString*)placeHolder;
 
 @end
