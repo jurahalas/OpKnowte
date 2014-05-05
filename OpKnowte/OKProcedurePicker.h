@@ -26,7 +26,7 @@
 @property (nonatomic) NSInteger tagOfTextField;
 
 
-
+-(void) setup;
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 -(void) setDataArray:(NSMutableArray *)dataArray;

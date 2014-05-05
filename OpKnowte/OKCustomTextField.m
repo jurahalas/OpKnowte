@@ -10,15 +10,6 @@
 
 @implementation OKCustomTextField
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 -(void) awakeFromNib {
     [self drawCustomTextField];
 }
@@ -37,10 +28,12 @@
     [self setTextColor:[UIColor whiteColor]];
     self.layer.cornerRadius = 14;
     self.clipsToBounds = YES;
+    
     UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     textFieldIconView.backgroundColor = [UIColor clearColor];
     self.leftView = textFieldIconView;
     self.leftViewMode = UITextFieldViewModeAlways;
+    
     
 }
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
@@ -55,6 +48,7 @@
     } else {
         textFieldImage = [UIImage imageNamed:@"password"];
     }
+    
     UIImageView *textFieldIcon = [[UIImageView alloc] init];
     textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
     textFieldIcon.image = textFieldImage;

@@ -7,11 +7,13 @@
 //
 
 #import "OKShockwaveLithotripsyVC.h"
+#import "OKShockwaveLithotripsyModel.h"
+
 #import "OKProcedureTextField.h"
 #import "OKProcedureSwitcher.h"
 #import "OKProcedureDatePicker.h"
 #import "OKProcedurePicker.h"
-#import "OKShockwaveLithotripsyModel.h"
+
 
 @interface OKShockwaveLithotripsyVC ()
 
@@ -48,7 +50,7 @@
     for (int i = 0; i < currentPageFieldsArray.count; i++) {
     
         if (self.currentPage >=2 && self.currentPage <= 5) {
-            for (int j = 0; j < [[self.model valueForKey:@"stonesCount" ] intValue]; j++) {
+            for (int j = 0; j < [[self.model valueForKey:@"var_stonesCount" ] intValue]; j++) {
                 [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:j+1];
             }
         } else {
@@ -90,12 +92,12 @@
         boolToString = @"NO";
     }
     
-    if ([name isEqualToString:@"pausePerformed"]) {
+    if ([name isEqualToString:@"var_pausePerformed"]) {
        [self.model setValue:boolToString forKey:name];
     } else if ([name isEqualToString:@"complications?"]) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
-            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"complications"]) {
+            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_complications"]) {
                 element = searchedElement;
                 break;
             }
@@ -113,7 +115,7 @@
 -(id) nextVC{
     OKShockwaveLithotripsyVC *nextVC = [[OKShockwaveLithotripsyVC alloc] init];
     nextVC.model = self.model;
-    
+    nextVC.procedureID = self.procedureID;
     nextVC.currentPage = (self.currentPage + 1);
     return nextVC;
 }

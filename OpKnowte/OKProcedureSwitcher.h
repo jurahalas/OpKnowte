@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSString *fieldName;
 @property (nonatomic, weak) id<OKProcedureSwitcherDelegate>delegate;
 
+-(void) setup;
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 @end

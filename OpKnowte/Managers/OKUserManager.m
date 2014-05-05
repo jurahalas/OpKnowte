@@ -21,15 +21,33 @@
     return manager;
 }
 
+
+- (id) init
+{
+    if (self = [super init]) {
+        self.currentUser = [[OKUserModel alloc]init];
+    }
+    return self;
+}
+
+- (void)updateCurrentUserFromJSON:(NSDictionary*)json
+{
+    if(!self.currentUser)
+        self.currentUser = [[OKUserModel alloc]init];
+    
+    [self.currentUser setModelWithDictionary:[json objectForKey:@"User"]];
+}
+
 -(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
 {
     NSDictionary *params = @{@"email": email, @"password": password};
     [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
-        OKUserModel *loginedUser = [[OKUserModel alloc]init];
-        [loginedUser setModelWithDictionary:json];
-        NSLog(@"%@",loginedUser.firstName);
+        [self.currentUser setModelWithDictionary:json];
+        NSLog(@"%@",self.currentUser.firstName);
+        NSLog(@"%@",self.currentUser.userID);
+
     }];
 }
 

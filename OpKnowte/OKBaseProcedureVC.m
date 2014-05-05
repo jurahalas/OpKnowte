@@ -11,6 +11,7 @@
 #import "OKProcedureSwitcher.h"
 #import "OKProcedureDatePicker.h"
 #import "OKProcedurePicker.h"
+#import "OKOperatieNoteViewController.h"
 
 
 @interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate, OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, OKProcedureSwitcherDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
@@ -47,6 +48,7 @@
     self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
     self.picker.hidden = YES;
     self.datePicker.hidden = YES;
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
     self.picker.delegate = self;
     self.picker.dataSource = self;
     self.picker.showsSelectionIndicator = YES;
@@ -73,6 +75,7 @@
         [symbolicTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [symbolicTextField setType:0];
+        [symbolicTextField setup];
         [self.interactionItems addObject:symbolicTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
@@ -89,6 +92,8 @@
         }
         [numericTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [numericTextField setType:1];
+        [numericTextField setup];
+
         [self.interactionItems addObject:numericTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
@@ -104,6 +109,8 @@
             
         }
         [datePicker setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [datePicker setup];
+
         [self.interactionItems addObject:datePicker];
         
         
@@ -121,6 +128,8 @@
         }
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
+        [picker setup];
+
         [self.interactionItems addObject:picker];
 
 
@@ -130,6 +139,8 @@
         [self.view addSubview:switcher];
         [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        [switcher setup];
+
         [self.interactionItems addObject:switcher];
     }
     _xPoint += 43;
@@ -157,11 +168,12 @@
         self.picker.hidden = NO;
         self.datePicker.hidden = YES;
         [self.picker reloadAllComponents];
+        
     } else {
         [self hidePicker];
     }
 
-
+    [self.view endEditing:YES];
 }
 
 
@@ -179,7 +191,7 @@
         [self hideDatePicker];
     }
 
-    
+       [self.view endEditing:YES];
 }
 
 
@@ -194,6 +206,7 @@
 -(void)hideDatePicker
 {
     self.datePickerObject.customTextField.text = [NSString stringWithFormat:@"%@", self.datePicker.date];
+    [self.datePickerObject.delegate updateField:self.datePickerObject.fieldName withValue:self.datePickerObject.customTextField.text andTag:self.datePickerObject.tagOfTextField];
     self.datePicker.hidden = YES;
     self.pickerData = nil;
 
@@ -238,8 +251,14 @@
 - (IBAction)rightButtonTapped:(id)sender {
     if (self.currentPage < (self.plistArray.count - 1) ) {
         id nextVC = [self nextVC];
-        
         [self.navigationController pushViewController:nextVC animated:YES];
+    } else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];
+        vc.model = self.model;
+        vc.procedureID = self.procedureID;
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
 }
 

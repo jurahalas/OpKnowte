@@ -25,6 +25,7 @@
 @property (nonatomic) NSInteger tagOfTextField;
 @property (nonatomic) BOOL buttonTapped;
 
+-(void) setup;
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 -(void) setTagOfTextField:(NSInteger)tagOfTextField;

@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UIPickerView *picker;
 
 @property (strong, nonatomic) id model;
+@property (nonatomic) int procedureID;
 @property (nonatomic,strong) NSArray *plistArray;
 @property (nonatomic) int xPoint;
 

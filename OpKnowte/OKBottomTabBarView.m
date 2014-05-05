@@ -26,7 +26,7 @@
     
 }
 -(void) drawHomeButton {
-    _homeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _homeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _homeButton.frame = CGRectMake(0, 0, 80, 51);
     
     _homeButton.tintColor = [UIColor whiteColor];
@@ -64,8 +64,13 @@
 -(void)homeButton:(id)sender{
     
 }
--(void)settingsButton:(id)sender{
-    
+-(void)settingsButton:(id)sender
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"EMAILADDRESS"];
+    [defaults removeObjectForKey:@"PASSWORD"];
+    [defaults synchronize];
+    NSLog(@"session was destroyed");
 }
 
 @end

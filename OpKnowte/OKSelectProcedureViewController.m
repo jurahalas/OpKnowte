@@ -11,6 +11,7 @@
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
 #import "OKShockwaveLithotripsyVC.h"
+#import "OKLRPartialNephrectomyVC.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -52,6 +53,8 @@
         
         [[OKLoadingViewController instance] hide];
     }];
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ] );
+
 }
 
 
@@ -71,12 +74,18 @@
 #pragma mark - Table View methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
-//    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
-//        [self performSegueWithIdentifier:@"shockwaveLithotripsy" sender:self];
-//    }
-    OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+        OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
+        vc.procedureID = indexPath.row+1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+        OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
+        vc.procedureID = indexPath.row+1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+ 
     
     
 }

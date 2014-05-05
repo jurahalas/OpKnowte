@@ -20,7 +20,7 @@
 }
 -(void)awakeFromNib{
 
-    
+
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
 }

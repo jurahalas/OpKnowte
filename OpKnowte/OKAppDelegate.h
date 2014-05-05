@@ -22,6 +22,7 @@
 #import "OKProcedureDetailSummaryCell.h"
 #import "OKSurgeonPerformanceDataComparisonContentCell.h"
 #import "OKSurgeonPerformanceDataComparisonTitleCell.h"
+#import "OKFacilityTableViewCell.h"
 
 //networking
 #import "OKApiClient.h"

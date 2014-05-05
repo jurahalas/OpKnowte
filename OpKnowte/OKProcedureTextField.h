@@ -27,6 +27,7 @@ enum OKProcedureTextFieldType {
 @property (nonatomic, weak) id<OKProcedureTextFieldDelegate>delegate;
 @property (nonatomic) NSInteger tagOfTextField;
 
+-(void) setup;
 -(void)setFieldName:(NSString*)name;
 -(void)setPlaceHolder:(NSString*)placeHolder;
 -(void)setType:(enum OKProcedureTextFieldType)type;
