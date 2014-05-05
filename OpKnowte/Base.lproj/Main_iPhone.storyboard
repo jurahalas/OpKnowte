@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -842,11 +842,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings" rowHeight="60" id="Jvv-sv-j2f" customClass="OKSettingsTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="settings" rowHeight="60" id="Jvv-sv-j2f" customClass="OKSettingsTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jvv-sv-j2f" id="ZiQ-oB-RCU">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k2O-GY-yUj">
@@ -882,11 +882,12 @@
                     <connections>
                         <outlet property="settingsTableView" destination="pjc-X1-Y8v" id="BR5-9M-xTg"/>
                         <segue destination="ztT-3o-WfS" kind="push" identifier="aSettings" id="LpP-cw-gCU"/>
+                        <segue destination="gDA-KF-ACc" kind="push" identifier="CP" id="0YU-ad-mb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-2e-rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2254" y="-655"/>
+            <point key="canvasLocation" x="2231" y="-636"/>
         </scene>
         <!--Access Settings View Controller - Access Settings-->
         <scene sceneID="AXV-Cj-0PL">
@@ -957,7 +958,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pjq-bc-isI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2645" y="-650"/>
+            <point key="canvasLocation" x="2642" y="-636"/>
         </scene>
         <!--Access Confirm View Controller - Access Settings-->
         <scene sceneID="Wif-Rl-min">
@@ -1916,18 +1917,71 @@
             </objects>
             <point key="canvasLocation" x="2666" y="55"/>
         </scene>
-        <!--View Controller-->
+        <!--Change Password View Controller - Change Password-->
         <scene sceneID="LN7-T1-z11">
             <objects>
-                <viewController id="gDA-KF-ACc" sceneMemberID="viewController">
+                <viewController id="gDA-KF-ACc" customClass="OKChangePasswordViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pVC-Uf-XCf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2sz-oR-OaJ">
+                                <rect key="frame" x="49" y="459" width="227" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update Password">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updatePasswordButton:" destination="gDA-KF-ACc" eventType="touchUpInside" id="ndn-EB-5qv"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="jZs-4j-gJe" userLabel="old" customClass="OKCustomTextField">
+                                <rect key="frame" x="49" y="78" width="227" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gDA-KF-ACc" id="hRC-Nc-pgy"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Psv-ZC-Rfx" userLabel="new" customClass="OKCustomTextField">
+                                <rect key="frame" x="49" y="124" width="227" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gDA-KF-ACc" id="4Dx-nc-TOK"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="x5c-3v-c6L" userLabel="confirm" customClass="OKCustomTextField">
+                                <rect key="frame" x="49" y="170" width="227" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gDA-KF-ACc" id="PAW-2Y-ulR"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Change Password" id="9I9-es-vh4">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="GJv-vd-XIl">
+                            <connections>
+                                <action selector="backButton:" destination="gDA-KF-ACc" id="wMZ-Oe-FmD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="theConfirmPasswordTextField" destination="x5c-3v-c6L" id="oTK-H3-zH8"/>
+                        <outlet property="theNewPasswordTextField" destination="Psv-ZC-Rfx" id="Nuv-C3-G7K"/>
+                        <outlet property="theOldPasswordTextField" destination="jZs-4j-gJe" id="PCs-BL-O2k"/>
+                        <outlet property="updatePasswordButton" destination="2sz-oR-OaJ" id="ZaB-Wk-37D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-VE-X5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2231" y="-1283"/>
         </scene>
     </scenes>
     <resources>

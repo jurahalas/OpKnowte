@@ -49,7 +49,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return 7;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -69,7 +69,8 @@
                                       @"Access Settings",
                                       @"Contacts",
                                       @"Institutions",
-                                      @"Edit Procedure Template",nil];
+                                      @"Edit Procedure Template",
+                                      @"Change Password",nil];
     
     cell.settingsLabel.text = [dataTitleArray objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
@@ -82,6 +83,9 @@
     if ([cell.settingsLabel.text  isEqualToString:@"Access Settings"]) {
         
         [self performSegueWithIdentifier:@"aSettings" sender:indexPath];
-    }}
-
+    }
+    else if ([cell.settingsLabel.text isEqualToString:@"Change Password"]) {
+        [self performSegueWithIdentifier:@"CP" sender:indexPath];
+    }
+}
 @end
