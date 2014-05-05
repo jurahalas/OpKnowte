@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol OKBaseVCDelegate <NSObject>
+
+-(void) goToSettingsVC;
+
+@end
 
 @interface OKBottomTabBarView : UIView
-
+@property (nonatomic, weak) id<OKBaseVCDelegate>delegate;
 -(void) drawBottomTabBar;
 @end

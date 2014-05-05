@@ -143,10 +143,17 @@
 
 - (IBAction)forgetPasswordButton:(id)sender {
     
-    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:@"Please confirm your Email Address.\rWe will send you your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
+    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password"
+                                                              message:@"Please confirm your Email Address.\rWe will send you your password"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Send", nil];
+    
     customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [customAlertView textFieldAtIndex:0].placeholder = @"Email";
-    [customAlertView textFieldAtIndex:0].text = @"frolow.artem@gmail.com";
+    
+    
+    
     [customAlertView show];
     
 }
@@ -185,16 +192,21 @@
 //        }];
     }
     if (buttonIndex == 1) {
+
         if ([alertView.title isEqualToString:@"Restore Password"]) {
             OKUserManager *usermanager = [OKUserManager instance];
             [usermanager recoverPasswordWithEmail:[alertView textFieldAtIndex:0].text handler:^(NSString* error){
-                NSLog(@"error - %@", error);
+                if ([[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+                    UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@" Restore password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [loginFormErrorAlertView show];
+                    _forgotPasswordButton.enabled = YES;
+                }else{
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Password Updated Successfully" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [loginFormErrorAlertView show];
+                }
             }];
-        } else {
-            NSLog(@"THE 'Second' BUTTON WAS PRESSED");
         }
     }
-    
 }
 
 #pragma mark - design

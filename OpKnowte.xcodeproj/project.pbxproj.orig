@@ -19,7 +19,6 @@
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
-<<<<<<< HEAD
 		00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862952190CF372006EBA9C /* OKProcedureSwitcher.m */; };
 		00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862955190D02F2006EBA9C /* OKProcedureDatePicker.m */; };
 		00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862958190D0885006EBA9C /* OKProcedurePicker.m */; };
@@ -29,7 +28,6 @@
 		008D5B681907DE360039E8B7 /* OKProcedureSwitcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */; };
 		008D5B7B1908021C0039E8B7 /* OKProcedureDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */; };
 		008D5B81190807670039E8B7 /* OKProcedurePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B7F190807670039E8B7 /* OKProcedurePicker.xib */; };
-=======
 		00862973190EABCD006EBA9C /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086296F190EABCD006EBA9C /* RangeSlider.m */; };
 		008F7EA91910E030004F57B6 /* minusGreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA51910E030004F57B6 /* minusGreenIcon.png */; };
 		008F7EAA1910E030004F57B6 /* minusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA61910E030004F57B6 /* minusGreenIcon@2x.png */; };
@@ -42,7 +40,6 @@
 		0092FD41190A9D6400499F7E /* whiteCellBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */; };
 		0092FD44190AA15600499F7E /* gradientBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD42190AA15600499F7E /* gradientBG.png */; };
 		0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD43190AA15600499F7E /* gradientBG@2x.png */; };
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 		00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6319012A9E00BEF07D /* OKTimePointModel.m */; };
 		00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6619012AB400BEF07D /* OKTimePointsManager.m */; };
 		00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6D19012B6700BEF07D /* OKSelectTimePointViewController.m */; };
@@ -127,15 +124,12 @@
 		00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
-<<<<<<< HEAD
 		00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00F47DE219090D1F00E06F88 /* SLProcedure.plist */; };
 		00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */; };
-=======
 		00FA8D92190F872600403429 /* fillrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D8E190F872600403429 /* fillrange.png */; };
 		00FA8D93190F872600403429 /* fillrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D8F190F872600403429 /* fillrange@2x.png */; };
 		00FA8D94190F872600403429 /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D90190F872600403429 /* fullrange.png */; };
 		00FA8D95190F872600403429 /* fullrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D91190F872600403429 /* fullrange@2x.png */; };
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 		18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 18061C8118F7EBA6005197F9 /* OKApiClient.m */; };
 		182659C719066A1700723D16 /* OKDashboardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C619066A1700723D16 /* OKDashboardVC.m */; };
 		182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C919066C2600723D16 /* OKDashboardTableViewCell.m */; };
@@ -170,6 +164,12 @@
 		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
+		AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61D419123AA90064C53F /* OKSettingsViewController.m */; };
+		AC8F61DB19123B200064C53F /* OKSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61DA19123B200064C53F /* OKSettingsTableViewCell.m */; };
+		AC8F61E61912457C0064C53F /* OKAccessSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61E51912457C0064C53F /* OKAccessSettingsViewController.m */; };
+		AC8F61E919124BFD0064C53F /* OKAccessSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61E819124BFD0064C53F /* OKAccessSettingsTableViewCell.m */; };
+		AC8F61ED191261390064C53F /* OKAccessConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61EC191261390064C53F /* OKAccessConfirmViewController.m */; };
+		AC8F61F0191261AF0064C53F /* OKAccessConfirmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61EF191261AF0064C53F /* OKAccessConfirmTableViewCell.m */; };
 		ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03369190A374600D4A144 /* OKSaveViewController.m */; };
 		ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */; };
 		ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */; };
@@ -227,7 +227,6 @@
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		00862951190CF372006EBA9C /* OKProcedureSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureSwitcher.h; sourceTree = "<group>"; };
 		00862952190CF372006EBA9C /* OKProcedureSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureSwitcher.m; sourceTree = "<group>"; };
 		00862954190D02F2006EBA9C /* OKProcedureDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureDatePicker.h; sourceTree = "<group>"; };
@@ -241,7 +240,6 @@
 		008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureSwitcher.xib; sourceTree = "<group>"; };
 		008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureDatePicker.xib; sourceTree = "<group>"; };
 		008D5B7F190807670039E8B7 /* OKProcedurePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedurePicker.xib; sourceTree = "<group>"; };
-=======
 		0086296E190EABCD006EBA9C /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSlider.h; sourceTree = "<group>"; };
 		0086296F190EABCD006EBA9C /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSlider.m; sourceTree = "<group>"; };
 		008F7EA51910E030004F57B6 /* minusGreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusGreenIcon.png; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 		0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteCellBG@2x.png"; sourceTree = "<group>"; };
 		0092FD42190AA15600499F7E /* gradientBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBG.png; sourceTree = "<group>"; };
 		0092FD43190AA15600499F7E /* gradientBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradientBG@2x.png"; sourceTree = "<group>"; };
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 		00A53B6219012A9E00BEF07D /* OKTimePointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointModel.h; sourceTree = "<group>"; };
 		00A53B6319012A9E00BEF07D /* OKTimePointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTimePointModel.m; sourceTree = "<group>"; };
 		00A53B6519012AB400BEF07D /* OKTimePointsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointsManager.h; sourceTree = "<group>"; };
@@ -354,16 +351,13 @@
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
 		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
 		00CD5FD818FE7C9700334A24 /* OKContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactManager.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		00F47DE219090D1F00E06F88 /* SLProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SLProcedure.plist; sourceTree = "<group>"; };
 		00F47DE4190924F200E06F88 /* OKShockwaveLithotripsyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKShockwaveLithotripsyVC.h; sourceTree = "<group>"; };
 		00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKShockwaveLithotripsyVC.m; sourceTree = "<group>"; };
-=======
 		00FA8D8E190F872600403429 /* fillrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fillrange.png; sourceTree = "<group>"; };
 		00FA8D8F190F872600403429 /* fillrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fillrange@2x.png"; sourceTree = "<group>"; };
 		00FA8D90190F872600403429 /* fullrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fullrange.png; sourceTree = "<group>"; };
 		00FA8D91190F872600403429 /* fullrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fullrange@2x.png"; sourceTree = "<group>"; };
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 		03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpKnowte.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18061C8018F7EBA6005197F9 /* OKApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKApiClient.h; sourceTree = "<group>"; };
 		18061C8118F7EBA6005197F9 /* OKApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKApiClient.m; sourceTree = "<group>"; };
@@ -417,6 +411,18 @@
 		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
 		AC2B0E48190B247B0089206D /* OKOperatieNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteTableViewCell.h; sourceTree = "<group>"; };
 		AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOperatieNoteTableViewCell.m; sourceTree = "<group>"; };
+		AC8F61D319123AA90064C53F /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSettingsViewController.h; sourceTree = "<group>"; };
+		AC8F61D419123AA90064C53F /* OKSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSettingsViewController.m; sourceTree = "<group>"; };
+		AC8F61D919123B200064C53F /* OKSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSettingsTableViewCell.h; sourceTree = "<group>"; };
+		AC8F61DA19123B200064C53F /* OKSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSettingsTableViewCell.m; sourceTree = "<group>"; };
+		AC8F61E41912457C0064C53F /* OKAccessSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAccessSettingsViewController.h; sourceTree = "<group>"; };
+		AC8F61E51912457C0064C53F /* OKAccessSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessSettingsViewController.m; sourceTree = "<group>"; };
+		AC8F61E719124BFD0064C53F /* OKAccessSettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAccessSettingsTableViewCell.h; sourceTree = "<group>"; };
+		AC8F61E819124BFD0064C53F /* OKAccessSettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessSettingsTableViewCell.m; sourceTree = "<group>"; };
+		AC8F61EB191261390064C53F /* OKAccessConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAccessConfirmViewController.h; sourceTree = "<group>"; };
+		AC8F61EC191261390064C53F /* OKAccessConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessConfirmViewController.m; sourceTree = "<group>"; };
+		AC8F61EE191261AF0064C53F /* OKAccessConfirmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAccessConfirmTableViewCell.h; sourceTree = "<group>"; };
+		AC8F61EF191261AF0064C53F /* OKAccessConfirmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessConfirmTableViewCell.m; sourceTree = "<group>"; };
 		ACA03368190A374600D4A144 /* OKSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSaveViewController.h; sourceTree = "<group>"; };
 		ACA03369190A374600D4A144 /* OKSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSaveViewController.m; sourceTree = "<group>"; };
 		ACA0336C190A42ED00D4A144 /* OKSelectCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseViewController.h; sourceTree = "<group>"; };
@@ -510,12 +516,9 @@
 				0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */,
 				1881B08318FDC77500F61CE8 /* OKProcedureModel.h */,
 				1881B08418FDC77500F61CE8 /* OKProcedureModel.m */,
-<<<<<<< HEAD
 				0086295D190E31A9006EBA9C /* Procedures */,
-=======
 				189F4515190A8DCC00372C55 /* OKContactModel.h */,
 				189F4516190A8DCC00372C55 /* OKContactModel.m */,
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -535,6 +538,9 @@
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
 				189F45111909421800372C55 /* institute View */,
+				AC8F61EA191261100064C53F /* Access Confirm View */,
+				AC8F61E3191245550064C53F /* AccessSettings View */,
+				AC8F61D219123A800064C53F /* Settings View */,
 				189F450A1909102700372C55 /* Performance Data View */,
 				AC1D0780190AE1D100DC55FD /* Data Capture View */,
 				AC161A68190A79FE00D8572D /* LRPN Operatie Note */,
@@ -547,16 +553,12 @@
 				0060D88A18FD39CF00AFC7B4 /* SelectProcedure */,
 				00A53B75190156FD00BEF07D /* Procedure Detail Summary */,
 				00A64D981906B80C00740DC7 /* Surgeon Performance Data Comparison */,
-<<<<<<< HEAD
 				008D5B561907DC540039E8B7 /* Procedure Parser */,
-=======
 				0092FD37190A67E500499F7E /* Surgeon Pefrormance Data */,
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		0086295D190E31A9006EBA9C /* Procedures */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,7 +646,6 @@
 				00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */,
 			);
 			name = "Shockwave Lithotripsy";
-=======
 		0086296B190EAB9D006EBA9C /* Custom Slider */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,7 +672,6 @@
 				0092FD3C190A91C100499F7E /* OKListCell.m */,
 			);
 			name = "Surgeon Pefrormance Data";
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 			sourceTree = "<group>";
 		};
 		00A53B6B19012B1C00BEF07D /* Select Time Point */ = {
@@ -949,6 +949,39 @@
 				AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */,
 			);
 			name = "Data Capture View";
+			sourceTree = "<group>";
+		};
+		AC8F61D219123A800064C53F /* Settings View */ = {
+			isa = PBXGroup;
+			children = (
+				AC8F61D319123AA90064C53F /* OKSettingsViewController.h */,
+				AC8F61D419123AA90064C53F /* OKSettingsViewController.m */,
+				AC8F61D919123B200064C53F /* OKSettingsTableViewCell.h */,
+				AC8F61DA19123B200064C53F /* OKSettingsTableViewCell.m */,
+			);
+			name = "Settings View";
+			sourceTree = "<group>";
+		};
+		AC8F61E3191245550064C53F /* AccessSettings View */ = {
+			isa = PBXGroup;
+			children = (
+				AC8F61E41912457C0064C53F /* OKAccessSettingsViewController.h */,
+				AC8F61E51912457C0064C53F /* OKAccessSettingsViewController.m */,
+				AC8F61E719124BFD0064C53F /* OKAccessSettingsTableViewCell.h */,
+				AC8F61E819124BFD0064C53F /* OKAccessSettingsTableViewCell.m */,
+			);
+			name = "AccessSettings View";
+			sourceTree = "<group>";
+		};
+		AC8F61EA191261100064C53F /* Access Confirm View */ = {
+			isa = PBXGroup;
+			children = (
+				AC8F61EB191261390064C53F /* OKAccessConfirmViewController.h */,
+				AC8F61EC191261390064C53F /* OKAccessConfirmViewController.m */,
+				AC8F61EE191261AF0064C53F /* OKAccessConfirmTableViewCell.h */,
+				AC8F61EF191261AF0064C53F /* OKAccessConfirmTableViewCell.m */,
+			);
+			name = "Access Confirm View";
 			sourceTree = "<group>";
 		};
 		ACA03367190A371700D4A144 /* Save View */ = {
@@ -1320,6 +1353,7 @@
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
 				189F45141909480700372C55 /* OKInstituteVC.m in Sources */,
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
+				AC8F61E919124BFD0064C53F /* OKAccessSettingsTableViewCell.m in Sources */,
 				00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */,
 				00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */,
 				00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */,
@@ -1328,11 +1362,9 @@
 				189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */,
 				AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
-<<<<<<< HEAD
 				0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */,
-=======
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
+				AC8F61F0191261AF0064C53F /* OKAccessConfirmTableViewCell.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
@@ -1345,16 +1377,15 @@
 				0092FD3D190A91C100499F7E /* OKListCell.m in Sources */,
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
 				AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */,
+				AC8F61DB19123B200064C53F /* OKSettingsTableViewCell.m in Sources */,
 				185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */,
+				AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */,
 				0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */,
 				00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
-<<<<<<< HEAD
 				00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */,
-=======
 				ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */,
->>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
 				189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
@@ -1375,7 +1406,9 @@
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				188608F8190FCC1300BD1D77 /* OKFacilityVC.m in Sources */,
 				185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */,
+				AC8F61E61912457C0064C53F /* OKAccessSettingsViewController.m in Sources */,
 				1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */,
+				AC8F61ED191261390064C53F /* OKAccessConfirmViewController.m in Sources */,
 				ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */,
 				00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */,
 				188608FB190FCC8400BD1D77 /* OKFacilityTableViewCell.m in Sources */,

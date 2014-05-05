@@ -37,6 +37,22 @@
         handler([self getErrorMessageFromJSON:json error:error], proceduresArray);
     }];
 }
+- (void) getProcedureTemplateByUserID:(NSString*)userID ProcedureID:(NSString*)procedureID handler:(void(^)(NSString *errorMsg, NSDictionary *template))handler
+{
+    NSDictionary *params = @{};
+
+    NSString *url = [NSString stringWithFormat:@"getTemplateBySurgeonIDAndProcedureID?procedureID=%@&surgeonID=%@",  procedureID, userID];
+
+
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+
+        handler([self getErrorMessageFromJSON:json error:error], json);
+    }];
+
+
+
+}
 
 
 @end
