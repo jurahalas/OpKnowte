@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKAppDelegate.h"
 
-@interface OKSurgeonViewController : UIViewController
+@interface OKSurgeonViewController : OKBaseViewController <UITextFieldDelegate>
 
 @end
