@@ -196,7 +196,18 @@
                 UIAlertView *signUpFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [signUpFormErrorAlertView show];
                 _continueButton.enabled = YES;
+                [[OKLoadingViewController instance] hide];
+
             } else {
+                [[OKLoadingViewController instance] showWithText:@"Loading..."];
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                OKUserModel *user = [[OKUserModel alloc] init];
+                [defaults setObject:_firstNameTextField.text forKey:@"firstName"];
+                [defaults setObject:user.userID forKey:@"userID"];
+                
+                [defaults synchronize];
+
                 UIAlertView *signUpFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up Success" message:@"Congratulations! You are signed up." delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [signUpFormSuccessAlertView show];
                 [self.view endEditing:YES];

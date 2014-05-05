@@ -7,6 +7,7 @@
 //
 
 #import "OKContactManager.h"
+#import "OKContactModel.h"
 
 @implementation OKContactManager
 
@@ -35,7 +36,7 @@
                              @"zip":            zip,
                              @"country":        country,
                              @"fax":            fax,
-                             @"updatedBy":      updatedBy,
+                             @"updatedBy":      updatedBy
                              };
     
     [self requestWithMethod:@"POST" path:@"addContact" params:params handler:^(NSError *error, id json) {
@@ -57,14 +58,23 @@
     }];
     
 }
--(void)getContactsByUserID:(NSString *)userID roleID:(NSString *)roleID handler:(void(^)(NSString *errorMsg))handler {
+-(void)getContactsByUserID:(NSString *)userID roleID:(NSString *)roleID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler {
     
-    NSDictionary *params = @{};
+    NSDictionary *params = nil;
     NSString *url = [NSString stringWithFormat:@"getContactsByUserIDAndRoleID?userID=%@&roleID=%@", userID, roleID];
     
     [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
+        
+        NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *contact in [json objectForKey:@"contacts"] ) {
+            OKContactModel *contactModel = [[OKContactModel alloc] init];
+            [contactModel setModelWithDictionary:contact];
+            [contactsArray addObject:contactModel];
+        }
+        handler([self getErrorMessageFromJSON:json error:error], contactsArray);
+
+
     }];
     
 }

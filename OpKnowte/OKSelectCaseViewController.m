@@ -11,7 +11,6 @@
 
 @interface OKSelectCaseViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectCase;
-
 @end
 
 @implementation OKSelectCaseViewController
@@ -21,7 +20,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }

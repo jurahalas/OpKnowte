@@ -39,12 +39,25 @@
     [self addBottomTabBar];
   
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _userNameLabel.text = [defaults objectForKey:@"EMAILADDRESS"];
+    _userNameLabel.text = [defaults objectForKey:@"firstName"];
     [defaults synchronize];
     
     [self.dashboardTableView reloadData];
 }
 
+
+- (IBAction)logOutButton:(id)sender
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"PASSWORD"];
+    [defaults removeObjectForKey:@"EMAILADDRESS"];
+    [defaults removeObjectForKey:@"userID"];
+    [defaults synchronize];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Action" message:@"You have successfully logged out!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+    [self performSegueWithIdentifier:@"logout" sender:self];
+
+}
 
 #pragma mark - Table View methods
 
@@ -100,6 +113,5 @@
 {
     [super didReceiveMemoryWarning];
 }
-
 
 @end

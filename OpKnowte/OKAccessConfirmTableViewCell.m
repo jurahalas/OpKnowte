@@ -1,14 +1,14 @@
 //
-//  OKSelectCaseTableViewCell.m
+//  OKAccessConfirmTableViewCell.m
 //  OpKnowte
 //
-//  Created by Olegek on 25.04.14.
+//  Created by Olegek on 01.05.14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKSelectCaseTableViewCell.h"
+#import "OKAccessConfirmTableViewCell.h"
 
-@implementation OKSelectCaseTableViewCell
+@implementation OKAccessConfirmTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -27,13 +27,11 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+    
 }
-
-
 -(void) setCellBGImageLight:(int) cellCount {
     UIImageView *cellBG = [[UIImageView alloc]init];
     if (cellCount%2 == 1) {
@@ -45,20 +43,18 @@
     self.backgroundView = cellBG;
 }
 
--(void) setCellUserIntaractionDisabled
-{
+-(void) setCellUserIntaractionDisabled {
+    
     [self setUserInteractionEnabled:NO];
-    self.selectCaseIcon.alpha = 0.3f;
-    self.caseName.textColor = [UIColor colorWithWhite:1 alpha:.3f];
-    self.dataLable.textColor = [UIColor colorWithWhite:1 alpha:.3f];
+    self.ACIcon.alpha = 0.3f;
+    self.ACLabel.textColor = [UIColor colorWithWhite:1 alpha:.3f];
 }
 -(void) setCellUserIntaractionEnabled {
+    
     [self setUserInteractionEnabled:YES];
-    self.selectCaseIcon.alpha = 1.f;
-    self.caseName.textColor = [UIColor colorWithWhite:1 alpha:1.f];
-    self.dataLable.textColor = [UIColor colorWithWhite:1 alpha:1.f];
+    self.ACIcon.alpha = 1.f;
+    self.ACLabel.textColor = [UIColor colorWithWhite:1 alpha:1.f];
     
 }
-
 
 @end

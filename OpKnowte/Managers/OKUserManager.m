@@ -47,7 +47,11 @@
         [self.currentUser setModelWithDictionary:json];
         NSLog(@"%@",self.currentUser.firstName);
         NSLog(@"%@",self.currentUser.userID);
-
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:self.currentUser.userID forKey:@"userID"];
+        [defaults setObject:self.currentUser.firstName forKey:@"firstName"];
+        [defaults synchronize];
     }];
 }
 
