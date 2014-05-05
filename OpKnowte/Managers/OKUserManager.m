@@ -82,4 +82,15 @@
 }
 
 
+-(void)changePasswordWithUserID:(NSString*)userID password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"userID": userID, @"password": password};
+    [self requestWithMethod:@"POST" path:@"changePassword" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+        [self.currentUser setModelWithDictionary:json];
+    }];
+ 
+}
+
 @end

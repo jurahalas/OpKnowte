@@ -104,7 +104,50 @@
 
 }
 
-- (IBAction)updatePasswordButton:(id)sender {
+- (IBAction)updatePasswordButton:(id)sender
+{
+    OKUserManager *usermanager = [OKUserManager instance];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"%@", [defaults objectForKey:@"userID"]);
+    NSLog(@"pass %@", [defaults objectForKey:@"PASSWORD"]);
+    
+    
+    if ([theOldPasswordTextField.text isEqual: @""] || [theNewPasswordTextField.text isEqual: @""] || [theConfirmPasswordTextField.text isEqual: @""]){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }else if (![theNewPasswordTextField.text isEqualToString:theConfirmPasswordTextField.text]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your password was not changed" message:@"New password and confirm new password did not match" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        
+    }else if (![theOldPasswordTextField.text isEqualToString:[defaults objectForKey:@"PASSWORD"]]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid current password" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }else{
+        [usermanager changePasswordWithUserID:[defaults objectForKey:@"userID"] password:theConfirmPasswordTextField.text  handler:^(NSString* error){
+       
+        if (error != nil) {
+            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Change password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [errorAlert show];
+            updatePasswordButton.enabled = YES;
+            
+        } else {
+            UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:@"Change password Success" message:@"Congratulations! You have change the password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [successAlert show];
+            [self.view endEditing:YES];
+            [self performSegueWithIdentifier:@"backToDashboard" sender:self];
+          
+            [defaults removeObjectForKey:@"PASSWORD"];
+            [defaults setObject:theConfirmPasswordTextField.text forKey:@"PASSWORD"];
+            [defaults synchronize];
+            
+            updatePasswordButton.enabled = YES;
+        }
+
+        [[OKLoadingViewController instance] hide];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning

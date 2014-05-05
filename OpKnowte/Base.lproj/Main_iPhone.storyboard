@@ -1938,8 +1938,9 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="jZs-4j-gJe" userLabel="old" customClass="OKCustomTextField">
                                 <rect key="frame" x="49" y="78" width="227" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="gDA-KF-ACc" id="hRC-Nc-pgy"/>
                                 </connections>
@@ -1948,7 +1949,7 @@
                                 <rect key="frame" x="49" y="124" width="227" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="gDA-KF-ACc" id="4Dx-nc-TOK"/>
                                 </connections>
@@ -1957,7 +1958,7 @@
                                 <rect key="frame" x="49" y="170" width="227" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="gDA-KF-ACc" id="PAW-2Y-ulR"/>
                                 </connections>
@@ -1977,6 +1978,7 @@
                         <outlet property="theNewPasswordTextField" destination="Psv-ZC-Rfx" id="Nuv-C3-G7K"/>
                         <outlet property="theOldPasswordTextField" destination="jZs-4j-gJe" id="PCs-BL-O2k"/>
                         <outlet property="updatePasswordButton" destination="2sz-oR-OaJ" id="ZaB-Wk-37D"/>
+                        <segue destination="1sY-Xu-fV5" kind="push" identifier="backToDashboard" id="mc4-ob-XxU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-VE-X5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2008,8 +2010,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hs5-kv-qjd"/>
         <segue reference="goQ-lN-Lsa"/>
+        <segue reference="mc4-ob-XxU"/>
         <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>

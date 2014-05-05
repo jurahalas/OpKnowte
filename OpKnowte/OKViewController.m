@@ -111,13 +111,13 @@
     
     OKUserManager *usermanager = [OKUserManager instance];
    
-    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
-        UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [loginFormAlertView show];
-    }else {
-        [[OKLoadingViewController instance] showWithText:@"Loading..."];
-
-        _loginButton.enabled = NO;
+//    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
+//        UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [loginFormAlertView show];
+//    }else {
+//        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+//
+//        _loginButton.enabled = NO;
         [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
             if (error != nil) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -130,7 +130,7 @@
                 [defaults setObject:_passwordTextField.text forKey:@"PASSWORD"];
                 [defaults synchronize];
                 
-                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
@@ -138,7 +138,7 @@
             }
             [[OKLoadingViewController instance] hide];
         }];
-    }
+//    }
 
 }
 
