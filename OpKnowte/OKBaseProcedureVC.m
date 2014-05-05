@@ -12,9 +12,10 @@
 #import "OKProcedureDatePicker.h"
 #import "OKProcedurePicker.h"
 #import "OKOperatieNoteViewController.h"
+#import "OKProcedureMultiselectVC.h"
+#import "OKProcedureMultiselect.h"
 
-
-@interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate, OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, OKProcedureSwitcherDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface OKBaseProcedureVC () <OKProcedureTextFieldDelegate, OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, OKProcedureSwitcherDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
@@ -132,7 +133,17 @@
 
         [self.interactionItems addObject:picker];
 
+    } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {
+        
+        OKProcedureMultiselect *multiselectView = [[OKProcedureMultiselect alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        multiselectView.delegate = self;
+        [multiselectView setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"]];
+        [multiselectView setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [multiselectView setDataArray:[customElementDictionary objectForKey:@"items"]];
+        [self.view addSubview:multiselectView];
 
+        [self.interactionItems addObject:multiselectView];
+    
     } else {
         OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         switcher.delegate = self;
@@ -156,6 +167,13 @@
 
 #pragma mark - OKProcedureSwitcherDelegate
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{
+    
+}
+
+
+#pragma mark - OKProcedureMultiselectDelegate
+-(void)updateField:(NSString*)field withData:(NSArray*)data
+{
     
 }
 
@@ -190,8 +208,13 @@
     }else {
         [self hideDatePicker];
     }
+    [self.view endEditing:YES];
+}
 
-       [self.view endEditing:YES];
+
+-(void)showMultiselectVCForFieldWithName:(NSString*)fieldName withData:(NSArray*)data sender:(id)sender
+{
+    [OKProcedureMultiselectVC showInViewController:self fieldName:fieldName data:data delegate:sender];
 }
 
 

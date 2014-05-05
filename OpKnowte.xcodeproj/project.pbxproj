@@ -183,6 +183,10 @@
 		E100240C18F529E9008421D4 /* OpKnowteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E100240B18F529E9008421D4 /* OpKnowteTests.m */; };
 		E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53718F8626100BA4E35 /* OKBaseManager.m */; };
 		E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53B18F8652500BA4E35 /* OKUserManager.m */; };
+		E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE705A19177CBE0088913C /* OKProcedureMultiselect.m */; };
+		E1DE705D19177CE30088913C /* OKProcedureMultiselect.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */; };
+		E1DE7061191780B00088913C /* OKProcedureMultiselectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */; };
+		E1DE7062191780B00088913C /* OKProcedureMultiselectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -439,6 +443,12 @@
 		E106A53718F8626100BA4E35 /* OKBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKBaseManager.m; path = Managers/OKBaseManager.m; sourceTree = "<group>"; };
 		E106A53A18F8652500BA4E35 /* OKUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKUserManager.h; path = Managers/OKUserManager.h; sourceTree = "<group>"; };
 		E106A53B18F8652500BA4E35 /* OKUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKUserManager.m; path = Managers/OKUserManager.m; sourceTree = "<group>"; };
+		E1DE705919177CBE0088913C /* OKProcedureMultiselect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureMultiselect.h; sourceTree = "<group>"; };
+		E1DE705A19177CBE0088913C /* OKProcedureMultiselect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureMultiselect.m; sourceTree = "<group>"; };
+		E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureMultiselect.xib; sourceTree = "<group>"; };
+		E1DE705E191780B00088913C /* OKProcedureMultiselectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureMultiselectVC.h; sourceTree = "<group>"; };
+		E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureMultiselectVC.m; sourceTree = "<group>"; };
+		E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureMultiselectVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -600,6 +610,7 @@
 		008D5B571907DC600039E8B7 /* Custom elements */ = {
 			isa = PBXGroup;
 			children = (
+				E1DE705819177C330088913C /* Multiselect */,
 				008D5B7C190807420039E8B7 /* Picker */,
 				008D5B70190800D70039E8B7 /* Date picker */,
 				008D5B581907DC6F0039E8B7 /* Text Field */,
@@ -1075,6 +1086,19 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		E1DE705819177C330088913C /* Multiselect */ = {
+			isa = PBXGroup;
+			children = (
+				E1DE705919177CBE0088913C /* OKProcedureMultiselect.h */,
+				E1DE705A19177CBE0088913C /* OKProcedureMultiselect.m */,
+				E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */,
+				E1DE705E191780B00088913C /* OKProcedureMultiselectVC.h */,
+				E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */,
+				E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */,
+			);
+			name = Multiselect;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1158,6 +1182,7 @@
 				0092FD40190A9D6400499F7E /* whiteCellBG.png in Resources */,
 				00A64D8119064DB400740DC7 /* navbarBG_color.png in Resources */,
 				00FA8D94190F872600403429 /* fullrange.png in Resources */,
+				E1DE705D19177CE30088913C /* OKProcedureMultiselect.xib in Resources */,
 				00A64D7C19064DB400740DC7 /* logo@2x.png in Resources */,
 				00A64D5519064DB400740DC7 /* greenMagnifier@2x.png in Resources */,
 				00A64D7619064DB400740DC7 /* forgotPassword@2x.png in Resources */,
@@ -1174,6 +1199,7 @@
 				00A64D7F19064DB400740DC7 /* logoTB.png in Resources */,
 				0092FD44190AA15600499F7E /* gradientBG.png in Resources */,
 				00A64D7819064DB400740DC7 /* register@2x.png in Resources */,
+				E1DE7062191780B00088913C /* OKProcedureMultiselectVC.xib in Resources */,
 				00A64D6419064DB400740DC7 /* home@2x.png in Resources */,
 				00607FDF191380B100AD27F3 /* LRPNProcedure.plist in Resources */,
 				182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */,
@@ -1325,6 +1351,7 @@
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */,
 				008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */,
+				E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */,
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */,
@@ -1353,6 +1380,7 @@
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
+				E1DE7061191780B00088913C /* OKProcedureMultiselectVC.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,

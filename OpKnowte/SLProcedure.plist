@@ -11,6 +11,70 @@
 				<key>name</key>
 				<string>var_patientName</string>
 				<key>type</key>
+				<string>multiselect</string>
+				<key>placeholder</key>
+				<string>Patient Name</string>
+				<key>items</key>
+				<array>
+					<string>SSdfdfdfdfd</string>
+					<string>ddfdfd</string>
+					<string>Bagno</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_patientDOB</string>
+				<key>type</key>
+				<string>DatePicker</string>
+				<key>placeholder</key>
+				<string>Patient DOB</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_MRNumber</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Medical Record Number</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_DOS</string>
+				<key>type</key>
+				<string>DatePicker</string>
+				<key>placeholder</key>
+				<string>Date Of Service</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_sex</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Sex</string>
+				<key>items</key>
+				<array>
+					<string>Female</string>
+					<string>Male</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Patient Data</string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>var_patientName</string>
+				<key>type</key>
 				<string>symbolicTextField</string>
 				<key>placeholder</key>
 				<string>Patient Name</string>
