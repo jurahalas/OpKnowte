@@ -13,6 +13,7 @@
 @interface OKFacilityVC ()
 
 @property (strong, nonatomic) IBOutlet UITableView *facilityTableView;
+@property (strong, nonatomic) IBOutlet UIView *faxAndEmailView;
 @property (strong, nonatomic) NSMutableArray *contactsArray;
 
 
@@ -35,12 +36,16 @@
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     OKContactManager *contactManager = [OKContactManager instance];
-    [contactManager getContactsByUserID:@"121" roleID:@"4" handler: ^(NSString* error, NSMutableArray* contactsArray){
-        NSLog(@"Error - %@", error);
-
-        _contactsArray = contactsArray;
-        [self.facilityTableView reloadData];
+   
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [contactManager getContactsByUserID:[defaults objectForKey:@"userID"] roleID:@"4" handler: ^(NSString* error, NSMutableArray* array){
         [[OKLoadingViewController instance] hide];
+
+        if (!error) {
+            self.contactsArray = array;
+            [self.facilityTableView reloadData];
+        }
+        NSLog(@"Error - %@", error);
     }];
 }
 
@@ -80,11 +85,10 @@
     if (!cell) {
         cell = [[OKFacilityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    OKContactModel *contact = (OKContactModel*)self.contactsArray[indexPath.row];
-    cell.facilityNameLabel.text = contact.contactName;
-    cell.emailLabel.text = @"ololo";
 
+    OKContactModel *contact = (OKContactModel*)self.contactsArray[indexPath.row];
+    cell.facilityNameLabel.text = contact.name;
+    cell.emailLabel.text = contact.contactEmail;
     [cell setCellBGImageLight:indexPath.row];
     
     return cell;
