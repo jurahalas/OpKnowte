@@ -56,7 +56,6 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Action" message:@"You have successfully logged out!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
     [self performSegueWithIdentifier:@"logout" sender:self];
-
 }
 
 #pragma mark - Table View methods
