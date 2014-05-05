@@ -87,5 +87,8 @@
     else if ([cell.settingsLabel.text isEqualToString:@"Change Password"]) {
         [self performSegueWithIdentifier:@"CP" sender:indexPath];
     }
+    else if ([cell.settingsLabel.text isEqualToString:@"Data Sharing"]){
+        [self performSegueWithIdentifier:@"DS" sender:indexPath];
+    }
 }
 @end

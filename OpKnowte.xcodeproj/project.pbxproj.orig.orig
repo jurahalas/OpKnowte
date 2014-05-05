@@ -145,6 +145,12 @@
 		189F45141909480700372C55 /* OKInstituteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F45131909480700372C55 /* OKInstituteVC.m */; };
 		189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F4516190A8DCC00372C55 /* OKContactModel.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
+<<<<<<< HEAD
+=======
+		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
+		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
+		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
 		AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A6A190A7A5700D8572D /* OKOperatieNoteViewController.m */; };
@@ -157,14 +163,10 @@
 		AC8F61E919124BFD0064C53F /* OKAccessSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61E819124BFD0064C53F /* OKAccessSettingsTableViewCell.m */; };
 		AC8F61ED191261390064C53F /* OKAccessConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61EC191261390064C53F /* OKAccessConfirmViewController.m */; };
 		AC8F61F0191261AF0064C53F /* OKAccessConfirmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61EF191261AF0064C53F /* OKAccessConfirmTableViewCell.m */; };
-		AC8F632419135AC800854D06 /* OKDataSharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F632319135AC800854D06 /* OKDataSharingViewController.m */; };
-		AC8F63281913621A00854D06 /* OKTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F63271913621A00854D06 /* OKTemplateViewController.m */; };
-		AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */; };
 		ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03369190A374600D4A144 /* OKSaveViewController.m */; };
 		ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */; };
 		ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */; };
 		ACB01CE61913A11800EA661E /* OKChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB01CE51913A11800EA661E /* OKChangePasswordViewController.m */; };
-		ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDE993A19136F730083232B /* OKLTemplateViewController.m */; };
 		E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DD18F529E9008421D4 /* Foundation.framework */; };
 		E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023DF18F529E9008421D4 /* CoreGraphics.framework */; };
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
@@ -373,6 +375,15 @@
 		189F4515190A8DCC00372C55 /* OKContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactModel.h; sourceTree = "<group>"; };
 		189F4516190A8DCC00372C55 /* OKContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactModel.m; sourceTree = "<group>"; };
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		AC1D0781190AE22100DC55FD /* OKDataCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureViewController.h; sourceTree = "<group>"; };
+		AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureViewController.m; sourceTree = "<group>"; };
+		AC1D0784190AE24C00DC55FD /* OKDataCaptureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureTableViewCell.h; sourceTree = "<group>"; };
+		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
+		AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalViewController.h; sourceTree = "<group>"; };
+		AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalViewController.m; sourceTree = "<group>"; };
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 		AC07E7C5190E411600892B99 /* segmentControllBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentControllBG.png; sourceTree = "<group>"; };
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
 		AC161A69190A7A5700D8572D /* OKOperatieNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteViewController.h; sourceTree = "<group>"; };
@@ -395,12 +406,6 @@
 		AC8F61EC191261390064C53F /* OKAccessConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessConfirmViewController.m; sourceTree = "<group>"; };
 		AC8F61EE191261AF0064C53F /* OKAccessConfirmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAccessConfirmTableViewCell.h; sourceTree = "<group>"; };
 		AC8F61EF191261AF0064C53F /* OKAccessConfirmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessConfirmTableViewCell.m; sourceTree = "<group>"; };
-		AC8F632219135AC800854D06 /* OKDataSharingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataSharingViewController.h; sourceTree = "<group>"; };
-		AC8F632319135AC800854D06 /* OKDataSharingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataSharingViewController.m; sourceTree = "<group>"; };
-		AC8F63261913621A00854D06 /* OKTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplateViewController.h; sourceTree = "<group>"; };
-		AC8F63271913621A00854D06 /* OKTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateViewController.m; sourceTree = "<group>"; };
-		AC8F63291913623900854D06 /* OKTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplateTableViewCell.h; sourceTree = "<group>"; };
-		AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateTableViewCell.m; sourceTree = "<group>"; };
 		ACA03368190A374600D4A144 /* OKSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSaveViewController.h; sourceTree = "<group>"; };
 		ACA03369190A374600D4A144 /* OKSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSaveViewController.m; sourceTree = "<group>"; };
 		ACA0336C190A42ED00D4A144 /* OKSelectCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseViewController.h; sourceTree = "<group>"; };
@@ -409,8 +414,6 @@
 		ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectCaseTableViewCell.m; sourceTree = "<group>"; };
 		ACB01CE41913A11800EA661E /* OKChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKChangePasswordViewController.h; sourceTree = "<group>"; };
 		ACB01CE51913A11800EA661E /* OKChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKChangePasswordViewController.m; sourceTree = "<group>"; };
-		ACDE993919136F730083232B /* OKLTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLTemplateViewController.h; sourceTree = "<group>"; };
-		ACDE993A19136F730083232B /* OKLTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLTemplateViewController.m; sourceTree = "<group>"; };
 		E10023DA18F529E9008421D4 /* OpKnowte.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpKnowte.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10023DD18F529E9008421D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E10023DF18F529E9008421D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -517,14 +520,16 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+<<<<<<< HEAD
 				188608F5190FCBDD00BD1D77 /* Select Facility */,
 				ACB01CE31913A0E400EA661E /* Change Password View */,
-				AC8F6325191361F400854D06 /* Template View */,
-				AC8F632119135A9700854D06 /* Data Sharing View */,
 				189F45111909421800372C55 /* institute View */,
 				AC8F61EA191261100064C53F /* Access Confirm View */,
 				AC8F61E3191245550064C53F /* AccessSettings View */,
 				AC8F61D219123A800064C53F /* Settings View */,
+=======
+				AC3F9795190ED08100655128 /* Ongoing Clinical View */,
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 				189F450A1909102700372C55 /* Performance Data View */,
 				AC1D0780190AE1D100DC55FD /* Data Capture View */,
 				AC161A68190A79FE00D8572D /* LRPN Operatie Note */,
@@ -846,7 +851,20 @@
 			name = "Data Capture View";
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		AC8F61D219123A800064C53F /* Settings View */ = {
+=======
+		AC3F9795190ED08100655128 /* Ongoing Clinical View */ = {
+			isa = PBXGroup;
+			children = (
+				AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */,
+				AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */,
+			);
+			name = "Ongoing Clinical View";
+			sourceTree = "<group>";
+		};
+		AC161A68190A79FE00D8572D /* LRPN Operatie Note */ = {
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 			isa = PBXGroup;
 			children = (
 				AC8F61D319123AA90064C53F /* OKSettingsViewController.h */,
@@ -879,27 +897,6 @@
 			name = "Access Confirm View";
 			sourceTree = "<group>";
 		};
-		AC8F632119135A9700854D06 /* Data Sharing View */ = {
-			isa = PBXGroup;
-			children = (
-				AC8F632219135AC800854D06 /* OKDataSharingViewController.h */,
-				AC8F632319135AC800854D06 /* OKDataSharingViewController.m */,
-			);
-			name = "Data Sharing View";
-			sourceTree = "<group>";
-		};
-		AC8F6325191361F400854D06 /* Template View */ = {
-			isa = PBXGroup;
-			children = (
-				ACDE993819136F260083232B /* Template with Label View */,
-				AC8F63261913621A00854D06 /* OKTemplateViewController.h */,
-				AC8F63271913621A00854D06 /* OKTemplateViewController.m */,
-				AC8F63291913623900854D06 /* OKTemplateTableViewCell.h */,
-				AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */,
-			);
-			name = "Template View";
-			sourceTree = "<group>";
-		};
 		ACA03367190A371700D4A144 /* Save View */ = {
 			isa = PBXGroup;
 			children = (
@@ -927,15 +924,6 @@
 				ACB01CE51913A11800EA661E /* OKChangePasswordViewController.m */,
 			);
 			name = "Change Password View";
-			sourceTree = "<group>";
-		};
-		ACDE993819136F260083232B /* Template with Label View */ = {
-			isa = PBXGroup;
-			children = (
-				ACDE993919136F730083232B /* OKLTemplateViewController.h */,
-				ACDE993A19136F730083232B /* OKLTemplateViewController.m */,
-			);
-			name = "Template with Label View";
 			sourceTree = "<group>";
 		};
 		E10023D118F529E9008421D4 = {
@@ -1313,12 +1301,9 @@
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
 				189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
-				AC8F632419135AC800854D06 /* OKDataSharingViewController.m in Sources */,
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
-				ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */,
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
-				AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
@@ -1326,7 +1311,7 @@
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
-				AC8F63281913621A00854D06 /* OKTemplateViewController.m in Sources */,
+				AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				188608F8190FCC1300BD1D77 /* OKFacilityVC.m in Sources */,
