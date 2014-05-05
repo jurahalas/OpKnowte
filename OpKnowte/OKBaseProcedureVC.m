@@ -14,6 +14,7 @@
 #import "OKOperatieNoteViewController.h"
 #import "OKProcedureMultiselectVC.h"
 #import "OKProcedureMultiselect.h"
+#import "OKDatePicker.h"
 
 @interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate>
 
@@ -46,16 +47,15 @@
     self.navigationItem.rightBarButtonItem = nextButton;
     self.interactionItems = [[NSMutableArray alloc] init];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
-    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
+    self.datePicker = [[OKDatePicker alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
+    [self.datePicker setTextColor:[UIColor whiteColor]];
     self.picker.hidden = YES;
     self.datePicker.hidden = YES;
-    self.datePicker.datePickerMode = UIDatePickerModeDate;
     self.picker.delegate = self;
     self.picker.dataSource = self;
     self.picker.showsSelectionIndicator = YES;
     [self.view addSubview:self.datePicker];
     [self.view addSubview:self.picker];
-
 }
 
 
