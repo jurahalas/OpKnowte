@@ -7,22 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OKAppDelegate.h"
+#import "OKBaseProcedureElement.h"
 
-@protocol OKProcedureSwitcherDelegate <NSObject>
+@interface OKProcedureSwitcher : OKBaseProcedureElement
 
--(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
+@property (nonatomic, weak) id<OKBaseProcedureElementDelegate>delegate;
+@property (nonatomic, strong) IBOutlet UILabel *customLabel;
+@property (nonatomic, strong) IBOutlet UISwitch *customSwitcher;
 
-@end
-@interface OKProcedureSwitcher : UIControl
-
-@property (strong, nonatomic) IBOutlet UILabel *customLabel;
-@property (strong, nonatomic) IBOutlet UISwitch *customSwitcher;
-@property (strong, nonatomic) IBOutlet UIView *view;
-@property (nonatomic, strong) NSString *fieldName;
-@property (nonatomic, weak) id<OKProcedureSwitcherDelegate>delegate;
-
--(void) setup;
--(void)setFieldName:(NSString*)name;
--(void)setPlaceHolder:(NSString*)placeHolder;
 @end

@@ -7,29 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OKAppDelegate.h"
+#import "OKBaseProcedureElement.h"
 
-@class OKProcedurePicker;
-@protocol OKProcedurePickerDelegate <NSObject>
+@protocol OKProcedurePickerDelegate <OKBaseProcedureElementDelegate>
 
--(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger) tag;
--(void)showPickerWithData:(NSArray*)pickerData picker: (OKProcedurePicker *)pickerObject;
+-(void)showPickerWithData:(NSArray*)pickerData picker: (id)pickerObject;
 
 @end
-@interface OKProcedurePicker : UIControl
+
+@interface OKProcedurePicker : OKBaseProcedureElement
+
 @property (nonatomic, weak) id<OKProcedurePickerDelegate>delegate;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
 @property (strong, nonatomic) IBOutlet UIButton *button;
-@property (strong, nonatomic) IBOutlet UIView *view;
-@property (nonatomic, strong) NSString *fieldName;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic) NSInteger tagOfTextField;
 
-
--(void) setup;
--(void)setFieldName:(NSString*)name;
--(void)setPlaceHolder:(NSString*)placeHolder;
 -(void) setDataArray:(NSMutableArray *)dataArray;
-
 
 @end

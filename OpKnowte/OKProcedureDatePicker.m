@@ -12,23 +12,8 @@
 - (IBAction)customButtonTapped:(id)sender;
 
 @end
+
 @implementation OKProcedureDatePicker
-
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"OKProcedureDatePicker" owner:self options:nil];
-        self.frame = frame;
-        [self addSubview:self.view];
-        self.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        [self setup];
-    }
-    return self;
-}
-
 
 -(void) setup{
     _customTextField.text = @"";
@@ -41,13 +26,6 @@
 - (IBAction)customButtonTapped:(id)sender {
     
     [self.delegate showDatePickerWithDate:[NSDate date] picker:self];
-
-}
-
-
--(void)setFieldName:(NSString*)name
-{
-    _fieldName = name;
 }
 
 
@@ -74,6 +52,13 @@
 
 - (IBAction)textFieldChanged:(id)sender {
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
+}
+
+
+-(BOOL)becomeFirstResponder
+{
+    [self customButtonTapped:nil];
+    return YES;
 }
 
 @end
