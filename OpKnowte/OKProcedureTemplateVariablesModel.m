@@ -17,7 +17,7 @@
     key = [key stringByReplacingOccurrencesOfString:@")" withString:@""];
     
     _ID = [dictionary objectForKey:@"id"];
-    _key = key ;
-    _value = [dictionary objectForKey:@"varValue"];
+    _key = [dictionary objectForKey:@"varValue"];
+    _value = key ;
 }
 @end

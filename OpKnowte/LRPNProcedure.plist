@@ -4,66 +4,6 @@
 <array>
 	<dict>
 		<key>title</key>
-		<string>Patient Data</string>
-		<key>fields</key>
-		<array>
-			<dict>
-				<key>name</key>
-				<string>patientName</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string>Patient Name</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>patientDOB</string>
-				<key>type</key>
-				<string>DatePicker</string>
-				<key>placeholder</key>
-				<string>Patient DOB</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>mrNumber</string>
-				<key>type</key>
-				<string>numericTextField</string>
-				<key>placeholder</key>
-				<string>Medical Record Number</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>dateOfService</string>
-				<key>type</key>
-				<string>DatePicker</string>
-				<key>placeholder</key>
-				<string>Date Of Service</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>gender</string>
-				<key>type</key>
-				<string>picker</string>
-				<key>placeholder</key>
-				<string>Sex</string>
-				<key>items</key>
-				<array>
-					<string>Female</string>
-					<string>Male</string>
-				</array>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string></string>
 		<key>fields</key>
 		<array>

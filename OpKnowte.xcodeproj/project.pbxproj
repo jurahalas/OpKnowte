@@ -20,6 +20,8 @@
 		0061E2CD1917EA9F007170D3 /* multiSelectButtonBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0061E2CB1917EA9F007170D3 /* multiSelectButtonBG.png */; };
 		0061E2CE1917EA9F007170D3 /* multiSelectButtonBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0061E2CC1917EA9F007170D3 /* multiSelectButtonBG@2x.png */; };
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
+		0065F9D919190F57003344A3 /* IPPProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0065F9D819190F57003344A3 /* IPPProcedure.plist */; };
+		0065F9DE19193605003344A3 /* OKPenileProsthesisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065F9DD19193605003344A3 /* OKPenileProsthesisVC.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862952190CF372006EBA9C /* OKProcedureSwitcher.m */; };
@@ -235,6 +237,9 @@
 		0061E2CC1917EA9F007170D3 /* multiSelectButtonBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multiSelectButtonBG@2x.png"; sourceTree = "<group>"; };
 		0065E87B190026900016B94F /* OKInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKInfoViewController.h; sourceTree = "<group>"; };
 		0065E87C190026900016B94F /* OKInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKInfoViewController.m; sourceTree = "<group>"; };
+		0065F9D819190F57003344A3 /* IPPProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IPPProcedure.plist; sourceTree = "<group>"; };
+		0065F9DC19193605003344A3 /* OKPenileProsthesisVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPenileProsthesisVC.h; sourceTree = "<group>"; };
+		0065F9DD19193605003344A3 /* OKPenileProsthesisVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPenileProsthesisVC.m; sourceTree = "<group>"; };
 		007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKRegistrationViewController.h; sourceTree = "<group>"; };
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
@@ -550,13 +555,39 @@
 				1881B08418FDC77500F61CE8 /* OKProcedureModel.m */,
 				189F4515190A8DCC00372C55 /* OKContactModel.h */,
 				189F4516190A8DCC00372C55 /* OKContactModel.m */,
+				0065F9DA19191058003344A3 /* Procedure templates */,
+				0086295D190E31A9006EBA9C /* Procedures */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		0061E2CF1918BA79007170D3 /* Base Procedure Element */ = {
+			isa = PBXGroup;
+			children = (
+				E1DE70661917CC9A0088913C /* OKBaseProcedureElement.h */,
+				E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */,
+			);
+			name = "Base Procedure Element";
+			sourceTree = "<group>";
+		};
+		0065F9DA19191058003344A3 /* Procedure templates */ = {
+			isa = PBXGroup;
+			children = (
 				008BCE9319178B1C00E1D18D /* OKProcedureTemplateModel.h */,
 				008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */,
-				0086295D190E31A9006EBA9C /* Procedures */,
 				008BCE9619179D6F00E1D18D /* OKProcedureTemplateVariablesModel.h */,
 				008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */,
 			);
-			name = Models;
+			name = "Procedure templates";
+			sourceTree = "<group>";
+		};
+		0065F9E019193615003344A3 /* IPP */ = {
+			isa = PBXGroup;
+			children = (
+				0065F9DC19193605003344A3 /* OKPenileProsthesisVC.h */,
+				0065F9DD19193605003344A3 /* OKPenileProsthesisVC.m */,
+			);
+			name = IPP;
 			sourceTree = "<group>";
 		};
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
@@ -644,8 +675,9 @@
 			isa = PBXGroup;
 			children = (
 				008D5B571907DC600039E8B7 /* Custom elements */,
-				008D5B871908F8220039E8B7 /* Shockwave Lithotripsy */,
+				008D5B871908F8220039E8B7 /* SWL */,
 				008BE8CD1914E8BC0060353C /* LRPN */,
+				0065F9E019193615003344A3 /* IPP */,
 			);
 			name = "Procedure Parser";
 			sourceTree = "<group>";
@@ -653,14 +685,13 @@
 		008D5B571907DC600039E8B7 /* Custom elements */ = {
 			isa = PBXGroup;
 			children = (
+				0061E2CF1918BA79007170D3 /* Base Procedure Element */,
 				E1DE705819177C330088913C /* Multiselect */,
 				008D5B7C190807420039E8B7 /* Picker */,
 				008D5B70190800D70039E8B7 /* Date picker */,
 				008D5B581907DC6F0039E8B7 /* Text Field */,
 				008D5B691907DE3C0039E8B7 /* Switcher */,
 				00862960190E8C57006EBA9C /* Base Procedure VC */,
-				E1DE70661917CC9A0088913C /* OKBaseProcedureElement.h */,
-				E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */,
 			);
 			name = "Custom elements";
 			sourceTree = "<group>";
@@ -705,13 +736,13 @@
 			name = Picker;
 			sourceTree = "<group>";
 		};
-		008D5B871908F8220039E8B7 /* Shockwave Lithotripsy */ = {
+		008D5B871908F8220039E8B7 /* SWL */ = {
 			isa = PBXGroup;
 			children = (
 				00F47DE4190924F200E06F88 /* OKShockwaveLithotripsyVC.h */,
 				00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */,
 			);
-			name = "Shockwave Lithotripsy";
+			name = SWL;
 			sourceTree = "<group>";
 		};
 		0092FD37190A67E500499F7E /* Surgeon Pefrormance Data */ = {
@@ -917,6 +948,7 @@
 			children = (
 				00F47DE219090D1F00E06F88 /* SLProcedure.plist */,
 				00607FDE191380B100AD27F3 /* LRPNProcedure.plist */,
+				0065F9D819190F57003344A3 /* IPPProcedure.plist */,
 				00A64CF019064DB300740DC7 /* images */,
 			);
 			name = Resources;
@@ -1368,6 +1400,7 @@
 				00A64D5F19064DB400740DC7 /* email.png in Resources */,
 				00A64D7A19064DB400740DC7 /* separator@2x.png in Resources */,
 				00A64D4B19064DB400740DC7 /* cellDark@2x.png in Resources */,
+				0065F9D919190F57003344A3 /* IPPProcedure.plist in Resources */,
 				00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1473,6 +1506,7 @@
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
+				0065F9DE19193605003344A3 /* OKPenileProsthesisVC.m in Sources */,
 				00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
 				008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */,

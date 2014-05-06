@@ -1,13 +1,13 @@
 //
-//  OKShockwaveLithotripsyVC.m
+//  OKPenileProsthesisVC.m
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/24/14.
+//  Created by Artem Frolow on 5/6/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKShockwaveLithotripsyVC.h"
-#import "OKShockwaveLithotripsyModel.h"
+#import "OKPenileProsthesisVC.h"
+
 
 #import "OKProcedureTextField.h"
 #import "OKProcedureSwitcher.h"
@@ -18,22 +18,11 @@
 #import "OKProcedureMultiselect.h"
 #import "OKDatePicker.h"
 
-@interface OKShockwaveLithotripsyVC ()
-
-
+@interface OKPenileProsthesisVC ()
 
 @end
 
-@implementation OKShockwaveLithotripsyVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation OKPenileProsthesisVC
 
 - (void)viewDidLoad
 {
@@ -41,24 +30,24 @@
     self.navigationItem.title = @"Shockwave Lithotripsy";
     self.plistArray = [[NSArray alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SLProcedure" ofType:@"plist"]];
     if (!self.currentPage) {
-       self.currentPage = 0;
+        self.currentPage = 0;
     }
     NSArray *currentPageFieldsArray =[[self.plistArray objectAtIndex:self.currentPage] objectForKey:@"fields" ];
     self.xPoint = 80;
     if (self.model == nil) {
         self.model = [[OKShockwaveLithotripsyModel alloc] init];
-
+        
     }
     
     for (int i = 0; i < currentPageFieldsArray.count; i++) {
-    
+        
         if (self.currentPage >=2 && self.currentPage <= 5) {
             for (int j = 0; j < [[self.model valueForKey:@"var_stonesCount" ] intValue]; j++) {
                 [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:j+1];
             }
         } else {
             [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:0];
-
+            
         }
     }
 }
@@ -78,8 +67,8 @@
         
         [array replaceObjectAtIndex:(tag-1) withObject:newValue];
         [self.model setValue:array forKey:name];
-
-
+        
+        
     } else {
         
         if ([name isEqualToString:@"var_patientDOB"]) {
@@ -97,8 +86,8 @@
         }
     }
     
-
-
+    
+    
     
 }
 #pragma mark - OKProcedureSwitcherDelegate
@@ -111,7 +100,7 @@
     }
     
     if ([name isEqualToString:@"var_pausePerformed"]) {
-       [self.model setValue:boolToString forKey:name];
+        [self.model setValue:boolToString forKey:name];
         
     } else if ([name isEqualToString:@"complications?"]) {
         id element = nil;
@@ -146,5 +135,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

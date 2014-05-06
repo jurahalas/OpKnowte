@@ -13,6 +13,10 @@
 #import "OKProcedureSwitcher.h"
 #import "OKProcedureDatePicker.h"
 #import "OKProcedurePicker.h"
+#import "OKOperatieNoteViewController.h"
+#import "OKProcedureMultiselectVC.h"
+#import "OKProcedureMultiselect.h"
+#import "OKDatePicker.h"
 
 @interface OKLRPartialNephrectomyVC ()
 
@@ -60,7 +64,19 @@
     if ([name isEqualToString:@"anterior/posterior"]) {
         
     }else {
-        [self.model setValue:newValue forKey:name];
+        if ([name isEqualToString:@"var_patientDOB"]) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+            NSDate *birthday = [dateFormatter dateFromString:newValue];
+            NSDateComponents *ageComponents = [[NSCalendar currentCalendar] components: NSYearCalendarUnit fromDate:birthday toDate:[NSDate date] options:0];
+            NSString *age = [NSString stringWithFormat:@"%d", [ageComponents year]];
+            [self.model setValue:age forKey:@"var_age"];
+            [self.model setValue:newValue forKey:name];
+            [self.model setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ]  forKey:@"var_surgeon"];
+        } else {
+            
+            [self.model setValue:newValue forKey:name];
+        }
  
     }
   	

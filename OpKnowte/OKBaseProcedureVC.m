@@ -126,7 +126,13 @@
         }
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
-
+        NSMutableArray *pickerArray = [[NSMutableArray alloc] init];
+        if ([[[customElementDictionary objectForKey:@"items"] objectAtIndex:0] isEqualToString:@"0,1"] ){
+            pickerArray = [self convertStoneSizeArray:[customElementDictionary objectForKey:@"items"]];
+        } else {
+            pickerArray = [customElementDictionary objectForKey:@"items"];
+        }
+        [picker setDataArray:pickerArray];
         [self.interactionItems addObject:picker];
 
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {
@@ -150,6 +156,20 @@
         [self.interactionItems addObject:switcher];
     }
     _xPoint += 43;
+}
+-(NSMutableArray*)convertStoneSizeArray:(NSMutableArray *) Array
+{
+    NSMutableArray * b = [[NSMutableArray alloc]init];
+    
+    for(float i = .1; i<= 25.1 ; i+=.1){
+        NSString *fltString = [NSString stringWithFormat:@"%.1f", i];
+        
+        [b addObject:fltString];
+    }
+    
+    Array = b;
+    
+    return Array;
 }
 
 
@@ -240,11 +260,14 @@
 
 -(void)hideDatePicker
 {
-    self.datePickerObject.customTextField.text = [NSString stringWithFormat:@"%@", self.datePicker.date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    
+    self.datePickerObject.customTextField.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.datePicker.date] ];
     [self.datePickerObject.delegate updateField:self.datePickerObject.fieldName withValue:self.datePickerObject.customTextField.text andTag:self.datePickerObject.tagOfTextField];
     self.datePicker.hidden = YES;
     self.pickerData = nil;
-
+    
 }
 
 

@@ -73,12 +73,13 @@
             for (NSString *str in selectedCaseDataArray) {
                 
                 for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
-                    if ([str isEqualToString:allKeys.key]) {
+                    
+                    if ([str isEqualToString:allKeys.value]) {
                         
                         OKProcedureTemplateVariablesModel *tempModel = [[OKProcedureTemplateVariablesModel alloc]init];
                         
-                        tempModel.key = allKeys.value;
-                        tempModel.value = allKeys.key;
+                        tempModel.key = allKeys.key;
+                        tempModel.value = allKeys.value;
                         
                         [self.caseDataValues addObject:tempModel];
                         tempModel = nil;
@@ -89,6 +90,8 @@
             
             
             [self.caseDataTableView reloadData];
+            [self indicationMethod];
+            [self procedureMethod];
             [[OKLoadingViewController instance] hide];
             
         }];
@@ -117,9 +120,9 @@
    caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
 
     [self.caseDataTableView reloadData];
-
-    [self indicationMethod];
-    [self procedureMethod];
+//
+//    [self indicationMethod];
+//    [self procedureMethod];
     
     self.caseDataTableView.hidden = NO;
     self.IndicationView.hidden = YES;
@@ -136,38 +139,31 @@
 
     IndicationView.backgroundColor = [UIColor clearColor];
     
-//    NSString *stonesSizes = nil;
-//    NSString *stonesLocations = nil;
-//    for (NSString *stonesSize in [self.model valueForKey:@"stonesSizes"]) {
-//        if (![stonesSize isEqualToString:@" "]) {
-//            if (stonesSizes == nil)
-//                stonesSizes = stonesSize;
-//            else
-//                stonesSizes = [NSString stringWithFormat:@"%@,%@",stonesSizes, stonesSize];
-//
-//            
-//        }
-//       
-//    }
-//    for (NSString *stonesLocation in [self.model valueForKey:@"stonesLocations"]) {
-//        if (![stonesLocation isEqualToString:@" "]) {
-//            if (stonesLocations == nil)
-//                stonesLocations = stonesLocation;
-//            else
-//                stonesLocations = [NSString stringWithFormat:@"%@,%@",stonesLocations, stonesLocation];
-//        }
-//        
-//    }
-//    NSString *indicationText = [NSString stringWithFormat:@"(%@) is a (%@) year old (%@) with a history of nephrolithiasis, currently with a (%@) (%@) stone. Options for management were discussed with the patient. The indications, procedure, and expectations for shockwave lithotripsy were discussed with the patient. Risks including but not limited to infections, bleeding, hematoma, residual stone, recurrent stone, steinstrasse, need for further or additional procedures were discussed with the patient and they have asked me to proceed.",
-//                                [self.model valueForKey:@"patientName"],
-//                                [self.model valueForKey:@"patientDOB"],
-//                                [self.model valueForKey:@"gender"],
-//                                stonesSizes,
-//                                stonesLocations
-//                                ];
+
+    NSString *indicationText = _templateModel.indicationText;
+    
+    for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
+        
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:allKeys.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:allKeys.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+            
+            variableValue = [[_model valueForKey:allKeys.value] componentsJoinedByString:@"; "];
+        } else {
+            variableValue = [_model valueForKey:allKeys.value];
+        }
+       indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+    }
     
     
-//    indicationLabel.text = indicationText;
+    indicationLabel.text = indicationText;
     
     [indicationLabel sizeToFit];
     indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, indicationLabel.frame.size.height+80);
@@ -179,63 +175,30 @@
 -(void)procedureMethod{
 
     procedureView.backgroundColor = [UIColor clearColor];
-//    NSString *stonesSizes = nil;
-//    NSString *stonesLocations = nil;
-//    NSString *degreesOfFragmentation = nil;
-//    NSString *totalShocks = nil;
-//    for (NSString *stonesSize in [self.model valueForKey:@"stonesSizes"]) {
-//        if (![stonesSize isEqualToString:@" "]) {
-//            if (stonesSizes == nil)
-//                stonesSizes = stonesSize;
-//            else
-//                stonesSizes = [NSString stringWithFormat:@"%@,%@",stonesSizes, stonesSize];
-//        }
-//        
-//    }
-//    for (NSString *stonesLocation in [self.model valueForKey:@"stonesLocations"]) {
-//        if (![stonesLocation isEqualToString:@" "]) {
-//            if (stonesLocations == nil)
-//                stonesLocations = stonesLocation;
-//            else
-//                stonesLocations = [NSString stringWithFormat:@"%@,%@",stonesLocations, stonesLocation];
-//        }
-//        
-//    }
-//    for (NSString *degreeOfFragmentation in [self.model valueForKey:@"degreeOfFragmentation"]) {
-//        if (![degreeOfFragmentation isEqualToString:@" "]) {
-//            if (degreesOfFragmentation == nil)
-//                degreesOfFragmentation = degreeOfFragmentation;
-//            else
-//            degreesOfFragmentation = [NSString stringWithFormat:@"%@,%@",degreesOfFragmentation, degreeOfFragmentation];
-//        }
-//        
-//    }
-//    for (NSString *totalShock in [self.model valueForKey:@"totalShocks"]) {
-//        if (![totalShock isEqualToString:@" "]) {
-//            if (totalShocks == nil)
-//                totalShocks = totalShock;
-//            else
-//            totalShocks = [NSString stringWithFormat:@"%@,%@",totalShocks, totalShock];
-//        }
-//        
-//    }
-//    
-//    NSString * procedureText = [NSString stringWithFormat:@"After appropriate (%@) anesthesia was administered, the patient was positioned supine on the lithotripsy table. The stone(s) was(were) localized under fluoroscopy in both craniocaudal and anteroposterior views. A total of (%@) were delivered to the (%@) (%@). Shockwaves were delivered at a rate of (%@) and (%@). (%@). There was (%@) fragmentation of the (%@) (%@). The patient was awakened from anesthesia and taken to the recovery room in stable condition. (%@). Disposition: The patient is to followup in (%@).",
-//                                [self.model valueForKey:@"anesthesiaPerformed"],
-//                                totalShocks,
-//                                stonesSizes,
-//                                stonesLocations,
-//                                [self.model valueForKey:@"rateOfWaves"],
-//                                [self.model valueForKey:@"kvOfWaves"],
-//                                [self.model valueForKey:@"pausePerformed"],
-//                                degreesOfFragmentation,
-//                                stonesSizes,
-//                                stonesLocations,
-//                                [self.model valueForKey:@"complications"],
-//                                [self.model valueForKey:@"followUp"]
-//                                ];
-//   
-//    procedureLable.text = procedureText;
+    NSString * procedureText = _templateModel.procedureText;
+    
+    for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
+        
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:allKeys.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:allKeys.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+            
+            variableValue = [[_model valueForKey:allKeys.value] componentsJoinedByString:@"; "];
+        } else {
+            variableValue = [_model valueForKey:allKeys.value];
+        }
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+    }
+    
+
+    procedureLable.text = procedureText;
     
     [procedureLable sizeToFit];
     procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, procedureLable.frame.size.height+80);
