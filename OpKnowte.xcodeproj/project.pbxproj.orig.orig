@@ -145,12 +145,17 @@
 		189F45141909480700372C55 /* OKInstituteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F45131909480700372C55 /* OKInstituteVC.m */; };
 		189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F4516190A8DCC00372C55 /* OKContactModel.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
+<<<<<<< HEAD
+=======
+		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
+		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
+		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
 		AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A6A190A7A5700D8572D /* OKOperatieNoteViewController.m */; };
 		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
-		AC2220A8191801B000BE7F4B /* OKOngoingClinicalPRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2220A7191801B000BE7F4B /* OKOngoingClinicalPRViewController.m */; };
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
 		AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61D419123AA90064C53F /* OKSettingsViewController.m */; };
 		AC8F61DB19123B200064C53F /* OKSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F61DA19123B200064C53F /* OKSettingsTableViewCell.m */; };
@@ -370,6 +375,15 @@
 		189F4515190A8DCC00372C55 /* OKContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactModel.h; sourceTree = "<group>"; };
 		189F4516190A8DCC00372C55 /* OKContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactModel.m; sourceTree = "<group>"; };
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		AC1D0781190AE22100DC55FD /* OKDataCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureViewController.h; sourceTree = "<group>"; };
+		AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureViewController.m; sourceTree = "<group>"; };
+		AC1D0784190AE24C00DC55FD /* OKDataCaptureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureTableViewCell.h; sourceTree = "<group>"; };
+		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
+		AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalViewController.h; sourceTree = "<group>"; };
+		AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalViewController.m; sourceTree = "<group>"; };
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 		AC07E7C5190E411600892B99 /* segmentControllBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentControllBG.png; sourceTree = "<group>"; };
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
 		AC161A69190A7A5700D8572D /* OKOperatieNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteViewController.h; sourceTree = "<group>"; };
@@ -378,8 +392,6 @@
 		AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureViewController.m; sourceTree = "<group>"; };
 		AC1D0784190AE24C00DC55FD /* OKDataCaptureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureTableViewCell.h; sourceTree = "<group>"; };
 		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
-		AC2220A6191801B000BE7F4B /* OKOngoingClinicalPRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalPRViewController.h; sourceTree = "<group>"; };
-		AC2220A7191801B000BE7F4B /* OKOngoingClinicalPRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalPRViewController.m; sourceTree = "<group>"; };
 		AC2B0E48190B247B0089206D /* OKOperatieNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteTableViewCell.h; sourceTree = "<group>"; };
 		AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOperatieNoteTableViewCell.m; sourceTree = "<group>"; };
 		AC8F61D319123AA90064C53F /* OKSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSettingsViewController.h; sourceTree = "<group>"; };
@@ -508,13 +520,16 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
-				AC2220A51918018700BE7F4B /* Ongoing Clinical PR View */,
+<<<<<<< HEAD
 				188608F5190FCBDD00BD1D77 /* Select Facility */,
 				ACB01CE31913A0E400EA661E /* Change Password View */,
 				189F45111909421800372C55 /* institute View */,
 				AC8F61EA191261100064C53F /* Access Confirm View */,
 				AC8F61E3191245550064C53F /* AccessSettings View */,
 				AC8F61D219123A800064C53F /* Settings View */,
+=======
+				AC3F9795190ED08100655128 /* Ongoing Clinical View */,
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 				189F450A1909102700372C55 /* Performance Data View */,
 				AC1D0780190AE1D100DC55FD /* Data Capture View */,
 				AC161A68190A79FE00D8572D /* LRPN Operatie Note */,
@@ -836,16 +851,20 @@
 			name = "Data Capture View";
 			sourceTree = "<group>";
 		};
-		AC2220A51918018700BE7F4B /* Ongoing Clinical PR View */ = {
+<<<<<<< HEAD
+		AC8F61D219123A800064C53F /* Settings View */ = {
+=======
+		AC3F9795190ED08100655128 /* Ongoing Clinical View */ = {
 			isa = PBXGroup;
 			children = (
-				AC2220A6191801B000BE7F4B /* OKOngoingClinicalPRViewController.h */,
-				AC2220A7191801B000BE7F4B /* OKOngoingClinicalPRViewController.m */,
+				AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */,
+				AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */,
 			);
-			name = "Ongoing Clinical PR View";
+			name = "Ongoing Clinical View";
 			sourceTree = "<group>";
 		};
-		AC8F61D219123A800064C53F /* Settings View */ = {
+		AC161A68190A79FE00D8572D /* LRPN Operatie Note */ = {
+>>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 			isa = PBXGroup;
 			children = (
 				AC8F61D319123AA90064C53F /* OKSettingsViewController.h */,
@@ -1251,7 +1270,6 @@
 				189F45141909480700372C55 /* OKInstituteVC.m in Sources */,
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
 				AC8F61E919124BFD0064C53F /* OKAccessSettingsTableViewCell.m in Sources */,
-				AC2220A8191801B000BE7F4B /* OKOngoingClinicalPRViewController.m in Sources */,
 				00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */,
 				00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */,
 				185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */,
@@ -1293,6 +1311,7 @@
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
+				AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				188608F8190FCC1300BD1D77 /* OKFacilityVC.m in Sources */,
