@@ -79,6 +79,8 @@
     }else if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]){
         [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 
