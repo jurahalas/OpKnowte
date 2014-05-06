@@ -23,8 +23,19 @@
     NSDictionary *navbarTitleProperties = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-DemiBold" size:17.0f], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes: navbarTitleProperties];
     
+    [self restoreCurrentUser];
+    
     return YES;
 }
+
+
+-(void)restoreCurrentUser
+{
+    NSData *encodedObject = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    OKUserModel *user = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    [OKUserManager instance].currentUser = user;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

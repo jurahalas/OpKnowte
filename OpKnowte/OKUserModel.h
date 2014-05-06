@@ -9,13 +9,13 @@
 #import "OKBaseModel.h"
 
 @interface OKUserModel : OKBaseModel
-@property (nonatomic, retain) NSString *firstName;
-@property (nonatomic, retain) NSString *lastName;
-@property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSString *password;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *userID;
-@property (nonatomic, retain) NSString *status;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *status;
 
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import "OKDataCaptureViewController.h"
+#import "OKSelectProcedureViewController.h"
 
 @interface OKDataCaptureViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *dataCapture;
+@property (strong, nonatomic) NSArray *tableData;
 
 @end
 
@@ -31,8 +33,9 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.tableData = @[@"Immediate Post-Operative",
+                       @"Ongoing Clinical"];
     [self addBottomTabBar];
-    
     dataCapture.backgroundColor = [UIColor clearColor];
     self.dataCapture.dataSource = self;
     self.dataCapture.delegate = self;
@@ -63,16 +66,27 @@
     if (!cell) {
         cell = [[OKDataCaptureTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSMutableArray *dataTitleArray = [[NSMutableArray alloc] initWithObjects:
-                                      @"Immediate Post-Operative",
-                                      @"Ongoing Clinical",nil];
-    
-    cell.dataCaptureLable.text = [dataTitleArray objectAtIndex:indexPath.row];
-    [cell setCellBGImageLight:indexPath.row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    cell.dataCaptureLable.text = self.tableData[indexPath.row];
+    [cell setCellBGImageLight:(int)indexPath.row];
     return cell;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"selectProcedure" sender:indexPath];
+}
+
+
+#pragma mark - prepare for segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"selectProcedure"]){
+        OKSelectProcedureViewController *vc = (OKSelectProcedureViewController*)segue.destinationViewController;
+    }
+}
 
 
 - (void)didReceiveMemoryWarning

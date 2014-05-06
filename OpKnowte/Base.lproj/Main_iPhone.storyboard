@@ -1460,6 +1460,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dataCapture" destination="xky-eG-at2" id="Ghw-rf-iY6"/>
+                        <segue destination="wBF-vG-Mca" kind="push" identifier="selectProcedure" id="cL3-fE-0Q4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0j-TQ-0Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2283,8 +2284,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="cL3-fE-0Q4"/>
         <segue reference="mc4-ob-XxU"/>
+        <segue reference="goQ-lN-Lsa"/>
         <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,6 +44,7 @@
     [self requestWithMethod:@"POST" path:@"login" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
+        self.currentUser = [OKUserModel new];
         [self.currentUser setModelWithDictionary:json];
         NSLog(@"%@",self.currentUser.firstName);
         NSLog(@"%@",self.currentUser.userID);
@@ -51,6 +52,10 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:self.currentUser.userID forKey:@"userID"];
         [defaults setObject:self.currentUser.firstName forKey:@"firstName"];
+        
+//        save user
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.currentUser];
+        [defaults setObject:encodedObject forKey:@"user"];
         [defaults synchronize];
     }];
 }
@@ -90,7 +95,20 @@
         NSLog(@"%@",json);
         [self.currentUser setModelWithDictionary:json];
     }];
- 
 }
+
+
+-(void)logout
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"PASSWORD"];
+    [defaults removeObjectForKey:@"EMAILADDRESS"];
+    [defaults removeObjectForKey:@"userID"];
+    [defaults removeObjectForKey:@"user"];
+    [defaults synchronize];
+    self.currentUser = nil;
+}
+
+
 
 @end
