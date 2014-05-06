@@ -1157,7 +1157,7 @@
             </objects>
             <point key="canvasLocation" x="2638" y="-655"/>
         </scene>
-        <!--ContactsVC - Access Settings-->
+        <!--ContactsVC - Contacts-->
         <scene sceneID="GCb-th-x4g">
             <objects>
                 <viewController id="7Il-eB-lFB" customClass="OKContactsVC" sceneMemberID="viewController">
@@ -1200,7 +1200,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Access Settings" id="sDY-aC-dJC">
+                    <navigationItem key="navigationItem" title="Contacts" id="sDY-aC-dJC">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="zaX-17-CVz">
                             <connections>
                                 <action selector="backButton:" destination="7Il-eB-lFB" id="c0O-XY-srR"/>
@@ -1209,6 +1209,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contactsTableView" destination="0sY-bn-QVh" id="Lul-m9-pj1"/>
+                        <segue destination="JBj-cb-b1Z" kind="push" identifier="institute" id="4hL-B7-3pL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bd-o5-hXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2286,6 +2287,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="cL3-fE-0Q4"/>
         <segue reference="mc4-ob-XxU"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="4hL-B7-3pL"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>

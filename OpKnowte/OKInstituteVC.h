@@ -11,6 +11,8 @@
 
 @interface OKInstituteVC : OKBaseViewController <UITextFieldDelegate>
 
+@property (nonatomic, strong) NSString *contactID;
+
 - (IBAction)saveButton:(id)sender;
 
 @end

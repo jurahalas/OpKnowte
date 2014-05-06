@@ -27,10 +27,10 @@
 @property (nonatomic) BOOL animatedKeyboard;
 @property (strong, nonatomic)  NSArray *elements;
 @property (nonatomic) UITextField *activeTextField;
-@property (nonatomic,retain) NSString *contactRoleID;
-@property (nonatomic,retain) NSString *contactID;
-@property (nonatomic,retain) NSString *updatedBy;
-@property (nonatomic,retain) OKContactModel *contactInfo;
+@property (strong, nonatomic) NSString *contactRoleID;
+@property (strong, nonatomic) NSString *updatedBy;
+@property (strong, nonatomic) OKContactModel *contactInfo;
+
 
 
 
@@ -43,6 +43,14 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
+    self.title = self.contactID;
+    if ([self.title isEqualToString:@"1"]) {
+        self.title =@"Surgeon";
+    }else if ([self.title isEqualToString:@"2"]){
+        self.title =@"Assistant";
+    }else if ([self.title isEqualToString:@"5"]){
+        self.title =@"Physician";
+    }
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 
