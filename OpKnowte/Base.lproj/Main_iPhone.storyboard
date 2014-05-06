@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -1079,11 +1079,12 @@
                         <outlet property="settingsTableView" destination="pjc-X1-Y8v" id="BR5-9M-xTg"/>
                         <segue destination="ztT-3o-WfS" kind="push" identifier="aSettings" id="LpP-cw-gCU"/>
                         <segue destination="gDA-KF-ACc" kind="push" identifier="CP" id="0YU-ad-mb9"/>
+                        <segue destination="7Il-eB-lFB" kind="push" identifier="fromSettingsToContacts" id="ZGk-RW-uCR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-2e-rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2231" y="-636"/>
+            <point key="canvasLocation" x="1482" y="-1375"/>
         </scene>
         <!--Access Settings View Controller - Access Settings-->
         <scene sceneID="AXV-Cj-0PL">
@@ -1154,7 +1155,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pjq-bc-isI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="-636"/>
+            <point key="canvasLocation" x="2638" y="-655"/>
+        </scene>
+        <!--ContactsVC - Access Settings-->
+        <scene sceneID="GCb-th-x4g">
+            <objects>
+                <viewController id="7Il-eB-lFB" customClass="OKContactsVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X8a-7o-qO5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="0sY-bn-QVh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="428"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contacts" rowHeight="60" id="wX0-Tm-yPZ" customClass="OKContactsTableViewCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wX0-Tm-yPZ" id="fv7-HW-8BJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kBd-ZP-J6y">
+                                                    <rect key="frame" x="20" y="16" width="235" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="3Z4-Uf-XBR">
+                                                    <rect key="frame" x="292" y="16" width="22" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contactsLabel" destination="kBd-ZP-J6y" id="KQc-mQ-Usa"/>
+                                            <outlet property="contactsRighthIcon" destination="3Z4-Uf-XBR" id="33x-DM-uOX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Access Settings" id="sDY-aC-dJC">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="zaX-17-CVz">
+                            <connections>
+                                <action selector="backButton:" destination="7Il-eB-lFB" id="c0O-XY-srR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contactsTableView" destination="0sY-bn-QVh" id="Lul-m9-pj1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3bd-o5-hXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3516" y="-655"/>
         </scene>
         <!--Access Confirm View Controller - Access Settings-->
         <scene sceneID="Wif-Rl-min">

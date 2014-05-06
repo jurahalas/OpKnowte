@@ -17,25 +17,13 @@
 
 @implementation OKSettingsViewController
 @synthesize settingsTableView;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-- (IBAction)backButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
-    
     settingsTableView.backgroundColor = [UIColor clearColor];
     self.settingsTableView.dataSource = self;
     self.settingsTableView.delegate = self;
@@ -43,23 +31,29 @@
     [self.settingsTableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
+
+- (IBAction)backButton:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.navigationController popViewControllerAnimated:YES];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 7;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 60.f;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"settings";
     OKSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
     if (!cell) {
         cell = [[OKSettingsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
@@ -71,21 +65,31 @@
                                       @"Institutions",
                                       @"Edit Procedure Template",
                                       @"Change Password",nil];
-    
     cell.settingsLabel.text = [dataTitleArray objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     OKSettingsTableViewCell *cell = [[OKSettingsTableViewCell alloc] init];
     cell = (OKSettingsTableViewCell*)[settingsTableView cellForRowAtIndexPath:indexPath];
-    if ([cell.settingsLabel.text  isEqualToString:@"Access Settings"]) {
-        
+    if ([cell.settingsLabel.text  isEqualToString:@"Access Settings"])
+    {
         [self performSegueWithIdentifier:@"aSettings" sender:indexPath];
-    }
-    else if ([cell.settingsLabel.text isEqualToString:@"Change Password"]) {
+    }else if ([cell.settingsLabel.text isEqualToString:@"Change Password"])
+    {
         [self performSegueWithIdentifier:@"CP" sender:indexPath];
+    }else if ([cell.settingsLabel.text  isEqualToString:@"Contacts"])
+    {
+        [self performSegueWithIdentifier:@"fromSettingsToContacts" sender:indexPath];
     }
 }
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
 @end
