@@ -28,7 +28,6 @@
 @property (strong, nonatomic)  NSArray *elements;
 @property (nonatomic) UITextField *activeTextField;
 @property (nonatomic,retain) NSString *contactRoleID;
-@property (nonatomic,retain) NSString *contactID;
 @property (nonatomic,retain) NSString *updatedBy;
 @property (nonatomic,retain) OKContactModel *contactInfo;
 
@@ -43,6 +42,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
+    self.title = self.contactID;
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 

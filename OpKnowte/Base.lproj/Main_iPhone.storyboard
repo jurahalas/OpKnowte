@@ -1209,6 +1209,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contactsTableView" destination="0sY-bn-QVh" id="Lul-m9-pj1"/>
+                        <segue destination="JBj-cb-b1Z" kind="push" identifier="institute" id="4hL-B7-3pL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3bd-o5-hXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2283,8 +2284,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="4hL-B7-3pL"/>
         <segue reference="goQ-lN-Lsa"/>
-        <segue reference="mc4-ob-XxU"/>
         <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>

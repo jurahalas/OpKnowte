@@ -7,10 +7,12 @@
 //
 
 #import "OKContactsVC.h"
+#import "OKInstituteVC.h"
 
 @interface OKContactsVC ()
 
 @property (strong, nonatomic) IBOutlet UITableView *contactsTableView;
+@property (strong, nonatomic) NSDictionary *dataDict;
 
 @end
 
@@ -20,6 +22,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dataDict =  @{@"Surgeons":@"1",
+                       @"Assistans":@"2",
+                       @"Reffering Physicians":@"5"};
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
     _contactsTableView.backgroundColor = [UIColor clearColor];
@@ -36,9 +42,17 @@
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"institute"]){
+        OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
+        instVC.contactID = [self.dataDict valueForKey:sender];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.dataDict.allKeys.count;
 }
 
 
@@ -55,13 +69,16 @@
     if (!cell) {
         cell = [[OKContactsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSMutableArray *dataTitleArray = [[NSMutableArray alloc] initWithObjects:
-                                      @"Surgeons",
-                                      @"Assistans",
-                                      @"Reffering Physicians",nil];
-    cell.contactsLabel.text = [dataTitleArray objectAtIndex:indexPath.row];
+    cell.contactsLabel.text = [self.dataDict.allKeys objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"institute" sender:self.dataDict.allKeys[indexPath.row]];
 }
 
 
