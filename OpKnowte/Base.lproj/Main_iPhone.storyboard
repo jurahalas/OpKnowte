@@ -255,6 +255,16 @@
                                     <segue destination="Tpi-hs-yfW" kind="push" id="yWE-7a-vPz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KDS-5X-LbZ">
+                                <rect key="frame" x="23" y="475" width="274" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ongoing Clinical 3 - Peri Operative Data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="nKb-76-5TK" kind="push" id="yVh-J2-gzd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -269,6 +279,209 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ljw-JG-FBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944" y="55"/>
+        </scene>
+        <!--Peri Operative DataOC View Controller - Ongoing Clinical-->
+        <scene sceneID="mS5-sS-IKw">
+            <objects>
+                <viewController id="nKb-76-5TK" customClass="OKPeriOperativeDataOCViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r5Z-cq-8jf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="QVw-hb-jyO">
+                                <rect key="frame" x="0.0" y="510" width="320" height="58"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jGv-m2-fJO">
+                                        <rect key="frame" x="52" y="14" width="234" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                        <state key="normal" title="Update"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peri-Operative Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YyE-pS-vhv">
+                                <rect key="frame" x="94" y="73" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="GXT-GS-PTJ" userLabel="Post-Op Hospital Stay" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="100" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="zhJ-lh-j03"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="PoL-cP-0PD" userLabel="Complications" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="143" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="zaz-qU-0OI"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="4OV-SH-hTj" userLabel="Pre-operative Bun" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="186" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="Wmu-3N-WwC"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="nFG-aa-0Su" userLabel="Pre-operative Creatinine" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="229" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="tLK-98-6UI"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="ENa-Yg-1wW" userLabel="Post-operative Bun" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="272" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="CS2-PQ-nMa"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="wwA-LV-5WR" userLabel="Post-operative Creatinine" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="315" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="KWi-gP-Rhj"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="ThX-rs-Eqs" userLabel="Aditional Diagnosis" customClass="OKCustomTextField">
+                                <rect key="frame" x="44" y="358" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nKb-76-5TK" id="bvd-MH-PAv"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BIB-VE-hfU" userLabel="Post-Op Hostital Stay button">
+                                <rect key="frame" x="44" y="100" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="hospitalStayButton:" destination="nKb-76-5TK" eventType="touchUpInside" id="txg-7u-SYe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T6E-Ju-57z" userLabel="Complications button">
+                                <rect key="frame" x="44" y="143" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="complicationsButton:" destination="nKb-76-5TK" eventType="touchUpInside" id="4Ao-38-HMi"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="Ogr-ME-AMA">
+                                <rect key="frame" x="0.0" y="396" width="320" height="172"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" id="To6-nw-Hct">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="nKb-76-5TK" id="v5d-U7-9be"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="o8e-ch-zuV" userLabel="pre operative bun button">
+                                <rect key="frame" x="44" y="186" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="preOpBunButton:" destination="nKb-76-5TK" eventType="touchUpInside" id="VOK-e1-k1J"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ULo-ZL-OeT" userLabel="pre operative Creatinine button">
+                                <rect key="frame" x="44" y="229" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="preOpCreatinine:" destination="nKb-76-5TK" eventType="touchUpInside" id="AeN-te-6mi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bmd-gi-waq" userLabel="post operative Bun Button">
+                                <rect key="frame" x="44" y="272" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postOpBunButton:" destination="nKb-76-5TK" eventType="touchUpInside" id="bmU-gZ-YFI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BWt-Ck-gzo" userLabel="Post operativeCreatinine button">
+                                <rect key="frame" x="44" y="315" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postOpCreatinineButton:" destination="nKb-76-5TK" eventType="touchUpInside" id="4Q6-lo-9SV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CJ9-jd-xnU" userLabel="aditional diagnosis button">
+                                <rect key="frame" x="44" y="358" width="234" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="aditionalDiagnosisButton:" destination="nKb-76-5TK" eventType="touchUpInside" id="4ND-3m-zQN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ongoing Clinical" id="cfF-Ew-5a5">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="3Pa-UO-Gxs">
+                            <connections>
+                                <action selector="backButton:" destination="nKb-76-5TK" id="1RC-BA-ygj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="aditionalDiagnosisTextField" destination="ThX-rs-Eqs" id="h5s-zi-CEG"/>
+                        <outlet property="complicationsTextField" destination="PoL-cP-0PD" id="mUR-Oj-Kq3"/>
+                        <outlet property="hostitalStayTextField" destination="GXT-GS-PTJ" id="aPn-Kc-Woz"/>
+                        <outlet property="picker" destination="To6-nw-Hct" id="14A-FF-Vwb"/>
+                        <outlet property="pickerView" destination="Ogr-ME-AMA" id="Ujp-BZ-FTg"/>
+                        <outlet property="postOpBunTextField" destination="ENa-Yg-1wW" id="Pys-zj-NAP"/>
+                        <outlet property="postOpCreatinine" destination="wwA-LV-5WR" id="4wO-8B-VrN"/>
+                        <outlet property="preOpBunTextField" destination="4OV-SH-hTj" id="tlg-6x-1Cm"/>
+                        <outlet property="preOpCreatinineTextField" destination="nFG-aa-0Su" id="iQS-uz-bTt"/>
+                        <outlet property="tabBarView" destination="QVw-hb-jyO" id="yEI-Kq-Yxf"/>
+                        <outlet property="updateButton" destination="jGv-m2-fJO" id="NYm-qn-To4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j2b-Xq-dXj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1013" y="-655"/>
         </scene>
         <!--Surgeon Performance Data Comparison View Controller - Surgeon performance data-->
         <scene sceneID="M1U-KP-KlD">
@@ -361,7 +574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FnC-VZ-4bk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944" y="-655"/>
+            <point key="canvasLocation" x="1470" y="-655"/>
         </scene>
         <!--Procedure Detail Summary View Controller - Summary-->
         <scene sceneID="K3O-ms-HFp">
@@ -425,7 +638,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="-655"/>
+            <point key="canvasLocation" x="2008" y="-655"/>
         </scene>
         <!--Select Procedure View Controller - Select Procedure-->
         <scene sceneID="9ZL-h0-Udx">
@@ -827,7 +1040,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Blb-S0-zb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1857" y="-655"/>
+            <point key="canvasLocation" x="2383" y="-655"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="uZN-Rr-m30">
@@ -887,7 +1100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-2e-rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2231" y="-636"/>
+            <point key="canvasLocation" x="2757" y="-636"/>
         </scene>
         <!--Access Settings View Controller - Access Settings-->
         <scene sceneID="AXV-Cj-0PL">
@@ -958,7 +1171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pjq-bc-isI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="-636"/>
+            <point key="canvasLocation" x="3168" y="-636"/>
         </scene>
         <!--Access Confirm View Controller - Access Settings-->
         <scene sceneID="Wif-Rl-min">
@@ -1024,7 +1237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flI-aH-8I1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3048" y="-655"/>
+            <point key="canvasLocation" x="3574" y="-655"/>
         </scene>
         <!--Select Time Point View Controller - Time Points-->
         <scene sceneID="jo8-Sc-jJd">
@@ -1983,7 +2196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-VE-X5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2231" y="-1283"/>
+            <point key="canvasLocation" x="2757" y="-1283"/>
         </scene>
     </scenes>
     <resources>
