@@ -1157,7 +1157,7 @@
             </objects>
             <point key="canvasLocation" x="2638" y="-655"/>
         </scene>
-        <!--ContactsVC - Access Settings-->
+        <!--ContactsVC - Contacts-->
         <scene sceneID="GCb-th-x4g">
             <objects>
                 <viewController id="7Il-eB-lFB" customClass="OKContactsVC" sceneMemberID="viewController">
@@ -1200,7 +1200,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Access Settings" id="sDY-aC-dJC">
+                    <navigationItem key="navigationItem" title="Contacts" id="sDY-aC-dJC">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="zaX-17-CVz">
                             <connections>
                                 <action selector="backButton:" destination="7Il-eB-lFB" id="c0O-XY-srR"/>
