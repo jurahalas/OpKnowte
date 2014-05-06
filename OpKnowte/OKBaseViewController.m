@@ -32,6 +32,7 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 	}
+
 }
 -(void) goToSettingsVC{
     
@@ -40,6 +41,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 
 }
+
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

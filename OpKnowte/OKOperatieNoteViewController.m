@@ -18,11 +18,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *procedureLable;
 @property (strong, nonatomic) IBOutlet UIScrollView *indicationScrollView;
 @property (strong, nonatomic) IBOutlet UIScrollView *procedureScrollView;
+@property (strong, nonatomic) IBOutlet UIView *bottonTabBarView;
+@property (strong, nonatomic) IBOutlet UIButton *bottonTabBarButton;
 
 @end
 
 @implementation OKOperatieNoteViewController
-@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView;
+@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView,bottonTabBarView,bottonTabBarButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,14 +39,21 @@
 {
     [super viewDidLoad];
     
+    bottonTabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
+    bottonTabBarButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    bottonTabBarButton.layer.cornerRadius = 14;
+    [self.view bringSubviewToFront:bottonTabBarView];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self addBottomTabBar];
+    
     
     segmentControllView.backgroundColor = [UIColor clearColor];
     
     [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
   
+    
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"segmentControllBG.png"]];
+    
     [self.segmentControllView addSubview:backgroundView];
     
     caseDataTableView.backgroundColor = [UIColor clearColor];

@@ -86,7 +86,7 @@
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
     [cell setCellBGImageLight:indexPath.row];
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
     
 }

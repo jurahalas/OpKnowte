@@ -78,7 +78,7 @@
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
     cell.timePointLabel.text = timePoint.timePointName;
     [cell setCellBGImageLight:indexPath.row];
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
     
 }

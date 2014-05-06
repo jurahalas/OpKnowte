@@ -18,25 +18,9 @@
 
 @implementation OKAccessSettingsViewController
 @synthesize accessSettingsTableView,updateButton;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-- (IBAction)backButton:(id)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-}
-- (IBAction)updateSettingsButton:(id)sender {
-    
-}
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
@@ -49,24 +33,42 @@
 
     updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     updateButton.layer.cornerRadius = 14;
+}
+
+
+- (IBAction)backButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (IBAction)updateSettingsButton:(id)sender
+{
     
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 3;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 60.f;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"accessSetings";
     OKAccessSettingsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
@@ -77,12 +79,9 @@
                                       @"Surgeons",
                                       @"Assistans",
                                       @"Other",nil];
-    
     cell.aSettingLable.text = [dataTitleArray objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
-
-
 
 @end

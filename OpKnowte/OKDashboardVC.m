@@ -56,7 +56,6 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Action" message:@"You have successfully logged out!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
     [self performSegueWithIdentifier:@"logout" sender:self];
-
 }
 
 #pragma mark - Table View methods
@@ -80,6 +79,8 @@
     }else if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]){
         [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 

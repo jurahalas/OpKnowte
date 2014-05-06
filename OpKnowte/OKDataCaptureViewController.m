@@ -69,6 +69,7 @@
     
     cell.dataCaptureLable.text = [dataTitleArray objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
 }
 

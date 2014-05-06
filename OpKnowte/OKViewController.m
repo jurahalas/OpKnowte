@@ -130,7 +130,7 @@
                 [defaults setObject:_passwordTextField.text forKey:@"PASSWORD"];
                 [defaults synchronize];
                 
-                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
@@ -159,7 +159,8 @@
     
 }
 
-- (IBAction)registerButton:(id)sender {
+- (IBAction)registerButton:(id)sender
+{
 
 }
 
@@ -195,16 +196,21 @@
     if (buttonIndex == 1) {
 
         if ([alertView.title isEqualToString:@"Restore Password"]) {
+            [[OKLoadingViewController instance] showWithText:@"Loading..."];
             OKUserManager *usermanager = [OKUserManager instance];
             [usermanager recoverPasswordWithEmail:[alertView textFieldAtIndex:0].text handler:^(NSString* error){
                 if ([[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
                     UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@" Restore password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                     _forgotPasswordButton.enabled = YES;
+                    [[OKLoadingViewController instance] hide];
                 }else{
-                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Password Updated Successfully" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                 }
+                [[OKLoadingViewController instance] hide];
             }];
         }
     }
