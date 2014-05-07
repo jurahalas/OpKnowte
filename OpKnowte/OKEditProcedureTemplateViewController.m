@@ -8,6 +8,7 @@
 
 #import "OKEditProcedureTemplateViewController.h"
 #import "OKEditProcedureTemplateTableViewCell.h"
+#import "OKSelectProcedureViewController.h"
 
 @interface OKEditProcedureTemplateViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *editProcedureTemplateTableView;
@@ -77,13 +78,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OKEditProcedureTemplateTableViewCell *cell = (OKEditProcedureTemplateTableViewCell *)[editProcedureTemplateTableView cellForRowAtIndexPath:indexPath];
-    if ([self.restorationIdentifier isEqualToString:@"SP"]) {
-        OK *vc = [[OKShockwaveLithotripsyVC alloc] init];
-        vc.procedureID = 10;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-
+//    if ([self.restorationIdentifier isEqualToString:@"SP"]) {
+//    OKSelectProcedureViewController *vc = [[OKSelectProcedureViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 @end
