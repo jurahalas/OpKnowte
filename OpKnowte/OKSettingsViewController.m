@@ -89,7 +89,7 @@
         [self performSegueWithIdentifier:@"DS" sender:indexPath];
     }else if ([cell.settingsLabel.text isEqualToString:@"Edit Procedure Template"])
         {
-            [self performSegueWithIdentifier:@"template" sender:indexPath];
+            [self performSegueWithIdentifier:@"EPT" sender:indexPath];
 
         }
 }

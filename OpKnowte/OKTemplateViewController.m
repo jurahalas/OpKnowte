@@ -82,8 +82,9 @@
         [self performSegueWithIdentifier:@"procedures" sender:indexPath];
     }else if ([cell.templateLable.text isEqualToString:@"Indications"]){
         [self performSegueWithIdentifier:@"indication" sender:indexPath];
+    }else if ([cell.templateLable.text isEqualToString:@"Case Data"]){
+        [self performSegueWithIdentifier:@"dataCase" sender:indexPath];
     }
-    
 
 }
 
