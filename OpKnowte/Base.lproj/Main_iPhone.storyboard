@@ -2391,7 +2391,7 @@
         <!--Template View Controller - Template-->
         <scene sceneID="PWo-fu-Qpn">
             <objects>
-                <viewController id="uT1-bV-k39" customClass="OKTemplateViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uT1-bV-k39" customClass="OKTemplateViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o5E-f3-XQg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

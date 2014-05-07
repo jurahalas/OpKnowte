@@ -10,6 +10,7 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
+#import "OKTemplateViewController.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -91,5 +92,35 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    
+     if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKTemplateViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"TVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.procedureID = 10;
+        }
+        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKTemplateViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"TVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.procedureID = 2;
+        }
+        if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKTemplateViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"TVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.procedureID = 9;
+        }
+        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKTemplateViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"TVC"];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.procedureID = 1;
+        }
+
+}
 
 @end

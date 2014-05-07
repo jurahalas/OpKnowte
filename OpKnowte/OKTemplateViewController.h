@@ -11,4 +11,6 @@
 
 @interface OKTemplateViewController : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic) int procedureID;
+
 @end

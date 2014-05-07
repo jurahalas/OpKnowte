@@ -78,10 +78,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([self.restorationIdentifier isEqualToString:@"SP"]) {
-//    OKSelectProcedureViewController *vc = [[OKSelectProcedureViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
+    OKEditProcedureTemplateTableViewCell *cell = (OKEditProcedureTemplateTableViewCell *)[editProcedureTemplateTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.editProcedureLabel.text isEqualToString:@"Procedure"]) {
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKSelectProcedureViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SP"];
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }
+
 }
 
 @end
