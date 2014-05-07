@@ -23,9 +23,7 @@
 
 - (void)getAllProceduresWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresArray))handler
 {
-    NSDictionary *params = @{};
-
-    [self requestWithMethod:@"GET" path:@"getAllProc" params:params handler:^(NSError *error, id json) {
+    [self requestWithMethod:@"GET" path:@"getAllProc" params:nil handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
        
         NSMutableArray *proceduresArray = [[NSMutableArray alloc] init];
@@ -38,5 +36,11 @@
     }];
 }
 
+
+- (void)getOngoingClinicalDetailsWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresDict ) )handler
+{
+    
+    
+}
 
 @end

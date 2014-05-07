@@ -181,6 +181,11 @@
 		E100240C18F529E9008421D4 /* OpKnowteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E100240B18F529E9008421D4 /* OpKnowteTests.m */; };
 		E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53718F8626100BA4E35 /* OKBaseManager.m */; };
 		E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53B18F8652500BA4E35 /* OKUserManager.m */; };
+		E1FB8F67191912A8007CCF17 /* OKCaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB8F66191912A8007CCF17 /* OKCaseManager.m */; };
+		E1FB8F6A191A133B007CCF17 /* OKCase.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB8F69191A133B007CCF17 /* OKCase.m */; };
+		E1FB8F6E191A1B58007CCF17 /* NSDate+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB8F6D191A1B58007CCF17 /* NSDate+NSString.m */; };
+		E1FB8F71191A1BC0007CCF17 /* NSString+NSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB8F70191A1BC0007CCF17 /* NSString+NSDate.m */; };
+		E1FB8F77191A8FE9007CCF17 /* OKTemplateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB8F76191A8FE9007CCF17 /* OKTemplateManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -432,6 +437,18 @@
 		E106A53718F8626100BA4E35 /* OKBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKBaseManager.m; path = Managers/OKBaseManager.m; sourceTree = "<group>"; };
 		E106A53A18F8652500BA4E35 /* OKUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKUserManager.h; path = Managers/OKUserManager.h; sourceTree = "<group>"; };
 		E106A53B18F8652500BA4E35 /* OKUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKUserManager.m; path = Managers/OKUserManager.m; sourceTree = "<group>"; };
+		E1FB8F65191912A8007CCF17 /* OKCaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKCaseManager.h; path = Managers/OKCaseManager.h; sourceTree = "<group>"; };
+		E1FB8F66191912A8007CCF17 /* OKCaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKCaseManager.m; path = Managers/OKCaseManager.m; sourceTree = "<group>"; };
+		E1FB8F68191A133B007CCF17 /* OKCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCase.h; sourceTree = "<group>"; };
+		E1FB8F69191A133B007CCF17 /* OKCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCase.m; sourceTree = "<group>"; };
+		E1FB8F6C191A1B58007CCF17 /* NSDate+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+NSString.h"; path = "Categories/NSDate+NSString.h"; sourceTree = "<group>"; };
+		E1FB8F6D191A1B58007CCF17 /* NSDate+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+NSString.m"; path = "Categories/NSDate+NSString.m"; sourceTree = "<group>"; };
+		E1FB8F6F191A1BC0007CCF17 /* NSString+NSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NSDate.h"; path = "Categories/NSString+NSDate.h"; sourceTree = "<group>"; };
+		E1FB8F70191A1BC0007CCF17 /* NSString+NSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSDate.m"; path = "Categories/NSString+NSDate.m"; sourceTree = "<group>"; };
+		E1FB8F75191A8FE9007CCF17 /* OKTemplateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKTemplateManager.h; path = Managers/OKTemplateManager.h; sourceTree = "<group>"; };
+		E1FB8F76191A8FE9007CCF17 /* OKTemplateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKTemplateManager.m; path = Managers/OKTemplateManager.m; sourceTree = "<group>"; };
+		E1FB8F79191A9719007CCF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Base; path = Base.lproj/OKTemplate.h; sourceTree = "<group>"; };
+		E1FB8F7B191A9719007CCF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Base; path = Base.lproj/OKTemplate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,16 +504,20 @@
 		0060D89E18FD599900AFC7B4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				00A53B6219012A9E00BEF07D /* OKTimePointModel.h */,
-				00A53B6319012A9E00BEF07D /* OKTimePointModel.m */,
 				0060D89F18FD59B800AFC7B4 /* OKBaseModel.h */,
 				0060D8A018FD59B800AFC7B4 /* OKBaseModel.m */,
+				00A53B6219012A9E00BEF07D /* OKTimePointModel.h */,
+				00A53B6319012A9E00BEF07D /* OKTimePointModel.m */,
 				0060D8A218FD5AA500AFC7B4 /* OKUserModel.h */,
 				0060D8A318FD5AA500AFC7B4 /* OKUserModel.m */,
 				1881B08318FDC77500F61CE8 /* OKProcedureModel.h */,
 				1881B08418FDC77500F61CE8 /* OKProcedureModel.m */,
 				189F4515190A8DCC00372C55 /* OKContactModel.h */,
 				189F4516190A8DCC00372C55 /* OKContactModel.m */,
+				E1FB8F68191A133B007CCF17 /* OKCase.h */,
+				E1FB8F69191A133B007CCF17 /* OKCase.m */,
+				E1FB8F78191A9719007CCF17 /* OKTemplate.h */,
+				E1FB8F7A191A9719007CCF17 /* OKTemplate.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -960,6 +981,7 @@
 		E10023E318F529E9008421D4 /* OpKnowte */ = {
 			isa = PBXGroup;
 			children = (
+				E1FB8F6B191A1B30007CCF17 /* Categories */,
 				E10023EC18F529E9008421D4 /* OKAppDelegate.h */,
 				E10023ED18F529E9008421D4 /* OKAppDelegate.m */,
 				E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */,
@@ -1017,18 +1039,33 @@
 		E106A53D18F8652B00BA4E35 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				00A53B6519012AB400BEF07D /* OKTimePointsManager.h */,
-				00A53B6619012AB400BEF07D /* OKTimePointsManager.m */,
 				E106A53618F8626100BA4E35 /* OKBaseManager.h */,
 				E106A53718F8626100BA4E35 /* OKBaseManager.m */,
+				00A53B6519012AB400BEF07D /* OKTimePointsManager.h */,
+				00A53B6619012AB400BEF07D /* OKTimePointsManager.m */,
 				E106A53A18F8652500BA4E35 /* OKUserManager.h */,
 				E106A53B18F8652500BA4E35 /* OKUserManager.m */,
 				00CD5FD718FE7C9700334A24 /* OKContactManager.h */,
 				00CD5FD818FE7C9700334A24 /* OKContactManager.m */,
 				1881B08018FD6BB800F61CE8 /* OKProceduresManager.h */,
 				1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */,
+				E1FB8F65191912A8007CCF17 /* OKCaseManager.h */,
+				E1FB8F66191912A8007CCF17 /* OKCaseManager.m */,
+				E1FB8F75191A8FE9007CCF17 /* OKTemplateManager.h */,
+				E1FB8F76191A8FE9007CCF17 /* OKTemplateManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		E1FB8F6B191A1B30007CCF17 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E1FB8F6C191A1B58007CCF17 /* NSDate+NSString.h */,
+				E1FB8F6D191A1B58007CCF17 /* NSDate+NSString.m */,
+				E1FB8F6F191A1BC0007CCF17 /* NSString+NSDate.h */,
+				E1FB8F70191A1BC0007CCF17 /* NSString+NSDate.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1279,6 +1316,7 @@
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
 				AC8F61F0191261AF0064C53F /* OKAccessConfirmTableViewCell.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
+				E1FB8F6E191A1B58007CCF17 /* NSDate+NSString.m in Sources */,
 				AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */,
@@ -1304,13 +1342,16 @@
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
+				E1FB8F67191912A8007CCF17 /* OKCaseManager.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
 				18949E971918D30100B4B38C /* OKContactsVC.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
+				E1FB8F71191A1BC0007CCF17 /* NSString+NSDate.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
+				E1FB8F77191A8FE9007CCF17 /* OKTemplateManager.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
 				AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
@@ -1322,6 +1363,7 @@
 				AC8F61ED191261390064C53F /* OKAccessConfirmViewController.m in Sources */,
 				ACB01CE61913A11800EA661E /* OKChangePasswordViewController.m in Sources */,
 				ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */,
+				E1FB8F6A191A133B007CCF17 /* OKCase.m in Sources */,
 				00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */,
 				188608FB190FCC8400BD1D77 /* OKFacilityTableViewCell.m in Sources */,
 				189F4510190911F400372C55 /* OKPerformanceTableViewCell.m in Sources */,
@@ -1378,6 +1420,22 @@
 				E100240918F529E9008421D4 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E1FB8F78191A9719007CCF17 /* OKTemplate.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1FB8F79191A9719007CCF17 /* Base */,
+			);
+			name = OKTemplate.h;
+			sourceTree = "<group>";
+		};
+		E1FB8F7A191A9719007CCF17 /* OKTemplate.m */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1FB8F7B191A9719007CCF17 /* Base */,
+			);
+			name = OKTemplate.m;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

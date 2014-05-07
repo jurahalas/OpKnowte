@@ -46,6 +46,7 @@
         NSLog(@"%@",json);
         self.currentUser = [OKUserModel new];
         [self.currentUser setModelWithDictionary:json];
+        self.currentUser.password = password;
         NSLog(@"%@",self.currentUser.firstName);
         NSLog(@"%@",self.currentUser.userID);
         
@@ -109,6 +110,15 @@
     self.currentUser = nil;
 }
 
+
+-(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"emailId":[OKUserManager instance].currentUser.email,
+                             @"procedureID":procedureID};
+    [self requestWithMethod:@"GET" path:@"getUsersAccess" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+    }];
+}
 
 
 @end

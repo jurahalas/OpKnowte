@@ -8,10 +8,21 @@
 
 #import "OKBaseModel.h"
 
+@implementation OKSimpleTableItem
+
++(id)itemWithTitle:(NSString*)title value:(NSString*)value
+{
+    OKSimpleTableItem *item = [OKSimpleTableItem new];
+    item.title = title;
+    item.value = value;
+    return item;
+}
+
+@end
+
 @implementation OKBaseModel
 
 -(void)setModelWithDictionary: (NSDictionary*) dictionary {
-    
 }
 
 @end

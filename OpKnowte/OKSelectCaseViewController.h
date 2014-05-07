@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "OKBaseViewController.h"
 
-@interface OKSelectCaseViewController : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
+@interface OKSelectCaseViewController : OKBaseViewController
+
+@property (nonatomic) BOOL isReminderSetting;
+@property (nonatomic) BOOL fromSettings;
 
 @end

@@ -10,6 +10,6 @@
 #import "OKPerformanceTableViewCell.h"
 
 
-@interface OKPerformanceVC : OKBaseViewController  <UITableViewDelegate, UITableViewDataSource>
+@interface OKPerformanceVC : OKBaseViewController  
 
 @end

@@ -9,7 +9,11 @@
 #import "OKBaseViewController.h"
 #import "OKAppDelegate.h"
 
-@interface OKSelectTimePointViewController : OKBaseViewController <UITableViewDataSource, UITableViewDelegate>
+@class OKCase;
 
+@interface OKSelectTimePointViewController : OKBaseViewController
+
+@property (nonatomic) BOOL isFilter;
+@property (nonatomic) BOOL isNationalFilter;
 
 @end

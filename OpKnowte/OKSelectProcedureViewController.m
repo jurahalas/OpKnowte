@@ -10,6 +10,7 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
+#import "OKSelectCaseViewController.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -64,7 +65,6 @@
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 
@@ -88,7 +88,28 @@
     [cell setCellBGImageLight:indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OKProcedureModel *procedure = self.procArray[indexPath.row];
     
+    [OKProceduresManager instance].selectedProcedre = procedure;
+    
+    [[OKLoadingViewController instance]showWithText:@"Loading"];
+    [[OKUserManager instance] getUserAccess:procedure.procedureID handler:^(NSString *errorMsg) {
+        [[OKLoadingViewController instance]hide];
+        [self performSegueWithIdentifier:@"selectCase" sender:procedure];
+    }];
+}
+
+
+#pragma mark - prepare for segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
 }
 
 

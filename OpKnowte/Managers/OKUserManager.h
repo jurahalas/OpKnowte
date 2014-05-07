@@ -24,6 +24,8 @@
 
 -(void)changePasswordWithUserID:(NSString*)userID password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
 
+-(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg))handler;
+
 -(void)logout;
 
 @end

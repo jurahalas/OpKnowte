@@ -8,9 +8,14 @@
 
 #import "OKBaseManager.h"
 
+@class OKTimePointModel;
+
 @interface OKTimePointsManager : OKBaseManager
 
+@property (nonatomic, strong) OKTimePointModel *selectedTimePoint;
+
 + (OKTimePointsManager *)instance;
-- (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *timePointsArray))handler;
+
+- (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler;
 
 @end
