@@ -2260,7 +2260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Bs-VE-X5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2231" y="-1283"/>
+            <point key="canvasLocation" x="2243" y="-1366"/>
         </scene>
         <!--Data Sharing View Controller - Data Sharing-->
         <scene sceneID="5jk-eY-wJp">
@@ -2356,11 +2356,12 @@
                     <connections>
                         <outlet property="templateTableView" destination="3aQ-WR-Y1s" id="q0p-2D-Bar"/>
                         <segue destination="P9P-nz-cGv" kind="push" identifier="procedures" id="FCV-BN-8IA"/>
+                        <segue destination="9DH-3p-oa4" kind="push" identifier="indication" id="Lg2-gt-5hp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O6e-An-hVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2631" y="-576"/>
+            <point key="canvasLocation" x="2638" y="-1366"/>
         </scene>
         <!--Template View Controller - Template-->
         <scene sceneID="3sA-9d-LYq">
@@ -2371,7 +2372,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hZn-yy-LB9">
-                                <rect key="frame" x="23" y="74" width="274" height="274"/>
+                                <rect key="frame" x="23" y="71" width="274" height="245"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -2393,7 +2394,40 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gk8-NS-yaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3079" y="-664"/>
+            <point key="canvasLocation" x="3048" y="-1366"/>
+        </scene>
+        <!--Indication Template View Controller - Template-->
+        <scene sceneID="jTD-1a-xZR">
+            <objects>
+                <viewController id="9DH-3p-oa4" customClass="OKIndicationTemplateViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mdC-bz-ado">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AAX-7U-2wz">
+                                <rect key="frame" x="27" y="75" width="273" height="251"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Template" id="VVG-Ho-xKk">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="ejd-MY-dCR">
+                            <connections>
+                                <action selector="backButton:" destination="9DH-3p-oa4" id="3S4-WR-VLY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="indicationLabel" destination="AAX-7U-2wz" id="GmT-dw-dB8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UlE-Uo-vfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3516" y="-1366"/>
         </scene>
     </scenes>
     <resources>
@@ -2420,10 +2454,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hs5-kv-qjd"/>
-        <segue reference="jDh-vb-NmK"/>
+        <segue reference="mc4-ob-XxU"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="ytp-fp-EJd"/>
         <segue reference="cNX-Le-q8P"/>
+        <segue reference="jDh-vb-NmK"/>
     </inferredMetricsTieBreakers>
 </document>
