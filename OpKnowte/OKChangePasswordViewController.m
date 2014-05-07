@@ -106,11 +106,7 @@
 
 - (IBAction)updatePasswordButton:(id)sender
 {
-    OKUserManager *usermanager = [OKUserManager instance];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSLog(@"%@", [defaults objectForKey:@"userID"]);
-    NSLog(@"pass %@", [defaults objectForKey:@"PASSWORD"]);
-    
+    NSLog(@" psss %@", [OKUserManager instance].currentUser.password);
     
     if ([theOldPasswordTextField.text isEqual: @""] || [theNewPasswordTextField.text isEqual: @""] || [theConfirmPasswordTextField.text isEqual: @""]){
         
@@ -121,12 +117,13 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Your password was not changed" message:@"New password and confirm new password did not match" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         
-    }else if (![theOldPasswordTextField.text isEqualToString:[defaults objectForKey:@"PASSWORD"]]){
+    }else if (![theOldPasswordTextField.text isEqualToString:[OKUserManager instance].currentUser.password]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid current password" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }else{
-        [usermanager changePasswordWithUserID:[defaults objectForKey:@"userID"] password:theConfirmPasswordTextField.text  handler:^(NSString* error){
-       
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
+        [[OKUserManager instance] changePasswordWithUserID:[OKUserManager instance].currentUser.identifier password:theConfirmPasswordTextField.text  handler:^(NSString* error){
         if (error != nil) {
             UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Change password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [errorAlert show];
@@ -137,14 +134,9 @@
             [successAlert show];
             [self.view endEditing:YES];
             [self performSegueWithIdentifier:@"backToDashboard" sender:self];
-          
-            [defaults removeObjectForKey:@"PASSWORD"];
-            [defaults setObject:theConfirmPasswordTextField.text forKey:@"PASSWORD"];
-            [defaults synchronize];
-            
             updatePasswordButton.enabled = YES;
-        }
             [[OKLoadingViewController instance] hide];
+        }
         }];
     }
 }

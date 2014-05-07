@@ -12,7 +12,7 @@
 
 -(void) setModelWithDictionary:(NSDictionary *)dictionary {
     
-    _procedureID = [dictionary objectForKey:@"ProcId"];
+    self.identifier = [dictionary objectForKey:@"ProcId"];
     _procedureText = [dictionary objectForKey:@"ProcText"] ;
     _procedureShortName = [dictionary objectForKey:@"ProcNick"];
 }

@@ -67,7 +67,7 @@
 
     
     if (self.contactInfo != nil) {
-        if ([self.contactInfo contactID].length > 0) {
+        if ([self.contactInfo identifier].length > 0) {
             
             [self.nameTextField setText:[self.contactInfo name]];
             [self.emailTextField setText:[self.contactInfo contactEmail]];
@@ -121,8 +121,7 @@
         [[OKLoadingViewController instance] hide];
         
     }else{
-        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-        [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[defaults objectForKey:@"userID"] handler:^(NSString *error){
+        [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
             
             if(error != nil){
                 

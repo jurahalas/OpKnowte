@@ -31,14 +31,13 @@
     self.facilityTableView.delegate = self;
     _facilityTableView.frame = CGRectMake(_facilityTableView.frame.origin.x, _facilityTableView.frame.origin.y, _facilityTableView.frame.size.width, (_facilityTableView.frame.size.height - 57.f));
     [self addBottomTabBar];
+   
     [self addRightButtonToNavbar];
     
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     OKContactManager *contactManager = [OKContactManager instance];
-   
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [contactManager getContactsByUserID:[defaults objectForKey:@"userID"] roleID:@"4" handler: ^(NSString* error, NSMutableArray* array){
+    [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:@"4" handler: ^(NSString* error, NSMutableArray* array){
         [[OKLoadingViewController instance] hide];
 
         if (!error) {
@@ -53,8 +52,8 @@
 -(void) addRightButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
-    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"plusGreenIcon.png"].size.width, [UIImage imageNamed:@"plusGreenIcon.png"].size.height );
-    [right setImage:[UIImage imageNamed:@"plusGreenIcon.png"] forState:UIControlStateNormal];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"minusGreenIcon.png"].size.width, [UIImage imageNamed:@"minusGreenIcon.png"].size.height );
+    [right setImage:[UIImage imageNamed:@"minusGreenIcon.png"] forState:UIControlStateNormal];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.rightBarButtonItem = anotherButton;

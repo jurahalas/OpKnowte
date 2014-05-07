@@ -46,12 +46,11 @@
         NSLog(@"%@",json);
         self.currentUser = [OKUserModel new];
         [self.currentUser setModelWithDictionary:json];
+        self.currentUser.password = password;
         NSLog(@"%@",self.currentUser.firstName);
-        NSLog(@"%@",self.currentUser.userID);
+        NSLog(@"%@",self.currentUser.identifier);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:self.currentUser.userID forKey:@"userID"];
-        [defaults setObject:self.currentUser.firstName forKey:@"firstName"];
         
 //        save user
         NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.currentUser];
@@ -70,6 +69,19 @@
                              @"title" :title};
     
     [self requestWithMethod:@"POST" path:@"signUpUser" params:params handler:^(NSError *error, id json) {
+        self.currentUser = [OKUserModel new];
+        [self.currentUser setModelWithDictionary:json];
+        self.currentUser.firstName = firstName;
+        self.currentUser.password = password;
+        self.currentUser.email = email;
+
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        //        save user
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.currentUser];
+        [defaults setObject:encodedObject forKey:@"user"];
+        [defaults synchronize];
+        
         handler([self getErrorMessageFromJSON:json error:error]);
     }];
 }
@@ -91,9 +103,20 @@
 {
     NSDictionary *params = @{@"userID": userID, @"password": password};
     [self requestWithMethod:@"POST" path:@"changePassword" params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
-        [self.currentUser setModelWithDictionary:json];
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            self.currentUser.password = password;
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+            //        save user
+            NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:self.currentUser];
+            [defaults setObject:encodedObject forKey:@"user"];
+            [defaults synchronize];
+        }
+        
+        handler(errorMsg);
     }];
 }
 
@@ -101,9 +124,6 @@
 -(void)logout
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"PASSWORD"];
-    [defaults removeObjectForKey:@"EMAILADDRESS"];
-    [defaults removeObjectForKey:@"userID"];
     [defaults removeObjectForKey:@"user"];
     [defaults synchronize];
     self.currentUser = nil;

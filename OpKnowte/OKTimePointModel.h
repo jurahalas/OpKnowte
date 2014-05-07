@@ -10,7 +10,6 @@
 
 @interface OKTimePointModel : OKBaseModel
 
-@property (nonatomic, retain) NSString *timePointID;
 @property (nonatomic, retain) NSString *timePointName;
 
 @end
