@@ -615,7 +615,7 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
-				189F45111909421800372C55 /*  Institute View */,
+				189F45111909421800372C55 /* Institute View */,
 				AC8F61EA191261100064C53F /* Access Confirm View */,
 				AC8F61E3191245550064C53F /* AccessSettings View */,
 				AC8F61D219123A800064C53F /* Settings View */,
@@ -1031,13 +1031,13 @@
 			name = "Performance Data View";
 			sourceTree = "<group>";
 		};
-		189F45111909421800372C55 /*  Institute View */ = {
+		189F45111909421800372C55 /* Institute View */ = {
 			isa = PBXGroup;
 			children = (
 				189F45121909480700372C55 /* OKInstituteVC.h */,
 				189F45131909480700372C55 /* OKInstituteVC.m */,
 			);
-			name = " Institute View";
+			name = "Institute View";
 			sourceTree = "<group>";
 		};
 		18F4471F1906594E00C37F3D /* Dashboard View */ = {
