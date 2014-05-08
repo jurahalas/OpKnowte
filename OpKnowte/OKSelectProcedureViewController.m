@@ -10,6 +10,7 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
+#import "OKDataSharingViewController.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -86,9 +87,26 @@
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
     [cell setCellBGImageLight:indexPath.row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromSelectProcToDataShar"]){
+        OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
+        sharVC.procID = sender;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
+
+    [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:procedure.identifier];
+    
+
 }
 
 

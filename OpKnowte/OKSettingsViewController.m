@@ -84,9 +84,15 @@
     }else if ([cell.settingsLabel.text  isEqualToString:@"Contacts"])
     {
         [self performSegueWithIdentifier:@"fromSettingsToContacts" sender:indexPath];
-    }
-}
+    }else if ([cell.settingsLabel.text isEqualToString:@"Data Sharing"])
+    {
+        [self performSegueWithIdentifier:@"dataShare" sender:indexPath];
+    }else if ([cell.settingsLabel.text isEqualToString:@"Edit Procedure Template"])
+        {
+            [self performSegueWithIdentifier:@"template" sender:indexPath];
 
+        }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
