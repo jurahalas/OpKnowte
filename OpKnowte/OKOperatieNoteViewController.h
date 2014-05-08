@@ -11,5 +11,6 @@
 #import "OKOperatieNoteTableViewCell.h"
 
 @interface OKOperatieNoteViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
-
+@property (strong, nonatomic) id model;
+@property (nonatomic) int procedureID;
 @end

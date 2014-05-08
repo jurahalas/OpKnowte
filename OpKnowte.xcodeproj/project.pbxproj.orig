@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00360D40190904880019C058 /* OKBaseProcedureVC.m */; };
+		0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045ED761909408900D93914 /* OKProcedureTextField.m */; };
+		00607FDF191380B100AD27F3 /* LRPNProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00607FDE191380B100AD27F3 /* LRPNProcedure.plist */; };
 		0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */; };
 		0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83318FD2C1500AFC7B4 /* OKConstants.m */; };
 		0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0060D83518FD2C1500AFC7B4 /* OKCustomTextField.m */; };
@@ -17,11 +20,22 @@
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
+		00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862952190CF372006EBA9C /* OKProcedureSwitcher.m */; };
+		00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862955190D02F2006EBA9C /* OKProcedureDatePicker.m */; };
+		00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862958190D0885006EBA9C /* OKProcedurePicker.m */; };
+		0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */; };
+		0086295F190E8C3F006EBA9C /* OKBaseProcedureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */; };
 		00862973190EABCD006EBA9C /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086296F190EABCD006EBA9C /* RangeSlider.m */; };
+		008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */; };
+		008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */; };
+		008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BE8CF1914EA630060353C /* OKLRPartialNephrectomyVC.m */; };
+		008BE8D41914EB2C0060353C /* OKLRPartialNephrectomyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BE8D31914EB2C0060353C /* OKLRPartialNephrectomyModel.m */; };
+		008D5B551907DC500039E8B7 /* OKProcedureTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */; };
+		008D5B681907DE360039E8B7 /* OKProcedureSwitcher.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */; };
+		008D5B7B1908021C0039E8B7 /* OKProcedureDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */; };
+		008D5B81190807670039E8B7 /* OKProcedurePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008D5B7F190807670039E8B7 /* OKProcedurePicker.xib */; };
 		008F7EA91910E030004F57B6 /* minusGreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA51910E030004F57B6 /* minusGreenIcon.png */; };
 		008F7EAA1910E030004F57B6 /* minusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA61910E030004F57B6 /* minusGreenIcon@2x.png */; };
-		008F7EAB1910E030004F57B6 /* plusWhiteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA71910E030004F57B6 /* plusWhiteIcon.png */; };
-		008F7EAC1910E030004F57B6 /* plusWhiteIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 008F7EA81910E030004F57B6 /* plusWhiteIcon@2x.png */; };
 		0092FD36190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD35190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m */; };
 		0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD39190A91AD00499F7E /* OKProcedureCell.m */; };
 		0092FD3D190A91C100499F7E /* OKListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0092FD3C190A91C100499F7E /* OKListCell.m */; };
@@ -113,6 +127,8 @@
 		00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
+		00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00F47DE219090D1F00E06F88 /* SLProcedure.plist */; };
+		00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */; };
 		00FA8D92190F872600403429 /* fillrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D8E190F872600403429 /* fillrange.png */; };
 		00FA8D93190F872600403429 /* fillrange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D8F190F872600403429 /* fillrange@2x.png */; };
 		00FA8D94190F872600403429 /* fullrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 00FA8D90190F872600403429 /* fullrange.png */; };
@@ -136,8 +152,6 @@
 		188608F0190FA1CB00BD1D77 /* emailIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E6190FA1CB00BD1D77 /* emailIcon.png */; };
 		188608F1190FA1CB00BD1D77 /* plusWhiteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E7190FA1CB00BD1D77 /* plusWhiteIcon.png */; };
 		188608F2190FA1CB00BD1D77 /* plusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E8190FA1CB00BD1D77 /* plusGreenIcon@2x.png */; };
-		188608F3190FA1CB00BD1D77 /* minusGreenIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E9190FA1CB00BD1D77 /* minusGreenIcon.png */; };
-		188608F4190FA1CB00BD1D77 /* minusGreenIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608EA190FA1CB00BD1D77 /* minusGreenIcon@2x.png */; };
 		188608F8190FCC1300BD1D77 /* OKFacilityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188608F7190FCC1300BD1D77 /* OKFacilityVC.m */; };
 		188608FB190FCC8400BD1D77 /* OKFacilityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188608FA190FCC8400BD1D77 /* OKFacilityTableViewCell.m */; };
 		189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F450C190910D500372C55 /* OKPerformanceVC.m */; };
@@ -145,12 +159,9 @@
 		189F45141909480700372C55 /* OKInstituteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F45131909480700372C55 /* OKInstituteVC.m */; };
 		189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F4516190A8DCC00372C55 /* OKContactModel.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
-<<<<<<< HEAD
-=======
 		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
 		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
->>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
 		AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A6A190A7A5700D8572D /* OKOperatieNoteViewController.m */; };
@@ -184,6 +195,11 @@
 		E100240C18F529E9008421D4 /* OpKnowteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E100240B18F529E9008421D4 /* OpKnowteTests.m */; };
 		E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53718F8626100BA4E35 /* OKBaseManager.m */; };
 		E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53B18F8652500BA4E35 /* OKUserManager.m */; };
+		E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE705A19177CBE0088913C /* OKProcedureMultiselect.m */; };
+		E1DE705D19177CE30088913C /* OKProcedureMultiselect.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */; };
+		E1DE7061191780B00088913C /* OKProcedureMultiselectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */; };
+		E1DE7062191780B00088913C /* OKProcedureMultiselectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */; };
+		E1DE70681917CC9A0088913C /* OKBaseProcedureElement.m in Sources */ = {isa = PBXBuildFile; fileRef = E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +213,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00360D3F190904880019C058 /* OKBaseProcedureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseProcedureVC.h; sourceTree = "<group>"; };
+		00360D40190904880019C058 /* OKBaseProcedureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseProcedureVC.m; sourceTree = "<group>"; };
+		0045ED751909408900D93914 /* OKProcedureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTextField.h; sourceTree = "<group>"; };
+		0045ED761909408900D93914 /* OKProcedureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureTextField.m; sourceTree = "<group>"; };
+		00607FDE191380B100AD27F3 /* LRPNProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LRPNProcedure.plist; sourceTree = "<group>"; };
 		0060D82F18FD27BB00AFC7B4 /* OKSelectProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectProcedureCell.h; sourceTree = "<group>"; };
 		0060D83018FD27BB00AFC7B4 /* OKSelectProcedureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectProcedureCell.m; sourceTree = "<group>"; };
 		0060D83218FD2C1500AFC7B4 /* OKConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKConstants.h; sourceTree = "<group>"; };
@@ -217,8 +238,29 @@
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
 		007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKHomeScreenViewController.m; sourceTree = "<group>"; };
+		00862951190CF372006EBA9C /* OKProcedureSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureSwitcher.h; sourceTree = "<group>"; };
+		00862952190CF372006EBA9C /* OKProcedureSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureSwitcher.m; sourceTree = "<group>"; };
+		00862954190D02F2006EBA9C /* OKProcedureDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureDatePicker.h; sourceTree = "<group>"; };
+		00862955190D02F2006EBA9C /* OKProcedureDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureDatePicker.m; sourceTree = "<group>"; };
+		00862957190D0885006EBA9C /* OKProcedurePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedurePicker.h; sourceTree = "<group>"; };
+		00862958190D0885006EBA9C /* OKProcedurePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedurePicker.m; sourceTree = "<group>"; };
+		0086295A190E31A3006EBA9C /* OKShockwaveLithotripsyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKShockwaveLithotripsyModel.h; sourceTree = "<group>"; };
+		0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKShockwaveLithotripsyModel.m; sourceTree = "<group>"; };
+		0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKBaseProcedureVC.xib; sourceTree = "<group>"; };
 		0086296E190EABCD006EBA9C /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSlider.h; sourceTree = "<group>"; };
 		0086296F190EABCD006EBA9C /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSlider.m; sourceTree = "<group>"; };
+		008BCE9319178B1C00E1D18D /* OKProcedureTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateModel.h; sourceTree = "<group>"; };
+		008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureTemplateModel.m; sourceTree = "<group>"; };
+		008BCE9619179D6F00E1D18D /* OKProcedureTemplateVariablesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateVariablesModel.h; sourceTree = "<group>"; };
+		008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureTemplateVariablesModel.m; sourceTree = "<group>"; };
+		008BE8CE1914EA630060353C /* OKLRPartialNephrectomyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLRPartialNephrectomyVC.h; sourceTree = "<group>"; };
+		008BE8CF1914EA630060353C /* OKLRPartialNephrectomyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLRPartialNephrectomyVC.m; sourceTree = "<group>"; };
+		008BE8D21914EB2C0060353C /* OKLRPartialNephrectomyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLRPartialNephrectomyModel.h; sourceTree = "<group>"; };
+		008BE8D31914EB2C0060353C /* OKLRPartialNephrectomyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLRPartialNephrectomyModel.m; sourceTree = "<group>"; };
+		008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureTextField.xib; sourceTree = "<group>"; };
+		008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureSwitcher.xib; sourceTree = "<group>"; };
+		008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureDatePicker.xib; sourceTree = "<group>"; };
+		008D5B7F190807670039E8B7 /* OKProcedurePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedurePicker.xib; sourceTree = "<group>"; };
 		008F7EA51910E030004F57B6 /* minusGreenIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minusGreenIcon.png; sourceTree = "<group>"; };
 		008F7EA61910E030004F57B6 /* minusGreenIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minusGreenIcon@2x.png"; sourceTree = "<group>"; };
 		008F7EA71910E030004F57B6 /* plusWhiteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusWhiteIcon.png; sourceTree = "<group>"; };
@@ -328,6 +370,9 @@
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
 		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
 		00CD5FD818FE7C9700334A24 /* OKContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactManager.m; sourceTree = "<group>"; };
+		00F47DE219090D1F00E06F88 /* SLProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SLProcedure.plist; sourceTree = "<group>"; };
+		00F47DE4190924F200E06F88 /* OKShockwaveLithotripsyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKShockwaveLithotripsyVC.h; sourceTree = "<group>"; };
+		00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKShockwaveLithotripsyVC.m; sourceTree = "<group>"; };
 		00FA8D8E190F872600403429 /* fillrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fillrange.png; sourceTree = "<group>"; };
 		00FA8D8F190F872600403429 /* fillrange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fillrange@2x.png"; sourceTree = "<group>"; };
 		00FA8D90190F872600403429 /* fullrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fullrange.png; sourceTree = "<group>"; };
@@ -375,15 +420,12 @@
 		189F4515190A8DCC00372C55 /* OKContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactModel.h; sourceTree = "<group>"; };
 		189F4516190A8DCC00372C55 /* OKContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactModel.m; sourceTree = "<group>"; };
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
 		AC1D0781190AE22100DC55FD /* OKDataCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureViewController.h; sourceTree = "<group>"; };
 		AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureViewController.m; sourceTree = "<group>"; };
 		AC1D0784190AE24C00DC55FD /* OKDataCaptureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureTableViewCell.h; sourceTree = "<group>"; };
 		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
 		AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalViewController.h; sourceTree = "<group>"; };
 		AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalViewController.m; sourceTree = "<group>"; };
->>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 		AC07E7C5190E411600892B99 /* segmentControllBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentControllBG.png; sourceTree = "<group>"; };
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
 		AC161A69190A7A5700D8572D /* OKOperatieNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteViewController.h; sourceTree = "<group>"; };
@@ -438,6 +480,14 @@
 		E106A53718F8626100BA4E35 /* OKBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKBaseManager.m; path = Managers/OKBaseManager.m; sourceTree = "<group>"; };
 		E106A53A18F8652500BA4E35 /* OKUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKUserManager.h; path = Managers/OKUserManager.h; sourceTree = "<group>"; };
 		E106A53B18F8652500BA4E35 /* OKUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKUserManager.m; path = Managers/OKUserManager.m; sourceTree = "<group>"; };
+		E1DE705919177CBE0088913C /* OKProcedureMultiselect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureMultiselect.h; sourceTree = "<group>"; };
+		E1DE705A19177CBE0088913C /* OKProcedureMultiselect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureMultiselect.m; sourceTree = "<group>"; };
+		E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureMultiselect.xib; sourceTree = "<group>"; };
+		E1DE705E191780B00088913C /* OKProcedureMultiselectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureMultiselectVC.h; sourceTree = "<group>"; };
+		E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureMultiselectVC.m; sourceTree = "<group>"; };
+		E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureMultiselectVC.xib; sourceTree = "<group>"; };
+		E1DE70661917CC9A0088913C /* OKBaseProcedureElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseProcedureElement.h; sourceTree = "<group>"; };
+		E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseProcedureElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,6 +553,11 @@
 				1881B08418FDC77500F61CE8 /* OKProcedureModel.m */,
 				189F4515190A8DCC00372C55 /* OKContactModel.h */,
 				189F4516190A8DCC00372C55 /* OKContactModel.m */,
+				008BCE9319178B1C00E1D18D /* OKProcedureTemplateModel.h */,
+				008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */,
+				0086295D190E31A9006EBA9C /* Procedures */,
+				008BCE9619179D6F00E1D18D /* OKProcedureTemplateVariablesModel.h */,
+				008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -520,19 +575,16 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
-<<<<<<< HEAD
 				188608F5190FCBDD00BD1D77 /* Select Facility */,
 				ACB01CE31913A0E400EA661E /* Change Password View */,
-				189F45111909421800372C55 /* institute View */,
 				AC8F61EA191261100064C53F /* Access Confirm View */,
 				AC8F61E3191245550064C53F /* AccessSettings View */,
 				AC8F61D219123A800064C53F /* Settings View */,
-=======
 				AC3F9795190ED08100655128 /* Ongoing Clinical View */,
->>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
+				189F45111909421800372C55 /*  Institute View */,
 				189F450A1909102700372C55 /* Performance Data View */,
 				AC1D0780190AE1D100DC55FD /* Data Capture View */,
-				AC161A68190A79FE00D8572D /* LRPN Operatie Note */,
+				AC161A68190A79FE00D8572D /* Operative Note */,
 				ACA0336B190A42B500D4A144 /* Select Case View */,
 				ACA03367190A371700D4A144 /* Save View */,
 				18F4471F1906594E00C37F3D /* Dashboard View */,
@@ -543,8 +595,30 @@
 				00A53B75190156FD00BEF07D /* Procedure Detail Summary */,
 				00A64D981906B80C00740DC7 /* Surgeon Performance Data Comparison */,
 				0092FD37190A67E500499F7E /* Surgeon Pefrormance Data */,
+				008D5B561907DC540039E8B7 /* Procedure Parser */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0086295D190E31A9006EBA9C /* Procedures */ = {
+			isa = PBXGroup;
+			children = (
+				0086295A190E31A3006EBA9C /* OKShockwaveLithotripsyModel.h */,
+				0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */,
+				008BE8D21914EB2C0060353C /* OKLRPartialNephrectomyModel.h */,
+				008BE8D31914EB2C0060353C /* OKLRPartialNephrectomyModel.m */,
+			);
+			name = Procedures;
+			sourceTree = "<group>";
+		};
+		00862960190E8C57006EBA9C /* Base Procedure VC */ = {
+			isa = PBXGroup;
+			children = (
+				00360D3F190904880019C058 /* OKBaseProcedureVC.h */,
+				00360D40190904880019C058 /* OKBaseProcedureVC.m */,
+				0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */,
+			);
+			name = "Base Procedure VC";
 			sourceTree = "<group>";
 		};
 		0086296B190EAB9D006EBA9C /* Custom Slider */ = {
@@ -560,6 +634,89 @@
 				00FA8D91190F872600403429 /* fullrange@2x.png */,
 			);
 			name = "Custom Slider";
+			sourceTree = "<group>";
+		};
+		008BE8CD1914E8BC0060353C /* LRPN */ = {
+			isa = PBXGroup;
+			children = (
+				008BE8CE1914EA630060353C /* OKLRPartialNephrectomyVC.h */,
+				008BE8CF1914EA630060353C /* OKLRPartialNephrectomyVC.m */,
+			);
+			name = LRPN;
+			sourceTree = "<group>";
+		};
+		008D5B561907DC540039E8B7 /* Procedure Parser */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B571907DC600039E8B7 /* Custom elements */,
+				008D5B871908F8220039E8B7 /* Shockwave Lithotripsy */,
+				008BE8CD1914E8BC0060353C /* LRPN */,
+			);
+			name = "Procedure Parser";
+			sourceTree = "<group>";
+		};
+		008D5B571907DC600039E8B7 /* Custom elements */ = {
+			isa = PBXGroup;
+			children = (
+				E1DE705819177C330088913C /* Multiselect */,
+				008D5B7C190807420039E8B7 /* Picker */,
+				008D5B70190800D70039E8B7 /* Date picker */,
+				008D5B581907DC6F0039E8B7 /* Text Field */,
+				008D5B691907DE3C0039E8B7 /* Switcher */,
+				00862960190E8C57006EBA9C /* Base Procedure VC */,
+				E1DE70661917CC9A0088913C /* OKBaseProcedureElement.h */,
+				E1DE70671917CC9A0088913C /* OKBaseProcedureElement.m */,
+			);
+			name = "Custom elements";
+			sourceTree = "<group>";
+		};
+		008D5B581907DC6F0039E8B7 /* Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B531907DC500039E8B7 /* OKProcedureTextField.xib */,
+				0045ED751909408900D93914 /* OKProcedureTextField.h */,
+				0045ED761909408900D93914 /* OKProcedureTextField.m */,
+			);
+			name = "Text Field";
+			sourceTree = "<group>";
+		};
+		008D5B691907DE3C0039E8B7 /* Switcher */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B661907DE360039E8B7 /* OKProcedureSwitcher.xib */,
+				00862951190CF372006EBA9C /* OKProcedureSwitcher.h */,
+				00862952190CF372006EBA9C /* OKProcedureSwitcher.m */,
+			);
+			name = Switcher;
+			sourceTree = "<group>";
+		};
+		008D5B70190800D70039E8B7 /* Date picker */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B791908021C0039E8B7 /* OKProcedureDatePicker.xib */,
+				00862954190D02F2006EBA9C /* OKProcedureDatePicker.h */,
+				00862955190D02F2006EBA9C /* OKProcedureDatePicker.m */,
+			);
+			name = "Date picker";
+			sourceTree = "<group>";
+		};
+		008D5B7C190807420039E8B7 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B7F190807670039E8B7 /* OKProcedurePicker.xib */,
+				00862957190D0885006EBA9C /* OKProcedurePicker.h */,
+				00862958190D0885006EBA9C /* OKProcedurePicker.m */,
+			);
+			name = Picker;
+			sourceTree = "<group>";
+		};
+		008D5B871908F8220039E8B7 /* Shockwave Lithotripsy */ = {
+			isa = PBXGroup;
+			children = (
+				00F47DE4190924F200E06F88 /* OKShockwaveLithotripsyVC.h */,
+				00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */,
+			);
+			name = "Shockwave Lithotripsy";
 			sourceTree = "<group>";
 		};
 		0092FD37190A67E500499F7E /* Surgeon Pefrormance Data */ = {
@@ -761,6 +918,8 @@
 		00BEAB1118F67DCE00E0C6B2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00F47DE219090D1F00E06F88 /* SLProcedure.plist */,
+				00607FDE191380B100AD27F3 /* LRPNProcedure.plist */,
 				00A64CF019064DB300740DC7 /* images */,
 			);
 			name = Resources;
@@ -809,13 +968,13 @@
 			name = "Performance Data View";
 			sourceTree = "<group>";
 		};
-		189F45111909421800372C55 /* institute View */ = {
+		189F45111909421800372C55 /*  Institute View */ = {
 			isa = PBXGroup;
 			children = (
 				189F45121909480700372C55 /* OKInstituteVC.h */,
 				189F45131909480700372C55 /* OKInstituteVC.m */,
 			);
-			name = "institute View";
+			name = " Institute View";
 			sourceTree = "<group>";
 		};
 		18F4471F1906594E00C37F3D /* Dashboard View */ = {
@@ -829,7 +988,7 @@
 			name = "Dashboard View";
 			sourceTree = "<group>";
 		};
-		AC161A68190A79FE00D8572D /* LRPN Operatie Note */ = {
+		AC161A68190A79FE00D8572D /* Operative Note */ = {
 			isa = PBXGroup;
 			children = (
 				AC161A69190A7A5700D8572D /* OKOperatieNoteViewController.h */,
@@ -837,7 +996,7 @@
 				AC2B0E48190B247B0089206D /* OKOperatieNoteTableViewCell.h */,
 				AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */,
 			);
-			name = "LRPN Operatie Note";
+			name = "Operative Note";
 			sourceTree = "<group>";
 		};
 		AC1D0780190AE1D100DC55FD /* Data Capture View */ = {
@@ -851,9 +1010,7 @@
 			name = "Data Capture View";
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		AC8F61D219123A800064C53F /* Settings View */ = {
-=======
 		AC3F9795190ED08100655128 /* Ongoing Clinical View */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,7 +1021,6 @@
 			sourceTree = "<group>";
 		};
 		AC161A68190A79FE00D8572D /* LRPN Operatie Note */ = {
->>>>>>> b8010a2a17c9d42035acbafbd44f13ba6bd12634
 			isa = PBXGroup;
 			children = (
 				AC8F61D319123AA90064C53F /* OKSettingsViewController.h */,
@@ -1032,6 +1188,19 @@
 			name = Managers;
 			sourceTree = "<group>";
 		};
+		E1DE705819177C330088913C /* Multiselect */ = {
+			isa = PBXGroup;
+			children = (
+				E1DE705919177CBE0088913C /* OKProcedureMultiselect.h */,
+				E1DE705A19177CBE0088913C /* OKProcedureMultiselect.m */,
+				E1DE705C19177CE30088913C /* OKProcedureMultiselect.xib */,
+				E1DE705E191780B00088913C /* OKProcedureMultiselectVC.h */,
+				E1DE705F191780B00088913C /* OKProcedureMultiselectVC.m */,
+				E1DE7060191780B00088913C /* OKProcedureMultiselectVC.xib */,
+			);
+			name = Multiselect;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1115,6 +1284,7 @@
 				0092FD40190A9D6400499F7E /* whiteCellBG.png in Resources */,
 				00A64D8119064DB400740DC7 /* navbarBG_color.png in Resources */,
 				00FA8D94190F872600403429 /* fullrange.png in Resources */,
+				E1DE705D19177CE30088913C /* OKProcedureMultiselect.xib in Resources */,
 				00A64D7C19064DB400740DC7 /* logo@2x.png in Resources */,
 				00A64D5519064DB400740DC7 /* greenMagnifier@2x.png in Resources */,
 				00A64D7619064DB400740DC7 /* forgotPassword@2x.png in Resources */,
@@ -1131,7 +1301,9 @@
 				00A64D7F19064DB400740DC7 /* logoTB.png in Resources */,
 				0092FD44190AA15600499F7E /* gradientBG.png in Resources */,
 				00A64D7819064DB400740DC7 /* register@2x.png in Resources */,
+				E1DE7062191780B00088913C /* OKProcedureMultiselectVC.xib in Resources */,
 				00A64D6419064DB400740DC7 /* home@2x.png in Resources */,
+				00607FDF191380B100AD27F3 /* LRPNProcedure.plist in Resources */,
 				182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */,
 				00A64D6819064DB400740DC7 /* knife@2x.png in Resources */,
 				00A64D7719064DB400740DC7 /* register.png in Resources */,
@@ -1142,7 +1314,6 @@
 				00A64D8019064DB400740DC7 /* logoTB@2x.png in Resources */,
 				188608EB190FA1CB00BD1D77 /* emailIcon@2x.png in Resources */,
 				00A64D8C19065A5400740DC7 /* cellActiveBG@2x.png in Resources */,
-				008F7EAC1910E030004F57B6 /* plusWhiteIcon@2x.png in Resources */,
 				00A64D8219064DB400740DC7 /* navbarBG_color@2x.png in Resources */,
 				008F7EA91910E030004F57B6 /* minusGreenIcon.png in Resources */,
 				00A64D6919064DB400740DC7 /* logout.png in Resources */,
@@ -1168,16 +1339,19 @@
 				00A64D4019064DB400740DC7 /* back.png in Resources */,
 				00A64D4219064DB400740DC7 /* down.png in Resources */,
 				00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */,
+				008D5B551907DC500039E8B7 /* OKProcedureTextField.xib in Resources */,
 				00A64D5619064DB400740DC7 /* redCross.png in Resources */,
 				182659CD1906A36200723D16 /* dashboardBG.png in Resources */,
 				00A64D8419064DB400740DC7 /* rangethumb@2x.png in Resources */,
 				00A64D4119064DB400740DC7 /* back@2x.png in Resources */,
+				0086295F190E8C3F006EBA9C /* OKBaseProcedureVC.xib in Resources */,
 				00A64D6619064DB400740DC7 /* info@2x.png in Resources */,
 				00A64D6219064DB400740DC7 /* folder@2x.png in Resources */,
 				00A64D5219064DB400740DC7 /* greenGraph.png in Resources */,
 				AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */,
 				00A64D7119064DB400740DC7 /* settings.png in Resources */,
 				00A64D7E19064DB400740DC7 /* logoNB@2x.png in Resources */,
+				008D5B7B1908021C0039E8B7 /* OKProcedureDatePicker.xib in Resources */,
 				00A64D7219064DB400740DC7 /* settings@2x.png in Resources */,
 				0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */,
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
@@ -1196,14 +1370,14 @@
 				00A64D8319064DB400740DC7 /* rangethumb.png in Resources */,
 				008F7EAA1910E030004F57B6 /* minusGreenIcon@2x.png in Resources */,
 				00A64D5419064DB400740DC7 /* greenMagnifier.png in Resources */,
+				008D5B81190807670039E8B7 /* OKProcedurePicker.xib in Resources */,
+				008D5B681907DE360039E8B7 /* OKProcedureSwitcher.xib in Resources */,
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
 				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
 				188608F1190FA1CB00BD1D77 /* plusWhiteIcon.png in Resources */,
 				00A64D4819064DB400740DC7 /* bg_568.png in Resources */,
-				008F7EAB1910E030004F57B6 /* plusWhiteIcon.png in Resources */,
 				00A64D4719064DB400740DC7 /* bg@2x.png in Resources */,
 				E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */,
-				188608F3190FA1CB00BD1D77 /* minusGreenIcon.png in Resources */,
 				E10023E818F529E9008421D4 /* InfoPlist.strings in Resources */,
 				00A64D4D19064DB400740DC7 /* cellLight@2x.png in Resources */,
 				00A64D7D19064DB400740DC7 /* logoNB.png in Resources */,
@@ -1211,10 +1385,10 @@
 				188608F2190FA1CB00BD1D77 /* plusGreenIcon@2x.png in Resources */,
 				0092FD41190A9D6400499F7E /* whiteCellBG@2x.png in Resources */,
 				00A64D7319064DB400740DC7 /* toc.png in Resources */,
-				188608F4190FA1CB00BD1D77 /* minusGreenIcon@2x.png in Resources */,
 				00A64D5F19064DB400740DC7 /* email.png in Resources */,
 				00A64D7A19064DB400740DC7 /* separator@2x.png in Resources */,
 				00A64D4B19064DB400740DC7 /* cellDark@2x.png in Resources */,
+				00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1271,14 +1445,21 @@
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
 				AC8F61E919124BFD0064C53F /* OKAccessSettingsTableViewCell.m in Sources */,
 				00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */,
+				00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */,
 				00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */,
+				00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */,
+				E1DE70681917CC9A0088913C /* OKBaseProcedureElement.m in Sources */,
 				185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */,
 				189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */,
 				AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
+				0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */,
+				008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */,
+				E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */,
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
 				AC8F61F0191261AF0064C53F /* OKAccessConfirmTableViewCell.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
+				008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */,
 				AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */,
@@ -1294,9 +1475,11 @@
 				185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */,
 				AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */,
 				0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */,
+				008BE8D41914EB2C0060353C /* OKLRPartialNephrectomyModel.m in Sources */,
 				00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
+				00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */,
 				ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */,
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
 				189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */,
@@ -1305,9 +1488,14 @@
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
+				E1DE7061191780B00088913C /* OKProcedureMultiselectVC.m in Sources */,
 				0060D83718FD2C1500AFC7B4 /* OKCustomTextField.m in Sources */,
+				0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
+				00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
+				008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */,
+				00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,

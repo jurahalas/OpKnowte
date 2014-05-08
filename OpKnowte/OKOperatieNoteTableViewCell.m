@@ -25,9 +25,9 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundColor = [UIColor clearColor];
 }
--(void) setLabels{
-    self.caseDataKeyLabel.text = @"Key";
-    self.caseDataValueLabel.text = @"Value";
+-(void) setLabelsWithKey: (NSString*) key AndValue:(NSString*) value{
+    self.caseDataKeyLabel.text = key;
+    self.caseDataValueLabel.text = value;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
