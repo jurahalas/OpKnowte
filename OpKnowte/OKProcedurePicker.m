@@ -19,6 +19,7 @@
 
 -(void) setup{
     _customTextField.text = @"";
+    _customTextField.enabled = NO;
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     [self setTextFieldRightImage];
     

@@ -19,6 +19,7 @@
 
 -(void) setup{
      [self setTextFieldRightImage];
+     _customTextField.enabled = NO;
 }
 
 -(void)setPlaceHolder:(NSString*)placeHolder
@@ -63,4 +64,7 @@
     [self.delegate showMultiselectVCForFieldWithName:self.fieldName withData:self.dataArray sender:self];
 }
 
+-(void) setDataArray:(NSArray *)dataArray{
+    _dataArray = dataArray;
+}
 @end

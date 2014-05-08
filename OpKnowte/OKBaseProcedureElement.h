@@ -26,5 +26,6 @@
 @property (strong, readonly) NSString *placeHolder;
 
 - (void)setPlaceHolder:(NSString*)placeHolder;
+-(void) setFieldName:(NSString *)fieldName;
 - (void) setup;
 @end

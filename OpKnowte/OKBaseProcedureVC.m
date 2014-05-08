@@ -141,6 +141,7 @@
         multiselectView.delegate = self;
         [multiselectView setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"]];
         [multiselectView setFieldName:[customElementDictionary objectForKey:@"name"]];
+        
         [multiselectView setDataArray:[customElementDictionary objectForKey:@"items"]];
         [self.view addSubview:multiselectView];
 

@@ -19,6 +19,7 @@
 {
     [super setPlaceHolder:placeHolder];
     _customLabel.text = placeHolder;
+
 }
 
 

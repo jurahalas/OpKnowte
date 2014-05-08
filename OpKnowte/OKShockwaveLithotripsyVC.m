@@ -110,10 +110,7 @@
         boolToString = @"NO";
     }
     
-    if ([name isEqualToString:@"var_pausePerformed"]) {
-       [self.model setValue:boolToString forKey:name];
-        
-    } else if ([name isEqualToString:@"complications?"]) {
+    if ([name isEqualToString:@"complications?"]) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
             if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_complications"]) {
@@ -128,7 +125,12 @@
             complicationsTF.customTextField.enabled = YES;
         } else {
             complicationsTF.customTextField.enabled = NO;
+            complicationsTF.customTextField.text = @"";
+            [self.model setValue:@"NO" forKey:@"var_complications"];
         }
+    } else {
+        [self.model setValue:boolToString forKey:name];
+
     }
 }
 -(id) nextVC{

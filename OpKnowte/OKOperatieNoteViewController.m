@@ -29,6 +29,10 @@
 @property (strong, nonatomic) NSMutableArray *caseDataValues;
 
 
+@property (strong, nonatomic) IBOutlet UIView *saveButtonView;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+
+
 @property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
 @end
 
@@ -103,9 +107,11 @@
     
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self addBottomTabBar];
-    
     segmentControllView.backgroundColor = [UIColor clearColor];
+    _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _saveButton.layer.cornerRadius = 14;
+    _saveButton.clipsToBounds = YES;
+    _saveButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     
     [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
   
@@ -120,9 +126,6 @@
    caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
 
     [self.caseDataTableView reloadData];
-//
-//    [self indicationMethod];
-//    [self procedureMethod];
     
     self.caseDataTableView.hidden = NO;
     self.IndicationView.hidden = YES;
@@ -159,7 +162,11 @@
         } else {
             variableValue = [_model valueForKey:allKeys.value];
         }
-       indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+        if (variableValue != nil) {
+            indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+        } else {
+            indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
+        }
     }
     
     
@@ -194,7 +201,11 @@
         } else {
             variableValue = [_model valueForKey:allKeys.value];
         }
-        procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+        if (variableValue != nil) {
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+        } else {
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
+        }
     }
     
 
@@ -281,6 +292,19 @@
     [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
      [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
     return cell;
+}
+- (IBAction)saveButtonTapped:(id)sender {
+      [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKProceduresManager *proceduresManager = [OKProceduresManager instance];
+    
+    [proceduresManager saveProcedureWithSurgeonID:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ] ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] AndProcedureModel:self.model handler:^(NSString *errorMsg) {
+        
+        NSLog(@"Error - %@", errorMsg);
+        [[OKLoadingViewController instance] hide];
+
+        
+    }];
+
 }
 
 @end

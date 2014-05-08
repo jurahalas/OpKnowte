@@ -27,6 +27,7 @@
     OKProcedureMultiselectVC *multiselVC = [[OKProcedureMultiselectVC alloc]init];
     multiselVC.tableData = data;
     multiselVC.delegate = delegate;
+    multiselVC.fieldName = fieldName;
     multiselVC.view.frame = vc.view.frame;
     multiselVC.view.alpha = 0.0f;
     multiselVC.view.backgroundColor = [UIColor clearColor];

@@ -7,7 +7,7 @@
 //
 
 #import "OKPenileProsthesisVC.h"
-
+#import "OKPenileProsthesisModel.h"
 
 #import "OKProcedureTextField.h"
 #import "OKProcedureSwitcher.h"
@@ -27,28 +27,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Shockwave Lithotripsy";
-    self.plistArray = [[NSArray alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"SLProcedure" ofType:@"plist"]];
+    self.navigationItem.title = @"Penile Prosthesis";
+    self.plistArray = [[NSArray alloc]initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"IPPProcedure" ofType:@"plist"]];
     if (!self.currentPage) {
         self.currentPage = 0;
     }
     NSArray *currentPageFieldsArray =[[self.plistArray objectAtIndex:self.currentPage] objectForKey:@"fields" ];
     self.xPoint = 80;
     if (self.model == nil) {
-        self.model = [[OKShockwaveLithotripsyModel alloc] init];
+        self.model = [[OKPenileProsthesisModel alloc] init];
         
     }
     
     for (int i = 0; i < currentPageFieldsArray.count; i++) {
-        
-        if (self.currentPage >=2 && self.currentPage <= 5) {
-            for (int j = 0; j < [[self.model valueForKey:@"var_stonesCount" ] intValue]; j++) {
-                [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:j+1];
-            }
-        } else {
+
             [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:0];
-            
-        }
+
     }
 }
 
@@ -59,17 +53,7 @@
 #pragma mark - OKProcedureTextFieldDelegate
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger)tag
 {
-    if (tag > 0) {
-        NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@" ",@" ",@" ",@" ",@" ", nil];
-        if ([self.model valueForKey:name] != nil) {
-            array = [self.model valueForKey:name];
-        }
-        
-        [array replaceObjectAtIndex:(tag-1) withObject:newValue];
-        [self.model setValue:array forKey:name];
-        
-        
-    } else {
+
         
         if ([name isEqualToString:@"var_patientDOB"]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -80,14 +64,29 @@
             [self.model setValue:age forKey:@"var_age"];
             [self.model setValue:newValue forKey:name];
             [self.model setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ]  forKey:@"var_surgeon"];
+        } else if ([name isEqualToString:@"var_reservoirplacement?"] ) {
+
+            id element = nil;
+            for (id searchedElement in self.interactionItems) {
+                if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_reservoirplacement"]) {
+                    element = searchedElement;
+                    break;
+                }
+            }
+            NSLog(@"------%@", element);
+            OKProcedureTextField *complicationsTF = element;
+            if ([newValue isEqualToString:@"other"]) {
+                complicationsTF.customTextField.enabled = YES;
+            } else {
+                complicationsTF.customTextField.enabled = NO;
+                complicationsTF.customTextField.text = @"";
+                [self.model setValue:@"NO" forKey:@"var_reservoirplacement"];
+            }
+            
         } else {
             
             [self.model setValue:newValue forKey:name];
         }
-    }
-    
-    
-    
     
 }
 #pragma mark - OKProcedureSwitcherDelegate
@@ -99,10 +98,7 @@
         boolToString = @"NO";
     }
     
-    if ([name isEqualToString:@"var_pausePerformed"]) {
-        [self.model setValue:boolToString forKey:name];
-        
-    } else if ([name isEqualToString:@"complications?"]) {
+    if ([name isEqualToString:@"complications?"]) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
             if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_complications"]) {
@@ -117,17 +113,28 @@
             complicationsTF.customTextField.enabled = YES;
         } else {
             complicationsTF.customTextField.enabled = NO;
+            complicationsTF.customTextField.text = @"";
+            [self.model setValue:@"NO" forKey:@"var_complications"];
         }
+    } else {
+       [self.model setValue:boolToString forKey:name];
     }
 }
 -(id) nextVC{
-    OKShockwaveLithotripsyVC *nextVC = [[OKShockwaveLithotripsyVC alloc] init];
+    OKPenileProsthesisVC *nextVC = [[OKPenileProsthesisVC alloc] init];
     nextVC.model = self.model;
     nextVC.procedureID = self.procedureID;
     nextVC.currentPage = (self.currentPage + 1);
     return nextVC;
 }
 
+-(void)updateField:(NSString*)field withData:(NSArray*)data
+{
+
+    NSString *dataString = [[NSString alloc] init];
+    dataString =  [data componentsJoinedByString:@"; "];
+    [self.model setValue:dataString forKey:field];
+}
 
 
 - (void)didReceiveMemoryWarning

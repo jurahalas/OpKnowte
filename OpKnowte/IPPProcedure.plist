@@ -245,7 +245,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>var_reservoirplacement</string>
+				<string>var_reservoirplacement?</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>

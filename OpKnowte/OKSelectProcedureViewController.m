@@ -12,6 +12,8 @@
 #import "OKLoadingViewController.h"
 #import "OKShockwaveLithotripsyVC.h"
 #import "OKLRPartialNephrectomyVC.h"
+#import "OKPenileProsthesisVC.h"
+#import "OKLRRadicalProstatectomyVC.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -75,15 +77,24 @@
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
     if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
         OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
-        vc.procedureID = indexPath.row+1;
+        vc.procedureID = 10;
         [self.navigationController pushViewController:vc animated:YES];
     }
     if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
         OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
-        vc.procedureID = indexPath.row+1;
+        vc.procedureID = 2;
         [self.navigationController pushViewController:vc animated:YES];
     }
- 
+    if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
+        OKPenileProsthesisVC *vc = [[OKPenileProsthesisVC alloc] init];
+        vc.procedureID = 9;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+        OKLRRadicalProstatectomyVC *vc = [[OKLRRadicalProstatectomyVC alloc] init];
+        vc.procedureID = 1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
     
 }

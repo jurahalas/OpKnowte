@@ -22,6 +22,7 @@
 		0065E87D190026900016B94F /* OKInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065E87C190026900016B94F /* OKInfoViewController.m */; };
 		0065F9D919190F57003344A3 /* IPPProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0065F9D819190F57003344A3 /* IPPProcedure.plist */; };
 		0065F9DE19193605003344A3 /* OKPenileProsthesisVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065F9DD19193605003344A3 /* OKPenileProsthesisVC.m */; };
+		0065F9E3191A11BE003344A3 /* OKPenileProsthesisModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0065F9E2191A11BE003344A3 /* OKPenileProsthesisModel.m */; };
 		007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */; };
 		007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 007A0CA118F54A1E00D183F1 /* OKHomeScreenViewController.m */; };
 		00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 00862952190CF372006EBA9C /* OKProcedureSwitcher.m */; };
@@ -130,6 +131,9 @@
 		00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9A1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m */; };
 		00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
+		00C3DBB5191A45F300F7B6A9 /* LRRPProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C3DBB4191A45F300F7B6A9 /* LRRPProcedure.plist */; };
+		00C3DBB8191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3DBB7191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m */; };
+		00C3DBBD191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3DBBC191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m */; };
 		00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00CD5FD818FE7C9700334A24 /* OKContactManager.m */; };
 		00F47DE319090D1F00E06F88 /* SLProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00F47DE219090D1F00E06F88 /* SLProcedure.plist */; };
 		00F47DE6190924F200E06F88 /* OKShockwaveLithotripsyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00F47DE5190924F200E06F88 /* OKShockwaveLithotripsyVC.m */; };
@@ -240,6 +244,8 @@
 		0065F9D819190F57003344A3 /* IPPProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IPPProcedure.plist; sourceTree = "<group>"; };
 		0065F9DC19193605003344A3 /* OKPenileProsthesisVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPenileProsthesisVC.h; sourceTree = "<group>"; };
 		0065F9DD19193605003344A3 /* OKPenileProsthesisVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPenileProsthesisVC.m; sourceTree = "<group>"; };
+		0065F9E1191A11BE003344A3 /* OKPenileProsthesisModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPenileProsthesisModel.h; sourceTree = "<group>"; };
+		0065F9E2191A11BE003344A3 /* OKPenileProsthesisModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPenileProsthesisModel.m; sourceTree = "<group>"; };
 		007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKRegistrationViewController.h; sourceTree = "<group>"; };
 		007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKRegistrationViewController.m; sourceTree = "<group>"; };
 		007A0CA018F54A1E00D183F1 /* OKHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKHomeScreenViewController.h; sourceTree = "<group>"; };
@@ -374,6 +380,11 @@
 		00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgeonPerformanceDataComparisonContentCell.m; sourceTree = "<group>"; };
 		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
+		00C3DBB4191A45F300F7B6A9 /* LRRPProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LRRPProcedure.plist; sourceTree = "<group>"; };
+		00C3DBB6191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLRRadicalProstatectomyVC.h; sourceTree = "<group>"; };
+		00C3DBB7191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLRRadicalProstatectomyVC.m; sourceTree = "<group>"; };
+		00C3DBBB191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLRRadicalProstatectomyModel.h; sourceTree = "<group>"; };
+		00C3DBBC191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLRRadicalProstatectomyModel.m; sourceTree = "<group>"; };
 		00CD5FD718FE7C9700334A24 /* OKContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactManager.h; sourceTree = "<group>"; };
 		00CD5FD818FE7C9700334A24 /* OKContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactManager.m; sourceTree = "<group>"; };
 		00F47DE219090D1F00E06F88 /* SLProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SLProcedure.plist; sourceTree = "<group>"; };
@@ -633,6 +644,10 @@
 				0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */,
 				008BE8D21914EB2C0060353C /* OKLRPartialNephrectomyModel.h */,
 				008BE8D31914EB2C0060353C /* OKLRPartialNephrectomyModel.m */,
+				0065F9E1191A11BE003344A3 /* OKPenileProsthesisModel.h */,
+				0065F9E2191A11BE003344A3 /* OKPenileProsthesisModel.m */,
+				00C3DBBB191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.h */,
+				00C3DBBC191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m */,
 			);
 			name = Procedures;
 			sourceTree = "<group>";
@@ -675,9 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				008D5B571907DC600039E8B7 /* Custom elements */,
-				008D5B871908F8220039E8B7 /* SWL */,
-				008BE8CD1914E8BC0060353C /* LRPN */,
-				0065F9E019193615003344A3 /* IPP */,
+				00C3DBBA191A468100F7B6A9 /* Procedures VC */,
 			);
 			name = "Procedure Parser";
 			sourceTree = "<group>";
@@ -949,9 +962,30 @@
 				00F47DE219090D1F00E06F88 /* SLProcedure.plist */,
 				00607FDE191380B100AD27F3 /* LRPNProcedure.plist */,
 				0065F9D819190F57003344A3 /* IPPProcedure.plist */,
+				00C3DBB4191A45F300F7B6A9 /* LRRPProcedure.plist */,
 				00A64CF019064DB300740DC7 /* images */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		00C3DBB9191A466D00F7B6A9 /* LRRP */ = {
+			isa = PBXGroup;
+			children = (
+				00C3DBB6191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.h */,
+				00C3DBB7191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m */,
+			);
+			name = LRRP;
+			sourceTree = "<group>";
+		};
+		00C3DBBA191A468100F7B6A9 /* Procedures VC */ = {
+			isa = PBXGroup;
+			children = (
+				008D5B871908F8220039E8B7 /* SWL */,
+				008BE8CD1914E8BC0060353C /* LRPN */,
+				0065F9E019193615003344A3 /* IPP */,
+				00C3DBB9191A466D00F7B6A9 /* LRRP */,
+			);
+			name = "Procedures VC";
 			sourceTree = "<group>";
 		};
 		185F82881900012700C5566A /* National Performance Data */ = {
@@ -1314,6 +1348,7 @@
 				00A64D7819064DB400740DC7 /* register@2x.png in Resources */,
 				E1DE7062191780B00088913C /* OKProcedureMultiselectVC.xib in Resources */,
 				00A64D6419064DB400740DC7 /* home@2x.png in Resources */,
+				00C3DBB5191A45F300F7B6A9 /* LRRPProcedure.plist in Resources */,
 				00607FDF191380B100AD27F3 /* LRPNProcedure.plist in Resources */,
 				182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */,
 				00A64D6819064DB400740DC7 /* knife@2x.png in Resources */,
@@ -1486,11 +1521,13 @@
 				AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */,
 				AC8F61DB19123B200064C53F /* OKSettingsTableViewCell.m in Sources */,
 				185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */,
+				00C3DBBD191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m in Sources */,
 				AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */,
 				0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */,
 				008BE8D41914EB2C0060353C /* OKLRPartialNephrectomyModel.m in Sources */,
 				E1DE706B1917D76B0088913C /* OKDatePicker.m in Sources */,
 				00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */,
+				00C3DBB8191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
 				00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */,
@@ -1513,6 +1550,7 @@
 				00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
+				0065F9E3191A11BE003344A3 /* OKPenileProsthesisModel.m in Sources */,
 				E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */,
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,

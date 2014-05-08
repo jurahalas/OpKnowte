@@ -69,7 +69,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>var_preOp</string>
+				<string>var_preOpDX</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
@@ -92,13 +92,85 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_cysto</string>
+				<string>var_nervesparing</string>
+				<key>type</key>
+				<string>multiselect</string>
+				<key>placeholder</key>
+				<string>Nerve Sparing</string>
+				<key>items</key>
+				<array>
+					<string>Bilateral</string>
+					<string>Right Nerve Sparing</string>
+					<string>Left Nerve Sparing</string>
+					<string>Non-Nerve Sparing</string>
+					<string>Incremetnal Right NS</string>
+					<string>Incremental Left Nerve Sparing</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>var_pelvicDisection</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Pelvic Lymph Node Dissection</string>
+				<key>items</key>
+				<array>
+					<string>None</string>
+					<string>Bilateral</string>
+					<string>Right PLND</string>
+					<string>Left PLND</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_bladderNeckReconstruction</string>
 				<key>type</key>
 				<string>switcher</string>
 				<key>placeholder</key>
-				<string>Cysto/Stent</string>
+				<string>Bladder Neck Reconstruction</string>
 				<key>items</key>
 				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_sling</string>
+				<key>type</key>
+				<string>switcher</string>
+				<key>placeholder</key>
+				<string>Sling</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_lysisOfAdhesions?</string>
+				<key>type</key>
+				<string>switcher</string>
+				<key>placeholder</key>
+				<string>Lysis of Adhesions</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_lysisOfAdhesions</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Lysis of Adhesions</string>
+				<key>items</key>
+				<array>
+					<string>Greater than 30 minutes</string>
+					<string>Less than 30 minutes</string>
+				</array>
 			</dict>
 		</array>
 	</dict>
@@ -131,11 +203,11 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_anesthesiologist</string>
+				<string>var_anesthesia</string>
 				<key>type</key>
 				<string>symbolicTextField</string>
 				<key>placeholder</key>
-				<string>Anesthesiologist</string>
+				<string>Anesthesia</string>
 				<key>items</key>
 				<array>
 					<string>anesthesiologist</string>
@@ -150,68 +222,149 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>var_tumorSize</string>
+				<string>var_ethnicity?</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Ethnicity</string>
+				<key>items</key>
+				<array>
+					<string>Caucasion</string>
+					<string>African American</string>
+					<string>Asian</string>
+					<string>Latino</string>
+					<string>Other</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_ethnicity</string>
+				<key>type</key>
+				<string>symbolicTextField</string>
+				<key>placeholder</key>
+				<string>Ethnicity</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_stage</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Clinical Stage</string>
+				<key>items</key>
+				<array>
+					<string>T1c</string>
+					<string>T2a</string>
+					<string>T2b</string>
+					<string>T2c</string>
+					<string>T3a</string>
+					<string>T3b</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_grade</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Gleason Grade</string>
+				<key>items</key>
+				<array>
+					<string>(3+3)</string>
+					<string>(3+4)</string>
+					<string>(4+3)</string>
+					<string>(4+4)</string>
+					<string>(4+5)</string>
+					<string>(5+4)</string>
+					<string>(5+5)</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_numberOfCores</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Number of Cores Involved</string>
+				<key>items</key>
+				<array>
+					<string>1</string>
+					<string>2</string>
+					<string>3</string>
+					<string>4</string>
+					<string>5</string>
+					<string>6</string>
+					<string>7</string>
+					<string>8</string>
+					<string>9</string>
+					<string>10</string>
+					<string>11</string>
+					<string>12</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_greatestPercentage</string>
+				<key>type</key>
+				<string>picker</string>
+				<key>placeholder</key>
+				<string>Greatest Percentage of Core Involved</string>
+				<key>items</key>
+				<array>
+					<string>&lt;5%</string>
+					<string>5%-10%</string>
+					<string>10%-15%</string>
+					<string>15%-20%</string>
+					<string>20%-25%</string>
+					<string>25%-30%</string>
+					<string>30%-35%</string>
+					<string>35%-40%</string>
+					<string>40%-45%</string>
+					<string>45%-50%</string>
+					<string>50%-55%</string>
+					<string>55%-60%</string>
+					<string>60%-65%</string>
+					<string>65%-70%</string>
+					<string>70%-75%</string>
+					<string>75%-80%</string>
+					<string>80%-85%</string>
+					<string>85%-90%</string>
+					<string>90%-95%</string>
+					<string>95%-100%</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>var_preBX</string>
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
-				<string>Tumor Size [cm]</string>
+				<string>Pre-bx PSA (in ng/dl)</string>
 				<key>items</key>
 				<array/>
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_location</string>
+				<string>var_prostateVolume</string>
 				<key>type</key>
-				<string>picker</string>
+				<string>numericTextField</string>
 				<key>placeholder</key>
-				<string>Location</string>
-				<key>items</key>
-				<array>
-					<string>Upper pole</string>
-					<string>Mid-kidney</string>
-					<string>Lower pole</string>
-				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>anterior/posterior</string>
-				<key>type</key>
-				<string>picker</string>
-				<key>placeholder</key>
-				<string>Anterior/Posterior</string>
-				<key>items</key>
-				<array>
-					<string>Anterior</string>
-					<string>Posterior</string>
-				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_tumorChar</string>
-				<key>type</key>
-				<string>picker</string>
-				<key>placeholder</key>
-				<string>Tumor Characteristics</string>
-				<key>items</key>
-				<array>
-					<string>Endophytic</string>
-					<string>Exophytic</string>
-					<string>Both</string>
-				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_history</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Previous Abdominal Surgeries</string>
+				<string>Prostate Volume (in gms)</string>
 				<key>items</key>
 				<array/>
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_bmi</string>
+				<string>var_BMI</string>
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
@@ -219,149 +372,24 @@
 				<key>items</key>
 				<array/>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
-				<string>var_adhesions</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Intra-abdominal Adhesions</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_adhTook</string>
+				<string>var_factors</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Intra-abdominal Adhesions</string>
+				<string>Complicating Factors</string>
 				<key>items</key>
 				<array>
-					<string>Less than 30 mins</string>
-					<string>Greater than 30 mins</string>
+					<string>None</string>
+					<string>Adhesions</string>
+					<string>Large prostate</string>
+					<string>Previous TUR</string>
+					<string>Obese</string>
+					<string>Blood loss</string>
+					<string>Bowel</string>
+					<string>Rectal injury</string>
 				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_vasAnomolies?</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Vuscular Anomalies</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_vasAnomolies</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string>Descriprion (if Yes)</string>
-				<key>items</key>
-				<array/>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
-			<dict>
-				<key>name</key>
-				<string>var_renalUltraSound</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Renal Ultrasound</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_margin</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Deep Margin</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_RCSRepair</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Renal Collection Repair System</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_clamp</string>
-				<key>type</key>
-				<string>numericTextField</string>
-				<key>placeholder</key>
-				<string>Clamp Time [min]</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_coagulant?</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Usage of Coagulants</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_coagulant</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string>Enter Coagulants</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_bloodLoss</string>
-				<key>type</key>
-				<string>numericTextField</string>
-				<key>placeholder</key>
-				<string>Estimated Blood Loss [ml]</string>
-				<key>items</key>
-				<array/>
-			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
-			<dict>
-				<key>name</key>
-				<string>var_counselTime</string>
-				<key>type</key>
-				<string>numericTextField</string>
-				<key>placeholder</key>
-				<string>Console Time [min]</string>
-				<key>items</key>
-				<array/>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -369,51 +397,103 @@
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
-				<string>Room Time [min]</string>
+				<string>Room Time</string>
+				<key>items</key>
+				<array/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>var_roomTime</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Room Time</string>
 				<key>items</key>
 				<array/>
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_complation</string>
+				<string>var_operativeTime</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Operative Time</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_consulTime</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Consul Time</string>
+				<key>items</key>
+				<array/>
+			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>var_EBL</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>EBL (in cc)</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_fluids</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Fluids (in liters)</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_preOpSHIM</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Pre-op SHIM</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_preOpAUA</string>
+				<key>type</key>
+				<string>numericTextField</string>
+				<key>placeholder</key>
+				<string>Pre-op AUA score</string>
+				<key>items</key>
+				<array/>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>var_physicans</string>
 				<key>type</key>
 				<string>symbolicTextField</string>
 				<key>placeholder</key>
-				<string>Complications</string>
+				<string>Referring Physicians</string>
 				<key>items</key>
 				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>transfusion?</string>
-				<key>type</key>
-				<string>switcher</string>
-				<key>placeholder</key>
-				<string>Transfusion</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_transfusion</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string># of units (is Yes)</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_cc</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string>CC</string>
-				<key>items</key>
-				<array>
-					<string>cc</string>
-				</array>
 			</dict>
 		</array>
 	</dict>

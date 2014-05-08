@@ -90,11 +90,11 @@
         boolToString = @"NO";
     }
     
-    if ([name isEqualToString:@"intraAbdominalAdhesions"]) {
+    if ([name isEqualToString:@"var_adhesions"]) {
         [self.model setValue:boolToString forKey:name];
         id element = nil;
         for (id searchedElement in self.interactionItems) {
-            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"descriptionIntraAbdominalAdhesions"]) {
+            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_adhTook"]) {
                 element = searchedElement;
                 break;
             }
@@ -106,12 +106,13 @@
             adhesionP.button.enabled = YES;
         } else {
             adhesionP.button.enabled = NO;
+            adhesionP.customTextField.text = @"";
+            [self.model setValue:@"NO" forKey:@"var_adhTook"];
         }
-    } else if ([name isEqualToString:@"vuscularAnomalies"]) {
-        [self.model setValue:boolToString forKey:name];
+    } else if ([name isEqualToString:@"var_vasAnomolies?"]) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
-            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"descriptionVuscularAnomalies"]) {
+            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_vasAnomolies"]) {
                 element = searchedElement;
                 break;
             }
@@ -123,11 +124,13 @@
             anomaliesTF.customTextField.enabled = YES;
         } else {
             anomaliesTF.customTextField.enabled = NO;
+            anomaliesTF.customTextField.text = @"";
+            [self.model setValue:@"NO" forKey:@"var_vasAnomolies"];
         }
-    } else if ([name isEqualToString:@"useOfCoagulants?"]) {
+    } else if ([name isEqualToString:@"var_coagulant?"]) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
-            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"useOfCoagulants"]) {
+            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_coagulant"]) {
                 element = searchedElement;
                 break;
             }
@@ -139,11 +142,13 @@
             coagulantsTF.customTextField.enabled = YES;
         } else {
             coagulantsTF.customTextField.enabled = NO;
+            coagulantsTF.customTextField.text = @"";
+            [self.model setValue:@"NO" forKey:@"var_coagulant"];
         }
     } else if ([name isEqualToString:@"transfusion?"]) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
-            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"transfusion"]) {
+            if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_transfusion"]) {
                 element = searchedElement;
                 break;
             }
@@ -155,6 +160,8 @@
             transfusionTF.customTextField.enabled = YES;
         } else {
             transfusionTF.customTextField.enabled = NO;
+            transfusionTF.customTextField.text = @"";
+            [self.model setValue:@"NO" forKey:@"var_transfusion"];
         }
     } else {
         [self.model setValue:boolToString forKey:name];
