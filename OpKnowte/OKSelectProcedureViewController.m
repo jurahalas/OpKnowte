@@ -10,6 +10,10 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
+#import "OKShockwaveLithotripsyVC.h"
+#import "OKLRPartialNephrectomyVC.h"
+#import "OKPenileProsthesisVC.h"
+#import "OKLRRadicalProstatectomyVC.h"
 #import "OKDataSharingViewController.h"
 
 @interface OKSelectProcedureViewController ()
@@ -65,11 +69,43 @@
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 
 #pragma mark - Table View methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
+        OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
+        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:procedure.identifier];
+    } else {
+    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+        OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
+        vc.procedureID = 10;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+        OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
+        vc.procedureID = 2;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
+        OKPenileProsthesisVC *vc = [[OKPenileProsthesisVC alloc] init];
+        vc.procedureID = 9;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+        OKLRRadicalProstatectomyVC *vc = [[OKLRRadicalProstatectomyVC alloc] init];
+        vc.procedureID = 1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _procArray.count;
@@ -97,16 +133,6 @@
         OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
         sharVC.procID = sender;
     }
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
-
-    [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:procedure.identifier];
-    
-
 }
 
 

@@ -42,7 +42,7 @@
     _firstNameTextField.text = @"";
     _lastNameTextField.text = @"";
     _emailTextField.text = @"";
-    _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:0]];
+    _MDTextField.text = @"";
     _passwordTextField.text = @"";
     _confirmPasswordField.text = @"";
     

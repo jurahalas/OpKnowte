@@ -50,7 +50,13 @@
 }
 
 #pragma mark - Table View methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OKDataCaptureTableViewCell *cell = (OKDataCaptureTableViewCell *)[dataCapture cellForRowAtIndexPath:indexPath];
+    if ([cell.dataCaptureLable.text isEqualToString:@"Immediate Post-Operative"]) {
+        [self performSegueWithIdentifier:@"fromDataCaptureToSelectProcedure" sender:self];
+    }
 
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 2;
 }
@@ -72,21 +78,22 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"selectProcedure" sender:indexPath];
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [self performSegueWithIdentifier:@"selectProcedure" sender:indexPath];
+//}
 
 
-#pragma mark - prepare for segue
+//#pragma mark - prepare for segue
+//
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if([segue.identifier isEqualToString:@"selectProcedure"]){
+//        OKSelectProcedureViewController *vc = (OKSelectProcedureViewController*)segue.destinationViewController;
+//    }
+//}
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"selectProcedure"]){
-        OKSelectProcedureViewController *vc = (OKSelectProcedureViewController*)segue.destinationViewController;
-    }
-}
 
 
 - (void)didReceiveMemoryWarning

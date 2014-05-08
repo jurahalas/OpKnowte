@@ -8,6 +8,7 @@
 
 #import "OKBaseViewController.h"
 #import "OKSelectProcTableViewCell.h"
+#import "OKSelectProcedureViewController.h"
 
 
 @interface OKSelectProcVC : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>

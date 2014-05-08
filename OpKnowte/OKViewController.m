@@ -103,7 +103,7 @@
 
 #pragma mark - IBActions
 - (IBAction)loginButton:(id)sender {
-    
+    [self.view endEditing:YES];
     OKUserManager *usermanager = [OKUserManager instance];
    
     if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {

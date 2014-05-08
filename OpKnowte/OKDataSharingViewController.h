@@ -12,4 +12,5 @@
 @interface OKDataSharingViewController : OKBaseViewController
 
 @property(strong, nonatomic) NSString *procID;
+
 @end

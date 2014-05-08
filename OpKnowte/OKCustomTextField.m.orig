@@ -28,21 +28,15 @@
     [self setTextColor:[UIColor whiteColor]];
     self.layer.cornerRadius = 14;
     self.clipsToBounds = YES;
-<<<<<<< HEAD
     self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-=======
+
     
->>>>>>> 4a8f403ca0e538b8ac9df9f88c493438dad16f65
     UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     textFieldIconView.backgroundColor = [UIColor clearColor];
     self.leftView = textFieldIconView;
     self.leftViewMode = UITextFieldViewModeAlways;
-<<<<<<< HEAD
 
-=======
     
-    
->>>>>>> 4a8f403ca0e538b8ac9df9f88c493438dad16f65
 }
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
    

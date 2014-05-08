@@ -7,6 +7,7 @@
 //
 
 #import "OKViewController.h"
+#import "OKLoadingViewController.h"
 
 @interface OKViewController ()
 @property (strong, nonatomic) IBOutlet OKCustomTextField *emailTextField;
@@ -21,30 +22,38 @@
 
 #pragma mark - view methods
 
-- (void)viewDidLoad {
-    
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
 <<<<<<< HEAD
-    _passwordTextField.text = @"1234";
-    _emailTextField.text = @"myname@i.ua";
 =======
-    _passwordTextField.text = @"12341234";
-    _emailTextField.text = @"f_zhenya@i.ua";
->>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
-    
+//    _passwordTextField.text = @"";
+//    _emailTextField.text = @"";
+>>>>>>> 7879c56fa65397bd5ebc30a5a37878846d8b4cd6
 }
+
+
 -(void) viewWillAppear:(BOOL)animated {
     
      [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }
 
-- (void)didReceiveMemoryWarning {
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    if([defaults objectForKey:@"user"]!=nil){
+        [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
+    }
+}
+
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
 }
 
 #pragma mark - textField methods
@@ -97,45 +106,60 @@
 
 #pragma mark - Custom methods
 
-
-
 #pragma mark - IBActions
 - (IBAction)loginButton:(id)sender {
     
     OKUserManager *usermanager = [OKUserManager instance];
+   
     if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
         UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [loginFormAlertView show];
     }else {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
         _loginButton.enabled = NO;
         [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
             if (error != nil) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormErrorAlertView show];
                 _loginButton.enabled = YES;
+               
             } else {
-                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success" message:@"Congratulations! You are logged in." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success"
+                                                                                    message:@"Congratulations! You are logged in"
+                                                                                    delegate:self
+                                                                                    cancelButtonTitle:@"OK"
+                                                                                    otherButtonTitles:nil, nil];
                 [loginFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
                 _loginButton.enabled = YES;
             }
+            [[OKLoadingViewController instance] hide];
         }];
     }
-    
+
 }
 
 - (IBAction)forgetPasswordButton:(id)sender {
     
-    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:@"Please confirm your Email Address.\rWe will send you your password." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Send", nil];
+    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password"
+                                                              message:@"Please confirm your Email Address.\rWe will send you your password"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Send", nil];
+    
     customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [customAlertView textFieldAtIndex:0].placeholder = @"Email";
-    [customAlertView textFieldAtIndex:0].text = @"frolow.artem@gmail.com";
+    
+    
+    
     [customAlertView show];
     
 }
 
-- (IBAction)registerButton:(id)sender {
+- (IBAction)registerButton:(id)sender
+{
 
 }
 
@@ -169,16 +193,26 @@
 //        }];
     }
     if (buttonIndex == 1) {
+
         if ([alertView.title isEqualToString:@"Restore Password"]) {
+            [[OKLoadingViewController instance] showWithText:@"Loading..."];
             OKUserManager *usermanager = [OKUserManager instance];
             [usermanager recoverPasswordWithEmail:[alertView textFieldAtIndex:0].text handler:^(NSString* error){
-                NSLog(@"error - %@", error);
+                if ([[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
+                    UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@" Restore password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [loginFormErrorAlertView show];
+                    _forgotPasswordButton.enabled = YES;
+                    [[OKLoadingViewController instance] hide];
+                }else{
+                    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [loginFormErrorAlertView show];
+                }
+                [[OKLoadingViewController instance] hide];
             }];
-        } else {
-            NSLog(@"THE 'Second' BUTTON WAS PRESSED");
         }
     }
-    
 }
 
 #pragma mark - design
@@ -188,7 +222,7 @@
     [_emailTextField setCustomTextFieldPlaceholder:@"Email" Secured:NO DownArrow:NO];
     [_passwordTextField setCustomTextFieldPlaceholder:@"Password" Secured:YES DownArrow:NO];
     
-    _loginButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:74/255.0 blue:89/255.0 alpha:1];
+    _loginButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _loginButton.layer.cornerRadius = 14;
     _loginButton.clipsToBounds = YES;
     

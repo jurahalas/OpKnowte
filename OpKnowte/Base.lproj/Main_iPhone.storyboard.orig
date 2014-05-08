@@ -225,6 +225,14 @@
                                     <segue destination="WIT-md-SDl" kind="push" id="lPY-Bo-TiM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rE5-H2-URU">
+                                <rect key="frame" x="112" y="399" width="107" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ongoing clinical">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="dLQ-jH-65l" kind="push" id="pzr-vY-Jj3"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sM5-Vo-Vyy">
                                 <rect key="frame" x="89" y="437" width="142" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -288,7 +296,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GZa-gN-yhr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="GZa-gN-yhr">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1023,7 +1031,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Blb-S0-zb2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="-664"/>
+            <point key="canvasLocation" x="1857" y="-655"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="uZN-Rr-m30">
@@ -1463,17 +1471,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dataCapture" destination="xky-eG-at2" id="Ghw-rf-iY6"/>
-                        <segue destination="wBF-vG-Mca" kind="push" identifier="selectProcedure" id="cL3-fE-0Q4"/>
+                        <segue destination="wBF-vG-Mca" kind="push" identifier="fromDataCaptureToSelectProcedure" id="HPA-fE-a3A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0j-TQ-0Gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1888" y="900"/>
         </scene>
-        <!--Operatie Note View Controller - LRPN-Operatie Note-->
+        <!--Operatie Note View Controller - Operative Note-->
         <scene sceneID="Tid-kT-53J">
             <objects>
-                <viewController id="IWN-9Q-DMf" customClass="OKOperatieNoteViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OperativeNoteVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IWN-9Q-DMf" customClass="OKOperatieNoteViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VeE-Qj-gIC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1593,7 +1601,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="LRPN-Operatie Note" id="FKk-O9-qFk">
+                    <navigationItem key="navigationItem" title="Operative Note" id="FKk-O9-qFk">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="FZz-Mk-9O7">
                             <connections>
                                 <action selector="backButton:" destination="IWN-9Q-DMf" id="CLb-1o-MZy"/>
@@ -2141,7 +2149,8 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="450" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
+                                <rect key="frame" x="0.0" y="450" width="320" height="60.000000911352828"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -2460,7 +2469,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
+        <segue reference="aul-Pn-LEj"/>
+        <segue reference="dCD-SH-NGU"/>
+        <segue reference="HPA-fE-a3A"/>
         <segue reference="hs5-kv-qjd"/>
         <segue reference="4hL-B7-3pL"/>
         <segue reference="goQ-lN-Lsa"/>

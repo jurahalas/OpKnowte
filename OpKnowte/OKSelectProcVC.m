@@ -62,8 +62,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"toSelectProc" sender:nil];
-    NSLog(@"cell tapped");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    OKSelectProcedureViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SelectProcedureVC"];
+    vc.cameFromVC = @"DataSharingVC";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
