@@ -8,6 +8,7 @@
 
 #import "OKSettingsViewController.h"
 #import "OKSettingsTableViewCell.h"
+#import "OKSelectProcVC.h"
 
 @interface OKSettingsViewController ()
 
@@ -89,9 +90,24 @@
         [self performSegueWithIdentifier:@"dataShare" sender:indexPath];
     }else if ([cell.settingsLabel.text isEqualToString:@"Edit Procedure Template"])
         {
-            [self performSegueWithIdentifier:@"template" sender:indexPath];
+            [self performSegueWithIdentifier:@"EPT" sender:indexPath];
 
         }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+     OKSelectProcVC *instVC = (OKSelectProcVC*)segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"aSettings"]){
+        instVC.cameFromVC = @"AccessSettingsVC";
+    } else if ([segue.identifier isEqualToString:@"dataShare"]){
+        instVC.cameFromVC = @"DataSharingVC";
+    } else if ([segue.identifier isEqualToString:@"EPT"]){
+        instVC.cameFromVC = @"EditProcTemplateVC";
+    }
+
+    
+
 }
 - (void)didReceiveMemoryWarning
 {

@@ -64,7 +64,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     OKSelectProcedureViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"SelectProcedureVC"];
-    vc.cameFromVC = @"DataSharingVC";
+    vc.cameFromVC = self.cameFromVC;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

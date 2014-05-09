@@ -13,5 +13,5 @@
 
 @interface OKSelectProcVC : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
-
+@property (strong, nonatomic) NSString *cameFromVC;
 @end
