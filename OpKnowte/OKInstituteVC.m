@@ -11,7 +11,7 @@
 #import "OKUserModel.h"
 #import "OKContactModel.h"
 #import "OKUserManager.h"
-
+#import "OKDashboardVC.h"
 @interface OKInstituteVC ()
 
 @property (strong, nonatomic) IBOutlet OKCustomTextField *nameTextField;
@@ -48,6 +48,8 @@
         self.title =@"Surgeon";
     }else if ([self.title isEqualToString:@"2"]){
         self.title =@"Assistant";
+    }else if ([self.title isEqualToString:@"4"]){
+        self.title =@"Institution";
     }else if ([self.title isEqualToString:@"5"]){
         self.title =@"Physician";
     }
@@ -139,6 +141,15 @@
                 if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
                     [self.navigationController popViewControllerAnimated:YES ];
                 } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
+                    
+//                    NSArray *viewControllers = [[self navigationController] viewControllers];
+//                    for( id obj in viewControllers){
+//                        if([obj isKindOfClass:[OKDashboardVC class]]){
+//                            [[self navigationController] popToViewController:obj animated:YES];
+//                            return;
+//                        }
+//                    }
+                    
                     [self performSegueWithIdentifier:@"backToDashboard" sender:self];
                 }
             }
@@ -185,14 +196,15 @@
 
 -(void) setAllDesign {
     
-    [_nameTextField setCustomTextFieldPlaceholder: @"Name:" Secured:NO DownArrow:NO];
-    [_streerAddressTextField setCustomTextFieldPlaceholder: @"Street Address:" Secured:NO DownArrow:NO];
-    [_cityTextField setCustomTextFieldPlaceholder: @"City:" Secured:NO DownArrow:NO];
-    [_stateTextField setCustomTextFieldPlaceholder: @"State:" Secured:NO DownArrow:NO];
-    [_zipTextField setCustomTextFieldPlaceholder: @"Zip:" Secured:NO DownArrow:NO];
-    [_countryTextField setCustomTextFieldPlaceholder: @"Country:" Secured:NO DownArrow:NO];
-    [_emailTextField setCustomTextFieldPlaceholder: @"Email:" Secured:NO DownArrow:NO];
-    [_faxTextField setCustomTextFieldPlaceholder: @"Fax:" Secured:NO DownArrow:NO];
+    _nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _streerAddressTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Street Address:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"City:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _stateTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"State:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _zipTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Zip:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _countryTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Country:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _faxTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Fax:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+
 
     _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _saveButton.layer.cornerRadius = 14;
