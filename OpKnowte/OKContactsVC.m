@@ -47,6 +47,7 @@
     if([segue.identifier isEqualToString:@"institute"]){
         OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
         instVC.contactID = [self.dataDict valueForKey:sender];
+        instVC.cameFromVC = @"ContactsVC";
     }
 }
 

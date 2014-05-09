@@ -8,6 +8,7 @@
 
 #import "OKFacilityVC.h"
 #import "OKFacilityTableViewCell.h"
+#import "OKInstituteVC.h"
 
 #import "OKProcedureTemplateVariablesModel.h"
 #import "OKContactModel.h"
@@ -23,6 +24,16 @@
 @end
 
 @implementation OKFacilityVC
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"addNewInstitution"]){
+        OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
+        instVC.contactID = sender;
+        instVC.cameFromVC = @"FacilityVC";
+    }
+}
+
 
 - (void)viewDidLoad
 {
@@ -100,7 +111,7 @@
 
 
 -(void) rightButtonTapped {
-    
+      [self performSegueWithIdentifier:@"addNewInstitution" sender:@"4"];
     
     
 }

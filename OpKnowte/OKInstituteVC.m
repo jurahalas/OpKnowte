@@ -121,7 +121,7 @@
         [[OKLoadingViewController instance] hide];
         
     }else{
-        [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
+        [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
             
             if(error != nil){
                 
@@ -131,12 +131,16 @@
                 [[OKLoadingViewController instance] hide];
                 
             }else{
-                UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added institution" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [addInstitutionFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 _saveButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
-                [self performSegueWithIdentifier:@"backToDashboard" sender:self];
+                if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
+                    [self.navigationController popViewControllerAnimated:YES ];
+                } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
+                    [self performSegueWithIdentifier:@"backToDashboard" sender:self];
+                }
             }
         }];
     }

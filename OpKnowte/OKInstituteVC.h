@@ -12,7 +12,7 @@
 @interface OKInstituteVC : OKBaseViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSString *contactID;
-
+@property (nonatomic, strong) NSString *cameFromVC;
 - (IBAction)saveButton:(id)sender;
 
 @end
