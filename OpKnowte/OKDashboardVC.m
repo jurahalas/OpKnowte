@@ -38,6 +38,7 @@
     _userView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboardBG"]];;
     [self addBottomTabBar];
     _userNameLabel.text = [OKUserManager instance].currentUser.firstName;
+    
     [self.dashboardTableView reloadData];
 }
 

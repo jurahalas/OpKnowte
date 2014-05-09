@@ -76,6 +76,9 @@
         [symbolicTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [symbolicTextField setType:0];
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_surgeon"]) {
+            symbolicTextField.customTextField.text = [NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+        }
         [self.interactionItems addObject:symbolicTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {

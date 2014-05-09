@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00224F50191BD74F00702428 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00224F4F191BD74F00702428 /* MessageUI.framework */; };
 		00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00360D40190904880019C058 /* OKBaseProcedureVC.m */; };
 		0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0045ED761909408900D93914 /* OKProcedureTextField.m */; };
 		00607FDF191380B100AD27F3 /* LRPNProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00607FDE191380B100AD27F3 /* LRPNProcedure.plist */; };
@@ -31,6 +32,7 @@
 		0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */; };
 		0086295F190E8C3F006EBA9C /* OKBaseProcedureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */; };
 		00862973190EABCD006EBA9C /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086296F190EABCD006EBA9C /* RangeSlider.m */; };
+		0088B5E5191CBEDA00991E55 /* OKSendFaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */; };
 		008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */; };
 		008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */; };
 		008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BE8CF1914EA630060353C /* OKLRPartialNephrectomyVC.m */; };
@@ -222,6 +224,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00224F4F191BD74F00702428 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		00360D3F190904880019C058 /* OKBaseProcedureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseProcedureVC.h; sourceTree = "<group>"; };
 		00360D40190904880019C058 /* OKBaseProcedureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseProcedureVC.m; sourceTree = "<group>"; };
 		0045ED751909408900D93914 /* OKProcedureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTextField.h; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 		0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKBaseProcedureVC.xib; sourceTree = "<group>"; };
 		0086296E190EABCD006EBA9C /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSlider.h; sourceTree = "<group>"; };
 		0086296F190EABCD006EBA9C /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSlider.m; sourceTree = "<group>"; };
+		0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSendFaxManager.h; sourceTree = "<group>"; };
+		0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSendFaxManager.m; sourceTree = "<group>"; };
 		008BCE9319178B1C00E1D18D /* OKProcedureTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateModel.h; sourceTree = "<group>"; };
 		008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureTemplateModel.m; sourceTree = "<group>"; };
 		008BCE9619179D6F00E1D18D /* OKProcedureTemplateVariablesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateVariablesModel.h; sourceTree = "<group>"; };
@@ -518,6 +523,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00224F50191BD74F00702428 /* MessageUI.framework in Frameworks */,
 				E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */,
 				E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */,
 				E10023DE18F529E9008421D4 /* Foundation.framework in Frameworks */,
@@ -1195,6 +1201,7 @@
 		E10023DC18F529E9008421D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00224F4F191BD74F00702428 /* MessageUI.framework */,
 				E10023DD18F529E9008421D4 /* Foundation.framework */,
 				E10023DF18F529E9008421D4 /* CoreGraphics.framework */,
 				E10023E118F529E9008421D4 /* UIKit.framework */,
@@ -1274,6 +1281,8 @@
 				00CD5FD818FE7C9700334A24 /* OKContactManager.m */,
 				1881B08018FD6BB800F61CE8 /* OKProceduresManager.h */,
 				1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */,
+				0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */,
+				0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1567,6 +1576,7 @@
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
 				AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */,
 				AC8F61DB19123B200064C53F /* OKSettingsTableViewCell.m in Sources */,
+				0088B5E5191CBEDA00991E55 /* OKSendFaxManager.m in Sources */,
 				185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */,
 				00C3DBBD191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m in Sources */,
 				AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */,

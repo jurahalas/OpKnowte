@@ -171,6 +171,8 @@
 
     [self requestWithMethod:@"POST" path:@"addProcedureDetail" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+
     }];
 
     

@@ -60,7 +60,7 @@
         NSString *age = [NSString stringWithFormat:@"%d", [ageComponents year]];
         [self.model setValue:age forKey:@"var_age"];
         [self.model setValue:newValue forKey:name];
-        [self.model setValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ]  forKey:@"var_surgeon"];
+        [self.model setValue:[NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title] forKey:@"var_surgeon"];
     } else if ([name isEqualToString:@"var_ethnicity?"] ) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {

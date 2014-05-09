@@ -7,7 +7,6 @@
 //
 
 #import "OKOperatieNoteViewController.h"
-#import "OKFacilityVC.h"
 #import "OKProceduresManager.h"
 
 #import "OKShockwaveLithotripsyModel.h"
@@ -25,6 +24,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *procedureLable;
 @property (strong, nonatomic) IBOutlet UIScrollView *indicationScrollView;
 @property (strong, nonatomic) IBOutlet UIScrollView *procedureScrollView;
+@property (strong, nonatomic) IBOutlet UIView *bottonTabBarView;
+@property (strong, nonatomic) IBOutlet UIButton *bottonTabBarButton;
 
 @property (strong, nonatomic) NSMutableArray *keysForValues;
 @property (strong, nonatomic) NSMutableArray *caseDataValues;
@@ -33,15 +34,12 @@
 @property (strong, nonatomic) IBOutlet UIView *saveButtonView;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 
-@property (strong, nonatomic) NSMutableDictionary *templateDictionary;
-@property (strong, nonatomic) NSMutableArray *caseDataArray;
-
 
 @property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
 @end
 
 @implementation OKOperatieNoteViewController
-@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView;
+@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView,bottonTabBarView,bottonTabBarButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,16 +57,13 @@
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     _keysForValues = [[NSMutableArray alloc] init];
     _caseDataValues =[[NSMutableArray alloc] init];
-    _caseDataArray =[[NSMutableArray alloc] init];
-    _templateDictionary = [[NSMutableDictionary alloc] init];
-    
     OKProceduresManager *procedureManager = [OKProceduresManager instance];
 
     [procedureManager getProcedureTemplateVariablesByProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSMutableArray *templateVariables) {
        
         NSLog(@"Error - %@", errorMsg);
         _keysForValues = templateVariables;
-        [procedureManager getProcedureTemplateByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSDictionary *template) {
+        [procedureManager getProcedureTemplateByUserID:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ]  ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSDictionary *template) {
             NSLog(@"Error - %@", errorMsg);
             _templateModel = [[OKProcedureTemplateModel alloc] init];
             [_templateModel  setModelWithDictionary:template];
@@ -108,6 +103,16 @@
         }];
     }];
     
+<<<<<<< HEAD
+    bottonTabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
+    bottonTabBarButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    bottonTabBarButton.layer.cornerRadius = 14;
+    [self.view bringSubviewToFront:bottonTabBarView];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+=======
+>>>>>>> 7879c56fa65397bd5ebc30a5a37878846d8b4cd6
     
     
 
@@ -180,10 +185,6 @@
     
     
     indicationLabel.text = indicationText;
-    NSString *indicationString = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    indicationString = [indicationString stringByReplacingOccurrencesOfString:@")" withString:@""];
-   
-    [_templateDictionary setObject:indicationString forKey:@"indicationText"];
     
     [indicationLabel sizeToFit];
     indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, indicationLabel.frame.size.height+80);
@@ -223,11 +224,6 @@
     
 
     procedureLable.text = procedureText;
-    
-    NSString *procedureString = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    procedureString = [procedureString stringByReplacingOccurrencesOfString:@")" withString:@""];
-    
-    [_templateDictionary setObject:procedureString forKey:@"procedureText"];
     
     [procedureLable sizeToFit];
     procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, procedureLable.frame.size.height+80);
@@ -302,18 +298,10 @@
             }
         }
         
-        variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+        variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@", "];
     } else {
         variableValue = [_model valueForKey:variableModel.value];
     }
-    
-    
-    
-    OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
-    caseDataObject.key = variableModel.key;
-    caseDataObject.value = variableValue;
-    [_caseDataArray addObject:caseDataObject];
-    
     
     [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
      [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
@@ -323,19 +311,9 @@
       [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKProceduresManager *proceduresManager = [OKProceduresManager instance];
     
-    [proceduresManager saveProcedureWithSurgeonID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] AndProcedureModel:self.model handler:^(NSString *errorMsg) {
+    [proceduresManager saveProcedureWithSurgeonID:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID" ] ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] AndProcedureModel:self.model handler:^(NSString *errorMsg) {
         
         NSLog(@"Error - %@", errorMsg);
-        [[OKLoadingViewController instance] hide];
-        if (errorMsg == nil) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-            OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
-            [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
-            vc.templateDictionary = _templateDictionary;
-            [self.navigationController pushViewController:vc animated:YES];
-            //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
-        }
-        
         [[OKLoadingViewController instance] hide];
 
         
