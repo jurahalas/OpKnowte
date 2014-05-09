@@ -101,7 +101,8 @@
 
 -(void)changePasswordWithUserID:(NSString*)userID password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler
 {
-    NSDictionary *params = @{@"userID": userID, @"password": password};
+    NSDictionary *params = @{@"userID": userID,
+                             @"password": password};
     [self requestWithMethod:@"POST" path:@"changePassword" params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         
@@ -118,6 +119,42 @@
         
         handler(errorMsg);
     }];
+}
+
+#pragma mark - Data Share
+
+-(void)updateDataSharingSettingsWithProcID:(NSString *)procedureID userID:(NSString *)userID isSharing:(NSString*)sharing handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"procedureID": procedureID,
+                             @"userID": userID,
+                             @"isDataShared": sharing};
+    [self requestWithMethod:@"POST" path:@"updateDataShareSetting" params:params handler:^(NSError *error, id json){
+    
+        NSLog(@"%@",json);
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            
+        }
+        handler(errorMsg);
+    }];
+}
+
+-(void)getDataSharingSettingsWithUserID:(NSString*)userID andProcID:(NSString*)procID handler:(void(^)(NSString *errorMsg, id json))handler
+{
+    NSDictionary *params = @{};
+    NSString *url = [NSString stringWithFormat:@"getDataShareSetting?userID=%@&procedureID=%@", userID, procID];
+
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json){
+        NSLog(@"%@",json);
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+        
+        }
+        handler(errorMsg, json);
+    }];
+ 
 }
 
 

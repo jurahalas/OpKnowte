@@ -26,6 +26,10 @@
 
 - (void)updateCurrentUserFromJSON:(NSDictionary*)json;
 
+-(void)updateDataSharingSettingsWithProcID:(NSString *)procedureID userID:(NSString *)userID isSharing:(NSString*)sharing handler:(void(^)(NSString *errorMsg))handler;
+
+-(void)getDataSharingSettingsWithUserID:(NSString*)userID andProcID:(NSString*)procID handler:(void(^)(NSString *errorMsg, id json))handler;
+
 -(void)logout;
 
 @end

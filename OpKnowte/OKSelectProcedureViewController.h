@@ -10,5 +10,5 @@
 #import "OKAppDelegate.h"
 
 @interface OKSelectProcedureViewController : OKBaseViewController <UITableViewDelegate, UITableViewDataSource>
-
+@property (nonatomic, strong) NSString *cameFromVC;
 @end

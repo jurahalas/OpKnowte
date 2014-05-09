@@ -9,21 +9,23 @@
 #import "OKSelectProcedureViewController.h"
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
+#import "OKLoadingViewController.h"
+<<<<<<< HEAD
+#import "OKDataSharingViewController.h"
+=======
+#import "OKShockwaveLithotripsyVC.h"
+#import "OKLRPartialNephrectomyVC.h"
+#import "OKPenileProsthesisVC.h"
+#import "OKLRRadicalProstatectomyVC.h"
+>>>>>>> ea860bec041f428bb51aeeaca5454c64d2fe77f9
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
-<<<<<<< HEAD
-=======
 @property (strong, nonatomic) NSMutableArray *procArray;
->>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
 @end
 
 @implementation OKSelectProcedureViewController
 
-<<<<<<< HEAD
-- (void)viewDidLoad {
-    
-=======
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +38,6 @@
 
 - (void)viewDidLoad
 {
->>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     _selectProcedureTableView.backgroundColor = [UIColor clearColor];
@@ -44,32 +45,19 @@
     self.selectProcedureTableView.dataSource = self;
     self.selectProcedureTableView.delegate = self;
     
-<<<<<<< HEAD
-    NSLog(@"%f",_selectProcedureTableView.frame.size.height );
-    
-    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
-    NSLog(@"%f",_selectProcedureTableView.frame.size.height );
+    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 57.f));
     [self addBottomTabBar];
-    [self.selectProcedureTableView reloadData];
-    
-}
+  
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-#pragma mark - IBActions
-
-- (IBAction)backButton:(id)sender {
-    
-=======
-    _selectProcedureTableView.frame = CGRectMake(_selectProcedureTableView.frame.origin.x, _selectProcedureTableView.frame.origin.y, _selectProcedureTableView.frame.size.width, (_selectProcedureTableView.frame.size.height - 60.f));
-    [self addBottomTabBar];
-    
     OKProceduresManager *procedureManager = [OKProceduresManager instance];
-    
     [procedureManager getAllProceduresWithHandler:^(NSString* error, NSMutableArray* proceduresArray){
         NSLog(@"Error - %@", error);
         
         _procArray = proceduresArray;
         [self.selectProcedureTableView reloadData];
-
+        
+        [[OKLoadingViewController instance] hide];
     }];
 }
 
@@ -83,25 +71,37 @@
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender
 {
->>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
-<<<<<<< HEAD
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return 12;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellIdentifier = @"procedureCell";
-    OKSelectProcedureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-=======
 
 #pragma mark - Table View methods
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+        OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
+        vc.procedureID = 10;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+        OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
+        vc.procedureID = 2;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
+        OKPenileProsthesisVC *vc = [[OKPenileProsthesisVC alloc] init];
+        vc.procedureID = 9;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+        OKLRRadicalProstatectomyVC *vc = [[OKLRRadicalProstatectomyVC alloc] init];
+        vc.procedureID = 1;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _procArray.count;
@@ -112,29 +112,33 @@
 {
     static NSString *cellIdentifier = @"procedureCell";
     OKSelectProcedureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
->>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
     if (!cell) {
         cell = [[OKSelectProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-<<<<<<< HEAD
-    [cell setCellTitleOlo];
-    if (indexPath.row >3) {
-        [cell setCellUserIntaractionDisabled];
-    } else {
-        [cell setCellUserIntaractionEnabled];
-    }
-=======
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
-// Unselected cells
-//    if (indexPath.row >3) {
-//        [cell setCellUserIntaractionDisabled];
-//    }
->>>>>>> 2820203773cd1067ffc43100e2dd56cbfb49d365
-    
+    [cell setCellBGImageLight:indexPath.row];
     return cell;
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromSelectProcToDataShar"]){
+        OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
+        sharVC.procID = sender;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
+
+    [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:procedure.identifier];
+    
+
 }
 
 

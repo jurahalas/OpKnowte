@@ -36,10 +36,12 @@
 }
 -(void) goToSettingsVC{
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
-    [self.navigationController pushViewController:vc animated:YES];
-
+    if(![self.restorationIdentifier isEqualToString:@"settings"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 

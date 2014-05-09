@@ -14,6 +14,7 @@
 #import "OKLRPartialNephrectomyVC.h"
 #import "OKPenileProsthesisVC.h"
 #import "OKLRRadicalProstatectomyVC.h"
+#import "OKDataSharingViewController.h"
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -75,6 +76,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
+        OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
+        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:procedure.identifier];
+    } else {
     if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
         OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
         vc.procedureID = 10;
@@ -95,9 +100,12 @@
         vc.procedureID = 1;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
-    
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _procArray.count;
@@ -115,9 +123,16 @@
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
     [cell setCellBGImageLight:indexPath.row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromSelectProcToDataShar"]){
+        OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
+        sharVC.procID = sender;
+    }
 }
 
 

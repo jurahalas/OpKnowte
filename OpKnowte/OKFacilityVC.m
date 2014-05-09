@@ -32,6 +32,7 @@
     _facilityTableView.backgroundColor = [UIColor clearColor];
     self.facilityTableView.dataSource = self;
     self.facilityTableView.delegate = self;
+    _contactsSendTo = [[NSMutableArray alloc] init];
     _facilityTableView.frame = CGRectMake(_facilityTableView.frame.origin.x, _facilityTableView.frame.origin.y, _facilityTableView.frame.size.width, (_facilityTableView.frame.size.height - 57.f));
     [self addBottomTabBar];
    
@@ -108,7 +109,7 @@
 #pragma mark IBAction metods
 - (IBAction)faxButtonTapped:(id)sender {
     NSString *faxNumbersList = [self getFaxNumbersFromContactsArray:_contactsSendTo];
-    if (faxNumbersList) {
+    if (faxNumbersList.length) {
 
         [self sendFaxTo:faxNumbersList];
     }else {
@@ -163,7 +164,9 @@
             [mailer setSubject:@"Operative Note"];
             [mailer setToRecipients:[self getEmailAddress:_contactsSendTo]];
             [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:NO];
-            [self presentViewController:mailer animated:YES completion:nil];
+            [self presentViewController:mailer animated:YES completion:^{
+                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+            }];
             
             mailer = nil;
         }
@@ -228,7 +231,9 @@
             break;
     }
     // Remove the mail view
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }];
 }
 
 
