@@ -11,4 +11,7 @@
 
 @interface OKTemplateViewController : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
+@property(strong, nonatomic) NSString *procID;
+
+
 @end

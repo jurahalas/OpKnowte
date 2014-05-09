@@ -10,7 +10,10 @@
 #import "OKAppDelegate.h"
 
 @interface OKSelectProcedureViewController : OKBaseViewController <UITableViewDelegate, UITableViewDataSource>
+<<<<<<< HEAD
 @property (nonatomic, strong) NSString *cameFromVC;
+=======
+@property (nonatomic) int procedureID;
 
-
+>>>>>>> 99c9afbcbaade87f015386198373cf455a692b81
 @end
