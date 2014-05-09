@@ -12,4 +12,6 @@
 
 @interface OKContactsVC : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
+@property (strong, nonatomic) NSDictionary *dataDict;
+
 @end

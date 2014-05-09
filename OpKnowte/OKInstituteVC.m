@@ -44,6 +44,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
     self.title = self.contactID;
+    
     if ([self.title isEqualToString:@"1"]) {
         self.title =@"Surgeon";
     }else if ([self.title isEqualToString:@"2"]){
@@ -138,24 +139,27 @@
                 [self.view endEditing:YES];
                 _saveButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
-                if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
-                    [self.navigationController popViewControllerAnimated:YES ];
-                } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
-                    
-//                    NSArray *viewControllers = [[self navigationController] viewControllers];
-//                    for( id obj in viewControllers){
-//                        if([obj isKindOfClass:[OKDashboardVC class]]){
-//                            [[self navigationController] popToViewController:obj animated:YES];
-//                            return;
-//                        }
-//                    }
-                    
-                    [self performSegueWithIdentifier:@"backToDashboard" sender:self];
-                }
             }
         }];
     }
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+        if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
+            [self.navigationController popViewControllerAnimated:YES ];
+        } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
+            [self performSegueWithIdentifier:@"backToDashboard" sender:self];
+        }else if ([_cameFromVC isEqualToString:@"ContactListVC"])
+        {
+            [self.navigationController popViewControllerAnimated:YES ];
+        }
+    }
+}
+
 
 #pragma mark  - textField delegate
 

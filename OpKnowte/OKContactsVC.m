@@ -8,11 +8,11 @@
 
 #import "OKContactsVC.h"
 #import "OKInstituteVC.h"
+#import "OKContactListVC.h"
 
 @interface OKContactsVC ()
 
 @property (strong, nonatomic) IBOutlet UITableView *contactsTableView;
-@property (strong, nonatomic) NSDictionary *dataDict;
 
 @end
 
@@ -44,10 +44,10 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"institute"]){
-        OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
-        instVC.contactID = [self.dataDict valueForKey:sender];
-        instVC.cameFromVC = @"ContactsVC";
+    if([segue.identifier isEqualToString:@"contactList"]){
+        OKContactListVC *contactVC = (OKContactListVC*)segue.destinationViewController;
+        contactVC.contactID = [self.dataDict valueForKey:sender];
+        contactVC.cameFromVC = @"ContactsVC";
     }
 }
 
@@ -79,7 +79,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"institute" sender:self.dataDict.allKeys[indexPath.row]];
+    [self performSegueWithIdentifier:@"contactList" sender:self.dataDict.allKeys[indexPath.row]];
 }
 
 

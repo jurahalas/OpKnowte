@@ -168,6 +168,8 @@
 		18949E9A1918D45200B4B38C /* OKContactsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18949E991918D45200B4B38C /* OKContactsTableViewCell.m */; };
 		18949E9D191A789500B4B38C /* OKSelectProcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18949E9C191A789500B4B38C /* OKSelectProcVC.m */; };
 		18949EA0191A7A8100B4B38C /* OKSelectProcTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18949E9F191A7A8100B4B38C /* OKSelectProcTableViewCell.m */; };
+		189F1BCF191D007D006CEBED /* OKContactListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F1BCE191D007D006CEBED /* OKContactListVC.m */; };
+		189F1BD2191D009B006CEBED /* OKContactListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F1BD1191D009B006CEBED /* OKContactListCell.m */; };
 		189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F450C190910D500372C55 /* OKPerformanceVC.m */; };
 		189F4510190911F400372C55 /* OKPerformanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F450F190911F400372C55 /* OKPerformanceTableViewCell.m */; };
 		189F45141909480700372C55 /* OKInstituteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 189F45131909480700372C55 /* OKInstituteVC.m */; };
@@ -452,6 +454,10 @@
 		18949E9C191A789500B4B38C /* OKSelectProcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectProcVC.m; sourceTree = "<group>"; };
 		18949E9E191A7A8100B4B38C /* OKSelectProcTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectProcTableViewCell.h; sourceTree = "<group>"; };
 		18949E9F191A7A8100B4B38C /* OKSelectProcTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectProcTableViewCell.m; sourceTree = "<group>"; };
+		189F1BCD191D007D006CEBED /* OKContactListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactListVC.h; sourceTree = "<group>"; };
+		189F1BCE191D007D006CEBED /* OKContactListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactListVC.m; sourceTree = "<group>"; };
+		189F1BD0191D009B006CEBED /* OKContactListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKContactListCell.h; sourceTree = "<group>"; };
+		189F1BD1191D009B006CEBED /* OKContactListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKContactListCell.m; sourceTree = "<group>"; };
 		189F450B190910D500372C55 /* OKPerformanceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPerformanceVC.h; sourceTree = "<group>"; };
 		189F450C190910D500372C55 /* OKPerformanceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPerformanceVC.m; sourceTree = "<group>"; };
 		189F450E190911F400372C55 /* OKPerformanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPerformanceTableViewCell.h; sourceTree = "<group>"; };
@@ -1067,6 +1073,10 @@
 				18949E961918D30100B4B38C /* OKContactsVC.m */,
 				18949E981918D45200B4B38C /* OKContactsTableViewCell.h */,
 				18949E991918D45200B4B38C /* OKContactsTableViewCell.m */,
+				189F1BCD191D007D006CEBED /* OKContactListVC.h */,
+				189F1BCE191D007D006CEBED /* OKContactListVC.m */,
+				189F1BD0191D009B006CEBED /* OKContactListCell.h */,
+				189F1BD1191D009B006CEBED /* OKContactListCell.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -1622,6 +1632,7 @@
 				189F45141909480700372C55 /* OKInstituteVC.m in Sources */,
 				18949E9A1918D45200B4B38C /* OKContactsTableViewCell.m in Sources */,
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
+				189F1BCF191D007D006CEBED /* OKContactListVC.m in Sources */,
 				AC8F61E919124BFD0064C53F /* OKAccessSettingsTableViewCell.m in Sources */,
 				00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */,
 				00360D41190904880019C058 /* OKBaseProcedureVC.m in Sources */,
@@ -1703,6 +1714,7 @@
 				ACB01CE61913A11800EA661E /* OKChangePasswordViewController.m in Sources */,
 				ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */,
 				00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */,
+				189F1BD2191D009B006CEBED /* OKContactListCell.m in Sources */,
 				188608FB190FCC8400BD1D77 /* OKFacilityTableViewCell.m in Sources */,
 				189F4510190911F400372C55 /* OKPerformanceTableViewCell.m in Sources */,
 				182659C719066A1700723D16 /* OKDashboardVC.m in Sources */,
