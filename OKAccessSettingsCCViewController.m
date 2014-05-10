@@ -158,12 +158,6 @@
     self.selectedContactID = contact.identifier;
 }
 
--(void) qwe {
-
-    
-    
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
