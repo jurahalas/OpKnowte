@@ -60,15 +60,6 @@
     // Configure the view for the selected state
 }
 
--(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
-    if (minusIcon) {
-        [plusButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
-    } else {
-        [plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-    }
-    buttonIsTapped = minusIcon;
-}
-
 - (IBAction)plusButtonTappet:(id)sender {
     if (!buttonIsTapped) {
         [self setCellButtonBGImageWithGreenMinusIcon:YES];
@@ -77,5 +68,13 @@
         [self setCellButtonBGImageWithGreenMinusIcon:NO];
         [self.delegate deleteVariableFromTemplate:self.variableModel];
     }
+}
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
+    if (minusIcon) {
+        [plusButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
+    } else {
+        [plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
+    }
+    buttonIsTapped = minusIcon;
 }
 @end

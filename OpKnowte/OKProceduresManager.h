@@ -7,6 +7,10 @@
 //
 
 #import "OKBaseManager.h"
+#import "OKProcedureModel.h"
+#import "OKProcedureTemplateVariablesModel.h"
+#import "OKProcedureTemplateModel.h"
+#import "OKUserManager.h"
 
 @interface OKProceduresManager : OKBaseManager
 
@@ -15,6 +19,8 @@
 - (void)getAllProceduresWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresDict ) )handler;
 - (void) getProcedureTemplateByUserID:(NSString*)userID ProcedureID:(NSString*)procedureID handler:(void(^)(NSString *errorMsg, NSDictionary *template))handler;
 -(void) getProcedureTemplateVariablesByProcedureID:(NSString *)procedureID handler:(void (^)(NSString *errorMsg, NSMutableArray *templateVariables))handler;
+-(void) updateProcedureTemplateWithUserID:(NSString*) userID AndProcedureTemplate:(OKProcedureTemplateModel*) template handler:(void (^)(NSString *errorMsg, NSDictionary *json))handler;
+
 -(void) saveProcedureWithSurgeonID:(NSString *)surgeonID ProcedureID:(NSString *)procedureID AndProcedureModel: (id) procModel handler:(void (^)(NSString *errorMsg))handler;
 
 @end

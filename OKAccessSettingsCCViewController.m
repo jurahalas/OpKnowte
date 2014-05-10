@@ -18,11 +18,12 @@
 @property (strong, nonatomic) IBOutlet UITableView *accessSettingsTableView;
 @property(strong, nonatomic) NSArray *contactsArray;
 @property(strong, nonatomic) NSString *selectedContactID;
+@property (strong, nonatomic) NSMutableArray *choosedVariables;
 
 @end
 
 @implementation OKAccessSettingsCCViewController
-@synthesize contactsArray,selectedContactID,accessSettingsTableView,choseContact;
+@synthesize contactsArray,selectedContactID,accessSettingsTableView,choosedVariables;
 
 - (void)viewDidLoad
 {
@@ -35,10 +36,64 @@
     
     accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
     
-    choseContact = [[NSMutableArray alloc]init];
-    
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
+    
+    choosedVariables = [NSMutableArray arrayWithArray:[_templateModel.aSettings componentsSeparatedByString:@","]];
+}
+
+-(void) addVariableToTemplate:(OKProcedureTemplateVariablesModel *)contact{
+    NSMutableArray *choosedModelsArray = [[NSMutableArray alloc] init];
+    choosedModelsArray = [self addValueOfModel:contact toArray:YES];
+    NSString *newAS = [choosedModelsArray componentsJoinedByString:@","];
+    _templateModel.aSettings = newAS;
+}
+
+
+-(void) deleteVariableFromTemplate:(OKProcedureTemplateVariablesModel *)contact{
+    NSMutableArray *choosedModelsArray = [[NSMutableArray alloc] init];
+    choosedModelsArray = [self addValueOfModel:contact toArray:NO];
+    NSString *newAS =[choosedModelsArray componentsJoinedByString:@","];
+    _templateModel.aSettings = newAS;
+}
+
+-(NSMutableArray*) addValueOfModel:(OKProcedureTemplateVariablesModel *)contact toArray: (BOOL) add{
+    
+    NSMutableArray *choosedModelsArray = [[NSMutableArray alloc] init];
+    for (OKProcedureTemplateVariablesModel *model in _variablesArray) {
+        if ([choosedVariables containsObject:[NSString stringWithFormat:@"(%@)",model.value]]) {
+            [choosedModelsArray addObject:model];
+        }
+    }
+    if (choosedModelsArray.count) {
+        for (int i = 0; i<choosedModelsArray.count; i++) {
+            OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*)choosedModelsArray[i];
+            int modelID = (int)model.ID;
+            int contactID = (int)contact.ID;
+            if (add) {
+                if (modelID < contactID ) {
+                    [choosedModelsArray insertObject:contact atIndex:i+1];
+                    break;
+                }
+            } else {
+                if (modelID == contactID ) {
+                    [choosedModelsArray removeObjectAtIndex:i];
+                    break;
+                }
+            }
+        }
+        
+    } else {
+        [choosedModelsArray addObject:contact];
+    }
+    
+    [choosedVariables removeAllObjects];
+    for (OKProcedureTemplateVariablesModel *model in choosedModelsArray) {
+        [choosedVariables addObject:[NSString stringWithFormat:@"(%@)",model.value]];
+    }
+    
+    return choosedVariables;
+
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -127,6 +182,7 @@
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate updateTemplateModelWith:_templateModel];
 }
 
 
@@ -144,9 +200,17 @@
     if (!cell) {
         cell = [[OKAccessSettingsCCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    
+    OKProcedureTemplateVariablesModel *varModel = [[OKProcedureTemplateVariablesModel alloc] init];
+   // varModel = (OKProcedureTemplateVariablesModel*)_variablesArray[indexPath.row];
+    
     OKContactModel *contact = (OKContactModel*)self.contactsArray[indexPath.row];
     cell.contactNameLabel.text = contact.name;
     cell.emailLabel.text = contact.contactEmail;
+    
+    [cell setCellButtonBGImageWithGreenMinusIcon:[choosedVariables containsObject:[NSString stringWithFormat:@"(%@)",varModel.value]]];
+
+    cell.delegate = self;
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
@@ -156,12 +220,6 @@
     OKContactModel *contact = [OKContactModel new];
     contact = self.contactsArray[indexPath.row];
     self.selectedContactID = contact.identifier;
-}
-
--(void) qwe {
-
-    
-    
 }
 
 - (void)didReceiveMemoryWarning

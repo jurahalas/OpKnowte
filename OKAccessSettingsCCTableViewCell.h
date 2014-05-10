@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import ""
+#import "OKProcedureTemplateVariablesModel.h"
 
-@protocol OKA <NSObject>
+@protocol OKAccessSettingsCCViewCellDelegate <NSObject>
 
 -(void) addVariableToTemplate:(OKProcedureTemplateVariablesModel*)contact;
 -(void) deleteVariableFromTemplate:(OKProcedureTemplateVariablesModel*)contact;
@@ -22,8 +22,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
 - (IBAction)plusButtonTappet:(id)sender;
 @property (nonatomic) BOOL buttonIsTapped;
+@property (nonatomic, weak) id <OKAccessSettingsCCViewCellDelegate> delegate;
+@property (strong, nonatomic) OKProcedureTemplateVariablesModel *variableModel;
+
 
 -(void) setCellUserIntaractionDisabled;
 -(void) setCellUserIntaractionEnabled;
 -(void) setCellBGImageLight:(int) cellCount;
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon;
 @end

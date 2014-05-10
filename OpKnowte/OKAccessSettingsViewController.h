@@ -12,5 +12,6 @@
 @interface OKAccessSettingsViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) NSDictionary *dataDict;
+@property(strong, nonatomic) NSString *procID;
 
 @end
