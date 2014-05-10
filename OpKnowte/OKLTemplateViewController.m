@@ -34,10 +34,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     _procedurePicker.delegate = self;
     _procedurePicker.dataSource = self;
+    _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     [self addRightButtonToNavbar];
     NSString *procedureText = _templateModel.procedureText;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        procedureText = [procedureText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"(%@)", model.ID]];
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"%@", model.ID]];
     }
     _procedureTextView.text = procedureText;
     
@@ -73,7 +74,7 @@
 - (IBAction)backButton:(id)sender {
     NSString *procedureText =  _procedureTextView.text;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"(%@)", model.ID] withString:model.value];
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:model.value];
     }
     _templateModel.procedureText = procedureText;
 

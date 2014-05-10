@@ -36,10 +36,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     _indicationPicker.delegate = self;
     _indicationPicker.dataSource = self;
+    _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     [self addRightButtonToNavbar];
     NSString *indicationText = _templateModel.indicationText;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        indicationText = [indicationText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"(%@)", model.ID]];
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:model.value withString: [NSString stringWithFormat:@"%@", model.ID]];
     }
     _indicationTextView.text = indicationText;
     
@@ -76,7 +77,7 @@
 - (IBAction)backButton:(id)sender {
     NSString *indicationText =  _indicationTextView.text;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"(%@)", model.ID] withString:model.value];
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:model.value];
     }
     _templateModel.indicationText = indicationText;
     
