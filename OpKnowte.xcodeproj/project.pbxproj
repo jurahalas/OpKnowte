@@ -181,11 +181,8 @@
 		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
 		AC213493191A519E00F3CAC6 /* OKCaseDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */; };
-		AC213497191A572700F3CAC6 /* OKEditProcedureTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC213496191A572700F3CAC6 /* OKEditProcedureTemplateViewController.m */; };
-		AC21349A191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC213499191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.m */; };
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
 		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
-		AC7AF468191B5EF500B41548 /* OKTemplateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7AF467191B5EF500B41548 /* OKTemplateManager.m */; };
 		AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7AF46A191B648900B41548 /* OKCaseDataTableViewCell.m */; };
 		AC86E67A191A1236001DDEFF /* OKIndicationTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC86E679191A1236001DDEFF /* OKIndicationTemplateViewController.m */; };
 		AC8D1788191D5D22001F4E45 /* OKAccessSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D1786191D5D22001F4E45 /* OKAccessSettingsTableViewCell.m */; };
@@ -484,16 +481,10 @@
 		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
 		AC213491191A519E00F3CAC6 /* OKCaseDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCaseDataViewController.h; sourceTree = "<group>"; };
 		AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCaseDataViewController.m; sourceTree = "<group>"; };
-		AC213495191A572700F3CAC6 /* OKEditProcedureTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKEditProcedureTemplateViewController.h; sourceTree = "<group>"; };
-		AC213496191A572700F3CAC6 /* OKEditProcedureTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKEditProcedureTemplateViewController.m; sourceTree = "<group>"; };
-		AC213498191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKEditProcedureTemplateTableViewCell.h; sourceTree = "<group>"; };
-		AC213499191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKEditProcedureTemplateTableViewCell.m; sourceTree = "<group>"; };
 		AC2B0E48190B247B0089206D /* OKOperatieNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteTableViewCell.h; sourceTree = "<group>"; };
 		AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOperatieNoteTableViewCell.m; sourceTree = "<group>"; };
 		AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalViewController.h; sourceTree = "<group>"; };
 		AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalViewController.m; sourceTree = "<group>"; };
-		AC7AF466191B5EF500B41548 /* OKTemplateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplateManager.h; sourceTree = "<group>"; };
-		AC7AF467191B5EF500B41548 /* OKTemplateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateManager.m; sourceTree = "<group>"; };
 		AC7AF469191B648900B41548 /* OKCaseDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCaseDataTableViewCell.h; sourceTree = "<group>"; };
 		AC7AF46A191B648900B41548 /* OKCaseDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCaseDataTableViewCell.m; sourceTree = "<group>"; };
 		AC86E678191A1236001DDEFF /* OKIndicationTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKIndicationTemplateViewController.h; sourceTree = "<group>"; };
@@ -1179,10 +1170,6 @@
 			isa = PBXGroup;
 			children = (
 				AC8F6325191361F400854D06 /* Template View */,
-				AC213495191A572700F3CAC6 /* OKEditProcedureTemplateViewController.h */,
-				AC213496191A572700F3CAC6 /* OKEditProcedureTemplateViewController.m */,
-				AC213498191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.h */,
-				AC213499191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.m */,
 			);
 			name = "Edit Procedure Template";
 			sourceTree = "<group>";
@@ -1425,8 +1412,6 @@
 				1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */,
 				0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */,
 				0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */,
-				AC7AF466191B5EF500B41548 /* OKTemplateManager.h */,
-				AC7AF467191B5EF500B41548 /* OKTemplateManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1721,7 +1706,6 @@
 				AC8D1789191D5D22001F4E45 /* OKAccessSettingsViewController.m in Sources */,
 				0092FD3D190A91C100499F7E /* OKListCell.m in Sources */,
 				007A0C9818F53AAA00D183F1 /* OKRegistrationViewController.m in Sources */,
-				AC21349A191A5B9E00F3CAC6 /* OKEditProcedureTemplateTableViewCell.m in Sources */,
 				AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */,
 				AC8F61DB19123B200064C53F /* OKSettingsTableViewCell.m in Sources */,
 				0088B5E5191CBEDA00991E55 /* OKSendFaxManager.m in Sources */,
@@ -1738,7 +1722,6 @@
 				AC8D178F191D5D8A001F4E45 /* OKAccessConfirmViewController.m in Sources */,
 				00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */,
 				ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */,
-				AC213497191A572700F3CAC6 /* OKEditProcedureTemplateViewController.m in Sources */,
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
 				189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */,
 				18949EA0191A7A8100B4B38C /* OKSelectProcTableViewCell.m in Sources */,
@@ -1749,7 +1732,6 @@
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				AC86E67A191A1236001DDEFF /* OKIndicationTemplateViewController.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
-				AC7AF468191B5EF500B41548 /* OKTemplateManager.m in Sources */,
 				AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
 				18949E971918D30100B4B38C /* OKContactsVC.m in Sources */,

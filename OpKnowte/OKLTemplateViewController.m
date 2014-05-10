@@ -8,13 +8,15 @@
 //
 
 #import "OKLTemplateViewController.h"
+#import "OKProcedureTemplateVariablesModel.h"
+@interface OKLTemplateViewController ()<UIPickerViewDataSource, UIPickerViewDelegate>
 
-@interface OKLTemplateViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *lTemplateLabel;
+@property (strong, nonatomic) IBOutlet UIPickerView *procedurePicker;
+@property (strong, nonatomic) IBOutlet UIView *pickerBGView;
+@property (strong, nonatomic) IBOutlet UITextView *procedureTextView;
 @end
 
 @implementation OKLTemplateViewController
-@synthesize lTemplateLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,19 +32,54 @@
     [super viewDidLoad];
     [self addBottomTabBar];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self labelText];
+    _procedurePicker.delegate = self;
+    _procedurePicker.dataSource = self;
+    _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
+    [self addRightButtonToNavbar];
+    NSString *procedureText = _templateModel.procedureText;
+    for (OKProcedureTemplateVariablesModel *model in _variablesArray){
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"%@", model.ID]];
+    }
+    _procedureTextView.text = procedureText;
+    
+    
+
+}
+-(void) addRightButtonToNavbar
+{
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    
 }
 
--(void)labelText{
-    
-    NSString *labelText = [NSString stringWithFormat:@"smth Text We then introduced 5 additional ports across the abdomen. One 8mm robotic port was placed one handbreath to either side of the midline port. Two handbreaths to the left, an additional 8mm robotic port was placed for the 4th arm assistant port. Two handbreaths to the right a 12mm bedside port was placed and pre-mptively an 0 vicryl was placed via the Carter-Thomason technique. Lastly a 5mm secondary bedside assistant port was placed to triangulate the ports on the right side of the abdomen."];
-    
-    lTemplateLabel.text = labelText;
-    
+-(void) rightButtonTapped {
+    _procedurePicker.hidden = !_procedurePicker.hidden;
+    _pickerBGView.hidden = !_pickerBGView.hidden;
+     [self.view endEditing:YES];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return _variablesArray.count;
+}
+-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*) _variablesArray[row];
+    NSString *pickerString = [NSString stringWithFormat:@"%@: %@",model.ID, model.key];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    return pickerAttributedString;
 }
 
 - (IBAction)backButton:(id)sender {
+    NSString *procedureText =  _procedureTextView.text;
+    for (OKProcedureTemplateVariablesModel *model in _variablesArray){
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:model.value];
+    }
+    _templateModel.procedureText = procedureText;
+
     [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate updateTemplateModelWith:_templateModel];
 }
 
 - (void)didReceiveMemoryWarning
