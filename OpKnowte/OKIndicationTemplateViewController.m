@@ -7,14 +7,18 @@
 //
 
 #import "OKIndicationTemplateViewController.h"
+#import "OKProcedureTemplateVariablesModel.h"
 
-@interface OKIndicationTemplateViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *indicationLabel;
+@interface OKIndicationTemplateViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@property (strong, nonatomic) IBOutlet UIPickerView *indicationPicker;
+@property (strong, nonatomic) IBOutlet UITextView *indicationTextView;
+@property (strong, nonatomic) IBOutlet UIView *pickerBGView;
+
 
 @end
 
 @implementation OKIndicationTemplateViewController
-@synthesize indicationLabel;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,16 +32,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
-    [self labelText];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    _indicationPicker.delegate = self;
+    _indicationPicker.dataSource = self;
+    [self addRightButtonToNavbar];
+    NSString *indicationText = _templateModel.indicationText;
+    for (OKProcedureTemplateVariablesModel *model in _variablesArray){
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"(%@)", model.ID]];
+    }
+    _indicationTextView.text = indicationText;
+    
+    
+    
+}
+-(void) addRightButtonToNavbar
+{
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    
 }
 
--(void)labelText
-{
-    NSString *labelText = [NSString stringWithFormat:@"smth Text We then introduced 5 additional ports across the abdomen. One 8mm robotic port was placed one handbreath to either side of the midline port. Two handbreaths to the left, an additional 8mm robotic port was placed for the 4th arm assistant port. Two handbreaths to the right a 12mm bedside port was placed and pre-mptively an 0 vicryl was placed via the Carter-Thomason technique. Lastly a 5mm secondary bedside assistant port was placed to triangulate the ports on the right side of the abdomen."];
+-(void) rightButtonTapped {
+    _indicationPicker.hidden = !_indicationPicker.hidden;
+    _pickerBGView.hidden = !_pickerBGView.hidden;
+     [self.view endEditing:YES];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return _variablesArray.count;
+}
+-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*) _variablesArray[row];
+    NSString *pickerString = [NSString stringWithFormat:@"%@: %@",model.ID, model.key];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    return pickerAttributedString;
+}
+
+- (IBAction)backButton:(id)sender {
+    NSString *indicationText =  _indicationTextView.text;
+    for (OKProcedureTemplateVariablesModel *model in _variablesArray){
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"(%@)", model.ID] withString:model.value];
+    }
+    _templateModel.indicationText = indicationText;
     
-    indicationLabel.text = labelText;
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate updateTemplateModelWith:_templateModel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,12 +89,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)backButton:(id)sender {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    [self.delegate updateTemplateModelWith:_templateModel];
 
-}
 
 
 @end

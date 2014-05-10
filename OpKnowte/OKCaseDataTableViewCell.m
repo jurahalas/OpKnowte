@@ -59,11 +59,19 @@
 
 - (IBAction)caseDataButton:(id)sender {
     if (!buttonIsTapped) {
+        [self setCellButtonBGImageWithGreenMinusIcon:YES];
+        [self.delegate addVariableToTemplate:self.variableModel];
+    } else {
+        [self setCellButtonBGImageWithGreenMinusIcon:NO];
+        [self.delegate deleteVariableFromTemplate:self.variableModel];
+    }
+}
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
+    if (minusIcon) {
         [caseDataButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
-        buttonIsTapped = YES;
     } else {
         [caseDataButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-        buttonIsTapped = NO;
     }
+     buttonIsTapped = minusIcon;
 }
 @end
