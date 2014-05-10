@@ -16,6 +16,5 @@
     _caseData = [dictionary objectForKey:@"caseData"];
     _procedureText = [dictionary objectForKey:@"procedureText"];
     _indicationText = [dictionary objectForKey:@"indicationsText"];
-    _aSettings = [dictionary objectForKey:@"aSettings"];
 }
 @end

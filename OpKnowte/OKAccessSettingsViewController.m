@@ -10,16 +10,10 @@
 #import "OKAccessSettingsTableViewCell.h"
 #import "OKAccessSettingsCCViewController.h"
 #import "OKInstituteVC.h"
-#import "OKProcedureTemplateModel.h"
-#import "OKProcedureTemplateVariablesModel.h"
-#import "OKProceduresManager.h"
 
-@interface OKAccessSettingsViewController () <OKAccessSettingsCCViewControllerDelegate>
+@interface OKAccessSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
 @property (strong, nonatomic) IBOutlet UITableView *accessSettingsTableView;
-
-@property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
-@property (strong, nonatomic) NSMutableArray *variablesArray;
 
 @end
 
@@ -45,23 +39,6 @@
 
     updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     updateButton.layer.cornerRadius = 14;
-    
-    _templateModel = [[OKProcedureTemplateModel alloc] init];
-    _variablesArray = [[NSMutableArray alloc] init];
-    
-    
-    OKProceduresManager *procedureManager = [OKProceduresManager instance];
-    [procedureManager getProcedureTemplateVariablesByProcedureID:_procID handler:^(NSString *errorMsg, NSMutableArray *templateVariables) {
-        
-        NSLog(@"Error - %@", errorMsg);
-        _variablesArray = templateVariables;
-        [procedureManager getProcedureTemplateByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID handler:^(NSString *errorMsg, NSDictionary *template) {
-            NSLog(@"Error - %@", errorMsg);
-            [_templateModel  setModelWithDictionary:template];
-            [[OKLoadingViewController instance] hide];
-            
-        }];
-    }];
 }
 
 
@@ -73,11 +50,7 @@
 
 - (IBAction)updateSettingsButton:(id)sender
 {
-    OKProceduresManager *procedureManager = [OKProceduresManager instance];
     
-    [procedureManager updateProcedureTemplateWithUserID:[OKUserManager instance].currentUser.identifier AndProcedureTemplate:_templateModel handler:^(NSString *errorMsg, NSDictionary *json) {
-        NSLog(@"Error - %@", errorMsg);
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,15 +64,6 @@
         OKInstituteVC *vc = (OKInstituteVC*)segue.destinationViewController;
         vc.contactID = [self.dataDict valueForKey:sender];
         vc.cameFromVC = @"Access Settings View Controller";
-        
-        OKAccessSettingsCCViewController *instVC = (OKAccessSettingsCCViewController*)segue.destinationViewController;
-        instVC.templateModel = [[OKProcedureTemplateModel alloc] init];
-        instVC.templateModel = _templateModel;
-        instVC.variablesArray = [[NSMutableArray alloc] init];
-        instVC.variablesArray = _variablesArray;
-        instVC.delegate = self;
-
-        
     }
 }
 
@@ -133,10 +97,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"choseContact" sender:self.dataDict.allKeys[indexPath.row]];
-}
-
--(void) updateTemplateModelWith:(OKProcedureTemplateModel *)templateModel{
-    _templateModel = templateModel;
 }
 
 @end

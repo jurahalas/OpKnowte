@@ -16,5 +16,4 @@
 @property (strong,nonatomic) NSString* caseData;
 @property (strong,nonatomic) NSString* procedureText;
 @property (strong,nonatomic) NSString* indicationText;
-@property (strong,nonatomic) NSString* aSettings;
 @end
