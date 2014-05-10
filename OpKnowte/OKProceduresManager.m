@@ -7,8 +7,7 @@
 //
 
 #import "OKProceduresManager.h"
-#import "OKProcedureModel.h"
-#import "OKProcedureTemplateVariablesModel.h"
+
 
 @implementation OKProceduresManager
 
@@ -74,6 +73,22 @@
     }];
     
     
+}
+
+-(void) updateProcedureTemplateWithUserID:(NSString*) userID AndProcedureTemplate:(OKProcedureTemplateModel*) template handler:(void (^)(NSString *errorMsg, NSDictionary *json))handler{
+    NSDictionary *params = @{@"indicationsText": template.indicationText,
+                             @"procedureText": template.procedureText,
+                             @"caseData": template.caseData,
+                             @"procedureID": template.procedureID,
+                             @"surgeonID": [OKUserManager instance].currentUser.identifier
+                             };
+    
+  
+    [self requestWithMethod:@"POST" path:@"updateTemplate" params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        
+        handler([self getErrorMessageFromJSON:json error:error], json);
+    }];
 }
 
 -(void) saveProcedureWithSurgeonID:(NSString *)surgeonID ProcedureID:(NSString *)procedureID AndProcedureModel: (id) procModel handler:(void (^)(NSString *errorMsg))handler{

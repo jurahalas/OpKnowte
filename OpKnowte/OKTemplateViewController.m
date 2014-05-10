@@ -8,9 +8,19 @@
 
 #import "OKTemplateViewController.h"
 #import "OKTemplateTableViewCell.h"
+#import "OKProcedureTemplateModel.h"
+#import "OKProcedureTemplateVariablesModel.h"
+#import "OKProceduresManager.h"
 
-@interface OKTemplateViewController ()
+#import "OKCaseDataViewController.h"
+#import "OKIndicationTemplateViewController.h"
+#import "OKLTemplateViewController.h"
+
+@interface OKTemplateViewController () <OKLTemplateViewControllerDelegate, OKCaseDataViewControllerDelegate, OKIndicationTemplateViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *templateTableView;
+@property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
+@property (strong, nonatomic) NSMutableArray *variablesArray;
+@property (strong, nonatomic) IBOutlet UIButton *updateButton;
 
 @end
 
@@ -25,10 +35,23 @@
     }
     return self;
 }
+- (IBAction)updateButtonAction:(id)sender {
+    OKProceduresManager *procedureManager = [OKProceduresManager instance];
+
+    [procedureManager updateProcedureTemplateWithUserID:[OKUserManager instance].currentUser.identifier AndProcedureTemplate:_templateModel handler:^(NSString *errorMsg, NSDictionary *json) {
+        NSLog(@"Error - %@", errorMsg);
+    }];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    
+    _updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _updateButton.layer.cornerRadius = 14;
+    _updateButton.clipsToBounds = YES;
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
     
@@ -37,6 +60,27 @@
     self.templateTableView.delegate = self;
     templateTableView.frame = CGRectMake(templateTableView.frame.origin.x, templateTableView.frame.origin.y, templateTableView.frame.size.width, (templateTableView.frame.size.height - 57.f));
     [self.templateTableView reloadData];
+    
+    
+    
+    _templateModel = [[OKProcedureTemplateModel alloc] init];
+    _variablesArray = [[NSMutableArray alloc] init];
+    
+    
+    OKProceduresManager *procedureManager = [OKProceduresManager instance];
+    [procedureManager getProcedureTemplateVariablesByProcedureID:_procID handler:^(NSString *errorMsg, NSMutableArray *templateVariables) {
+        
+        NSLog(@"Error - %@", errorMsg);
+        _variablesArray = templateVariables;
+        [procedureManager getProcedureTemplateByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID handler:^(NSString *errorMsg, NSDictionary *template) {
+            NSLog(@"Error - %@", errorMsg);
+            [_templateModel  setModelWithDictionary:template];
+            [[OKLoadingViewController instance] hide];
+            
+        }];
+    }];
+
+    
 }
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -87,5 +131,36 @@
     }
 
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+   
+    if([segue.identifier isEqualToString:@"procedures"]){
+        OKLTemplateViewController *instVC = (OKLTemplateViewController*)segue.destinationViewController;
+        instVC.templateModel = [[OKProcedureTemplateModel alloc] init];
+        instVC.templateModel = _templateModel;
+        instVC.variablesArray = [[NSMutableArray alloc] init];
+        instVC.variablesArray = _variablesArray;
+        instVC.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"indication"]){
+        OKIndicationTemplateViewController *instVC = (OKIndicationTemplateViewController*)segue.destinationViewController;
+        instVC.templateModel = [[OKProcedureTemplateModel alloc] init];
+        instVC.templateModel = _templateModel;
+        instVC.variablesArray = [[NSMutableArray alloc] init];
+        instVC.variablesArray = _variablesArray;
+        instVC.delegate = self;
 
+    } else if ([segue.identifier isEqualToString:@"dataCase"]){
+        OKCaseDataViewController *instVC = (OKCaseDataViewController*)segue.destinationViewController;
+        instVC.templateModel = [[OKProcedureTemplateModel alloc] init];
+        instVC.templateModel = _templateModel;
+        instVC.variablesArray = [[NSMutableArray alloc] init];
+        instVC.variablesArray = _variablesArray;
+        instVC.delegate = self;
+
+    }
+}
+
+-(void) updateTemplateModelWith:(OKProcedureTemplateModel *)templateModel{
+    _templateModel = templateModel;
+}
 @end
