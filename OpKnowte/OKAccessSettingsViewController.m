@@ -8,7 +8,8 @@
 
 #import "OKAccessSettingsViewController.h"
 #import "OKAccessSettingsTableViewCell.h"
-#import "OKAccessConfirmViewController.h"
+#import "OKAccessSettingsCCViewController.h"
+#import "OKInstituteVC.h"
 
 @interface OKAccessSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
@@ -21,6 +22,11 @@
 
 - (void)viewDidLoad
 {
+    
+    self.dataDict =  @{@"Surgeons":@"1",
+                       @"Assistans":@"2",
+                       @"Outher":@"6"};
+    
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
@@ -47,17 +53,23 @@
     
 }
 
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"choseContact"]){
+        OKInstituteVC *vc = (OKInstituteVC*)segue.destinationViewController;
+        vc.contactID = [self.dataDict valueForKey:sender];
+        vc.cameFromVC = @"Access Settings View Controller";
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+   return self.dataDict.allKeys.count;
 }
 
 
@@ -75,13 +87,16 @@
     if (!cell) {
         cell = [[OKAccessSettingsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSMutableArray *dataTitleArray = [[NSMutableArray alloc] initWithObjects:
-                                      @"Surgeons",
-                                      @"Assistans",
-                                      @"Other",nil];
-    cell.aSettingLable.text = [dataTitleArray objectAtIndex:indexPath.row];
+    
+    cell.aSettingLable.text = [self.dataDict.allKeys objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"choseContact" sender:self.dataDict.allKeys[indexPath.row]];
 }
 
 @end

@@ -12,6 +12,8 @@
 #import "OKContactModel.h"
 #import "OKUserManager.h"
 #import "OKDashboardVC.h"
+#import "OKAccessSettingsCCViewController.h"
+
 @interface OKInstituteVC ()
 
 @property (strong, nonatomic) IBOutlet OKCustomTextField *nameTextField;
@@ -53,7 +55,8 @@
         self.title =@"Institution";
     }else if ([self.title isEqualToString:@"5"]){
         self.title =@"Physician";
-    }
+    }else if([self.title isEqualToString:@"6"]){
+        self.title=@"Outher";}
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 
@@ -155,7 +158,10 @@
             [self performSegueWithIdentifier:@"backToDashboard" sender:self];
         }else if ([_cameFromVC isEqualToString:@"ContactListVC"])
         {
-            [self.navigationController popViewControllerAnimated:YES ];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

@@ -8,6 +8,7 @@
 
 #import "OKAccessConfirmViewController.h"
 #import "OKAccessConfirmTableViewCell.h"
+#import "OKAccessSettingsViewController.h"
 
 @interface OKAccessConfirmViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *ACTableView;
@@ -70,6 +71,16 @@
     cell.ACLabel.text = [dataTitleArray objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKAccessSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AS"];
+        [self.navigationController pushViewController:vc animated:YES];
+
+    
 }
 
 

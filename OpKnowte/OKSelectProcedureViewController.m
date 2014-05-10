@@ -17,7 +17,7 @@
 #import "OKDataSharingViewController.h"
 
 #import "OKTemplateViewController.h"
-#import "OKAccessSettingsViewController.h"
+#import "OKAccessConfirmViewController.h"
 
 
 @interface OKSelectProcedureViewController ()
@@ -79,7 +79,8 @@
 #pragma mark - Table View methods
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
-    int procID;
+    int procID = 0;
+    
     if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
         procID = 10;
     }
@@ -156,7 +157,7 @@
         OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
         sharVC.procID = sender;
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToAccessSettings"]){
-        OKAccessSettingsViewController *sharVC = (OKAccessSettingsViewController*)segue.destinationViewController;
+       OKAccessConfirmViewController *sharVC = (OKAccessConfirmViewController*)segue.destinationViewController;
         sharVC.procID = sender;
     }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){
         OKTemplateViewController *sharVC = (OKTemplateViewController*)segue.destinationViewController;

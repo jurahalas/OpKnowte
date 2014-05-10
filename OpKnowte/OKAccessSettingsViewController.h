@@ -10,6 +10,7 @@
 #import "OKAppDelegate.h"
 
 @interface OKAccessSettingsViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
-@property(strong, nonatomic) NSString *procID;
+
+@property (strong, nonatomic) NSDictionary *dataDict;
 
 @end

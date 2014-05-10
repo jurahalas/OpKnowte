@@ -10,5 +10,6 @@
 #import "OKAppDelegate.h"
 
 @interface OKAccessConfirmViewController : OKBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property(strong, nonatomic) NSString *procID;
 
 @end
