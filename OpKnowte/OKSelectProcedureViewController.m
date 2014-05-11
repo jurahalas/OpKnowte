@@ -56,6 +56,14 @@
         NSLog(@"Error - %@", error);
         
         _procArray = proceduresArray;
+        for (int i = 0; i<_procArray.count; i++) {
+            OKProcedureModel *proc = _procArray[i];
+            
+            if (!proc.procedureActive) {
+                [_procArray removeObjectAtIndex:i];
+                i--;
+            }
+        }
         [self.selectProcedureTableView reloadData];
         
         [[OKLoadingViewController instance] hide];

@@ -15,6 +15,11 @@
     self.identifier = [dictionary objectForKey:@"ProcId"];
     _procedureText = [dictionary objectForKey:@"ProcText"] ;
     _procedureShortName = [dictionary objectForKey:@"ProcNick"];
+    if ([[dictionary objectForKey:@"ProcActive"] isEqualToString:@"1"]) {
+        _procedureActive = true;
+    } else {
+        _procedureActive = false;
+    }
 }
 
 

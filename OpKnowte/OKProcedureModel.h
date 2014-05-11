@@ -12,5 +12,5 @@
 
 @property (nonatomic, retain) NSString *procedureText;
 @property (nonatomic, retain) NSString *procedureShortName;
-
+@property (nonatomic, assign) BOOL procedureActive;
 @end
