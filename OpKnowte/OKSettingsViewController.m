@@ -92,7 +92,11 @@
         {
             [self performSegueWithIdentifier:@"EPT" sender:indexPath];
 
+    }else if ([cell.settingsLabel.text isEqualToString:@"Reminder Settings"])
+        {
+            [self performSegueWithIdentifier:@"reminder" sender:indexPath];
         }
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -104,7 +108,10 @@
         instVC.cameFromVC = @"DataSharingVC";
     } else if ([segue.identifier isEqualToString:@"EPT"]){
         instVC.cameFromVC = @"EditProcTemplateVC";
+    }else if ([segue.identifier isEqualToString:@"reminder"]){
+        instVC.cameFromVC = @"ReminderSettings";
     }
+
 
     
 

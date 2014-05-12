@@ -8,13 +8,18 @@
 
 #import "OKSelectCaseViewController.h"
 #import "OKSelectCaseTableViewCell.h"
+#import "OKProceduresManager.h"
 
 @interface OKSelectCaseViewController ()
+
 @property (strong, nonatomic) IBOutlet UITableView *selectCase;
+@property (strong, nonatomic) NSMutableArray *casesArray;
+
 @end
 
 @implementation OKSelectCaseViewController
 @synthesize selectCase;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,36 +29,45 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     selectCase.backgroundColor = [UIColor clearColor];
     self.selectCase.dataSource = self;
     self.selectCase.delegate = self;
     selectCase.frame = CGRectMake(selectCase.frame.origin.x, selectCase.frame.origin.y, selectCase.frame.size.width, (selectCase.frame.size.height - 57.f));
-    [self.selectCase reloadData];
     
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKProceduresManager *procedureManager = [OKProceduresManager instance];
+    [procedureManager getCasesListWithProcedureID:_procID andSurgeonID:[OKUserManager instance].currentUser.identifier handler:^(NSString *errorMsg, NSMutableArray *cases) {
+        NSLog(@"Error %@", errorMsg);
+        _casesArray = cases;
+        [self.selectCase reloadData];
+        [[OKLoadingViewController instance] hide];
+    }];
     [self addBottomTabBar];
 }
 
-#pragma mark IBAction metods
 
+#pragma mark IBAction metods
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark Table View methods
 
+#pragma mark Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return _casesArray.count;
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60.f;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -63,28 +77,23 @@
     if (!cell) {
         cell = [[OKSelectCaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSMutableArray *dataCaseNameArray = [[NSMutableArray alloc] initWithObjects:
-                                      @"1.Case Name #1",
-                                      @"2.Case Name #2",
-                                      @"3.Case Name #3",
-                                      @"4.Case Name #4",nil];
-    
-    NSMutableArray *dataCaseArray = [[NSMutableArray alloc] initWithObjects:
-                                         @"04-18-2014",
-                                         @"04-18-2014",
-                                         @"04-18-2014",
-                                         @"04-18-2014",nil];
-    
-    cell.caseName.text = [dataCaseNameArray objectAtIndex:indexPath.row];
-    cell.dataLable.text = [dataCaseArray objectAtIndex:indexPath.row];
+    OKCase *caseModel = (OKCase*)self.casesArray[indexPath.row];
+    cell.caseName.text = caseModel.patientName;
+    cell.dataLable.text = caseModel.dateOfService;
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

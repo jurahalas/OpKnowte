@@ -11,4 +11,6 @@
 
 @interface OKSelectCaseViewController : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
 
+@property(strong, nonatomic) NSString *procID;
+
 @end
