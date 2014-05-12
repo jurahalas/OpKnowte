@@ -2061,6 +2061,18 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="482"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WMI-h8-HNC">
+                                    <rect key="frame" x="0.0" y="66" width="320" height="231"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleColor" red="1" green="0.071478074599999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="zNm-fe-JEM" kind="push" id="BrS-MG-6Kv"/>
+                                    </connections>
+                                </button>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dashboardCell" id="4ty-KE-6Uq" customClass="OKDashboardTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -2163,7 +2175,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf7-tF-DbT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="533" y="900"/>
+            <point key="canvasLocation" x="497" y="900"/>
         </scene>
         <!--PerformanceVC - Performance Data-->
         <scene sceneID="3aG-Fy-ThQ">
@@ -2921,6 +2933,79 @@
             </objects>
             <point key="canvasLocation" x="3630" y="55"/>
         </scene>
+        <!--ReminderVC - Reminder Settings-->
+        <scene sceneID="LJ3-zL-GZl">
+            <objects>
+                <viewController id="zNm-fe-JEM" customClass="OKReminderVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CNB-4Q-KxO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="0aw-xn-p1T" customClass="OKCustomTextField">
+                                <rect key="frame" x="43" y="131" width="235" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zNm-fe-JEM" id="pe4-JF-edg"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="geh-MS-GrI">
+                                <rect key="frame" x="42" y="453" width="236" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="UPDATE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateButton:" destination="zNm-fe-JEM" eventType="touchUpInside" id="Uk2-JG-8CF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Reminder After" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wnp-bu-zXd">
+                                <rect key="frame" x="43" y="102" width="235" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Reminder To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pIV-aa-QVN">
+                                <rect key="frame" x="65" y="211" width="235" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Ui-oh-NCd">
+                                <rect key="frame" x="42" y="240" width="236" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Send Reminder To">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reminder Settings" id="1Ge-U8-4eZ">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="syq-kC-Kts">
+                            <connections>
+                                <action selector="backButton:" destination="zNm-fe-JEM" id="9Bn-SA-9Aj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="daysPickerTextField" destination="0aw-xn-p1T" id="oPB-aD-OTe"/>
+                        <outlet property="sendReminderTo" destination="7Ui-oh-NCd" id="yf0-7O-WKE"/>
+                        <outlet property="updateSettings" destination="geh-MS-GrI" id="K9I-d3-uPs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cil-YZ-jFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3131" y="785"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
@@ -2946,12 +3031,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mc4-ob-XxU"/>
-        <segue reference="DyP-GO-KfO"/>
         <segue reference="aKz-2x-G8K"/>
-        <segue reference="av5-wH-fRD"/>
-        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="dvt-ir-lar"/>
         <segue reference="dCD-SH-NGU"/>
+        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="DdX-qd-zVS"/>
+        <segue reference="jDh-vb-NmK"/>
         <segue reference="aL2-xa-szT"/>
     </inferredMetricsTieBreakers>
 </document>

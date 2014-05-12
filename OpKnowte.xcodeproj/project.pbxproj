@@ -1149,11 +1149,19 @@
 		18D6C6881920C12600688992 /* Reminder Settings */ = {
 			isa = PBXGroup;
 			children = (
+				18D6C69B1920FFD600688992 /* New Group */,
 				ACA0336B190A42B500D4A144 /* Select Case View */,
 				18D6C6891920C15100688992 /* OKReminderVC.h */,
 				18D6C68A1920C15100688992 /* OKReminderVC.m */,
 			);
 			name = "Reminder Settings";
+			sourceTree = "<group>";
+		};
+		18D6C69B1920FFD600688992 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		18F4471F1906594E00C37F3D /* Dashboard View */ = {

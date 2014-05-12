@@ -8,7 +8,7 @@
 
 #import "OKBaseViewController.h"
 
-@interface OKReminderVC : OKBaseViewController
+@interface OKReminderVC : OKBaseViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(strong, nonatomic) NSString *procID;
 

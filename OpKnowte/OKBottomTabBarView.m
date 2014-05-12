@@ -74,14 +74,7 @@
 
 -(void)settingsButton:(id)sender
 {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults removeObjectForKey:@"EMAILADDRESS"];
-//    [defaults removeObjectForKey:@"PASSWORD"];
-//    [defaults synchronize];
-//    NSLog(@"session was destroyed");
-
-    [self.delegate goToSettingsVC];
-    
+   [self.delegate goToSettingsVC];
 }
 
 @end
