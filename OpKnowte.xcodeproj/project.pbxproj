@@ -32,6 +32,9 @@
 		0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086295B190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m */; };
 		0086295F190E8C3F006EBA9C /* OKBaseProcedureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */; };
 		00862973190EABCD006EBA9C /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086296F190EABCD006EBA9C /* RangeSlider.m */; };
+		0087E99D191F6C8D003C3848 /* OKSurgicalLogsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087E99C191F6C8D003C3848 /* OKSurgicalLogsVC.m */; };
+		0087E9A0191F6CB4003C3848 /* OKSLProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087E99F191F6CB4003C3848 /* OKSLProcedureCell.m */; };
+		0087E9A3191F6CC7003C3848 /* OKSLListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087E9A2191F6CC7003C3848 /* OKSLListCell.m */; };
 		0088B5E5191CBEDA00991E55 /* OKSendFaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */; };
 		008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */; };
 		008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */; };
@@ -282,6 +285,12 @@
 		0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKBaseProcedureVC.xib; sourceTree = "<group>"; };
 		0086296E190EABCD006EBA9C /* RangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeSlider.h; sourceTree = "<group>"; };
 		0086296F190EABCD006EBA9C /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSlider.m; sourceTree = "<group>"; };
+		0087E99B191F6C8D003C3848 /* OKSurgicalLogsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSurgicalLogsVC.h; sourceTree = "<group>"; };
+		0087E99C191F6C8D003C3848 /* OKSurgicalLogsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgicalLogsVC.m; sourceTree = "<group>"; };
+		0087E99E191F6CB4003C3848 /* OKSLProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSLProcedureCell.h; sourceTree = "<group>"; };
+		0087E99F191F6CB4003C3848 /* OKSLProcedureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSLProcedureCell.m; sourceTree = "<group>"; };
+		0087E9A1191F6CC7003C3848 /* OKSLListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSLListCell.h; sourceTree = "<group>"; };
+		0087E9A2191F6CC7003C3848 /* OKSLListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSLListCell.m; sourceTree = "<group>"; };
 		0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSendFaxManager.h; sourceTree = "<group>"; };
 		0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSendFaxManager.m; sourceTree = "<group>"; };
 		008BCE9319178B1C00E1D18D /* OKProcedureTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateModel.h; sourceTree = "<group>"; };
@@ -674,6 +683,7 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+				0087E99A191F5FC5003C3848 /* Surgical Logs */,
 				188608F5190FCBDD00BD1D77 /* Select Facility */,
 				189F45111909421800372C55 /* Institute View */,
 				AC8F61D219123A800064C53F /* Settings View */,
@@ -734,6 +744,19 @@
 				00FA8D91190F872600403429 /* fullrange@2x.png */,
 			);
 			name = "Custom Slider";
+			sourceTree = "<group>";
+		};
+		0087E99A191F5FC5003C3848 /* Surgical Logs */ = {
+			isa = PBXGroup;
+			children = (
+				0087E99B191F6C8D003C3848 /* OKSurgicalLogsVC.h */,
+				0087E99C191F6C8D003C3848 /* OKSurgicalLogsVC.m */,
+				0087E99E191F6CB4003C3848 /* OKSLProcedureCell.h */,
+				0087E99F191F6CB4003C3848 /* OKSLProcedureCell.m */,
+				0087E9A1191F6CC7003C3848 /* OKSLListCell.h */,
+				0087E9A2191F6CC7003C3848 /* OKSLListCell.m */,
+			);
+			name = "Surgical Logs";
 			sourceTree = "<group>";
 		};
 		008BE8CD1914E8BC0060353C /* LRPN */ = {
@@ -1717,6 +1740,7 @@
 				0088B5E5191CBEDA00991E55 /* OKSendFaxManager.m in Sources */,
 				185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */,
 				00C3DBBD191A46EF00F7B6A9 /* OKLRRadicalProstatectomyModel.m in Sources */,
+				0087E9A3191F6CC7003C3848 /* OKSLListCell.m in Sources */,
 				AC8F61D519123AA90064C53F /* OKSettingsViewController.m in Sources */,
 				0060D8A118FD59B800AFC7B4 /* OKBaseModel.m in Sources */,
 				008BE8D41914EB2C0060353C /* OKLRPartialNephrectomyModel.m in Sources */,
@@ -1737,6 +1761,7 @@
 				ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */,
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				AC86E67A191A1236001DDEFF /* OKIndicationTemplateViewController.m in Sources */,
+				0087E9A0191F6CB4003C3848 /* OKSLProcedureCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
@@ -1771,6 +1796,7 @@
 				189F1BD2191D009B006CEBED /* OKContactListCell.m in Sources */,
 				188608FB190FCC8400BD1D77 /* OKFacilityTableViewCell.m in Sources */,
 				189F4510190911F400372C55 /* OKPerformanceTableViewCell.m in Sources */,
+				0087E99D191F6C8D003C3848 /* OKSurgicalLogsVC.m in Sources */,
 				182659C719066A1700723D16 /* OKDashboardVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

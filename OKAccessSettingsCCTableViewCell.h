@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKContactModel.h"
 
 @protocol OKAccessSettingsCC <NSObject>
 
--(void) plus;
--(void) minus;
+-(void) addContactToList: (OKContactModel*) contact;
+-(void) deleteContactFromList: (OKContactModel*) contact;
 
 @end
 
@@ -24,10 +25,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
 - (IBAction)plusButtonTappet:(id)sender;
 @property (nonatomic) BOOL buttonIsTapped;
-@property (nonatomic) int buttonIndetifier;
+@property (nonatomic, strong) OKContactModel *contactModel;
 
 -(void) setCellUserIntaractionDisabled;
 -(void) setCellUserIntaractionEnabled;
 -(void) setCellBGImageLight:(int) cellCount;
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon;
 
 @end

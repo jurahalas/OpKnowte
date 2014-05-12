@@ -16,7 +16,8 @@
 @interface OKAccessSettingsCCViewController : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic) NSString *contactID;
 @property(nonatomic, strong) NSString *cameFromVC;
+@property (nonatomic, strong) OKContactModel *contactModel;
 
-@property(nonatomic, strong) NSMutableArray * choseButton;
+//@property(nonatomic, strong) NSMutableArray * contact;
 
 @end

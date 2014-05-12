@@ -17,5 +17,6 @@
 @property(nonatomic, strong) NSString *userID;
 @property(strong, nonatomic) NSArray *accessArray;
 @property(strong, nonatomic) NSMutableArray *selectedContacts;
+@property(strong, nonatomic) NSMutableArray *choosedContacts;
 
 @end

@@ -9,7 +9,7 @@
 #import "OKAccessSettingsCCTableViewCell.h"
 
 @implementation OKAccessSettingsCCTableViewCell
-@synthesize plusButton,buttonIsTapped,buttonIndetifier;
+@synthesize plusButton,buttonIsTapped;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -62,15 +62,19 @@
 
 - (IBAction)plusButtonTappet:(id)sender {
     if (!buttonIsTapped) {
-                [self.delegate minus];
+        [self setCellButtonBGImageWithGreenMinusIcon:YES];
+        [self.delegate addContactToList:self.contactModel];
+    } else {
+        [self setCellButtonBGImageWithGreenMinusIcon:NO];
+        [self.delegate deleteContactFromList:self.contactModel];
+    }
+}
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
+    if (minusIcon) {
         [plusButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
-        buttonIsTapped = YES;
-
-        
     } else {
         [plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-        buttonIsTapped = NO;
-        [self.delegate plus];
     }
+    buttonIsTapped = minusIcon;
 }
 @end

@@ -12,19 +12,21 @@
 #import "OKContactManager.h"
 #import "OKContactModel.h"
 #import "OKUserModel.h"
+#import "OKAccessSettingsViewController.h"
 
 @interface OKAccessSettingsCCViewController ()<OKAccessSettingsCC>
 
 @property (strong, nonatomic) IBOutlet UITableView *accessSettingsTableView;
 
 @property(strong, nonatomic) NSArray *contactsArray;
+@property(strong, nonatomic) NSMutableArray *choosedContacts;
 @property(strong, nonatomic) NSString *selectedContactID;
 
 
 @end
 
 @implementation OKAccessSettingsCCViewController
-@synthesize contactsArray,selectedContactID,accessSettingsTableView,choseButton;
+@synthesize contactsArray,selectedContactID,accessSettingsTableView;
 
 - (void)viewDidLoad
 {
@@ -37,22 +39,12 @@
     
     accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
     
+    _choosedContacts = [[NSMutableArray alloc]initWithObjects:@"pinas", nil];
+    
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
-
 }
 
--(void)minus{
-    
-    choseButton = [[NSMutableArray alloc]init];
-
-    for (int i = 0; i>[choseButton count]; i++) {
-        
-        [choseButton addObject:[NSString stringWithFormat:@"element #%d", i]];
-        
-    }
-    NSLog(@"%@",choseButton);
-}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -139,6 +131,9 @@
 
 - (IBAction)backButton:(id)sender
 {
+    OKAccessSettingsViewController * vc = [[OKAccessSettingsViewController alloc]init];
+    vc.choosedContacts = self.choosedContacts;
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -149,6 +144,19 @@
     return contactsArray.count;
 }
 
+-(void)addContactToList:(OKContactModel *)contact{
+    [_choosedContacts addObject:contact];
+}
+
+-(void)deleteContactFromList:(OKContactModel *)contact{
+    for (int i = 0 ; i<_choosedContacts.count; i++) {
+        OKContactModel *searchedContact = (OKContactModel*)_choosedContacts[i];
+        if ([searchedContact.identifier isEqualToString:contact.identifier]) {
+            [_choosedContacts removeObjectAtIndex:i];
+             break;
+        }
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -157,15 +165,18 @@
     if (!cell) {
         cell = [[OKAccessSettingsCCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    OKContactModel *contact = (OKContactModel*)self.contactsArray[indexPath.row];
+    
+    OKContactModel * contact  = (OKContactModel*)self.contactsArray[indexPath.row];
+    
     cell.contactNameLabel.text = contact.name;
     cell.emailLabel.text = contact.contactEmail;
+    cell.contactModel = contact;
     [cell setCellBGImageLight:indexPath.row];
+    cell.delegate = self;
     
-    if (cell.selected) {
-        NSLog(@"selected");
-    }
+    NSLog(@"%hhd", [_choosedContacts containsObject:[NSString stringWithFormat:@"(%@)",contact.Id]]);
     
+    [cell setCellButtonBGImageWithGreenMinusIcon:[_choosedContacts containsObject:[NSString stringWithFormat:@"(%@)",contact.Id]]];
     return cell;
 }
 

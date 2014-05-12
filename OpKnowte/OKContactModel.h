@@ -20,6 +20,6 @@
 @property (strong,nonatomic) NSString* contactZip;
 @property (strong,nonatomic) NSString* contactCountry;
 @property (strong,nonatomic) NSString* contactFax;
-
+@property (strong,nonatomic) NSString* Id;
 
 @end

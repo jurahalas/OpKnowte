@@ -12,6 +12,7 @@
 #import "OKInstituteVC.h"
 #import "OKAccessSettingManager.h"
 #import "OKContactManager.h"
+#import "OKContactModel.h"
 
 @interface OKAccessSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
@@ -20,7 +21,7 @@
 @end
 
 @implementation OKAccessSettingsViewController
-@synthesize accessSettingsTableView,updateButton,procID,userID,accessArray,selectedContacts;
+@synthesize accessSettingsTableView,updateButton,procID,userID,accessArray,selectedContacts,choosedContacts;
 
 - (void)viewDidLoad
 {
@@ -43,7 +44,8 @@
     updateButton.layer.cornerRadius = 14;
     
     selectedContacts = [[NSMutableArray alloc]init];
-
+    choosedContacts = [[NSMutableArray alloc]init];
+    
     userID = [OKUserManager instance].currentUser.identifier;
     
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
@@ -57,8 +59,6 @@
         [[OKLoadingViewController instance] hide];
     }];
 }
-
-
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -68,10 +68,24 @@
 - (IBAction)updateSettingsButton:(id)sender
 {
     
+    NSLog(@"%@",choosedContacts);
+    
+//    NSString *list = [[NSString alloc] init];
 //    
+//    for (int i = 0; i<self.selectedContacts.count; i++) {
+//        
+//        OKContactModel *model = [self.selectedContacts objectAtIndex:i];
+//        list = [list stringByAppendingFormat:@"%@",model.contactEmail];
+//        
+//        if (i != self.selectedContacts.count-1) {
+//            list = [list stringByAppendingString:@","];
+//        }
+//    }
+//    
+//    NSLog(@"%@",list);
 //    
 //    OKAccessSettingManager * aM = [OKAccessSettingManager instance];
-//    [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactID:   handler:^(NSString *errorMsg, NSDictionary *json) {
+//    [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withList:list handler:^(NSString *errorMsg, NSDictionary *json) {
 //        NSLog(@"Error - %@", errorMsg);
 //    }];
     
