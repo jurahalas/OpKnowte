@@ -1105,7 +1105,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="procedureCell" id="Qt2-jH-0FG" customClass="OKProcedureCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="procedureCell" id="Qt2-jH-0FG" customClass="OKSLProcedureCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qt2-jH-0FG" id="P9C-Vw-BNm">
@@ -1113,7 +1113,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shockwave Lithotripsy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wfd-sX-QXN">
-                                                    <rect key="frame" x="20" y="18" width="174" height="21"/>
+                                                    <rect key="frame" x="20" y="18" width="267" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1126,6 +1126,10 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="procLabel" destination="Wfd-sX-QXN" id="6iL-v3-1aR"/>
+                                            <outlet property="rightArrowImage" destination="yrv-aj-KOb" id="1GS-Mg-VYg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1138,12 +1142,18 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="xVV-7F-WyY" id="m0o-va-HvL"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="0Gy-CE-RfP" customClass="OKCustomTextField">
                                         <rect key="frame" x="203" y="15" width="97" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="xVV-7F-WyY" id="SEK-uX-hvt"/>
+                                        </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.png" id="NsH-9b-JhP">
                                         <rect key="frame" x="20" y="20" width="20" height="20"/>
@@ -1221,7 +1231,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="RKe-0H-uQj" customClass="OKListCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="RKe-0H-uQj" customClass="OKSLListCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RKe-0H-uQj" id="TGs-zS-bDD">
@@ -1248,10 +1258,18 @@
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="plusButtonTapped:" destination="RKe-0H-uQj" eventType="touchUpInside" id="hc0-Tp-ogz"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="QLN-GG-q0j" id="BNa-ss-7g9"/>
+                                            <outlet property="nameLabel" destination="aXK-ZG-vFm" id="7SF-St-KLM"/>
+                                            <outlet property="plusButton" destination="zc5-B7-RBb" id="Zgo-sq-v6N"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1277,6 +1295,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="caseFromLabel" destination="nI9-EZ-kNx" id="rdU-cF-Hzq"/>
+                        <outlet property="caseToLabel" destination="V28-wI-xPR" id="hFL-uj-Mdc"/>
+                        <outlet property="dateFromTF" destination="xts-jO-1ba" id="FNM-D4-9Ii"/>
+                        <outlet property="dateToTF" destination="0Gy-CE-RfP" id="koz-qR-Aet"/>
+                        <outlet property="dateView" destination="fgw-hB-geF" id="nmK-Jg-pfK"/>
+                        <outlet property="diselectAllButton" destination="npY-Tb-qSz" id="Hwz-kh-b4U"/>
+                        <outlet property="diselectAllLabel" destination="xt9-m3-BVj" id="FPz-t9-o6E"/>
+                        <outlet property="emailAndFaxView" destination="PfO-zv-IYj" id="aYv-A2-coL"/>
+                        <outlet property="emailButton" destination="Hgp-78-vzN" id="TYQ-WO-rTa"/>
+                        <outlet property="faxButton" destination="AoT-ax-r1i" id="9Hg-ud-6Qd"/>
+                        <outlet property="listTableView" destination="OlW-7u-RUV" id="dUy-6M-c5l"/>
+                        <outlet property="procedureTableView" destination="BTv-3G-Jfa" id="MLh-pl-t4P"/>
+                        <outlet property="searchButton" destination="28g-NQ-qX9" id="hY0-TN-kZv"/>
+                        <outlet property="searchLabel" destination="Oj4-td-9yP" id="LSs-Wj-esl"/>
+                        <outlet property="searchView" destination="MIr-jZ-SB8" id="D2z-wX-Zno"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cH1-Zl-tUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2345,7 +2380,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2401,7 +2436,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="461.00000000000006" width="320" height="35"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="34.999999999999986"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">

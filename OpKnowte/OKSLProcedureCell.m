@@ -19,11 +19,19 @@
     return self;
 }
 
+-(void)awakeFromNib{
+    UIImageView *cellBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellDark"]];
+    UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
+    
+    self.selectedBackgroundView  = cellIsSelected;
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundView = cellBG;
+    self.backgroundColor = [UIColor clearColor];
+}
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
-
 @end

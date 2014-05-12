@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OKSLProcedureCell : UITableViewCell
-
+@property (strong, nonatomic) IBOutlet UILabel *procLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *rightArrowImage;
 @end
