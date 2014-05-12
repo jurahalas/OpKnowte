@@ -13,16 +13,18 @@
 #import "OKContactModel.h"
 #import "OKUserModel.h"
 
-@interface OKAccessSettingsCCViewController ()
+@interface OKAccessSettingsCCViewController ()<OKAccessSettingsCC>
 
 @property (strong, nonatomic) IBOutlet UITableView *accessSettingsTableView;
+
 @property(strong, nonatomic) NSArray *contactsArray;
 @property(strong, nonatomic) NSString *selectedContactID;
+
 
 @end
 
 @implementation OKAccessSettingsCCViewController
-@synthesize contactsArray,selectedContactID,accessSettingsTableView,choseContact;
+@synthesize contactsArray,selectedContactID,accessSettingsTableView,choseButton;
 
 - (void)viewDidLoad
 {
@@ -35,10 +37,21 @@
     
     accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
     
-    choseContact = [[NSMutableArray alloc]init];
-    
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
+
+}
+
+-(void)minus{
+    
+    choseButton = [[NSMutableArray alloc]init];
+
+    for (int i = 0; i>[choseButton count]; i++) {
+        
+        [choseButton addObject:[NSString stringWithFormat:@"element #%d", i]];
+        
+    }
+    NSLog(@"%@",choseButton);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -148,6 +161,11 @@
     cell.contactNameLabel.text = contact.name;
     cell.emailLabel.text = contact.contactEmail;
     [cell setCellBGImageLight:indexPath.row];
+    
+    if (cell.selected) {
+        NSLog(@"selected");
+    }
+    
     return cell;
 }
 

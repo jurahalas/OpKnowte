@@ -13,4 +13,9 @@
 
 @property (strong, nonatomic) NSDictionary *dataDict;
 
+@property(nonatomic, strong) NSString *procID;
+@property(nonatomic, strong) NSString *userID;
+@property(strong, nonatomic) NSArray *accessArray;
+@property(strong, nonatomic) NSMutableArray *selectedContacts;
+
 @end

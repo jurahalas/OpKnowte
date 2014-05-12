@@ -17,6 +17,6 @@
 @property(strong, nonatomic) NSString *contactID;
 @property(nonatomic, strong) NSString *cameFromVC;
 
-@property(nonatomic ,strong) NSMutableArray *choseContact;
+@property(nonatomic, strong) NSMutableArray * choseButton;
 
 @end

@@ -178,6 +178,7 @@
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
 		AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A6A190A7A5700D8572D /* OKOperatieNoteViewController.m */; };
+		AC1ACA27191EBA49004FA1BB /* OKAccessSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1ACA26191EBA49004FA1BB /* OKAccessSettingManager.m */; };
 		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
 		AC213493191A519E00F3CAC6 /* OKCaseDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */; };
@@ -475,6 +476,8 @@
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
 		AC161A69190A7A5700D8572D /* OKOperatieNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteViewController.h; sourceTree = "<group>"; };
 		AC161A6A190A7A5700D8572D /* OKOperatieNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOperatieNoteViewController.m; sourceTree = "<group>"; };
+		AC1ACA25191EBA49004FA1BB /* OKAccessSettingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKAccessSettingManager.h; sourceTree = "<group>"; };
+		AC1ACA26191EBA49004FA1BB /* OKAccessSettingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAccessSettingManager.m; sourceTree = "<group>"; };
 		AC1D0781190AE22100DC55FD /* OKDataCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureViewController.h; sourceTree = "<group>"; };
 		AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureViewController.m; sourceTree = "<group>"; };
 		AC1D0784190AE24C00DC55FD /* OKDataCaptureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureTableViewCell.h; sourceTree = "<group>"; };
@@ -1224,9 +1227,9 @@
 			children = (
 				AC8D1790191D8B66001F4E45 /* AccessSettings chose contact */,
 				AC8D1784191D5D22001F4E45 /* OKAccessSettingsViewController.h */,
+				AC8D1787191D5D22001F4E45 /* OKAccessSettingsViewController.m */,
 				AC8D1785191D5D22001F4E45 /* OKAccessSettingsTableViewCell.h */,
 				AC8D1786191D5D22001F4E45 /* OKAccessSettingsTableViewCell.m */,
-				AC8D1787191D5D22001F4E45 /* OKAccessSettingsViewController.m */,
 			);
 			name = "AccessSettings View";
 			path = /Users/ArtemFrolow/Documents/OpKnowte/OpKnowte;
@@ -1412,6 +1415,8 @@
 				1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */,
 				0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */,
 				0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */,
+				AC1ACA25191EBA49004FA1BB /* OKAccessSettingManager.h */,
+				AC1ACA26191EBA49004FA1BB /* OKAccessSettingManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1675,6 +1680,7 @@
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
 				189F45141909480700372C55 /* OKInstituteVC.m in Sources */,
 				18949E9A1918D45200B4B38C /* OKContactsTableViewCell.m in Sources */,
+				AC1ACA27191EBA49004FA1BB /* OKAccessSettingManager.m in Sources */,
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
 				189F1BCF191D007D006CEBED /* OKContactListVC.m in Sources */,
 				00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */,

@@ -10,6 +10,8 @@
 #import "OKAccessSettingsTableViewCell.h"
 #import "OKAccessSettingsCCViewController.h"
 #import "OKInstituteVC.h"
+#import "OKAccessSettingManager.h"
+#import "OKContactManager.h"
 
 @interface OKAccessSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
@@ -18,7 +20,7 @@
 @end
 
 @implementation OKAccessSettingsViewController
-@synthesize accessSettingsTableView,updateButton;
+@synthesize accessSettingsTableView,updateButton,procID,userID,accessArray,selectedContacts;
 
 - (void)viewDidLoad
 {
@@ -39,6 +41,21 @@
 
     updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     updateButton.layer.cornerRadius = 14;
+    
+    selectedContacts = [[NSMutableArray alloc]init];
+
+    userID = [OKUserManager instance].currentUser.identifier;
+    
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    
+    OKAccessSettingManager *accessManager = [OKAccessSettingManager instance];
+    [accessManager getAccessSettingsWithUserID:userID AndProcedureID:procID handler:^(NSString* error, NSMutableArray* aArray){
+        NSLog(@"Error - %@", error);
+        
+        accessArray = aArray ;
+        
+        [[OKLoadingViewController instance] hide];
+    }];
 }
 
 
@@ -50,6 +67,13 @@
 
 - (IBAction)updateSettingsButton:(id)sender
 {
+    
+//    
+//    
+//    OKAccessSettingManager * aM = [OKAccessSettingManager instance];
+//    [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactID:   handler:^(NSString *errorMsg, NSDictionary *json) {
+//        NSLog(@"Error - %@", errorMsg);
+//    }];
     
 }
 
