@@ -36,13 +36,22 @@
 
 - (IBAction)plusButtonTapped:(id)sender {
     if (!_buttonIsTapped) {
-        [_plusButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
-        _buttonIsTapped = YES;
+        [self setCellButtonBGImageWithGreenMinusIcon:YES];
+        [self.delegate addModelToList:_model];
     } else {
-        [_plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-        _buttonIsTapped = NO;
+        [self setCellButtonBGImageWithGreenMinusIcon:NO];
+        [self.delegate deleteModelFromList:_model];
     }
     
 }
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
+    if (minusIcon) {
+        [_plusButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
+    } else {
+        [_plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
+    }
+    _buttonIsTapped = minusIcon;
+}
+
 
 @end

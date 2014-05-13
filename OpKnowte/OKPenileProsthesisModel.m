@@ -9,5 +9,8 @@
 #import "OKPenileProsthesisModel.h"
 
 @implementation OKPenileProsthesisModel
+-(void) setModelWithDictionary:(NSDictionary *)dictionary
+{
 
+}
 @end

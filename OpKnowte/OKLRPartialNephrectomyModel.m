@@ -9,5 +9,9 @@
 #import "OKLRPartialNephrectomyModel.h"
 
 @implementation OKLRPartialNephrectomyModel
+-(void) setModelWithDictionary:(NSDictionary *)dictionary
+{
 
+
+}
 @end
