@@ -9,7 +9,7 @@
 #import "OKDashboardVC.h"
 #import "OKDashboardTableViewCell.h"
 #import "OKAppDelegate.h"
-
+#import "OKSelectProcedureViewController.h"
 
 @interface OKDashboardVC ()
 
@@ -71,12 +71,24 @@
         [self performSegueWithIdentifier:@"performance" sender:indexPath];
     }else if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]){
         [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
+    } else {
+        [self performSegueWithIdentifier:@"fromSurgicalLogsToSelectProc" sender:indexPath];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([segue.identifier isEqualToString:@"fromSurgicalLogsToSelectProc"]){
+        OKSelectProcedureViewController *instVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+        instVC.cameFromVC = @"SurgicalLogsVC";
+    }
+    
+    
+    
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"dashboardCell";
     OKDashboardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];

@@ -33,9 +33,13 @@
 		0086295F190E8C3F006EBA9C /* OKBaseProcedureVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0086295E190E8C3F006EBA9C /* OKBaseProcedureVC.xib */; };
 		00862973190EABCD006EBA9C /* RangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0086296F190EABCD006EBA9C /* RangeSlider.m */; };
 		0087E99D191F6C8D003C3848 /* OKSurgicalLogsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087E99C191F6C8D003C3848 /* OKSurgicalLogsVC.m */; };
-		0087E9A0191F6CB4003C3848 /* OKSLProcedureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087E99F191F6CB4003C3848 /* OKSLProcedureCell.m */; };
 		0087E9A3191F6CC7003C3848 /* OKSLListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0087E9A2191F6CC7003C3848 /* OKSLListCell.m */; };
 		0088B5E5191CBEDA00991E55 /* OKSendFaxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */; };
+		00897C32192104CA007C4452 /* OKLRPNSurgeonDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00897C31192104CA007C4452 /* OKLRPNSurgeonDataModel.m */; };
+		00897C3F19221CB1007C4452 /* OKPDFGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 00897C3E19221CB1007C4452 /* OKPDFGenerator.m */; };
+		00897C4219226A90007C4452 /* OKDetailSummaryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00897C4119226A90007C4452 /* OKDetailSummaryVC.m */; };
+		00897C4619226AE6007C4452 /* OKDetailSumaryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00897C4519226AE6007C4452 /* OKDetailSumaryCell.m */; };
+		008B26F11920DFEE00B0AF9E /* OKSurgicalLogsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 008B26F01920DFEE00B0AF9E /* OKSurgicalLogsManager.m */; };
 		008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */; };
 		008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BCE9719179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m */; };
 		008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 008BE8CF1914EA630060353C /* OKLRPartialNephrectomyVC.m */; };
@@ -284,12 +288,20 @@
 		0086296F190EABCD006EBA9C /* RangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeSlider.m; sourceTree = "<group>"; };
 		0087E99B191F6C8D003C3848 /* OKSurgicalLogsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSurgicalLogsVC.h; sourceTree = "<group>"; };
 		0087E99C191F6C8D003C3848 /* OKSurgicalLogsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgicalLogsVC.m; sourceTree = "<group>"; };
-		0087E99E191F6CB4003C3848 /* OKSLProcedureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSLProcedureCell.h; sourceTree = "<group>"; };
-		0087E99F191F6CB4003C3848 /* OKSLProcedureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSLProcedureCell.m; sourceTree = "<group>"; };
 		0087E9A1191F6CC7003C3848 /* OKSLListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSLListCell.h; sourceTree = "<group>"; };
 		0087E9A2191F6CC7003C3848 /* OKSLListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSLListCell.m; sourceTree = "<group>"; };
 		0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSendFaxManager.h; sourceTree = "<group>"; };
 		0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSendFaxManager.m; sourceTree = "<group>"; };
+		00897C30192104CA007C4452 /* OKLRPNSurgeonDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKLRPNSurgeonDataModel.h; sourceTree = "<group>"; };
+		00897C31192104CA007C4452 /* OKLRPNSurgeonDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKLRPNSurgeonDataModel.m; sourceTree = "<group>"; };
+		00897C3D19221CB1007C4452 /* OKPDFGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPDFGenerator.h; sourceTree = "<group>"; };
+		00897C3E19221CB1007C4452 /* OKPDFGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPDFGenerator.m; sourceTree = "<group>"; };
+		00897C4019226A90007C4452 /* OKDetailSummaryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDetailSummaryVC.h; sourceTree = "<group>"; };
+		00897C4119226A90007C4452 /* OKDetailSummaryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDetailSummaryVC.m; sourceTree = "<group>"; };
+		00897C4419226AE6007C4452 /* OKDetailSumaryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDetailSumaryCell.h; sourceTree = "<group>"; };
+		00897C4519226AE6007C4452 /* OKDetailSumaryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDetailSumaryCell.m; sourceTree = "<group>"; };
+		008B26EF1920DFEE00B0AF9E /* OKSurgicalLogsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSurgicalLogsManager.h; sourceTree = "<group>"; };
+		008B26F01920DFEE00B0AF9E /* OKSurgicalLogsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgicalLogsManager.m; sourceTree = "<group>"; };
 		008BCE9319178B1C00E1D18D /* OKProcedureTemplateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateModel.h; sourceTree = "<group>"; };
 		008BCE9419178B1C00E1D18D /* OKProcedureTemplateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureTemplateModel.m; sourceTree = "<group>"; };
 		008BCE9619179D6F00E1D18D /* OKProcedureTemplateVariablesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureTemplateVariablesModel.h; sourceTree = "<group>"; };
@@ -589,6 +601,7 @@
 		0060D83918FD2C2D00AFC7B4 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				00897C3C19221C07007C4452 /* PDF Creator */,
 				0086296B190EAB9D006EBA9C /* Custom Slider */,
 				0060D83A18FD35D200AFC7B4 /* OKBottomTabBarView.h */,
 				0060D83B18FD35D200AFC7B4 /* OKBottomTabBarView.m */,
@@ -628,6 +641,7 @@
 				189F4516190A8DCC00372C55 /* OKContactModel.m */,
 				0065F9DA19191058003344A3 /* Procedure templates */,
 				0086295D190E31A9006EBA9C /* Procedures */,
+				00897C33192104D3007C4452 /* Surgeon Details */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -742,12 +756,40 @@
 			children = (
 				0087E99B191F6C8D003C3848 /* OKSurgicalLogsVC.h */,
 				0087E99C191F6C8D003C3848 /* OKSurgicalLogsVC.m */,
-				0087E99E191F6CB4003C3848 /* OKSLProcedureCell.h */,
-				0087E99F191F6CB4003C3848 /* OKSLProcedureCell.m */,
 				0087E9A1191F6CC7003C3848 /* OKSLListCell.h */,
 				0087E9A2191F6CC7003C3848 /* OKSLListCell.m */,
+				00897C4319226AB4007C4452 /* summary */,
 			);
 			name = "Surgical Logs";
+			sourceTree = "<group>";
+		};
+		00897C33192104D3007C4452 /* Surgeon Details */ = {
+			isa = PBXGroup;
+			children = (
+				00897C30192104CA007C4452 /* OKLRPNSurgeonDataModel.h */,
+				00897C31192104CA007C4452 /* OKLRPNSurgeonDataModel.m */,
+			);
+			name = "Surgeon Details";
+			sourceTree = "<group>";
+		};
+		00897C3C19221C07007C4452 /* PDF Creator */ = {
+			isa = PBXGroup;
+			children = (
+				00897C3D19221CB1007C4452 /* OKPDFGenerator.h */,
+				00897C3E19221CB1007C4452 /* OKPDFGenerator.m */,
+			);
+			name = "PDF Creator";
+			sourceTree = "<group>";
+		};
+		00897C4319226AB4007C4452 /* summary */ = {
+			isa = PBXGroup;
+			children = (
+				00897C4019226A90007C4452 /* OKDetailSummaryVC.h */,
+				00897C4119226A90007C4452 /* OKDetailSummaryVC.m */,
+				00897C4419226AE6007C4452 /* OKDetailSumaryCell.h */,
+				00897C4519226AE6007C4452 /* OKDetailSumaryCell.m */,
+			);
+			name = summary;
 			sourceTree = "<group>";
 		};
 		008BE8CD1914E8BC0060353C /* LRPN */ = {
@@ -1417,6 +1459,8 @@
 				1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */,
 				0088B5E3191CBEDA00991E55 /* OKSendFaxManager.h */,
 				0088B5E4191CBEDA00991E55 /* OKSendFaxManager.m */,
+				008B26EF1920DFEE00B0AF9E /* OKSurgicalLogsManager.h */,
+				008B26F01920DFEE00B0AF9E /* OKSurgicalLogsManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1696,10 +1740,12 @@
 				E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */,
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
 				AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */,
+				00897C32192104CA007C4452 /* OKLRPNSurgeonDataModel.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */,
 				AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
+				00897C3F19221CB1007C4452 /* OKPDFGenerator.m in Sources */,
 				ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */,
 				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
@@ -1722,9 +1768,11 @@
 				E1DE706B1917D76B0088913C /* OKDatePicker.m in Sources */,
 				00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */,
 				00C3DBB8191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m in Sources */,
+				00897C4219226A90007C4452 /* OKDetailSummaryVC.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
 				18D6C69A1920FD9100688992 /* OKAccessConfirmViewController.m in Sources */,
+				00897C4619226AE6007C4452 /* OKDetailSumaryCell.m in Sources */,
 				00862956190D02F2006EBA9C /* OKProcedureDatePicker.m in Sources */,
 				ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */,
 				0060D83618FD2C1500AFC7B4 /* OKConstants.m in Sources */,
@@ -1736,7 +1784,6 @@
 				ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */,
 				AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */,
 				AC86E67A191A1236001DDEFF /* OKIndicationTemplateViewController.m in Sources */,
-				0087E9A0191F6CB4003C3848 /* OKSLProcedureCell.m in Sources */,
 				0065E87D190026900016B94F /* OKInfoViewController.m in Sources */,
 				AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */,
 				0092FD3A190A91AD00499F7E /* OKProcedureCell.m in Sources */,
@@ -1749,6 +1796,7 @@
 				00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
 				008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */,
+				008B26F11920DFEE00B0AF9E /* OKSurgicalLogsManager.m in Sources */,
 				00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,

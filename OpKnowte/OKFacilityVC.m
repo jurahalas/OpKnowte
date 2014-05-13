@@ -49,18 +49,6 @@
    
     [self addRightButtonToNavbar];
     
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    
-    OKContactManager *contactManager = [OKContactManager instance];
-    [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:@"4" handler: ^(NSString* error, NSMutableArray* array){
-        [[OKLoadingViewController instance] hide];
-
-        if (!error) {
-            self.contactsArray = array;
-            [self.facilityTableView reloadData];
-        }
-        NSLog(@"Error - %@", error);
-    }];
 }
 
 
