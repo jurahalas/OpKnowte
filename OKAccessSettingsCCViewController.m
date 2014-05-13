@@ -21,12 +21,13 @@
 
 @property(strong, nonatomic) NSArray *contactsArray;
 @property(strong, nonatomic) NSString *selectedContactID;
+@property(strong, nonatomic) NSMutableArray * containsWithAccesArray;
 
 
 @end
 
 @implementation OKAccessSettingsCCViewController
-@synthesize contactsArray,selectedContactID,accessSettingsTableView,accessArray;
+@synthesize contactsArray,selectedContactID,accessSettingsTableView,accessArray,containsWithAccesArray;
 
 - (void)viewDidLoad
 {
@@ -40,6 +41,7 @@
     accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
     
     _choosedContacts = [[NSMutableArray alloc]init];
+    containsWithAccesArray = [[NSMutableArray alloc]init];
     
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
@@ -152,7 +154,14 @@
 }
 
 -(void)addContactToList:(OKContactModel *)contact{
+    for (NSDictionary * chosedM in accessArray) {
+        [containsWithAccesArray addObject:[chosedM valueForKeyPath:@"emailAddress"]];
+    }
+    
+    NSString * emails = [containsWithAccesArray componentsJoinedByString:@","];
+    
     [_choosedContacts addObject:contact.contactEmail];
+    [_choosedContacts addObject:emails];
 }
 
 -(void)deleteContactFromList:(OKContactModel *)contact{
@@ -179,14 +188,11 @@
     [cell setCellBGImageLight:indexPath.row];
     cell.delegate = self;
     
-//    for (int i = 0; i<=[accessArray count]; i++) {
-//    for(OKContactModel *model in [accessArray valueForKey:@"contact ID"]){
-//            [cell setCellButtonBGImageWithGreenMinusIcon:[contact.identifier isEqualToString:]];}
-//    }
-    
     for (NSDictionary * chosedM in accessArray) {
         if ([[chosedM valueForKey:@"contactID"] isEqualToString:contact.identifier]) {
+            
             [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+
         }
     }
     
