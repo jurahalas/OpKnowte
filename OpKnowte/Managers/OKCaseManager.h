@@ -7,8 +7,7 @@
 //
 
 #import "OKBaseManager.h"
-
-@class OKCase;
+#import "OKCase.h"
 
 @interface OKCaseManager : OKBaseManager
 
@@ -17,7 +16,5 @@
 + (OKCaseManager *)instance;
 
 -(void)getCaseListForProcedureWithID:(NSString*)procID surgeonID:(NSString*)surgeonID handler:(void(^)(NSString *errorMsg, NSArray *cases))handler;
-
-- (void)getOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, id responseJSON ))handler;
 
 @end

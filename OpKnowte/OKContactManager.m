@@ -11,19 +11,8 @@
 
 @implementation OKContactManager
 
-+ (OKContactManager *)instance {
-    
-    static dispatch_once_t pred;
-    static OKContactManager *manager = nil;
-    
-    dispatch_once(&pred, ^{ manager = [[self alloc] init]; });
-    
-    return manager;
-    
-}
 
-
--(void)addContactWithName:(NSString *)name roleID:(NSString *)roleID email:(NSString *)email steetAddress:(NSString *)streetAddress city:(NSString *)city state:(NSString *)state zip:(NSString *)zip country:(NSString *)country fax:(NSString *)fax updatedBy:(NSString *)updatedBy handler:(void(^)(NSString *errorMsg))handler
+-(void)addContactWithName:(NSString *)name roleID:(NSString *)roleID email:(NSString *)email steetAddress:(NSString *)streetAddress city:(NSString *)city state:(NSString *)state zip:(NSString *)zip country:(NSString *)country fax:(NSString *)fax updatedBy:(NSString *)updatedBy handler:(void(^)(NSString *errorMsg, id responseJSON))handler
 {
 
     NSDictionary *params = @{
@@ -40,24 +29,23 @@
                              };
     
     [self requestWithMethod:@"POST" path:@"addContact" params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
+        handler([self getErrorMessageFromJSON:json error:error], json);
         NSLog(@"%@",json);
-        
+    }];
+}
+
+
+-(void)deleteContactWithContactID:(NSString *)contactID handler:(void(^)(NSString *errorMsg, id responseJSON))handler
+{
+    NSDictionary *params = @{@"id":contactID};
+    [self requestWithMethod:@"DELETE" path:@"deleteContact" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error],json);
+        NSLog(@"%@",json);
     }];
     
 }
 
--(void)deleteContactWithContactID:(NSString *)contactID handler:(void(^)(NSString *errorMsg))handler {
-    
-    NSDictionary *params = @{};
-    NSString *url = [NSString stringWithFormat:@"deleteContact?id=%@", contactID];
-    
-    [self requestWithMethod:@"DELETE" path:url params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
-        NSLog(@"%@",json);
-    }];
-    
-}
+
 -(void)getContactsByUserID:(NSString *)userID roleID:(NSString *)roleID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler {
     
     NSDictionary *params = nil;
@@ -73,9 +61,39 @@
             [contactsArray addObject:contactModel];
         }
         handler([self getErrorMessageFromJSON:json error:error], contactsArray);
-
-
     }];
-    
 }
+
+
++(void)doContactRequestWithRoleID:(NSString *)roleID handler:(void(^)(NSString *errorMsg, id responseJSON))handler
+{
+    [self doContactRequestWithRoleID:roleID handler:handler];
+}
+
+
++(void)getContactSettingsWithHandler:(void(^)(NSString *errorMsg, id responseJSON))handler
+{
+    [[OKContactManager instance]getContactSettingsWithHandler:handler];
+}
+
+
+-(void)getContactSettingsWithHandler:(void(^)(NSString *errorMsg, id responseJSON))handler
+{
+    NSDictionary *params = @{@"userID":[OKUserManager instance].currentUser.userID};
+    [self requestWithMethod:@"GET" path:GET_CONTACT_SETTINGS params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error],json);
+    }];
+}
+
+
+-(void)doContactRequestWithRoleID:(NSString *)roleID handler:(void(^)(NSString *errorMsg, id responseJSON))handler
+{
+    NSDictionary *params = @{@"userID":[OKUserManager instance].currentUser.userID,
+                             @"roleID":roleID};
+    [self requestWithMethod:@"GET" path:GET_CONTACT_LIST params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error],json);
+    }];
+}
+
+
 @end

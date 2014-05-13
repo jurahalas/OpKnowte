@@ -96,10 +96,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     OKProcedureModel *procedure = self.procArray[indexPath.row];
     
-    [OKProceduresManager instance].selectedProcedre = procedure;
+    [OKProceduresManager instance].selectedProcedure = procedure;
     
     [[OKLoadingViewController instance]showWithText:@"Loading"];
-    [[OKUserManager instance] getUserAccess:procedure.procedureID handler:^(NSString *errorMsg) {
+    [[OKUserManager instance] getUserAccess:procedure.procedureID handler:^(NSString *errorMsg, id json) {
         [[OKLoadingViewController instance]hide];
         [self performSegueWithIdentifier:@"selectCase" sender:procedure];
     }];

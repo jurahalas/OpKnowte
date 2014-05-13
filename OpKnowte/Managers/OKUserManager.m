@@ -111,12 +111,12 @@
 }
 
 
--(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg))handler
+-(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg, id responseJSON))handler
 {
     NSDictionary *params = @{@"emailId":[OKUserManager instance].currentUser.email,
                              @"procedureID":procedureID};
     [self requestWithMethod:@"GET" path:@"getUsersAccess" params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
+        handler([self getErrorMessageFromJSON:json error:error], json);
     }];
 }
 

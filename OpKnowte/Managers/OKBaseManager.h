@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "OKApiClient.h"
 #import <AFJSONRequestOperation.h>
+#import "CONSTANTS.h"
 
 @interface OKBaseManager : NSObject
 
 -(NSString*)getErrorMessageFromJSON:(id)json error:(NSError*)error;
 
 -(void)requestWithMethod:(NSString*)method path:(NSString*)path params:(NSDictionary*)params handler:(void(^)(NSError *error, id json))handler;
+
++ (instancetype) instance;
 
 @end

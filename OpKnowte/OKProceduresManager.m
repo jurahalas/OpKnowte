@@ -8,16 +8,23 @@
 
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
+#import "OKUserManager.h"
+#import "OKCaseManager.h"
 
 @implementation OKProceduresManager
 
-
-+ (OKProceduresManager *)instance
++ (void)doProceduresRequest:(void(^)(NSString *errorMsg, id responseJSON))handler
 {
-    static dispatch_once_t pred;
-    static OKProceduresManager *manager = nil;
-    dispatch_once(&pred, ^{ manager = [[self alloc] init]; });
-    return manager;
+    [[OKProceduresManager instance]doProceduresRequest:handler];
+}
+
+
+- (void)doProceduresRequest:(void(^)(NSString *errorMsg, id responseJSON))handler
+{
+    [self requestWithMethod:@"GET" path:GET_ALL_PROCEDURES params:nil handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error],json);
+    }];
+
 }
 
 
@@ -37,10 +44,6 @@
 }
 
 
-- (void)getOngoingClinicalDetailsWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresDict ) )handler
-{
-    
-    
-}
+
 
 @end

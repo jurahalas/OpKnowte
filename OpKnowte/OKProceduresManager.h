@@ -8,14 +8,14 @@
 
 #import "OKBaseManager.h"
 
-@class OKProcedureModel;
+#import "OKProcedureModel.h"
 
 @interface OKProceduresManager : OKBaseManager
 
 @property (nonatomic, strong) OKProcedureModel *selectedProcedure;
 
-+ (OKProceduresManager *)instance;
-
 - (void)getAllProceduresWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresDict ) )handler;
+
++ (void)doProceduresRequest:(void(^)(NSString *errorMsg, id responseJSON))handler;
 
 @end

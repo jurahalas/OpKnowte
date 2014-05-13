@@ -37,6 +37,7 @@
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) BOOL isComingFromSignUp;
 
 - (UIViewController*)topViewController;
 

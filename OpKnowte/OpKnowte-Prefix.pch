@@ -6,13 +6,18 @@
 
 #import <Availability.h>
 
+#define DELEGATE ((OKAppDelegate *)[[UIApplication sharedApplication] delegate])
+
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
 
 #ifdef __OBJC__
+    #import "OKAppDelegate.h"
+    #import "UCUtility.h"
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "NSDate+NSString.h"
     #import "NSString+NSDate.h"
+    #import "UCLRPNModel.h"
 #endif

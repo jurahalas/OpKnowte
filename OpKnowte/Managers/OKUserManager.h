@@ -13,9 +13,6 @@
 
 @property (nonatomic, strong) OKUserModel* currentUser;
 
-+(OKUserManager*)instance;
-
-
 -(void)signinWithEmail:(NSString*)email password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
 
 - (void)signupWithFirstName:(NSString*)firstName lastName:(NSString*)lastName userEmail:(NSString*)email password:(NSString*)password userTitle:(NSString*)title handler:(void(^)(NSString *errorMsg))handler;
@@ -24,7 +21,7 @@
 
 -(void)changePasswordWithUserID:(NSString*)userID password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
 
--(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg))handler;
+-(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg, id responseJSON))handler;
 
 -(void)logout;
 

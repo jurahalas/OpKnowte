@@ -45,4 +45,18 @@
     
 }
 
+
++ (instancetype) instance
+{
+    static id sharedInstance = nil;
+    
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    
+    return sharedInstance;
+}
+
+
 @end

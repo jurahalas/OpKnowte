@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) OKTimePointModel *selectedTimePoint;
 
-+ (OKTimePointsManager *)instance;
++ (void)getAllTimePoints:(void(^)(NSString *errorMsg, id responseJSON))handler;
 
 - (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler;
 
