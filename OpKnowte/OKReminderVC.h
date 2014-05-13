@@ -7,9 +7,11 @@
 //
 
 #import "OKBaseViewController.h"
+#import "OKProceduresManager.h"
 
 @interface OKReminderVC : OKBaseViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(strong, nonatomic) NSString *procID;
+@property(strong, nonatomic) NSString *detailID;
 
 @end

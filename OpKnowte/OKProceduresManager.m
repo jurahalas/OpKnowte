@@ -62,6 +62,25 @@
     
 }
 
+-(void)getReminderSettingsWithUserID:(NSString*)userID andProcedureID:(NSString*)procID handler:(void (^)(NSString *errorMsg, NSMutableArray *reminderSettings))handler
+{
+    NSDictionary *params = @{
+                             @"procedureID":procID,
+                             @"userID": userID,
+                             };
+    NSString *url = [NSString stringWithFormat:@"getReminderSetting"];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json){
+        NSLog(@"%@",json);
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            
+        }
+        handler(errorMsg, json);
+    }];
+}
+
 
 - (void) getProcedureTemplateByUserID:(NSString*)userID ProcedureID:(NSString*)procedureID handler:(void(^)(NSString *errorMsg, NSDictionary *template))handler
 {

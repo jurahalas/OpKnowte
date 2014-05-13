@@ -12,5 +12,6 @@
 
 @property (nonatomic, retain) NSString *patientName;
 @property (nonatomic, retain) NSString *dateOfService;
+@property (nonatomic, retain) NSString *detailID;
 
 @end

@@ -78,18 +78,38 @@
         cell = [[OKSelectCaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     OKCase *caseModel = (OKCase*)self.casesArray[indexPath.row];
+    _detailID = caseModel.detailID;
     cell.caseName.text = caseModel.patientName;
     cell.dataLable.text = caseModel.dateOfService;
     [cell setCellBGImageLight:indexPath.row];
+    NSLog(@"%@", _detailID);
     return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"fromCasesToReminder" sender:[NSString stringWithFormat:@"%@", _procID]];
+
+
+//    [request setPostValue:[defaults objectForKey:UD_USERID] forKey:@"userID"];
+//    [request setPostValue:procedureID forKey:@"procedureID"];
+//    [request setPostValue:days forKey:@"noOfDays"];
+//    [request setPostValue:list forKey:@"contactIds"];
+//    [request setPostValue:patientID forKey:@"patientID"];
 }
 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromCasesToReminder"]){
+        OKSelectCaseViewController *contactVC = (OKSelectCaseViewController*)segue.destinationViewController;
+        contactVC.procID = _procID;
+        contactVC.detailID = _detailID;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

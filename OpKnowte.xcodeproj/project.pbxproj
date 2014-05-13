@@ -183,6 +183,8 @@
 		18D6C6871920B18100688992 /* OKAccessConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6851920B18100688992 /* OKAccessConfirmViewController.m */; };
 		18D6C68B1920C15100688992 /* OKReminderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C68A1920C15100688992 /* OKReminderVC.m */; };
 		18D6C68E1920F12900688992 /* OKCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C68D1920F12900688992 /* OKCase.m */; };
+		18D6C6A5192233E900688992 /* OKSelectContactsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6A4192233E900688992 /* OKSelectContactsVC.m */; };
+		18D6C6A81922349400688992 /* OKSelectContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6A71922349400688992 /* OKSelectContactsCell.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
@@ -491,6 +493,10 @@
 		18D6C68A1920C15100688992 /* OKReminderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKReminderVC.m; sourceTree = "<group>"; };
 		18D6C68C1920F12900688992 /* OKCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCase.h; sourceTree = "<group>"; };
 		18D6C68D1920F12900688992 /* OKCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCase.m; sourceTree = "<group>"; };
+		18D6C6A3192233E900688992 /* OKSelectContactsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectContactsVC.h; sourceTree = "<group>"; };
+		18D6C6A4192233E900688992 /* OKSelectContactsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactsVC.m; sourceTree = "<group>"; };
+		18D6C6A61922349400688992 /* OKSelectContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectContactsCell.h; sourceTree = "<group>"; };
+		18D6C6A71922349400688992 /* OKSelectContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactsCell.m; sourceTree = "<group>"; };
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
 		AC07E7C5190E411600892B99 /* segmentControllBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentControllBG.png; sourceTree = "<group>"; };
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
@@ -1149,7 +1155,7 @@
 		18D6C6881920C12600688992 /* Reminder Settings */ = {
 			isa = PBXGroup;
 			children = (
-				18D6C69B1920FFD600688992 /* New Group */,
+				18D6C69C19222FE900688992 /* Select Contacts */,
 				ACA0336B190A42B500D4A144 /* Select Case View */,
 				18D6C6891920C15100688992 /* OKReminderVC.h */,
 				18D6C68A1920C15100688992 /* OKReminderVC.m */,
@@ -1157,11 +1163,15 @@
 			name = "Reminder Settings";
 			sourceTree = "<group>";
 		};
-		18D6C69B1920FFD600688992 /* New Group */ = {
+		18D6C69C19222FE900688992 /* Select Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				18D6C6A3192233E900688992 /* OKSelectContactsVC.h */,
+				18D6C6A4192233E900688992 /* OKSelectContactsVC.m */,
+				18D6C6A61922349400688992 /* OKSelectContactsCell.h */,
+				18D6C6A71922349400688992 /* OKSelectContactsCell.m */,
 			);
-			name = "New Group";
+			name = "Select Contacts";
 			sourceTree = "<group>";
 		};
 		18F4471F1906594E00C37F3D /* Dashboard View */ = {
@@ -1716,6 +1726,7 @@
 				185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */,
 				189F4517190A8DCC00372C55 /* OKContactModel.m in Sources */,
 				AC161A6B190A7A5700D8572D /* OKOperatieNoteViewController.m in Sources */,
+				18D6C6A5192233E900688992 /* OKSelectContactsVC.m in Sources */,
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */,
 				008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */,
@@ -1791,6 +1802,7 @@
 				18949E9D191A789500B4B38C /* OKSelectProcVC.m in Sources */,
 				1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */,
 				18D6C6861920B18100688992 /* OKAccessConfirmTableViewCell.m in Sources */,
+				18D6C6A81922349400688992 /* OKSelectContactsCell.m in Sources */,
 				ACB01CE61913A11800EA661E /* OKChangePasswordViewController.m in Sources */,
 				ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */,
 				00A53B781901573F00BEF07D /* OKProcedureDetailSummaryCell.m in Sources */,

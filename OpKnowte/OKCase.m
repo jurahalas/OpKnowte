@@ -14,6 +14,8 @@
 {
     _patientName = [dictionary objectForKey:@"Patient_Name"] ;
     _dateOfService = [dictionary objectForKey:@"DateOfService"];
+    _detailID = [dictionary objectForKey:@"DetailID"];
+    
 }
 
 
