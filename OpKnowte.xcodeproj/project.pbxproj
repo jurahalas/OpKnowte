@@ -185,6 +185,8 @@
 		18D6C68E1920F12900688992 /* OKCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C68D1920F12900688992 /* OKCase.m */; };
 		18D6C6A5192233E900688992 /* OKSelectContactsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6A4192233E900688992 /* OKSelectContactsVC.m */; };
 		18D6C6A81922349400688992 /* OKSelectContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6A71922349400688992 /* OKSelectContactsCell.m */; };
+		18D6C6AB192256B000688992 /* OKSelectContactTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6AA192256B000688992 /* OKSelectContactTypeVC.m */; };
+		18D6C6AF192256FF00688992 /* OKSelectContactTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6AE192256FF00688992 /* OKSelectContactTypeCell.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
@@ -497,6 +499,10 @@
 		18D6C6A4192233E900688992 /* OKSelectContactsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactsVC.m; sourceTree = "<group>"; };
 		18D6C6A61922349400688992 /* OKSelectContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectContactsCell.h; sourceTree = "<group>"; };
 		18D6C6A71922349400688992 /* OKSelectContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactsCell.m; sourceTree = "<group>"; };
+		18D6C6A9192256B000688992 /* OKSelectContactTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectContactTypeVC.h; sourceTree = "<group>"; };
+		18D6C6AA192256B000688992 /* OKSelectContactTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactTypeVC.m; sourceTree = "<group>"; };
+		18D6C6AD192256FF00688992 /* OKSelectContactTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectContactTypeCell.h; sourceTree = "<group>"; };
+		18D6C6AE192256FF00688992 /* OKSelectContactTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactTypeCell.m; sourceTree = "<group>"; };
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
 		AC07E7C5190E411600892B99 /* segmentControllBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentControllBG.png; sourceTree = "<group>"; };
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
@@ -1155,6 +1161,7 @@
 		18D6C6881920C12600688992 /* Reminder Settings */ = {
 			isa = PBXGroup;
 			children = (
+				18D6C6AC192256B700688992 /* Select Contact Type */,
 				18D6C69C19222FE900688992 /* Select Contacts */,
 				ACA0336B190A42B500D4A144 /* Select Case View */,
 				18D6C6891920C15100688992 /* OKReminderVC.h */,
@@ -1172,6 +1179,17 @@
 				18D6C6A71922349400688992 /* OKSelectContactsCell.m */,
 			);
 			name = "Select Contacts";
+			sourceTree = "<group>";
+		};
+		18D6C6AC192256B700688992 /* Select Contact Type */ = {
+			isa = PBXGroup;
+			children = (
+				18D6C6A9192256B000688992 /* OKSelectContactTypeVC.h */,
+				18D6C6AA192256B000688992 /* OKSelectContactTypeVC.m */,
+				18D6C6AD192256FF00688992 /* OKSelectContactTypeCell.h */,
+				18D6C6AE192256FF00688992 /* OKSelectContactTypeCell.m */,
+			);
+			name = "Select Contact Type";
 			sourceTree = "<group>";
 		};
 		18F4471F1906594E00C37F3D /* Dashboard View */ = {
@@ -1758,6 +1776,7 @@
 				008BE8D41914EB2C0060353C /* OKLRPartialNephrectomyModel.m in Sources */,
 				E1DE706B1917D76B0088913C /* OKDatePicker.m in Sources */,
 				00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */,
+				18D6C6AF192256FF00688992 /* OKSelectContactTypeCell.m in Sources */,
 				00C3DBB8191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
@@ -1784,6 +1803,7 @@
 				0045ED771909408900D93914 /* OKProcedureTextField.m in Sources */,
 				007A0CA218F54A1E00D183F1 /* OKHomeScreenViewController.m in Sources */,
 				0065F9DE19193605003344A3 /* OKPenileProsthesisVC.m in Sources */,
+				18D6C6AB192256B000688992 /* OKSelectContactTypeVC.m in Sources */,
 				00862959190D0885006EBA9C /* OKProcedurePicker.m in Sources */,
 				00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */,
 				008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */,

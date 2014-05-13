@@ -2062,18 +2062,6 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="482"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WMI-h8-HNC">
-                                    <rect key="frame" x="0.0" y="66" width="320" height="231"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    <state key="normal" title="Button">
-                                        <color key="titleColor" red="1" green="0.071478074599999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <segue destination="zNm-fe-JEM" kind="push" id="BrS-MG-6Kv"/>
-                                    </connections>
-                                </button>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dashboardCell" id="4ty-KE-6Uq" customClass="OKDashboardTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -2981,7 +2969,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="N4X-6t-PYs" kind="push" id="ufK-i8-Vi2"/>
+                                    <segue destination="JHH-PD-CYy" kind="push" id="9Vm-fe-BqP"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down.png" id="aEP-uT-8xf">
@@ -3078,6 +3066,65 @@
             </objects>
             <point key="canvasLocation" x="3992" y="-646"/>
         </scene>
+        <!--Select Contact TypeVC - Contacts-->
+        <scene sceneID="6WC-eE-RWa">
+            <objects>
+                <viewController id="JHH-PD-CYy" customClass="OKSelectContactTypeVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kio-9I-9Mf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="PNT-hT-fU8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="428"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contactsType" rowHeight="60" id="ihQ-3J-oRO" customClass="OKSelectContactTypeCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ihQ-3J-oRO" id="ypS-ll-Vcg">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vcf-ty-8sv">
+                                                    <rect key="frame" x="20" y="16" width="235" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="Sj3-J3-tfo">
+                                                    <rect key="frame" x="292" y="16" width="22" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contactTypeLabel" destination="Vcf-ty-8sv" id="IRe-bU-6gz"/>
+                                            <outlet property="rightIcon" destination="Sj3-J3-tfo" id="NY3-lj-s5e"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Contacts" id="3Gb-xm-gc6">
+                        <barButtonItem key="leftBarButtonItem" image="back.png" id="zaM-JF-1VS">
+                            <connections>
+                                <action selector="backButton:" destination="JHH-PD-CYy" id="QQH-kn-U0m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="selectTypeTable" destination="PNT-hT-fU8" id="qmF-e2-id5"/>
+                        <segue destination="N4X-6t-PYs" kind="push" identifier="fromContactTypeToSelectContacts" id="Ll4-8u-wVs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i8l-c8-jfQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4394" y="-646"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
@@ -3106,7 +3153,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="aKz-2x-G8K"/>
         <segue reference="dvt-ir-lar"/>
-        <segue reference="9We-sb-8ZF"/>
         <segue reference="DdX-qd-zVS"/>
         <segue reference="dCD-SH-NGU"/>
         <segue reference="goQ-lN-Lsa"/>

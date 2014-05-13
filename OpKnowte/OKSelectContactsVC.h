@@ -12,7 +12,7 @@
 
 @interface OKSelectContactsVC : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (strong, nonatomic) NSDictionary *dataDict;
+@property(strong, nonatomic) NSString *contactID;
 
 
 @end

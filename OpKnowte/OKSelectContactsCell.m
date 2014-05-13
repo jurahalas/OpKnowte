@@ -37,6 +37,7 @@
     self.backgroundView = cellBG;
 }
 
+
 -(void) setCellUserIntaractionDisabled
 {
     [self setUserInteractionEnabled:NO];
@@ -55,11 +56,16 @@
     if (!_buttonIsTapped) {
         [self setCellButtonBGImageWithGreenMinusIcon:YES];
         NSLog(@"ololol");
+        OKContactModel *contact = [[OKContactModel alloc] init];
+        NSLog(@"%@", contact.identifier);
+        
     } else {
         [self setCellButtonBGImageWithGreenMinusIcon:NO];
         NSLog(@"tapped");
     }
 }
+
+
 -(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
     if (minusIcon) {
         [_contactButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];

@@ -16,7 +16,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *updateSettings;
 @property (strong, nonatomic) IBOutlet UIButton *sendReminderTo;
 @property (strong, nonatomic) NSArray *pickerData;
-@property(strong, nonatomic) NSString *var;
 @property(strong, nonatomic) NSString *noOfDays;
 
 @end
@@ -99,10 +98,9 @@
 
 - (IBAction)updateButton:(id)sender
 {
-    _var = self.daysPickerTextField.text;
-    NSLog(@"%@, %@, %@-----var", _procID, _detailID, _var);
+    _noOfDays = self.daysPickerTextField.text;
+    NSLog(@" procID----%@,detailid--- %@, %@-----noofdays, userid------%@", _procID, _detailID, _noOfDays, [OKUserManager instance].currentUser.identifier);
     
-    NSLog(@"stststsst %@", _noOfDays);
 }
 
 
