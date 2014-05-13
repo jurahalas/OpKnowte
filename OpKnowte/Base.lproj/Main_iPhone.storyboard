@@ -65,7 +65,6 @@
                                 </state>
                                 <connections>
                                     <action selector="registerButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b4u-Hv-c1r"/>
-                                    <segue destination="FOF-g6-PJf" kind="push" id="adK-uU-XoT"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" id="drR-2T-caD">
@@ -88,6 +87,7 @@
                         <outlet property="registerButton" destination="k9t-Pa-N8e" id="Lgc-NN-5vH"/>
                         <segue destination="5mR-vJ-NJu" kind="push" identifier="loginSegue" id="ytp-fp-EJd"/>
                         <segue destination="1sY-Xu-fV5" kind="push" identifier="dashboardSegue" id="aul-Pn-LEj"/>
+                        <segue destination="FOF-g6-PJf" kind="push" identifier="fromLoginViewToRegistration" id="pem-ZD-Ign"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -2488,7 +2488,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="461.00000000000006" width="320" height="35"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3012,12 +3012,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="aul-Pn-LEj"/>
         <segue reference="goQ-lN-Lsa"/>
-        <segue reference="mc4-ob-XxU"/>
-        <segue reference="QTQ-7p-lD5"/>
+        <segue reference="ytp-fp-EJd"/>
         <segue reference="v3u-oa-dRl"/>
         <segue reference="aL2-xa-szT"/>
         <segue reference="NUC-dJ-uGW"/>
-        <segue reference="dCD-SH-NGU"/>
+        <segue reference="QTQ-7p-lD5"/>
     </inferredMetricsTieBreakers>
 </document>

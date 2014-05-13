@@ -155,7 +155,13 @@
 
 - (IBAction)registerButton:(id)sender
 {
+    
 
+    [self.view endEditing:YES];
+    if (_animatedKeyboard) {
+        [self animateTextField: _passwordTextField up: NO];
+    }
+    [self performSegueWithIdentifier:@"fromLoginViewToRegistration" sender:nil];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
