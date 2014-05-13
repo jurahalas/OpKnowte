@@ -24,7 +24,6 @@
     _contactZip = [dictionary valueForKey:@"zip"];
     _contactCountry = [dictionary valueForKey:@"country"];
     _contactFax = [dictionary valueForKey:@"fax"];
-    _Id = [dictionary valueForKey:@"Id"];
 }
 
 

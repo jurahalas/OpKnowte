@@ -8,7 +8,6 @@
 
 #import "OKAccessSettingsViewController.h"
 #import "OKAccessSettingsTableViewCell.h"
-#import "OKAccessSettingsCCViewController.h"
 #import "OKInstituteVC.h"
 #import "OKAccessSettingManager.h"
 #import "OKContactManager.h"
@@ -45,6 +44,7 @@
     
     selectedContacts = [[NSMutableArray alloc]init];
     choosedContacts = [[NSMutableArray alloc]init];
+    accessArray = [[NSMutableArray alloc] init];
     
     userID = [OKUserManager instance].currentUser.identifier;
     
@@ -60,34 +60,22 @@
     }];
 }
 - (IBAction)backButton:(id)sender
-{
+{    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 - (IBAction)updateSettingsButton:(id)sender
 {
-    
-    NSLog(@"%@",choosedContacts);
-    
-//    NSString *list = [[NSString alloc] init];
-//    
-//    for (int i = 0; i<self.selectedContacts.count; i++) {
-//        
-//        OKContactModel *model = [self.selectedContacts objectAtIndex:i];
-//        list = [list stringByAppendingFormat:@"%@",model.contactEmail];
-//        
-//        if (i != self.selectedContacts.count-1) {
-//            list = [list stringByAppendingString:@","];
-//        }
-//    }
-//    
-//    NSLog(@"%@",list);
-//    
-//    OKAccessSettingManager * aM = [OKAccessSettingManager instance];
-//    [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withList:list handler:^(NSString *errorMsg, NSDictionary *json) {
-//        NSLog(@"Error - %@", errorMsg);
-//    }];
+    NSString * contactEmail = [choosedContacts componentsJoinedByString:@","];
+    NSLog(@"%@",contactEmail);
+
+    if ([accessArray valueForKey:@"emailAddress"]!=[choosedContacts valueForKey:@"emailAddress"]) {
+        
+        OKAccessSettingManager *aM = [OKAccessSettingManager instance];
+        [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactEmail:contactEmail handler:^(NSString *errorMsg, NSDictionary *json) {
+            NSLog(@"Error - %@", errorMsg);}];
+    }
     
 }
 
@@ -99,12 +87,14 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"choseContact"]){
-        OKInstituteVC *vc = (OKInstituteVC*)segue.destinationViewController;
+        OKAccessSettingsCCViewController *vc = (OKAccessSettingsCCViewController*)segue.destinationViewController;
         vc.contactID = [self.dataDict valueForKey:sender];
         vc.cameFromVC = @"Access Settings View Controller";
+        vc.accessArray = [[NSMutableArray alloc]init];
+        vc.accessArray = self.accessArray;
+        vc.delegate = self;
     }
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    return self.dataDict.allKeys.count;
@@ -135,6 +125,15 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"choseContact" sender:self.dataDict.allKeys[indexPath.row]];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    OKAccessSettingsCCViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AS"];
+    vc.accessArray = [self accessArray];
+}
+
+-(void)updateWithArray:(NSMutableArray *)array
+{
+    choosedContacts = array;
 }
 
 @end

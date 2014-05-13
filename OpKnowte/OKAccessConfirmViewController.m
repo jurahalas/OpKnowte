@@ -74,14 +74,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
         OKAccessSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AS"];
         vc.procID = [self procID];
         [self.navigationController pushViewController:vc animated:YES];
-
-    
 }
 
 

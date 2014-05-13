@@ -20,18 +20,18 @@
 
 #pragma mark - Update Access Settings
 
-- (void)updateAccessSettingsWithUserID:(NSString *)userID withProcedureID:(NSString *)procedureID withList:(NSString *)list handler:(void(^)(NSString *errorMsg, NSDictionary * json))handler {
+- (void)updateAccessSettingsWithUserID:(NSString *)userID withProcedureID:(NSString *)procedureID withContactEmail:(NSString *)email handler:(void(^)(NSString *errorMsg, NSDictionary * json))handler {
     
     NSDictionary *params = @{@"userID": userID,
                              @"procedureID": procedureID,
-                             @"emailsID": list,
+                             @"emailIds": email,
                              };
    
     [self requestWithMethod:@"POST" path:@"updateAccessSetting" params:params handler:^(NSError *error, id json) {
         
-        NSLog(@"%@",json);
+      NSLog(@"%@",json);
         
-        handler([self getErrorMessageFromJSON:json error:error], json);
+      handler([self getErrorMessageFromJSON:json error:error], json);
     }];
     
 }

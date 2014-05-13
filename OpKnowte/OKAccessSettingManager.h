@@ -15,7 +15,7 @@
 
 + (OKAccessSettingManager *)instance;
 
-- (void)updateAccessSettingsWithUserID:(NSString *)userID withProcedureID:(NSString *)procedureID withList:(NSString *)list handler:(void(^)(NSString *errorMsg, NSDictionary * json))handler;
+- (void)updateAccessSettingsWithUserID:(NSString *)userID withProcedureID:(NSString *)procedureID withContactEmail:(NSString *)email handler:(void(^)(NSString *errorMsg, NSDictionary * json))handler;
 
 - (void)getAccessSettingsWithUserID:(NSString *)userID AndProcedureID:(NSString *)procedureID handler:(void (^)(NSString *errorMsg, NSMutableArray *json))handler;
 

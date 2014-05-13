@@ -13,20 +13,20 @@
 #import "OKContactModel.h"
 #import "OKUserModel.h"
 #import "OKAccessSettingsViewController.h"
+#import "OKAccessSettingManager.h"
 
 @interface OKAccessSettingsCCViewController ()<OKAccessSettingsCC>
 
 @property (strong, nonatomic) IBOutlet UITableView *accessSettingsTableView;
 
 @property(strong, nonatomic) NSArray *contactsArray;
-@property(strong, nonatomic) NSMutableArray *choosedContacts;
 @property(strong, nonatomic) NSString *selectedContactID;
 
 
 @end
 
 @implementation OKAccessSettingsCCViewController
-@synthesize contactsArray,selectedContactID,accessSettingsTableView;
+@synthesize contactsArray,selectedContactID,accessSettingsTableView,accessArray;
 
 - (void)viewDidLoad
 {
@@ -39,7 +39,7 @@
     
     accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
     
-    _choosedContacts = [[NSMutableArray alloc]initWithObjects:@"pinas", nil];
+    _choosedContacts = [[NSMutableArray alloc]init];
     
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
@@ -51,6 +51,14 @@
     [self getContactsList];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    id<OKAccessSettingsCCDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(updateWithArray:)]) {
+        [delegate updateWithArray:self.choosedContacts];
+        
+    }
+}
 
 -(void) addRightButtonsToNavbar
 {
@@ -78,7 +86,6 @@
         instVC.cameFromVC = @"AccessSettingsCCViewController";
     }
 }
-
 
 -(void) addContactTapped
 {
@@ -131,10 +138,10 @@
 
 - (IBAction)backButton:(id)sender
 {
-    OKAccessSettingsViewController * vc = [[OKAccessSettingsViewController alloc]init];
-    vc.choosedContacts = self.choosedContacts;
-    
     [self.navigationController popViewControllerAnimated:YES];
+    
+    //[self.delegate updateWithController:self andArray:_choosedContacts];
+    
 }
 
 
@@ -145,7 +152,7 @@
 }
 
 -(void)addContactToList:(OKContactModel *)contact{
-    [_choosedContacts addObject:contact];
+    [_choosedContacts addObject:contact.contactEmail];
 }
 
 -(void)deleteContactFromList:(OKContactModel *)contact{
@@ -174,9 +181,9 @@
     [cell setCellBGImageLight:indexPath.row];
     cell.delegate = self;
     
-    NSLog(@"%hhd", [_choosedContacts containsObject:[NSString stringWithFormat:@"(%@)",contact.Id]]);
+    NSLog(@"%hhd", [accessArray containsObject:[NSString stringWithFormat:@"(%@)",contact.contactEmail]]);
     
-    [cell setCellButtonBGImageWithGreenMinusIcon:[_choosedContacts containsObject:[NSString stringWithFormat:@"(%@)",contact.Id]]];
+    [cell setCellButtonBGImageWithGreenMinusIcon:[accessArray containsObject:[NSString stringWithFormat:@"(%@)",contact.contactEmail]]];
     return cell;
 }
 
@@ -191,6 +198,4 @@
 {
     [super didReceiveMemoryWarning];
 }
-
-
 @end

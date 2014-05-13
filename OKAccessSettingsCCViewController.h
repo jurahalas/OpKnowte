@@ -13,11 +13,21 @@
 #import "OKUserModel.h"
 #import "OKInstituteVC.h"
 
+@class  OKAccessSettingsCCViewController;
+
+@protocol OKAccessSettingsCCDelegate <NSObject>
+@required
+
+-(void) updateWithArray:(NSMutableArray *) array;
+@end
+
 @interface OKAccessSettingsCCViewController : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
 @property(strong, nonatomic) NSString *contactID;
 @property(nonatomic, strong) NSString *cameFromVC;
 @property (nonatomic, strong) OKContactModel *contactModel;
+@property(strong, nonatomic) NSMutableArray *choosedContacts;
+@property (nonatomic, weak) id <OKAccessSettingsCCDelegate> delegate;
+@property(nonatomic,strong) NSMutableArray * accessArray;
 
-//@property(nonatomic, strong) NSMutableArray * contact;
 
 @end
