@@ -156,11 +156,9 @@
 }
 
 -(void)deleteContactFromList:(OKContactModel *)contact{
-    for (int i = 0 ; i<_choosedContacts.count; i++) {
-        OKContactModel *searchedContact = (OKContactModel*)_choosedContacts[i];
-        if ([searchedContact.identifier isEqualToString:contact.identifier]) {
+    for (int i = 0 ; i<accessArray.count; i++) {
+        if ([accessArray containsObject:[NSString stringWithFormat:@"%@",contact.contactEmail]]) {
             [_choosedContacts removeObjectAtIndex:i];
-             break;
         }
     }
 }
@@ -181,9 +179,17 @@
     [cell setCellBGImageLight:indexPath.row];
     cell.delegate = self;
     
-    NSLog(@"%hhd", [accessArray containsObject:[NSString stringWithFormat:@"(%@)",contact.contactEmail]]);
+//    for (int i = 0; i<=[accessArray count]; i++) {
+//    for(OKContactModel *model in [accessArray valueForKey:@"contact ID"]){
+//            [cell setCellButtonBGImageWithGreenMinusIcon:[contact.identifier isEqualToString:]];}
+//    }
     
-    [cell setCellButtonBGImageWithGreenMinusIcon:[accessArray containsObject:[NSString stringWithFormat:@"(%@)",contact.contactEmail]]];
+    for (NSDictionary * chosedM in accessArray) {
+        if ([[chosedM valueForKey:@"contactID"] isEqualToString:contact.identifier]) {
+            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+        }
+    }
+    
     return cell;
 }
 

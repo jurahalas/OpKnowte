@@ -47,9 +47,7 @@
     [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         
-        NSLog(@"URL: %@",url);
-        
-        handler([self getErrorMessageFromJSON:json error:error], json);
+        handler([self getErrorMessageFromJSON:json error:error],[json valueForKey:@"contacts"]);
     }];
 }
 @end

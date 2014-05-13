@@ -54,7 +54,7 @@
     [accessManager getAccessSettingsWithUserID:userID AndProcedureID:procID handler:^(NSString* error, NSMutableArray* aArray){
         NSLog(@"Error - %@", error);
         
-        accessArray = aArray ;
+        self.accessArray = aArray ;
         
         [[OKLoadingViewController instance] hide];
     }];
@@ -68,15 +68,10 @@
 - (IBAction)updateSettingsButton:(id)sender
 {
     NSString * contactEmail = [choosedContacts componentsJoinedByString:@","];
-    NSLog(@"%@",contactEmail);
-
-    if ([accessArray valueForKey:@"emailAddress"]!=[choosedContacts valueForKey:@"emailAddress"]) {
-        
+    
         OKAccessSettingManager *aM = [OKAccessSettingManager instance];
         [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactEmail:contactEmail handler:^(NSString *errorMsg, NSDictionary *json) {
             NSLog(@"Error - %@", errorMsg);}];
-    }
-    
 }
 
 - (void)didReceiveMemoryWarning
