@@ -8,6 +8,7 @@
 
 #import "OKBaseViewController.h"
 #import "OKSettingsViewController.h"
+#import "OKDashboardVC.h"
 
 @interface OKBaseViewController () <OKBaseVCDelegate>
 
@@ -43,7 +44,14 @@
         
     }
 }
-
+-(void) goToDashboard {
+    if(![self.restorationIdentifier isEqualToString:@"dashboard"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKDashboardVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"dashboard"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    //dashboard
+}
 
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

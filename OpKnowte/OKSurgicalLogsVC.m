@@ -148,15 +148,26 @@
      [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)faxButtonTapped:(id)sender {
-    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Send fax"
-                                                              message:@"Please enter fax number."
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Cancel"
-                                                    otherButtonTitles:@"Send", nil];
+    if (_choosedDetails.count) {
+        UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Send fax"
+                                                                  message:@"Please enter fax number."
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"Cancel"
+                                                        otherButtonTitles:@"Send", nil];
+        
+        customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [customAlertView textFieldAtIndex:0].placeholder = @"Fax Number";
+        [customAlertView show];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"Choose at least one case"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+
     
-    customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [customAlertView textFieldAtIndex:0].placeholder = @"Fax Number";
-    [customAlertView show];
    
     
 
