@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OKBaseViewController.h"
+#import "OKLoadingViewController.h"
 
 @interface OKSelectCaseViewController : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
 

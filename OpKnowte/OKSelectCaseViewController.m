@@ -89,16 +89,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"fromCasesToReminder" sender:[NSString stringWithFormat:@"%@", _procID]];
-
-
-//    [request setPostValue:[defaults objectForKey:UD_USERID] forKey:@"userID"];
-//    [request setPostValue:procedureID forKey:@"procedureID"];
-//    [request setPostValue:days forKey:@"noOfDays"];
-//    [request setPostValue:list forKey:@"contactIds"];
-//    [request setPostValue:patientID forKey:@"patientID"];
 }
 
 

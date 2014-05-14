@@ -57,6 +57,7 @@
     
 }
 
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     UIResponder* nextResponder = [textField.superview viewWithTag:(textField.tag + 1)];
@@ -70,6 +71,8 @@
     
     return YES;
 }
+
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.tag == theConfirmPasswordTextField.tag) {
@@ -77,32 +80,36 @@
     } else {
         textField.returnKeyType = UIReturnKeyNext;
     }
-        if (textField.tag <=3 && animatedKeyboard){
+    if (textField.tag <=3 && animatedKeyboard){
         [self animateTextField: textField up: NO];
     }
 }
+
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
 }
 
--(void)design{
 
+-(void)design{
+    
     theOldPasswordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Old Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-     theNewPasswordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-     theConfirmPasswordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Confirm Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    theNewPasswordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"New Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    theConfirmPasswordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Confirm Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     
     updatePasswordButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     updatePasswordButton.layer.cornerRadius = 14;
     
 }
 
+
 - (IBAction)backButton:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
-
+    
 }
+
 
 - (IBAction)updatePasswordButton:(id)sender
 {
@@ -122,24 +129,25 @@
         [alert show];
     }else{
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
-
+        
         [[OKUserManager instance] changePasswordWithUserID:[OKUserManager instance].currentUser.identifier password:theConfirmPasswordTextField.text  handler:^(NSString* error){
-        if (error != nil) {
-            UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Change password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [errorAlert show];
-            updatePasswordButton.enabled = YES;
-            
-        } else {
-            UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:@"Change password Success" message:@"Congratulations! You have change the password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [successAlert show];
-            [self.view endEditing:YES];
-            [self performSegueWithIdentifier:@"backToDashboard" sender:self];
-            updatePasswordButton.enabled = YES;
-            [[OKLoadingViewController instance] hide];
-        }
+            if (error != nil) {
+                UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Change password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [errorAlert show];
+                updatePasswordButton.enabled = YES;
+                
+            } else {
+                UIAlertView *successAlert = [[UIAlertView alloc] initWithTitle:@"Change password Success" message:@"Congratulations! You have change the password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [successAlert show];
+                [self.view endEditing:YES];
+                [self performSegueWithIdentifier:@"backToDashboard" sender:self];
+                updatePasswordButton.enabled = YES;
+                [[OKLoadingViewController instance] hide];
+            }
         }];
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {

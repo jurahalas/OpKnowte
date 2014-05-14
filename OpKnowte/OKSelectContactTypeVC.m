@@ -7,9 +7,10 @@
 //
 
 #import "OKSelectContactTypeVC.h"
-
-@interface OKSelectContactTypeVC ()
+#import "OKSelectContactsVC.h"
+@interface OKSelectContactTypeVC () <OKSelectContactsVCDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *selectTypeTable;
+@property (strong, nonatomic) NSMutableArray *choosedContacts;
 
 @end
 
@@ -42,16 +43,20 @@
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate setChoosedContactsArray:_choosedContacts];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"fromContactTypeToSelectContacts"]){
         OKSelectContactsVC *contactVC = (OKSelectContactsVC*)segue.destinationViewController;
+        contactVC.delegate = self;
         contactVC.contactID = [self.dataDict valueForKey:sender];
     }
 }
-
+-(void)setChoosedContactsArray:(NSMutableArray *)contactsArray{
+    _choosedContacts = contactsArray;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataDict.allKeys.count;
@@ -87,7 +92,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -3061,7 +3061,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JHH-PD-CYy" kind="push" id="9Vm-fe-BqP"/>
+                                    <segue destination="JHH-PD-CYy" kind="push" identifier="fromReminderToSelectType" id="9Vm-fe-BqP"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down.png" id="aEP-uT-8xf">
@@ -3086,6 +3086,7 @@
                         <outlet property="daysPickerTextField" destination="0aw-xn-p1T" id="oPB-aD-OTe"/>
                         <outlet property="sendReminderTo" destination="7Ui-oh-NCd" id="yf0-7O-WKE"/>
                         <outlet property="updateSettings" destination="geh-MS-GrI" id="K9I-d3-uPs"/>
+                        <segue destination="JHH-PD-CYy" kind="push" id="66O-U9-75z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cil-YZ-jFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3244,19 +3245,15 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="Q7A-9x-cdI"/>
+        <segue reference="cNX-Le-q8P"/>
         <segue reference="ljR-8G-8AS"/>
         <segue reference="jDh-vb-NmK"/>
-        <segue reference="QTQ-7p-lD5"/>
-        <segue reference="Q7A-9x-cdI"/>
-        <segue reference="R5c-Bb-DU8"/>
-        <segue reference="DdX-qd-zVS"/>
-        <segue reference="ytp-fp-EJd"/>
-        <segue reference="aKz-2x-G8K"/>
-        <segue reference="dvt-ir-lar"/>
+        <segue reference="lPY-Bo-TiM"/>
+        <segue reference="9Vm-fe-BqP"/>
         <segue reference="DdX-qd-zVS"/>
         <segue reference="dCD-SH-NGU"/>
         <segue reference="goQ-lN-Lsa"/>
-        <segue reference="jDh-vb-NmK"/>
-        <segue reference="aL2-xa-szT"/>
     </inferredMetricsTieBreakers>
 </document>

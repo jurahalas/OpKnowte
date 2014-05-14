@@ -24,10 +24,10 @@
 - (void)getAllProceduresWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *proceduresArray))handler
 {
     NSDictionary *params = @{};
-
+    
     [self requestWithMethod:@"GET" path:@"getAllProc" params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
-       
+        
         NSMutableArray *proceduresArray = [[NSMutableArray alloc] init];
         for (NSDictionary *procedure in json) {
             OKProcedureModel *procModel = [[OKProcedureModel alloc] init];
@@ -81,22 +81,43 @@
     }];
 }
 
+-(void)updateReminderSettingsWithProcedureID:(NSString*)procedureID patientID:(NSString*)patientID userID:(NSString*)userID days:(NSString*)days andList:(NSString*)list handler:(void (^)(NSString *errorMsg, NSDictionary *json))handler;
+{
+    NSDictionary *params = @{@"procedureID": procedureID,
+                             @"patientID": patientID,
+                             @"userID": userID,
+                             @"noOfDays": days,
+                             @"contactIds": list};
+    
+    [self requestWithMethod:@"POST" path:@"updateReminderSetting" params:params handler:^(NSError *error, id json){
+        
+        NSLog(@"%@",json);
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            
+        }
+        handler(errorMsg, json);
+    }];
+}
+
+
 
 - (void) getProcedureTemplateByUserID:(NSString*)userID ProcedureID:(NSString*)procedureID handler:(void(^)(NSString *errorMsg, NSDictionary *template))handler
 {
     NSDictionary *params = @{};
-
+    
     NSString *url = [NSString stringWithFormat:@"getTemplateBySurgeonIDAndProcedureID?procedureID=%@&surgeonID=%@",  procedureID, userID];
-
-
+    
+    
     [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
-
+        
         handler([self getErrorMessageFromJSON:json error:error], json);
     }];
-
-
-
+    
+    
+    
 }
 -(void) getProcedureTemplateVariablesByProcedureID:(NSString *)procedureID handler:(void (^)(NSString *errorMsg, NSMutableArray *templateVariables))handler{
     
@@ -128,7 +149,7 @@
                              @"surgeonID": [OKUserManager instance].currentUser.identifier
                              };
     
-  
+    
     [self requestWithMethod:@"POST" path:@"updateTemplate" params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         
@@ -182,14 +203,14 @@
                    @"tumorSizeCm":              [procModel valueForKey:@"var_tumorSize"],
                    @"location":                 [procModel valueForKey:@"var_location"],
                    @"tumorChar":                [procModel valueForKey:@"var_tumorChar"],
-                  @"previousAbdominalSurgeries":[procModel valueForKey:@"var_history"],
+                   @"previousAbdominalSurgeries":[procModel valueForKey:@"var_history"],
                    @"BMI":                      [procModel valueForKey:@"var_bmi"],
                    
                    @"intraAbdominalAdhesions":  [procModel valueForKey:@"var_adhesions"],
-          @"descriptionIntraAbdominalAdhesions":[procModel valueForKey:@"var_adhTook"],
+                   @"descriptionIntraAbdominalAdhesions":[procModel valueForKey:@"var_adhTook"],
                    @"adhesiolyst":              @"",               //-------------------------------------
                    @"vascularAnomalies":        @"",              //-------------------------------------
-                @"descriptionVascularAnomalies":[procModel valueForKey:@"var_vasAnomolies"],
+                   @"descriptionVascularAnomalies":[procModel valueForKey:@"var_vasAnomolies"],
                    
                    @"renalUltrasound":          [procModel valueForKey:@"var_renalUltraSound"],
                    @"deepMargin":               [procModel valueForKey:@"var_margin"],
@@ -215,7 +236,7 @@
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                 [procModel valueForKey:@"var_sex"],
                    @"dateOfService":          [procModel valueForKey:@"var_DOS"],
-
+                   
                    };
     } else if ([procedureID isEqualToString:@"1"] ){
         params = @{@"surgeonID":              surgeonID,
@@ -225,17 +246,17 @@
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                 [procModel valueForKey:@"var_sex"],
                    @"dateOfService":          [procModel valueForKey:@"var_DOS"],
-
+                   
                    };
     }
-
-
+    
+    
     [self requestWithMethod:@"POST" path:@"addProcedureDetail" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
-
+        
     }];
-
+    
     
 }
 
