@@ -18,11 +18,14 @@
 
 #import "OKTemplateViewController.h"
 #import "OKAccessConfirmViewController.h"
+#import "OKAccessSettingsViewController.h"
+#import "OKSurgicalLogsVC.h"
 
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
 @property (strong, nonatomic) NSMutableArray *procArray;
+@property (strong, nonatomic) NSArray *allProcArray;
 @end
 
 @implementation OKSelectProcedureViewController
@@ -56,6 +59,7 @@
         NSLog(@"Error - %@", error);
         
         _procArray = proceduresArray;
+        _allProcArray = [proceduresArray copy];
         for (int i = 0; i<_procArray.count; i++) {
             OKProcedureModel *proc = _procArray[i];
             
@@ -88,7 +92,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
     int procID = 0;
-    
     if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
         procID = 10;
     }
@@ -110,6 +113,8 @@
         [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
     } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
+    }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
     } else {
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
             OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
@@ -170,6 +175,12 @@
     }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){
         OKTemplateViewController *sharVC = (OKTemplateViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToSurgicalLogs"]){
+        OKSurgicalLogsVC *sharVC = (OKSurgicalLogsVC*)segue.destinationViewController;
+        sharVC.procID = sender;
+        int i = [sender  intValue] ;
+        OKProcedureModel *tappedProc =_allProcArray[i-1];
+        sharVC.procTitle = tappedProc.procedureText;
     }
 }
 

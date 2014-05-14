@@ -1374,6 +1374,7 @@
                         <segue destination="t8E-hn-ab4" kind="push" identifier="dataShare" id="dvt-ir-lar"/>
                         <segue destination="t8E-hn-ab4" kind="push" identifier="EPT" id="4D0-fe-M3v"/>
                         <segue destination="t8E-hn-ab4" kind="push" identifier="aSettings" id="QTQ-7p-lD5"/>
+                        <segue destination="lrF-ZY-UBX" kind="push" identifier="institutions" id="Q7A-9x-cdI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-2e-rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3013,8 +3014,11 @@
         <segue reference="cL3-fE-0Q4"/>
         <segue reference="mc4-ob-XxU"/>
         <segue reference="QTQ-7p-lD5"/>
+        <segue reference="Q7A-9x-cdI"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="dCD-SH-NGU"/>
+        <segue reference="cL3-fE-0Q4"/>
+        <segue reference="jDh-vb-NmK"/>
         <segue reference="aL2-xa-szT"/>
         <segue reference="eEH-cw-BCg"/>
     </inferredMetricsTieBreakers>

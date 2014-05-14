@@ -9,5 +9,8 @@
 #import "OKShockwaveLithotripsyModel.h"
 
 @implementation OKShockwaveLithotripsyModel
+-(void) setModelWithDictionary:(NSDictionary *)dictionary
+{
 
+}
 @end

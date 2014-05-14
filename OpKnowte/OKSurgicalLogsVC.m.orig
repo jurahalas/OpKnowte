@@ -30,7 +30,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *procedureLabel;
 @property (strong, nonatomic) IBOutlet UIButton *procedureButton;
 
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 
 @property (strong, nonatomic) IBOutlet UIView *dateView;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateFromTF;
@@ -44,7 +44,7 @@
 @property (strong, nonatomic)IBOutlet UIButton *dateToButton;
 
 
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 @property (strong, nonatomic) IBOutlet UILabel *caseFromLabel;
 @property (strong, nonatomic) IBOutlet UILabel *caseToLabel;
 
@@ -71,7 +71,7 @@
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
 @property (nonatomic, assign) BOOL dateToButtonTapped;
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 @end
 
 @implementation OKSurgicalLogsVC
@@ -393,7 +393,7 @@
     [_choosedDetails removeAllObjects];
     _deselectAll = YES;
     [_listTableView reloadData];
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 }
 
 
@@ -497,7 +497,7 @@
 }
 
 - (void)backButton {
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -510,7 +510,7 @@
     _procedureTableView.backgroundColor = [UIColor clearColor];
 =======
     _procedureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellDark"]];
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
     _listTableView.backgroundColor = [UIColor clearColor];
     _dateView.backgroundColor = [UIColor colorWithRed:19/255.f green:65/255.f blue:91/255.f alpha:1];
     _dateFromTF.text = @"";
@@ -527,7 +527,7 @@
     
 =======
     _emailAndFaxView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
     _emailButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _emailButton.layer.cornerRadius = 14;
     _emailButton.clipsToBounds = YES;
@@ -542,7 +542,7 @@
 	_slider.minimumRangeLength = .0005; // this property enforces a minimum range size. By default it is set to 0.0
 =======
 	_slider.minimumRangeLength = .000005; // this property enforces a minimum range size. By default it is set to 0.0
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 	[_slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]]; // the two thumb controls are given custom images
 	[_slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
 	UIImage *image; // there are two track images, one for the range "track", and one for the filled in region of the track between the slider thumbs
@@ -558,7 +558,7 @@
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
     _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
     
@@ -574,7 +574,7 @@
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
     _caseToLabel.text = caseToString;
     
 }
@@ -655,7 +655,7 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 }
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
@@ -675,5 +675,5 @@
 
 
 
->>>>>>> 4a224cdf0f8c08f878230fd691bdd631ef8eb9ba
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
 @end

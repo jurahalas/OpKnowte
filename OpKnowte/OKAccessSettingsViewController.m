@@ -70,8 +70,6 @@
 
 - (IBAction)updateSettingsButton:(id)sender
 {
-    [self getAccessVariables];
-    
     UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Access Settings" message:@"Access Settings is updated" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [customAlertView show];
     
@@ -83,7 +81,8 @@
         [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactEmail:contactEmail handler:^(NSString *errorMsg, NSDictionary *json) {
             NSLog(@"Error - %@", errorMsg);}];
     
-
+    [self getAccessVariables];
+    
 }
 - (void)didReceiveMemoryWarning
 {

@@ -9,5 +9,6 @@
 #import "OKBaseViewController.h"
 
 @interface OKSurgicalLogsVC : OKBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
-
+@property(strong, nonatomic) NSString *procID;
+@property (strong, nonatomic) NSString *procTitle;
 @end
