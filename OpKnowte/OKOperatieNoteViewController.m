@@ -320,20 +320,32 @@
     return cell;
 }
 - (IBAction)saveButtonTapped:(id)sender {
-      [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKProceduresManager *proceduresManager = [OKProceduresManager instance];
     
-    [proceduresManager saveProcedureWithSurgeonID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] AndProcedureModel:self.model handler:^(NSString *errorMsg) {
+    [proceduresManager saveProcedureWithSurgeonID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] AndProcedureModel:self.model handler:^(NSString *errorMsg, id json) {
         
         NSLog(@"Error - %@", errorMsg);
         [[OKLoadingViewController instance] hide];
         if (errorMsg == nil) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-            OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
-            [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
-            vc.templateDictionary = _templateDictionary;
-            [self.navigationController pushViewController:vc animated:YES];
-            //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
+
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+                OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
+                [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
+                vc.templateDictionary = _templateDictionary;
+                [self.navigationController pushViewController:vc animated:YES];
+                //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
+            
+        } else {
+            if ([[json valueForKey:@"status"] isEqualToString:@"false"]) {
+                UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                          message:@"Record number already in use."
+                                                                         delegate:nil
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles: nil];
+                [alertNoContacts show];
+                
+            }
         }
         
         [[OKLoadingViewController instance] hide];

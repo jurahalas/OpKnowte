@@ -158,7 +158,7 @@
 }
 
 
--(void) saveProcedureWithSurgeonID:(NSString *)surgeonID ProcedureID:(NSString *)procedureID AndProcedureModel: (id) procModel handler:(void (^)(NSString *errorMsg))handler{
+-(void) saveProcedureWithSurgeonID:(NSString *)surgeonID ProcedureID:(NSString *)procedureID AndProcedureModel: (id) procModel handler:(void (^)(NSString *errorMsg, id json))handler{
     NSDictionary *params;
     if ([procedureID isEqualToString:@"10"]) {
         params = @{@"surgeonID":              surgeonID,
@@ -255,7 +255,7 @@
     
     
     [self requestWithMethod:@"POST" path:@"addProcedureDetail" params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
+        handler([self getErrorMessageFromJSON:json error:error], json);
         NSLog(@"%@",json);
         
     }];
