@@ -7,16 +7,18 @@
 //
 
 #import "OKReminderVC.h"
-
-@interface OKReminderVC ()
+#import "OKSelectContactTypeVC.h"
+@interface OKReminderVC ()<OKSelectContactTypeVCDelegate>
 
 - (IBAction)updateButton:(id)sender;
 @property (strong, nonatomic) IBOutlet UIPickerView *daysPicker;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *daysPickerTextField;
 @property (strong, nonatomic) IBOutlet UIButton *updateSettings;
 @property (strong, nonatomic) IBOutlet UIButton *sendReminderTo;
+- (IBAction)sendReminderTapped:(id)sender;
 @property (strong, nonatomic) NSArray *pickerData;
 @property(strong, nonatomic) NSString *noOfDays;
+@property (strong, nonatomic) NSMutableArray *choosedContacts;
 
 @end
 
@@ -37,12 +39,18 @@
     _daysPicker.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:0.9];
     self.daysPickerTextField.inputView = _daysPicker;
     self.pickerData = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30"];
-    
+    [self getReminderSettings];
+}
+
+-(void)getReminderSettings
+{
     OKProceduresManager *procManager = [OKProceduresManager instance];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     [procManager getReminderSettingsWithUserID:[OKUserManager instance].currentUser.identifier andProcedureID:_procID handler:^(NSString *errorMsg, NSMutableArray *reminderSettings) {
         
         _noOfDays = [reminderSettings valueForKey:@"noOfDays"];
     }];
+    [[OKLoadingViewController instance] hide];
 }
 
 #pragma mark - Text Fields methods
@@ -96,17 +104,83 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (IBAction)updateButton:(id)sender
 {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSString *contactIDs = [[NSString alloc] init];
+
+    for (int i=0; i<_choosedContacts.count; i++) {
+        OKContactModel *cont = (OKContactModel*)_choosedContacts[i];
+        [array addObject:cont.identifier];
+        contactIDs = [array componentsJoinedByString:@","];
+    }
     _noOfDays = self.daysPickerTextField.text;
-    NSLog(@" procID----%@,detailid--- %@, %@-----noofdays, userid------%@", _procID, _detailID, _noOfDays, [OKUserManager instance].currentUser.identifier);
     
+
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    if ([_noOfDays isEqualToString:@""]) {
+        UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Update Setting Error"
+                                                                          message:@"Please, set number of days"
+                                                                         delegate:self
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles:nil, nil];
+        [loginFormErrorAlertView show];
+        [[OKLoadingViewController instance] hide];
+    }else if ([contactIDs isEqualToString:@""]){
+        UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Update Setting Error"
+                                                                          message:@"Please, choose at least one contact"
+                                                                         delegate:self
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles:nil, nil];
+        [loginFormErrorAlertView show];
+        [[OKLoadingViewController instance] hide];
+    }else{
+        OKProceduresManager *procManager = [OKProceduresManager instance];
+        [procManager updateReminderSettingsWithProcedureID:_procID patientID:_detailID userID:[OKUserManager instance].currentUser.identifier days:_noOfDays andList:contactIDs handler:^(NSString *errorMsg, NSDictionary *json) {
+            if (errorMsg) {
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Update Setting Error"
+                                                                              message:errorMsg
+                                                                             delegate:self
+                                                                    cancelButtonTitle:@"OK"
+                                                                    otherButtonTitles:nil, nil];
+                [loginFormErrorAlertView show];
+                [[OKLoadingViewController instance] hide];
+            }else{
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Update Setting Success"
+                                                                              message:[json valueForKey:@"msg"]
+                                                                             delegate:self
+                                                                    cancelButtonTitle:@"OK"
+                                                                    otherButtonTitles:nil];
+                [loginFormErrorAlertView show];
+                [[OKLoadingViewController instance] hide];
+            }
+        }];
+    }
 }
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+-(void)setChoosedContactsArray:(NSMutableArray *)contactsArray{
+    _choosedContacts = contactsArray;
+}
+
+- (IBAction)sendReminderTapped:(id)sender
+{
+     [self performSegueWithIdentifier:@"fromReminderToSelectType" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromReminderToSelectType"]){
+        OKSelectContactTypeVC *instVC = (OKSelectContactTypeVC*)segue.destinationViewController;
+        instVC.delegate = self;
+    }
+
 }
 
 @end

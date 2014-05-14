@@ -81,6 +81,27 @@
     }];
 }
 
+-(void)updateReminderSettingsWithProcedureID:(NSString*)procedureID patientID:(NSString*)patientID userID:(NSString*)userID days:(NSString*)days andList:(NSString*)list handler:(void (^)(NSString *errorMsg, NSDictionary *json))handler;
+{
+    NSDictionary *params = @{@"procedureID": procedureID,
+                             @"patientID": patientID,
+                             @"userID": userID,
+                             @"noOfDays": days,
+                             @"contactIds": list};
+    
+    [self requestWithMethod:@"POST" path:@"updateReminderSetting" params:params handler:^(NSError *error, id json){
+        
+        NSLog(@"%@",json);
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            
+        }
+        handler(errorMsg, json);
+    }];
+}
+
+
 
 - (void) getProcedureTemplateByUserID:(NSString*)userID ProcedureID:(NSString*)procedureID handler:(void(^)(NSString *errorMsg, NSDictionary *template))handler
 {

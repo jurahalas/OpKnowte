@@ -10,9 +10,15 @@
 #import "OKSelectContactTypeCell.h"
 #import "OKSelectContactsVC.h"
 
+@protocol OKSelectContactTypeVCDelegate <NSObject>
+
+-(void) setChoosedContactsArray:(NSMutableArray*)contactsArray;
+
+@end
 
 
 @interface OKSelectContactTypeVC : OKBaseViewController <UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, weak) id <OKSelectContactTypeVCDelegate> delegate;
 
 @property (strong, nonatomic) NSDictionary *dataDict;
 

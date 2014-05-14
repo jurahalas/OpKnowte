@@ -57,6 +57,7 @@
     
 }
 
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     UIResponder* nextResponder = [textField.superview viewWithTag:(textField.tag + 1)];
@@ -70,6 +71,8 @@
     
     return YES;
 }
+
+
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField.tag == theConfirmPasswordTextField.tag) {
@@ -82,10 +85,12 @@
     }
 }
 
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
 }
+
 
 -(void)design{
 
@@ -98,11 +103,13 @@
     
 }
 
+
 - (IBAction)backButton:(id)sender {
     
     [self.navigationController popViewControllerAnimated:YES];
 
 }
+
 
 - (IBAction)updatePasswordButton:(id)sender
 {
@@ -140,6 +147,7 @@
         }];
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {

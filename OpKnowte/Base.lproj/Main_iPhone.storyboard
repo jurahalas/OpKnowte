@@ -1374,6 +1374,7 @@
                         <segue destination="t8E-hn-ab4" kind="push" identifier="EPT" id="4D0-fe-M3v"/>
                         <segue destination="t8E-hn-ab4" kind="push" identifier="aSettings" id="QTQ-7p-lD5"/>
                         <segue destination="t8E-hn-ab4" kind="push" identifier="reminder" id="DyP-GO-KfO"/>
+                        <segue destination="lrF-ZY-UBX" kind="push" identifier="institutions" id="Fz4-Sc-Ihi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JhT-2e-rk8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2969,7 +2970,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="JHH-PD-CYy" kind="push" id="9Vm-fe-BqP"/>
+                                    <action selector="sendReminderTapped:" destination="zNm-fe-JEM" eventType="touchUpInside" id="xrj-N5-btL"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down.png" id="aEP-uT-8xf">
@@ -2994,6 +2995,7 @@
                         <outlet property="daysPickerTextField" destination="0aw-xn-p1T" id="oPB-aD-OTe"/>
                         <outlet property="sendReminderTo" destination="7Ui-oh-NCd" id="yf0-7O-WKE"/>
                         <outlet property="updateSettings" destination="geh-MS-GrI" id="K9I-d3-uPs"/>
+                        <segue destination="JHH-PD-CYy" kind="push" identifier="fromReminderToSelectType" id="duL-OC-6sL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cil-YZ-jFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3151,12 +3153,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aKz-2x-G8K"/>
-        <segue reference="dvt-ir-lar"/>
         <segue reference="DdX-qd-zVS"/>
         <segue reference="dCD-SH-NGU"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="jDh-vb-NmK"/>
         <segue reference="aL2-xa-szT"/>
+        <segue reference="aKz-2x-G8K"/>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="Fz4-Sc-Ihi"/>
     </inferredMetricsTieBreakers>
 </document>

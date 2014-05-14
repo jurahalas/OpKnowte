@@ -55,13 +55,11 @@
 - (IBAction)contactButton:(id)sender {
     if (!_buttonIsTapped) {
         [self setCellButtonBGImageWithGreenMinusIcon:YES];
-        NSLog(@"ololol");
-        OKContactModel *contact = [[OKContactModel alloc] init];
-        NSLog(@"%@", contact.identifier);
+        [self.delegate addContactToArray:self.contactModel];
         
     } else {
         [self setCellButtonBGImageWithGreenMinusIcon:NO];
-        NSLog(@"tapped");
+        [self.delegate deleteContactFromArray:self.contactModel];
     }
 }
 

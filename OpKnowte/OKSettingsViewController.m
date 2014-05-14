@@ -9,6 +9,7 @@
 #import "OKSettingsViewController.h"
 #import "OKSettingsTableViewCell.h"
 #import "OKSelectProcVC.h"
+#import "OKContactListVC.h"
 
 @interface OKSettingsViewController ()
 
@@ -89,33 +90,36 @@
     {
         [self performSegueWithIdentifier:@"dataShare" sender:indexPath];
     }else if ([cell.settingsLabel.text isEqualToString:@"Edit Procedure Template"])
-        {
-            [self performSegueWithIdentifier:@"EPT" sender:indexPath];
-
+    {
+        [self performSegueWithIdentifier:@"EPT" sender:indexPath];
     }else if ([cell.settingsLabel.text isEqualToString:@"Reminder Settings"])
-        {
-            [self performSegueWithIdentifier:@"reminder" sender:indexPath];
-        }
-
+    {
+        [self performSegueWithIdentifier:@"reminder" sender:indexPath];
+    }else if ([cell.settingsLabel.text isEqualToString:@"Institutions"])
+    {
+        [self performSegueWithIdentifier:@"institutions" sender:[NSString stringWithFormat:@"4"]];
+    }
 }
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-     OKSelectProcVC *instVC = (OKSelectProcVC*)segue.destinationViewController;
+    OKSelectProcVC *instVC = (OKSelectProcVC*)segue.destinationViewController;
     if([segue.identifier isEqualToString:@"aSettings"]){
         instVC.cameFromVC = @"AccessSettingsVC";
     } else if ([segue.identifier isEqualToString:@"dataShare"]){
         instVC.cameFromVC = @"DataSharingVC";
     } else if ([segue.identifier isEqualToString:@"EPT"]){
         instVC.cameFromVC = @"EditProcTemplateVC";
-    }else if ([segue.identifier isEqualToString:@"reminder"]){
+    } else if ([segue.identifier isEqualToString:@"reminder"]){
         instVC.cameFromVC = @"ReminderSettings";
+    }else if ([segue.identifier isEqualToString:@"institutions"]){
+        OKContactListVC *contactsVC = (OKContactListVC*)segue.destinationViewController;
+        contactsVC.contactID = sender;
     }
-
-
-    
-
 }
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
