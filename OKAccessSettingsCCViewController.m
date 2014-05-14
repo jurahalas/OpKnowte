@@ -41,7 +41,12 @@
     accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
     
     _choosedContacts = [[NSMutableArray alloc]init];
-    containsWithAccesArray = [[NSMutableArray alloc]init];
+    for (NSDictionary * chosedM in accessArray) {
+        [_choosedContacts addObject:[chosedM valueForKeyPath:@"emailAddress"]];
+    }
+    
+
+    //containsWithAccesArray = [[NSMutableArray alloc]init];
     
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
@@ -154,19 +159,15 @@
 }
 
 -(void)addContactToList:(OKContactModel *)contact{
-    for (NSDictionary * chosedM in accessArray) {
-        [containsWithAccesArray addObject:[chosedM valueForKeyPath:@"emailAddress"]];
-    }
-    
-    NSString * emails = [containsWithAccesArray componentsJoinedByString:@","];
-    
+
     [_choosedContacts addObject:contact.contactEmail];
-    [_choosedContacts addObject:emails];
 }
 
 -(void)deleteContactFromList:(OKContactModel *)contact{
-    for (int i = 0 ; i<accessArray.count; i++) {
-        if ([accessArray containsObject:[NSString stringWithFormat:@"%@",contact.contactEmail]]) {
+    
+
+    for (int i = 0; i<_choosedContacts.count; i++) {
+        if ([[_choosedContacts objectAtIndex:i]isEqualToString:contact.contactEmail]) {
             [_choosedContacts removeObjectAtIndex:i];
         }
     }
