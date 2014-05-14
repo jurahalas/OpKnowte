@@ -15,6 +15,8 @@
 #import "OKPenileProsthesisVC.h"
 #import "OKLRRadicalProstatectomyVC.h"
 #import "OKDataSharingViewController.h"
+#import "OKReminderVC.h"
+#import "OKSelectCaseViewController.h"
 
 #import "OKTemplateViewController.h"
 #import "OKAccessConfirmViewController.h"
@@ -111,6 +113,8 @@
         [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
     } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
+    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] ){
+        [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
     } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
     }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
@@ -181,6 +185,9 @@
         int i = [sender  intValue] ;
         OKProcedureModel *tappedProc =_allProcArray[i-1];
         sharVC.procTitle = tappedProc.procedureText;
+    } else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
+        OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
+        reminderVC.procID = sender;
     }
 }
 

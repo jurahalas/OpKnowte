@@ -95,7 +95,12 @@
     }else if ([cell.settingsLabel.text isEqualToString:@"Institutions"])
         {
             [self performSegueWithIdentifier:@"institutions" sender:[NSString stringWithFormat:@"4"]];
+
+    }else if ([cell.settingsLabel.text isEqualToString:@"Reminder Settings"])
+        {
+            [self performSegueWithIdentifier:@"reminder" sender:indexPath];
         }
+
 }
 
 
@@ -111,9 +116,13 @@
     } else if ([segue.identifier isEqualToString:@"institutions"]){
         OKContactListVC *contactsVC = (OKContactListVC*)segue.destinationViewController;
         contactsVC.contactID = sender;
+    }else if ([segue.identifier isEqualToString:@"reminder"]){
+        instVC.cameFromVC = @"ReminderSettings";
     }
 }
 
+
+    
 
 - (void)didReceiveMemoryWarning
 {

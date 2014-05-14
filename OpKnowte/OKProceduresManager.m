@@ -37,6 +37,51 @@
         handler([self getErrorMessageFromJSON:json error:error], proceduresArray);
     }];
 }
+
+-(void)getCasesListWithProcedureID:(NSString*)procedureID andSurgeonID:(NSString*)surgeonID handler:(void (^)(NSString *errorMsg, NSMutableArray *cases))handler
+{
+    NSDictionary *params = @{
+                             @"procedureID":procedureID,
+                             @"surgeonID":surgeonID,
+                             };
+    
+    NSString *url = [NSString stringWithFormat:@"getCaseByProcIDSurgeonID"];
+    
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        
+        NSMutableArray *cases = [[NSMutableArray alloc] init];
+        for (NSDictionary *dict in json) {
+            OKCase *caseModel = [[OKCase alloc] init];
+            [caseModel setModelWithDictionary:dict];
+            [cases addObject:caseModel];
+        }
+        handler([self getErrorMessageFromJSON:json error:error], cases);
+    }];
+    
+}
+
+-(void)getReminderSettingsWithUserID:(NSString*)userID andProcedureID:(NSString*)procID handler:(void (^)(NSString *errorMsg, NSMutableArray *reminderSettings))handler
+{
+    NSDictionary *params = @{
+                             @"procedureID":procID,
+                             @"userID": userID,
+                             };
+    NSString *url = [NSString stringWithFormat:@"getReminderSetting"];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json){
+        NSLog(@"%@",json);
+        
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            
+        }
+        handler(errorMsg, json);
+    }];
+}
+
+
 - (void) getProcedureTemplateByUserID:(NSString*)userID ProcedureID:(NSString*)procedureID handler:(void(^)(NSString *errorMsg, NSDictionary *template))handler
 {
     NSDictionary *params = @{};
@@ -90,6 +135,7 @@
         handler([self getErrorMessageFromJSON:json error:error], json);
     }];
 }
+
 
 -(void) saveProcedureWithSurgeonID:(NSString *)surgeonID ProcedureID:(NSString *)procedureID AndProcedureModel: (id) procModel handler:(void (^)(NSString *errorMsg))handler{
     NSDictionary *params;

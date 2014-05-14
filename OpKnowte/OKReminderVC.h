@@ -1,15 +1,15 @@
 //
-//  OKSelectCaseViewController.h
+//  OKReminderVC.h
 //  OpKnowte
 //
-//  Created by Olegek on 25.04.14.
+//  Created by Apple on 12.05.14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "OKBaseViewController.h"
+#import "OKProceduresManager.h"
 
-@interface OKSelectCaseViewController : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
+@interface OKReminderVC : OKBaseViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property(strong, nonatomic) NSString *procID;
 @property(strong, nonatomic) NSString *detailID;

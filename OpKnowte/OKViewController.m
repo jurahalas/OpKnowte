@@ -104,6 +104,10 @@
 #pragma mark - IBActions
 - (IBAction)loginButton:(id)sender {
     [self.view endEditing:YES];
+    if (_animatedKeyboard) {
+        [self animateTextField: _passwordTextField up: NO];
+    }
+
     OKUserManager *usermanager = [OKUserManager instance];
    
     if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
