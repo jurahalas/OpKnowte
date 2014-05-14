@@ -197,8 +197,11 @@
                    @"postOp":                   [procModel valueForKey:@"var_postOp"],
                    @"cytoStent":                [procModel valueForKey:@"var_cysto"],
                    @"surgeonName":              [procModel valueForKey:@"var_surgeon"],
-                   @"assistants":               [[procModel valueForKey:@"var_assistant"] valueForKey:@"contactID"],
-                   @"anesthesiologist":         [[procModel valueForKey:@"var_anesthesiologist"]valueForKey:@"contactID"],
+                   @"assistants":               [procModel valueForKey:@"var_assistant"] ,
+                   @"anesthesiologist":         [procModel valueForKey:@"var_anesthesiologist"],
+
+                   //@"assistants":               [[procModel valueForKey:@"var_assistant"] valueForKey:@"contactID"],
+                   //@"anesthesiologist":         [[procModel valueForKey:@"var_anesthesiologist"]valueForKey:@"contactID"],
                    
                    @"tumorSizeCm":              [procModel valueForKey:@"var_tumorSize"],
                    @"location":                 [procModel valueForKey:@"var_location"],

@@ -27,9 +27,10 @@
 
 
 @property (strong,nonatomic) NSString *var_surgeon;
-@property (strong,nonatomic) OKContactModel *var_assistant;
-@property (strong,nonatomic) OKContactModel *var_anesthesiologist;
-
+//@property (strong,nonatomic) OKContactModel *var_assistant;
+//@property (strong,nonatomic) OKContactModel *var_anesthesiologist;
+@property (strong,nonatomic) NSString *var_assistant;
+@property (strong,nonatomic) NSString *var_anesthesiologist;
 
 @property (strong,nonatomic) NSString *var_tumorSize;
 @property (strong,nonatomic) NSString *var_location;
