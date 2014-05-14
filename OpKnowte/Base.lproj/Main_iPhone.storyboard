@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -65,7 +65,6 @@
                                 </state>
                                 <connections>
                                     <action selector="registerButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b4u-Hv-c1r"/>
-                                    <segue destination="FOF-g6-PJf" kind="push" id="adK-uU-XoT"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" id="drR-2T-caD">
@@ -88,6 +87,7 @@
                         <outlet property="registerButton" destination="k9t-Pa-N8e" id="Lgc-NN-5vH"/>
                         <segue destination="5mR-vJ-NJu" kind="push" identifier="loginSegue" id="ytp-fp-EJd"/>
                         <segue destination="1sY-Xu-fV5" kind="push" identifier="dashboardSegue" id="aul-Pn-LEj"/>
+                        <segue destination="FOF-g6-PJf" kind="push" identifier="fromLoginViewToRegistration" id="61B-L4-8KG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -2381,7 +2381,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2437,7 +2437,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
+                                <rect key="frame" x="0.0" y="461.00000000000006" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -2948,13 +2948,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="mc4-ob-XxU"/>
-        <segue reference="QTQ-7p-lD5"/>
-        <segue reference="Q7A-9x-cdI"/>
+        <segue reference="aul-Pn-LEj"/>
         <segue reference="goQ-lN-Lsa"/>
-        <segue reference="dCD-SH-NGU"/>
+        <segue reference="ytp-fp-EJd"/>
         <segue reference="cL3-fE-0Q4"/>
         <segue reference="jDh-vb-NmK"/>
         <segue reference="aL2-xa-szT"/>
+        <segue reference="QTQ-7p-lD5"/>
+        <segue reference="Q7A-9x-cdI"/>
     </inferredMetricsTieBreakers>
 </document>
