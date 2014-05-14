@@ -68,7 +68,7 @@
 
 -(void)homeButton:(id)sender
 {
-    
+    [self.delegate goToDashboard];
 }
 
 

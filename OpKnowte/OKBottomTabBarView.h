@@ -10,7 +10,7 @@
 @protocol OKBaseVCDelegate <NSObject>
 
 -(void) goToSettingsVC;
-
+-(void) goToDashboard;
 @end
 
 @interface OKBottomTabBarView : UIView
