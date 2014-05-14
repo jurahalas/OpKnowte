@@ -132,6 +132,7 @@
             [self.model setValue:@"NO" forKey:@"var_complications"];
         }
     } else {
+        
         [self.model setValue:boolToString forKey:name];
 
     }
@@ -143,7 +144,70 @@
     nextVC.currentPage = (self.currentPage + 1);
     return nextVC;
 }
+-(BOOL) canGoToNextVC {
+    switch (self.currentPage) {
+        case 0:{
+            if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        case 1:{
+            if ([self.model valueForKey:@"var_anesthesiaPerformed"] == nil ||[self.model valueForKey:@"var_anesthesiaLocation"]== nil ||[self.model valueForKey:@"var_stonesCount"]== nil ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        case 2:{
+            if ([self.model valueForKey:@"var_stonesLocations"] == nil || [[self.model valueForKey:@"var_stonesLocations"] containsObject:@""] ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        case 3:{
+            if ([self.model valueForKey:@"var_stonesSizes"] == nil || [[self.model valueForKey:@"var_stonesSizes"] containsObject:@""] ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        case 4:{
+            if ([self.model valueForKey:@"var_totalShocks"] == nil || [[self.model valueForKey:@"var_totalShocks"] containsObject:@""] ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        case 5:{
+            if ([self.model valueForKey:@"var_fragmentations"] == nil || [[self.model valueForKey:@"var_fragmentations"] containsObject:@""] ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        case 6:{
+            if ([self.model valueForKey:@"var_rateOfWaves"] == nil ||[self.model valueForKey:@"var_KVWaves"]== nil ||[self.model valueForKey:@"var_pausePerformed"]== nil ||[self.model valueForKey:@"var_complications"]== nil ||[self.model valueForKey:@"var_followUp"]== nil ) {
+                return NO;
+            } else {
+                return YES;
+            }
+            break;
+        }
+        default:
+            return NO;
+            break;
+    }
 
+}
 
 
 - (void)didReceiveMemoryWarning

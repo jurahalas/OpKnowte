@@ -29,4 +29,6 @@
 - (IBAction)backButtonTapped:(id)sender;
 - (IBAction)rightButtonTapped:(id)sender;
 
+-(BOOL) canGoToNextVC;
+
 @end

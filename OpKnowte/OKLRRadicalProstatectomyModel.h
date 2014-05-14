@@ -21,7 +21,7 @@
 @property (strong,nonatomic) NSString *var_preOpDX;
 @property (strong,nonatomic) NSString *var_postOp;
 @property (strong,nonatomic) NSString *var_procedureName;
-
+@property (strong, nonatomic) NSString *var_nervesparing;
 
 @property (strong,nonatomic) NSString *var_surgeon;
 @property (strong,nonatomic) OKContactModel *var_assistant;

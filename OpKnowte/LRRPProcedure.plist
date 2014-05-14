@@ -391,16 +391,6 @@
 					<string>Rectal injury</string>
 				</array>
 			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_roomTime</string>
-				<key>type</key>
-				<string>numericTextField</string>
-				<key>placeholder</key>
-				<string>Room Time</string>
-				<key>items</key>
-				<array/>
-			</dict>
 		</array>
 	</dict>
 	<dict>

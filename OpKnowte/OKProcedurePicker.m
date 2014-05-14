@@ -28,6 +28,8 @@
 
 - (IBAction)customButtonTapped:(id)sender {
     [self.delegate showPickerWithData:_dataArray picker:self];
+    [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
+
 }
 
 

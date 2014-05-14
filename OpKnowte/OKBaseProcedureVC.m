@@ -38,6 +38,9 @@
 -(id) nextVC{
     return nil;
 }
+-(BOOL) canGoToNextVC{
+    return false;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,8 +49,8 @@
     UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
     self.navigationItem.rightBarButtonItem = nextButton;
     self.interactionItems = [[NSMutableArray alloc] init];
-    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
-    self.datePicker = [[OKDatePicker alloc] initWithFrame:CGRectMake(0, 406, 320, 162)];
+    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
+    self.datePicker = [[OKDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
     [self.datePicker setTextColor:[UIColor whiteColor]];
     self.picker.hidden = YES;
     self.datePicker.hidden = YES;
@@ -64,6 +67,7 @@
     if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"symbolicTextField"]) {
         OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         symbolicTextField.delegate = self;
+        
         [self.view addSubview:symbolicTextField];
         [symbolicTextField setTagOfTextField:tag];
         if (symbolicTextField.tagOfTextField >0) {
@@ -84,6 +88,7 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         numericTextField.delegate = self;
+        
         [self.view addSubview:numericTextField];
         [numericTextField setTagOfTextField:tag];
         if (numericTextField.tagOfTextField >0) {
@@ -101,6 +106,7 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
         OKProcedureDatePicker *datePicker = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         datePicker.delegate = self;
+        
         [self.view addSubview:datePicker];
         [datePicker setTagOfTextField:tag];
         if (datePicker.tagOfTextField >0) {
@@ -118,6 +124,10 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"picker"]) {
         OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         picker.delegate = self;
+        //[picker setup];
+
+        picker.customTextField.inputView = _picker;
+        
         [self.view addSubview:picker];
         [picker setTagOfTextField:tag];
         if (picker.tagOfTextField >0) {
@@ -139,9 +149,11 @@
         [self.interactionItems addObject:picker];
 
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {
-        
         OKProcedureMultiselect *multiselectView = [[OKProcedureMultiselect alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         multiselectView.delegate = self;
+        //[multiselectView setup];
+
+        
         [multiselectView setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"]];
         [multiselectView setFieldName:[customElementDictionary objectForKey:@"name"]];
         
@@ -153,10 +165,11 @@
     } else {
         OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         switcher.delegate = self;
+
         [self.view addSubview:switcher];
         [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
-
+        [switcher setup];
         [self.interactionItems addObject:switcher];
     }
     _xPoint += 43;
@@ -311,17 +324,27 @@
 
 
 - (IBAction)rightButtonTapped:(id)sender {
-    if (self.currentPage < (self.plistArray.count - 1) ) {
-        id nextVC = [self nextVC];
-        [self.navigationController pushViewController:nextVC animated:YES];
+    if ([self canGoToNextVC]) {
+        if (self.currentPage < (self.plistArray.count - 1) ) {
+            id nextVC = [self nextVC];
+            [self.navigationController pushViewController:nextVC animated:YES];
+        } else {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];
+            vc.model = self.model;
+            vc.procedureID = self.procedureID;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
     } else {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-        OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];
-        vc.model = self.model;
-        vc.procedureID = self.procedureID;
-        [self.navigationController pushViewController:vc animated:YES];
-
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"Please fill all fields"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
     }
+
 }
 
 

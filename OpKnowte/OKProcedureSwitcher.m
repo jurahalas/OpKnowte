@@ -11,7 +11,8 @@
 @implementation OKProcedureSwitcher
 
 -(void) setup{
-    [self.delegate updateField:self.fieldName withBoolValue:self.customSwitcher.isOn];
+    NSLog(@"%hhd", self.customSwitcher.on);
+    [self.delegate updateField:self.fieldName withBoolValue:self.customSwitcher.on];
 }
 
 
