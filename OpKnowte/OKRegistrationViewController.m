@@ -178,7 +178,8 @@
 {
     BOOL isEmailValidate = [OKRegistrationViewController validateEmail:_emailTextField.text];
     
-    if ([_firstNameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]) {
+    if ([_firstNameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]
+        || [_MDTextField.text isEqual: @""] || [_lastNameTextField.text isEqual: @""]) {
         [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
     }
     else if (!isEmailValidate) {
