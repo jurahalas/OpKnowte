@@ -78,24 +78,6 @@
 }
 
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [self performSegueWithIdentifier:@"selectProcedure" sender:indexPath];
-//}
-
-
-//#pragma mark - prepare for segue
-//
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-//{
-//    if([segue.identifier isEqualToString:@"selectProcedure"]){
-//        OKSelectProcedureViewController *vc = (OKSelectProcedureViewController*)segue.destinationViewController;
-//    }
-//}
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

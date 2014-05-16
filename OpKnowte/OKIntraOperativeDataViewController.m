@@ -44,6 +44,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *bottombuttonView;
 @property (strong, nonatomic) IBOutlet UIButton *bottomButton;
+- (IBAction)analyseTapped:(id)sender;
 
 @property(strong,nonatomic) RangeSlider *slider;
 
@@ -158,14 +159,11 @@
 }
 
 
-- (IBAction)procedureButtonTapped:(id)sender {
+- (IBAction)procedureButtonTapped:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 - (void)deleteFile:(NSString *)fileName{
     NSLog(@"%@",fileName);
@@ -252,10 +250,9 @@
             _dateFromButtonTapped = NO;
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
-        
     }
-    
 }
+
 - (IBAction)dateToButtonTapped:(id)sender {
     if (!_dateFromButtonTapped) {
         if (_pickerBGView.hidden) {
@@ -272,8 +269,6 @@
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
     }
-    
-    
 }
 
 - (void)backButton {
@@ -282,16 +277,15 @@
 }
 
 
--(void) setDesign{
+-(void) setDesign
+{
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     _procedureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"cellDark"]];
     _listTableView.backgroundColor = [UIColor clearColor];
     _dateView.backgroundColor = [UIColor colorWithRed:19/255.f green:65/255.f blue:91/255.f alpha:1];
     _dateFromTF.text = @"";
     _dateToTF.text = @"";
-    
-    
-    
+   
     _searchView.backgroundColor = [UIColor clearColor];
     _bottombuttonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     _bottomButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
@@ -311,17 +305,18 @@
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
     _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
-    
 }
 
 
-- (void)report:(RangeSlider *)sender {
+- (void)report:(RangeSlider *)sender
+{
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
     _caseToLabel.text = caseToString;
-    
 }
+
+
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -330,12 +325,15 @@
     } else {
         return _detailsArray.count;
     }
-    
-    
 }
--(void)addModelToList:(id)model{
+
+
+-(void)addModelToList:(id)model
+{
     [_choosedDetails addObject:model];
 }
+
+
 -(void)deleteModelFromList:(id)model{
     for (int i = 0; i<_choosedDetails.count; i++) {
         if ([[_choosedDetails[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
@@ -343,6 +341,8 @@
         }
     }
 }
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -357,8 +357,6 @@
             _deselectAll = NO;
         }
     }
-    
-    
     id model = _detailsArray[indexPath.row];
     cell.model = model;
     cell.nameLabel.text = [model valueForKey:@"Patient_Name"];
@@ -373,16 +371,27 @@
     
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
     [textField resignFirstResponder];
     return YES;
-    
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+
+
+- (IBAction)analyseTapped:(id)sender
+{
+    [self performSegueWithIdentifier:@"fromIODtoImmediate" sender:nil];
+}
 
 @end
