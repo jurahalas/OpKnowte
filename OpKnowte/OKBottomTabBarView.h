@@ -11,6 +11,7 @@
 
 -(void) goToSettingsVC;
 -(void) goToDashboard;
+-(void) goToInfoVC;
 @end
 
 @interface OKBottomTabBarView : UIView

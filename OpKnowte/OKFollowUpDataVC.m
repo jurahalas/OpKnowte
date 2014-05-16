@@ -44,6 +44,7 @@
 
 
 @property (nonatomic, strong) NSMutableArray *detailsArray;
+@property (nonatomic, strong) NSMutableArray *nationalDataArray;
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
 @property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
@@ -317,8 +318,8 @@
     
     id model = _detailsArray[indexPath.row];
     cell.model = model;
-    cell.nameLabel.text = [model valueForKey:@"Patient_Name"];
-    cell.dateLabel.text = [model valueForKey:@"DateOfService"];
+    cell.nameLabel.text = [model valueForKey:@"var_patientName"];
+    cell.dateLabel.text = [model valueForKey:@"var_DOS"];
     cell.delegate = self;
     return cell;
 }

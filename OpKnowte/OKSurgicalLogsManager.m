@@ -54,7 +54,7 @@
 //                [procModel setModelWithDictionary:procedure];
 //                [proceduresArray addObject:procModel];
             } else if ([procedureID  isEqualToString:@"2"]){
-                OKLRPNSurgeonDataModel *procModel = [[OKLRPNSurgeonDataModel alloc] init];
+                OKLRPartialNephrectomyModel *procModel = [[OKLRPartialNephrectomyModel alloc] init];
                 [procModel setModelWithDictionary:procedure];
                 [proceduresArray addObject:procModel];
             } else if ([procedureID  isEqualToString:@"9"]){
