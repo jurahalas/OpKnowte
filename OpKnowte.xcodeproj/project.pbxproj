@@ -57,6 +57,9 @@
 		0092FD41190A9D6400499F7E /* whiteCellBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */; };
 		0092FD44190AA15600499F7E /* gradientBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD42190AA15600499F7E /* gradientBG.png */; };
 		0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0092FD43190AA15600499F7E /* gradientBG@2x.png */; };
+		00A3F0691924B03C003A7447 /* OKFollowUpDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A3F0681924B03C003A7447 /* OKFollowUpDataVC.m */; };
+		00A3F06C1924B074003A7447 /* OKFollowUpDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A3F06B1924B074003A7447 /* OKFollowUpDataCell.m */; };
+		00A3F0701924C46B003A7447 /* OKFollowUpDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A3F06F1924C46B003A7447 /* OKFollowUpDataManager.m */; };
 		00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6319012A9E00BEF07D /* OKTimePointModel.m */; };
 		00A53B6719012AB400BEF07D /* OKTimePointsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6619012AB400BEF07D /* OKTimePointsManager.m */; };
 		00A53B6E19012B6700BEF07D /* OKSelectTimePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A53B6D19012B6700BEF07D /* OKSelectTimePointViewController.m */; };
@@ -339,6 +342,12 @@
 		0092FD3F190A9D6400499F7E /* whiteCellBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteCellBG@2x.png"; sourceTree = "<group>"; };
 		0092FD42190AA15600499F7E /* gradientBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientBG.png; sourceTree = "<group>"; };
 		0092FD43190AA15600499F7E /* gradientBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gradientBG@2x.png"; sourceTree = "<group>"; };
+		00A3F0671924B03C003A7447 /* OKFollowUpDataVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKFollowUpDataVC.h; sourceTree = "<group>"; };
+		00A3F0681924B03C003A7447 /* OKFollowUpDataVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKFollowUpDataVC.m; sourceTree = "<group>"; };
+		00A3F06A1924B074003A7447 /* OKFollowUpDataCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKFollowUpDataCell.h; sourceTree = "<group>"; };
+		00A3F06B1924B074003A7447 /* OKFollowUpDataCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKFollowUpDataCell.m; sourceTree = "<group>"; };
+		00A3F06E1924C46B003A7447 /* OKFollowUpDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKFollowUpDataManager.h; sourceTree = "<group>"; };
+		00A3F06F1924C46B003A7447 /* OKFollowUpDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKFollowUpDataManager.m; sourceTree = "<group>"; };
 		00A53B6219012A9E00BEF07D /* OKTimePointModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointModel.h; sourceTree = "<group>"; };
 		00A53B6319012A9E00BEF07D /* OKTimePointModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTimePointModel.m; sourceTree = "<group>"; };
 		00A53B6519012AB400BEF07D /* OKTimePointsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimePointsManager.h; sourceTree = "<group>"; };
@@ -714,6 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				AC7E42981924ED4F00F58A24 /* Intra-operative Data */,
+				00A3F0661924AFEC003A7447 /* FollowUp Data */,
 				007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */,
 				007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */,
 				E10023F518F529E9008421D4 /* OKViewController.h */,
@@ -920,6 +930,26 @@
 				0092FD3C190A91C100499F7E /* OKListCell.m */,
 			);
 			name = "Surgeon Pefrormance Data";
+			sourceTree = "<group>";
+		};
+		00A3F0661924AFEC003A7447 /* FollowUp Data */ = {
+			isa = PBXGroup;
+			children = (
+				00A3F0671924B03C003A7447 /* OKFollowUpDataVC.h */,
+				00A3F0681924B03C003A7447 /* OKFollowUpDataVC.m */,
+				00A3F06A1924B074003A7447 /* OKFollowUpDataCell.h */,
+				00A3F06B1924B074003A7447 /* OKFollowUpDataCell.m */,
+			);
+			name = "FollowUp Data";
+			sourceTree = "<group>";
+		};
+		00A3F06D1924C42E003A7447 /* FollowUp Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+				00A3F06E1924C46B003A7447 /* OKFollowUpDataManager.h */,
+				00A3F06F1924C46B003A7447 /* OKFollowUpDataManager.m */,
+			);
+			name = "FollowUp Data Manager";
 			sourceTree = "<group>";
 		};
 		00A53B6B19012B1C00BEF07D /* Select Time Point */ = {
@@ -1541,6 +1571,7 @@
 		E106A53D18F8652B00BA4E35 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				00A3F06D1924C42E003A7447 /* FollowUp Data Manager */,
 				00A53B6519012AB400BEF07D /* OKTimePointsManager.h */,
 				00A53B6619012AB400BEF07D /* OKTimePointsManager.m */,
 				E106A53618F8626100BA4E35 /* OKBaseManager.h */,
@@ -1838,6 +1869,7 @@
 				0060D83118FD27BB00AFC7B4 /* OKSelectProcedureCell.m in Sources */,
 				0086295C190E31A3006EBA9C /* OKShockwaveLithotripsyModel.m in Sources */,
 				008BE8D01914EA630060353C /* OKLRPartialNephrectomyVC.m in Sources */,
+				00A3F0701924C46B003A7447 /* OKFollowUpDataManager.m in Sources */,
 				E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */,
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
 				AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */,
@@ -1881,6 +1913,7 @@
 				189F450D190910D500372C55 /* OKPerformanceVC.m in Sources */,
 				18949EA0191A7A8100B4B38C /* OKSelectProcTableViewCell.m in Sources */,
 				E10023EA18F529E9008421D4 /* main.m in Sources */,
+				00A3F0691924B03C003A7447 /* OKFollowUpDataVC.m in Sources */,
 				AC8F632419135AC800854D06 /* OKDataSharingViewController.m in Sources */,
 				00A53B7119012BF800BEF07D /* OKSelectTimePointCell.m in Sources */,
 				ACDE993B19136F740083232B /* OKLTemplateViewController.m in Sources */,
@@ -1903,6 +1936,7 @@
 				008B26F11920DFEE00B0AF9E /* OKSurgicalLogsManager.m in Sources */,
 				AC7E429E1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m in Sources */,
 				00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */,
+				00A3F06C1924B074003A7447 /* OKFollowUpDataCell.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,
 				00A53B7419014BBE00BEF07D /* OKProcedureDetailSummaryViewController.m in Sources */,
 				0065F9E3191A11BE003344A3 /* OKPenileProsthesisModel.m in Sources */,

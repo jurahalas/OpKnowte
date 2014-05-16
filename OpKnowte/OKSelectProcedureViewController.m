@@ -23,6 +23,7 @@
 #import "OKAccessSettingsViewController.h"
 #import "OKSurgicalLogsVC.h"
 #import "OKIntraOperativeDataViewController.h"
+#import "OKFollowUpDataVC.h"
 
 
 @interface OKSelectProcedureViewController ()
@@ -122,6 +123,8 @@
         [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
     }else if([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
         [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:[NSString stringWithFormat:@"%d",procID]];
+    }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
     } else {
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
             OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
@@ -197,6 +200,12 @@
         int i = [sender intValue];
         OKProcedureModel *tappedProc = _allProcArray[i-1];
         operativeData.procTitle = tappedProc.procedureText;
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToFollowUpData"]){
+        OKFollowUpDataVC *reminderVC = (OKFollowUpDataVC*)segue.destinationViewController;
+        reminderVC.procID = sender;
+        int i = [sender  intValue] ;
+        OKProcedureModel *tappedProc =_allProcArray[i-1];
+        reminderVC.procTitle = tappedProc.procedureText;
     }
 }
 
