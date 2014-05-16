@@ -70,7 +70,7 @@
     self.listTableView.dataSource=self;
     _detailsArray = [[NSMutableArray alloc] init];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.title = @"Surgical Logs";
+    self.navigationItem.title = @"Follow Up Data";
     [self addLeftButtonToNavbar];
     _procedureLabel.text = _procTitle;
     _choosedDetails = [[NSMutableArray alloc] init];

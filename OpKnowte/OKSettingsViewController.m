@@ -99,6 +99,7 @@
     {
         [self performSegueWithIdentifier:@"institutions" sender:[NSString stringWithFormat:@"4"]];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];    
 }
 
 
