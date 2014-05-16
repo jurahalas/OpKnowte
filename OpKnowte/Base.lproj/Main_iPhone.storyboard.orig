@@ -745,11 +745,8 @@
                         <segue destination="xPl-N3-uCs" kind="push" identifier="fromSelectProcToAccessSettings" id="Ao0-75-S0h"/>
                         <segue destination="xVV-7F-WyY" kind="push" identifier="fromSelectProcToSurgicalLogs" id="inv-jy-Pmy"/>
                         <segue destination="WIT-md-SDl" kind="push" identifier="fromProceduresToCases" id="Aik-36-Z3R"/>
-<<<<<<< HEAD
                         <segue destination="etU-ag-MlO" kind="push" identifier="fromSelectProcToOperativeData" id="JwJ-1e-A9O"/>
-=======
                         <segue destination="ZKR-1F-KMK" kind="push" identifier="fromSelectProcToFollowUpData" id="VEZ-Kb-dUr"/>
->>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D8-zs-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2487,18 +2484,15 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="performanceTableView" destination="wPp-hb-hfz" id="Xt0-Am-Vhw"/>
-<<<<<<< HEAD
                         <segue destination="wBF-vG-Mca" kind="push" identifier="toSelectProcedureFromIntraOperative" id="80T-Qu-GLX"/>
-=======
                         <segue destination="wBF-vG-Mca" kind="push" identifier="fromFollowUpDataToSelectProc" id="fOX-pJ-ufv"/>
->>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQI-r9-kz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="487" y="1651"/>
         </scene>
-        <!--Intra Operative Data View Controller - Intra-operative Data-->
+        <!--Intra Operative Data View Controller - Intra-Operative Data-->
         <scene sceneID="mPG-r6-P2q">
             <objects>
                 <viewController id="etU-ag-MlO" customClass="OKIntraOperativeDataViewController" sceneMemberID="viewController">
@@ -2522,7 +2516,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="I1f-nc-GmQ">
+<<<<<<< HEAD
+                                        <rect key="frame" x="0.0" y="1" width="320" height="58"/>
+=======
                                         <rect key="frame" x="0.0" y="1" width="320" height="88"/>
+>>>>>>> c62f5c9210547f50c36ecf35af7fc6fffdd94dcf
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2712,7 +2710,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Intra-operative Data" id="iXv-V3-AUL"/>
+                    <navigationItem key="navigationItem" title="Intra-Operative Data" id="iXv-V3-AUL"/>
                     <connections>
                         <outlet property="bottomButton" destination="6PP-p8-zOy" id="UHT-CG-gib"/>
                         <outlet property="bottombuttonView" destination="35a-zt-veT" id="8IE-KC-Ksd"/>
@@ -3709,81 +3707,20 @@
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="calendar.png" width="20" height="20"/>
-        <image name="calendar.png" width="20" height="20"/>
         <image name="calendar.png" width="20" height="20"/>
         <image name="down.png" width="20" height="20"/>
         <image name="emailIcon.png" width="25" height="25"/>
         <image name="faxIcon.png" width="25" height="25"/>
         <image name="folder.png" width="20" height="20"/>
-        <image name="folder.png" width="20" height="20"/>
         <image name="forgotPassword.png" width="125" height="23"/>
         <image name="greenMagnifier.png" width="25" height="25"/>
-        <image name="greenMagnifier.png" width="25" height="25"/>
-        <image name="greenMagnifier.png" width="25" height="25"/>
         <image name="horizontalDevider.png" width="280" height="1"/>
-        <image name="horizontalDevider.png" width="280" height="1"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
-        <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="plusGreenIcon.png" width="25" height="25"/>
         <image name="redCross.png" width="25" height="25"/>
-        <image name="redCross.png" width="25" height="25"/>
-        <image name="redCross.png" width="25" height="25"/>
         <image name="register.png" width="56" height="23"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
         <image name="userImage.png" width="48" height="48"/>
@@ -3794,26 +3731,15 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
         <segue reference="80T-Qu-GLX"/>
-=======
-        <segue reference="fOX-pJ-ufv"/>
->>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
         <segue reference="DdX-qd-zVS"/>
         <segue reference="dCD-SH-NGU"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="Aik-36-Z3R"/>
-<<<<<<< HEAD
-        <segue reference="66O-U9-75z"/>
-        <segue reference="eEH-cw-BCg"/>
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="Q7A-9x-cdI"/>
-=======
         <segue reference="9Vm-fe-BqP"/>
-        <segue reference="Q7A-9x-cdI"/>
-        <segue reference="dvt-ir-lar"/>
         <segue reference="jDh-vb-NmK"/>
->>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
         <segue reference="ljR-8G-8AS"/>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="Q7A-9x-cdI"/>
     </inferredMetricsTieBreakers>
 </document>
