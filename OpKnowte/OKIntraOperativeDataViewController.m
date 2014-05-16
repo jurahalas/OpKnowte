@@ -84,6 +84,26 @@
     _dateToButton.tag = 2;
 }
 
+-(NSMutableArray *)getFilterArray:(NSMutableArray *)data{
+    NSMutableArray *filtered = [[NSMutableArray alloc] init];
+    
+    
+    int total = [data count];
+    int from = [_caseFromLabel.text intValue];
+    int to = [_caseToLabel.text intValue];
+    
+    
+    for (int i = 0; i<total; i++) {
+        id model = data[i];
+        int MRNumber =[[model valueForKey:@"MRNumber"] intValue];
+        if ( MRNumber >= from && MRNumber <=to ) {
+            [filtered addObject:data[i]];
+        }
+    }
+    
+    return filtered;
+}
+
 -(void) setDatePickerDesign {
     float yPoint;
     if (IS_IPHONE_5 ) {
@@ -173,7 +193,7 @@
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:_caseFromLabel.text ToRecordNum:_caseToLabel.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 
-                _detailsArray = dataArray;
+                _detailsArray = [self getFilterArray:dataArray];
                 _deselectAll = YES;
                 [_listTableView reloadData];
                 [[OKLoadingViewController instance] hide];
@@ -184,8 +204,8 @@
             
         }
     }
-    
 }
+
 -(BOOL)varifyDates{
     NSDate *d1;
     NSDate *d2;
