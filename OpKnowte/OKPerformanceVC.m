@@ -7,6 +7,7 @@
 //
 
 #import "OKPerformanceVC.h"
+#import "OKSelectProcedureViewController.h"
 
 @interface OKPerformanceVC ()
 
@@ -70,7 +71,26 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OKPerformanceTableViewCell *cell = [[OKPerformanceTableViewCell alloc] init];
+    cell = (OKPerformanceTableViewCell*)[_performanceTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.performanceLabel.text isEqualToString:@"FollowUp Data"]) {
+        
+        [self performSegueWithIdentifier:@"fromFollowUpDataToSelectProc" sender:indexPath];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([segue.identifier isEqualToString:@"fromFollowUpDataToSelectProc"]){
+        OKSelectProcedureViewController *instVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+        instVC.cameFromVC = @"FollowUpDataVC";
+    }
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
