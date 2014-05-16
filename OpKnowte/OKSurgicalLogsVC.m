@@ -264,11 +264,11 @@
         
         NSDateFormatter *formater = [[NSDateFormatter alloc] init];
         [formater setDateFormat:@"yyyy-MM-dd"];
-        NSDate *d1 = [formater dateFromString:[caseData valueForKey:@"DateOfService"]];
+        NSDate *d1 = [formater dateFromString:[caseData valueForKey:@"var_DOS"]];
         [formater setDateFormat:@"MM-dd-yyyy"];
         NSString *str = [formater stringFromDate:d1];
         
-        body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplations: %@",i+1,[caseData valueForKey:@"Patient_Name"],[caseData valueForKey:@"PROCEDURE_ID"],str,[caseData valueForKey:@"MRNumber"],[caseData valueForKey:@"Complations"]];
+        body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplations: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complation"]];
         
         if (i != [_choosedDetails count]-1) {
             body = [body stringByAppendingFormat:@"\n\n"];
@@ -412,7 +412,7 @@
     
     for (int i = 0; i<total; i++) {
         id model = data[i];
-        int MRNumber =[[model valueForKey:@"MRNumber"] intValue];
+        int MRNumber =[[model valueForKey:@"var_MRNumber"] intValue];
         if ( MRNumber >= from && MRNumber <=to ) {
             [filtered addObject:data[i]];
         }
@@ -580,8 +580,8 @@
     
     id model = _detailsArray[indexPath.row];
     cell.model = model;
-    cell.nameLabel.text = [model valueForKey:@"Patient_Name"];
-    cell.dateLabel.text = [model valueForKey:@"DateOfService"];
+    cell.nameLabel.text = [model valueForKey:@"var_patientName"];
+    cell.dateLabel.text = [model valueForKey:@"var_DOS"];
     cell.delegate = self;
     return cell;
 }
