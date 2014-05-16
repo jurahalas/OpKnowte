@@ -7,6 +7,7 @@
 //
 
 #import "OKPerformanceVC.h"
+#import "OKSelectProcedureViewController.h"
 
 @interface OKPerformanceVC ()
 
@@ -40,7 +41,6 @@
     
 }
 
-
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -70,6 +70,21 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OKPerformanceTableViewCell *cell = (OKPerformanceTableViewCell *)[_performanceTableView cellForRowAtIndexPath:indexPath];
+    
+    if ([cell.performanceLabel.text isEqualToString:@"Intra-Operative Data"]) {
+        [self performSegueWithIdentifier:@"toSelectProcedureFromIntraOperative" sender:indexPath];
+    }
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([segue.identifier isEqualToString:@"toSelectProcedureFromIntraOperative"]){
+        OKSelectProcedureViewController *selectProcedure = (OKSelectProcedureViewController*)segue.destinationViewController;
+        selectProcedure.cameFromVC = @"OKPerformanceVC";
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
