@@ -32,6 +32,14 @@
     
 
 }
+- (IBAction)continueButtonTapped:(id)sender {
+    if ([_cameFromVC isEqualToString:@"LogoTBButton"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self performSegueWithIdentifier:@"fromInfoViewToDashboard" sender:nil];
+    }
+
+}
 -(void)viewWillAppear:(BOOL)animated{
     
      [self.navigationController setNavigationBarHidden:YES animated:YES ];

@@ -31,7 +31,19 @@
     }];
 }
 
+- (void)getNationalPerformancDataByUserID:(NSString*) userID ProcedureID:(NSString *)procedureID FromTime:(NSString *)fromDate ToTime:(NSString *)toDate handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler{
+    
+    NSDictionary *params = @{};
+    NSString *url = [NSString stringWithFormat:@"getSharedCases?userID=%@&procedureID=%@&timeFrom=%@&timeTo=%@", userID ,procedureID,fromDate, toDate];
+    NSLog(@"%@",url);
 
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        id datesDictionary = [self getDatesDictionaryFrom:json];
+        handler([self getErrorMessageFromJSON:json error:error], datesDictionary);
+    }];
+    
+}
 
 
 

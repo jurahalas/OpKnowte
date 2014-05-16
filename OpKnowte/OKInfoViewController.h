@@ -11,4 +11,5 @@
 
 @interface OKInfoViewController : OKBaseViewController
 
+@property (strong, nonatomic) NSString *cameFromVC;
 @end

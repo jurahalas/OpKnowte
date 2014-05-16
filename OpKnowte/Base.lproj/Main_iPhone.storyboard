@@ -97,7 +97,7 @@
         <!--Info View Controller-->
         <scene sceneID="27P-QZ-WAL">
             <objects>
-                <viewController id="5mR-vJ-NJu" customClass="OKInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="info" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5mR-vJ-NJu" customClass="OKInfoViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xab-oM-diD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -117,7 +117,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1sY-Xu-fV5" kind="push" id="DdX-qd-zVS"/>
+                                    <action selector="continueButtonTapped:" destination="5mR-vJ-NJu" eventType="touchUpInside" id="L2t-dE-vb9"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoNB.png" id="8D0-wu-uvm">
@@ -131,6 +131,7 @@
                     <connections>
                         <outlet property="continueButton" destination="Cfx-Q1-jxx" id="mxE-Z5-4P5"/>
                         <outlet property="infoTextLabel" destination="fX5-Zx-82C" id="13I-nN-YV9"/>
+                        <segue destination="1sY-Xu-fV5" kind="push" identifier="fromInfoViewToDashboard" id="evs-oI-wLM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qVc-g1-esM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3472,8 +3473,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fOX-pJ-ufv"/>
-        <segue reference="DdX-qd-zVS"/>
+        <segue reference="R5c-Bb-DU8"/>
+        <segue reference="evs-oI-wLM"/>
         <segue reference="dCD-SH-NGU"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="Aik-36-Z3R"/>

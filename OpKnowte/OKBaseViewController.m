@@ -9,6 +9,7 @@
 #import "OKBaseViewController.h"
 #import "OKSettingsViewController.h"
 #import "OKDashboardVC.h"
+#import "OKInfoViewController.h"
 
 @interface OKBaseViewController () <OKBaseVCDelegate>
 
@@ -35,6 +36,9 @@
 	}
 
 }
+-(void) viewWillAppear:(BOOL)animated{
+     [self.navigationController setNavigationBarHidden:NO animated:YES ];
+}
 -(void) goToSettingsVC{
     
     if(![self.restorationIdentifier isEqualToString:@"settings"]){
@@ -52,7 +56,14 @@
     }
     //dashboard
 }
-
+- (void)goToInfoVC{
+    if(![self.restorationIdentifier isEqualToString:@"info"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKInfoViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"info"];
+        vc.cameFromVC = @"LogoTBButton";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     return UIStatusBarStyleLightContent;
