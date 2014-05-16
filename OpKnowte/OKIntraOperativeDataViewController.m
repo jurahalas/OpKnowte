@@ -82,8 +82,9 @@
      [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
+    
+    
 }
-
 -(NSMutableArray *)getFilterArray:(NSMutableArray *)data{
     NSMutableArray *filtered = [[NSMutableArray alloc] init];
     
@@ -195,6 +196,9 @@
                 
                 _detailsArray = [self getFilterArray:dataArray];
                 _deselectAll = YES;
+                
+                [_choosedDetails addObjectsFromArray:_detailsArray];
+                
                 [_listTableView reloadData];
                 [[OKLoadingViewController instance] hide];
             }];
@@ -332,7 +336,6 @@
 }
 -(void)addModelToList:(id)model{
     [_choosedDetails addObject:model];
-    
 }
 -(void)deleteModelFromList:(id)model{
     for (int i = 0; i<_choosedDetails.count; i++) {
@@ -362,6 +365,13 @@
     cell.nameLabel.text = [model valueForKey:@"Patient_Name"];
     cell.dateLabel.text = [model valueForKey:@"DateOfService"];
     cell.delegate = self;
+    
+    for (NSArray * chosedD in _choosedDetails) {
+        if ([[chosedD valueForKey:@"Patient_Name"] isEqualToString:cell.nameLabel.text]) {
+            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+        }
+    }
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
