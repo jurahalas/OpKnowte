@@ -56,7 +56,7 @@
     }else if ([self.title isEqualToString:@"5"]){
         self.title =@"Physician";
     }else if([self.title isEqualToString:@"6"]){
-        self.title=@"Outher";}
+        self.title=@"Other";}
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 
@@ -119,13 +119,17 @@
 {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-    
+
     if ([_nameTextField.text isEqual: @""] || [_emailTextField.text isEqual: @""] || [_streerAddressTextField.text isEqual: @""] || [_cityTextField.text isEqual: @""] || [_stateTextField.text isEqual: @""] || [_zipTextField.text isEqual: @""] || [_countryTextField.text isEqual: @""] || [_faxTextField.text isEqual: @""]){
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         [[OKLoadingViewController instance] hide];
         
+    }else if ([_faxTextField.text length]<5){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Fax-field should be at least 5 symbols" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        [[OKLoadingViewController instance] hide];
     }else{
         [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
             
@@ -139,6 +143,7 @@
             }else{
                 UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [addInstitutionFormSuccessAlertView show];
+                [self.navigationController popViewControllerAnimated:YES];
                 [self.view endEditing:YES];
                 _saveButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
@@ -156,15 +161,20 @@
             [self.navigationController popViewControllerAnimated:YES ];
         } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
             [self performSegueWithIdentifier:@"backToDashboard" sender:self];
-        }else if ([_cameFromVC isEqualToString:@"ContactListVC"])
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-            
         }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([_faxTextField.text length] > 8) {
+        _faxTextField.text = [_faxTextField.text substringToIndex:8];
+        return NO;
+    }
+    return YES;
+}
+
 
 
 #pragma mark  - textField delegate

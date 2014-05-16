@@ -90,8 +90,17 @@
     {
         [self performSegueWithIdentifier:@"dataShare" sender:indexPath];
     }else if ([cell.settingsLabel.text isEqualToString:@"Edit Procedure Template"])
+<<<<<<< HEAD
+        {
+            [self performSegueWithIdentifier:@"EPT" sender:indexPath];
+    }else if ([cell.settingsLabel.text isEqualToString:@"Institutions"])
+        {
+            [self performSegueWithIdentifier:@"institutions" sender:[NSString stringWithFormat:@"4"]];
+
+=======
     {
         [self performSegueWithIdentifier:@"EPT" sender:indexPath];
+>>>>>>> 83d7184aeaa0a090df45614da985f39b53eb3a20
     }else if ([cell.settingsLabel.text isEqualToString:@"Reminder Settings"])
     {
         [self performSegueWithIdentifier:@"reminder" sender:indexPath];
@@ -99,7 +108,6 @@
     {
         [self performSegueWithIdentifier:@"institutions" sender:[NSString stringWithFormat:@"4"]];
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];    
 }
 
 
@@ -112,7 +120,14 @@
         instVC.cameFromVC = @"DataSharingVC";
     } else if ([segue.identifier isEqualToString:@"EPT"]){
         instVC.cameFromVC = @"EditProcTemplateVC";
+<<<<<<< HEAD
+    } else if ([segue.identifier isEqualToString:@"institutions"]){
+        OKContactListVC *contactsVC = (OKContactListVC*)segue.destinationViewController;
+        contactsVC.contactID = sender;
+    }else if ([segue.identifier isEqualToString:@"reminder"]){
+=======
     } else if ([segue.identifier isEqualToString:@"reminder"]){
+>>>>>>> 83d7184aeaa0a090df45614da985f39b53eb3a20
         instVC.cameFromVC = @"ReminderSettings";
     }else if ([segue.identifier isEqualToString:@"institutions"]){
         OKContactListVC *contactsVC = (OKContactListVC*)segue.destinationViewController;
@@ -121,6 +136,11 @@
 }
 
 
+<<<<<<< HEAD
+    
+
+=======
+>>>>>>> 83d7184aeaa0a090df45614da985f39b53eb3a20
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

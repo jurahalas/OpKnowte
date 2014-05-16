@@ -1,21 +1,19 @@
 //
-//  OKIntraOperativeDataViewController.m
+//  OKFollowUpDataVC.m
 //  OpKnowte
 //
-//  Created by Olegek on 15.05.14.
+//  Created by Artem Frolow on 5/15/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKIntraOperativeDataViewController.h"
-#import "OKDatePicker.h"
-#import "OKSLListCell.h"
-#import "RangeSlider.h"
+#import "OKFollowUpDataVC.h"
+#import "OKFollowUpDataCell.h"
 #import "OKProcedureModel.h"
+#import "OKDatePicker.h"
 #import "OKSurgicalLogsManager.h"
-#import "OKIntraOperativeDataTableViewCell.h"
+#import "OKFollowUpDataManager.h"
 
-@interface OKIntraOperativeDataViewController ()<OKIntraOperativeProtocol>
-
+@interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
 @property (strong, nonatomic) IBOutlet UILabel *procedureLabel;
 @property (strong, nonatomic) IBOutlet UIButton *procedureButton;
@@ -31,8 +29,7 @@
 @property (strong, nonatomic)IBOutlet UIButton *dateToButton;
 
 
-@property (strong, nonatomic) IBOutlet UILabel *caseFromLabel;
-@property (strong, nonatomic) IBOutlet UILabel *caseToLabel;
+
 
 @property (strong, nonatomic) IBOutlet UIView *searchView;
 @property (strong, nonatomic) IBOutlet UILabel *diselectAllLabel;
@@ -42,10 +39,9 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
 
-@property (strong, nonatomic) IBOutlet UIView *bottombuttonView;
-@property (strong, nonatomic) IBOutlet UIButton *bottomButton;
+@property (strong, nonatomic) IBOutlet UIView *selectTimePeriodView;
+@property (strong, nonatomic) IBOutlet UIButton *selectTimePeriodButton;
 
-@property(strong,nonatomic) RangeSlider *slider;
 
 @property (nonatomic, strong) NSMutableArray *detailsArray;
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
@@ -56,13 +52,13 @@
 
 @end
 
-@implementation OKIntraOperativeDataViewController
+@implementation OKFollowUpDataVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
+        // Custom initialization
     }
     return self;
 }
@@ -74,34 +70,18 @@
     self.listTableView.dataSource=self;
     _detailsArray = [[NSMutableArray alloc] init];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.title = @"Follow Up Data";
     [self addLeftButtonToNavbar];
     _procedureLabel.text = _procTitle;
     _choosedDetails = [[NSMutableArray alloc] init];
     [self setDatePickerDesign];
 	[self setDesign];
-     [_listTableView reloadData];
+    [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
-}
-
--(NSMutableArray *)getFilterArray:(NSMutableArray *)data{
-    NSMutableArray *filtered = [[NSMutableArray alloc] init];
     
     
-    int total = [data count];
-    int from = [_caseFromLabel.text intValue];
-    int to = [_caseToLabel.text intValue];
     
-    
-    for (int i = 0; i<total; i++) {
-        id model = data[i];
-        int MRNumber =[[model valueForKey:@"MRNumber"] intValue];
-        if ( MRNumber >= from && MRNumber <=to ) {
-            [filtered addObject:data[i]];
-        }
-    }
-    
-    return filtered;
 }
 
 -(void) setDatePickerDesign {
@@ -140,16 +120,27 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+//    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
+//    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+//        NSLog(@"Eror - %@", errorMsg);
+//        
+//        if ((dates) && ([dates count] > 0)) {
+//            
+//            int count = [dates count];
+//            _dateFromTF.text = [dates objectAtIndex:0];
+//            _dateToTF.text = [dates objectAtIndex:count-1];
+//            
+//        }
+//        [[OKLoadingViewController instance] hide];
+//    }];
+    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
         
         if ((dates) && ([dates count] > 0)) {
-            
             int count = [dates count];
             _dateFromTF.text = [dates objectAtIndex:0];
             _dateToTF.text = [dates objectAtIndex:count-1];
-            
         }
         [[OKLoadingViewController instance] hide];
     }];
@@ -161,15 +152,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-- (void)deleteFile:(NSString *)fileName{
-    NSLog(@"%@",fileName);
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:fileName error:nil];
+- (IBAction)selectTimePeriodButtonTapped:(id)sender {
 }
 
 - (IBAction)diselectAllButton:(id)sender {
@@ -189,10 +172,10 @@
             [[OKLoadingViewController instance] showWithText:@"Loading..."];
             
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-            [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:_caseFromLabel.text ToRecordNum:_caseToLabel.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+            [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:@"1" ToRecordNum:@"1"  handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 
-                _detailsArray = [self getFilterArray:dataArray];
+                _detailsArray = dataArray;
                 _deselectAll = YES;
                 [_listTableView reloadData];
                 [[OKLoadingViewController instance] hide];
@@ -203,7 +186,9 @@
             
         }
     }
+    
 }
+
 
 -(BOOL)varifyDates{
     NSDate *d1;
@@ -258,8 +243,7 @@
             if (_dateToTF.text.length > 0) {
                 [self.datePicker setDate:[_dateformater dateFromString:_dateToTF.text]];
             } else {
-                NSString *str = @"01-01-1950";
-                [self.datePicker setDate:[_dateformater dateFromString:str]];
+                [self.datePicker setDate:[NSDate date]];
             }
             _dateToButtonTapped = YES;
         } else {
@@ -286,38 +270,13 @@
     _dateFromTF.text = @"";
     _dateToTF.text = @"";
     
-    
-    
     _searchView.backgroundColor = [UIColor clearColor];
-    _bottombuttonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
-    _bottomButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
-    _bottomButton.layer.cornerRadius = 14;
-    
-    _slider = [[RangeSlider alloc] initWithFrame:CGRectMake(60, 90, 244, 20)]; // the slider enforces a height of 30, although I'm not sure that this is necessary
-	_slider.minimumRangeLength = .000005; // this property enforces a minimum range size. By default it is set to 0.0
-	[_slider setMinThumbImage:[UIImage imageNamed:@"rangethumb.png"]]; // the two thumb controls are given custom images
-	[_slider setMaxThumbImage:[UIImage imageNamed:@"rangethumb.png"]];
-	UIImage *image; // there are two track images, one for the range "track", and one for the filled in region of the track between the slider thumbs
-	[_slider setTrackImage:[[UIImage imageNamed:@"fullrange.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(9.0, 9.0, 9.0, 9.0)]];
-	image = [UIImage imageNamed:@"fillrange.png"];
-	[_slider setInRangeTrackImage:image];
-    [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
-	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
-    _caseToLabel.text = caseToString;
-    [self.dateView addSubview:_slider];
-    
+    _selectTimePeriodView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
+    _selectTimePeriodButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _selectTimePeriodButton.layer.cornerRadius = 14;
+    _selectTimePeriodButton.clipsToBounds = YES;
 }
 
-
-- (void)report:(RangeSlider *)sender {
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
-	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
-    _caseToLabel.text = caseToString;
-    
-}
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -343,10 +302,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    static NSString *cellIdentifier = @"IntraOperativeCell";
-    OKIntraOperativeDataTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"FollowUpCell";
+    OKFollowUpDataCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        cell = [[OKIntraOperativeDataTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[OKFollowUpDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     if (_deselectAll) {
         [cell setCellButtonBGImageWithGreenMinusIcon:NO];
@@ -373,6 +332,10 @@
     return YES;
     
 }
-
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end
