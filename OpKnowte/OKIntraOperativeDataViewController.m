@@ -13,6 +13,7 @@
 #import "OKProcedureModel.h"
 #import "OKSurgicalLogsManager.h"
 #import "OKIntraOperativeDataTableViewCell.h"
+#import "OKFakeTableViewCell.h"
 
 @interface OKIntraOperativeDataViewController ()<OKIntraOperativeProtocol>
 
@@ -323,7 +324,7 @@
     if (!_detailsArray.count) {
         return 0;
     } else {
-        return _detailsArray.count;
+        return [_detailsArray count]+1;
     }
 }
 
@@ -345,33 +346,46 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *IntraOperativeDataCellIdentifier = @"IntraOperativeCell";
+    static NSString *FakeCellIdentifier = @"FakeCell";
+    OKIntraOperativeDataTableViewCell *IntraOperativeDataCell = [[OKIntraOperativeDataTableViewCell alloc] init];
+    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
     
-    static NSString *cellIdentifier = @"IntraOperativeCell";
-    OKIntraOperativeDataTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[OKIntraOperativeDataTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    if (_deselectAll) {
-        [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-        if (indexPath.row == _detailsArray.count-1) {
-            _deselectAll = NO;
+    if (indexPath.row < [_detailsArray count]) {
+        
+        IntraOperativeDataCell = [tableView dequeueReusableCellWithIdentifier:IntraOperativeDataCellIdentifier forIndexPath:indexPath];
+        if (!IntraOperativeDataCellIdentifier) {
+            IntraOperativeDataCell = [[OKIntraOperativeDataTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IntraOperativeDataCellIdentifier];
         }
-    }
-    id model = _detailsArray[indexPath.row];
-    cell.model = model;
-    cell.nameLabel.text = [model valueForKey:@"var_patientName"];
-    cell.dateLabel.text = [model valueForKey:@"var_patientDOB"];
-    cell.delegate = self;
-    
-    for (NSArray * chosedD in _choosedDetails) {
-        if ([[chosedD valueForKey:@"var_patientName"] isEqualToString:cell.nameLabel.text]) {
-            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+        if (_deselectAll) {
+            [IntraOperativeDataCell setCellButtonBGImageWithGreenMinusIcon:NO];
+            if (indexPath.row == _detailsArray.count-1) {
+                _deselectAll = NO;
+            }
         }
-    }
+        id model = _detailsArray[indexPath.row];
+        IntraOperativeDataCell.model = model;
+        IntraOperativeDataCell.nameLabel.text = [model valueForKey:@"var_patientName"];
+        IntraOperativeDataCell.dateLabel.text = [model valueForKey:@"var_patientDOB"];
+        IntraOperativeDataCell.delegate = self;
+        
+        for (NSArray * chosedD in _choosedDetails) {
+            if ([[chosedD valueForKey:@"var_patientName"] isEqualToString:IntraOperativeDataCell.nameLabel.text]) {
+                [IntraOperativeDataCell setCellButtonBGImageWithGreenMinusIcon:YES];
+            }
+        }
+        
+        return IntraOperativeDataCell;
     
-    return cell;
+    }
+    else{
+        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        if (!FakeCell) {
+            FakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FakeCellIdentifier];
+        }
+        return FakeCell;
+    }
 }
-
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
 }

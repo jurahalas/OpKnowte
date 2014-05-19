@@ -206,6 +206,7 @@
 		AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7AF46A191B648900B41548 /* OKCaseDataTableViewCell.m */; };
 		AC7E429B1924ED9700F58A24 /* OKIntraOperativeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E429A1924ED9700F58A24 /* OKIntraOperativeDataViewController.m */; };
 		AC7E429E1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E429D1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m */; };
+		AC83FC631929E5A700ADD365 /* OKFakeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC83FC621929E5A700ADD365 /* OKFakeTableViewCell.m */; };
 		AC86E67A191A1236001DDEFF /* OKIndicationTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC86E679191A1236001DDEFF /* OKIndicationTemplateViewController.m */; };
 		AC8D1788191D5D22001F4E45 /* OKAccessSettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D1786191D5D22001F4E45 /* OKAccessSettingsTableViewCell.m */; };
 		AC8D1789191D5D22001F4E45 /* OKAccessSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D1787191D5D22001F4E45 /* OKAccessSettingsViewController.m */; };
@@ -550,6 +551,8 @@
 		AC7E429A1924ED9700F58A24 /* OKIntraOperativeDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKIntraOperativeDataViewController.m; sourceTree = "<group>"; };
 		AC7E429C1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKIntraOperativeDataTableViewCell.h; sourceTree = "<group>"; };
 		AC7E429D1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKIntraOperativeDataTableViewCell.m; sourceTree = "<group>"; };
+		AC83FC611929E5A700ADD365 /* OKFakeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKFakeTableViewCell.h; sourceTree = "<group>"; };
+		AC83FC621929E5A700ADD365 /* OKFakeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKFakeTableViewCell.m; sourceTree = "<group>"; };
 		AC86E678191A1236001DDEFF /* OKIndicationTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKIndicationTemplateViewController.h; sourceTree = "<group>"; };
 		AC86E679191A1236001DDEFF /* OKIndicationTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKIndicationTemplateViewController.m; sourceTree = "<group>"; };
 		AC8D1784191D5D22001F4E45 /* OKAccessSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKAccessSettingsViewController.h; path = OpKnowte/OKAccessSettingsViewController.h; sourceTree = SOURCE_ROOT; };
@@ -728,6 +731,7 @@
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				187A6D5919265CD50044E700 /* Immediate Post-Op Data */,
 				AC7E42981924ED4F00F58A24 /* Intra-operative Data */,
 				00A3F0661924AFEC003A7447 /* FollowUp Data */,
 				007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */,
@@ -1362,11 +1366,12 @@
 		AC7E42981924ED4F00F58A24 /* Intra-operative Data */ = {
 			isa = PBXGroup;
 			children = (
-				187A6D5919265CD50044E700 /* Immediate Post-Op Data */,
 				AC7E42991924ED9700F58A24 /* OKIntraOperativeDataViewController.h */,
 				AC7E429A1924ED9700F58A24 /* OKIntraOperativeDataViewController.m */,
 				AC7E429C1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.h */,
 				AC7E429D1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m */,
+				AC83FC611929E5A700ADD365 /* OKFakeTableViewCell.h */,
+				AC83FC621929E5A700ADD365 /* OKFakeTableViewCell.m */,
 			);
 			name = "Intra-operative Data";
 			sourceTree = "<group>";
@@ -1894,6 +1899,7 @@
 				00897C32192104CA007C4452 /* OKLRPNSurgeonDataModel.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
 				008BCE9519178B1C00E1D18D /* OKProcedureTemplateModel.m in Sources */,
+				AC83FC631929E5A700ADD365 /* OKFakeTableViewCell.m in Sources */,
 				AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */,
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				00897C3F19221CB1007C4452 /* OKPDFGenerator.m in Sources */,
