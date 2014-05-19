@@ -11,7 +11,7 @@
 #import "OKLRRadicalProstatectomyModel.h"
 #import "OKLRPartialNephrectomyModel.h"
 #import "OKPenileProsthesisModel.h"
-#import "OKLRPNSurgeonDataModel.h"
+
 
 @implementation OKSurgicalLogsManager
 + (OKSurgicalLogsManager *)instance
