@@ -97,7 +97,7 @@
     
     for (int i = 0; i<total; i++) {
         id model = data[i];
-        int MRNumber =[[model valueForKey:@"MRNumber"] intValue];
+        int MRNumber =[[model valueForKey:@"var_MRNumber"] intValue];
         if ( MRNumber >= from && MRNumber <=to ) {
             [filtered addObject:data[i]];
         }
@@ -359,12 +359,12 @@
     }
     id model = _detailsArray[indexPath.row];
     cell.model = model;
-    cell.nameLabel.text = [model valueForKey:@"Patient_Name"];
-    cell.dateLabel.text = [model valueForKey:@"DateOfService"];
+    cell.nameLabel.text = [model valueForKey:@"var_patientName"];
+    cell.dateLabel.text = [model valueForKey:@"var_patientDOB"];
     cell.delegate = self;
     
     for (NSArray * chosedD in _choosedDetails) {
-        if ([[chosedD valueForKey:@"Patient_Name"] isEqualToString:cell.nameLabel.text]) {
+        if ([[chosedD valueForKey:@"var_patientName"] isEqualToString:cell.nameLabel.text]) {
             [cell setCellButtonBGImageWithGreenMinusIcon:YES];
         }
     }
