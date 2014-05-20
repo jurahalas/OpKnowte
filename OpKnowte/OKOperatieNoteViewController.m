@@ -36,6 +36,7 @@
 @property (strong, nonatomic) NSMutableDictionary *templateDictionary;
 @property (strong, nonatomic) NSMutableArray *caseDataArray;
 
+@property (strong, nonatomic) IBOutlet UIView *segmentedControllView;
 
 @property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
 @end
@@ -47,7 +48,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        
     }
     return self;
 }
@@ -55,7 +56,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
+    
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     _keysForValues = [[NSMutableArray alloc] init];
     _caseDataValues =[[NSMutableArray alloc] init];
@@ -63,9 +64,9 @@
     _templateDictionary = [[NSMutableDictionary alloc] init];
     
     OKProceduresManager *procedureManager = [OKProceduresManager instance];
-
+    
     [procedureManager getProcedureTemplateVariablesByProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSMutableArray *templateVariables) {
-       
+        
         NSLog(@"Error - %@", errorMsg);
         _keysForValues = templateVariables;
         [procedureManager getProcedureTemplateByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSDictionary *template) {
@@ -110,7 +111,7 @@
     
     
     
-
+    
     
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -121,25 +122,38 @@
     _saveButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     
     [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
-  
+    
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"segmentControllBG.png"]];
     
     [self.segmentControllView addSubview:backgroundView];
     
     caseDataTableView.backgroundColor = [UIColor clearColor];
-
+    
     self.caseDataTableView.dataSource = self;
     self.caseDataTableView.delegate = self;
     
-   caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
-
+    caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
+    
     [self.caseDataTableView reloadData];
     
     self.caseDataTableView.hidden = NO;
     self.IndicationView.hidden = YES;
     self.procedureView.hidden = YES;
     
+    self.segmentedControllView.layer.borderColor = [[UIColor whiteColor]CGColor];
+    self.segmentedControllView.backgroundColor = [UIColor clearColor];
+    
+    [self .segmentControl setSelectedSegmentIndex:0];
+    
+    for (UIControl *subview in [segmentControl subviews]) {
+        
+        if ([subview isSelected]){
+            [subview setTintColor:[UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]];
+        }
+    }
+    
+    [self.segmentControl setDividerImage:[UIImage imageNamed:@"scSeparator"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,10 +162,10 @@
 }
 
 -(void)indicationMethod{
-
+    
     IndicationView.backgroundColor = [UIColor clearColor];
     
-
+    
     NSString *indicationText = _templateModel.indicationText;
     
     for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
@@ -182,7 +196,7 @@
     indicationLabel.text = indicationText;
     NSString *indicationString = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     indicationString = [indicationString stringByReplacingOccurrencesOfString:@")" withString:@""];
-   
+    
     [_templateDictionary setObject:indicationString forKey:@"indicationText"];
     
     [indicationLabel sizeToFit];
@@ -193,7 +207,7 @@
 }
 
 -(void)procedureMethod{
-
+    
     procedureView.backgroundColor = [UIColor clearColor];
     NSString * procedureText = _templateModel.procedureText;
     
@@ -221,7 +235,7 @@
         }
     }
     
-
+    
     procedureLable.text = procedureText;
     
     NSString *procedureString = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
@@ -233,7 +247,7 @@
     procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, procedureLable.frame.size.height+80);
     [procedureScrollView addSubview:procedureLable];
     [self.procedureView addSubview:procedureScrollView];
-
+    
 }
 
 #pragma mark IBAction
@@ -247,29 +261,27 @@
     UIColor *deselectedColor = [UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     
     for (UIControl *subview in [segmentControl subviews]) {
-
+        
         if ([subview isSelected]){
             [subview setTintColor:selectedColor];
         }
         else
             [subview setTintColor:deselectedColor];
-             }
+    }
+    
+    self.IndicationView.hidden = YES;
+    self.procedureView.hidden = YES;
+    self.caseDataTableView.hidden = YES;
     
     switch (sender.selectedSegmentIndex) {
         case 0:
-            self.IndicationView.hidden = YES;
-            self.procedureView.hidden = YES;
             self.caseDataTableView.hidden = NO;
             break;
         case 1:
             self.IndicationView.hidden = NO;
-            self.procedureView.hidden = YES;
-            self.caseDataTableView.hidden = YES;
             break;
         case 2:
-            self.IndicationView.hidden = YES;
             self.procedureView.hidden = NO;
-            self.caseDataTableView.hidden = YES;
         default:
             break;
     }
@@ -316,7 +328,7 @@
     
     
     [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
-     [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
+    [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
     return cell;
 }
 - (IBAction)saveButtonTapped:(id)sender {
@@ -328,13 +340,13 @@
         NSLog(@"Error - %@", errorMsg);
         [[OKLoadingViewController instance] hide];
         if (errorMsg == nil) {
-
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-                OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
-                [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
-                vc.templateDictionary = _templateDictionary;
-                [self.navigationController pushViewController:vc animated:YES];
-                //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
+            [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
+            vc.templateDictionary = _templateDictionary;
+            [self.navigationController pushViewController:vc animated:YES];
+            //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
             
         } else {
             if ([[json valueForKey:@"status"] isEqualToString:@"false"]) {
@@ -349,10 +361,10 @@
         }
         
         [[OKLoadingViewController instance] hide];
-
+        
         
     }];
-
+    
 }
 
 @end
