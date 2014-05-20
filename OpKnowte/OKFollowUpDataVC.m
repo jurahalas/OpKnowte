@@ -12,6 +12,7 @@
 #import "OKDatePicker.h"
 #import "OKSurgicalLogsManager.h"
 #import "OKFollowUpDataManager.h"
+#import "OKSelectTimePointViewController.h"
 
 @interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
@@ -43,8 +44,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *selectTimePeriodButton;
 
 
-@property (nonatomic, strong) NSMutableArray *detailsArray;
+@property (nonatomic, strong) NSMutableArray *surgeonDataArray;
 @property (nonatomic, strong) NSMutableArray *nationalDataArray;
+
+@property (nonatomic, strong) NSMutableArray *surgeonClinicalData;
+@property (nonatomic, strong) NSMutableArray *nationalClinicalData;
+
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
 @property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
@@ -69,12 +74,18 @@
     [super viewDidLoad];
     self.listTableView.delegate=self;
     self.listTableView.dataSource=self;
-    _detailsArray = [[NSMutableArray alloc] init];
+    _surgeonDataArray = [[NSMutableArray alloc] init];
+    _nationalDataArray = [[NSMutableArray alloc] init];
+    
+    _surgeonClinicalData = [[NSMutableArray alloc] init];
+    _nationalClinicalData = [[NSMutableArray alloc] init];
+    
+    _choosedDetails = [[NSMutableArray alloc] init];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.title = @"Follow Up Data";
     [self addLeftButtonToNavbar];
     _procedureLabel.text = _procTitle;
-    _choosedDetails = [[NSMutableArray alloc] init];
     [self setDatePickerDesign];
 	[self setDesign];
     [_listTableView reloadData];
@@ -121,19 +132,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
-//    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-//    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
-//        NSLog(@"Eror - %@", errorMsg);
-//        
-//        if ((dates) && ([dates count] > 0)) {
-//            
-//            int count = [dates count];
-//            _dateFromTF.text = [dates objectAtIndex:0];
-//            _dateToTF.text = [dates objectAtIndex:count-1];
-//            
-//        }
-//        [[OKLoadingViewController instance] hide];
-//    }];
+
     OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
     [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
@@ -154,7 +153,44 @@
 }
 
 - (IBAction)selectTimePeriodButtonTapped:(id)sender {
+    if (_choosedDetails.count) {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+        OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+        [followUpDataManager getClinicalDetailsByCaseArray:_choosedDetails handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+            
+            NSLog(@"Eror - %@", errorMsg);
+            _surgeonClinicalData = dataArray;
+            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                NSLog(@"Eror - %@", errorMsg);
+                _nationalClinicalData = dataArray;
+                [[OKLoadingViewController instance] hide];
+                [self performSegueWithIdentifier:@"fromFollowUpDataToTimePoints" sender:nil];
+            }]; 
+        }];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"Choose at least one case"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+
+
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromFollowUpDataToTimePoints"]){
+        OKSelectTimePointViewController *sharVC = (OKSelectTimePointViewController*)segue.destinationViewController;
+        sharVC.cameFromVC = @"FollowUpData";
+        sharVC.performanceCases = [[NSMutableArray alloc] initWithArray:_nationalClinicalData];
+        sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonClinicalData];
+        sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
+        sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];       
+                                   
+    } 
+}
+
 
 - (IBAction)diselectAllButton:(id)sender {
     [_choosedDetails removeAllObjects];
@@ -164,6 +200,7 @@
 
 
 - (IBAction)searchButton:(id)sender {
+    [_choosedDetails removeAllObjects];
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
@@ -171,14 +208,21 @@
         
         if ([self varifyDates]) {
             [[OKLoadingViewController instance] showWithText:@"Loading..."];
-            
+            OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:@"1" ToRecordNum:@"1"  handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 
-                _detailsArray = dataArray;
-                _deselectAll = YES;
+                _surgeonDataArray = dataArray;
+                _choosedDetails = dataArray;
+//                _deselectAll = NO;
                 [_listTableView reloadData];
+                [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                    NSLog(@"Eror - %@", errorMsg);
+                    
+                    _nationalDataArray = dataArray;
+                    
+                }];
                 [[OKLoadingViewController instance] hide];
             }];
         }else{
@@ -281,10 +325,10 @@
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!_detailsArray.count) {
+    if (!_surgeonDataArray.count) {
         return 0;
     } else {
-        return _detailsArray.count;
+        return _surgeonDataArray.count;
     }
     
     
@@ -294,9 +338,12 @@
     
 }
 -(void)deleteModelFromList:(id)model{
+    
     for (int i = 0; i<_choosedDetails.count; i++) {
-        if ([[_choosedDetails[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
+        id searchedModel = [_choosedDetails objectAtIndex:i];
+        if ([[searchedModel valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
             [_choosedDetails removeObjectAtIndex:i];
+            break;
         }
     }
 }
@@ -308,15 +355,16 @@
     if (!cell) {
         cell = [[OKFollowUpDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    [cell setCellButtonBGImageWithGreenMinusIcon:YES];
     if (_deselectAll) {
         [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-        if (indexPath.row == _detailsArray.count-1) {
+        if (indexPath.row == _surgeonDataArray.count-1) {
             _deselectAll = NO;
         }
     }
     
     
-    id model = _detailsArray[indexPath.row];
+    id model = _surgeonDataArray[indexPath.row];
     cell.model = model;
     cell.nameLabel.text = [model valueForKey:@"var_patientName"];
     cell.dateLabel.text = [model valueForKey:@"var_DOS"];

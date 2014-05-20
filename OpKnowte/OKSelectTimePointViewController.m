@@ -9,10 +9,12 @@
 #import "OKSelectTimePointViewController.h"
 #import "OKTimePointModel.h"
 #import "OKTimePointsManager.h"
+#import "OKSelectFUDVariablesVC.h"
 
 @interface OKSelectTimePointViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectTimePointTableView;
 @property (strong, nonatomic) NSMutableArray *timePointsArray;
+@property (nonatomic) int timepointID;
 @end
 
 @implementation OKSelectTimePointViewController
@@ -81,6 +83,34 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
     
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *cameFromVC = [[NSString alloc] init];
+    if (indexPath.row == 0) {
+        cameFromVC = @"weeks";
+    }else if (indexPath.row >0 && indexPath.row <11){
+        cameFromVC = @"months";
+    }
+    _timepointID = indexPath.row+1;
+    if([_cameFromVC isEqualToString:@"FollowUpData"]){
+        [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
+        
+    }
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromSelectTimeToSelectVariables"]){
+        OKSelectFUDVariablesVC *sharVC = (OKSelectFUDVariablesVC*)segue.destinationViewController;
+        sharVC.cameFromVC = sender;
+        sharVC.performanceCases = [[NSMutableArray alloc] initWithArray:_performanceCases];
+        sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonCases];
+        sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_totlaNationalCases];
+        sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_totalSurgeonCases];
+        sharVC.timepointID = _timepointID;
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning
