@@ -113,7 +113,34 @@
     [self.view addSubview:_pickerBGView];
     [_pickerBGView addSubview:_datePicker];
     _pickerBGView.hidden = YES;
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
+    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+        NSLog(@"Eror - %@", errorMsg);
+        
+        if ((dates) && ([dates count] > 0)) {
+            int count = [dates count];
+            _dateFromTF.text = [dates objectAtIndex:0];
+            _dateToTF.text = [dates objectAtIndex:count-1];
+        }
+        OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
+        [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:@"1" ToRecordNum:@"1"  handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+            NSLog(@"Eror - %@", errorMsg);
+            
+            _surgeonDataArray = dataArray;
+            _choosedDetails = [dataArray mutableCopy];
+            [_listTableView reloadData];
+            [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                NSLog(@"Eror - %@", errorMsg);
+                
+                _nationalDataArray = dataArray;
+                
+            }];
+            
+        }];
+        [[OKLoadingViewController instance] hide];
+    }];
     
     
 }
@@ -131,19 +158,7 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
-        NSLog(@"Eror - %@", errorMsg);
-        
-        if ((dates) && ([dates count] > 0)) {
-            int count = [dates count];
-            _dateFromTF.text = [dates objectAtIndex:0];
-            _dateToTF.text = [dates objectAtIndex:count-1];
-        }
-        [[OKLoadingViewController instance] hide];
-    }];
     
 }
 
@@ -214,8 +229,7 @@
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _surgeonDataArray = dataArray;
-                _choosedDetails = dataArray;
-//                _deselectAll = NO;
+                _choosedDetails = [dataArray mutableCopy];
                 [_listTableView reloadData];
                 [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                     NSLog(@"Eror - %@", errorMsg);
