@@ -14,6 +14,8 @@
 #import "OKSurgicalLogsManager.h"
 #import "OKIntraOperativeDataTableViewCell.h"
 #import "OKFakeTableViewCell.h"
+#import "OKPostOpDataGraphs.h"
+#import "OKImmediateDataVC.h"
 
 @interface OKIntraOperativeDataViewController ()<OKIntraOperativeProtocol>
 
@@ -49,8 +51,6 @@
 
 @property(strong,nonatomic) RangeSlider *slider;
 
-@property (nonatomic, strong) NSMutableArray *detailsArray;
-@property (nonatomic, strong) NSMutableArray *choosedDetails;
 @property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
@@ -74,19 +74,20 @@
     [super viewDidLoad];
     self.listTableView.delegate=self;
     self.listTableView.dataSource=self;
-    _detailsArray = [[NSMutableArray alloc] init];
+    _cases = [[NSMutableArray alloc] init];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addLeftButtonToNavbar];
     _procedureLabel.text = _procTitle;
-    _choosedDetails = [[NSMutableArray alloc] init];
+    _selectedCases = [[NSMutableArray alloc] init];
     [self setDatePickerDesign];
 	[self setDesign];
      [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
-    
-    
+
 }
+
+
 -(NSMutableArray *)getFilterArray:(NSMutableArray *)data{
     NSMutableArray *filtered = [[NSMutableArray alloc] init];
     
@@ -173,7 +174,7 @@
 }
 
 - (IBAction)diselectAllButton:(id)sender {
-    [_choosedDetails removeAllObjects];
+    [_selectedCases removeAllObjects];
     _deselectAll = YES;
     [_listTableView reloadData];
 }
@@ -192,10 +193,10 @@
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:_caseFromLabel.text ToRecordNum:_caseToLabel.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 
-                _detailsArray = [self getFilterArray:dataArray];
+                _cases = [self getFilterArray:dataArray];
                 _deselectAll = YES;
                 
-                [_choosedDetails addObjectsFromArray:_detailsArray];
+                [_selectedCases addObjectsFromArray:_cases];
                 
                 [_listTableView reloadData];
                 [[OKLoadingViewController instance] hide];
@@ -321,24 +322,24 @@
 #pragma mark - tableView methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!_detailsArray.count) {
+    if (!_cases.count) {
         return 0;
     } else {
-        return [_detailsArray count]+1;
+        return [_cases count]+1;
     }
 }
 
 
 -(void)addModelToList:(id)model
 {
-    [_choosedDetails addObject:model];
+    [_selectedCases addObject:model];
 }
 
 
 -(void)deleteModelFromList:(id)model{
-    for (int i = 0; i<_choosedDetails.count; i++) {
-        if ([[_choosedDetails[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
-            [_choosedDetails removeObjectAtIndex:i];
+    for (int i = 0; i<_selectedCases.count; i++) {
+        if ([[_selectedCases[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
+            [_selectedCases removeObjectAtIndex:i];
         }
     }
 }
@@ -351,7 +352,7 @@
     OKIntraOperativeDataTableViewCell *IntraOperativeDataCell = [[OKIntraOperativeDataTableViewCell alloc] init];
     OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
     
-    if (indexPath.row < [_detailsArray count]) {
+    if (indexPath.row < [_cases count]) {
         
         IntraOperativeDataCell = [tableView dequeueReusableCellWithIdentifier:IntraOperativeDataCellIdentifier forIndexPath:indexPath];
         if (!IntraOperativeDataCellIdentifier) {
@@ -359,17 +360,17 @@
         }
         if (_deselectAll) {
             [IntraOperativeDataCell setCellButtonBGImageWithGreenMinusIcon:NO];
-            if (indexPath.row == _detailsArray.count-1) {
+            if (indexPath.row == _cases.count-1) {
                 _deselectAll = NO;
             }
         }
-        id model = _detailsArray[indexPath.row];
+        id model = _cases[indexPath.row];
         IntraOperativeDataCell.model = model;
         IntraOperativeDataCell.nameLabel.text = [model valueForKey:@"var_patientName"];
         IntraOperativeDataCell.dateLabel.text = [model valueForKey:@"var_patientDOB"];
         IntraOperativeDataCell.delegate = self;
         
-        for (NSArray * chosedD in _choosedDetails) {
+        for (NSArray * chosedD in _selectedCases) {
             if ([[chosedD valueForKey:@"var_patientName"] isEqualToString:IntraOperativeDataCell.nameLabel.text]) {
                 [IntraOperativeDataCell setCellButtonBGImageWithGreenMinusIcon:YES];
             }
@@ -406,6 +407,35 @@
 - (IBAction)analyseTapped:(id)sender
 {
     [self performSegueWithIdentifier:@"fromIODtoImmediate" sender:nil];
+   
+    if ([self.selectedCases count] == 0) {
+        UIAlertView *analyseError = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                            message:@"Choose at least one case"
+                                                                           delegate:self
+                                                                  cancelButtonTitle:@"OK"
+                                                                  otherButtonTitles:nil, nil];
+        [analyseError show];
+    }else{
+        NSString *list = [[NSString alloc] init];
+        
+        for (int i = 0; i < [self.selectedCases count]; i++) {
+            list = [list stringByAppendingString:[[self.selectedCases objectAtIndex:i] valueForKey:@"DetailID"]];
+            if (i != self.selectedCases.count - 1) {
+                list = [list stringByAppendingString:@","];
+            }
+        }
+        NSLog(@"list - %@", list);
+        
+        
+//        
+//        OKImmediateDataVC *controller = [[OKImmediateDataVC alloc] initWithNibName:@"OKImmediateVC" bundle:nil];
+//
+//        NSLog(@"%i",self.selectedCases.count);
+//        controller.totalSurgeonCount = [self.selectedCases count];
+//        controller.selectedCases = [self.selectedCases mutableCopy];
+//        [self.navigationController pushViewController:controller animated:YES];
+    }
+
 }
 
 @end

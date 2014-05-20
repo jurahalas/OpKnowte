@@ -143,9 +143,7 @@
             }else{
                 UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [addInstitutionFormSuccessAlertView show];
-                [self.navigationController popViewControllerAnimated:YES];
-                [self.view endEditing:YES];
-                _saveButton.enabled = YES;
+//                [self.navigationController popViewControllerAnimated:YES];
                 [[OKLoadingViewController instance] hide];
             }
         }];
@@ -156,6 +154,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        NSLog(@"cameeeeee    %@", _cameFromVC);
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
         if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
             [self.navigationController popViewControllerAnimated:YES ];
@@ -163,7 +162,10 @@
             [self performSegueWithIdentifier:@"backToDashboard" sender:self];
         }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
             [self.navigationController popViewControllerAnimated:YES];
+        }else if ([_cameFromVC isEqualToString:@"ContactListVC"]){
+            [self.navigationController popViewControllerAnimated:YES];
         }
+        
     }
 }
 
