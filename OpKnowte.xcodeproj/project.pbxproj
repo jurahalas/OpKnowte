@@ -200,6 +200,8 @@
 		AC1ACA27191EBA49004FA1BB /* OKAccessSettingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1ACA26191EBA49004FA1BB /* OKAccessSettingManager.m */; };
 		AC1D0783190AE22100DC55FD /* OKDataCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */; };
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
+		AC200541192B6276007DB28C /* scSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = AC20053F192B6276007DB28C /* scSeparator.png */; };
+		AC200542192B6276007DB28C /* scSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC200540192B6276007DB28C /* scSeparator@2x.png */; };
 		AC213493191A519E00F3CAC6 /* OKCaseDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */; };
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
 		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
@@ -539,6 +541,8 @@
 		AC1D0782190AE22100DC55FD /* OKDataCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureViewController.m; sourceTree = "<group>"; };
 		AC1D0784190AE24C00DC55FD /* OKDataCaptureTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKDataCaptureTableViewCell.h; sourceTree = "<group>"; };
 		AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDataCaptureTableViewCell.m; sourceTree = "<group>"; };
+		AC20053F192B6276007DB28C /* scSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scSeparator.png; path = ../../../../scSeparator.png; sourceTree = "<group>"; };
+		AC200540192B6276007DB28C /* scSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scSeparator@2x.png"; path = "../../../../scSeparator@2x.png"; sourceTree = "<group>"; };
 		AC213491191A519E00F3CAC6 /* OKCaseDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCaseDataViewController.h; sourceTree = "<group>"; };
 		AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCaseDataViewController.m; sourceTree = "<group>"; };
 		AC2B0E48190B247B0089206D /* OKOperatieNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteTableViewCell.h; sourceTree = "<group>"; };
@@ -987,6 +991,8 @@
 		00A64CF019064DB300740DC7 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AC20053F192B6276007DB28C /* scSeparator.png */,
+				AC200540192B6276007DB28C /* scSeparator@2x.png */,
 				0092FD42190AA15600499F7E /* gradientBG.png */,
 				0092FD43190AA15600499F7E /* gradientBG@2x.png */,
 				00A64CF119064DB300740DC7 /* arrows */,
@@ -1752,6 +1758,7 @@
 				00A64D7019064DB400740DC7 /* password@2x.png in Resources */,
 				00A64D4619064DB400740DC7 /* bg.png in Resources */,
 				00A64D6719064DB400740DC7 /* knife.png in Resources */,
+				AC200542192B6276007DB28C /* scSeparator@2x.png in Resources */,
 				00A64D941906716C00740DC7 /* navbarBG@2x.png in Resources */,
 				00A64D6119064DB400740DC7 /* folder.png in Resources */,
 				00A64D6C19064DB400740DC7 /* magnifier@2x.png in Resources */,
@@ -1784,6 +1791,7 @@
 				008D5B7B1908021C0039E8B7 /* OKProcedureDatePicker.xib in Resources */,
 				00A64D7219064DB400740DC7 /* settings@2x.png in Resources */,
 				0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */,
+				AC200541192B6276007DB28C /* scSeparator.png in Resources */,
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
 				00A64D4519064DB400740DC7 /* right@2x.png in Resources */,
 				00A64D7919064DB400740DC7 /* separator.png in Resources */,

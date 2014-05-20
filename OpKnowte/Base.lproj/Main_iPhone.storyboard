@@ -2043,19 +2043,34 @@
                                 <rect key="frame" x="0.0" y="65" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" id="Par-eZ-aHM">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="rEA-gv-G5I">
                                         <rect key="frame" x="31" y="11" width="259" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="Case data"/>
-                                            <segment title="Indication"/>
-                                            <segment title="Procedure"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="segmentControlButton:" destination="IWN-9Q-DMf" eventType="valueChanged" id="sm7-GK-0qq"/>
-                                        </connections>
-                                    </segmentedControl>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="Par-eZ-aHM">
+                                                <rect key="frame" x="0.0" y="0.0" width="259" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Case data"/>
+                                                    <segment title="Indication"/>
+                                                    <segment title="Procedure"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="segmentControlButton:" destination="IWN-9Q-DMf" eventType="valueChanged" id="sm7-GK-0qq"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -2176,6 +2191,7 @@
                         <outlet property="saveButtonView" destination="EAw-Ad-8IY" id="36H-S4-llQ"/>
                         <outlet property="segmentControl" destination="Par-eZ-aHM" id="CRQ-wA-ZwN"/>
                         <outlet property="segmentControllView" destination="sB1-gk-KcK" id="jYd-a8-t6D"/>
+                        <outlet property="segmentedControllView" destination="rEA-gv-G5I" id="tne-m8-9xh"/>
                         <segue destination="b3m-w2-gJA" kind="push" identifier="fromOpNoteToFacility" id="aL2-xa-szT"/>
                     </connections>
                 </viewController>
