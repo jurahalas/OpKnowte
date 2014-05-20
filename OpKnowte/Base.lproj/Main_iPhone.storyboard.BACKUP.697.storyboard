@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
-=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
->>>>>>> ce657401c3a7f9940d0864cc60b90176ac931382
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -2807,8 +2803,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gC4-wP-hn0">
-                                <rect key="frame" x="0.0" y="60" width="320" height="508"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="428"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="3R0-Us-1JU" userLabel="name" customClass="OKCustomTextField">
                                         <rect key="frame" x="40" y="20" width="240" height="33"/>
@@ -2935,7 +2931,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dm8-tn-hcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="1592"/>
+            <point key="canvasLocation" x="-69" y="1621"/>
         </scene>
         <!--FacilityVC - Select Facility-->
         <scene sceneID="pjE-aK-1X1">
@@ -2946,7 +2942,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3002,7 +2998,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3856,21 +3852,27 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="evs-oI-wLM"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="IcY-8f-Npy"/>
+=======
+>>>>>>> 63b60d6cc25b448dd4b46518fa6a38c654362631
         <segue reference="cNX-Le-q8P"/>
-        <segue reference="lPY-Bo-TiM"/>
+        <segue reference="ljR-8G-8AS"/>
         <segue reference="oYk-1x-QUH"/>
-        <segue reference="aL2-xa-szT"/>
+<<<<<<< HEAD
+        <segue reference="ljR-8G-8AS"/>
+=======
+        <segue reference="lPY-Bo-TiM"/>
         <segue reference="NUC-dJ-uGW"/>
         <segue reference="hs5-kv-qjd"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="ytp-fp-EJd"/>
+>>>>>>> 63b60d6cc25b448dd4b46518fa6a38c654362631
         <segue reference="9Vm-fe-BqP"/>
-        <segue reference="aL2-xa-szT"/>
         <segue reference="NUC-dJ-uGW"/>
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="IcY-8f-Npy"/>
-        <segue reference="goQ-lN-Lsa"/>
-        <segue reference="evs-oI-wLM"/>
-        <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>
