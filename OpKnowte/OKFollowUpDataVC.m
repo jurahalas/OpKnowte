@@ -214,7 +214,8 @@
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _surgeonDataArray = dataArray;
-                _deselectAll = YES;
+                _choosedDetails = [dataArray copy];
+//                _deselectAll = NO;
                 [_listTableView reloadData];
                 [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                     NSLog(@"Eror - %@", errorMsg);
@@ -351,6 +352,7 @@
     if (!cell) {
         cell = [[OKFollowUpDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    [cell setCellButtonBGImageWithGreenMinusIcon:YES];
     if (_deselectAll) {
         [cell setCellButtonBGImageWithGreenMinusIcon:NO];
         if (indexPath.row == _surgeonDataArray.count-1) {

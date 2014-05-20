@@ -9,6 +9,9 @@
 #import "OKBaseViewController.h"
 
 @interface OKFollowUpDataCompareVC : OKBaseViewController
+
+@property (nonatomic, assign) BOOL showNationalData;
+
 @property (nonatomic, retain) IBOutlet UIView *TNMStagingView;
 @property (nonatomic, retain) IBOutlet UIView *tumorChView;
 @property (nonatomic, retain) IBOutlet UIView *FGradeView;

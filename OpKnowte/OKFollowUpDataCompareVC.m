@@ -9,6 +9,20 @@
 #import "OKFollowUpDataCompareVC.h"
 
 @interface OKFollowUpDataCompareVC ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *marginsNationalView;
+@property (strong, nonatomic) IBOutlet UIView *changeInBunNationalView;
+@property (strong, nonatomic) IBOutlet UIView *deepMarginsNationalView;
+@property (strong, nonatomic) IBOutlet UIView *xrayNationalView;
+@property (strong, nonatomic) IBOutlet UIView *averageCreatinineNationalView;
+@property (strong, nonatomic) IBOutlet UIView *liverNationalView;
+@property (strong, nonatomic) IBOutlet UIView *herniaNationalView;
+@property (strong, nonatomic) IBOutlet UIView *tumorChNationalView;
+@property (strong, nonatomic) IBOutlet UIView *ctScanNationalView;
+@property (strong, nonatomic) IBOutlet UIView *lengthStayNationalView;
+@property (strong, nonatomic) IBOutlet UIView *complicationsNationalView;
+@property (strong, nonatomic) IBOutlet UIView *gradeNationalView;
+@property (strong, nonatomic) IBOutlet UIView *tmnNationalView;
 
 @end
 
@@ -79,6 +93,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.title = @"Follow Up Data";
     [self addLeftButtonToNavbar];
+    [self addBottomTabBar];
 
     if ([self.graphView isEqualToString:@"TNM"]) {
         [self showTMGGraph];
@@ -111,6 +126,19 @@
     }else if([self.graphView isEqualToString:@"AverageBUN"]){
         [self showAverageBUNGraph];
     }
+    _marginsNationalView.hidden = _showNationalData;
+    _changeInBunNationalView.hidden = _showNationalData;
+    _deepMarginsNationalView.hidden = _showNationalData;
+    _xrayNationalView.hidden = _showNationalData;
+    _averageCreatinineNationalView.hidden = _showNationalData;
+    _liverNationalView.hidden = _showNationalData;
+    _herniaNationalView.hidden = _showNationalData;
+    _tumorChNationalView.hidden = _showNationalData;
+    _ctScanNationalView.hidden = _showNationalData;
+    _lengthStayNationalView.hidden = _showNationalData;
+    _complicationsNationalView.hidden = _showNationalData;
+    _gradeNationalView.hidden = _showNationalData;
+    _tmnNationalView.hidden = _showNationalData;
 }
 -(void)showTMGGraph{
     
@@ -173,7 +201,10 @@
     [self.s_M setText:[NSString stringWithFormat:@"M = %.0f %%",self.s_MAge]];
     [self.s_M0 setText:[NSString stringWithFormat:@"M0 = %.0f %%",self.s_M0Age]];
     [self.s_M1 setText:[NSString stringWithFormat:@"M1 = %.0f %%",self.s_M1Age]];
-    [self.view addSubview:self.TNMStagingView];
+    
+    _scrollView.contentSize = self.TNMStagingView.bounds.size;
+    self.TNMStagingView.frame = CGRectMake(self.TNMStagingView.frame.origin.x, self.TNMStagingView.frame.origin.y-64, self.TNMStagingView.frame.size.width, self.TNMStagingView.frame.size.height);
+    [_scrollView addSubview:self.TNMStagingView];
     
 }
 
@@ -209,7 +240,11 @@
     [self.s_oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.s_oncocytoma]];
     [self.s_otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.s_other]];
     
-    [self.view addSubview:self.tumorChView];
+    //[self.view addSubview:self.tumorChView];
+    
+    _scrollView.contentSize = self.tumorChView.bounds.size;
+    self.tumorChView.frame = CGRectMake(self.tumorChView.frame.origin.x, self.tumorChView.frame.origin.y-64, self.tumorChView.frame.size.width, self.tumorChView.frame.size.height);
+    [_scrollView addSubview:self.tumorChView];
 }
 
 -(void)showFGGraph{
@@ -237,7 +272,10 @@
     [self.s_FGthreeByFourView setText:[NSString stringWithFormat:@" 3/4 = %.0f %%",self.s_FGthreeByFour]];
     [self.s_FGfourByFourView setText:[NSString stringWithFormat:@" 4/4 = %.0f %%",self.s_FGfourByFour]];
     
-    [self.view addSubview:self.FGradeView];
+    //[self.view addSubview:self.FGradeView];
+    _scrollView.contentSize = self.FGradeView.bounds.size;
+     self.FGradeView.frame = CGRectMake(self.FGradeView.frame.origin.x, self.FGradeView.frame.origin.y-64, self.FGradeView.frame.size.width, self.FGradeView.frame.size.height);
+    [_scrollView addSubview:self.FGradeView];
 }
 
 -(void)showMarginsGraph{
@@ -262,7 +300,11 @@
     [self.s_mPositiveView setText:[NSString stringWithFormat:@" Positive = %.0f %%",self.s_mPositive]];
     [self.s_mNegativeView setText:[NSString stringWithFormat:@" Negative = %.0f %%",self.s_mNegative]];
     
-    [self.view addSubview:self.marginsView];
+    //[self.view addSubview:self.marginsView];
+    _scrollView.contentSize = self.marginsView.bounds.size;
+    self.marginsView.frame = CGRectMake(self.marginsView.frame.origin.x, self.marginsView.frame.origin.y-64, self.marginsView.frame.size.width, self.marginsView.frame.size.height);
+
+    [_scrollView addSubview:self.marginsView];
 }
 
 -(void)showDMarginsGraph{
@@ -288,7 +330,12 @@
     [self.s_dmPositiveView setText:[NSString stringWithFormat:@" Positive = %.0f %%",self.s_dmPositive]];
     [self.s_dmNegativeView setText:[NSString stringWithFormat:@" Negative = %.0f %%",self.s_dmNegative]];
     
-    [self.view addSubview:self.DMarginView];
+    //[self.view addSubview:self.DMarginView];
+    _scrollView.contentSize = self.DMarginView.bounds.size;
+    self.DMarginView.frame = CGRectMake(self.DMarginView.frame.origin.x, self.DMarginView.frame.origin.y-64, self.DMarginView.frame.size.width, self.DMarginView.frame.size.height);
+
+    [_scrollView addSubview:self.DMarginView];
+
 }
 
 -(void)showNights{
@@ -310,7 +357,13 @@
     
     [self.stayView setText:[NSString stringWithFormat:@" Average Stay = %.1f ( %i to %i)",self.averageStay,minStay,maxStay]];
     [self.s_stayView setText:[NSString stringWithFormat:@" Average Stay = %.1f ( %i to %i)",self.s_averageStay,s_minStay,s_maxStay]];
-    [self.view addSubview:self.nightsGraph];
+    //[self.view addSubview:self.nightsGraph];
+    
+    
+    _scrollView.contentSize = self.nightsGraph.bounds.size;
+    self.nightsGraph.frame = CGRectMake(self.nightsGraph.frame.origin.x, self.nightsGraph.frame.origin.y-64, self.nightsGraph.frame.size.width, self.nightsGraph.frame.size.height);
+
+    [_scrollView addSubview:self.nightsGraph];
 }
 
 -(void)showComplicationsGraph{
@@ -355,7 +408,12 @@
     [self.s_DeathView setText:[NSString stringWithFormat:@"Death = %.0f %%",self.s_Death]];
     [self.s_OtherCompView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.s_OtherComp]];
     
-    [self.view addSubview:self.complicationsGraph];
+    //[self.view addSubview:self.complicationsGraph];
+    
+    _scrollView.contentSize = self.complicationsGraph.bounds.size;
+    self.complicationsGraph.frame = CGRectMake(self.complicationsGraph.frame.origin.x, self.complicationsGraph.frame.origin.y-64, self.complicationsGraph.frame.size.width, self.complicationsGraph.frame.size.height);
+
+    [_scrollView addSubview:self.complicationsGraph];
 }
 
 -(void)showChangeBUNGraph{
@@ -377,7 +435,14 @@
     
     [self.bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.bunSum]];
     [self.s_bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.s_bunSum]];
-    [self.view addSubview:self.changeBUNView];
+    //[self.view addSubview:self.changeBUNView];
+    
+    _scrollView.contentSize = self.changeBUNView.bounds.size;
+    self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
+
+    [_scrollView addSubview:self.changeBUNView];
+    
+    
 }
 
 -(void)showChangeCreatinineGraph{
@@ -399,7 +464,13 @@
     
     [self.bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.creatinineSum]];
     [self.s_bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.s_creatinineSum]];
-    [self.view addSubview:self.changeBUNView];
+    //[self.view addSubview:self.changeBUNView];
+    
+    
+    _scrollView.contentSize = self.changeBUNView.bounds.size;
+    self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
+
+    [_scrollView addSubview:self.changeBUNView];
 }
 -(void)showXrayGraph{
     if (IS_IPHONE_5) {
@@ -421,7 +492,12 @@
     [self.xrayPositiveView setText:[NSString stringWithFormat:@"Positive = %.0f %%",self.xrayPositive]];
     [self.s_xrayNegativeView setText:[NSString stringWithFormat:@"Negative = %.0f %%",self.s_xrayNegative]];
     [self.s_xrayPositiveView setText:[NSString stringWithFormat:@"Positive = %.0f %%",self.s_xrayPositive]];
-    [self.view addSubview:self.xrayGraph];
+    //[self.view addSubview:self.xrayGraph];
+    
+    _scrollView.contentSize = self.xrayGraph.bounds.size;
+    self.xrayGraph.frame = CGRectMake(self.xrayGraph.frame.origin.x, self.xrayGraph.frame.origin.y-64, self.xrayGraph.frame.size.width, self.xrayGraph.frame.size.height);
+
+    [_scrollView addSubview:self.xrayGraph];
 }
 
 -(void)showLiverGraph{
@@ -444,7 +520,12 @@
     [self.liverNormalView setText:[NSString stringWithFormat:@"Normal = %.0f %%",self.liverNormal]];
     [self.s_liverAbNormalView setText:[NSString stringWithFormat:@"Abnormal = %.0f %%",self.s_liverAbNormal]];
     [self.s_liverNormalView setText:[NSString stringWithFormat:@"Normal = %.0f %%",self.s_liverNormal]];
-    [self.view addSubview:self.liverGraph];
+    //[self.view addSubview:self.liverGraph];
+    
+    _scrollView.contentSize = self.liverGraph.bounds.size;
+    self.liverGraph.frame = CGRectMake(self.liverGraph.frame.origin.x, self.liverGraph.frame.origin.y-64, self.liverGraph.frame.size.width, self.liverGraph.frame.size.height);
+
+    [_scrollView addSubview:self.liverGraph];
 }
 
 -(void)showHerniaGraph{
@@ -467,7 +548,12 @@
     [self.herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.herniaNO]];
     [self.s_herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_herniaYES]];
     [self.s_herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_herniaNO]];
-    [self.view addSubview:self.herniaGraph];
+    //[self.view addSubview:self.herniaGraph];
+    
+    _scrollView.contentSize = self.herniaGraph.bounds.size;
+    self.herniaGraph.frame = CGRectMake(self.herniaGraph.frame.origin.x, self.herniaGraph.frame.origin.y-64, self.herniaGraph.frame.size.width, self.herniaGraph.frame.size.height);
+    
+    [_scrollView addSubview:self.herniaGraph];
 }
 
 -(void)showCTScanGraph{
@@ -500,7 +586,12 @@
     [self.s_BoneMetastasisView setText:[NSString stringWithFormat:@"Bone Matastasis = %.0f %%",self.s_BoneMetastasis]];
     [self.s_BrainMetastasisView setText:[NSString stringWithFormat:@"Brain Matastasis = %.0f %%",self.s_BrainMetastasis]];
     
-    [self.view addSubview:self.CtScanGraph];
+    //[self.view addSubview:self.CtScanGraph];
+    
+    _scrollView.contentSize = self.CtScanGraph.bounds.size;
+    self.CtScanGraph.frame = CGRectMake(self.CtScanGraph.frame.origin.x, self.CtScanGraph.frame.origin.y-64, self.CtScanGraph.frame.size.width, self.CtScanGraph.frame.size.height);
+
+    [_scrollView addSubview:self.CtScanGraph];
 }
 
 -(void)showAverageCreatinineGraph{
@@ -524,7 +615,12 @@
     [self.averageLabel setText:[NSString stringWithFormat:@"Average Creatinine = %.1f",self.averageCreatinine]];
     [self.s_averageLabel setText:[NSString stringWithFormat:@"Average Creatinine = %.1f",self.s_averageCreatinine]];
     
-    [self.view addSubview:self.averageView];
+    //[self.view addSubview:self.averageView];
+    
+    _scrollView.contentSize = self.averageView.bounds.size;
+    self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
+
+    [_scrollView addSubview:self.averageView];
 }
 
 -(void)showAverageBUNGraph{
@@ -547,7 +643,12 @@
     [self.averageLabel setText:[NSString stringWithFormat:@"Average BUN = %.1f",self.averageBun]];
     [self.s_averageLabel setText:[NSString stringWithFormat:@"Average BUN = %.1f",self.s_averageBun]];
     
-    [self.view addSubview:self.averageView];
+    //[self.view addSubview:self.averageView];
+    
+    _scrollView.contentSize = self.averageView.bounds.size;
+    self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
+
+    [_scrollView addSubview:self.averageView];
 }
 
 - (void)didReceiveMemoryWarning

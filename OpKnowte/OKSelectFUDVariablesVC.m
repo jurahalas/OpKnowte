@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *selectVariablesTable;
 @property (strong, nonatomic) NSArray *sixMonthArray;
 @property (strong, nonatomic) NSArray *twoWeeksArray;
+@property (nonatomic) int tappedCell;
+@property (nonatomic, assign) BOOL showNationalData;
 @end
 //===================================================================================================================
 //===================================================================================================================
@@ -307,11 +309,17 @@ float s_creatinineDiffSum;
     return cell;
     
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 
-
+    if (buttonIndex == 0) {
+        _showNationalData = YES;
+    }
+    if (buttonIndex == 1) {
+        _showNationalData = NO;
+    }
     if ([_cameFromVC isEqualToString:@"weeks"]) {
-        switch (indexPath.row) {
+        switch (_tappedCell) {
             case 0:{
                 [self TMGstaging];
                 break;
@@ -352,7 +360,7 @@ float s_creatinineDiffSum;
                 break;
         }
     } else {
-        switch (indexPath.row) {
+        switch (_tappedCell) {
             case 0:{
                 [self xray];
                 break;
@@ -382,6 +390,22 @@ float s_creatinineDiffSum;
         }
     }
 
+}
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"National Data"
+                                                                        message:@"Do you want to see National Data?"
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"No"
+                                                              otherButtonTitles:@"Yes", nil];
+    _tappedCell = indexPath.row;
+    [loginFormSuccessAlertView show];
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -1272,7 +1296,7 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"TNM";
-        
+    controller.showNationalData = _showNationalData;
         [self.navigationController pushViewController:controller animated:YES];
     
 }
@@ -1320,6 +1344,8 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"tumorCh";
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
         
     
@@ -1360,7 +1386,8 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"FGrade";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1392,7 +1419,8 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"margins";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1422,7 +1450,8 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"dMargin";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1460,6 +1489,8 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1527,7 +1558,8 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"complications";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1554,6 +1586,8 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1581,6 +1615,8 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1618,7 +1654,8 @@ float s_creatinineDiffSum;
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
         controller.graphView = @"xray";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1649,6 +1686,7 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
+    controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
     
@@ -1681,7 +1719,8 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_sixMonths;
         
         controller.graphView = @"hernia";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1730,7 +1769,8 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_sixMonths;
         
         controller.graphView = @"CTScan";
-        
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1762,6 +1802,8 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -1792,6 +1834,8 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
+    controller.showNationalData = _showNationalData;
+
         [self.navigationController pushViewController:controller animated:YES];
         
     
