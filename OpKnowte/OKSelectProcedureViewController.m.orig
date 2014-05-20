@@ -22,6 +22,11 @@
 #import "OKAccessConfirmViewController.h"
 #import "OKAccessSettingsViewController.h"
 #import "OKSurgicalLogsVC.h"
+<<<<<<< HEAD
+#import "OKIntraOperativeDataViewController.h"
+=======
+#import "OKFollowUpDataVC.h"
+>>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
 
 
 @interface OKSelectProcedureViewController ()
@@ -119,6 +124,13 @@
         [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
     }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
         [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
+<<<<<<< HEAD
+    }else if([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:[NSString stringWithFormat:@"%d",procID]];
+=======
+    }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
+>>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
     } else {
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
             OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
@@ -179,18 +191,30 @@
     }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){
         OKTemplateViewController *sharVC = (OKTemplateViewController*)segue.destinationViewController;
         sharVC.procID = sender;
-<<<<<<< HEAD
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToSurgicalLogs"]){
         OKSurgicalLogsVC *sharVC = (OKSurgicalLogsVC*)segue.destinationViewController;
         sharVC.procID = sender;
         int i = [sender  intValue] ;
         OKProcedureModel *tappedProc =_allProcArray[i-1];
         sharVC.procTitle = tappedProc.procedureText;
-=======
     } else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
         OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
         reminderVC.procID = sender;
->>>>>>> 3ef27286c22f8c3578c017497dc2328eb8ee0464
+<<<<<<< HEAD
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToOperativeData"]){
+        OKIntraOperativeDataViewController * operativeData = (OKIntraOperativeDataViewController *)segue.destinationViewController;
+        operativeData.procID = sender;
+        int i = [sender intValue];
+        OKProcedureModel *tappedProc = _allProcArray[i-1];
+        operativeData.procTitle = tappedProc.procedureText;
+=======
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToFollowUpData"]){
+        OKFollowUpDataVC *reminderVC = (OKFollowUpDataVC*)segue.destinationViewController;
+        reminderVC.procID = sender;
+        int i = [sender  intValue] ;
+        OKProcedureModel *tappedProc =_allProcArray[i-1];
+        reminderVC.procTitle = tappedProc.procedureText;
+>>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
     }
 }
 

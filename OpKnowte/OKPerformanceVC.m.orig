@@ -71,28 +71,42 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+<<<<<<< HEAD
+    OKPerformanceTableViewCell *cell = (OKPerformanceTableViewCell *)[_performanceTableView cellForRowAtIndexPath:indexPath];
+    
+    if ([cell.performanceLabel.text isEqualToString:@"Intra-Operative Data"]) {
+        [self performSegueWithIdentifier:@"toSelectProcedureFromIntraOperative" sender:indexPath];
+    }
+=======
     OKPerformanceTableViewCell *cell = [[OKPerformanceTableViewCell alloc] init];
     cell = (OKPerformanceTableViewCell*)[_performanceTableView cellForRowAtIndexPath:indexPath];
     if ([cell.performanceLabel.text isEqualToString:@"FollowUp Data"]) {
         
         [self performSegueWithIdentifier:@"fromFollowUpDataToSelectProc" sender:indexPath];
     }
-	else if ([cell.performanceLabel.text isEqualToString:@"Intra-Operative Data"]) {
-        [self performSegueWithIdentifier:@"toSelectProcedureFromIntraOperative" sender:indexPath];
-	}
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+>>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if([segue.identifier isEqualToString:@"fromFollowUpDataToSelectProc"]){
-        OKSelectProcedureViewController *instVC = (OKSelectProcedureViewController*)segue.destinationViewController;
-        instVC.cameFromVC = @"FollowUpDataVC";
-    }else if([segue.identifier isEqualToString:@"toSelectProcedureFromIntraOperative"]){
+<<<<<<< HEAD
+    if([segue.identifier isEqualToString:@"toSelectProcedureFromIntraOperative"]){
         OKSelectProcedureViewController *selectProcedure = (OKSelectProcedureViewController*)segue.destinationViewController;
         selectProcedure.cameFromVC = @"OKPerformanceVC";
     }
 }
+
+=======
+    if([segue.identifier isEqualToString:@"fromFollowUpDataToSelectProc"]){
+        OKSelectProcedureViewController *instVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+        instVC.cameFromVC = @"FollowUpDataVC";
+    }
+    
+    
+    
+}
+>>>>>>> 386ef252705d1f6acd5a84aa9064fab03bab7579
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
