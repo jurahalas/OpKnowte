@@ -53,6 +53,9 @@
 
 
 - (void) viewWillAppear:(BOOL)animated{
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     OKContactManager *contactManager = [OKContactManager instance];
