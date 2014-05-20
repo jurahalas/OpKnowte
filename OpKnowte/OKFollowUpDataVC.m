@@ -214,7 +214,7 @@
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _surgeonDataArray = dataArray;
-                _choosedDetails = [dataArray copy];
+                _choosedDetails = dataArray;
 //                _deselectAll = NO;
                 [_listTableView reloadData];
                 [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
@@ -338,9 +338,12 @@
     
 }
 -(void)deleteModelFromList:(id)model{
+    
     for (int i = 0; i<_choosedDetails.count; i++) {
-        if ([[_choosedDetails[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
+        id searchedModel = [_choosedDetails objectAtIndex:i];
+        if ([[searchedModel valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
             [_choosedDetails removeObjectAtIndex:i];
+            break;
         }
     }
 }

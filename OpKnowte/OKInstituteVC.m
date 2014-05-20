@@ -143,7 +143,6 @@
             }else{
                 UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [addInstitutionFormSuccessAlertView show];
-                [self.navigationController popViewControllerAnimated:YES];
                 [self.view endEditing:YES];
                 _saveButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
@@ -157,11 +156,14 @@
 {
     if (buttonIndex == 0) {
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+        NSLog(@"ololl %@", _cameFromVC);
         if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
             [self.navigationController popViewControllerAnimated:YES ];
         } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
             [self performSegueWithIdentifier:@"backToDashboard" sender:self];
         }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if ([_cameFromVC isEqualToString:@"ContactListVC"]){
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -228,8 +230,7 @@
 
     _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _saveButton.layer.cornerRadius = 14;
-    _saveButton.clipsToBounds = YES;
-    
+    _saveButton.clipsToBounds = YES;    
 }
 
 - (void)viewWillLayoutSubviews
