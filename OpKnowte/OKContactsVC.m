@@ -35,6 +35,10 @@
     [self.contactsTableView reloadData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (IBAction)backButton:(id)sender
 {
