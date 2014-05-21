@@ -353,6 +353,7 @@
     oneLabel.text = [NSString stringWithFormat:@"Average BMI of Patient = %.1f (%.1f to %.1f Units)",bmiPercentage,minBmi,maxBmi];
     
     self.oneSurLabel.text = [NSString stringWithFormat:@"Average BMI of Patient = %.1f (%.1f to %.1f Units)",sur_bmiPercentage,sur_minBmi,sur_maxBmi];
+    NSLog(@"perce %f", sur_bmiPercentage);
     
     [twoLabel setHidden:YES];
     [twoSurLabel setHidden:YES];

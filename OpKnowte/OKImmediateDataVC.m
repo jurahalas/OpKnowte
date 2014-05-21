@@ -77,32 +77,48 @@
     OKImmediateDataCell *cell = [[OKImmediateDataCell alloc] init];
     cell = (OKImmediateDataCell*)[_immediateDataTable cellForRowAtIndexPath:indexPath];
     if ([cell.immediateDataLabel.text isEqualToString:@"BMI"]) {
-    
-        [self reset];
-        [self CalculateValues];
-        
-        OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
-        controller.graphToDraw = @"BMI";
-        
-        controller.bmiPercentage = bmiCount/self.surgeonCases.count;
-        controller.maxBmi = maxBmi;
-        controller.minBmi = minBmi;
-        
-        if (self.isNationalData) {
-            controller.sur_bmiPercentage = sur_bmiCount/self.surgeonCases.count;
-            controller.sur_maxBmi = sur_maxBmi;
-            controller.sur_minBmi = sur_minBmi;
-            controller.isNationalData = YES;
-        }
-        
-        controller.NationalSize = self.totalNationalCount;
-        controller.SurgeonSize = self.totalSurgeonCount;
-//        controller.NationalSize = [self.selectedCases count];
-//        controller.SurgeonSize = [self.surgeonCases count];
-        
-        [self.navigationController pushViewController:controller animated:YES];
-
+        [self BMI];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Average Age of Patient"]){
+        [self AverageAgeOfPatient];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Male vs. Female"]){
+        [self MaleFemale];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Left vs. Right Renal Mass"]){
+        [self LeftRightRenalMass];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Patients with Cysto/Stent"]){
+        [self CytoStent];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Tumor Size"]){
+        [self TumorSize];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Tumor Characteristics"]){
+        [self TumorCharacteristics];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Adhesiolysis"]){
+        [self AdhesiolysisRequired];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases with Vascular Anomoly"]){
+        [self VascularAnomoly];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Intra-Operative Ultra Sound"]){
+        [self IntraOpUltraSound];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Deep Margins"]){
+        [self DeepMargins];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Margins"]){
+        [self Margins];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Renal Collecting System Repair"]){
+        [self RenalSystemRepair];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Average Clamp Time"]){
+        [self AverageClampTime];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Coagulants"]){
+        [self Coagulants];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Blood Loss"]){
+        [self BloodLoss];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Console Time"]){
+        [self ConsoleTime];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Room Time"]){
+        [self RoomTime];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Complications"]){
+        [self Complications];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Transfusion"]){
+        [self TransfusionRequired];
     }
+
+    
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -148,8 +164,8 @@
     return self;
 }
 
--(IBAction)AverageAgeOfPatient:(id)sender{
-    
+-(void)AverageAgeOfPatient{
+
     [self reset];
     [self CalculateValues];
     
@@ -185,8 +201,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)MaleFemale:(id)sender{
-    
+-(void)MaleFemale{
+
     [self reset];
     [self CalculateValues];
     
@@ -209,8 +225,8 @@
     //controller.SurgeonSize = [self.surgeonCases count];
     [self.navigationController pushViewController:controller animated:YES];
 }
--(IBAction)BMI:(id)sender{
-    
+-(void)BMI{
+
     [self reset];
     [self CalculateValues];
     
@@ -236,8 +252,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)LeftRightRenalMass:(id)sender{
-    
+-(void)LeftRightRenalMass{
+
     [self reset];
     [self CalculateValues];
     
@@ -262,8 +278,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)CytoStent:(id)sender{
-    
+-(void)CytoStent{
+
     [self reset];
     [self CalculateValues];
     
@@ -288,8 +304,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)TumorSize:(id)sender{
-    
+-(void)TumorSize{
+
     [self reset];
     [self CalculateValues];
     
@@ -315,9 +331,9 @@
     
     
 }
--(IBAction)TumorCharacteristics:(id)sender{}
--(IBAction)AdhesiolysisRequired:(id)sender{
-    
+-(void)TumorCharacteristics{}
+-(void)AdhesiolysisRequired{
+
     [self reset];
     [self CalculateValues];
     float percentage=0;
@@ -342,8 +358,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)VascularAnomoly:(id)sender{
-    
+-(void)VascularAnomoly{
+
     [self reset];
     [self CalculateValues];
     
@@ -369,8 +385,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)IntraOpUltraSound:(id)sender{
-    
+-(void)IntraOpUltraSound{
+
     [self reset];
     [self CalculateValues];
     
@@ -396,8 +412,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)DeepMargins:(id)sender{
-    
+-(void)DeepMargins{
+
     [self reset];
     [self CalculateValues];
     
@@ -422,9 +438,9 @@
     
     [self.navigationController pushViewController:controller animated:YES];
 }
--(IBAction)Margins:(id)sender{}
--(IBAction)RenalSystemRepair:(id)sender{
-    
+-(void)Margins{}
+-(void)RenalSystemRepair{
+
     [self reset];
     [self CalculateValues];
     
@@ -449,8 +465,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)AverageClampTime:(id)sender{
-    
+-(void)AverageClampTime{
+
     [self reset];
     [self CalculateValues];
     
@@ -477,8 +493,8 @@
     
     
 }
--(IBAction)Coagulants:(id)sender{
-    
+-(void)Coagulants{
+
     [self reset];
     [self CalculateValues];
     
@@ -503,8 +519,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)BloodLoss:(id)sender{
-    
+-(void)BloodLoss{
+
     [self reset];
     [self CalculateValues];
     
@@ -529,8 +545,8 @@
     
     [self.navigationController pushViewController:controller animated:YES];
 }
--(IBAction)ConsoleTime:(id)sender{
-    
+-(void)ConsoleTime{
+
     [self reset];
     [self CalculateValues];
     
@@ -556,8 +572,8 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)RoomTime:(id)sender{
-    
+-(void)RoomTime{
+
     [self reset];
     [self CalculateValues];
     
@@ -582,9 +598,9 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(IBAction)Complications:(id)sender{}
--(IBAction)TransfusionRequired:(id)sender{
-    
+-(void)Complications{}
+-(void)TransfusionRequired{
+
     [self reset];
     [self CalculateValues];
     
