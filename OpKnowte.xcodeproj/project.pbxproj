@@ -164,9 +164,9 @@
 		182659CD1906A36200723D16 /* dashboardBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 182659CB1906A36200723D16 /* dashboardBG.png */; };
 		182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182659CC1906A36200723D16 /* dashboardBG@2x.png */; };
 		184BD75D192A403100442FDF /* OKPostOpDataGraphsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75B192A403100442FDF /* OKPostOpDataGraphsVC.xib */; };
-		184BD760192B89BB00442FDF /* scSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75E192B89BB00442FDF /* scSeparator.png */; };
-		184BD761192B89BB00442FDF /* scSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75F192B89BB00442FDF /* scSeparator@2x.png */; };
 		184BD764192C941C00442FDF /* OKPostOpDataGraphsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BD763192C941C00442FDF /* OKPostOpDataGraphsVC.m */; };
+		184BD767192CA62D00442FDF /* scSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 184BD765192CA62D00442FDF /* scSeparator.png */; };
+		184BD768192CA62D00442FDF /* scSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184BD766192CA62D00442FDF /* scSeparator@2x.png */; };
 		185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F828A1900015400C5566A /* OKNationalDataViewController.m */; };
 		185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F828D1900017F00C5566A /* OKNationalDataTableViewCell.m */; };
 		185F829619000A7100C5566A /* OKLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F829519000A7100C5566A /* OKLoadingViewController.xib */; };
@@ -483,10 +483,10 @@
 		182659CB1906A36200723D16 /* dashboardBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboardBG.png; sourceTree = "<group>"; };
 		182659CC1906A36200723D16 /* dashboardBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboardBG@2x.png"; sourceTree = "<group>"; };
 		184BD75B192A403100442FDF /* OKPostOpDataGraphsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKPostOpDataGraphsVC.xib; sourceTree = "<group>"; };
-		184BD75E192B89BB00442FDF /* scSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scSeparator.png; sourceTree = "<group>"; };
-		184BD75F192B89BB00442FDF /* scSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scSeparator@2x.png"; sourceTree = "<group>"; };
 		184BD762192C941C00442FDF /* OKPostOpDataGraphsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPostOpDataGraphsVC.h; sourceTree = "<group>"; };
 		184BD763192C941C00442FDF /* OKPostOpDataGraphsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPostOpDataGraphsVC.m; sourceTree = "<group>"; };
+		184BD765192CA62D00442FDF /* scSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scSeparator.png; sourceTree = "<group>"; };
+		184BD766192CA62D00442FDF /* scSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scSeparator@2x.png"; sourceTree = "<group>"; };
 		185F82891900015400C5566A /* OKNationalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKNationalDataViewController.h; sourceTree = "<group>"; };
 		185F828A1900015400C5566A /* OKNationalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKNationalDataViewController.m; sourceTree = "<group>"; };
 		185F828C1900017F00C5566A /* OKNationalDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKNationalDataTableViewCell.h; sourceTree = "<group>"; };
@@ -1029,8 +1029,8 @@
 		00A64CF019064DB300740DC7 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				184BD75E192B89BB00442FDF /* scSeparator.png */,
-				184BD75F192B89BB00442FDF /* scSeparator@2x.png */,
+				184BD765192CA62D00442FDF /* scSeparator.png */,
+				184BD766192CA62D00442FDF /* scSeparator@2x.png */,
 				0092FD42190AA15600499F7E /* gradientBG.png */,
 				0092FD43190AA15600499F7E /* gradientBG@2x.png */,
 				00A64CF119064DB300740DC7 /* arrows */,
@@ -1825,7 +1825,7 @@
 				00A64D4219064DB400740DC7 /* down.png in Resources */,
 				00A64D8619064DB400740DC7 /* tabbarBG@2x.png in Resources */,
 				008D5B551907DC500039E8B7 /* OKProcedureTextField.xib in Resources */,
-				184BD761192B89BB00442FDF /* scSeparator@2x.png in Resources */,
+				184BD768192CA62D00442FDF /* scSeparator@2x.png in Resources */,
 				0061E2CD1917EA9F007170D3 /* multiSelectButtonBG.png in Resources */,
 				00A64D5619064DB400740DC7 /* redCross.png in Resources */,
 				182659CD1906A36200723D16 /* dashboardBG.png in Resources */,
@@ -1843,7 +1843,7 @@
 				0092FD45190AA15600499F7E /* gradientBG@2x.png in Resources */,
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
 				00A64D4519064DB400740DC7 /* right@2x.png in Resources */,
-				184BD760192B89BB00442FDF /* scSeparator.png in Resources */,
+				184BD767192CA62D00442FDF /* scSeparator.png in Resources */,
 				184BD75D192A403100442FDF /* OKPostOpDataGraphsVC.xib in Resources */,
 				00A64D7919064DB400740DC7 /* separator.png in Resources */,
 				188608F0190FA1CB00BD1D77 /* emailIcon.png in Resources */,

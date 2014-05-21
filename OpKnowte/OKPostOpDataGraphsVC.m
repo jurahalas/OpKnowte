@@ -354,8 +354,8 @@
     
     self.oneSurLabel.text = [NSString stringWithFormat:@"Average BMI of Patient = %.1f (%.1f to %.1f Units)",sur_bmiPercentage,sur_minBmi,sur_maxBmi];
     
-    [twoLabel setHidden:NO];
-    [twoSurLabel setHidden:NO];
+    [twoLabel setHidden:YES];
+    [twoSurLabel setHidden:YES];
     
     [self.NationalSampleSize setFrame:CGRectMake(self.NationalSampleSize.frame.origin.x, self.NationalSampleSize.frame.origin.y-27, self.NationalSampleSize.frame.size.width, self.NationalSampleSize.frame.size.height)];
     [self.SurgeonSampleSize setFrame:CGRectMake(self.SurgeonSampleSize.frame.origin.x, self.SurgeonSampleSize.frame.origin.y-27, self.SurgeonSampleSize.frame.size.width, self.SurgeonSampleSize.frame.size.height)];
