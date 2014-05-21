@@ -50,7 +50,7 @@
 }
 
 -(void) drawSettingsButton {
-    _settingsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _settingsButton.frame = CGRectMake(240, 0, 80, 51);
     
     _settingsButton.tintColor = [UIColor whiteColor];
@@ -62,7 +62,12 @@
 
 -(void) drawView {
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];
-    self.frame = CGRectMake(0, self.superview.frame.size.height-51 , 320, 51);
+    if (IS_IOS7 || [self.delegate navBar] == true) {
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 51, 320, 51);
+        }
+    else {
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 95, 320, 51);
+        }
 }
 
 

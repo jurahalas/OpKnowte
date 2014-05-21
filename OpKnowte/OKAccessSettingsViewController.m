@@ -88,7 +88,9 @@
 {
     [super didReceiveMemoryWarning];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"choseContact"]){

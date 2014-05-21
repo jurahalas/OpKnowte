@@ -64,6 +64,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+- (BOOL)navBar{
+    return self.navigationController.navigationBarHidden;
+}
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     return UIStatusBarStyleLightContent;

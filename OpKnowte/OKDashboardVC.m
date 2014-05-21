@@ -42,7 +42,6 @@
     [self.dashboardTableView reloadData];
 }
 
-
 - (IBAction)logOutButton:(id)sender
 {
     [[OKUserManager instance]logout];

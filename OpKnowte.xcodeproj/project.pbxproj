@@ -206,6 +206,7 @@
 		AC1D0786190AE24C00DC55FD /* OKDataCaptureTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1D0785190AE24C00DC55FD /* OKDataCaptureTableViewCell.m */; };
 		AC213493191A519E00F3CAC6 /* OKCaseDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */; };
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
+		AC2F0AB3192D3106004FF9E0 /* navbarBG6.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2F0AB2192D3106004FF9E0 /* navbarBG6.png */; };
 		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
 		AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7AF46A191B648900B41548 /* OKCaseDataTableViewCell.m */; };
 		AC7E429B1924ED9700F58A24 /* OKIntraOperativeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E429A1924ED9700F58A24 /* OKIntraOperativeDataViewController.m */; };
@@ -221,6 +222,7 @@
 		AC8F632419135AC800854D06 /* OKDataSharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F632319135AC800854D06 /* OKDataSharingViewController.m */; };
 		AC8F63281913621A00854D06 /* OKTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F63271913621A00854D06 /* OKTemplateViewController.m */; };
 		AC8F632B1913623900854D06 /* OKTemplateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */; };
+		AC9788BD192CEA5400B314B3 /* OKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9788BC192CEA5400B314B3 /* OKAppDelegate.m */; };
 		ACA0336A190A374600D4A144 /* OKSaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03369190A374600D4A144 /* OKSaveViewController.m */; };
 		ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA0336D190A42ED00D4A144 /* OKSelectCaseViewController.m */; };
 		ACA03371190A436700D4A144 /* OKSelectCaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA03370190A436700D4A144 /* OKSelectCaseTableViewCell.m */; };
@@ -231,7 +233,6 @@
 		E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
 		E10023E818F529E9008421D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E10023E618F529E9008421D4 /* InfoPlist.strings */; };
 		E10023EA18F529E9008421D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E10023E918F529E9008421D4 /* main.m */; };
-		E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E10023ED18F529E9008421D4 /* OKAppDelegate.m */; };
 		E10023F118F529E9008421D4 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */; };
 		E10023F418F529E9008421D4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10023F218F529E9008421D4 /* Main_iPad.storyboard */; };
 		E10023F718F529E9008421D4 /* OKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10023F618F529E9008421D4 /* OKViewController.m */; };
@@ -553,6 +554,7 @@
 		AC213492191A519E00F3CAC6 /* OKCaseDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCaseDataViewController.m; sourceTree = "<group>"; };
 		AC2B0E48190B247B0089206D /* OKOperatieNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOperatieNoteTableViewCell.h; sourceTree = "<group>"; };
 		AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOperatieNoteTableViewCell.m; sourceTree = "<group>"; };
+		AC2F0AB2192D3106004FF9E0 /* navbarBG6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarBG6.png; sourceTree = "<group>"; };
 		AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalViewController.h; sourceTree = "<group>"; };
 		AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalViewController.m; sourceTree = "<group>"; };
 		AC7AF469191B648900B41548 /* OKCaseDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCaseDataTableViewCell.h; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 		AC8F63271913621A00854D06 /* OKTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateViewController.m; sourceTree = "<group>"; };
 		AC8F63291913623900854D06 /* OKTemplateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplateTableViewCell.h; sourceTree = "<group>"; };
 		AC8F632A1913623900854D06 /* OKTemplateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplateTableViewCell.m; sourceTree = "<group>"; };
+		AC9788BC192CEA5400B314B3 /* OKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKAppDelegate.m; sourceTree = "<group>"; };
 		ACA03368190A374600D4A144 /* OKSaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSaveViewController.h; sourceTree = "<group>"; };
 		ACA03369190A374600D4A144 /* OKSaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSaveViewController.m; sourceTree = "<group>"; };
 		ACA0336C190A42ED00D4A144 /* OKSelectCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectCaseViewController.h; sourceTree = "<group>"; };
@@ -604,7 +607,6 @@
 		E10023E918F529E9008421D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E10023EB18F529E9008421D4 /* OpKnowte-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpKnowte-Prefix.pch"; sourceTree = "<group>"; };
 		E10023EC18F529E9008421D4 /* OKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKAppDelegate.h; sourceTree = "<group>"; };
-		E10023ED18F529E9008421D4 /* OKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OKAppDelegate.m; sourceTree = "<group>"; };
 		E10023F018F529E9008421D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		E10023F318F529E9008421D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		E10023F518F529E9008421D4 /* OKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OKViewController.h; sourceTree = "<group>"; };
@@ -1154,6 +1156,7 @@
 		00A64D3119064DB400740DC7 /* logo */ = {
 			isa = PBXGroup;
 			children = (
+				AC2F0AB2192D3106004FF9E0 /* navbarBG6.png */,
 				00A64D3219064DB400740DC7 /* logo.png */,
 				00A64D3319064DB400740DC7 /* logo@2x.png */,
 				00A64D3419064DB400740DC7 /* logoNB.png */,
@@ -1566,8 +1569,8 @@
 		E10023E318F529E9008421D4 /* OpKnowte */ = {
 			isa = PBXGroup;
 			children = (
+				AC9788BC192CEA5400B314B3 /* OKAppDelegate.m */,
 				E10023EC18F529E9008421D4 /* OKAppDelegate.h */,
-				E10023ED18F529E9008421D4 /* OKAppDelegate.m */,
 				E10023EF18F529E9008421D4 /* Main_iPhone.storyboard */,
 				E10023F218F529E9008421D4 /* Main_iPad.storyboard */,
 				0060D89E18FD599900AFC7B4 /* Models */,
@@ -1832,6 +1835,7 @@
 				008D5B81190807670039E8B7 /* OKProcedurePicker.xib in Resources */,
 				008D5B681907DE360039E8B7 /* OKProcedureSwitcher.xib in Resources */,
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
+				AC2F0AB3192D3106004FF9E0 /* navbarBG6.png in Resources */,
 				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
 				0090176A1929E170006C4C7C /* OKFollowUpDataCompareVC.xib in Resources */,
 				188608F1190FA1CB00BD1D77 /* plusWhiteIcon.png in Resources */,
@@ -1925,6 +1929,7 @@
 				00A3F0701924C46B003A7447 /* OKFollowUpDataManager.m in Sources */,
 				E1DE705B19177CBE0088913C /* OKProcedureMultiselect.m in Sources */,
 				00862973190EABCD006EBA9C /* RangeSlider.m in Sources */,
+				AC9788BD192CEA5400B314B3 /* OKAppDelegate.m in Sources */,
 				AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */,
 				00897C32192104CA007C4452 /* OKLRPNSurgeonDataModel.m in Sources */,
 				00CD5FD918FE7C9700334A24 /* OKContactManager.m in Sources */,
@@ -1938,7 +1943,6 @@
 				187A6D5F19265DAC0044E700 /* OKImmediateDataCell.m in Sources */,
 				AC213493191A519E00F3CAC6 /* OKCaseDataViewController.m in Sources */,
 				00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */,
-				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
 				0092FD36190A67E000499F7E /* OKSurgeonPerfomanceDataVC.m in Sources */,
 				AC8D1789191D5D22001F4E45 /* OKAccessSettingsViewController.m in Sources */,
 				0092FD3D190A91C100499F7E /* OKListCell.m in Sources */,
@@ -2165,6 +2169,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "83723125-9A5C-4D91-9151-51CB257217F1";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2182,6 +2187,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "83723125-9A5C-4D91-9151-51CB257217F1";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
