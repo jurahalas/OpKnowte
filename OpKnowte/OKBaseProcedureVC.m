@@ -15,6 +15,7 @@
 #import "OKProcedureMultiselectVC.h"
 #import "OKProcedureMultiselect.h"
 #import "OKDatePicker.h"
+#import "OKProceduresManager.h"
 
 @interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate>
 
@@ -325,9 +326,30 @@
 
 - (IBAction)rightButtonTapped:(id)sender {
     if ([self canGoToNextVC]) {
+        
         if (self.currentPage < (self.plistArray.count - 1) ) {
-            id nextVC = [self nextVC];
-            [self.navigationController pushViewController:nextVC animated:YES];
+            if (self.currentPage == 0) {
+                OKProceduresManager *manager = [OKProceduresManager instance];
+                [[OKLoadingViewController instance] showWithText:@"Loading..."];
+                [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
+                    if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
+                         [[OKLoadingViewController instance] hide];
+                        id nextVC = [self nextVC];
+                        [self.navigationController pushViewController:nextVC animated:YES];
+                    }
+                    else {
+                         [[OKLoadingViewController instance] hide];
+                        UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        [emptyFieldsError show];
+                    }
+                    
+                }];
+
+            }else {
+                id nextVC = [self nextVC];
+                [self.navigationController pushViewController:nextVC animated:YES];
+            }
+            
         } else {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];

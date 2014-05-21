@@ -144,12 +144,14 @@
     nextVC.currentPage = (self.currentPage + 1);
     return nextVC;
 }
+
 -(BOOL) canGoToNextVC {
     switch (self.currentPage) {
         case 0:{
             if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil ) {
                 return NO;
             } else {
+
                 return YES;
             }
             break;

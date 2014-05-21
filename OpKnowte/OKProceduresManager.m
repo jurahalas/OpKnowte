@@ -262,6 +262,19 @@
     
     
 }
+- (void) checkMRNumberByNumber:(NSString*)MRNumber handler:(void(^)(NSString *errorMsg, NSDictionary *response))handler
+{
+    NSDictionary *params = @{@"mrNumber": MRNumber};
+    
 
+    [self requestWithMethod:@"POST" path:@"checkMRNumber" params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+
+        handler([self getErrorMessageFromJSON:json error:error], json);
+        
+    }];
+    
+    
+}
 
 @end
