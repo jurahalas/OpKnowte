@@ -7,7 +7,7 @@
 //
 
 #import "OKImmediateDataVC.h"
-#import "OKPostOpDataGraphs.h"
+#import "OKPostOpDataGraphsVC.h"
 
 @interface OKImmediateDataVC ()
 @property (strong, nonatomic) IBOutlet UITableView *immediateDataTable;
@@ -22,6 +22,8 @@
 @synthesize surgeonCases, isNationalData, totalSurgeonCount, totalNationalCount;
 
 @synthesize sur_adhesiolysisCount, sur_bloodLossCount, sur_bmiCount, sur_clampTimeCount, sur_coagulantCount, sur_consoleTimeCount, sur_cytoStentCount, sur_intraOpUSCount, sur_LRMCount, sur_maleCount, sur_maxAge, sur_maxBloodLoss, sur_maxBmi, sur_maxClampTime, sur_maxConsoleTime, sur_maxRoomTime, sur_maxTumorSize, sur_minAge, sur_minBloodLoss, sur_minBmi, sur_minClampTime, sur_minConsoleTime, sur_minRoomTime, sur_minTumorSize, sur_positiveDMargins, sur_renalSRCount, sur_roomTimeCount, sur_sumOfAges, sur_transfusionCount, sur_tumorSizeCount, sur_vasAnomolyCount;
+
+
 
 
 
@@ -79,10 +81,10 @@
         [self reset];
         [self CalculateValues];
         
-        OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+        OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
         controller.graphToDraw = @"BMI";
         
-        controller.bmiPercentage = bmiCount/self.selectedCases.count;
+        controller.bmiPercentage = bmiCount/self.surgeonCases.count;
         controller.maxBmi = maxBmi;
         controller.minBmi = minBmi;
         
@@ -93,10 +95,10 @@
             controller.isNationalData = YES;
         }
         
-//        controller.NationalSize = self.totalNationalCount;
-//        controller.SurgeonSize = self.totalSurgeonCount;
-        controller.NationalSize = [self.selectedCases count];
-        controller.SurgeonSize = [self.surgeonCases count];
+        controller.NationalSize = self.totalNationalCount;
+        controller.SurgeonSize = self.totalSurgeonCount;
+//        controller.NationalSize = [self.selectedCases count];
+//        controller.SurgeonSize = [self.surgeonCases count];
         
         [self.navigationController pushViewController:controller animated:YES];
 
@@ -135,9 +137,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
-
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -149,13 +148,12 @@
     return self;
 }
 
-
 -(IBAction)AverageAgeOfPatient:(id)sender{
     
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     
     controller.graphToDraw = @"AverageAge";
     
@@ -194,7 +192,7 @@
     
     float percentage = (maleCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"MaleFemale";
     
     controller.malePercentage = percentage;
@@ -211,14 +209,12 @@
     //controller.SurgeonSize = [self.surgeonCases count];
     [self.navigationController pushViewController:controller animated:YES];
 }
-
-
 -(IBAction)BMI:(id)sender{
     
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"BMI";
     
     controller.bmiPercentage = bmiCount/self.selectedCases.count;
@@ -247,7 +243,7 @@
     
     float percentage = (LRMCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"LeftRightRenal";
     
     controller.LRMPercentage = percentage;
@@ -273,7 +269,7 @@
     
     float percentage = (cytoStentCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"CytoStent";
     
     controller.cytoStentPercentage = percentage;
@@ -297,7 +293,7 @@
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"TumorSize";
     
     controller.tumorSizePercentage = tumorSizeCount/self.selectedCases.count;
@@ -327,7 +323,7 @@
     float percentage=0;
     percentage = (adhesiolysisCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"Adhesiolysis";
     
     controller.requiredPercentage = percentage;
@@ -354,7 +350,7 @@
     float percentage=0;
     percentage = (vasAnomolyCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"VasAnomoly";
     
     controller.anomoliesPercentage = percentage;
@@ -381,7 +377,7 @@
     float percentage=0;
     percentage = (intraOpUSCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"IOUS";
     
     controller.iousPercentage = percentage;
@@ -408,7 +404,7 @@
     float percentage=0;
     percentage = (positiveDMargins/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"DeepMargins";
     
     controller.dmPositive = percentage;
@@ -434,7 +430,7 @@
     
     float  percentage = (renalSRCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"RenalSR";
     
     controller.renalRSPercentage = percentage;
@@ -458,7 +454,7 @@
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"ClampTime";
     
     controller.clampTimePercentage = clampTimeCount/self.selectedCases.count;
@@ -488,7 +484,7 @@
     
     float percentage = (coagulantCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"Coagulant";
     
     controller.coagulantPercentage = percentage;
@@ -512,7 +508,7 @@
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"BloodLoss";
     
     controller.bloodLossPercentage = bloodLossCount/self.selectedCases.count;
@@ -538,7 +534,7 @@
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"ConsoleTime";
     
     controller.consolePercentage = consoleTimeCount/self.selectedCases.count;
@@ -565,7 +561,7 @@
     [self reset];
     [self CalculateValues];
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"RoomTime";
     
     controller.roomTimePercentage = roomTimeCount/self.selectedCases.count;
@@ -595,7 +591,7 @@
     float percentage = 0;
     percentage = (transfusionCount/self.selectedCases.count)*100;
     
-    OKPostOpDataGraphs *controller = [[OKPostOpDataGraphs alloc] initWithNibName:@"OKPostOpDataGraphs" bundle:nil];
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"Transfusion";
     
     controller.transfusionPercentage = percentage;
@@ -687,7 +683,7 @@
     for(int i=0;i<self.selectedCases.count;i++){
         
         NSDictionary *dic = [self.selectedCases objectAtIndex:i];
-        NSString *dob = [dic objectForKey:@"Patient_Dob"];
+        NSString *dob = [dic valueForKey:@"var_patientDOB"];
         // NSString *dos = [dic objectForKey:@"DateOfService"];
         float age = [self CalculateAge:dob];
         NSLog(@" ^^^^ Age Retreived :: %f",age);
@@ -704,38 +700,38 @@
                 minAge = age;
             }
         }
-        if(![[dic objectForKey:@"Deep_Margin"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"No"]){
             positiveDMargins+=1;
         }
-        if([[dic objectForKey:@"Gender"] isEqualToString:@"Male"]){
+        if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
             maleCount+=1;
         }
-        if([[dic objectForKey:@"Pre_Op_1"] isEqualToString:@"Left renal mass"]){
+        if([[dic valueForKey:@"var_preOp"] isEqualToString:@"Left renal mass"]){
             LRMCount+=1;
         }
-        if(![[dic objectForKey:@"CytoStent"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"No"]){
             cytoStentCount+=1;
         }
-        if(![[dic objectForKey:@"Adhesiolyst"] isEqualToString:@""]){
+        if(![[dic valueForKey:@"Adhesiolyst"] isEqualToString:@""]){
             adhesiolysisCount+=1;
         }
-        if(![[dic objectForKey:@"Vascular_Anomalies"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"Vascular_Anomalies"] isEqualToString:@"No"]){
             vasAnomolyCount+=1;
         }
-        if(![[dic objectForKey:@"Renal_Ultrasound"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"No"]){
             intraOpUSCount+=1;
         }
-        if(![[dic objectForKey:@"Renal_Coll_SR"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"No"]){
             renalSRCount+=1;
         }
-        if(![[dic objectForKey:@"Use_Coagulants"] isEqualToString:@"No coagulants"]){
+        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"No coagulants"]){
             coagulantCount+=1;
         }
-        if(![[dic objectForKey:@"Transustion"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"No"]){
             transfusionCount+=1;
         }
-        if([dic objectForKey:@"TumorSize_cm"]){
-            float tsize =[[dic objectForKey:@"TumorSize_cm"] floatValue];
+        if([dic valueForKey:@"var_tumorSize"]){
+            float tsize =[[dic valueForKey:@"var_tumorSize"] floatValue];
             tumorSizeCount+=tsize;
             if(i == 0){
                 minTumorSize = tsize;
@@ -749,8 +745,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"BMI"]){
-            float bmi = [[dic objectForKey:@"BMI"] floatValue];
+        if([dic valueForKey:@"var_bmi"]){
+            float bmi = [[dic valueForKey:@"var_bmi"] floatValue];
             bmiCount+= bmi;
             if(i == 0){
                 minBmi = bmi;
@@ -764,8 +760,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"Counsel_Time"]){
-            NSString *str = [dic objectForKey:@"Counsel_Time"];
+        if([dic valueForKey:@"var_counselTime"]){
+            NSString *str = [dic valueForKey:@"var_counselTime"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value Retreived  ::  %i",val);
@@ -782,8 +778,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"Room_Time"]){
-            NSString *str = [dic objectForKey:@"Room_Time"];
+        if([dic valueForKey:@"var_roomTime"]){
+            NSString *str = [dic valueForKey:@"var_roomTime"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
@@ -800,8 +796,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"Clamp_Tim"]){
-            NSString *str = [dic objectForKey:@"Clamp_Tim"];
+        if([dic valueForKey:@"var_clamp"]){
+            NSString *str = [dic valueForKey:@"var_clamp"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value for Clamp Time Retreived  ::  %i",val);
@@ -819,8 +815,8 @@
             }
             
         }
-        if([dic objectForKey:@"Blood_loss"]){
-            NSString *str = [dic objectForKey:@"Blood_loss"];
+        if([dic valueForKey:@"var_bloodLoss"]){
+            NSString *str = [dic valueForKey:@"var_bloodLoss"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
@@ -844,7 +840,7 @@
     for(int i=0;i<self.surgeonCases.count;i++){
         
         NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
-        NSString *dob = [dic objectForKey:@"Patient_Dob"];
+        NSString *dob = [dic valueForKey:@"var_patientDOB"];
         // NSString *dos = [dic objectForKey:@"DateOfService"];
         float age = [self CalculateAge:dob];
         NSLog(@" ^^^^ Age Retreived :: %f",age);
@@ -861,38 +857,38 @@
                 sur_minAge = age;
             }
         }
-        if(![[dic objectForKey:@"Deep_Margin"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"No"]){
             sur_positiveDMargins+=1;
         }
-        if([[dic objectForKey:@"Gender"] isEqualToString:@"Male"]){
+        if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
             sur_maleCount+=1;
         }
-        if([[dic objectForKey:@"Pre_Op_1"] isEqualToString:@"Left renal mass"]){
+        if([[dic valueForKey:@"var_preOp"] isEqualToString:@"Left renal mass"]){
             sur_LRMCount+=1;
         }
-        if(![[dic objectForKey:@"CytoStent"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"No"]){
             sur_cytoStentCount+=1;
         }
-        if(![[dic objectForKey:@"Adhesiolyst"] isEqualToString:@""]){
+        if(![[dic valueForKey:@"Adhesiolyst"] isEqualToString:@""]){
             sur_adhesiolysisCount+=1;
         }
-        if(![[dic objectForKey:@"Vascular_Anomalies"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"Vascular_Anomalies"] isEqualToString:@"No"]){
             sur_vasAnomolyCount+=1;
         }
-        if(![[dic objectForKey:@"Renal_Ultrasound"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"No"]){
             sur_intraOpUSCount+=1;
         }
-        if(![[dic objectForKey:@"Renal_Coll_SR"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"No"]){
             sur_renalSRCount+=1;
         }
-        if(![[dic objectForKey:@"Use_Coagulants"] isEqualToString:@"No coagulants"]){
+        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"No coagulants"]){
             sur_coagulantCount+=1;
         }
-        if(![[dic objectForKey:@"Transustion"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"No"]){
             sur_transfusionCount+=1;
         }
-        if([dic objectForKey:@"TumorSize_cm"]){
-            float tsize =[[dic objectForKey:@"TumorSize_cm"] floatValue];
+        if([dic valueForKey:@"var_tumorSize"]){
+            float tsize =[[dic valueForKey:@"var_tumorSize"] floatValue];
             sur_tumorSizeCount+=tsize;
             if(i == 0){
                 sur_minTumorSize = tsize;
@@ -906,8 +902,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"BMI"]){
-            float bmi = [[dic objectForKey:@"BMI"] floatValue];
+        if([dic valueForKey:@"var_bmi"]){
+            float bmi = [[dic valueForKey:@"var_bmi"] floatValue];
             sur_bmiCount+= bmi;
             if(i == 0){
                 sur_minBmi = bmi;
@@ -921,8 +917,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"Counsel_Time"]){
-            NSString *str = [dic objectForKey:@"Counsel_Time"];
+        if([dic valueForKey:@"var_counselTime"]){
+            NSString *str = [dic valueForKey:@"var_counselTime"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value Retreived  ::  %i",val);
@@ -939,8 +935,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"Room_Time"]){
-            NSString *str = [dic objectForKey:@"Room_Time"];
+        if([dic valueForKey:@"var_roomTime"]){
+            NSString *str = [dic valueForKey:@"var_roomTime"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
@@ -957,8 +953,8 @@
                 }
             }
         }
-        if([dic objectForKey:@"Clamp_Tim"]){
-            NSString *str = [dic objectForKey:@"Clamp_Tim"];
+        if([dic valueForKey:@"var_clamp"]){
+            NSString *str = [dic valueForKey:@"var_clamp"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value for Clamp Time Retreived  ::  %i",val);
@@ -976,8 +972,8 @@
             }
             
         }
-        if([dic objectForKey:@"Blood_loss"]){
-            NSString *str = [dic objectForKey:@"Blood_loss"];
+        if([dic valueForKey:@"var_bloodLoss"]){
+            NSString *str = [dic valueForKey:@"var_bloodLoss"];
             NSArray *ary = [str componentsSeparatedByString:@" "];
             int val = [[ary objectAtIndex:0] intValue];
             NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
@@ -1016,6 +1012,17 @@
                                                 options:0];
     return components.year;
 }
+
+//-(IBAction)advancedOptions:(id)sender{
+//
+//    if (self.isNationalData) {
+//
+//    }else{
+//        UCAdvancedOptions *controller = [[UCAdvancedOptions alloc] initWithNibName:@"UCAdvancedOptions" bundle:nil];
+//        [self.navigationController pushViewController:controller animated:YES];
+//    }
+//
+//}
 
 
 -(IBAction)back:(id)sender{

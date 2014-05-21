@@ -1,14 +1,15 @@
 //
-//  OKPostOpDataGraphs.h
-//  MZUroCapture
+//  OKPostOpDataGraphsVC.h
+//  OpKnowte
 //
-//  Created by Omer on 6/28/13.
-//  Copyright (c) 2013 Ahmed Sadiq. All rights reserved.
+//  Created by Apple on 21.05.14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "OKBaseViewController.h"
 
-@interface OKPostOpDataGraphs : UIViewController
+@interface OKPostOpDataGraphsVC : OKBaseViewController
+
 {}
 @property (nonatomic)int averageAge;
 @property (nonatomic)int dmPositive;
@@ -141,6 +142,8 @@
 @property (nonatomic) BOOL isNationalData;
 
 -(IBAction)back:(id)sender;
+
+
 
 
 @end

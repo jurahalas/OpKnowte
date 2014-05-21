@@ -163,10 +163,10 @@
 		182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182659C919066C2600723D16 /* OKDashboardTableViewCell.m */; };
 		182659CD1906A36200723D16 /* dashboardBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 182659CB1906A36200723D16 /* dashboardBG.png */; };
 		182659CE1906A36200723D16 /* dashboardBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182659CC1906A36200723D16 /* dashboardBG@2x.png */; };
-		184BD75C192A403100442FDF /* OKPostOpDataGraphs.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BD75A192A403100442FDF /* OKPostOpDataGraphs.m */; };
-		184BD75D192A403100442FDF /* OKPostOpDataGraphs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75B192A403100442FDF /* OKPostOpDataGraphs.xib */; };
+		184BD75D192A403100442FDF /* OKPostOpDataGraphsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75B192A403100442FDF /* OKPostOpDataGraphsVC.xib */; };
 		184BD760192B89BB00442FDF /* scSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75E192B89BB00442FDF /* scSeparator.png */; };
 		184BD761192B89BB00442FDF /* scSeparator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184BD75F192B89BB00442FDF /* scSeparator@2x.png */; };
+		184BD764192C941C00442FDF /* OKPostOpDataGraphsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 184BD763192C941C00442FDF /* OKPostOpDataGraphsVC.m */; };
 		185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F828A1900015400C5566A /* OKNationalDataViewController.m */; };
 		185F828E1900017F00C5566A /* OKNationalDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F828D1900017F00C5566A /* OKNationalDataTableViewCell.m */; };
 		185F829619000A7100C5566A /* OKLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185F829519000A7100C5566A /* OKLoadingViewController.xib */; };
@@ -482,11 +482,11 @@
 		182659C919066C2600723D16 /* OKDashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKDashboardTableViewCell.m; sourceTree = "<group>"; };
 		182659CB1906A36200723D16 /* dashboardBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashboardBG.png; sourceTree = "<group>"; };
 		182659CC1906A36200723D16 /* dashboardBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashboardBG@2x.png"; sourceTree = "<group>"; };
-		184BD759192A403100442FDF /* OKPostOpDataGraphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPostOpDataGraphs.h; sourceTree = "<group>"; };
-		184BD75A192A403100442FDF /* OKPostOpDataGraphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPostOpDataGraphs.m; sourceTree = "<group>"; };
-		184BD75B192A403100442FDF /* OKPostOpDataGraphs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKPostOpDataGraphs.xib; sourceTree = "<group>"; };
+		184BD75B192A403100442FDF /* OKPostOpDataGraphsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKPostOpDataGraphsVC.xib; sourceTree = "<group>"; };
 		184BD75E192B89BB00442FDF /* scSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scSeparator.png; sourceTree = "<group>"; };
 		184BD75F192B89BB00442FDF /* scSeparator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scSeparator@2x.png"; sourceTree = "<group>"; };
+		184BD762192C941C00442FDF /* OKPostOpDataGraphsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKPostOpDataGraphsVC.h; sourceTree = "<group>"; };
+		184BD763192C941C00442FDF /* OKPostOpDataGraphsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKPostOpDataGraphsVC.m; sourceTree = "<group>"; };
 		185F82891900015400C5566A /* OKNationalDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKNationalDataViewController.h; sourceTree = "<group>"; };
 		185F828A1900015400C5566A /* OKNationalDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKNationalDataViewController.m; sourceTree = "<group>"; };
 		185F828C1900017F00C5566A /* OKNationalDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKNationalDataTableViewCell.h; sourceTree = "<group>"; };
@@ -1226,9 +1226,9 @@
 		184BD758192A3FFC00442FDF /* Post-Op Data Graphs */ = {
 			isa = PBXGroup;
 			children = (
-				184BD759192A403100442FDF /* OKPostOpDataGraphs.h */,
-				184BD75A192A403100442FDF /* OKPostOpDataGraphs.m */,
-				184BD75B192A403100442FDF /* OKPostOpDataGraphs.xib */,
+				184BD762192C941C00442FDF /* OKPostOpDataGraphsVC.h */,
+				184BD763192C941C00442FDF /* OKPostOpDataGraphsVC.m */,
+				184BD75B192A403100442FDF /* OKPostOpDataGraphsVC.xib */,
 			);
 			name = "Post-Op Data Graphs";
 			sourceTree = "<group>";
@@ -1844,7 +1844,7 @@
 				00A64D5E19064DB400740DC7 /* degree@2x.png in Resources */,
 				00A64D4519064DB400740DC7 /* right@2x.png in Resources */,
 				184BD760192B89BB00442FDF /* scSeparator.png in Resources */,
-				184BD75D192A403100442FDF /* OKPostOpDataGraphs.xib in Resources */,
+				184BD75D192A403100442FDF /* OKPostOpDataGraphsVC.xib in Resources */,
 				00A64D7919064DB400740DC7 /* separator.png in Resources */,
 				188608F0190FA1CB00BD1D77 /* emailIcon.png in Resources */,
 				00A64D4319064DB400740DC7 /* down@2x.png in Resources */,
@@ -1935,8 +1935,8 @@
 				E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */,
 				189F45141909480700372C55 /* OKInstituteVC.m in Sources */,
 				18949E9A1918D45200B4B38C /* OKContactsTableViewCell.m in Sources */,
-				184BD75C192A403100442FDF /* OKPostOpDataGraphs.m in Sources */,
 				AC1ACA27191EBA49004FA1BB /* OKAccessSettingManager.m in Sources */,
+				184BD764192C941C00442FDF /* OKPostOpDataGraphsVC.m in Sources */,
 				1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */,
 				189F1BCF191D007D006CEBED /* OKContactListVC.m in Sources */,
 				AC7E429B1924ED9700F58A24 /* OKIntraOperativeDataViewController.m in Sources */,

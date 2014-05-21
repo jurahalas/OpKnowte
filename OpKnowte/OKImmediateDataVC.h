@@ -12,6 +12,7 @@
 @interface OKImmediateDataVC : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
 
 
+
 @property (nonatomic) int totalSurgeonCount;
 @property (nonatomic) int totalNationalCount;
 
@@ -83,5 +84,29 @@
 
 @property (nonatomic) BOOL isCalculated;
 @property (nonatomic) BOOL isNationalData;
+
+-(int)CalculateAge:(NSString *)DateOfBirth;
+-(IBAction)AverageAgeOfPatient:(id)sender;
+-(IBAction)MaleFemale:(id)sender;
+-(IBAction)BMI:(id)sender;
+-(IBAction)LeftRightRenalMass:(id)sender;
+-(IBAction)CytoStent:(id)sender;
+-(IBAction)TumorSize:(id)sender;
+-(IBAction)TumorCharacteristics:(id)sender;
+-(IBAction)AdhesiolysisRequired:(id)sender;
+-(IBAction)VascularAnomoly:(id)sender;
+-(IBAction)IntraOpUltraSound:(id)sender;
+-(IBAction)DeepMargins:(id)sender;
+-(IBAction)Margins:(id)sender;
+-(IBAction)RenalSystemRepair:(id)sender;
+-(IBAction)AverageClampTime:(id)sender;
+-(IBAction)Coagulants:(id)sender;
+-(IBAction)BloodLoss:(id)sender;
+-(IBAction)ConsoleTime:(id)sender;
+-(IBAction)RoomTime:(id)sender;
+-(IBAction)Complications:(id)sender;
+-(IBAction)TransfusionRequired:(id)sender;
+//-(IBAction)advancedOptions:(id)sender;
+-(IBAction)back:(id)sender;
 
 @end

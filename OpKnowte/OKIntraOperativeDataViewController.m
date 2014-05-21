@@ -14,8 +14,10 @@
 #import "OKSurgicalLogsManager.h"
 #import "OKIntraOperativeDataTableViewCell.h"
 #import "OKFakeTableViewCell.h"
-#import "OKPostOpDataGraphs.h"
+#import "OKPostOpDataGraphsVC.h"
 #import "OKImmediateDataVC.h"
+#import "OKFollowUpDataManager.h"
+#import "OKUserManager.h"
 
 @interface OKIntraOperativeDataViewController ()<OKIntraOperativeProtocol>
 
@@ -55,6 +57,11 @@
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
 @property (nonatomic, assign) BOOL dateToButtonTapped;
+
+@property (nonatomic, strong) NSMutableArray *surgeonDataArray;
+@property (nonatomic, strong) NSMutableArray *nationalDataArray;
+@property (nonatomic, strong) NSMutableArray *surgeonClinicalData;
+@property (nonatomic, strong) NSMutableArray *nationalClinicalData;
 
 @end
 
@@ -144,20 +151,18 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+    
+    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
         
         if ((dates) && ([dates count] > 0)) {
-            
             int count = [dates count];
             _dateFromTF.text = [dates objectAtIndex:0];
             _dateToTF.text = [dates objectAtIndex:count-1];
-            
         }
         [[OKLoadingViewController instance] hide];
     }];
-    
 }
 
 
@@ -188,6 +193,7 @@
         
         if ([self varifyDates]) {
             [[OKLoadingViewController instance] showWithText:@"Loading..."];
+            OKFollowUpDataManager *followManager = [OKFollowUpDataManager instance];
             
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:_caseFromLabel.text ToRecordNum:_caseToLabel.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
@@ -199,6 +205,14 @@
                 [_selectedCases addObjectsFromArray:_cases];
                 
                 [_listTableView reloadData];
+                
+                
+                [followManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                 
+                    NSLog(@"Eror - %@", errorMsg);
+                    _nationalDataArray = dataArray;
+
+                }];
                 [[OKLoadingViewController instance] hide];
             }];
         }else{
@@ -416,26 +430,37 @@
                                                                   otherButtonTitles:nil, nil];
         [analyseError show];
     }else{
-        NSString *list = [[NSString alloc] init];
-        
-        for (int i = 0; i < [self.selectedCases count]; i++) {
-            list = [list stringByAppendingString:[[self.selectedCases objectAtIndex:i] valueForKey:@"DetailID"]];
-            if (i != self.selectedCases.count - 1) {
-                list = [list stringByAppendingString:@","];
-            }
-        }
-        NSLog(@"list - %@", list);
-        
-        
-//        
-//        OKImmediateDataVC *controller = [[OKImmediateDataVC alloc] initWithNibName:@"OKImmediateVC" bundle:nil];
-//
-//        NSLog(@"%i",self.selectedCases.count);
-//        controller.totalSurgeonCount = [self.selectedCases count];
-//        controller.selectedCases = [self.selectedCases mutableCopy];
-//        [self.navigationController pushViewController:controller animated:YES];
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+        OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+        [followUpDataManager getClinicalDetailsByCaseArray:_selectedCases handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+            
+            NSLog(@"Eror - %@", errorMsg);
+            _surgeonClinicalData = dataArray;
+            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                NSLog(@"Eror - %@", errorMsg);
+                _nationalClinicalData = dataArray;
+                [[OKLoadingViewController instance] hide];
+                NSLog(@"%i", self.selectedCases.count);
+//                [self performSegueWithIdentifier:@"fromIODtoImmediate" sender:nil];
+            }];
+        }];
     }
-
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromIODtoImmediate"]){
+        OKImmediateDataVC *sharVC = (OKImmediateDataVC*)segue.destinationViewController;
+        sharVC.totalNationalCount = _nationalDataArray.count;
+        sharVC.totalSurgeonCount = _selectedCases.count;
+        sharVC.selectedCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
+        sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_selectedCases];
+        
+    }
+}
+
+
+
 
 @end

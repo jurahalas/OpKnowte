@@ -1,20 +1,19 @@
 //
-//  UCPostOpDataGraphs.m
-//  MZUroCapture
+//  OKPostOpDataGraphsVC.m
+//  OpKnowte
 //
-//  Created by Omer on 6/28/13.
-//  Copyright (c) 2013 Ahmed Sadiq. All rights reserved.
+//  Created by Apple on 21.05.14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
-#import "OKPostOpDataGraphs.h"
-#define     IS_IPHONE_5                     ([[UIScreen mainScreen] bounds].size.height == 568)
+#import "OKPostOpDataGraphsVC.h"
+#define IS_IPHONE_5                     ([[UIScreen mainScreen] bounds].size.height == 568)
 
-
-@interface OKPostOpDataGraphs ()
+@interface OKPostOpDataGraphsVC ()
 
 @end
 
-@implementation OKPostOpDataGraphs
+@implementation OKPostOpDataGraphsVC
 
 @synthesize ageView, averageAgeGraph, averageAge, graphToDraw;
 
@@ -46,7 +45,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.isNationalData = NO;
+        self.isNationalData = YES;
     }
     return self;
 }
@@ -355,8 +354,8 @@
     
     self.oneSurLabel.text = [NSString stringWithFormat:@"Average BMI of Patient = %.1f (%.1f to %.1f Units)",sur_bmiPercentage,sur_minBmi,sur_maxBmi];
     
-    [twoLabel setHidden:YES];
-    [twoSurLabel setHidden:YES];
+    [twoLabel setHidden:NO];
+    [twoSurLabel setHidden:NO];
     
     [self.NationalSampleSize setFrame:CGRectMake(self.NationalSampleSize.frame.origin.x, self.NationalSampleSize.frame.origin.y-27, self.NationalSampleSize.frame.size.width, self.NationalSampleSize.frame.size.height)];
     [self.SurgeonSampleSize setFrame:CGRectMake(self.SurgeonSampleSize.frame.origin.x, self.SurgeonSampleSize.frame.origin.y-27, self.SurgeonSampleSize.frame.size.width, self.SurgeonSampleSize.frame.size.height)];
@@ -403,7 +402,7 @@
     //        tFrame.size.height = tFrame.size.height + (bmiPercentage * 3);
     //    }
     //    self.ageView.frame = tFrame;
-    //
+    //    
     //    [self.view addSubview:averageAgeGraph];
 }
 
@@ -1065,19 +1064,19 @@
     [self.view addSubview:averageView];
     
     //    titleLabel.text = @"Transfusion Required";
-    //    
+    //
     //    if (IS_IPHONE_5) {
-    //        
+    //
     //        CGRect frame = self.renalRSView.frame;
     //        frame.origin.y = 57;
     //        [self.renalRSView setFrame:frame];
-    //        
+    //
     //    }else{
     //        CGRect frame = self.renalRSView.frame;
     //        frame.origin.y = 45;
     //        [self.renalRSView setFrame:frame];
     //    }
-    //    
+    //
     //    CGRect tFrame = self.renalRSYesView.frame;
     //    if ( transfusionPercentage> 0) {
     //        tFrame.origin.y = tFrame.origin.y - (transfusionPercentage * 3);
@@ -1091,7 +1090,7 @@
     //    //        tFrame.size.height = tFrame.size.height + (cytoNoPercentage * 3);
     //    //    }
     //    //    self.cytoNoView.frame = tFrame;
-    //    
+    //
     //    [self.view addSubview:self.renalRSView];
     
 }
