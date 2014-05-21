@@ -118,7 +118,6 @@
         [self TransfusionRequired];
     }
 
-    
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -159,7 +158,7 @@
     if (self) {
         // Custom initialization
         self.surgeonCases = [[NSMutableArray alloc] init];
-        isNationalData = NO;
+        isNationalData = YES;
     }
     return self;
 }
@@ -179,7 +178,7 @@
     controller.maxAge = maxAge;
     controller.minAge = minAge;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         
         if(sur_sumOfAges<=0)
             sur_sumOfAges = 100;
@@ -213,7 +212,7 @@
     
     controller.malePercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_maleCount/self.surgeonCases.count)*100;
         controller.sur_malePercentage = percentage;
         controller.isNationalData = YES;
@@ -236,8 +235,8 @@
     controller.bmiPercentage = bmiCount/self.selectedCases.count;
     controller.maxBmi = maxBmi;
     controller.minBmi = minBmi;
-    
-    if (self.isNationalData) {
+    NSLog(@"%hhd", isNationalData);
+    if (!self.isNationalData) {
         controller.sur_bmiPercentage = sur_bmiCount/self.surgeonCases.count;
         controller.sur_maxBmi = sur_maxBmi;
         controller.sur_minBmi = sur_minBmi;
@@ -264,7 +263,7 @@
     
     controller.LRMPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_LRMCount/self.surgeonCases.count)*100;
         controller.sur_LRMPercentage = percentage;
         controller.isNationalData = YES;
@@ -290,7 +289,7 @@
     
     controller.cytoStentPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_cytoStentCount/self.surgeonCases.count)*100;
         controller.sur_cytoStentPercentage = percentage;
         controller.isNationalData = YES;
@@ -316,7 +315,7 @@
     controller.maxTumorSize = maxTumorSize;
     controller.minTumorSize = minTumorSize;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         controller.sur_tumorSizePercentage = sur_tumorSizeCount/self.surgeonCases.count;
         controller.sur_maxTumorSize = sur_maxTumorSize;
         controller.sur_minTumorSize = sur_minTumorSize;
@@ -344,7 +343,7 @@
     
     controller.requiredPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_adhesiolysisCount/self.surgeonCases.count)*100;
         controller.sur_requiredPercentage = percentage;
         controller.isNationalData = YES;
@@ -371,7 +370,7 @@
     
     controller.anomoliesPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_vasAnomolyCount/self.surgeonCases.count)*100;
         controller.sur_anomoliesPercentage = percentage;
         controller.isNationalData = YES;
@@ -398,7 +397,7 @@
     
     controller.iousPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_intraOpUSCount/self.surgeonCases.count)*100;
         controller.iousPercentage = percentage;
         controller.isNationalData = YES;
@@ -425,7 +424,7 @@
     
     controller.dmPositive = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_positiveDMargins/self.surgeonCases.count)*100;
         controller.sur_dmPositive = percentage;
         controller.isNationalData = YES;
@@ -451,7 +450,7 @@
     
     controller.renalRSPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_renalSRCount/self.surgeonCases.count)*100;
         controller.sur_renalRSPercentage = percentage;
         controller.isNationalData = YES;
@@ -477,7 +476,7 @@
     controller.maxClampTime = maxClampTime;
     controller.minClampTime = minClampTime;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         controller.sur_clampTimePercentage = sur_clampTimeCount/self.surgeonCases.count;
         controller.sur_maxClampTime = sur_maxClampTime;
         controller.sur_minClampTime = sur_minClampTime;
@@ -505,7 +504,7 @@
     
     controller.coagulantPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_coagulantCount/self.surgeonCases.count)*100;
         controller.sur_coagulantPercentage = percentage;
         controller.isNationalData = YES;
@@ -531,7 +530,7 @@
     controller.minBloodLoss = minBloodLoss;
     controller.maxBloodLoss = maxBloodLoss;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         controller.sur_bloodLossPercentage = sur_bloodLossCount/self.surgeonCases.count;
         controller.sur_minBloodLoss = sur_minBloodLoss;
         controller.sur_maxBloodLoss = sur_maxBloodLoss;
@@ -557,7 +556,7 @@
     controller.maxConsoleTime = maxConsoleTime;
     controller.minConsoleTime = minConsoleTime;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         controller.sur_consolePercentage = sur_consoleTimeCount/self.surgeonCases.count;
         controller.sur_maxConsoleTime = sur_maxConsoleTime;
         controller.sur_minConsoleTime = sur_minConsoleTime;
@@ -584,7 +583,7 @@
     controller.minRoomTime = minRoomTime;
     controller.maxRoomTime = maxRoomTime;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         controller.sur_roomTimePercentage = sur_roomTimeCount/self.surgeonCases.count;
         controller.sur_minRoomTime = sur_minRoomTime;
         controller.sur_maxRoomTime = sur_maxRoomTime;
@@ -612,7 +611,7 @@
     
     controller.transfusionPercentage = percentage;
     
-    if (self.isNationalData) {
+    if (!self.isNationalData) {
         percentage = (sur_transfusionCount/self.surgeonCases.count)*100;
         controller.sur_transfusionPercentage = percentage;
         controller.isNationalData = YES;

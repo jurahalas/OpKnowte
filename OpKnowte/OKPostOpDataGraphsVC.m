@@ -122,6 +122,7 @@
     
     averageViewTitleLabel.text = @"Average Age";
     oneLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",averageAge,minAge,maxAge];
+
     oneSurLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",sur_averageAge,sur_minAge,sur_maxAge];
     
     [twoLabel setHidden:YES];
