@@ -33,6 +33,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self getContactsList];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 
