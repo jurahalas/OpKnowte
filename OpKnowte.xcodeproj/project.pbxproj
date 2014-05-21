@@ -179,6 +179,8 @@
 		E100240218F529E9008421D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10023E118F529E9008421D4 /* UIKit.framework */; };
 		E100240A18F529E9008421D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E100240818F529E9008421D4 /* InfoPlist.strings */; };
 		E100240C18F529E9008421D4 /* OpKnowteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E100240B18F529E9008421D4 /* OpKnowteTests.m */; };
+		E104122C192C92DE00F1E3D9 /* OKTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E104122B192C92DE00F1E3D9 /* OKTemplate.m */; };
+		E104122F192CCACC00F1E3D9 /* OKOngoingData.m in Sources */ = {isa = PBXBuildFile; fileRef = E104122E192CCACC00F1E3D9 /* OKOngoingData.m */; };
 		E106A53818F8626100BA4E35 /* OKBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53718F8626100BA4E35 /* OKBaseManager.m */; };
 		E106A53C18F8652500BA4E35 /* OKUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E106A53B18F8652500BA4E35 /* OKUserManager.m */; };
 		E1FB8F67191912A8007CCF17 /* OKCaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1FB8F66191912A8007CCF17 /* OKCaseManager.m */; };
@@ -433,6 +435,10 @@
 		E100240718F529E9008421D4 /* OpKnowteTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpKnowteTests-Info.plist"; sourceTree = "<group>"; };
 		E100240918F529E9008421D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E100240B18F529E9008421D4 /* OpKnowteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpKnowteTests.m; sourceTree = "<group>"; };
+		E104122A192C92DE00F1E3D9 /* OKTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTemplate.h; sourceTree = "<group>"; };
+		E104122B192C92DE00F1E3D9 /* OKTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTemplate.m; sourceTree = "<group>"; };
+		E104122D192CCACC00F1E3D9 /* OKOngoingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingData.h; sourceTree = "<group>"; };
+		E104122E192CCACC00F1E3D9 /* OKOngoingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingData.m; sourceTree = "<group>"; };
 		E106A53618F8626100BA4E35 /* OKBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKBaseManager.h; path = Managers/OKBaseManager.h; sourceTree = "<group>"; };
 		E106A53718F8626100BA4E35 /* OKBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKBaseManager.m; path = Managers/OKBaseManager.m; sourceTree = "<group>"; };
 		E106A53A18F8652500BA4E35 /* OKUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKUserManager.h; path = Managers/OKUserManager.h; sourceTree = "<group>"; };
@@ -447,8 +453,6 @@
 		E1FB8F70191A1BC0007CCF17 /* NSString+NSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSDate.m"; path = "Categories/NSString+NSDate.m"; sourceTree = "<group>"; };
 		E1FB8F75191A8FE9007CCF17 /* OKTemplateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OKTemplateManager.h; path = Managers/OKTemplateManager.h; sourceTree = "<group>"; };
 		E1FB8F76191A8FE9007CCF17 /* OKTemplateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OKTemplateManager.m; path = Managers/OKTemplateManager.m; sourceTree = "<group>"; };
-		E1FB8F79191A9719007CCF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Base; path = Base.lproj/OKTemplate.h; sourceTree = "<group>"; };
-		E1FB8F7B191A9719007CCF17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Base; path = Base.lproj/OKTemplate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,8 +520,10 @@
 				189F4516190A8DCC00372C55 /* OKContactModel.m */,
 				E1FB8F68191A133B007CCF17 /* OKCase.h */,
 				E1FB8F69191A133B007CCF17 /* OKCase.m */,
-				E1FB8F78191A9719007CCF17 /* OKTemplate.h */,
-				E1FB8F7A191A9719007CCF17 /* OKTemplate.m */,
+				E104122A192C92DE00F1E3D9 /* OKTemplate.h */,
+				E104122B192C92DE00F1E3D9 /* OKTemplate.m */,
+				E104122D192CCACC00F1E3D9 /* OKOngoingData.h */,
+				E104122E192CCACC00F1E3D9 /* OKOngoingData.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1321,6 +1327,7 @@
 				0060D8A418FD5AA500AFC7B4 /* OKUserModel.m in Sources */,
 				ACA0336E190A42ED00D4A144 /* OKSelectCaseViewController.m in Sources */,
 				182659CA19066C2600723D16 /* OKDashboardTableViewCell.m in Sources */,
+				E104122F192CCACC00F1E3D9 /* OKOngoingData.m in Sources */,
 				0060D88D18FD443E00AFC7B4 /* OKSelectProcedureViewController.m in Sources */,
 				00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */,
 				E10023EE18F529E9008421D4 /* OKAppDelegate.m in Sources */,
@@ -1357,6 +1364,7 @@
 				E10023F718F529E9008421D4 /* OKViewController.m in Sources */,
 				00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */,
 				188608F8190FCC1300BD1D77 /* OKFacilityVC.m in Sources */,
+				E104122C192C92DE00F1E3D9 /* OKTemplate.m in Sources */,
 				185F828B1900015400C5566A /* OKNationalDataViewController.m in Sources */,
 				AC8F61E61912457C0064C53F /* OKAccessSettingsViewController.m in Sources */,
 				1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */,
@@ -1420,22 +1428,6 @@
 				E100240918F529E9008421D4 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E1FB8F78191A9719007CCF17 /* OKTemplate.h */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1FB8F79191A9719007CCF17 /* Base */,
-			);
-			name = OKTemplate.h;
-			sourceTree = "<group>";
-		};
-		E1FB8F7A191A9719007CCF17 /* OKTemplate.m */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1FB8F7B191A9719007CCF17 /* Base */,
-			);
-			name = OKTemplate.m;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -57,12 +57,13 @@
 {
     [[OKLoadingViewController instance]showWithText:@"Loading"];
     if (self.fromSettings) {
-        [[OKTemplateManager instance]getTemplate:[OKUserManager instance].currentUser.userID withProcedureID:[OKProceduresManager instance].selectedProcedre.procedureID handler:[self getTemplateHandler]];
+        [[OKTemplateManager instance]getTemplate:[OKUserManager instance].currentUser.userID withProcedureID:[OKProceduresManager instance].selectedProcedure
+         .procedureID handler:[self getTemplateHandler]];
         
         
     }else {
         
-        [[OKCaseManager instance]getCaseListForProcedureWithID:[OKProceduresManager instance].selectedProcedre.procedureID surgeonID:[OKUserManager instance].currentUser.userID handler:[self getCaseListHandler]];
+        [[OKCaseManager instance]getCaseListForProcedureWithID:[OKProceduresManager instance].selectedProcedure.procedureID surgeonID:[OKUserManager instance].currentUser.userID handler:[self getCaseListHandler]];
         
     }
 }

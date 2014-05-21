@@ -7,7 +7,6 @@
 //
 
 #import "OKCaseManager.h"
-#import "OKCase.h"
 #import "OKUserManager.h"
 
 @implementation OKCaseManager
@@ -37,14 +36,20 @@
 }
 
 
-- (void)getOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, id responseJSON ))handler
+- (void)getOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, OKOngoingData *ongoingData ))handler
 {
     NSDictionary *params = @{@"procedureID":procedureID,
-                             @"userID":[OKUserManager instance].currentUser.identifier,
+                             @"userID":[OKUserManager instance].currentUser.userID,
                              @"caseID":caseID,
                              @"timePointID":timePointID};
     [self requestWithMethod:@"GET" path:@"getOngoingClinicalDetail" params:params handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error], json);
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            OKOngoingData *ongData = [OKOngoingData new];
+            [ongData setModelWithDictionary:[[json objectForKey:@"clinicalData"] objectAtIndex:0]];
+            handler(nil, ongData);
+        }else
+            handler(errorMsg, nil);
     }];
 }
 
