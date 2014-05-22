@@ -8,7 +8,7 @@
 
 #import "OKProcedureTextField.h"
 
-@implementation OKProcedureTextField
+@implementation OKProcedureTextField 
 
 -(void) setup{
     _customTextField.text = @"";
@@ -53,6 +53,8 @@
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
 
-
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self.delegate hidePickersWhenTextFieldBeginsEditing];
+}
 
 @end

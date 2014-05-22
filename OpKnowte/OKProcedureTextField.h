@@ -14,7 +14,7 @@ enum OKProcedureTextFieldType {
     OKProcedureNumericTF
 };
 
-@interface OKProcedureTextField : OKBaseProcedureElement
+@interface OKProcedureTextField : OKBaseProcedureElement <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
 @property (nonatomic, weak) id<OKBaseProcedureElementDelegate>delegate;
