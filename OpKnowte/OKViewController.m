@@ -38,7 +38,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }
 
-
 -(void)viewDidAppear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
