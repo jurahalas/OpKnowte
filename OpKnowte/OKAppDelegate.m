@@ -20,9 +20,6 @@
     }
     else{
        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG6"] forBarMetrics:UIBarMetricsDefault ];
-        
-        UIBarButtonItem *barButtonAppearance = [UIBarButtonItem appearance];
-        [barButtonAppearance setTintColor:[UIColor lightGrayColor]];
     }
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
