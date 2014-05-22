@@ -155,6 +155,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        NSLog(@"cameeeeee    %@", _cameFromVC);
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
         NSLog(@"ololl %@", _cameFromVC);
         if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
@@ -166,6 +167,7 @@
         }else if ([_cameFromVC isEqualToString:@"ContactListVC"]){
             [self.navigationController popViewControllerAnimated:YES];
         }
+        
     }
 }
 

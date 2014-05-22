@@ -2102,19 +2102,34 @@
                                 <rect key="frame" x="0.0" y="65" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" id="Par-eZ-aHM">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="rEA-gv-G5I">
                                         <rect key="frame" x="31" y="11" width="259" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="Case data"/>
-                                            <segment title="Indication"/>
-                                            <segment title="Procedure"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="segmentControlButton:" destination="IWN-9Q-DMf" eventType="valueChanged" id="sm7-GK-0qq"/>
-                                        </connections>
-                                    </segmentedControl>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="Par-eZ-aHM">
+                                                <rect key="frame" x="0.0" y="0.0" width="259" height="29"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Case data"/>
+                                                    <segment title="Indication"/>
+                                                    <segment title="Procedure"/>
+                                                </segments>
+                                                <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="segmentControlButton:" destination="IWN-9Q-DMf" eventType="valueChanged" id="sm7-GK-0qq"/>
+                                                </connections>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -2232,6 +2247,7 @@
                         <outlet property="saveButtonView" destination="EAw-Ad-8IY" id="36H-S4-llQ"/>
                         <outlet property="segmentControl" destination="Par-eZ-aHM" id="CRQ-wA-ZwN"/>
                         <outlet property="segmentControllView" destination="sB1-gk-KcK" id="jYd-a8-t6D"/>
+                        <outlet property="segmentedControllView" destination="rEA-gv-G5I" id="tne-m8-9xh"/>
                         <segue destination="b3m-w2-gJA" kind="push" identifier="fromOpNoteToFacility" id="aL2-xa-szT"/>
                     </connections>
                 </viewController>
@@ -2742,6 +2758,14 @@
                                             <outlet property="nameLabel" destination="yX9-vR-rBQ" id="ScJ-xJ-3jb"/>
                                             <outlet property="plusButton" destination="0zy-82-ti3" id="mBs-kq-PRT"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FakeCell" rowHeight="60" id="Yf8-K1-eyc" customClass="OKFakeTableViewCell">
+                                        <rect key="frame" x="0.0" y="82" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yf8-K1-eyc" id="0g5-O4-6GH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -3765,7 +3789,7 @@
         <!--Immediate DataVC - Immediate Post-Op Data-->
         <scene sceneID="nNy-vT-uEN">
             <objects>
-                <viewController id="X42-7I-S67" customClass="OKImmediateDataVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OKImmediateDataVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X42-7I-S67" customClass="OKImmediateDataVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OwO-Pp-QJf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3852,16 +3876,23 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lPY-Bo-TiM"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="jDh-vb-NmK"/>
+        <segue reference="cNX-Le-q8P"/>
         <segue reference="oYk-1x-QUH"/>
-        <segue reference="aL2-xa-szT"/>
+        <segue reference="ljR-8G-8AS"/>
+        <segue reference="lPY-Bo-TiM"/>
         <segue reference="9Vm-fe-BqP"/>
         <segue reference="cL3-fE-0Q4"/>
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="NUC-dJ-uGW"/>
         <segue reference="evs-oI-wLM"/>
         <segue reference="ytp-fp-EJd"/>
         <segue reference="sg6-fY-kvy"/>
         <segue reference="eEH-cw-BCg"/>
+        <segue reference="goQ-lN-Lsa"/>
         <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
+        <segue reference="Q7A-9x-cdI"/>
     </inferredMetricsTieBreakers>
 </document>
