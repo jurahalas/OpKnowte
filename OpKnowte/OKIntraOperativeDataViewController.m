@@ -91,7 +91,6 @@
      [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
-
 }
 
 
