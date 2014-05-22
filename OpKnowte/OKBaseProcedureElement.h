@@ -16,7 +16,7 @@
 - (void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 
 - (void)goToNextElementFrom:(id)sender;
-
+- (void) hidePickersWhenTextFieldBeginsEditing;
 @end
 
 @interface OKBaseProcedureElement : UIControl

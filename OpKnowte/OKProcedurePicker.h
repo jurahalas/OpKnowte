@@ -12,7 +12,6 @@
 @protocol OKProcedurePickerDelegate <OKBaseProcedureElementDelegate>
 
 -(void)showPickerWithData:(NSArray*)pickerData picker: (id)pickerObject;
-
 @end
 
 @interface OKProcedurePicker : OKBaseProcedureElement
