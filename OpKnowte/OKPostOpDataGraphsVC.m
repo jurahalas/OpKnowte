@@ -55,6 +55,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //averageAge = 70;
+    self.navigationItem.title = @"Post-Op Data";
+
     if([self.graphToDraw isEqualToString:@"AverageAge"]){
         [self drawAverageAgeGraph];
     }else if([self.graphToDraw isEqualToString:@"DeepMargins"]){
@@ -94,7 +96,8 @@
     
     [self.NationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
     [self.SurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-    
+    [self addLeftButtonToNavbar];
+
     if (self.isNationalData) {
         [self.SurgeonSampleSize setHidden:NO];
         [self.NationalSampleSize setHidden:NO];
@@ -108,15 +111,29 @@
     
 }
 
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
+    
+}
+
+- (void)backButton {
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)back:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)drawAverageAgeGraph{
     
@@ -149,31 +166,10 @@
         [self.averageView setFrame:frame];
     }
     [self.view addSubview:averageView];
-    //    averageTitleLabel.text = @"Average Age";
-    //    unitLabel.text = @"Years";
-    //    xLabel.text = @"Age";
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 57;
-    //        [self.averageAgeGraph setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 45;
-    //        [self.averageAgeGraph setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.ageView.frame;
-    //    if(averageAge>100)
-    //        averageAge=100;
-    //    if (averageAge > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (averageAge * 3);
-    //        tFrame.size.height = tFrame.size.height + (averageAge * 3);
-    //    }
-    //    self.ageView.frame = tFrame;
-    //
-    //    [self.view addSubview:averageAgeGraph];
+   
 }
+
+
 -(void)drawConsoleTimeGraph{
     
     averageViewTitleLabel.text = @"Average Console Time";
@@ -205,31 +201,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    averageTitleLabel.text = @"Average Console Time";
-    //    unitLabel.text = @"Mins";
-    //    xLabel.text = @"Time";
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 57;
-    //        [self.averageAgeGraph setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 45;
-    //        [self.averageAgeGraph setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.ageView.frame;
-    //    if(consolePercentage>100)
-    //        consolePercentage=100;
-    //    if (consolePercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (consolePercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (consolePercentage * 3);
-    //    }
-    //    self.ageView.frame = tFrame;
-    //
-    //    [self.view addSubview:averageAgeGraph];
 }
+
 
 -(void)drawRoomTimeGraph{
     
@@ -262,31 +235,9 @@
         [self.averageView setFrame:frame];
     }
     [self.view addSubview:averageView];
-    //    averageTitleLabel.text = @"Average Room Time";
-    //    unitLabel.text = @"Mins";
-    //    xLabel.text = @"Time";
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 57;
-    //        [self.averageAgeGraph setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 45;
-    //        [self.averageAgeGraph setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.ageView.frame;
-    //    if(roomTimePercentage>100)
-    //        roomTimePercentage=100;
-    //    if (roomTimePercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (roomTimePercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (roomTimePercentage * 3);
-    //    }
-    //    self.ageView.frame = tFrame;
-    //
-    //    [self.view addSubview:averageAgeGraph];
+    
 }
+
 
 -(void)drawClampTimeGraph{
     
@@ -321,32 +272,8 @@
     }
     [self.view addSubview:averageView];
     
-    
-    //    averageTitleLabel.text = @"Average Clamp Time";
-    //    unitLabel.text = @"Mins";
-    //    xLabel.text = @"Time";
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 57;
-    //        [self.averageAgeGraph setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 45;
-    //        [self.averageAgeGraph setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.ageView.frame;
-    //    if(clampTimePercentage>100)
-    //        clampTimePercentage=100;
-    //    if (clampTimePercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (clampTimePercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (clampTimePercentage * 3);
-    //    }
-    //    self.ageView.frame = tFrame;
-    //
-    //    [self.view addSubview:averageAgeGraph];
 }
+
 
 -(void)drawBMIGraph{
     
@@ -382,30 +309,6 @@
     }
     [self.view addSubview:averageView];
     
-    //    averageTitleLabel.text = @"Average BMI";
-    //    unitLabel.text = @"Units";
-    //    xLabel.text = @"BMI";
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 57;
-    //        [self.averageAgeGraph setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.averageAgeGraph.frame;
-    //        frame.origin.y = 45;
-    //        [self.averageAgeGraph setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.ageView.frame;
-    //    if(bmiPercentage>100)
-    //        bmiPercentage=100;
-    //    if (bmiPercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (bmiPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (bmiPercentage * 3);
-    //    }
-    //    self.ageView.frame = tFrame;
-    //    
-    //    [self.view addSubview:averageAgeGraph];
 }
 
 
@@ -441,28 +344,9 @@
     }
     [self.view addSubview:averageView];
     
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.bloodLossView.frame;
-    //        frame.origin.y = 57;
-    //        [self.bloodLossView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.bloodLossView.frame;
-    //        frame.origin.y = 45;
-    //        [self.bloodLossView setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.bloodView.frame;
-    //    if(bloodLossPercentage>5000)
-    //        bloodLossPercentage=5000;
-    //    if (bloodLossPercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (bloodLossPercentage * .06f);
-    //        tFrame.size.height = tFrame.size.height + (bloodLossPercentage * .06f);
-    //    }
-    //    self.bloodView.frame = tFrame;
-    //
-    //    [self.view addSubview:bloodLossView];
 }
+
+
 -(void)drawTumorSizeGraph{
     
     averageViewTitleLabel.text = @"Average Tumor Size";
@@ -494,29 +378,10 @@
         [self.averageView setFrame:frame];
     }
     [self.view addSubview:averageView];
-    
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.tumorSizeView.frame;
-    //        frame.origin.y = 57;
-    //        [self.tumorSizeView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.tumorSizeView.frame;
-    //        frame.origin.y = 45;
-    //        [self.tumorSizeView setFrame:frame];
-    //    }
-    //    CGRect tFrame = self.tumorView.frame;
-    //    if(tumorSizePercentage>50)
-    //        tumorSizePercentage =50;
-    //    if (tumorSizePercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (tumorSizePercentage * 6);
-    //        tFrame.size.height = tFrame.size.height + (tumorSizePercentage * 6);
-    //    }
-    //    self.tumorView.frame = tFrame;
-    //
-    //    [self.view addSubview:tumorSizeView];
+   
 }
+
+
 -(void)drawDMarginGraph{
     
     averageViewTitleLabel.text = @"Deep Margins";
@@ -546,34 +411,9 @@
     }
     [self.view addSubview:averageView];
     
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.DMarginView.frame;
-    //        frame.origin.y = 57;
-    //        [self.DMarginView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.DMarginView.frame;
-    //        frame.origin.y = 45;
-    //        [self.DMarginView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.dmPositiveView.frame;
-    //    if (dmPositive > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (dmPositive * 3);
-    //        tFrame.size.height = tFrame.size.height + (dmPositive * 3);
-    //    }
-    //    self.dmPositiveView.frame = tFrame;
-    //    int dmNegative = 100-dmPositive;
-    //    tFrame = self.dmNegativeView.frame;
-    //    if (dmNegative > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (dmNegative * 3);
-    //        tFrame.size.height = tFrame.size.height + (dmNegative * 3);
-    //    }
-    //    self.dmNegativeView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.DMarginView];
 }
+
+
 -(void)drawMaleFemaleGraph{
     
     averageViewTitleLabel.text = @"Male vs. Female";
@@ -604,35 +444,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.maleFemaleView.frame;
-    //        frame.origin.y = 57;
-    //        [self.maleFemaleView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.maleFemaleView.frame;
-    //        frame.origin.y = 45;
-    //        [self.maleFemaleView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.maleView.frame;
-    //    if (malePercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (malePercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (malePercentage * 3);
-    //    }
-    //    self.maleView.frame = tFrame;
-    //    int femalePercentage = 100-malePercentage;
-    //    tFrame = self.femaleView.frame;
-    //    if (femalePercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (femalePercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (femalePercentage * 3);
-    //    }
-    //    self.femaleView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.maleFemaleView];
-    
 }
+
 
 -(void)drawLeftRightRenalGraph{
     
@@ -663,35 +476,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.leftRightRenalView.frame;
-    //        frame.origin.y = 57;
-    //        [self.leftRightRenalView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.leftRightRenalView.frame;
-    //        frame.origin.y = 45;
-    //        [self.leftRightRenalView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.leftRenalView.frame;
-    //    if (LRMPercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (LRMPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (LRMPercentage * 3);
-    //    }
-    //    self.leftRenalView.frame = tFrame;
-    //    int rightRenalPercentage = 100-LRMPercentage;
-    //    tFrame = self.rightRenalView.frame;
-    //    if (rightRenalPercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (rightRenalPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (rightRenalPercentage * 3);
-    //    }
-    //    self.rightRenalView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.leftRightRenalView];
-    
 }
+
 
 -(void)drawCytoStentGraph{
     
@@ -722,35 +508,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.cytoStentView.frame;
-    //        frame.origin.y = 57;
-    //        [self.cytoStentView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.cytoStentView.frame;
-    //        frame.origin.y = 45;
-    //        [self.cytoStentView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.cytoYesView.frame;
-    //    if (cytoStentPercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (cytoStentPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (cytoStentPercentage * 3);
-    //    }
-    //    self.cytoYesView.frame = tFrame;
-    //    int cytoNoPercentage = 100-cytoStentPercentage;
-    //    tFrame = self.cytoNoView.frame;
-    //    if (cytoNoPercentage > 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (cytoNoPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (cytoNoPercentage * 3);
-    //    }
-    //    self.cytoNoView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.cytoStentView];
-    
 }
+
 
 -(void)drawAdhesiolysisGraph{
     
@@ -781,31 +540,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    titleLabel.text = @"Adhesiolysis Required";
-    //
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 57;
-    //        [self.renalRSView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 45;
-    //        [self.renalRSView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.renalRSYesView.frame;
-    //    if ( requiredPercentage> 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (requiredPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (requiredPercentage * 3);
-    //    }
-    //    self.renalRSYesView.frame = tFrame;
-    //    [self.view addSubview:self.renalRSView];
-    
-    
-    
 }
+
 
 -(void)drawAnomoliesGraph{
     
@@ -836,30 +572,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    titleLabel.text = @"Vascular Anomolies";
-    //
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 57;
-    //        [self.renalRSView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 45;
-    //        [self.renalRSView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.renalRSYesView.frame;
-    //    if ( anomoliesPercentage> 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (anomoliesPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (anomoliesPercentage * 3);
-    //    }
-    //    self.renalRSYesView.frame = tFrame;
-    //    [self.view addSubview:self.renalRSView];
-    
-    
 }
+
 
 -(void)drawIOUSGraph{
     
@@ -890,29 +604,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    titleLabel.text = @"Intra Operative Ultra Sound";
-    //
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 57;
-    //        [self.renalRSView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 45;
-    //        [self.renalRSView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.renalRSYesView.frame;
-    //    if ( iousPercentage> 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (iousPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (iousPercentage * 3);
-    //    }
-    //    self.renalRSYesView.frame = tFrame;
-    //    [self.view addSubview:self.renalRSView];
-    
 }
+
 
 -(void)drawRenalRSGraph{
     
@@ -943,37 +636,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    titleLabel.text = @"Renal Collecting Repair System";
-    //
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 57;
-    //        [self.renalRSView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 45;
-    //        [self.renalRSView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.renalRSYesView.frame;
-    //    if ( renalRSPercentage> 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (renalRSPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (renalRSPercentage * 3);
-    //    }
-    //    self.renalRSYesView.frame = tFrame;
-    //    //    int cytoNoPercentage = 100-cytoStentPercentage;
-    //    //    tFrame = self.cytoNoView.frame;
-    //    //    if (cytoNoPercentage > 0) {
-    //    //        tFrame.origin.y = tFrame.origin.y - (cytoNoPercentage * 3);
-    //    //        tFrame.size.height = tFrame.size.height + (cytoNoPercentage * 3);
-    //    //    }
-    //    //    self.cytoNoView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.renalRSView];
-    
 }
+
 
 -(void)drawCoagulantGraph{
     
@@ -1004,37 +668,8 @@
     }
     [self.view addSubview:averageView];
     
-    //    titleLabel.text = @"Coagulants Used";
-    //
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 57;
-    //        [self.renalRSView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 45;
-    //        [self.renalRSView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.renalRSYesView.frame;
-    //    if ( coagulantPercentage> 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (coagulantPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (coagulantPercentage * 3);
-    //    }
-    //    self.renalRSYesView.frame = tFrame;
-    //    //    int cytoNoPercentage = 100-cytoStentPercentage;
-    //    //    tFrame = self.cytoNoView.frame;
-    //    //    if (cytoNoPercentage > 0) {
-    //    //        tFrame.origin.y = tFrame.origin.y - (cytoNoPercentage * 3);
-    //    //        tFrame.size.height = tFrame.size.height + (cytoNoPercentage * 3);
-    //    //    }
-    //    //    self.cytoNoView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.renalRSView];
-    
 }
+
 
 -(void)drawTransfusionGraph{
     
@@ -1064,36 +699,6 @@
         [self.averageView setFrame:frame];
     }
     [self.view addSubview:averageView];
-    
-    //    titleLabel.text = @"Transfusion Required";
-    //
-    //    if (IS_IPHONE_5) {
-    //
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 57;
-    //        [self.renalRSView setFrame:frame];
-    //
-    //    }else{
-    //        CGRect frame = self.renalRSView.frame;
-    //        frame.origin.y = 45;
-    //        [self.renalRSView setFrame:frame];
-    //    }
-    //
-    //    CGRect tFrame = self.renalRSYesView.frame;
-    //    if ( transfusionPercentage> 0) {
-    //        tFrame.origin.y = tFrame.origin.y - (transfusionPercentage * 3);
-    //        tFrame.size.height = tFrame.size.height + (transfusionPercentage * 3);
-    //    }
-    //    self.renalRSYesView.frame = tFrame;
-    //    //    int cytoNoPercentage = 100-cytoStentPercentage;
-    //    //    tFrame = self.cytoNoView.frame;
-    //    //    if (cytoNoPercentage > 0) {
-    //    //        tFrame.origin.y = tFrame.origin.y - (cytoNoPercentage * 3);
-    //    //        tFrame.size.height = tFrame.size.height + (cytoNoPercentage * 3);
-    //    //    }
-    //    //    self.cytoNoView.frame = tFrame;
-    //
-    //    [self.view addSubview:self.renalRSView];
     
 }
 

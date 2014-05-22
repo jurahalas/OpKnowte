@@ -141,9 +141,4 @@
 
 @property (nonatomic) BOOL isNationalData;
 
--(IBAction)back:(id)sender;
-
-
-
-
 @end
