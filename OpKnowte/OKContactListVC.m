@@ -102,11 +102,13 @@
 -(void) getContactsList
 {
     OKContactManager *contactManager = [OKContactManager instance];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:_contactID handler: ^(NSString* error, NSMutableArray* array){
         if (!error) {
             self.contactsArray = array;
             [self.contactsTable reloadData];
         }
+        [[OKLoadingViewController instance] hide];
     }];
 }
 
