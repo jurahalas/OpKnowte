@@ -57,7 +57,7 @@
         
         if ([name isEqualToString:@"var_patientDOB"]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+            [dateFormatter setDateFormat:@"MM-dd-yyyy"];
             NSDate *birthday = [dateFormatter dateFromString:newValue];
             NSDateComponents *ageComponents = [[NSCalendar currentCalendar] components: NSYearCalendarUnit fromDate:birthday toDate:[NSDate date] options:0];
             NSString *age = [NSString stringWithFormat:@"%d", [ageComponents year]];

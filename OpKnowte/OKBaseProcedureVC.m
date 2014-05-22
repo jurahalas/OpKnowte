@@ -17,7 +17,7 @@
 #import "OKDatePicker.h"
 #import "OKProceduresManager.h"
 
-@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate>
+@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
@@ -27,6 +27,7 @@
 @end
 
 @implementation OKBaseProcedureVC
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -227,9 +228,9 @@
     
 }
 
-
 -(void)showPickerWithData:(NSArray*)pickerData picker:(OKProcedurePicker*)pickerObject
 {
+    
     if (self.picker.hidden) {
         self.pickerObject = pickerObject;
         self.pickerData = pickerData;
@@ -264,6 +265,13 @@
 
 -(void)showMultiselectVCForFieldWithName:(NSString*)fieldName withData:(NSArray*)data sender:(id)sender
 {
+    [self.view endEditing:YES];
+    if (!self.picker.hidden) {
+        [self hidePicker];
+    }
+    if (!self.datePicker.hidden) {
+        [self hideDatePicker];
+    }
     [OKProcedureMultiselectVC showInViewController:self fieldName:fieldName data:data delegate:sender];
 }
 
@@ -276,6 +284,7 @@
 }
 
 
+
 -(void)hideDatePicker
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -284,10 +293,17 @@
     self.datePickerObject.customTextField.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.datePicker.date] ];
     [self.datePickerObject.delegate updateField:self.datePickerObject.fieldName withValue:self.datePickerObject.customTextField.text andTag:self.datePickerObject.tagOfTextField];
     self.datePicker.hidden = YES;
-    self.pickerData = nil;
     
 }
+-(void)hidePickersWhenTextFieldBeginsEditing{
+    if (!self.picker.hidden) {
+        [self hidePicker];
+    }
+    if (!self.datePicker.hidden) {
+        [self hideDatePicker];
+    }
 
+}
 
 #pragma mark - picker data source
 
