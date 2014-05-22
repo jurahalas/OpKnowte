@@ -78,6 +78,7 @@
         OKAccessSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AS"];
         vc.procID = [self procID];
         [self.navigationController pushViewController:vc animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
