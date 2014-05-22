@@ -207,15 +207,23 @@
 
 - (void)scrollViewToOptimalPosition:(NSInteger)index
 {
-    CGRect scrollFrame = CGRectZero;
-    
-    if(index < self.elements.count-1){
-        scrollFrame = ((UIView*)[self.elements objectAtIndex:2]).superview.frame;
-    }else{
-        scrollFrame = ((UIView*)[self.elements lastObject]).frame;
+    if ([[UIScreen mainScreen] bounds].size.height == 568) //iphone 5/5c/5s
+    {
+        [self.scrollView setContentSize:CGSizeMake(320, self.view.bounds.size.height-64)];
+        self.scrollView.frame = CGRectMake(0, 64, 320, self.view.bounds.size.height-64);
     }
-    [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize: scrollFrame.size];
+    else //iphone 4/4s
+    {
+        [self.scrollView setContentSize:CGSizeMake(320, self.view.bounds.size.height+64)];
+        if([[UIDevice currentDevice].systemVersion hasPrefix:@"7"]) //iOS 7.0 >
+        {
+            self.scrollView.frame = CGRectMake(0, 64, 320, self.view.bounds.size.height-64);
+        }
+        else //iOS 6.1 <
+        {
+            self.scrollView.frame = CGRectMake(0, 44, 320, self.view.bounds.size.height-64);
+        }
+    }
 }
 
 -(void) setAllDesign {
