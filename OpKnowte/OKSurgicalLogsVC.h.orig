@@ -1,0 +1,18 @@
+//
+//  OKSurgicalLogsVC.h
+//  OpKnowte
+//
+//  Created by Artem Frolow on 5/11/14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
+//
+
+#import "OKBaseViewController.h"
+
+@interface OKSurgicalLogsVC : OKBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+<<<<<<< HEAD
+
+=======
+@property(strong, nonatomic) NSString *procID;
+@property (strong, nonatomic) NSString *procTitle;
+>>>>>>> b9af7b00d596b17d9fab50f680b96ee083250b9a
+@end

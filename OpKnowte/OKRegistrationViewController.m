@@ -42,7 +42,7 @@
     _firstNameTextField.text = @"";
     _lastNameTextField.text = @"";
     _emailTextField.text = @"";
-    _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:0]];
+    _MDTextField.text = @"";
     _passwordTextField.text = @"";
     _confirmPasswordField.text = @"";
     
@@ -178,7 +178,8 @@
 {
     BOOL isEmailValidate = [OKRegistrationViewController validateEmail:_emailTextField.text];
     
-    if ([_firstNameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]) {
+    if ([_firstNameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]
+        || [_MDTextField.text isEqual: @""] || [_lastNameTextField.text isEqual: @""]) {
         [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
     }
     else if (!isEmailValidate) {
@@ -201,16 +202,14 @@
             } else {
                 [[OKLoadingViewController instance] showWithText:@"Loading..."];
                 
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                OKUserModel *user = [[OKUserModel alloc] init];
-                [defaults setObject:_firstNameTextField.text forKey:@"firstName"];
-                [defaults setObject:user.userID forKey:@"userID"];
-                
-                [defaults synchronize];
-
-                UIAlertView *signUpFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up Success" message:@"Congratulations! You are signed up." delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                UIAlertView *signUpFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up Success"
+                                                                                     message:@"Congratulations! You are signed up."
+                                                                                    delegate:self
+                                                                           cancelButtonTitle:@"OK"
+                                                                           otherButtonTitles:nil, nil];
                 [signUpFormSuccessAlertView show];
                 [self.view endEditing:YES];
+                
                 [self performSegueWithIdentifier:@"registrationSegue" sender:self];
                 _continueButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];

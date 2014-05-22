@@ -13,7 +13,7 @@
 
 -(void) setModelWithDictionary:(NSDictionary *)dictionary
 {
-    _contactID = [dictionary valueForKey:@"contactID"];
+    self.identifier = [dictionary valueForKey:@"contactID"];
     _contactRoleID = [dictionary valueForKey:@"roleID"] ;
     _name = [dictionary valueForKey:@"name"];
     _contactEmail = [dictionary valueForKey:@"emailAddress"];

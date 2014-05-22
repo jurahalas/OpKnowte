@@ -8,12 +8,18 @@
 
 #import "OKBaseViewController.h"
 #import "OKAppDelegate.h"
+#import "OKCase.h"
 
-@class OKCase;
+@interface OKSelectTimePointViewController : OKBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
-@interface OKSelectTimePointViewController : OKBaseViewController
+@property (nonatomic, strong) NSString *cameFromVC;
 
+@property (nonatomic, retain) NSMutableArray *performanceCases;
+@property (nonatomic, retain) NSMutableArray *surgeonCases;
+@property (nonatomic, retain) NSMutableArray *totlaNationalCases;
+@property (nonatomic, retain) NSMutableArray *totalSurgeonCases;
 @property (nonatomic) BOOL isFilter;
 @property (nonatomic) BOOL isNationalFilter;
+
 
 @end

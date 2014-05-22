@@ -8,6 +8,8 @@
 
 #import "OKBaseViewController.h"
 #import "OKSettingsViewController.h"
+#import "OKDashboardVC.h"
+#import "OKInfoViewController.h"
 
 @interface OKBaseViewController () <OKBaseVCDelegate>
 
@@ -34,15 +36,37 @@
 	}
 
 }
+-(void) viewWillAppear:(BOOL)animated{
+     [self.navigationController setNavigationBarHidden:NO animated:YES ];
+}
 -(void) goToSettingsVC{
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
-    [self.navigationController pushViewController:vc animated:YES];
-
+    if(![self.restorationIdentifier isEqualToString:@"settings"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
-
-
+-(void) goToDashboard {
+    if(![self.restorationIdentifier isEqualToString:@"dashboard"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKDashboardVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"dashboard"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    //dashboard
+}
+- (void)goToInfoVC{
+    if(![self.restorationIdentifier isEqualToString:@"info"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKInfoViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"info"];
+        vc.cameFromVC = @"LogoTBButton";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+- (BOOL)navBar{
+    return self.navigationController.navigationBarHidden;
+}
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     return UIStatusBarStyleLightContent;

@@ -7,6 +7,13 @@
 //
 
 #import "OKOperatieNoteViewController.h"
+#import "OKFacilityVC.h"
+#import "OKProceduresManager.h"
+
+#import "OKShockwaveLithotripsyModel.h"
+#import "OKLRPartialNephrectomyModel.h"
+#import "OKProcedureTemplateModel.h"
+#import "OKProcedureTemplateVariablesModel.h"
 
 @interface OKOperatieNoteViewController ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -18,19 +25,30 @@
 @property (strong, nonatomic) IBOutlet UILabel *procedureLable;
 @property (strong, nonatomic) IBOutlet UIScrollView *indicationScrollView;
 @property (strong, nonatomic) IBOutlet UIScrollView *procedureScrollView;
-@property (strong, nonatomic) IBOutlet UIView *bottonTabBarView;
-@property (strong, nonatomic) IBOutlet UIButton *bottonTabBarButton;
 
+@property (strong, nonatomic) NSMutableArray *keysForValues;
+@property (strong, nonatomic) NSMutableArray *caseDataValues;
+
+
+@property (strong, nonatomic) IBOutlet UIView *saveButtonView;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+
+@property (strong, nonatomic) NSMutableDictionary *templateDictionary;
+@property (strong, nonatomic) NSMutableArray *caseDataArray;
+
+@property (strong, nonatomic) IBOutlet UIView *segmentedControllView;
+
+@property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
 @end
 
 @implementation OKOperatieNoteViewController
-@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView,bottonTabBarView,bottonTabBarButton;
+@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        
     }
     return self;
 }
@@ -39,39 +57,103 @@
 {
     [super viewDidLoad];
     
-    bottonTabBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
-    bottonTabBarButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
-    bottonTabBarButton.layer.cornerRadius = 14;
-    [self.view bringSubviewToFront:bottonTabBarView];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    _keysForValues = [[NSMutableArray alloc] init];
+    _caseDataValues =[[NSMutableArray alloc] init];
+    _caseDataArray =[[NSMutableArray alloc] init];
+    _templateDictionary = [[NSMutableDictionary alloc] init];
+    
+    OKProceduresManager *procedureManager = [OKProceduresManager instance];
+    
+    [procedureManager getProcedureTemplateVariablesByProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSMutableArray *templateVariables) {
+        
+        NSLog(@"Error - %@", errorMsg);
+        _keysForValues = templateVariables;
+        [procedureManager getProcedureTemplateByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] handler:^(NSString *errorMsg, NSDictionary *template) {
+            NSLog(@"Error - %@", errorMsg);
+            _templateModel = [[OKProcedureTemplateModel alloc] init];
+            [_templateModel  setModelWithDictionary:template];
+            
+            
+            NSString *tempStr =  _templateModel.caseData;
+            tempStr = [tempStr stringByReplacingOccurrencesOfString:@"(" withString:@""];
+            tempStr = [tempStr stringByReplacingOccurrencesOfString:@")" withString:@""];
+            
+            
+            NSMutableArray *selectedCaseDataArray = [NSMutableArray arrayWithArray:[tempStr componentsSeparatedByString:@","]];
+            
+            for (NSString *str in selectedCaseDataArray) {
+                
+                for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
+                    
+                    if ([str isEqualToString:allKeys.value]) {
+                        
+                        OKProcedureTemplateVariablesModel *tempModel = [[OKProcedureTemplateVariablesModel alloc]init];
+                        
+                        tempModel.key = allKeys.key;
+                        tempModel.value = allKeys.value;
+                        
+                        [self.caseDataValues addObject:tempModel];
+                        tempModel = nil;
+                        break;
+                    }
+                }
+            }
+            
+            
+            [self.caseDataTableView reloadData];
+            [self indicationMethod];
+            [self procedureMethod];
+            [[OKLoadingViewController instance] hide];
+            
+        }];
+    }];
+    
+    
+    
+    
+    
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    
     segmentControllView.backgroundColor = [UIColor clearColor];
+    _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _saveButton.layer.cornerRadius = 14;
+    _saveButton.clipsToBounds = YES;
+    _saveButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     
     [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
-  
+    
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"segmentControllBG.png"]];
     
     [self.segmentControllView addSubview:backgroundView];
     
     caseDataTableView.backgroundColor = [UIColor clearColor];
-
+    
     self.caseDataTableView.dataSource = self;
     self.caseDataTableView.delegate = self;
     
-   caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
-
+    caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
+    
     [self.caseDataTableView reloadData];
-
-    [self indicationMethod];
-    [self procedureMethod];
     
     self.caseDataTableView.hidden = NO;
     self.IndicationView.hidden = YES;
     self.procedureView.hidden = YES;
     
+    self.segmentedControllView.layer.borderColor = [[UIColor whiteColor]CGColor];
+    self.segmentedControllView.backgroundColor = [UIColor clearColor];
+    
+    [self .segmentControl setSelectedSegmentIndex:0];
+    
+    for (UIControl *subview in [segmentControl subviews]) {
+        
+        if ([subview isSelected]){
+            [subview setTintColor:[UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]];
+        }
+    }
+    
+    [self.segmentControl setDividerImage:[UIImage imageNamed:@"scSeparator"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,12 +162,42 @@
 }
 
 -(void)indicationMethod{
-
+    
     IndicationView.backgroundColor = [UIColor clearColor];
     
-    NSString *indicationText = [NSString stringWithFormat:@"Indications: The patient is a (15) calculated age from DOB) (16) (ethnicity) male who was recently diagnosed with clinically localized prostate cancer. The patient underwent a Trus biopsy of the prostate that  revealed (17) stage of disease) (18)Gleason Score). (19) X of 12 cores were involved. The largest percentage of a core involved was  (20)) x. Prebiopsy  PSA was (21)PSA  value) . Prostate Volume is estimated to be (22) X gm). The patient’s BMI is  (23) X). The patient was thoroughly counseled on treatment options and has elected to proceed with a lap robotic prostatectomy with (24) taken from procedure above). The patient understands the risks of infection, bleeding, injury to surrounding structures and possible need for re-intervention in the future. The patient has been counseled on the risk for positioning injuries, peri-operative morbidity as well as mortality. The patient has also been made aware of the potential for urinary incontinence as well as erectile dysfunction or impotence. The patient understands these risks  and has elected to proceed. The patient received pre-operative antibiotics.Procedure: Patient was brought to operating room and a general anesthetic was induced. Prior to induction the patient was wearing SCDs and TEDs which were on and functioning.  The patient was then positioned in low lithotomy with arms padded and tucked as his sides.  A safety strap was placed over his chest and he was then tested in the high trendelenberg position and found to be well padded and secure. Next the patient was prepped and draped in the usual sterile fashion. A 18 french was then placed without difficulty and the balloon was raised with 10cc of sterile water. Clear urine returned.We then made a small incision above the umbilicus with a 15 blade and introduced a Veress needle without difficulty. We performed the drip test with sterile water. Next we achieved a pneumoperitoneum with Carbon Dioxide to 15mm of Mercury. The 12 mm camera port was then placed atraumatically and we introduced the robotic port and surveyed the abdomen. No evidence of visceral injury was present. No adhesions were present. (free dictate if adhesiolysis was necessary). We then introduced 5 additional ports across the abdomen. One 8mm robotic port was placed one handbreath to either side of the midline port. Two handbreaths to the left, an additional 8mm robotic port was placed for the 4th arm assistant port. Two handbreaths to the right a 12mm bedside port was placed and pre-mptively an 0 vicryl was placed via the Carter-Thomason technique. Lastly a 5mm secondary bedside assistant port was placed to triangulate the ports on the right side of the abdomen.  All ports were placed under direct vision. The robot was then docked. The instrument were introduced under direct vision.We began by mobilizing the sigmoid colon and carried our dissection into the cul-de-sac. We incised over the seminal vesicles and ampulla and dissected these structures free. We raised these structures anterior to expose Denovielle’s fascia which was then incised. The plain between the prostate was then developed.The bladder was then dropped by incising lateral to medial umbilical ligaments. The spaze of retzius was then developed and the anterior surface of the prostate was groomed. The endopelvic fascia was incised and the dorsal vein complex was secured with a 2-0 Vicryl.  Additional 2-0 back bleeder stitches were placed along the bladder neck."];
+    
+    NSString *indicationText = _templateModel.indicationText;
+    
+    for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
+        
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:allKeys.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:allKeys.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+            
+            variableValue = [[_model valueForKey:allKeys.value] componentsJoinedByString:@"; "];
+        } else {
+            variableValue = [_model valueForKey:allKeys.value];
+        }
+        if (variableValue != nil) {
+            indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+        } else {
+            indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
+        }
+    }
+    
     
     indicationLabel.text = indicationText;
+    NSString *indicationString = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    indicationString = [indicationString stringByReplacingOccurrencesOfString:@")" withString:@""];
+    
+    [_templateDictionary setObject:indicationString forKey:@"indicationText"];
     
     [indicationLabel sizeToFit];
     indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, indicationLabel.frame.size.height+80);
@@ -95,19 +207,47 @@
 }
 
 -(void)procedureMethod{
-
+    
     procedureView.backgroundColor = [UIColor clearColor];
+    NSString * procedureText = _templateModel.procedureText;
+    
+    for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
+        
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:allKeys.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:allKeys.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+            
+            variableValue = [[_model valueForKey:allKeys.value] componentsJoinedByString:@"; "];
+        } else {
+            variableValue = [_model valueForKey:allKeys.value];
+        }
+        if (variableValue != nil) {
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+        } else {
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
+        }
+    }
     
     
-    NSString * procedureText = [NSString stringWithFormat:@"Procedure: Patient was brought to operating room and a general anesthetic was induced. Prior to induction the patient was wearing SCDs and TEDs which were on and functioning.  The patient was then positioned in low lithotomy with arms padded and tucked as his sides.  A safety strap was placed over his chest and he was then tested in the high trendelenberg position and found to be well padded and secure. Next the patient was prepped and draped in the usual sterile fashion. A 18 french was then placed without difficulty and the balloon was raised with 10cc of sterile water. Clear urine returned.We then made a small incision above the umbilicus with a 15 blade and introduced a Veress needle without difficulty. We performed the drip test with sterile water. Next we achieved a pneumoperitoneum with Carbon Dioxide to 15mm of Mercury. The 12 mm camera port was then placed atraumatically and we introduced the robotic port and surveyed the abdomen. No evidence of visceral injury was present. No adhesions were present. (free dictate if adhesiolysis was necessary). We then introduced 5 additional ports across the abdomen. One 8mm robotic port was placed one handbreath to either side of the midline port. Two handbreaths to the left, an additional 8mm robotic port was placed for the 4th arm assistant port. Two handbreaths to the right a 12mm bedside port was placed and pre-mptively an 0 vicryl was placed via the Carter-Thomason technique. Lastly a 5mm secondary bedside assistant port was placed to triangulate the ports on the right side of the abdomen.  All ports were placed under direct vision. The robot was then docked. The instrument were introduced under direct vision.We began by mobilizing the sigmoid colon and carried our dissection into the cul-de-sac. We incised over the seminal vesicles and ampulla and dissected these structures free. We raised these structures anterior to expose Denovielle’s fascia which was then incised. The plain between the prostate was then developed.The bladder was then dropped by incising lateral to medial umbilical ligaments. The spaze of retzius was then developed and the anterior surface of the prostate was groomed. The endopelvic fascia was incised and the dorsal vein complex was secured with a 2-0 Vicryl.  Additional 2-0 back bleeder stitches were placed along the bladder neck."];
-   
     procedureLable.text = procedureText;
+    
+    NSString *procedureString = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    procedureString = [procedureString stringByReplacingOccurrencesOfString:@")" withString:@""];
+    
+    [_templateDictionary setObject:procedureString forKey:@"procedureText"];
     
     [procedureLable sizeToFit];
     procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, procedureLable.frame.size.height+80);
     [procedureScrollView addSubview:procedureLable];
     [self.procedureView addSubview:procedureScrollView];
-
+    
 }
 
 #pragma mark IBAction
@@ -121,29 +261,27 @@
     UIColor *deselectedColor = [UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     
     for (UIControl *subview in [segmentControl subviews]) {
-
+        
         if ([subview isSelected]){
             [subview setTintColor:selectedColor];
         }
         else
             [subview setTintColor:deselectedColor];
-             }
+    }
+    
+    self.IndicationView.hidden = YES;
+    self.procedureView.hidden = YES;
+    self.caseDataTableView.hidden = YES;
     
     switch (sender.selectedSegmentIndex) {
         case 0:
-            self.IndicationView.hidden = YES;
-            self.procedureView.hidden = YES;
             self.caseDataTableView.hidden = NO;
             break;
         case 1:
             self.IndicationView.hidden = NO;
-            self.procedureView.hidden = YES;
-            self.caseDataTableView.hidden = YES;
             break;
         case 2:
-            self.IndicationView.hidden = YES;
             self.procedureView.hidden = NO;
-            self.caseDataTableView.hidden = YES;
         default:
             break;
     }
@@ -153,7 +291,7 @@
 #pragma mark Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 23;
+    return _caseDataValues.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,9 +301,70 @@
     if (!cell) {
         cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell setLabels];
-     [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
+    
+    OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
+    NSString *variableValue = [[NSString alloc] init];
+    if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+        NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+        valuesArray = [_model valueForKey:variableModel.value];
+        for (int i = 0; i < valuesArray.count; i++) {
+            if ([valuesArray[i] isEqualToString:@" "]) {
+                [valuesArray removeObjectAtIndex:i];
+                i--;
+            }
+        }
+        
+        variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+    } else {
+        variableValue = [_model valueForKey:variableModel.value];
+    }
+    
+    
+    
+    OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
+    caseDataObject.key = variableModel.key;
+    caseDataObject.value = variableValue;
+    [_caseDataArray addObject:caseDataObject];
+    
+    
+    [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
+    [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
     return cell;
+}
+- (IBAction)saveButtonTapped:(id)sender {
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKProceduresManager *proceduresManager = [OKProceduresManager instance];
+    
+    [proceduresManager saveProcedureWithSurgeonID:[OKUserManager instance].currentUser.identifier ProcedureID:[NSString stringWithFormat:@"%d", _procedureID] AndProcedureModel:self.model handler:^(NSString *errorMsg, id json) {
+        
+        NSLog(@"Error - %@", errorMsg);
+        [[OKLoadingViewController instance] hide];
+        if (errorMsg == nil) {
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
+            [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
+            vc.templateDictionary = _templateDictionary;
+            [self.navigationController pushViewController:vc animated:YES];
+            //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
+            
+        } else {
+            if ([[json valueForKey:@"status"] isEqualToString:@"false"]) {
+                UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                          message:@"Record number already in use."
+                                                                         delegate:nil
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles: nil];
+                [alertNoContacts show];
+                
+            }
+        }
+        
+        [[OKLoadingViewController instance] hide];
+        
+        
+    }];
+    
 }
 
 @end

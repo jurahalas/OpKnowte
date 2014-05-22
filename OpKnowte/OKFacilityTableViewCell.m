@@ -40,9 +40,11 @@
     if (!_buttonIsTapped) {
         [_selectFacilityButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
         _buttonIsTapped = YES;
+        [self.delegate addContactToSendToList:self.contact];
     } else {
         [_selectFacilityButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
         _buttonIsTapped = NO;
+        [self.delegate deleteContactFromSendToList:self.contact];
     }
 }
 

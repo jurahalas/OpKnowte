@@ -10,7 +10,9 @@
 @protocol OKBaseVCDelegate <NSObject>
 
 -(void) goToSettingsVC;
-
+-(void) goToDashboard;
+-(void) goToInfoVC;
+-(BOOL) navBar;
 @end
 
 @interface OKBottomTabBarView : UIView

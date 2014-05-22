@@ -14,11 +14,13 @@
 #import "OKCase.h"
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
+#import "OKSelectFUDVariablesVC.h"
 
 @interface OKSelectTimePointViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *selectTimePointTableView;
 @property (strong, nonatomic) NSArray *timePointsArray;
+@property (nonatomic) int timepointID;
 
 @property (strong, nonatomic) OKCase *caseObj;
 
@@ -40,7 +42,7 @@
     
     self.caseObj = [OKCaseManager instance].selectedCase;
     
-    int procedure = [[OKProceduresManager instance].selectedProcedure.procedureID intValue];
+    int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
     NSLog(@"%i",procedure);
 //    if (procedure == 10) {
 //        if (self.timePoints == nil) {
@@ -91,14 +93,14 @@
     if (indexPath.row == 11) {
         [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
     }else{
-        int procedure = [[OKProceduresManager instance].selectedProcedure.procedureID intValue];
+        int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
         if (procedure == 10) {
             [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
         }else{
             [cell.timePointLabel setText:timePoint.timePointName];
         }
     }
-    [cell setCellBGImageLight:indexPath.row];
+    [cell setCellBGImageLight:(int)indexPath.row];
     return cell;
 }
 
@@ -111,14 +113,41 @@
     
     [OKTimePointsManager instance].selectedTimePoint = timePoint;
     
-    [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.timePointID procedureID:[OKProceduresManager instance].selectedProcedure.procedureID handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
+    [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
         
         if(!errorMsg){
             
         }
     }];
+
+
+NSString *cameFromVC = [[NSString alloc] init];
+    if (indexPath.row == 0) {
+        cameFromVC = @"weeks";
+    }else if (indexPath.row >0 && indexPath.row <11){
+        cameFromVC = @"months";
+    }
+    _timepointID = indexPath.row+1;
+    if([_cameFromVC isEqualToString:@"FollowUpData"]){
+        [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
+        
+    }
 }
 
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromSelectTimeToSelectVariables"]){
+        OKSelectFUDVariablesVC *sharVC = (OKSelectFUDVariablesVC*)segue.destinationViewController;
+        sharVC.cameFromVC = sender;
+        sharVC.performanceCases = [[NSMutableArray alloc] initWithArray:_performanceCases];
+        sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonCases];
+        sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_totlaNationalCases];
+        sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_totalSurgeonCases];
+        sharVC.timepointID = _timepointID;
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

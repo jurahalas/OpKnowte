@@ -11,6 +11,8 @@
 #import "OKUserModel.h"
 #import "OKContactModel.h"
 #import "OKUserManager.h"
+#import "OKDashboardVC.h"
+#import "OKAccessSettingsCCViewController.h"
 
 @interface OKInstituteVC ()
 
@@ -44,13 +46,17 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
     self.title = self.contactID;
+    
     if ([self.title isEqualToString:@"1"]) {
         self.title =@"Surgeon";
     }else if ([self.title isEqualToString:@"2"]){
         self.title =@"Assistant";
+    }else if ([self.title isEqualToString:@"4"]){
+        self.title =@"Institution";
     }else if ([self.title isEqualToString:@"5"]){
         self.title =@"Physician";
-    }
+    }else if([self.title isEqualToString:@"6"]){
+        self.title=@"Other";}
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 
@@ -67,7 +73,7 @@
 
     
     if (self.contactInfo != nil) {
-        if ([self.contactInfo contactID].length > 0) {
+        if ([self.contactInfo identifier].length > 0) {
             
             [self.nameTextField setText:[self.contactInfo name]];
             [self.emailTextField setText:[self.contactInfo contactEmail]];
@@ -113,16 +119,19 @@
 {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-    
+
     if ([_nameTextField.text isEqual: @""] || [_emailTextField.text isEqual: @""] || [_streerAddressTextField.text isEqual: @""] || [_cityTextField.text isEqual: @""] || [_stateTextField.text isEqual: @""] || [_zipTextField.text isEqual: @""] || [_countryTextField.text isEqual: @""] || [_faxTextField.text isEqual: @""]){
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         [[OKLoadingViewController instance] hide];
         
+    }else if ([_faxTextField.text length]<5){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Fax-field should be at least 5 symbols" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        [[OKLoadingViewController instance] hide];
     }else{
-        NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-        [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:@"4"  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[defaults objectForKey:@"userID"] handler:^(NSString *error){
+        [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
             
             if(error != nil){
                 
@@ -132,16 +141,45 @@
                 [[OKLoadingViewController instance] hide];
                 
             }else{
-                UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added institution" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                 [addInstitutionFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 _saveButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
-                [self performSegueWithIdentifier:@"backToDashboard" sender:self];
             }
         }];
     }
 }
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"cameeeeee    %@", _cameFromVC);
+        NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+        NSLog(@"ololl %@", _cameFromVC);
+        if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
+            [self.navigationController popViewControllerAnimated:YES ];
+        } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
+            [self performSegueWithIdentifier:@"backToDashboard" sender:self];
+        }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
+            [self.navigationController popViewControllerAnimated:YES];
+        }else if ([_cameFromVC isEqualToString:@"ContactListVC"]){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([_faxTextField.text length] > 8) {
+        _faxTextField.text = [_faxTextField.text substringToIndex:8];
+        return NO;
+    }
+    return YES;
+}
+
+
 
 #pragma mark  - textField delegate
 
@@ -169,32 +207,40 @@
 
 - (void)scrollViewToOptimalPosition:(NSInteger)index
 {
-    CGRect scrollFrame = CGRectZero;
-    
-    if(index < self.elements.count-1){
-        scrollFrame = ((UIView*)[self.elements objectAtIndex:2]).superview.frame;
-    }else{
-        scrollFrame = ((UIView*)[self.elements lastObject]).frame;
+    if ([[UIScreen mainScreen] bounds].size.height == 568) //iphone 5/5c/5s
+    {
+        [self.scrollView setContentSize:CGSizeMake(320, self.view.bounds.size.height-64)];
+        self.scrollView.frame = CGRectMake(0, 64, 320, self.view.bounds.size.height-64);
     }
-    [self.scrollView setScrollEnabled:YES];
-    [self.scrollView setContentSize: scrollFrame.size];
+    else //iphone 4/4s
+    {
+        [self.scrollView setContentSize:CGSizeMake(320, self.view.bounds.size.height+64)];
+        if([[UIDevice currentDevice].systemVersion hasPrefix:@"7"]) //iOS 7.0 >
+        {
+            self.scrollView.frame = CGRectMake(0, 64, 320, self.view.bounds.size.height-64);
+        }
+        else //iOS 6.1 <
+        {
+            self.scrollView.frame = CGRectMake(0, 44, 320, self.view.bounds.size.height-64);
+        }
+    }
 }
 
 -(void) setAllDesign {
     
-    [_nameTextField setCustomTextFieldPlaceholder: @"Name:" Secured:NO DownArrow:NO];
-    [_streerAddressTextField setCustomTextFieldPlaceholder: @"Street Address:" Secured:NO DownArrow:NO];
-    [_cityTextField setCustomTextFieldPlaceholder: @"City:" Secured:NO DownArrow:NO];
-    [_stateTextField setCustomTextFieldPlaceholder: @"State:" Secured:NO DownArrow:NO];
-    [_zipTextField setCustomTextFieldPlaceholder: @"Zip:" Secured:NO DownArrow:NO];
-    [_countryTextField setCustomTextFieldPlaceholder: @"Country:" Secured:NO DownArrow:NO];
-    [_emailTextField setCustomTextFieldPlaceholder: @"Email:" Secured:NO DownArrow:NO];
-    [_faxTextField setCustomTextFieldPlaceholder: @"Fax:" Secured:NO DownArrow:NO];
+    _nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _streerAddressTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Street Address:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _cityTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"City:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _stateTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"State:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _zipTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Zip:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _countryTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Country:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    _faxTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Fax:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+
 
     _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _saveButton.layer.cornerRadius = 14;
-    _saveButton.clipsToBounds = YES;
-    
+    _saveButton.clipsToBounds = YES;    
 }
 
 - (void)viewWillLayoutSubviews

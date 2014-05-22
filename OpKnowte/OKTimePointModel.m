@@ -12,8 +12,8 @@
 
 -(void) setModelWithDictionary:(NSDictionary *)dictionary {
     
-    _timePointID = [dictionary objectForKey:@"id"];
-    _timePointName = [dictionary objectForKey:@"timePointName"] ;
+  self.identifier = [dictionary objectForKey:@"id"];
+  _timePointName = [dictionary objectForKey:@"timePointName"] ;
     
 }
 

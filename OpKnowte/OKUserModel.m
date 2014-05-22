@@ -18,7 +18,7 @@
         self.email = [decoder decodeObjectForKey:@"EMAILADDRESS"];
         self.password = [decoder decodeObjectForKey:@"PASSWORD"];
         self.title = [decoder decodeObjectForKey:@"TITLE"];
-        self.userID = [decoder decodeObjectForKey:@"USERID"];
+        self.identifier = [decoder decodeObjectForKey:@"USERID"];
         self.status = [decoder decodeObjectForKey:@"status"];
     }
     return self;
@@ -32,7 +32,7 @@
     _email = [dictionary valueForKey:@"EMAILADDRESS"];
     _password = [dictionary valueForKey:@"PASSWORD"];
     _title = [dictionary valueForKey:@"TITLE"] ;
-    _userID = [dictionary valueForKey:@"USERID"] ;
+    self.identifier = [dictionary valueForKey:@"USERID"] ;
     _status = [dictionary valueForKey:@"status"];
 }
 
@@ -45,7 +45,7 @@
     [encoder encodeObject:self.email forKey:@"EMAILADDRESS"];
     [encoder encodeObject:self.password forKey:@"PASSWORD"];
     [encoder encodeObject:self.title forKey:@"TITLE"];
-    [encoder encodeObject:self.userID forKey:@"USERID"];
+    [encoder encodeObject:self.identifier forKey:@"USERID"];
     [encoder encodeObject:self.status forKey:@"status"];
 }
 

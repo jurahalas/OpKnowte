@@ -10,11 +10,26 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKLoadingViewController.h"
+#import "OKShockwaveLithotripsyVC.h"
+#import "OKLRPartialNephrectomyVC.h"
+#import "OKPenileProsthesisVC.h"
+#import "OKLRRadicalProstatectomyVC.h"
+#import "OKDataSharingViewController.h"
+#import "OKReminderVC.h"
 #import "OKSelectCaseViewController.h"
+
+#import "OKTemplateViewController.h"
+#import "OKAccessConfirmViewController.h"
+#import "OKAccessSettingsViewController.h"
+#import "OKSurgicalLogsVC.h"
+#import "OKIntraOperativeDataViewController.h"
+#import "OKFollowUpDataVC.h"
+
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
 @property (strong, nonatomic) NSMutableArray *procArray;
+@property (strong, nonatomic) NSArray *allProcArray;
 @end
 
 @implementation OKSelectProcedureViewController
@@ -48,6 +63,15 @@
         NSLog(@"Error - %@", error);
         
         _procArray = proceduresArray;
+        _allProcArray = [proceduresArray copy];
+        for (int i = 0; i<_procArray.count; i++) {
+            OKProcedureModel *proc = _procArray[i];
+            
+            if (!proc.procedureActive) {
+                [_procArray removeObjectAtIndex:i];
+                i--;
+            }
+        }
         [self.selectProcedureTableView reloadData];
         
         [[OKLoadingViewController instance] hide];
@@ -86,7 +110,6 @@
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
     [cell setCellBGImageLight:indexPath.row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
 }
 
@@ -94,22 +117,78 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    OKProcedureModel *procedure = self.procArray[indexPath.row];
+
+    OKProcedureModel *proc = _allProcArray[indexPath.row];
+    [OKProceduresManager instance].selectedProcedure = proc;
     
-    [OKProceduresManager instance].selectedProcedure = procedure;
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
     
-    [[OKLoadingViewController instance]showWithText:@"Loading"];
-    [[OKUserManager instance] getUserAccess:procedure.procedureID handler:^(NSString *errorMsg) {
-        [[OKLoadingViewController instance]hide];
-        [self performSegueWithIdentifier:@"selectCase" sender:procedure];
-    }];
+    if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
+        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:nil];
+    } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
+        [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:nil];
+    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] ){
+        [self performSegueWithIdentifier:@"fromProceduresToCases" sender:nil];
+    } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
+        [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:nil];
+    }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:nil];
+    }else if([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:nil];
+    } else {
+        if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+            OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+            OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
+            OKPenileProsthesisVC *vc = [[OKPenileProsthesisVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+            OKLRRadicalProstatectomyVC *vc = [[OKLRRadicalProstatectomyVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 
-#pragma mark - prepare for segue
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if([segue.identifier isEqualToString:@"fromSelectProcToDataShar"]){
+        OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
+        sharVC.procID = sender;
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToAccessSettings"]){
+       OKAccessConfirmViewController *sharVC = (OKAccessConfirmViewController*)segue.destinationViewController;
+        sharVC.procID = sender;
+    }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){
+        OKTemplateViewController *sharVC = (OKTemplateViewController*)segue.destinationViewController;
+        sharVC.procID = sender;
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToSurgicalLogs"]){
+        OKSurgicalLogsVC *sharVC = (OKSurgicalLogsVC*)segue.destinationViewController;
+        sharVC.procID = sender;
+        int i = [sender  intValue] ;
+        OKProcedureModel *tappedProc =_allProcArray[i-1];
+        sharVC.procTitle = tappedProc.procedureText;
+    } else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
+        OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
+        reminderVC.procID = sender;
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToOperativeData"]){
+        OKIntraOperativeDataViewController * operativeData = (OKIntraOperativeDataViewController *)segue.destinationViewController;
+        operativeData.procID = sender;
+        int i = [sender intValue];
+        OKProcedureModel *tappedProc = _allProcArray[i-1];
+        operativeData.procTitle = tappedProc.procedureText;
+    } else if ([segue.identifier isEqualToString:@"fromSelectProcToFollowUpData"]){
+        OKFollowUpDataVC *reminderVC = (OKFollowUpDataVC*)segue.destinationViewController;
+        reminderVC.procID = sender;
+        int i = [sender  intValue] ;
+        OKProcedureModel *tappedProc =_allProcArray[i-1];
+        reminderVC.procTitle = tappedProc.procedureText;
+    }
 }
 
 

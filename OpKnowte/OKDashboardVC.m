@@ -9,7 +9,7 @@
 #import "OKDashboardVC.h"
 #import "OKDashboardTableViewCell.h"
 #import "OKAppDelegate.h"
-
+#import "OKSelectProcedureViewController.h"
 
 @interface OKDashboardVC ()
 
@@ -37,14 +37,10 @@
     _dashboardTableView.frame = CGRectMake(_dashboardTableView.frame.origin.x, _dashboardTableView.frame.origin.y, _dashboardTableView.frame.size.width, (_dashboardTableView.frame.size.height - 60.f));
     _userView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboardBG"]];;
     [self addBottomTabBar];
-  
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _userNameLabel.text = [defaults objectForKey:@"firstName"];
-    [defaults synchronize];
+    _userNameLabel.text = [OKUserManager instance].currentUser.firstName;
     
     [self.dashboardTableView reloadData];
 }
-
 
 - (IBAction)logOutButton:(id)sender
 {
@@ -74,11 +70,24 @@
         [self performSegueWithIdentifier:@"performance" sender:indexPath];
     }else if ([cell.cellName.text isEqualToString:@"Surgical Data Capture"]){
         [self performSegueWithIdentifier:@"DataCapture" sender:indexPath];
+    } else {
+        [self performSegueWithIdentifier:@"fromSurgicalLogsToSelectProc" sender:indexPath];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([segue.identifier isEqualToString:@"fromSurgicalLogsToSelectProc"]){
+        OKSelectProcedureViewController *instVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+        instVC.cameFromVC = @"SurgicalLogsVC";
+    }
+    
+    
+    
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"dashboardCell";

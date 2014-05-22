@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface OKOperatieNoteTableViewCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *caseDataKeyLabel;
 @property (strong, nonatomic) IBOutlet UILabel *caseDataValueLabel;
--(void)setLabels;
+
+-(void) setLabelsWithKey: (NSString*) key AndValue:(NSString*) value;
+
 @end

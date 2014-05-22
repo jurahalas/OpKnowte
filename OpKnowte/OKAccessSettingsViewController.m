@@ -8,7 +8,10 @@
 
 #import "OKAccessSettingsViewController.h"
 #import "OKAccessSettingsTableViewCell.h"
-#import "OKAccessConfirmViewController.h"
+#import "OKInstituteVC.h"
+#import "OKAccessSettingManager.h"
+#import "OKContactManager.h"
+#import "OKContactModel.h"
 
 @interface OKAccessSettingsViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *updateButton;
@@ -17,10 +20,15 @@
 @end
 
 @implementation OKAccessSettingsViewController
-@synthesize accessSettingsTableView,updateButton;
+@synthesize accessSettingsTableView,updateButton,procID,userID,accessArray,selectedContacts,choosedContacts;
 
 - (void)viewDidLoad
 {
+    
+    self.dataDict =  @{@"Surgeons":@"1",
+                       @"Assistans":@"2",
+                       @"Outher":@"6"};
+    
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
@@ -33,31 +41,70 @@
 
     updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     updateButton.layer.cornerRadius = 14;
+    
+    selectedContacts = [[NSMutableArray alloc]init];
+    choosedContacts = [[NSMutableArray alloc]init];
+    accessArray = [[NSMutableArray alloc] init];
+    
+    userID = [OKUserManager instance].currentUser.identifier;
+    [self getAccessVariables];
+
 }
-
-
+-(void)getAccessVariables{
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    
+    OKAccessSettingManager *accessManager = [OKAccessSettingManager instance];
+    [accessManager getAccessSettingsWithUserID:userID AndProcedureID:procID handler:^(NSString* error, NSMutableArray* aArray){
+        NSLog(@"Error - %@", error);
+        
+        self.accessArray = aArray ;
+        
+        [[OKLoadingViewController instance] hide];
+    }];
+}
 - (IBAction)backButton:(id)sender
-{
+{    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 - (IBAction)updateSettingsButton:(id)sender
 {
+    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Access Settings" message:@"Access Settings is updated" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [customAlertView show];
+    
+    NSString * contactEmail = [choosedContacts componentsJoinedByString:@","];
+    
+    NSLog(@"%@",contactEmail);
+    
+        OKAccessSettingManager *aM = [OKAccessSettingManager instance];
+        [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactEmail:contactEmail handler:^(NSString *errorMsg, NSDictionary *json) {
+            NSLog(@"Error - %@", errorMsg);}];
+    
+    [self getAccessVariables];
     
 }
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
-
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"choseContact"]){
+        OKAccessSettingsCCViewController *vc = (OKAccessSettingsCCViewController*)segue.destinationViewController;
+        vc.contactID = [self.dataDict valueForKey:sender];
+        vc.cameFromVC = @"Access Settings View Controller";
+        vc.accessArray = [[NSMutableArray alloc]init];
+        vc.accessArray = self.accessArray;
+        vc.delegate = self;
+    }
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+   return self.dataDict.allKeys.count;
 }
 
 
@@ -75,13 +122,25 @@
     if (!cell) {
         cell = [[OKAccessSettingsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    NSMutableArray *dataTitleArray = [[NSMutableArray alloc] initWithObjects:
-                                      @"Surgeons",
-                                      @"Assistans",
-                                      @"Other",nil];
-    cell.aSettingLable.text = [dataTitleArray objectAtIndex:indexPath.row];
+    
+    cell.aSettingLable.text = [self.dataDict.allKeys objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"choseContact" sender:self.dataDict.allKeys[indexPath.row]];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    OKAccessSettingsCCViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AS"];
+    vc.accessArray = [self accessArray];
+}
+
+-(void)updateWithArray:(NSMutableArray *)array
+{
+    choosedContacts = array;
 }
 
 @end

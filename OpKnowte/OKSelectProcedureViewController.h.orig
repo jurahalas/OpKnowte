@@ -1,0 +1,19 @@
+//
+//  OKSelectProcedureViewController.h
+//  OpKnowte
+//
+//  Created by Artem Frolow on 4/15/14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "OKAppDelegate.h"
+
+@interface OKSelectProcedureViewController : OKBaseViewController <UITableViewDelegate, UITableViewDataSource>
+<<<<<<< HEAD
+@property (nonatomic, strong) NSString *cameFromVC;
+=======
+@property (nonatomic) int procedureID;
+
+>>>>>>> 99c9afbcbaade87f015386198373cf455a692b81
+@end

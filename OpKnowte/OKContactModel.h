@@ -10,7 +10,6 @@
 
 @interface OKContactModel : OKBaseModel
 
-@property (strong,nonatomic) NSString* contactID;
 @property (strong,nonatomic) NSString* contactRoleID;
 @property (strong,nonatomic) NSString* name;
 @property (strong,nonatomic) NSString* contactEmail;
@@ -21,6 +20,5 @@
 @property (strong,nonatomic) NSString* contactZip;
 @property (strong,nonatomic) NSString* contactCountry;
 @property (strong,nonatomic) NSString* contactFax;
-
 
 @end

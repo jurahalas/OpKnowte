@@ -1,0 +1,126 @@
+//
+//  OKCustomTextField.m
+//  OpKnowte
+//
+//  Created by Artem Frolow on 4/11/14.
+//  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
+//
+
+#import "OKCustomTextField.h"
+
+@implementation OKCustomTextField
+
+-(void) awakeFromNib {
+    [self drawCustomTextField];
+}
+-(void) drawCustomTextField{
+    
+    
+    if (IS_IOS7) {
+        self.tintColor = [UIColor whiteColor];
+    } else {
+        [[self valueForKey:@"textInputTraits"] setValue:[UIColor whiteColor] forKey:@"insertionPointColor"];
+    }
+    self.font = [UIFont fontWithName:@"AvenirNext-Regular" size:14.0f];
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.borderColor =[UIColor whiteColor].CGColor;
+    self.layer.borderWidth = 1.f;
+    [self setTextColor:[UIColor whiteColor]];
+    self.layer.cornerRadius = 14;
+    self.clipsToBounds = YES;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+=======
+    
+>>>>>>> 4a8f403ca0e538b8ac9df9f88c493438dad16f65
+=======
+=======
+    
+>>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
+>>>>>>> 7879c56fa65397bd5ebc30a5a37878846d8b4cd6
+    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    textFieldIconView.backgroundColor = [UIColor clearColor];
+    self.leftView = textFieldIconView;
+    self.leftViewMode = UITextFieldViewModeAlways;
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+    
+    
+>>>>>>> 4a8f403ca0e538b8ac9df9f88c493438dad16f65
+=======
+=======
+    
+>>>>>>> 8900e1f5a2992d03db037624fd7d6e22be7ca2a5
+    
+>>>>>>> 7879c56fa65397bd5ebc30a5a37878846d8b4cd6
+}
+-(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
+   
+    UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+
+    UIImage *textFieldImage = [[UIImage alloc] init];
+    if ([placeholder isEqualToString:@"First name"] || [placeholder isEqualToString:@"Last name"] || [placeholder isEqualToString:@"Email"]) {
+        textFieldImage = [UIImage imageNamed:@"name"];
+    } else if ([placeholder isEqualToString:@"Your email..."]){
+        textFieldImage = [UIImage imageNamed:@"email"];
+    } else if ([placeholder isEqualToString:@"MD"]){
+        textFieldImage = [UIImage imageNamed:@"degree"];
+    }else if ([placeholder isEqualToString:@"MD"]){
+        textFieldImage = [UIImage imageNamed:@"degree"];
+    }else if ([placeholder isEqualToString:@"Name:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Street Address:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"City:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"State:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Zip:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Country:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Email:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else if ([placeholder isEqualToString:@"Fax:"]){
+        textFieldImage = nil;
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    }else {
+        textFieldImage = [UIImage imageNamed:@"password"];
+    }
+    
+    UIImageView *textFieldIcon = [[UIImageView alloc] init];
+    textFieldIcon = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
+    textFieldIcon.image = textFieldImage;
+    
+    textFieldIconView.backgroundColor = [UIColor clearColor];
+    [textFieldIconView addSubview:textFieldIcon];
+    self.leftView = textFieldIconView;
+    self.leftViewMode = UITextFieldViewModeAlways;
+    
+    
+    if (downArrow) {
+        UIView *textFieldDownArrowView = [[UIView alloc] init];
+        UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
+        textFieldDownArrow.image = [UIImage imageNamed:@"down"];
+        textFieldDownArrowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+        textFieldDownArrowView.backgroundColor = [UIColor clearColor];
+        [textFieldDownArrowView addSubview:textFieldDownArrow];
+        self.rightView = textFieldDownArrowView;
+        self.rightViewMode = UITextFieldViewModeAlways;
+    }
+    self.secureTextEntry = secured;
+    self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeholder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+
+}
+
+@end

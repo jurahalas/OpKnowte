@@ -7,6 +7,7 @@
 //
 
 #import "OKPerformanceVC.h"
+#import "OKSelectProcedureViewController.h"
 
 @interface OKPerformanceVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -62,7 +63,29 @@
     return cell;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OKPerformanceTableViewCell *cell = [[OKPerformanceTableViewCell alloc] init];
+    cell = (OKPerformanceTableViewCell*)[_performanceTableView cellForRowAtIndexPath:indexPath];
+    if ([cell.performanceLabel.text isEqualToString:@"FollowUp Data"]) {
+        
+        [self performSegueWithIdentifier:@"fromFollowUpDataToSelectProc" sender:indexPath];
+    }
+	else if ([cell.performanceLabel.text isEqualToString:@"Intra-Operative Data"]) {
+        [self performSegueWithIdentifier:@"toSelectProcedureFromIntraOperative" sender:indexPath];
+	}
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if([segue.identifier isEqualToString:@"fromFollowUpDataToSelectProc"]){
+        OKSelectProcedureViewController *instVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+        instVC.cameFromVC = @"FollowUpDataVC";
+    }else if([segue.identifier isEqualToString:@"toSelectProcedureFromIntraOperative"]){
+        OKSelectProcedureViewController *selectProcedure = (OKSelectProcedureViewController*)segue.destinationViewController;
+        selectProcedure.cameFromVC = @"OKPerformanceVC";
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

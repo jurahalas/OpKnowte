@@ -54,6 +54,7 @@
     self.rightArrowCellImage.alpha = .3f;
     self.procedureLabel.textColor = [UIColor colorWithWhite:1 alpha:.3f];
 }
+
 -(void) setCellUserIntaractionEnabled {
     
     [self setUserInteractionEnabled:YES];

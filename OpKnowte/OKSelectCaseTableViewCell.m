@@ -10,18 +10,9 @@
 
 @implementation OKSelectCaseTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
 
 -(void)awakeFromNib{
     UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
-    
     self.contentView.backgroundColor = [UIColor clearColor];
     self.selectedBackgroundView  = cellIsSelected;
     self.backgroundColor = [UIColor clearColor];
@@ -45,6 +36,7 @@
     self.backgroundView = cellBG;
 }
 
+
 -(void) setCellUserIntaractionDisabled
 {
     [self setUserInteractionEnabled:NO];
@@ -52,6 +44,8 @@
     self.caseName.textColor = [UIColor colorWithWhite:1 alpha:.3f];
     self.dataLable.textColor = [UIColor colorWithWhite:1 alpha:.3f];
 }
+
+
 -(void) setCellUserIntaractionEnabled {
     [self setUserInteractionEnabled:YES];
     self.selectCaseIcon.alpha = 1.f;
@@ -59,6 +53,5 @@
     self.dataLable.textColor = [UIColor colorWithWhite:1 alpha:1.f];
     
 }
-
 
 @end

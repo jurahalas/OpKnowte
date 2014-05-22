@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "OKBaseViewController.h"
+#import "OKLoadingViewController.h"
 
 @interface OKSelectCaseViewController : OKBaseViewController
 
 @property (nonatomic) BOOL isReminderSetting;
 @property (nonatomic) BOOL fromSettings;
+
+@property(strong, nonatomic) NSString *procID;
+@property(strong, nonatomic) NSString *detailID;
 
 @end

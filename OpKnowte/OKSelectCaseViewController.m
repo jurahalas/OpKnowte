@@ -38,7 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
- 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y, tableView.frame.size.width, (tableView.frame.size.height - 57.f));
@@ -57,13 +56,13 @@
 {
     [[OKLoadingViewController instance]showWithText:@"Loading"];
     if (self.fromSettings) {
-        [[OKTemplateManager instance]getTemplate:[OKUserManager instance].currentUser.userID withProcedureID:[OKProceduresManager instance].selectedProcedure
-         .procedureID handler:[self getTemplateHandler]];
+        [[OKTemplateManager instance]getTemplate:[OKUserManager instance].currentUser.identifier withProcedureID:[OKProceduresManager instance].selectedProcedure
+         .identifier handler:[self getTemplateHandler]];
         
         
     }else {
         
-        [[OKCaseManager instance]getCaseListForProcedureWithID:[OKProceduresManager instance].selectedProcedure.procedureID surgeonID:[OKUserManager instance].currentUser.userID handler:[self getCaseListHandler]];
+        [[OKCaseManager instance]getCaseListForProcedureWithID:[OKProceduresManager instance].selectedProcedure.identifier surgeonID:[OKUserManager instance].currentUser.identifier handler:[self getCaseListHandler]];
         
     }
 }
@@ -139,11 +138,7 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (self.isReminderSetting) {
-//        UCSettingReminderSettingsViewController *obj = [[UCSettingReminderSettingsViewController alloc] initWithNibName:@"UCSettingReminderSettingsViewController" bundle:nil];
-//        obj.patientID = [[self.cases objectAtIndex:indexPath.row] objectForKey:@"DetailID"];
-//        NSLog(@"%@",[self.cases objectAtIndex:indexPath.row]);
-//        NSLog(@"%@",obj.patientID);
-//        [self.navigationController pushViewController:obj animated:YES];
+        [self performSegueWithIdentifier:@"fromCasesToReminder" sender:[NSString stringWithFormat:@"%@", _procID]];
     }else{
         OKCase *selCase = self.cases[indexPath.row];
         [OKCaseManager instance].selectedCase = selCase;
@@ -152,10 +147,19 @@
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromCasesToReminder"]){
+        OKSelectCaseViewController *contactVC = (OKSelectCaseViewController*)segue.destinationViewController;
+        contactVC.procID = _procID;
+        contactVC.detailID = _detailID;
+    }
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -12,7 +12,8 @@
 
 @interface OKBottomTabBarView ()
 @property (strong, nonatomic) UIButton *homeButton;
-@property (strong, nonatomic) UIView *logoTBView;
+@property (strong, nonatomic) UIButton *logoTBButton;
+
 @property (strong, nonatomic) UIButton *settingsButton;
 
 @end
@@ -38,19 +39,18 @@
 }
 
 -(void) drawLogoTBImage {
-    _logoTBView = [[UIView alloc] init];
-    _logoTBView.frame = CGRectMake(80, 0, 160, 51);
-    _logoTBView.backgroundColor = [UIColor clearColor];
+    _logoTBButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _logoTBButton.frame = CGRectMake(80, 0, 160, 51);
+
+    _logoTBButton.tintColor = [UIColor whiteColor];
+    [self.logoTBButton setImage:[UIImage imageNamed:@"logoTB"] forState:UIControlStateNormal];
+    [_logoTBButton addTarget:self action:@selector(logoTBButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_logoTBButton];
     
-    UIImageView *logoTBImage = [[UIImageView alloc] initWithFrame:CGRectMake(31, 13, 98, 25)];
-    logoTBImage.image = [UIImage imageNamed:@"logoTB"] ;
-    [_logoTBView addSubview:logoTBImage];
-    
-    [self addSubview:_logoTBView];
 }
 
 -(void) drawSettingsButton {
-    _settingsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    _settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _settingsButton.frame = CGRectMake(240, 0, 80, 51);
     
     _settingsButton.tintColor = [UIColor whiteColor];
@@ -62,26 +62,27 @@
 
 -(void) drawView {
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];
-    self.frame = CGRectMake(0, self.superview.frame.size.height-51 , 320, 51);
+    if (IS_IOS7 || [self.delegate navBar] == true) {
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 51, 320, 51);
+        }
+    else {
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 95, 320, 51);
+        }
 }
 
 
 -(void)homeButton:(id)sender
 {
-    
+    [self.delegate goToDashboard];
 }
-
+-(void)logoTBButton:(id)sender
+{
+    [self.delegate goToInfoVC];
+}
 
 -(void)settingsButton:(id)sender
 {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults removeObjectForKey:@"EMAILADDRESS"];
-//    [defaults removeObjectForKey:@"PASSWORD"];
-//    [defaults synchronize];
-//    NSLog(@"session was destroyed");
-
-    [self.delegate goToSettingsVC];
-    
+   [self.delegate goToSettingsVC];
 }
 
 @end

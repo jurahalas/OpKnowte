@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
+#import "OKAccessSettingsCCViewController.h"
 
-@interface OKAccessSettingsViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
+@interface OKAccessSettingsViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource, OKAccessSettingsCCDelegate>
+
+@property (strong, nonatomic) NSDictionary *dataDict;
+
+@property(nonatomic, strong) NSString *procID;
+@property(nonatomic, strong) NSString *userID;
+@property(strong, nonatomic) NSMutableArray *accessArray;
+@property(strong, nonatomic) NSMutableArray *selectedContacts;
+@property(strong, nonatomic) NSMutableArray *choosedContacts;
 
 @end
