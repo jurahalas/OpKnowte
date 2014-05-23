@@ -122,36 +122,36 @@
     [OKProceduresManager instance].selectedProcedure = proc;
     
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    NSInteger procID = [proc.identifier integerValue];
     
     if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
-        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:nil];
+        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
     } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
-        [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:nil];
-    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] ){
-        [self performSegueWithIdentifier:@"fromProceduresToCases" sender:nil];
+        [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
+    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] || !_cameFromVC){
+        [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
     } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
-        [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:nil];
+        [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
     }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
-        [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:nil];
-    }else if([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
-        [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:nil];
+        [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
+    }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
     } else {
+        id vc = nil;
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
-            OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+            vc = [[OKShockwaveLithotripsyVC alloc] init];
+        }else
         if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
-            OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+            vc = [[OKLRPartialNephrectomyVC alloc] init];
+        }else
         if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
-            OKPenileProsthesisVC *vc = [[OKPenileProsthesisVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+            vc = [[OKPenileProsthesisVC alloc] init];
+        }else
         if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
-            OKLRRadicalProstatectomyVC *vc = [[OKLRRadicalProstatectomyVC alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
+            vc = [[OKLRRadicalProstatectomyVC alloc] init];
         }
+        [vc setValue:@(procID) forKey:@"procedureID"];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

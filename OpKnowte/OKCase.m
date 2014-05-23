@@ -52,8 +52,12 @@
 - (void)updateAge:(NSString *)DOB
 {
     NSDate *date = [DOB dateWithFormat:@"MM-dd-yyyy"];
-    NSDateComponents *diff = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
-    self.age = [NSString stringWithFormat:@"%i years old",[diff year]];
+    if(!date)
+        date =[DOB dateWithFormat:@"MM/dd/yyyy"];
+    if(date){
+        NSDateComponents *diff = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date toDate:[NSDate date] options:0];
+        self.age = [NSString stringWithFormat:@"%i years old",[diff year]];
+    }
 }
 
 

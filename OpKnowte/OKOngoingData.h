@@ -36,4 +36,7 @@
 @property (nonatomic, strong) NSString *Bun;
 @property (nonatomic, strong) NSString *Creatinine;
 
+-(NSOrderedDictionary*)twoWeeksItems;
+-(NSOrderedDictionary*)sixWeeksItems;
+
 @end

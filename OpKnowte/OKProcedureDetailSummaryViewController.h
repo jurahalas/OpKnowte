@@ -2,13 +2,23 @@
 //  OKProcedureDetailSummaryViewController.h
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/18/14.
+//  Created by Eugene on 4/18/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
 #import "OKBaseViewController.h"
 #import "OKAppDelegate.h"
 
-@interface OKProcedureDetailSummaryViewController : OKBaseViewController <UITableViewDelegate, UITableViewDataSource>
+@class OKOngoingData;
+
+enum OKProcedureSummaryDetailPeriod {
+    OKProcedureSummaryDetailTwoWeeks = 0,
+    OKProcedureSummaryDetailSixWeeks
+};
+
+@interface OKProcedureDetailSummaryViewController : OKBaseViewController
+
+@property (nonatomic, strong) OKOngoingData *ongoingData;
+@property (nonatomic, assign) enum OKProcedureSummaryDetailPeriod detailPeriod;
 
 @end

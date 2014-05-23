@@ -482,6 +482,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XTe-gD-PYM" id="7Rz-An-uN4"/>
+                                    <outlet property="delegate" destination="XTe-gD-PYM" id="ASh-At-KkJ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -495,7 +499,7 @@
                         <barButtonItem key="rightBarButtonItem" image="info.png" id="fsq-SX-mHD"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="procedureDetailSummaryTableView" destination="5vJ-MZ-yBd" id="cNZ-hX-REV"/>
+                        <outlet property="tableView" destination="5vJ-MZ-yBd" id="LVU-qb-KqC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -843,6 +847,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WIT-md-SDl" id="xQi-d2-gjW"/>
+                                    <outlet property="delegate" destination="WIT-md-SDl" id="CK6-YJ-2Gc"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -855,8 +863,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="selectCase" destination="nVb-Am-Awp" id="g0V-lT-tuV"/>
+                        <outlet property="tableView" destination="nVb-Am-Awp" id="Acv-ZS-Y4n"/>
                         <segue destination="zNm-fe-JEM" kind="push" identifier="fromCasesToReminder" id="9We-sb-8ZF"/>
+                        <segue destination="kGF-3f-Avh" kind="push" identifier="selectTimepoint" id="DoT-oZ-zGI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykd-1u-CKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1958,6 +1967,7 @@
                     <connections>
                         <outlet property="selectTimePointTableView" destination="gj0-ke-MrT" id="y19-ef-GKA"/>
                         <segue destination="qz9-gN-LRh" kind="push" identifier="fromSelectTimeToSelectVariables" id="4NU-pS-6Wf"/>
+                        <segue destination="XTe-gD-PYM" kind="push" identifier="summaryVC" id="6PR-zG-Mbx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFv-iZ-7Pc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3888,8 +3898,9 @@
         <segue reference="eEH-cw-BCg"/>
         <segue reference="goQ-lN-Lsa"/>
         <segue reference="ytp-fp-EJd"/>
-        <segue reference="lPY-Bo-TiM"/>
-        <segue reference="oYk-1x-QUH"/>
+        <segue reference="Aik-36-Z3R"/>
+        <segue reference="DoT-oZ-zGI"/>
+        <segue reference="6PR-zG-Mbx"/>
         <segue reference="9Vm-fe-BqP"/>
         <segue reference="aL2-xa-szT"/>
         <segue reference="Q7A-9x-cdI"/>

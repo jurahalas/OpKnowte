@@ -57,36 +57,17 @@
     [[OKLoadingViewController instance]showWithText:@"Loading"];
     if (self.fromSettings) {
         [[OKTemplateManager instance]getTemplate:[OKUserManager instance].currentUser.identifier withProcedureID:[OKProceduresManager instance].selectedProcedure
-         .identifier handler:[self getTemplateHandler]];
-        
-        
+         .identifier handler:^(NSString *errorMg, OKTemplate *templateObj) {             [[OKLoadingViewController instance]hide];
+         }];
     }else {
-        
-        [[OKCaseManager instance]getCaseListForProcedureWithID:[OKProceduresManager instance].selectedProcedure.identifier surgeonID:[OKUserManager instance].currentUser.identifier handler:[self getCaseListHandler]];
-        
+        [[OKCaseManager instance]getCaseListForProcedureWithID:[OKProceduresManager instance].selectedProcedure.identifier surgeonID:[OKUserManager instance].currentUser.identifier handler:^(NSString *errorMsg, NSArray *cases) {
+            [[OKLoadingViewController instance]hide];
+            if(!errorMsg){
+                self.cases = [cases sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"DOS" ascending:YES]]];
+                [self.tableView reloadData];
+            }
+        }];
     }
-}
-
-
-- (void (^)(NSString *errorMg, id json))getTemplateHandler
-{
-    void (^ myBlock)(NSString *errorMg, id json) = ^ (NSString *errorMg, id json) {
-        [[OKLoadingViewController instance]hide];
-    };
-    return myBlock;
-}
-
-
-- (void (^)(NSString *errorMg, id caseArray))getCaseListHandler
-{
-    void (^ myBlock)(NSString *errorMg, id caseArray) = ^ (NSString *errorMg, id caseArray) {
-        [[OKLoadingViewController instance]hide];
-        if(!errorMg){
-            self.cases = [caseArray sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"DOS" ascending:YES]]];
-            [self.tableView reloadData];
-        }
-    };
-    return myBlock;
 }
 
 
@@ -140,9 +121,16 @@
     if (self.isReminderSetting) {
         [self performSegueWithIdentifier:@"fromCasesToReminder" sender:[NSString stringWithFormat:@"%@", _procID]];
     }else{
-        OKCase *selCase = self.cases[indexPath.row];
-        [OKCaseManager instance].selectedCase = selCase;
-        [self performSegueWithIdentifier:@"selectTimepoint" sender:nil];
+        [[OKLoadingViewController instance]showWithText:@"Loading"];
+        [[OKUserManager instance] updateDataSharingSettingsWithProcID:self.procID userID:[OKUserManager instance].currentUser.identifier isSharing:@"no" handler:^(NSString* error){
+            [[OKLoadingViewController instance]hide];
+            OKCase *selCase = self.cases[indexPath.row];
+            [OKCaseManager instance].selectedCase = selCase;
+            [self performSegueWithIdentifier:@"selectTimepoint" sender:nil];
+        
+        }];
+
+        
     }
 }
 

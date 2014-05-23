@@ -107,21 +107,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
     OKTimePointModel *timePoint = self.timePointsArray[indexPath.row];
-    
     [OKTimePointsManager instance].selectedTimePoint = timePoint;
-    
-    [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
-        
-        if(!errorMsg){
-            
-        }
-    }];
 
-
-NSString *cameFromVC = [[NSString alloc] init];
+    NSString *cameFromVC = [[NSString alloc] init];
     if (indexPath.row == 0) {
         cameFromVC = @"weeks";
     }else if (indexPath.row >0 && indexPath.row <11){
@@ -130,7 +119,19 @@ NSString *cameFromVC = [[NSString alloc] init];
     _timepointID = indexPath.row+1;
     if([_cameFromVC isEqualToString:@"FollowUpData"]){
         [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
-        
+    }else{
+        [[OKLoadingViewController instance]showWithText:@"Loading"];
+        [[OKUserManager instance]getUserAccess:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg) {
+            if(!errorMsg){
+                [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
+                    
+                    [[OKLoadingViewController instance]hide];
+                    if(!errorMsg)
+                        [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                }];
+            }else
+                [[OKLoadingViewController instance]hide];
+        }];
     }
 }
 
@@ -145,8 +146,18 @@ NSString *cameFromVC = [[NSString alloc] init];
         sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_totlaNationalCases];
         sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_totalSurgeonCases];
         sharVC.timepointID = _timepointID;
-        
+    }else if ([segue.identifier isEqualToString:@"summaryVC"]){
+        OKProcedureDetailSummaryViewController *summaryVC = (OKProcedureDetailSummaryViewController*)segue.destinationViewController;
+        summaryVC.ongoingData = sender;
+        summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
     }
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.selectTimePointTableView deselectRowAtIndexPath:self.selectTimePointTableView.indexPathForSelectedRow animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
