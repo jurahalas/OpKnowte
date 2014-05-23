@@ -73,8 +73,6 @@
             [contactsArray addObject:contactModel];
         }
         handler([self getErrorMessageFromJSON:json error:error], contactsArray);
-
-
     }];
 }
 -(void) getOtherContactsByUserID: (NSString*) userID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler {

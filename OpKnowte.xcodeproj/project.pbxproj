@@ -758,8 +758,6 @@
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC7E42981924ED4F00F58A24 /* Intra-operative Data */,
-				00A3F0661924AFEC003A7447 /* FollowUp Data */,
 				007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */,
 				007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */,
 				E10023F518F529E9008421D4 /* OKViewController.h */,
@@ -770,6 +768,8 @@
 				0065E87C190026900016B94F /* OKInfoViewController.m */,
 				00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */,
 				00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */,
+				AC7E42981924ED4F00F58A24 /* Intra-operative Data */,
+				00A3F0661924AFEC003A7447 /* FollowUp Data */,
 				0087E99A191F5FC5003C3848 /* Surgical Logs */,
 				188608F5190FCBDD00BD1D77 /* Select Facility */,
 				189F45111909421800372C55 /* Institute View */,
