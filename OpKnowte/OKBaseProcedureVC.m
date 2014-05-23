@@ -49,10 +49,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
-    self.navigationItem.leftBarButtonItem = backButton;
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
-    self.navigationItem.rightBarButtonItem = nextButton;
+    if (IS_IOS7) {
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
+        self.navigationItem.leftBarButtonItem = backButton;
+        UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
+        self.navigationItem.rightBarButtonItem = nextButton;
+    }
+    else{
+        [self addRightButtonForiOS6];
+        [self addLeftButtonForiOS6];
+    }
     self.interactionItems = [[NSMutableArray alloc] init];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
     self.datePicker = [[OKDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
@@ -64,6 +70,25 @@
     self.picker.showsSelectionIndicator = YES;
     [self.view addSubview:self.datePicker];
     [self.view addSubview:self.picker];
+}
+-(void)addRightButtonForiOS6{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"right"].size.width+27, [UIImage imageNamed:@"right"].size.height );
+    [right setImage:[UIImage imageNamed:@"right"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(rightButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+}
+
+-(void)addLeftButtonForiOS6 {
+    UIButton *left = [[UIButton alloc] init];
+    left.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [left setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [left addTarget:self action:@selector(backButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:left];
+    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 -(void)setContactFieldWithContactArray:(NSMutableArray *)contactsArray{
