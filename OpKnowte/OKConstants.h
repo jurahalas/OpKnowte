@@ -16,5 +16,6 @@ extern NSString *const apiURL;
 #define IS_IPHONE_5 (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 568.0)
 #define IS_RETINA ([[UIScreen mainScreen] scale] == 2.0)
 #define IS_IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IS_IOS6 ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0)
 
 @end
