@@ -24,7 +24,9 @@
 @property (strong, nonatomic) NSString *var_nervesparing;
 
 @property (strong,nonatomic) NSString *var_surgeon;
-//@property (strong,nonatomic) OKContactModel *var_assistant;
+//------------
+@property (strong,nonatomic) NSString *var_assistant_names;
+//------------
 @property (strong,nonatomic) NSString *var_assistant;
 @property (strong,nonatomic) NSString *var_anesthesia;
 
@@ -57,7 +59,10 @@
 @property (strong,nonatomic) NSArray *var_fluids;
 @property (strong,nonatomic) NSString *var_preOpSHIM;
 @property (strong,nonatomic) NSString *var_preOpAUA;
-//@property (strong,nonatomic) OKContactModel *var_physicans;
+
+//---------
+@property (strong,nonatomic) NSString *var_physicans_names;
+//---------
 @property (strong,nonatomic) NSString *var_physicans;
 
 @end

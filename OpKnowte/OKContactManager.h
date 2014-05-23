@@ -19,5 +19,6 @@
 
 -(void)deleteContactWithContactID:(NSString *)contactID handler:(void(^)(NSString *errorMsg))handler;
 -(void)getContactsByUserID:(NSString *)userID roleID:(NSString *)roleID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler;
-
+-(void) getOtherContactsByUserID: (NSString*) userID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler;
+-(void) getContactInfoByRoleID: (NSString*) roleID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler;
 @end

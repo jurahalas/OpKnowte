@@ -77,5 +77,43 @@
 
     }];
 }
+-(void) getOtherContactsByUserID: (NSString*) userID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler {
+    
+    NSDictionary *params = nil;
+    NSString *url = [NSString stringWithFormat:@"getOtherContacts?updatedBy=%@", userID];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        
+        NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *contact in [json objectForKey:@"contacts"] ) {
+            OKContactModel *contactModel = [[OKContactModel alloc] init];
+            [contactModel setModelWithDictionary:contact];
+            [contactsArray addObject:contactModel];
+        }
+        handler([self getErrorMessageFromJSON:json error:error], contactsArray);
+        
+        
+    }];
+}
+-(void) getContactInfoByRoleID: (NSString*) roleID handler:(void(^)(NSString *errorMsg, NSMutableArray *contactsArray))handler {
+    
+    NSDictionary *params = nil;
+    NSString *url = [NSString stringWithFormat:@"getContacts?roleID=%@", roleID];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        
+        NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *contact in json ) {
+            OKContactModel *contactModel = [[OKContactModel alloc] init];
+            [contactModel setModelWithDictionary:contact];
+            [contactsArray addObject:contactModel];
+        }
+        handler([self getErrorMessageFromJSON:json error:error], contactsArray);
+        
+        
+    }];
+}
 
 @end

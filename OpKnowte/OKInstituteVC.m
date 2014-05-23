@@ -51,12 +51,15 @@
         self.title =@"Surgeon";
     }else if ([self.title isEqualToString:@"2"]){
         self.title =@"Assistant";
+    }else if ([self.title isEqualToString:@"3"]){
+        self.title =@"Anesthesiologist";
     }else if ([self.title isEqualToString:@"4"]){
         self.title =@"Institution";
     }else if ([self.title isEqualToString:@"5"]){
         self.title =@"Physician";
     }else if([self.title isEqualToString:@"6"]){
-        self.title=@"Other";}
+        self.title=@"Other";
+    }
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 

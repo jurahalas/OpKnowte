@@ -121,24 +121,24 @@
 				<key>name</key>
 				<string>var_assistant</string>
 				<key>type</key>
-				<string>symbolicTextField</string>
+				<string>selectContact</string>
 				<key>placeholder</key>
 				<string>Assistant</string>
 				<key>items</key>
 				<array>
-					<string>assistant</string>
+					<string>2</string>
 				</array>
 			</dict>
 			<dict>
 				<key>name</key>
 				<string>var_anesthesiologist</string>
 				<key>type</key>
-				<string>symbolicTextField</string>
+				<string>selectContact</string>
 				<key>placeholder</key>
 				<string>Anesthesiologist</string>
 				<key>items</key>
 				<array>
-					<string>anesthesiologist</string>
+					<string>3</string>
 				</array>
 			</dict>
 		</array>
@@ -407,12 +407,12 @@
 				<key>name</key>
 				<string>var_cc</string>
 				<key>type</key>
-				<string>symbolicTextField</string>
+				<string>selectContact</string>
 				<key>placeholder</key>
 				<string>CC</string>
 				<key>items</key>
 				<array>
-					<string>cc</string>
+					<string>7</string>
 				</array>
 			</dict>
 		</array>

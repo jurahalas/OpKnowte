@@ -16,13 +16,16 @@
 #import "OKProcedureMultiselect.h"
 #import "OKDatePicker.h"
 #import "OKProceduresManager.h"
+#import "OKSelectContact.h"
+#import "OKFacilityVC.h"
+#import "OKContactModel.h"
 
-@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate>
+@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
 @property (nonatomic, weak) OKProcedureDatePicker *datePickerObject;
-
+@property (nonatomic, weak) OKSelectContact *selectContactObject;
 
 @end
 
@@ -63,6 +66,46 @@
     [self.view addSubview:self.picker];
 }
 
+-(void)setContactFieldWithContactArray:(NSMutableArray *)contactsArray{
+    
+    _selectContactObject.contactsArray = contactsArray;
+    
+    NSMutableArray *contactnamesArray = [[NSMutableArray alloc] init];
+    NSMutableArray *contactIDsArray = [[NSMutableArray alloc] init];
+    NSMutableArray *contactEmailsArray = [[NSMutableArray alloc] init];
+    for (OKContactModel *model in contactsArray) {
+        [contactnamesArray addObject:model.name];
+        [contactIDsArray addObject:model.identifier];
+        [contactEmailsArray addObject:model.contactEmail];
+    }
+    NSString *contactIDs = [contactIDsArray componentsJoinedByString:@","];
+    NSString *contactNames = [contactnamesArray componentsJoinedByString:@", "];
+    NSString *contactEmails= [contactEmailsArray componentsJoinedByString:@","];
+    
+    if ([_selectContactObject.roleID isEqualToString:@"7"]) {
+        _selectContactObject.customTextField.text = contactEmails;
+        _selectContactObject.contactIDs = contactEmails;
+        [self.selectContactObject.delegate updateField:self.selectContactObject.fieldName withValue:self.selectContactObject.contactIDs andTag:self.selectContactObject.tagOfTextField];
+    } else {
+        [self.model setValue:contactNames forKey:[NSString stringWithFormat:@"%@_names",self.selectContactObject.fieldName]];
+        _selectContactObject.customTextField.text = contactNames;
+        _selectContactObject.contactIDs = contactIDs;
+        [self.selectContactObject.delegate updateField:self.selectContactObject.fieldName withValue:self.selectContactObject.contactIDs andTag:self.selectContactObject.tagOfTextField];
+    }
+
+    
+}
+
+-(void)goToSelectContactViewWithRoleID:(NSString *)roleID selectContactObject:(id)selectContactObject{
+    _selectContactObject  = selectContactObject;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
+    vc.roleID = roleID;
+    vc.delegate = self;
+    vc.cameFromVC = @"createProcedureVC";
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 -(void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary withTag:(int) tag{
     
@@ -87,6 +130,18 @@
         }
         [self.interactionItems addObject:symbolicTextField];
         
+    } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"selectContact"]) {
+        OKSelectContact *selectContact = [[OKSelectContact alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        selectContact.delegate = self;
+        
+        [self.view addSubview:selectContact];
+        [selectContact setTagOfTextField:tag];
+
+        [selectContact setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
+        [selectContact setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [selectContact setRoleID:[[customElementDictionary objectForKey:@"items"]objectAtIndex:0 ]];
+        [self.interactionItems addObject:selectContact];
+        
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         numericTextField.delegate = self;
@@ -102,7 +157,7 @@
         }
         [numericTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [numericTextField setType:OKProcedureNumericTF];
-
+        
         [self.interactionItems addObject:numericTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
@@ -227,6 +282,8 @@
 {
     
 }
+
+
 
 -(void)showPickerWithData:(NSArray*)pickerData picker:(OKProcedurePicker*)pickerObject
 {

@@ -14,6 +14,8 @@
 #import "OKLRPartialNephrectomyModel.h"
 #import "OKProcedureTemplateModel.h"
 #import "OKProcedureTemplateVariablesModel.h"
+#import "OKContactManager.h"
+#import "OKContactModel.h"
 
 @interface OKOperatieNoteViewController ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -301,7 +303,7 @@
     if (!cell) {
         cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+//    OKContactManager *contactsManager = [OKContactManager instance];
     OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
     NSString *variableValue = [[NSString alloc] init];
     if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
@@ -315,11 +317,14 @@
         }
         
         variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+    } else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
+        variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
     } else {
         variableValue = [_model valueForKey:variableModel.value];
     }
     
     
+
     
     OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
     caseDataObject.key = variableModel.key;
