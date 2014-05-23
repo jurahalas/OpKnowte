@@ -196,8 +196,8 @@
         }
         else
         {
-            UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                            message:@"Your device doesn't support the composer sheet."
+            UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
+                                                            message:@"There are no Email accounts configured. You can add or create Email account in Settings."
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles: nil];
