@@ -28,6 +28,21 @@
     _contactsTable.frame = CGRectMake(_contactsTable.frame.origin.x, _contactsTable.frame.origin.y, _contactsTable.frame.size.width, (_contactsTable.frame.size.height - 50.f));
     [self addBottomTabBar];
     [self addRightButtonsToNavbar];
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
+	// Do any additional setup after loading the view.
+}
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 -(void)viewWillAppear:(BOOL)animated

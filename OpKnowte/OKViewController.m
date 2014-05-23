@@ -22,6 +22,7 @@
 
 #pragma mark - view methods
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,9 +33,10 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     
-     [self.navigationController setNavigationBarHidden:YES animated:YES ];
+    [self.view endEditing:YES];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }
-
 
 -(void)viewDidAppear:(BOOL)animated
 {

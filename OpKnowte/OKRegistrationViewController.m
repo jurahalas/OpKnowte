@@ -52,7 +52,11 @@
     _MDTextField.tag = 4;
     _passwordTextField.tag = 5;
     _confirmPasswordField.tag = 6;
-
+    
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,6 +135,21 @@
     
     [textField resignFirstResponder];
 
+}
+
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
+}
+
+-(IBAction)backButton:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Picker methods
