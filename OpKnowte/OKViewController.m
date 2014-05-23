@@ -144,6 +144,11 @@
 
 - (IBAction)forgetPasswordButton:(id)sender {
     
+    [self.view endEditing:YES];
+    if (_animatedKeyboard) {
+        [self animateTextField: _passwordTextField up: NO];
+    }
+    
     UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password"
                                                               message:@"Please confirm your Email Address.\rWe will send you your password"
                                                              delegate:self
@@ -156,7 +161,6 @@
     
     
     [customAlertView show];
-    
 }
 
 - (IBAction)registerButton:(id)sender
