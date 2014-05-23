@@ -113,7 +113,12 @@
 -(void) addRightButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
-    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"plusWhiteIcon"].size.width, [UIImage imageNamed:@"plusWhiteIcon"].size.height );
+    
+    if (IS_IOS7) {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    } else {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );}
+    
     [right setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
     [right addTarget:self action:@selector(rightButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
