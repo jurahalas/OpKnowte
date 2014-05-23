@@ -7,6 +7,7 @@
 //
 
 #import "OKUserManager.h"
+#import "OKLoadingViewController.h"
 
 
 @implementation OKUserManager

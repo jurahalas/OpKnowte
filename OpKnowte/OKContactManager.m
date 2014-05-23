@@ -73,8 +73,6 @@
             [contactsArray addObject:contactModel];
         }
         handler([self getErrorMessageFromJSON:json error:error], contactsArray);
-
-
     }];
 }
 

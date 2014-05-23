@@ -32,8 +32,15 @@
    [usermanager getDataSharingSettingsWithUserID:usermanager.currentUser.identifier andProcID:self.procID handler:^(NSString* error, id json){
        if ([[json objectForKey:@"isDataShared"] isEqualToString:@"yes"]) {
            [self.dataShareSwitch setOn:YES];
-       }else{
+       }else if ([[json objectForKey:@"isDataShared"] isEqualToString:@"no"]){
            [self.dataShareSwitch setOn:NO];
+       }else{
+           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                             message:@"Please, try again"
+                                                                            delegate:self
+                                                                   cancelButtonTitle:@"OK"
+                                                                   otherButtonTitles:nil, nil];
+           [alertView show];
        }
        [[OKLoadingViewController instance] hide];
    }];
@@ -67,12 +74,10 @@
             }else{
                 _isShare = @"no";
             }
-            [usermanager updateDataSharingSettingsWithProcID:self.procID userID:[OKUserManager instance].currentUser.identifier isSharing:_isShare handler:^(NSString* error){  }];
-
-        }else
-        {
+            [usermanager updateDataSharingSettingsWithProcID:self.procID userID:[OKUserManager instance].currentUser.identifier isSharing:_isShare handler:^(NSString* error){}];
+            }else{
             [self.dataShareSwitch setOn:!dataShareSwitch.on];
-            UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@" Data Sharing Error"
+            UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Data Sharing Error"
                                                                               message:@"Password is invalid"
                                                                              delegate:self
                                                                     cancelButtonTitle:@"OK"
