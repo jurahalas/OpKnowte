@@ -7,7 +7,7 @@
 //
 
 #import "OKDatePicker.h"
-
+#import "OKConstants.h"
 const NSUInteger NUM_COMPONENTS = 3;
 
 typedef enum {
@@ -63,7 +63,10 @@ typedef enum {
 }
 
 - (void)commonInit {
-    self.tintColor = [UIColor whiteColor];
+    if (IS_IOS7) {
+        self.tintColor = [UIColor whiteColor];
+    }
+    
     self.font = [UIFont systemFontOfSize:23.0f];
     self.textColor = [UIColor blackColor];
     
@@ -74,7 +77,9 @@ typedef enum {
     self.picker.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     self.picker.dataSource = self;
     self.picker.delegate = self;
-    self.picker.tintColor = [UIColor whiteColor];
+    if (IS_IOS7) {
+        self.picker.tintColor = [UIColor whiteColor];
+    }
     
     self.date = [NSDate date];
     
@@ -245,15 +250,27 @@ typedef enum {
     SBDatePickerComponent component = [self componentForIndex:componentIndex];
     
     if (component == kSBDatePickerYear) {
-        CGSize size = [@"0000" sizeWithAttributes:@{NSFontAttributeName : self.font}];
-        
+       // CGSize size = [@"0000" sizeWithAttributes:@{NSFontAttributeName : self.font}];
+        CGSize size;
+        if (IS_IOS7) {
+            size = [@"0000" sizeWithAttributes:@{NSFontAttributeName : self.font}];
+        } else {
+            size = [@"0000" sizeWithFont:self.font];
+        }
+
         return size.width + 25.0f;
     }
     else if (component == kSBDatePickerMonth) {
         CGFloat maxWidth = 0.0f;
         
         for (NSString *monthName in self.dateFormatter.monthSymbols) {
-            CGFloat monthWidth = [monthName sizeWithAttributes:@{NSFontAttributeName : self.font}].width;
+            CGFloat monthWidth;
+            if (IS_IOS7) {
+                monthWidth = [monthName sizeWithAttributes:@{NSFontAttributeName : self.font}].width;
+            } else {
+                monthWidth = [monthName sizeWithFont:self.font].width;
+            }
+            //CGFloat monthWidth = [monthName sizeWithAttributes:@{NSFontAttributeName : self.font}].width;
             
             maxWidth = MAX(monthWidth, maxWidth);
         }
@@ -261,8 +278,13 @@ typedef enum {
         return maxWidth + 25.0f;
     }
     else if (component == kSBDatePickerDay) {
-        CGSize size = [@"00" sizeWithAttributes:@{NSFontAttributeName : self.font}];
-        
+        //CGSize size = [@"00" sizeWithAttributes:@{NSFontAttributeName : self.font}];
+        CGSize size;
+        if (IS_IOS7) {
+            size = [@"00" sizeWithAttributes:@{NSFontAttributeName : self.font}];
+        } else {
+            size = [@"00" sizeWithFont:self.font];
+        }
         return size.width + 25.0f;
     }
     else {
@@ -344,12 +366,12 @@ typedef enum {
     BOOL enabled = [self isEnabledRow:row forComponent:componentIndex];
     
     if (enabled) {
-        color = [UIColor whiteColor];
+        color = [UIColor blackColor];
     }
     else {
         color = [UIColor colorWithWhite:0.0f alpha:0.5f];
     }
-    
+
     NSMutableAttributedString *attributedTitle = [[NSMutableAttributedString alloc] init];
     [attributedTitle appendAttributedString:[[NSAttributedString alloc ]initWithString:title]];
     [attributedTitle addAttribute:NSForegroundColorAttributeName value:self.textColor range:NSMakeRange(0,title.length)];
@@ -362,6 +384,10 @@ typedef enum {
     else {
         label.textAlignment = NSTextAlignmentRight;
     }
+    if (IS_IOS6) {
+        label.textColor= [UIColor blackColor];
+    }
+    
     
     return label;
 }

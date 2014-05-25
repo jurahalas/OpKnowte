@@ -22,6 +22,7 @@
 
 #pragma mark - view methods
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,9 +33,10 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     
-     [self.navigationController setNavigationBarHidden:YES animated:YES ];
+    [self.view endEditing:YES];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }
-
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -142,6 +144,11 @@
 
 - (IBAction)forgetPasswordButton:(id)sender {
     
+    [self.view endEditing:YES];
+    if (_animatedKeyboard) {
+        [self animateTextField: _passwordTextField up: NO];
+    }
+    
     UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password"
                                                               message:@"Please confirm your Email Address.\rWe will send you your password"
                                                              delegate:self
@@ -154,7 +161,6 @@
     
     
     [customAlertView show];
-    
 }
 
 - (IBAction)registerButton:(id)sender

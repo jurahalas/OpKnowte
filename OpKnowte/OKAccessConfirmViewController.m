@@ -46,6 +46,21 @@
     NSString *indicationText = [NSString stringWithFormat:@"Select Contacts who are alowed to enter data on your cases"];
     
     ACLabel.text = indicationText;
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
+	// Do any additional setup after loading the view.
+}
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 #pragma mark Table View method
@@ -78,6 +93,7 @@
         OKAccessSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"AS"];
         vc.procID = [self procID];
         [self.navigationController pushViewController:vc animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

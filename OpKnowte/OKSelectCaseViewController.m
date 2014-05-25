@@ -43,6 +43,22 @@
     tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y, tableView.frame.size.width, (tableView.frame.size.height - 57.f));
     [self addBottomTabBar];
     [self setupData];
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
+
+
+}
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 

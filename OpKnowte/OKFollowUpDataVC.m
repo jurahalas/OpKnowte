@@ -13,6 +13,7 @@
 #import "OKSurgicalLogsManager.h"
 #import "OKFollowUpDataManager.h"
 #import "OKSelectTimePointViewController.h"
+#import "OKFakeTableViewCell.h"
 
 @interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
@@ -42,7 +43,6 @@
 
 @property (strong, nonatomic) IBOutlet UIView *selectTimePeriodView;
 @property (strong, nonatomic) IBOutlet UIButton *selectTimePeriodButton;
-
 
 @property (nonatomic, strong) NSMutableArray *surgeonDataArray;
 @property (nonatomic, strong) NSMutableArray *nationalDataArray;
@@ -147,7 +147,10 @@
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
-    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    if (IS_IOS7) {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    } else {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );}
     [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
     
@@ -342,7 +345,7 @@
     if (!_surgeonDataArray.count) {
         return 0;
     } else {
-        return _surgeonDataArray.count;
+        return _surgeonDataArray.count +1 ;
     }
     
     
@@ -365,7 +368,15 @@
 {
     
     static NSString *cellIdentifier = @"FollowUpCell";
-    OKFollowUpDataCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OKFollowUpDataCell * cell = [[OKFollowUpDataCell alloc]init];
+    
+    static NSString *FakeCellIdentifier = @"FakeCell";
+    
+    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
+    
+     if (indexPath.row < [_surgeonDataArray count]) {
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[OKFollowUpDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
@@ -383,7 +394,19 @@
     cell.nameLabel.text = [model valueForKey:@"var_patientName"];
     cell.dateLabel.text = [model valueForKey:@"var_DOS"];
     cell.delegate = self;
-    return cell;
+    
+         return cell;
+         
+     }
+    
+    else{
+        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        if (!FakeCell) {
+            FakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FakeCellIdentifier];
+        }
+        return FakeCell;
+    }
+    
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     

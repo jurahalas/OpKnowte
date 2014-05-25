@@ -17,19 +17,19 @@
     
     if (IS_IOS7) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG"] forBarMetrics:UIBarMetricsDefault ];
+        [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        
+        NSDictionary *navbarTitleProperties = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-DemiBold" size:17.0f], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+        [[UINavigationBar appearance] setTitleTextAttributes: navbarTitleProperties];
     }
     else{
        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG6"] forBarMetrics:UIBarMetricsDefault ];
         
-        UIBarButtonItem *barButtonAppearance = [UIBarButtonItem appearance];
-        [barButtonAppearance setTintColor:[UIColor lightGrayColor]];
+        [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNextBold" size:10.f], nil]];
     }
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    NSDictionary *navbarTitleProperties = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNext-DemiBold" size:17.0f], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    [[UINavigationBar appearance] setTitleTextAttributes: navbarTitleProperties];
+
     
     [self restoreCurrentUser];
     
@@ -55,6 +55,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.window endEditing:YES];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -70,6 +71,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
 
 - (UIViewController*)topViewController {

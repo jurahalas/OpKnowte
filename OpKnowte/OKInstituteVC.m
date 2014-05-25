@@ -51,12 +51,15 @@
         self.title =@"Surgeon";
     }else if ([self.title isEqualToString:@"2"]){
         self.title =@"Assistant";
+    }else if ([self.title isEqualToString:@"3"]){
+        self.title =@"Anesthesiologist";
     }else if ([self.title isEqualToString:@"4"]){
         self.title =@"Institution";
     }else if ([self.title isEqualToString:@"5"]){
         self.title =@"Physician";
     }else if([self.title isEqualToString:@"6"]){
-        self.title=@"Other";}
+        self.title=@"Other";
+    }
     
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 
@@ -86,7 +89,21 @@
             
         }
     }
-
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
+	// Do any additional setup after loading the view.
+}
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 - (void)keyboardWillShow:(NSNotification *)n

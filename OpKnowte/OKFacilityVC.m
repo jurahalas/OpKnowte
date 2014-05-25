@@ -38,7 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     _facilityTableView.backgroundColor = [UIColor clearColor];
     self.facilityTableView.dataSource = self;
@@ -48,7 +48,15 @@
     [self addBottomTabBar];
    
     [self addRightButtonToNavbar];
-    
+    if (![_cameFromVC isEqualToString:@"createProcedureVC"]){
+        _roleID = @"4";
+    } else {
+        _faxAndEmailView.hidden = YES;
+        if ([_roleID isEqualToString:@"7"]) {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+        
+    }
 }
 
 
@@ -59,15 +67,29 @@
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     OKContactManager *contactManager = [OKContactManager instance];
-    [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:@"4" handler: ^(NSString* error, NSMutableArray* array){
-        [[OKLoadingViewController instance] hide];
-        
-        if (!error) {
-            self.contactsArray = array;
-            [self.facilityTableView reloadData];
-        }
-        NSLog(@"Error - %@", error);
-    }];
+    if ([_roleID isEqualToString:@"7"]) {
+        [contactManager getOtherContactsByUserID:[OKUserManager instance].currentUser.identifier handler:^(NSString *errorMsg, NSMutableArray *contactsArray) {
+            [[OKLoadingViewController instance] hide];
+            
+            if (!errorMsg) {
+                self.contactsArray = contactsArray;
+                [self.facilityTableView reloadData];
+            }
+            NSLog(@"Error - %@", errorMsg);
+
+        }];
+    } else {
+        [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:_roleID handler: ^(NSString* error, NSMutableArray* array){
+            [[OKLoadingViewController instance] hide];
+            
+            if (!error) {
+                self.contactsArray = array;
+                [self.facilityTableView reloadData];
+            }
+            NSLog(@"Error - %@", error);
+        }];
+    }
+
 
 }
 
@@ -91,7 +113,12 @@
 -(void) addRightButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
-    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"plusWhiteIcon"].size.width, [UIImage imageNamed:@"plusWhiteIcon"].size.height );
+    
+    if (IS_IOS7) {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    } else {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );}
+    
     [right setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
     [right addTarget:self action:@selector(rightButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
@@ -102,7 +129,7 @@
 
 
 -(void) rightButtonTapped {
-      [self performSegueWithIdentifier:@"addNewInstitution" sender:@"4"];
+      [self performSegueWithIdentifier:@"addNewInstitution" sender:_roleID];
     
     
 }
@@ -174,8 +201,8 @@
         }
         else
         {
-            UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                            message:@"Your device doesn't support the composer sheet."
+            UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
+                                                            message:@"There are no Email accounts configured. You can add or create Email account in Settings."
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles: nil];
@@ -241,7 +268,15 @@
 
 - (IBAction)backButton:(id)sender
 {
+    
+
     [self.navigationController popViewControllerAnimated:YES];
+
+    if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
+        [self.delegate setContactFieldWithContactArray:_contactsSendTo];
+    }
+
+    
 }
 
 

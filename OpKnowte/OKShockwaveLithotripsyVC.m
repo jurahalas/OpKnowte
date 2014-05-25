@@ -63,10 +63,6 @@
     }
 }
 
-
-
-
-
 #pragma mark - OKProcedureTextFieldDelegate
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger)tag
 {

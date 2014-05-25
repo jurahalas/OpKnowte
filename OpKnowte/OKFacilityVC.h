@@ -13,9 +13,15 @@
 #import "OKContactModel.h"
 #import "OKUserModel.h"
 
+@protocol OKFacilityVCDelegate <NSObject>
 
+-(void) setContactFieldWithContactArray: (NSMutableArray*) contactsArray;
+
+@end
 @interface OKFacilityVC : OKBaseViewController <UITableViewDelegate , UITableViewDataSource, MFMailComposeViewControllerDelegate>
-
+@property (nonatomic, weak) id <OKFacilityVCDelegate> delegate;
 @property (strong, nonatomic) NSMutableDictionary *templateDictionary;
+@property (strong, nonatomic) NSString *cameFromVC;
+@property (strong, nonatomic) NSString *roleID;
 
 @end

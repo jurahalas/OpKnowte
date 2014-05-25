@@ -15,6 +15,7 @@
 #import "OKPDFGenerator.h"
 #import <MessageUI/MessageUI.h>
 #import "OKSendFaxManager.h"
+#import "OKFakeTableViewCell.h"
 
 
 @interface OKSurgicalLogsVC () <OKSLListCellDelegate, MFMailComposeViewControllerDelegate>
@@ -115,7 +116,11 @@
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
-    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    if (IS_IOS7) {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    } else {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );}
+    
     [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
     
@@ -302,13 +307,13 @@
     }
     else
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                        message:@"Your device doesn't support the composer sheet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-        [alert show];
-        alert = nil;
+        UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
+                                                               message:@"There are no Email accounts configured. You can add or create Email account in Settings."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles: nil];
+        [alertFailure show];
+        alertFailure = nil;
     }
 }
 
@@ -546,7 +551,7 @@
     if (!_detailsArray.count) {
         return 0;
     } else {
-         return _detailsArray.count;
+         return _detailsArray.count+1;
     }
     
     
@@ -564,26 +569,42 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     static NSString *cellIdentifier = @"SLlistCell";
-    OKSLListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[OKSLListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    if (_deselectAll) {
-        [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-        if (indexPath.row == _detailsArray.count-1) {
-            _deselectAll = NO;
+    OKSLListCell  * cell = [[OKSLListCell alloc]init];
+    
+    static NSString *FakeCellIdentifier = @"FakeCell";
+    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
+    
+    if (indexPath.row < [_detailsArray count]) {
+        
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[OKSLListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier]  ;
         }
+        if (_deselectAll) {
+            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
+            if (indexPath.row == _detailsArray.count-1) {
+                _deselectAll = NO;
+            }
+        }
+    
+    
+        id model = _detailsArray[indexPath.row];
+        cell.model = model;
+        cell.nameLabel.text = [model valueForKey:@"var_patientName"];
+        cell.dateLabel.text = [model valueForKey:@"var_DOS"];
+        cell.delegate = self;
+        return cell;
+    }
+
+    else{
+        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        if (!FakeCell) {
+            FakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FakeCellIdentifier];
+        }
+        return FakeCell;
     }
     
-    
-    id model = _detailsArray[indexPath.row];
-    cell.model = model;
-    cell.nameLabel.text = [model valueForKey:@"var_patientName"];
-    cell.dateLabel.text = [model valueForKey:@"var_DOS"];
-    cell.delegate = self;
-    return cell;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 

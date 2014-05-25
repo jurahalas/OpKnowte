@@ -52,7 +52,11 @@
     _MDTextField.tag = 4;
     _passwordTextField.tag = 5;
     _confirmPasswordField.tag = 6;
-
+    
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,6 +137,21 @@
 
 }
 
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27 , [UIImage imageNamed:@"back"].size.height);
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
+}
+
+-(IBAction)backButton:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - Picker methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -150,8 +169,12 @@
 
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
+    UIColor *color = [UIColor whiteColor];
+    if (IS_IOS6) {
+        color = [UIColor blackColor];
+    }
     NSString *pickerString = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
-    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
     return pickerAttributedString;
     
 }

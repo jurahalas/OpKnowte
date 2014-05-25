@@ -159,6 +159,18 @@
 
 -(void) saveProcedureWithSurgeonID:(NSString *)surgeonID ProcedureID:(NSString *)procedureID AndProcedureModel: (id) procModel handler:(void (^)(NSString *errorMsg, id json))handler{
     NSDictionary *params;
+    
+    
+    NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc] init];
+    [dateFormatter1 setDateFormat:@"MM-dd-yyyy"];
+    NSDate *dateOfServiceDate = [dateFormatter1 dateFromString:[procModel valueForKey:@"var_DOS"]];
+    
+    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+    [dateFormatter2 setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateOfServiceString = [NSString stringWithFormat:@"%@", [dateFormatter2 stringFromDate:dateOfServiceDate] ];
+    
+    
+    
     if ([procedureID isEqualToString:@"10"]) {
         params = @{@"surgeonID":              surgeonID,
                    @"procedureID":            procedureID,
@@ -166,7 +178,7 @@
                    @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                 [procModel valueForKey:@"var_sex"],
-                   @"dateOfService":          [procModel valueForKey:@"var_DOS"],
+                   @"dateOfService":          dateOfServiceString,
                    @"anesthesiaPerformed":    [procModel valueForKey:@"var_anesthesiaPerformed"],
                    @"anesthesiaLocation":     [procModel valueForKey:@"var_anesthesiaLocation"],
                    @"stonesCount":            [procModel valueForKey:@"var_stonesCount"],
@@ -189,7 +201,7 @@
                    @"patientDob":               [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":                 [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                   [procModel valueForKey:@"var_sex"],
-                   @"dateOfService":            [procModel valueForKey:@"var_DOS"],
+                   @"dateOfService":            dateOfServiceString,
                    
                    @"preOp":                    [procModel valueForKey:@"var_preOp"],
                    @"preOp2":                   @"",                //-------------------------------------
@@ -237,7 +249,7 @@
                    @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                 [procModel valueForKey:@"var_sex"],
-                   @"dateOfService":          [procModel valueForKey:@"var_DOS"],
+                   @"dateOfService":          dateOfServiceString,
                    
                    };
     } else if ([procedureID isEqualToString:@"1"] ){
@@ -247,7 +259,7 @@
                    @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                 [procModel valueForKey:@"var_sex"],
-                   @"dateOfService":          [procModel valueForKey:@"var_DOS"],
+                   @"dateOfService":          dateOfServiceString,
                    
                    };
     }

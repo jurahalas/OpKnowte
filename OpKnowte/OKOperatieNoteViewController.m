@@ -14,6 +14,8 @@
 #import "OKLRPartialNephrectomyModel.h"
 #import "OKProcedureTemplateModel.h"
 #import "OKProcedureTemplateVariablesModel.h"
+#import "OKContactManager.h"
+#import "OKContactModel.h"
 
 @interface OKOperatieNoteViewController ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -154,6 +156,21 @@
     }
     
     [self.segmentControl setDividerImage:[UIImage imageNamed:@"scSeparator"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    if (!IS_IOS7) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
+	// Do any additional setup after loading the view.
+}
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -300,7 +317,7 @@
     if (!cell) {
         cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+//    OKContactManager *contactsManager = [OKContactManager instance];
     OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
     NSString *variableValue = [[NSString alloc] init];
     if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
@@ -314,11 +331,14 @@
         }
         
         variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+    } else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
+        variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
     } else {
         variableValue = [_model valueForKey:variableModel.value];
     }
     
     
+
     
     OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
     caseDataObject.key = variableModel.key;

@@ -15,6 +15,7 @@
 - (void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger) tag;
 - (void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 
+
 - (void)goToNextElementFrom:(id)sender;
 - (void) hidePickersWhenTextFieldBeginsEditing;
 @end

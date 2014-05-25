@@ -193,12 +193,12 @@
 				<key>name</key>
 				<string>var_assistant</string>
 				<key>type</key>
-				<string>symbolicTextField</string>
+				<string>selectContact</string>
 				<key>placeholder</key>
 				<string>Assistant</string>
 				<key>items</key>
 				<array>
-					<string>assistant</string>
+					<string>2</string>
 				</array>
 			</dict>
 			<dict>
@@ -479,11 +479,13 @@
 				<key>name</key>
 				<string>var_physicans</string>
 				<key>type</key>
-				<string>symbolicTextField</string>
+				<string>selectContact</string>
 				<key>placeholder</key>
 				<string>Referring Physicians</string>
 				<key>items</key>
-				<array/>
+				<array>
+					<string>5</string>
+				</array>
 			</dict>
 		</array>
 	</dict>
