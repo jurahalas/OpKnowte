@@ -49,6 +49,12 @@
 }
 
 
+-(void)setValue:(NSString*)value
+{
+    self.customTextField.text = value;
+}
+
+
 - (void) setTextFieldRightImage{
     UIView *textFieldDownArrowView = [[UIView alloc] init];
     UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
@@ -67,9 +73,9 @@
     return YES;
 }
 
+
 - (IBAction)textFieldChanged:(id)sender {
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
-
 
 @end

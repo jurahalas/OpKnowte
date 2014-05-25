@@ -8,11 +8,14 @@
 
 #import "OKProcedureDetailSummaryViewController.h"
 #import "OKOngoingData.h"
+#import <SVPullToRefresh.h>
+#import "OKOngoingClinicalViewController.h"
 
 @interface OKProcedureDetailSummaryViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSOrderedDictionary *tableDict;
+@property (strong, nonatomic) SVPullToRefreshView *pullToRefreshView;
 
 @end
 
@@ -22,25 +25,36 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
-
-    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
-        self.tableDict = self.ongoingData.twoWeeksItems;
-    else
-        self.tableDict = self.ongoingData.sixWeeksItems;
-
+    
     self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 60.f));
     [self addBottomTabBar];
+    [self setupPullToRefresh];
 }
 
-#pragma mark - IBActions
-- (IBAction)backButton:(id)sender
+
+-(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    [super viewWillAppear:animated];
+    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
+        self.tableDict = self.ongoingData.twoWeeksItems;
+    else
+        self.tableDict = self.ongoingData.sixWeeksItems;
+    [self.tableView reloadData];
 }
 
+
+-(void)setupPullToRefresh
+{
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [self performSegueWithIdentifier:@"ongoingClinical" sender:nil];
+        [self.tableView.pullToRefreshView stopAnimating];
+    }];
+    [self.tableView.pullToRefreshView setTitle:@"Pull down to edit" forState:SVPullToRefreshStateAll];
+    [self.tableView.pullToRefreshView setSubtitle:nil forState:SVPullToRefreshStateAll];
+    [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
+}
 
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -61,6 +75,17 @@
     cell.procedureKeyLabel.text = key;
     cell.procedureValueLabel.text = [self.tableDict objectForKey:key];
     return cell;
+}
+
+#pragma mark - prepare for segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ongoingClinical"]){
+        OKOngoingClinicalViewController *ongVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
+        ongVC.ongoingData = self.ongoingData;
+        ongVC.detailPeriod = self.detailPeriod;
+    }
 }
 
 

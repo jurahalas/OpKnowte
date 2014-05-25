@@ -11,11 +11,6 @@
 
 @class OKOngoingData;
 
-enum OKProcedureSummaryDetailPeriod {
-    OKProcedureSummaryDetailTwoWeeks = 0,
-    OKProcedureSummaryDetailSixWeeks
-};
-
 @interface OKProcedureDetailSummaryViewController : OKBaseViewController
 
 @property (nonatomic, strong) OKOngoingData *ongoingData;

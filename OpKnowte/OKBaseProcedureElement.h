@@ -22,10 +22,9 @@
 @interface OKBaseProcedureElement : UIControl
 
 @property (strong, nonatomic) NSString *fieldName;
+@property (strong, nonatomic) NSString *value;
 @property (strong, nonatomic) IBOutlet UIView *view;
-@property (strong, readonly) NSString *placeHolder;
+@property (strong, nonatomic) NSString *placeHolder;
 
-- (void)setPlaceHolder:(NSString*)placeHolder;
--(void) setFieldName:(NSString *)fieldName;
 - (void) setup;
 @end

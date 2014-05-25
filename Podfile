@@ -4,6 +4,7 @@ target "OpKnowte" do
 
 pod "AFNetworking", "1.3.3"
 pod "NSOrderedDictionary"
+pod "SVPullToRefresh"
 
 end
 

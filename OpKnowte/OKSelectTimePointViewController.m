@@ -15,6 +15,7 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKSelectFUDVariablesVC.h"
+#import "OKOngoingClinicalViewController.h"
 
 @interface OKSelectTimePointViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -41,20 +42,7 @@
     [self addBottomTabBar];
     
     self.caseObj = [OKCaseManager instance].selectedCase;
-    
-    int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
-    NSLog(@"%i",procedure);
-//    if (procedure == 10) {
-//        if (self.timePoints == nil) {
-//            self.timePoints = [[NSMutableArray alloc] init];
-//        }
-//        [self.timePoints removeAllObjects];
-//        [self.timePoints addObject:[self.caseData objectForKey:@"FollowUp"]];
-//        [self.timePointsTable reloadData];
-//        NSLog(@"%@",self.caseData);
-//        
-//    }else{
-    
+        
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     [timePointsManager getAllTimePointsWithHandler:^(NSString* error, NSArray* timePointsArray){
@@ -63,7 +51,6 @@
         [[OKLoadingViewController instance] hide];
     }];
     
-//    }
 }
 
 #pragma mark - IBActions
@@ -124,10 +111,14 @@
         [[OKUserManager instance]getUserAccess:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg) {
             if(!errorMsg){
                 [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
-                    
+                
                     [[OKLoadingViewController instance]hide];
-                    if(!errorMsg)
-                        [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                    if(!errorMsg){
+                        if(![ongoingData.caseID isEqualToString:@""])
+                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        else
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                    }
                 }];
             }else
                 [[OKLoadingViewController instance]hide];
@@ -150,7 +141,12 @@
         OKProcedureDetailSummaryViewController *summaryVC = (OKProcedureDetailSummaryViewController*)segue.destinationViewController;
         summaryVC.ongoingData = sender;
         summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+    }else if ([segue.identifier isEqualToString:@"ongoingClinical"]){
+        OKOngoingClinicalViewController *summaryVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
+        summaryVC.ongoingData = sender;
+        summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
     }
+
 }
 
 

@@ -54,7 +54,6 @@
         OKDashboardVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"dashboard"];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    //dashboard
 }
 - (void)goToInfoVC{
     if(![self.restorationIdentifier isEqualToString:@"info"]){
@@ -67,6 +66,8 @@
 - (BOOL)navBar{
     return self.navigationController.navigationBarHidden;
 }
+
+
 -(UIStatusBarStyle) preferredStatusBarStyle {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     return UIStatusBarStyleLightContent;
@@ -79,6 +80,14 @@
     [self.view addSubview:bottomTabBarView];
     [bottomTabBarView drawBottomTabBar];
 }
+
+
+-(IBAction)backButton:(id)sender
+{
+    if(self.navigationController)
+        [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 @end

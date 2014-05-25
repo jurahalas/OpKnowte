@@ -7,6 +7,7 @@
 //
 
 #import "OKOngoingData.h"
+#import <objc/runtime.h>
 
 @implementation OKOngoingData
 
@@ -22,21 +23,26 @@
 -(NSOrderedDictionary*)twoWeeksItems
 {
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-    [dict setObject:self.tStage forKey:@"T"];
-    [dict setObject:self.nStage forKey:@"N"];
-    [dict setObject:self.mStage forKey:@"M"];
-    [dict setObject:self.tumorChar forKey:@"Tumor Characteristics"];
-    [dict setObject:self.fuhrmanGrade forKey:@"Fuhrman Grade"];
-    [dict setObject:self.preOperativeBun forKey:@"Pre-Operative Bun"];
-    [dict setObject:self.preOperativeCreatinine forKey:@"Pre-Operative Creatinine"];
-    [dict setObject:self.postOperativeBun forKey:@"Post-Operative Bun"];
-    [dict setObject:self.postOperativeCreatinine forKey:@"Post-Operative Creatinine"];
-    [dict setObject:self.margins forKey:@"Margins"];
-    [dict setObject:self.deepMargin forKey:@"Deep Margin"];
-    [dict setObject:self.lengthOfStay forKey:@"Post-Operative Hospital Stay"];
-    [dict setObject:self.complications forKey:@"Complications"];
-    [dict setObject:self.additionalDiagnosis forKey:@"Additional Diagnosis"];
-    
+
+    @try {
+        [dict setObject:self.tStage forKey:@"T"];
+        [dict setObject:self.nStage forKey:@"N"];
+        [dict setObject:self.mStage forKey:@"M"];
+        [dict setObject:self.tumorChar forKey:@"Tumor Characteristics"];
+        [dict setObject:self.fuhrmanGrade forKey:@"Fuhrman Grade"];
+        [dict setObject:self.preOperativeBun forKey:@"Pre-Operative Bun"];
+        [dict setObject:self.preOperativeCreatinine forKey:@"Pre-Operative Creatinine"];
+        [dict setObject:self.postOperativeBun forKey:@"Post-Operative Bun"];
+        [dict setObject:self.postOperativeCreatinine forKey:@"Post-Operative Creatinine"];
+        [dict setObject:self.margins forKey:@"Margins"];
+        [dict setObject:self.deepMargin forKey:@"Deep Margin"];
+        [dict setObject:self.lengthOfStay forKey:@"Post-Operative Hospital Stay"];
+        [dict setObject:self.complications forKey:@"Complications"];
+        [dict setObject:self.additionalDiagnosis forKey:@"Additional Diagnosis"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"OKOngoing data exception in twoWeeksItems: %@",exception);
+    }
     return dict;
 }
 
@@ -44,15 +50,114 @@
 -(NSOrderedDictionary*)sixWeeksItems
 {
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-    [dict setObject:self.chestXray forKey:@"Chest X-ray"];
-    [dict setObject:self.Bun forKey:@"Bun"];
-    [dict setObject:self.Creatinine forKey:@"Creatinine"];
-    [dict setObject:self.liverEnzymes forKey:@"Liver Enzymes"];
-    [dict setObject:self.portSiteHemia forKey:@"Port Site Hernia"];
-    [dict setObject:self.other forKey:@"Other"];
-    [dict setObject:self.CtScan forKey:@"CT-Scan"];
-    
+    @try {
+        [dict setObject:self.chestXray forKey:@"Chest X-ray"];
+        [dict setObject:self.Bun forKey:@"Bun"];
+        [dict setObject:self.Creatinine forKey:@"Creatinine"];
+        [dict setObject:self.liverEnzymes forKey:@"Liver Enzymes"];
+        [dict setObject:self.portSiteHemia forKey:@"Port Site Hernia"];
+        [dict setObject:self.other forKey:@"Other"];
+        [dict setObject:self.CtScan forKey:@"CT-Scan"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"OKOngoing data exception in sixWeeksItems: %@",exception);
+    }
+
     return dict;
+}
+
+
+-(NSDictionary*)twoWeeksDictionaryForSending
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 0; i < 14; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        id obj = [self valueForKey:name];
+        if(!obj)
+            obj = @"";
+        [dict setObject:obj forKey:name];
+    }
+    
+    free(properties);
+    return dict;
+}
+
+
+-(NSDictionary*)sixWeeksDictionaryForSending
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 14; i < count; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        id obj = [self valueForKey:name];
+        if(!obj)
+            obj = @"";
+        [dict setObject:obj forKey:name];
+    }
+    
+    free(properties);
+    return dict;
+}
+
+
+-(BOOL)checkTwoWeeksData
+{
+    BOOL allDataFilled = YES;
+    
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 1; i < 15; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+
+        id obj = [self valueForKey:name];
+        if(!obj){
+            allDataFilled = NO;
+            break;
+        }
+    }
+    free(properties);
+    return allDataFilled;
+}
+
+
+-(BOOL)checkSixWeeksData
+{
+    BOOL allDataFilled = YES;
+    
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 15; i < count; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        id obj = [self valueForKey:name];
+        if(!obj){
+            allDataFilled = NO;
+            break;
+        }
+    }
+    free(properties);
+    return allDataFilled;
 }
 
 

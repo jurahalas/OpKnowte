@@ -54,6 +54,25 @@
 }
 
 
+- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forTwoWeeks:(BOOL)twoWeeks handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params1 = @{@"procedureID":procedureID,
+                             @"userID":[OKUserManager instance].currentUser.identifier,
+                             @"caseID":caseID,
+                             @"timePointID":timePointID};
+    
+    NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
+    if(twoWeeks)
+        [params2 addEntriesFromDictionary:ongoingData.twoWeeksDictionaryForSending];
+    else
+        [params2 addEntriesFromDictionary:ongoingData.sixWeeksDictionaryForSending];
+
+    [self requestWithMethod:@"POST" path:@"addOngoingClinicalDetail" params:params2 handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+    }];
+}
+
+
 -(NSArray*)casesFromJSON:(id)json
 {
     if ([[json class]isSubclassOfClass:[NSArray class]]) {

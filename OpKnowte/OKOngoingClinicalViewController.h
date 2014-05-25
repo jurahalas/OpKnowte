@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-@interface OKOngoingClinicalViewController : OKBaseViewController<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+@class OKOngoingData;
+
+@interface OKOngoingClinicalViewController : OKBaseViewController
+
+@property (strong, nonatomic) OKOngoingData *ongoingData;
+@property (nonatomic, assign) enum OKProcedureSummaryDetailPeriod detailPeriod;
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "OKTimePointsManager.h"
-#import "OKTimePointModel.h"
 
 @implementation OKTimePointsManager
 

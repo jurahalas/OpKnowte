@@ -7,8 +7,7 @@
 //
 
 #import "OKBaseManager.h"
-
-@class OKTimePointModel;
+#import "OKTimePointModel.h"
 
 @interface OKTimePointsManager : OKBaseManager
 
