@@ -12,4 +12,5 @@
 
 @interface OKDataCaptureViewController : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
 
+@property (strong, nonatomic) NSString *cameFromVC;
 @end

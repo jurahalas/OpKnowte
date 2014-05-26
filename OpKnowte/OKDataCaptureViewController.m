@@ -61,6 +61,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"fromDataCaptureToSelectProcedure" sender:[NSString stringWithFormat:@"%d",indexPath.row]];
+
+    OKDataCaptureTableViewCell *cell = [[OKDataCaptureTableViewCell alloc] init];
+
+    if (cell.dataCaptureLable.text == nil) {
+        _cameFromVC = @"ongoing";
+    }
+    
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -68,7 +75,6 @@
         if ([sender isEqualToString:@"0"]) {
             OKSelectProcedureViewController *sharVC = (OKSelectProcedureViewController*)segue.destinationViewController;
             sharVC.cameFromVC = @"ImmediatePostOperative";
-
         }
         
     }
