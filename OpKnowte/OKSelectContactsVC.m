@@ -58,8 +58,8 @@
             
             [self.contactsTableView reloadData];
         }
+        [[OKLoadingViewController instance] hide];
     }];
-    [[OKLoadingViewController instance] hide];
 }
 
 - (IBAction)backButton:(id)sender
