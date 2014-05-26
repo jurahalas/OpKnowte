@@ -58,9 +58,9 @@
                 //                [procModel setModelWithDictionary:procedure];
                 //                [proceduresArray addObject:procModel];
             } else if ([procedureID  isEqualToString:@"10"]){
-                //                OKShockwaveLithotripsyModel *procModel = [[OKShockwaveLithotripsyModel alloc] init];
-                //                [procModel setModelWithDictionary:procedure];
-                //                [proceduresArray addObject:procModel];
+                OKShockwaveLithotripsyModel *procModel = [[OKShockwaveLithotripsyModel alloc] init];
+                [procModel setModelWithDictionary:procedure];
+                [proceduresArray addObject:procModel];
             }
         }
         

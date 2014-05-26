@@ -133,7 +133,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    OKProcedureModel *proc = _allProcArray[indexPath.row];
+    OKProcedureModel *proc = _procArray[indexPath.row];
     [OKProceduresManager instance].selectedProcedure = proc;
     
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
