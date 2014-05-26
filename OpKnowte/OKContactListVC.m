@@ -32,8 +32,9 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -116,8 +117,8 @@
 
 -(void) getContactsList
 {
-    OKContactManager *contactManager = [OKContactManager instance];
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKContactManager *contactManager = [OKContactManager instance];
     [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:_contactID handler: ^(NSString* error, NSMutableArray* array){
         if (!error) {
             self.contactsArray = array;

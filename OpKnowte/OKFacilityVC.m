@@ -64,21 +64,23 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     OKContactManager *contactManager = [OKContactManager instance];
     if ([_roleID isEqualToString:@"7"]) {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
         [contactManager getOtherContactsByUserID:[OKUserManager instance].currentUser.identifier handler:^(NSString *errorMsg, NSMutableArray *contactsArray) {
-            [[OKLoadingViewController instance] hide];
             
             if (!errorMsg) {
                 self.contactsArray = contactsArray;
                 [self.facilityTableView reloadData];
             }
             NSLog(@"Error - %@", errorMsg);
-
+            [[OKLoadingViewController instance] hide];
         }];
     } else {
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
         [contactManager getContactsByUserID:[OKUserManager instance].currentUser.identifier roleID:_roleID handler: ^(NSString* error, NSMutableArray* array){
             [[OKLoadingViewController instance] hide];
             
@@ -87,6 +89,8 @@
                 [self.facilityTableView reloadData];
             }
             NSLog(@"Error - %@", error);
+            [[OKLoadingViewController instance] hide];
+
         }];
     }
 

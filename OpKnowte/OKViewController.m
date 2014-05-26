@@ -112,7 +112,7 @@
 
     OKUserManager *usermanager = [OKUserManager instance];
    
-    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""]) {
+    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""] || _passwordTextField.text == nil || _passwordTextField.text  == nil) {
         UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [loginFormAlertView show];
     }else {

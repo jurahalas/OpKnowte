@@ -36,7 +36,6 @@
     _daysPicker.dataSource = self;
     _daysPicker.delegate = self;
     _daysPicker.hidden=NO;
-    _daysPicker.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:0.9];
     self.daysPickerTextField.inputView = _daysPicker;
     self.pickerData = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",@"17",@"18",@"19",@"20",@"21",@"22",@"23",@"24",@"25",@"26",@"27",@"28",@"29",@"30"];
     [self getReminderSettings];
@@ -44,8 +43,9 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -59,13 +59,31 @@
 
 -(void)getReminderSettings
 {
-    OKProceduresManager *procManager = [OKProceduresManager instance];
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
+    OKProceduresManager *procManager = [OKProceduresManager instance];
     [procManager getReminderSettingsWithUserID:[OKUserManager instance].currentUser.identifier andProcedureID:_procID handler:^(NSString *errorMsg, NSMutableArray *reminderSettings) {
         
         _noOfDays = [reminderSettings valueForKey:@"noOfDays"];
+        if ([[self getAge:[reminderSettings valueForKey:@"noOfDays"]] intValue] > 0) {
+            _daysPickerTextField.text=[NSString stringWithFormat:@"    %@",[self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
+        }
+        [[OKLoadingViewController instance] hide];
     }];
-    [[OKLoadingViewController instance] hide];
+}
+
+- (id)getAge:(NSString *)DOB{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+    NSDate *start = [dateFormatter dateFromString:DOB];
+    NSString *endStr = [dateFormatter stringFromDate:[NSDate date]];
+    NSDate *end = [dateFormatter dateFromString:endStr];
+    
+    NSDateComponents *diff = [[NSCalendar currentCalendar] components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:end toDate:start options:0];
+    dateFormatter = nil;
+    
+    return [NSString stringWithFormat:@"%i",[diff day]];
 }
 
 #pragma mark - Text Fields methods
@@ -81,8 +99,8 @@
     _sendReminderTo.layer.borderColor =[UIColor whiteColor].CGColor;
     _sendReminderTo.layer.borderWidth = 1.f;
     _sendReminderTo.layer.cornerRadius = 14;
+    
 }
-
 
 #pragma mark - Picker View
 
@@ -100,8 +118,17 @@
 
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc] init];
     NSString *pickerString = [NSString stringWithFormat:@"%@", [_pickerData objectAtIndex:row]];
-    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+            pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+
+    }else{
+        pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+            _daysPicker.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:0.9];
+    }
+
     return pickerAttributedString;
 }
 
