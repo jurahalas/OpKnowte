@@ -141,17 +141,33 @@
     
     if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
         [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
+        
     } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
+        
     }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] || !_cameFromVC){
         [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
+        
     } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
+        
     }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
         [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
+        
     }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
         [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
-    } else {
+        
+    }
+    
+    
+    
+    else if ([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:[NSString stringWithFormat:@"%d", procID]];
+    }
+    
+    
+    
+    else if ([_cameFromVC isEqualToString:@"ImmediatePostOperative"]){
         id vc = nil;
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
             vc = [[OKShockwaveLithotripsyVC alloc] init];
@@ -167,6 +183,8 @@
         }
         [vc setValue:@(procID) forKey:@"procedureID"];
         [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        [self performSegueWithIdentifier:@"fromSelectProcToOngoingClinical" sender:nil];
     }
 }
 
@@ -176,27 +194,33 @@
     if([segue.identifier isEqualToString:@"fromSelectProcToDataShar"]){
         OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToAccessSettings"]){
        OKAccessConfirmViewController *sharVC = (OKAccessConfirmViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+        
     }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){
         OKTemplateViewController *sharVC = (OKTemplateViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToSurgicalLogs"]){
         OKSurgicalLogsVC *sharVC = (OKSurgicalLogsVC*)segue.destinationViewController;
         sharVC.procID = sender;
         int i = [sender  intValue] ;
         OKProcedureModel *tappedProc =_allProcArray[i-1];
         sharVC.procTitle = tappedProc.procedureText;
+        
     } else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
         OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
         reminderVC.procID = sender;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToOperativeData"]){
         OKIntraOperativeDataViewController * operativeData = (OKIntraOperativeDataViewController *)segue.destinationViewController;
         operativeData.procID = sender;
         int i = [sender intValue];
         OKProcedureModel *tappedProc = _allProcArray[i-1];
         operativeData.procTitle = tappedProc.procedureText;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToFollowUpData"]){
         OKFollowUpDataVC *reminderVC = (OKFollowUpDataVC*)segue.destinationViewController;
         reminderVC.procID = sender;

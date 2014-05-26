@@ -60,9 +60,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"fromDataCaptureToSelectProcedure" sender:self];
+    [self performSegueWithIdentifier:@"fromDataCaptureToSelectProcedure" sender:[NSString stringWithFormat:@"%d",indexPath.row]];
 }
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromDataCaptureToSelectProcedure"]){
+        if ([sender isEqualToString:@"0"]) {
+            OKSelectProcedureViewController *sharVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+            sharVC.cameFromVC = @"ImmediatePostOperative";
 
+        }
+        
+    }
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
