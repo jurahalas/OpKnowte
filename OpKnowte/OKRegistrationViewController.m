@@ -23,7 +23,8 @@
 @property (strong, nonatomic) IBOutlet OKCustomTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *confirmPasswordField;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
-@property (strong, nonatomic) IBOutlet UIPickerView *MDPiker;
+@property (strong, nonatomic) UIPickerView *MDPiker;
+@property (strong, nonatomic) UIView *pickerBGView;
 @property (strong, nonatomic) NSArray *MDPickerData;
 @property (nonatomic) BOOL animatedKeyboard;
 @end
@@ -37,7 +38,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
-    
+    [self setPickerDesign ];
     _MDPickerData = [[NSArray alloc] initWithObjects:@"MD",@"DO",@"PA",@"RN",@"LPN",@"MA",@"NONE",nil];
     _firstNameTextField.text = @"";
     _lastNameTextField.text = @"";
@@ -57,8 +58,28 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
+    
+    
 }
-
+-(void) setPickerDesign {
+    float yPoint;
+    if (IS_IPHONE_5 ) {
+        yPoint = 406;
+    } else {
+        yPoint = 318;
+    }
+    _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, yPoint, 320, 162)];
+    _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
+    self.MDPiker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
+    self.MDPiker.delegate = self;
+    self.MDPiker.dataSource = self;
+    [self.view addSubview:_pickerBGView];
+    [_pickerBGView addSubview:_MDPiker];
+    _pickerBGView.hidden = YES;
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
@@ -78,7 +99,15 @@
 
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up {
     
-    const int movementDistance = 70;// tweak as needed
+    int y;
+    if (IS_IPHONE_5) {
+        y = 70;
+    }else {
+        y = 158;
+    }
+    
+    const int movementDistance = y;// tweak as needed
+
     const float movementDuration = 0.3f; // tweak as needed
     int movement = (up ? -movementDistance : movementDistance);
     [UIView animateWithDuration:movementDuration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -99,7 +128,7 @@
         [textField resignFirstResponder];
         [nextResponder becomeFirstResponder];
     } else if (textField.tag == _emailTextField.tag){
-        _MDPiker.hidden = NO;
+        _pickerBGView.hidden = NO;
         [textField resignFirstResponder];
     } else {
         [textField resignFirstResponder];
@@ -119,10 +148,10 @@
     
     if(textField.tag == _MDTextField.tag) {
         [self.view endEditing:YES];
-        _MDPiker.hidden = NO;
+        _pickerBGView.hidden = NO;
         [_MDTextField resignFirstResponder];
     } else {
-        _MDPiker.hidden = YES;
+        _pickerBGView.hidden = YES;
     }
     if (textField.tag >4 && !_animatedKeyboard){
         [self animateTextField: textField up: YES];
@@ -189,11 +218,14 @@
 
 - (IBAction)MDButton:(id)sender {
     
-    _MDPiker.hidden = NO;
-    [self.view endEditing:YES];
-    if (_animatedKeyboard) {
-        [self animateTextField: _confirmPasswordField up: NO];
+    if (_pickerBGView.hidden) {
+        [self.view endEditing:YES];
+        if (_animatedKeyboard) {
+            [self animateTextField: _confirmPasswordField up: NO];
+        }
     }
+    _pickerBGView.hidden = !_pickerBGView.hidden;
+    
 }
 
 
