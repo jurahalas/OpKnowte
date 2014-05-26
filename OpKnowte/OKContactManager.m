@@ -43,8 +43,7 @@
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
         
-    }];
-    
+    }];    
 }
 
 -(void)deleteContactWithContactID:(NSString *)contactID handler:(void(^)(NSString *errorMsg))handler {

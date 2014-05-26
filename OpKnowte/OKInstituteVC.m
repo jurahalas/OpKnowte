@@ -172,6 +172,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
+        if ([alertView.message isEqualToString:@"Congratulations! You added new contact"]) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
 //            [self.navigationController popViewControllerAnimated:YES ];
         } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
