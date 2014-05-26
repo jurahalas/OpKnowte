@@ -10,8 +10,11 @@
 #import "OKOngoingData.h"
 #import <SVPullToRefresh.h>
 #import "OKOngoingClinicalViewController.h"
+#import "OKSettingsViewController.h"
+#import "OKDashboardVC.h"
+#import "OKInfoViewController.h"
 
-@interface OKProcedureDetailSummaryViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface OKProcedureDetailSummaryViewController () <UITableViewDelegate, UITableViewDataSource,OKBaseVCDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSOrderedDictionary *tableDict;
@@ -28,8 +31,10 @@
     
     self.tableView.backgroundColor = [UIColor clearColor];
     
+    [self draw];
+    
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 60.f));
-    [self addBottomTabBar];
+    
     [self setupPullToRefresh];
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
@@ -37,6 +42,40 @@
     }
 }
 
+-(void)draw{
+    OKBottomTabBarView *bottomTabBarView = [[OKBottomTabBarView alloc] init];
+    bottomTabBarView.delegate = self;
+    [self.view addSubview:bottomTabBarView];
+    [bottomTabBarView draw];
+}
+
+-(void) goToSettingsVC{
+    
+    if(![self.restorationIdentifier isEqualToString:@"settings"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+}
+-(void) goToDashboard {
+    if(![self.restorationIdentifier isEqualToString:@"dashboard"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKDashboardVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"dashboard"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+- (void)goToInfoVC{
+    if(![self.restorationIdentifier isEqualToString:@"info"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        OKInfoViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"info"];
+        vc.cameFromVC = @"LogoTBButton";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+//- (BOOL)navBar{
+//    return self.navigationController.navigationBarHidden;
+//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
