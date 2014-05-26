@@ -48,6 +48,7 @@
 }
 
 -(void)deleteContactWithContactID:(NSString *)contactID handler:(void(^)(NSString *errorMsg))handler {
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     NSDictionary *params = @{};
     NSString *url = [NSString stringWithFormat:@"deleteContact?id=%@", contactID];
@@ -55,6 +56,7 @@
     [self requestWithMethod:@"DELETE" path:url params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
         NSLog(@"%@",json);
+        [[OKLoadingViewController instance] hide];
     }];
     
 }

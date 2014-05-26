@@ -8,6 +8,7 @@
 
 #import "OKBaseManager.h"
 #import "OKUserModel.h"
+#import "OKLoadingViewController.h"
 
 @interface OKContactManager : OKBaseManager
 

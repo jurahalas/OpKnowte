@@ -172,17 +172,14 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        NSLog(@"cameeeeee    %@", _cameFromVC);
-        NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
-        NSLog(@"ololl %@", _cameFromVC);
         if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
-            [self.navigationController popViewControllerAnimated:YES ];
+//            [self.navigationController popViewControllerAnimated:YES ];
         } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
             [self performSegueWithIdentifier:@"backToDashboard" sender:self];
         }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
             [self.navigationController popViewControllerAnimated:YES];
         }else if ([_cameFromVC isEqualToString:@"ContactListVC"]){
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
         
     }
