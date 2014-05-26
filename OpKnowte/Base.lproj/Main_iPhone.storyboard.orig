@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
-<<<<<<< HEAD
         <deployment defaultVersion="1552" identifier="iOS"/>
-=======
-        <deployment defaultVersion="1536" identifier="iOS"/>
->>>>>>> 01e43b4568d45ed0c4a0c456cb61e8f83f39805d
+<<<<<<< HEAD
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+=======
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -522,7 +522,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-                                <rect key="frame" x="0.0" y="20" width="320" height="488"/>
+                                <rect key="frame" x="0.0" y="20.000001172550359" width="320" height="488"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -645,6 +645,7 @@
                         <segue destination="etU-ag-MlO" kind="push" identifier="fromSelectProcToOperativeData" id="JwJ-1e-A9O"/>
                         <segue destination="ZKR-1F-KMK" kind="push" identifier="fromSelectProcToFollowUpData" id="VEZ-Kb-dUr"/>
                         <segue destination="dLQ-jH-65l" kind="push" identifier="fromSelectProcToOngoingClinical" id="veZ-bC-PGL"/>
+                        <segue destination="WIT-md-SDl" kind="push" identifier="toReminder" id="cK6-Wk-pfO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D8-zs-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2900,11 +2901,11 @@
             <objects>
                 <viewController storyboardIdentifier="FacilityVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b3m-w2-gJA" customClass="OKFacilityVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F4i-1r-20h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568.00000000000011"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2963,8 +2964,8 @@
 <<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="461.00000000000006" width="320" height="35"/>
 =======
-                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
->>>>>>> 01e43b4568d45ed0c4a0c456cb61e8f83f39805d
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3821,18 +3822,35 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="iYE-S8-xzH"/>
+        <segue reference="UMT-op-RBq"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="R5c-Bb-DU8"/>
+=======
         <segue reference="hs5-kv-qjd"/>
         <segue reference="NUC-dJ-uGW"/>
         <segue reference="aL2-xa-szT"/>
         <segue reference="iYE-S8-xzH"/>
-        <segue reference="R5c-Bb-DU8"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
         <segue reference="goQ-lN-Lsa"/>
+        <segue reference="ytp-fp-EJd"/>
         <segue reference="Aik-36-Z3R"/>
-        <segue reference="veZ-bC-PGL"/>
-        <segue reference="9Vm-fe-BqP"/>
+<<<<<<< HEAD
         <segue reference="DMv-Rl-71E"/>
+        <segue reference="9Vm-fe-BqP"/>
         <segue reference="ytp-fp-EJd"/>
         <segue reference="IcY-8f-Npy"/>
         <segue reference="dvt-ir-lar"/>
+=======
+        <segue reference="aKz-2x-G8K"/>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="IcY-8f-Npy"/>
+        <segue reference="veZ-bC-PGL"/>
+        <segue reference="DoT-oZ-zGI"/>
+        <segue reference="9Vm-fe-BqP"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
     </inferredMetricsTieBreakers>
 </document>

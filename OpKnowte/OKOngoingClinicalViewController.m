@@ -146,6 +146,7 @@
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
+    _cameFromVC = @"ongoing";
 }
 
 

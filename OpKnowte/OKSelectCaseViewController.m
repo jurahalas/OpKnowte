@@ -38,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@", _cameFromVC);
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y, tableView.frame.size.width, (tableView.frame.size.height - 57.f));
@@ -136,13 +137,17 @@
 
     if (self.isReminderSetting) {
         [self performSegueWithIdentifier:@"fromCasesToReminder" sender:[NSString stringWithFormat:@"%@", _procID]];
+
     }else{
         [[OKLoadingViewController instance]showWithText:@"Loading"];
         [[OKUserManager instance] updateDataSharingSettingsWithProcID:self.procID userID:[OKUserManager instance].currentUser.identifier isSharing:@"no" handler:^(NSString* error){
             [[OKLoadingViewController instance]hide];
             OKCase *selCase = self.cases[indexPath.row];
             [OKCaseManager instance].selectedCase = selCase;
-            [self performSegueWithIdentifier:@"selectTimepoint" sender:nil];
+            if ([_cameFromVC isEqualToString:@"Reminder"])
+                [self performSegueWithIdentifier:@"fromCasesToReminder" sender:nil];
+            else
+                [self performSegueWithIdentifier:@"selectTimepoint" sender:nil];
         
         }];
 
