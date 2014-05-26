@@ -38,7 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@", _cameFromVC);
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.frame = CGRectMake(tableView.frame.origin.x, tableView.frame.origin.y, tableView.frame.size.width, (tableView.frame.size.height - 57.f));
