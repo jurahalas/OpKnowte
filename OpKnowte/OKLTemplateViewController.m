@@ -77,10 +77,21 @@
     return _variablesArray.count;
 }
 -(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    
+    UIColor * color = [UIColor whiteColor];
+    
     OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*) _variablesArray[row];
     NSString *pickerString = [NSString stringWithFormat:@"%@: %@",model.ID, model.key];
-    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    return pickerAttributedString;
+    
+    if (IS_IOS7) {
+        NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName:color }];
+        return pickerAttributedString;
+    }
+    else  {
+        color = [UIColor blackColor];
+    NSAttributedString *pickerAttributed = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
+        return pickerAttributed;
+    }
 }
 
 - (IBAction)backButton:(id)sender {

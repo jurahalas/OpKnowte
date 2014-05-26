@@ -23,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet OKCustomTextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *confirmPasswordField;
 @property (strong, nonatomic) IBOutlet UIButton *continueButton;
-@property (strong, nonatomic) UIPickerView *MDPiker;
+@property (strong, nonatomic) IBOutlet UIPickerView *MDPiker;
 @property (strong, nonatomic) UIView *pickerBGView;
 @property (strong, nonatomic) NSArray *MDPickerData;
 @property (nonatomic) BOOL animatedKeyboard;
@@ -66,7 +66,7 @@
     if (IS_IPHONE_5 ) {
         yPoint = 406;
     } else {
-        yPoint = 318;
+        yPoint = 258;
     }
     _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, yPoint, 320, 162)];
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
@@ -76,8 +76,6 @@
     [self.view addSubview:_pickerBGView];
     [_pickerBGView addSubview:_MDPiker];
     _pickerBGView.hidden = YES;
-    
-    
     
 }
 - (void)didReceiveMemoryWarning {
@@ -198,14 +196,19 @@
 
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
-    UIColor *color = [UIColor whiteColor];
-    if (IS_IOS6) {
-        color = [UIColor blackColor];
-    }
     NSString *pickerString = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
-    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
-    return pickerAttributedString;
+    UIColor *color = [UIColor whiteColor];
     
+    if (IS_IOS7) {
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
+        return pickerAttributedString;
+    }
+    else{
+        color = [UIColor blackColor];
+        
+        NSAttributedString *pickerAttributed = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
+        return pickerAttributed;
+    }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
