@@ -300,7 +300,7 @@
                    @"lysisOfAdhesions":         [procModel valueForKey:@"var_lysisOfAdhesions"],
                    
                    
-                   @"anestesia":                [procModel valueForKey:@"var_anastesia"],
+                   @"anestesia":                [procModel valueForKey:@"var_anesthesia"],
                    @"ethnicity":                [procModel valueForKey:@"var_ethnicity"],
                    
                    @"clinicalStage":            [procModel valueForKey:@"var_stage"],
