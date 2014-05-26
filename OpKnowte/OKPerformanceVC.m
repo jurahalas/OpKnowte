@@ -9,23 +9,13 @@
 #import "OKPerformanceVC.h"
 #import "OKSelectProcedureViewController.h"
 
-@interface OKPerformanceVC ()
+@interface OKPerformanceVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *performanceTableView;
 
 @end
 
 @implementation OKPerformanceVC
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 
 - (void)viewDidLoad
 {
@@ -56,13 +46,16 @@
 }
 
 #pragma mark - IBActions
-- (IBAction)backButton:(id)sender {
+
+- (IBAction)backButton:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table View methods
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 2;
 }
 

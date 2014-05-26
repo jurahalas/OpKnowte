@@ -209,7 +209,6 @@
         }
     }
     
-    
     indicationLabel.text = indicationText;
     NSString *indicationString = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     indicationString = [indicationString stringByReplacingOccurrencesOfString:@")" withString:@""];

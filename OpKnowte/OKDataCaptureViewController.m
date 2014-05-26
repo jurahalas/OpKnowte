@@ -19,15 +19,6 @@
 @implementation OKDataCaptureViewController
 @synthesize dataCapture;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,27 +51,43 @@
 
 
 #pragma mark - IBActions
-- (IBAction)backButton:(id)sender {
+- (IBAction)backButton:(id)sender
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table View methods
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    OKDataCaptureTableViewCell *cell = (OKDataCaptureTableViewCell *)[dataCapture cellForRowAtIndexPath:indexPath];
-    if ([cell.dataCaptureLable.text isEqualToString:@"Immediate Post-Operative"]) {
-        [self performSegueWithIdentifier:@"fromDataCaptureToSelectProcedure" sender:self];
-    }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"fromDataCaptureToSelectProcedure" sender:[NSString stringWithFormat:@"%d",indexPath.row]];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromDataCaptureToSelectProcedure"]){
+        if ([sender isEqualToString:@"0"]) {
+            OKSelectProcedureViewController *sharVC = (OKSelectProcedureViewController*)segue.destinationViewController;
+            sharVC.cameFromVC = @"ImmediatePostOperative";
+
+        }
+        
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return 2;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 60.f;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *cellIdentifier = @"dataCapture";
     OKDataCaptureTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     

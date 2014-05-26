@@ -9,24 +9,25 @@
 #import "OKSelectTimePointViewController.h"
 #import "OKTimePointModel.h"
 #import "OKTimePointsManager.h"
+#import "OKProcedureDetailSummaryViewController.h"
+#import "OKCaseManager.h"
+#import "OKCase.h"
+#import "OKProceduresManager.h"
+#import "OKProcedureModel.h"
 #import "OKSelectFUDVariablesVC.h"
+#import "OKOngoingClinicalViewController.h"
 
-@interface OKSelectTimePointViewController ()
+@interface OKSelectTimePointViewController () <UITableViewDataSource, UITableViewDelegate>
+
 @property (strong, nonatomic) IBOutlet UITableView *selectTimePointTableView;
-@property (strong, nonatomic) NSMutableArray *timePointsArray;
+@property (strong, nonatomic) NSArray *timePointsArray;
 @property (nonatomic) int timepointID;
+
+@property (strong, nonatomic) OKCase *caseObj;
+
 @end
 
 @implementation OKSelectTimePointViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -40,12 +41,11 @@
     _selectTimePointTableView.frame = CGRectMake(_selectTimePointTableView.frame.origin.x, _selectTimePointTableView.frame.origin.y, _selectTimePointTableView.frame.size.width, (_selectTimePointTableView.frame.size.height - 50.f));
     [self addBottomTabBar];
     
-    
+    self.caseObj = [OKCaseManager instance].selectedCase;
+        
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
-    [timePointsManager getAllTimePointsWithHandler:     ^(NSString* error, NSMutableArray* timePointsArray){
-        NSLog(@"Error - %@", error);
-        
+    [timePointsManager getAllTimePointsWithHandler:^(NSString* error, NSArray* timePointsArray){
         _timePointsArray = timePointsArray;
         [self.selectTimePointTableView reloadData];
         [[OKLoadingViewController instance] hide];
@@ -91,13 +91,27 @@
     }
     
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
-    cell.timePointLabel.text = timePoint.timePointName;
-    [cell setCellBGImageLight:indexPath.row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    return cell;
     
+    if (indexPath.row == 11) {
+        [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
+    }else{
+        int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
+        if (procedure == 10) {
+            [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
+        }else{
+            [cell.timePointLabel setText:timePoint.timePointName];
+        }
+    }
+    [cell setCellBGImageLight:(int)indexPath.row];
+    return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKTimePointModel *timePoint = self.timePointsArray[indexPath.row];
+    [OKTimePointsManager instance].selectedTimePoint = timePoint;
+
     NSString *cameFromVC = [[NSString alloc] init];
     if (indexPath.row == 0) {
         cameFromVC = @"weeks";
@@ -107,7 +121,23 @@
     _timepointID = indexPath.row+1;
     if([_cameFromVC isEqualToString:@"FollowUpData"]){
         [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
-        
+    }else{
+        [[OKLoadingViewController instance]showWithText:@"Loading"];
+        [[OKUserManager instance]getUserAccess:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg) {
+            if(!errorMsg){
+                [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
+                
+                    [[OKLoadingViewController instance]hide];
+                    if(!errorMsg){
+                        if(![ongoingData.caseID isEqualToString:@""])
+                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        else
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                    }
+                }];
+            }else
+                [[OKLoadingViewController instance]hide];
+        }];
     }
 }
 
@@ -122,8 +152,23 @@
         sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_totlaNationalCases];
         sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_totalSurgeonCases];
         sharVC.timepointID = _timepointID;
-        
+    }else if ([segue.identifier isEqualToString:@"summaryVC"]){
+        OKProcedureDetailSummaryViewController *summaryVC = (OKProcedureDetailSummaryViewController*)segue.destinationViewController;
+        summaryVC.ongoingData = sender;
+        summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+    }else if ([segue.identifier isEqualToString:@"ongoingClinical"]){
+        OKOngoingClinicalViewController *summaryVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
+        summaryVC.ongoingData = sender;
+        summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
     }
+
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.selectTimePointTableView deselectRowAtIndexPath:self.selectTimePointTableView.indexPathForSelectedRow animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

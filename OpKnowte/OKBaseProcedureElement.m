@@ -27,13 +27,5 @@
 -(void)setup
 {
 }
--(void) setFieldName:(NSString *)fieldName{
-    _fieldName = fieldName;
-}
-
--(void)setPlaceHolder:(NSString *)placeHolder
-{
-    _placeHolder = placeHolder;
-}
 
 @end

@@ -8,9 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@interface OKSimpleTableItem : NSObject
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *value;
+
++(id)itemWithTitle:(NSString*)title value:(NSString*)value;
+
+@end
+
 @interface OKBaseModel : NSObject
 
 @property (nonatomic, strong) NSString *identifier;
 
 -(void)setModelWithDictionary: (NSDictionary*) dictionary;
+
 @end

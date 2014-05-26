@@ -24,6 +24,8 @@
 
 -(void)changePasswordWithUserID:(NSString*)userID password:(NSString*)password handler:(void(^)(NSString *errorMsg))handler;
 
+-(void)getUserAccess:(NSString *)procedureID handler:(void(^)(NSString *errorMsg))handler;
+
 - (void)updateCurrentUserFromJSON:(NSDictionary*)json;
 
 -(void)updateDataSharingSettingsWithProcID:(NSString *)procedureID userID:(NSString *)userID isSharing:(NSString*)sharing handler:(void(^)(NSString *errorMsg))handler;

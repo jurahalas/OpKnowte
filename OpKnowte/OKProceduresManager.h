@@ -13,7 +13,11 @@
 #import "OKUserManager.h"
 #import "OKCase.h"
 
+@class OKProcedureModel;
+
 @interface OKProceduresManager : OKBaseManager
+
+@property (nonatomic, strong) OKProcedureModel *selectedProcedure;
 
 + (OKProceduresManager *)instance;
 

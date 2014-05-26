@@ -33,10 +33,11 @@
     textFieldIconView.backgroundColor = [UIColor clearColor];
     self.leftView = textFieldIconView;
     self.leftViewMode = UITextFieldViewModeAlways;
-
 }
--(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow{
-    
+
+
+-(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow
+{    
     UIImage *textFieldImage = [[UIImage alloc] init];
     if ([placeholder isEqualToString:@"First name"] || [placeholder isEqualToString:@"Last name"] || [placeholder isEqualToString:@"Email"]) {
         textFieldImage = [UIImage imageNamed:@"name"];

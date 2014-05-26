@@ -7,7 +7,6 @@
 //
 
 #import "OKTimePointsManager.h"
-#import "OKTimePointModel.h"
 
 @implementation OKTimePointsManager
 
@@ -20,11 +19,9 @@
 }
 
 
-- (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSMutableArray *timePointsArray))handler
+- (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler
 {
-    NSDictionary *params = @{};
-    
-    [self requestWithMethod:@"GET" path:@"getAllTimePoints" params:params handler:^(NSError *error, id json) {
+    [self requestWithMethod:@"GET" path:@"getAllTimePoints" params:nil handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         
         NSMutableArray *timePointsArray = [[NSMutableArray alloc] init];

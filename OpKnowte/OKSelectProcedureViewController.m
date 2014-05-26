@@ -108,65 +108,6 @@
 
 
 #pragma mark - Table View methods
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
-    int procID = 0;
-    if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
-        procID = 10;
-    }
-    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
-       procID = 2;
-    }
-    if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
-        procID = 9;
-    }
-    if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
-        procID = 1;
-    }
-    
-    
-    
-    if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
-        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
-    } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
-        [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
-    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] ){
-        [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
-    } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
-        [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
-    }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
-        [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
-    }else if([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
-        [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:[NSString stringWithFormat:@"%d",procID]];
-    }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
-        [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
-    } else {
-        if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
-            OKShockwaveLithotripsyVC *vc = [[OKShockwaveLithotripsyVC alloc] init];
-            vc.procedureID = procID;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
-            OKLRPartialNephrectomyVC *vc = [[OKLRPartialNephrectomyVC alloc] init];
-            vc.procedureID = procID;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
-            OKPenileProsthesisVC *vc = [[OKPenileProsthesisVC alloc] init];
-            vc.procedureID = procID;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
-            OKLRRadicalProstatectomyVC *vc = [[OKLRRadicalProstatectomyVC alloc] init];
-            vc.procedureID = procID;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _procArray.count;
@@ -184,37 +125,102 @@
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
     cell.procedureLabel.text = procedure.procedureText;
     [cell setCellBGImageLight:indexPath.row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     return cell;
-    
 }
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    OKProcedureModel *proc = _allProcArray[indexPath.row];
+    [OKProceduresManager instance].selectedProcedure = proc;
+    
+    OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
+    NSInteger procID = [proc.identifier integerValue];
+    
+    if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
+        [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
+        [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] || !_cameFromVC){
+        [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
+        [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    }else if ([_cameFromVC isEqualToString:@"SurgicalLogsVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToSurgicalLogs" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    }
+    
+    
+    
+    else if ([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
+        [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:[NSString stringWithFormat:@"%d", procID]];
+    }
+    
+    
+    
+    else if ([_cameFromVC isEqualToString:@"ImmediatePostOperative"]){
+        id vc = nil;
+        if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
+            vc = [[OKShockwaveLithotripsyVC alloc] init];
+        }else
+        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+            vc = [[OKLRPartialNephrectomyVC alloc] init];
+        }else
+        if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
+            vc = [[OKPenileProsthesisVC alloc] init];
+        }else
+        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+            vc = [[OKLRRadicalProstatectomyVC alloc] init];
+        }
+        [vc setValue:@(procID) forKey:@"procedureID"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        [self performSegueWithIdentifier:@"fromSelectProcToOngoingClinical" sender:nil];
+    }
+}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"fromSelectProcToDataShar"]){
         OKDataSharingViewController *sharVC = (OKDataSharingViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToAccessSettings"]){
        OKAccessConfirmViewController *sharVC = (OKAccessConfirmViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+        
     }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){
         OKTemplateViewController *sharVC = (OKTemplateViewController*)segue.destinationViewController;
         sharVC.procID = sender;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToSurgicalLogs"]){
         OKSurgicalLogsVC *sharVC = (OKSurgicalLogsVC*)segue.destinationViewController;
         sharVC.procID = sender;
         int i = [sender  intValue] ;
         OKProcedureModel *tappedProc =_allProcArray[i-1];
         sharVC.procTitle = tappedProc.procedureText;
+        
     } else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
         OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
         reminderVC.procID = sender;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToOperativeData"]){
         OKIntraOperativeDataViewController * operativeData = (OKIntraOperativeDataViewController *)segue.destinationViewController;
         operativeData.procID = sender;
         int i = [sender intValue];
         OKProcedureModel *tappedProc = _allProcArray[i-1];
         operativeData.procTitle = tappedProc.procedureText;
+        
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToFollowUpData"]){
         OKFollowUpDataVC *reminderVC = (OKFollowUpDataVC*)segue.destinationViewController;
         reminderVC.procID = sender;

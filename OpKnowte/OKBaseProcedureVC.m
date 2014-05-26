@@ -40,12 +40,18 @@
     }
     return self;
 }
+
+
 -(id) nextVC{
     return nil;
 }
+
+
 -(BOOL) canGoToNextVC{
     return false;
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -256,6 +262,7 @@
     }
     _xPoint += 43;
 }
+
 -(NSMutableArray*)convertStoneSizeArray:(NSMutableArray *) Array
 {
     NSMutableArray * b = [[NSMutableArray alloc]init];
@@ -384,7 +391,6 @@
     if (!self.datePicker.hidden) {
         [self hideDatePicker];
     }
-
 }
 
 #pragma mark - picker data source
@@ -457,7 +463,6 @@
             vc.model = self.model;
             vc.procedureID = self.procedureID;
             [self.navigationController pushViewController:vc animated:YES];
-            
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""

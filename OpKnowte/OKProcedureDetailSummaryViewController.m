@@ -2,47 +2,53 @@
 //  OKProcedureDetailSummaryViewController.m
 //  OpKnowte
 //
-//  Created by Artem Frolow on 4/18/14.
+//  Created by Eugene on 4/18/14.
 //  Copyright (c) 2014 OpKnowte Corp. All rights reserved.
 //
 
 #import "OKProcedureDetailSummaryViewController.h"
+#import "OKOngoingData.h"
+#import <SVPullToRefresh.h>
+#import "OKOngoingClinicalViewController.h"
 
-@interface OKProcedureDetailSummaryViewController ()
-@property (strong, nonatomic) IBOutlet UITableView *procedureDetailSummaryTableView;
+@interface OKProcedureDetailSummaryViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSOrderedDictionary *tableDict;
+@property (strong, nonatomic) SVPullToRefreshView *pullToRefreshView;
 
 @end
 
 @implementation OKProcedureDetailSummaryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
-    _procedureDetailSummaryTableView.backgroundColor = [UIColor clearColor];
     
-    self.procedureDetailSummaryTableView.dataSource = self;
-    self.procedureDetailSummaryTableView.delegate = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
     
-    _procedureDetailSummaryTableView.frame = CGRectMake(_procedureDetailSummaryTableView.frame.origin.x, _procedureDetailSummaryTableView.frame.origin.y, _procedureDetailSummaryTableView.frame.size.width, (_procedureDetailSummaryTableView.frame.size.height - 60.f));
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 60.f));
     [self addBottomTabBar];
-    
-    [self.procedureDetailSummaryTableView reloadData];
+    [self setupPullToRefresh];
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
+        self.tableDict = self.ongoingData.twoWeeksItems;
+    else
+        self.tableDict = self.ongoingData.sixWeeksItems;
+    [self.tableView reloadData];
+}
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -53,24 +59,23 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
-- (void)didReceiveMemoryWarning
+
+
+-(void)setupPullToRefresh
 {
-    [super didReceiveMemoryWarning];
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [self performSegueWithIdentifier:@"ongoingClinical" sender:nil];
+        [self.tableView.pullToRefreshView stopAnimating];
+    }];
+    [self.tableView.pullToRefreshView setTitle:@"Pull down to edit" forState:SVPullToRefreshStateAll];
+    [self.tableView.pullToRefreshView setSubtitle:nil forState:SVPullToRefreshStateAll];
+    [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
 }
-
-
-#pragma mark - IBActions
-- (IBAction)backButton:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
-
 
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 12;
+    return self.tableDict.allKeys.count;
 }
 
 
@@ -82,17 +87,27 @@
         cell = [[OKProcedureDetailSummaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-   
-    [cell setLabels];
-    // Unselected cells
-    //    if (indexPath.row >3) {
-    //        [cell setCellUserIntaractionDisabled];
-    //    } else {
-    //        [cell setCellUserIntaractionEnabled];
-    //    }
-    
+    NSString *key = self.tableDict.allKeys[indexPath.row];
+    cell.procedureKeyLabel.text = key;
+    cell.procedureValueLabel.text = [self.tableDict objectForKey:key];
     return cell;
-    
+}
+
+#pragma mark - prepare for segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"ongoingClinical"]){
+        OKOngoingClinicalViewController *ongVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
+        ongVC.ongoingData = self.ongoingData;
+        ongVC.detailPeriod = self.detailPeriod;
+    }
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
 }
 
 @end

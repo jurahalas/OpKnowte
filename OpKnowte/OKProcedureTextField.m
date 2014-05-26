@@ -49,6 +49,22 @@
     return YES;
 }
 
+
+-(void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    if(!enabled){
+        self.customTextField.text = nil;
+    }
+}
+
+
+-(void)setValue:(NSString*)value
+{
+    self.customTextField.text = value;
+}
+
+
 - (IBAction)textFieldChanged:(id)sender {
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }

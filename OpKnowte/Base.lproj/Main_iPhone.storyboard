@@ -441,10 +441,10 @@
         <!--Procedure Detail Summary View Controller - Summary-->
         <scene sceneID="K3O-ms-HFp">
             <objects>
-                <viewController id="XTe-gD-PYM" customClass="OKProcedureDetailSummaryViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="XTe-gD-PYM" customClass="OKProcedureDetailSummaryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WTl-wz-RgR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="73" sectionHeaderHeight="22" sectionFooterHeight="22" id="5vJ-MZ-yBd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="577"/>
@@ -482,10 +482,15 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XTe-gD-PYM" id="7Rz-An-uN4"/>
+                                    <outlet property="delegate" destination="XTe-gD-PYM" id="ASh-At-KkJ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="YbG-2J-oO7">
                             <connections>
@@ -494,8 +499,10 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="info.png" id="fsq-SX-mHD"/>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="procedureDetailSummaryTableView" destination="5vJ-MZ-yBd" id="cNZ-hX-REV"/>
+                        <outlet property="tableView" destination="5vJ-MZ-yBd" id="LVU-qb-KqC"/>
+                        <segue destination="dLQ-jH-65l" kind="push" identifier="ongoingClinical" id="UMT-op-RBq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,138 +517,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="1ey-7V-Z8W" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="76" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
+                                <rect key="frame" x="0.0" y="20" width="320" height="488"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="dHH-lm-EPI"/>
+                                    <outlet property="delegate" destination="dLQ-jH-65l" id="3fi-ss-b1V"/>
                                 </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IRp-eW-QxR">
-                                <rect key="frame" x="43" y="76" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="chestXrayButton:" destination="dLQ-jH-65l" eventType="touchUpInside" id="QHj-ft-hhg"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="oxg-yN-Z3h" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="121" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="pHg-E7-Tq7"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="DGo-NL-6ai" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="166" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="G6x-zy-CDb"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="0ej-3r-kN2" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="211" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="1vL-yj-VhY"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="WC2-bg-En0" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="256" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="GPN-mC-xDJ"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="AxV-D7-yiH" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="301" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="aNa-it-Q32"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Afb-Wy-obp" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="346" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="6tz-nY-chI"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="F5c-Kt-cSO" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="391" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="aie-WR-dCs"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="oSB-Iv-83v" customClass="OKCustomTextField">
-                                <rect key="frame" x="43" y="436" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dLQ-jH-65l" id="cRM-Ap-OaU"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="va8-sl-iSj">
-                                <rect key="frame" x="43" y="256" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="liverEnzumesButton:" destination="dLQ-jH-65l" eventType="touchUpInside" id="wiG-lm-gCG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WBU-Wl-7HU">
-                                <rect key="frame" x="43" y="346" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="postSiteHernia:" destination="dLQ-jH-65l" eventType="touchUpInside" id="oLr-6r-cnr"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Aap-gF-hBJ">
-                                <rect key="frame" x="43" y="391" width="235" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="ctScan:" destination="dLQ-jH-65l" eventType="touchUpInside" id="Yym-bU-yHu"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" id="UvD-Ns-I2q">
-                                <rect key="frame" x="0.0" y="430" width="320" height="138"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <pickerView hidden="YES" contentMode="scaleToFill" id="phN-dy-0fT">
-                                        <rect key="frame" x="0.0" y="-18" width="320" height="162"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="dLQ-jH-65l" id="Jhe-Hr-88W"/>
-                                        </connections>
-                                    </pickerView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                            </scrollView>
                             <view contentMode="scaleToFill" id="uoE-eM-bsQ">
                                 <rect key="frame" x="0.0" y="510" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -654,7 +537,24 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="updateTapped:" destination="dLQ-jH-65l" eventType="touchUpInside" id="kgM-nb-jhl"/>
+                                        </connections>
                                     </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="UvD-Ns-I2q">
+                                <rect key="frame" x="0.0" y="430" width="320" height="138"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <pickerView hidden="YES" contentMode="scaleToFill" id="phN-dy-0fT">
+                                        <rect key="frame" x="0.0" y="-18" width="320" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="dLQ-jH-65l" id="Jhe-Hr-88W"/>
+                                        </connections>
+                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -672,15 +572,7 @@
                         <outlet property="MDPiker" destination="phN-dy-0fT" id="uze-C6-2zy"/>
                         <outlet property="PikerView" destination="UvD-Ns-I2q" id="30L-H8-qzv"/>
                         <outlet property="bottonTabBarButton" destination="uoE-eM-bsQ" id="Rj0-Tu-1K4"/>
-                        <outlet property="bun" destination="DGo-NL-6ai" id="HGi-ac-HWO"/>
-                        <outlet property="chestXray" destination="oxg-yN-Z3h" id="iPB-Qj-Srr"/>
-                        <outlet property="chestXrayPiker" destination="1ey-7V-Z8W" id="Lex-fw-bH9"/>
-                        <outlet property="creatinine" destination="0ej-3r-kN2" id="K4C-zo-XdJ"/>
-                        <outlet property="ctScanPiker" destination="F5c-Kt-cSO" id="Zag-AN-GBZ"/>
-                        <outlet property="liverEnzymes" destination="AxV-D7-yiH" id="Hpk-2j-juh"/>
-                        <outlet property="liverEnzymesPiker" destination="WC2-bg-En0" id="1ad-6R-0DE"/>
-                        <outlet property="outher" destination="oSB-Iv-83v" id="g8k-58-AIP"/>
-                        <outlet property="portSiteHerniaPiker" destination="Afb-Wy-obp" id="6hv-8B-Tsz"/>
+                        <outlet property="scrollView" destination="rtS-FP-IrK" id="EcX-XD-RBa"/>
                         <outlet property="updateButton" destination="aPE-UF-SnF" id="Nru-HJ-nAJ"/>
                     </connections>
                 </viewController>
@@ -748,6 +640,7 @@
                         <segue destination="WIT-md-SDl" kind="push" identifier="fromProceduresToCases" id="Aik-36-Z3R"/>
                         <segue destination="etU-ag-MlO" kind="push" identifier="fromSelectProcToOperativeData" id="JwJ-1e-A9O"/>
                         <segue destination="ZKR-1F-KMK" kind="push" identifier="fromSelectProcToFollowUpData" id="VEZ-Kb-dUr"/>
+                        <segue destination="dLQ-jH-65l" kind="push" identifier="fromSelectProcToOngoingClinical" id="veZ-bC-PGL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D8-zs-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -843,6 +736,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WIT-md-SDl" id="xQi-d2-gjW"/>
+                                    <outlet property="delegate" destination="WIT-md-SDl" id="CK6-YJ-2Gc"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -855,8 +752,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="selectCase" destination="nVb-Am-Awp" id="g0V-lT-tuV"/>
+                        <outlet property="tableView" destination="nVb-Am-Awp" id="Acv-ZS-Y4n"/>
                         <segue destination="zNm-fe-JEM" kind="push" identifier="fromCasesToReminder" id="9We-sb-8ZF"/>
+                        <segue destination="kGF-3f-Avh" kind="push" identifier="selectTimepoint" id="DoT-oZ-zGI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykd-1u-CKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1983,6 +1881,8 @@
                     <connections>
                         <outlet property="selectTimePointTableView" destination="gj0-ke-MrT" id="y19-ef-GKA"/>
                         <segue destination="qz9-gN-LRh" kind="push" identifier="fromSelectTimeToSelectVariables" id="4NU-pS-6Wf"/>
+                        <segue destination="XTe-gD-PYM" kind="push" identifier="summaryVC" id="6PR-zG-Mbx"/>
+                        <segue destination="dLQ-jH-65l" kind="push" identifier="ongoingClinical" id="7JH-59-ckX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFv-iZ-7Pc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3917,12 +3817,15 @@
         <segue reference="hs5-kv-qjd"/>
         <segue reference="NUC-dJ-uGW"/>
         <segue reference="aL2-xa-szT"/>
-        <segue reference="lPY-Bo-TiM"/>
-        <segue reference="9Vm-fe-BqP"/>
+        <segue reference="iYE-S8-xzH"/>
+        <segue reference="R5c-Bb-DU8"/>
         <segue reference="goQ-lN-Lsa"/>
-        <segue reference="ytp-fp-EJd"/>
+        <segue reference="Aik-36-Z3R"/>
+        <segue reference="veZ-bC-PGL"/>
+        <segue reference="9Vm-fe-BqP"/>
         <segue reference="DMv-Rl-71E"/>
-        <segue reference="dvt-ir-lar"/>
+        <segue reference="ytp-fp-EJd"/>
         <segue reference="IcY-8f-Npy"/>
+        <segue reference="dvt-ir-lar"/>
     </inferredMetricsTieBreakers>
 </document>

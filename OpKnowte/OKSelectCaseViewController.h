@@ -10,7 +10,10 @@
 #import "OKBaseViewController.h"
 #import "OKLoadingViewController.h"
 
-@interface OKSelectCaseViewController : OKBaseViewController <UITableViewDelegate , UITableViewDataSource>
+@interface OKSelectCaseViewController : OKBaseViewController
+
+@property (nonatomic) BOOL isReminderSetting;
+@property (nonatomic) BOOL fromSettings;
 
 @property(strong, nonatomic) NSString *procID;
 @property(strong, nonatomic) NSString *detailID;
