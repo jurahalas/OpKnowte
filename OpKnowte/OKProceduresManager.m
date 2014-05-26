@@ -251,17 +251,85 @@
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
                    @"gender":                 [procModel valueForKey:@"var_sex"],
                    @"dateOfService":          dateOfServiceString,
+                  
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   @"gender":                 [procModel valueForKey:@"var_sex"],
+                   
                    
                    };
     } else if ([procedureID isEqualToString:@"1"] ){
-        params = @{@"surgeonID":              surgeonID,
-                   @"procedureID":            procedureID,
-                   @"patientName":            [procModel valueForKey:@"var_patientName"],
-                   @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
-                   @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
-                   @"gender":                 [procModel valueForKey:@"var_sex"],
-                   @"dateOfService":          dateOfServiceString,
+        params = @{@"surgeonID":                surgeonID,
+                   @"procedureID":              procedureID,
+                   @"patientName":              [procModel valueForKey:@"var_patientName"],
+                   @"patientDob":               [procModel valueForKey:@"var_patientDOB"],
+                   @"mrNumber":                 [procModel valueForKey:@"var_MRNumber"],
+                   @"gender":                   [procModel valueForKey:@"var_sex"],
+                   @"dateOfService":            dateOfServiceString,
                    
+                   
+                   
+                   @"preOpDX":                  [procModel valueForKey:@"var_preOpDX"],
+                   @"postOpDX":                 [procModel valueForKey:@"var_postOp"],
+                   @"nerveSparing":             [procModel valueForKey:@"var_nervesparing"],
+                   @"assistants":               [procModel valueForKey:@"var_assistant"],
+                   
+                   
+                   @"pelvicLymphNodeDissection":[procModel valueForKey:@"var_pelvicDisection"],
+                   @"bladderNeckReconstruction":[procModel valueForKey:@"var_bladderNeckReconstruction"],
+                   @"sling":                    [procModel valueForKey:@"var_sling"],
+                   @"lysisOfAdhesions":         [procModel valueForKey:@"var_lysisOfAdhesions"],
+                   
+                   
+                   @"anestesia":                [procModel valueForKey:@"var_anastesia"],
+                   @"ethnicity":                [procModel valueForKey:@"var_ethnicity"],
+                   
+                   @"clinicalStage":            [procModel valueForKey:@"var_stage"],
+                   @"gleasonGrade":             [procModel valueForKey:@"var_grade"],
+                   @"numberOfCores":            [procModel valueForKey:@"var_numberOfCores"],
+                   
+                   @"greatestPercentageOfCore": [procModel valueForKey:@"var_greatestPercentage"],
+                   @"preBxPSA":                 [procModel valueForKey:@"var_preBX"],
+                   
+                   @"prostateVolume":           [procModel valueForKey:@"var_prostateVolume"],
+                   @"BMI":                      [procModel valueForKey:@"var_BMI"],
+                   @"techniqueTaken":           [procModel valueForKey:@"var_technique"],
+                   @"complicatingFactors":      [procModel valueForKey:@"var_factors"],
+                   
+                   @"roomTime":                 [procModel valueForKey:@"var_roomTime"],
+                   @"operativeTime":            [procModel valueForKey:@"var_operativeTime"],
+                   @"consulTime":               [procModel valueForKey:@"var_consulTime"],
+                   
+                   @"EBL":                      [procModel valueForKey:@"var_EBL"],
+                   @"fluids":                   [procModel valueForKey:@"var_fluids"],
+                   @"preOpSHIM":                [procModel valueForKey:@"var_preOpSHIM"],
+                   @"preOpAUA":                 [procModel valueForKey:@"var_preOpAUA"],
+                   @"referringPhysicians":      [procModel valueForKey:@"var_physicans"]
                    };
     }
     
