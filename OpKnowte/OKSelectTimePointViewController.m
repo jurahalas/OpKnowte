@@ -95,12 +95,12 @@
     if (indexPath.row == 11) {
         [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
     }else{
-        int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
-        if (procedure == 10) {
-            [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
-        }else{
+//        int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
+//        if (procedure == 10) {
+//            [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
+//        }else{
             [cell.timePointLabel setText:timePoint.timePointName];
-        }
+//        }
     }
     [cell setCellBGImageLight:(int)indexPath.row];
     return cell;

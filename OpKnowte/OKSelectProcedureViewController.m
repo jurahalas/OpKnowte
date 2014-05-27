@@ -138,7 +138,7 @@
     
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
     NSInteger procID = [proc.identifier integerValue];
-    
+    NSString *procName = proc.procedureText;
     if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
         [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
         
@@ -185,6 +185,7 @@
             vc = [[OKLRRadicalProstatectomyVC alloc] init];
         }
         [vc setValue:@(procID) forKey:@"procedureID"];
+        [vc setValue:procName forKey:@"procedureName"];
         [self.navigationController pushViewController:vc animated:YES];
     }else {
         [self performSegueWithIdentifier:@"fromSelectProcToOngoingClinical" sender:nil];
