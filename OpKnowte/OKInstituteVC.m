@@ -73,8 +73,6 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
     [self addBottomTabBar];
-
-    
     if (self.contactInfo != nil) {
         if ([self.contactInfo identifier].length > 0) {
             
@@ -93,8 +91,9 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -118,6 +117,7 @@
         [self scrollViewToOptimalPosition:[self.elements indexOfObject:self.activeTextField]];    } completion:nil];
 }
 
+
 - (void)keyboardWillHide:(NSNotification *)n
 {
     [UIView animateWithDuration:0.3 animations:^{
@@ -127,10 +127,12 @@
     }];
 }
 
+
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 -(IBAction)saveButton:(id)sender
 {
