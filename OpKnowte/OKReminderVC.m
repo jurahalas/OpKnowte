@@ -67,7 +67,7 @@
         
         _noOfDays = [reminderSettings valueForKey:@"noOfDays"];
         if ([[self getAge:[reminderSettings valueForKey:@"noOfDays"]] intValue] > 0) {
-            _daysPickerTextField.text=[NSString stringWithFormat:@"    %@",[self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
+            _daysPickerTextField.text=[NSString stringWithFormat:@"%@",[self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
         }
         [[OKLoadingViewController instance] hide];
     }];
@@ -124,7 +124,6 @@
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
             pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-
     }else{
         pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
             _daysPicker.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:0.9];
