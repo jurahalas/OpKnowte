@@ -21,7 +21,7 @@
 @property (nonatomic) int procedureID;
 @property (nonatomic,strong) NSArray *plistArray;
 @property (nonatomic) int xPoint;
-
+@property (nonatomic, strong) NSString *procedureName;
 - (void)updateField:(NSString*)name withValue:(NSString*)newValue  andTag:(NSInteger) tag;
 - (void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 - (void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary withTag:(int) tag;

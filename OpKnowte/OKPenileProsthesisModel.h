@@ -17,7 +17,7 @@
 @property (strong,nonatomic) NSString *var_DOS;
 @property (strong,nonatomic) NSString *var_sex;
 @property (strong,nonatomic) NSString *var_surgeon;
-
+@property (strong,nonatomic) NSString *var_procedureName;
 
 @property (strong,nonatomic) NSString *var_anastesia;
 @property (strong,nonatomic) NSString *var_diagnosis;
