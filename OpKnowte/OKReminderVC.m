@@ -8,6 +8,7 @@
 
 #import "OKReminderVC.h"
 #import "OKSelectContactTypeVC.h"
+#import "OKCaseManager.h"
 @interface OKReminderVC ()<OKSelectContactTypeVCDelegate>
 
 - (IBAction)updateButton:(id)sender;
@@ -66,7 +67,7 @@
         
         _noOfDays = [reminderSettings valueForKey:@"noOfDays"];
         if ([[self getAge:[reminderSettings valueForKey:@"noOfDays"]] intValue] > 0) {
-            _daysPickerTextField.text=[NSString stringWithFormat:@"    %@",[self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
+            _daysPickerTextField.text=[NSString stringWithFormat:@"%@",[self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
         }
         [[OKLoadingViewController instance] hide];
     }];
@@ -123,7 +124,6 @@
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
             pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
-
     }else{
         pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
             _daysPicker.backgroundColor = [[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]] colorWithAlphaComponent:0.9];
@@ -179,7 +179,7 @@
         [[OKLoadingViewController instance] hide];
     }else{
         OKProceduresManager *procManager = [OKProceduresManager instance];
-        [procManager updateReminderSettingsWithProcedureID:_procID patientID:_detailID userID:[OKUserManager instance].currentUser.identifier days:_noOfDays andList:contactIDs handler:^(NSString *errorMsg, NSDictionary *json) {
+        [procManager updateReminderSettingsWithProcedureID:_procID patientID:[OKCaseManager instance].selectedCase.identifier userID:[OKUserManager instance].currentUser.identifier days:_noOfDays andList:contactIDs handler:^(NSString *errorMsg, NSDictionary *json) {
             if (errorMsg) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Update Setting Error"
                                                                                   message:errorMsg
