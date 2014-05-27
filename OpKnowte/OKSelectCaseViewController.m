@@ -136,13 +136,17 @@
 
     if (self.isReminderSetting) {
         [self performSegueWithIdentifier:@"fromCasesToReminder" sender:[NSString stringWithFormat:@"%@", _procID]];
+
     }else{
         [[OKLoadingViewController instance]showWithText:@"Loading"];
         [[OKUserManager instance] updateDataSharingSettingsWithProcID:self.procID userID:[OKUserManager instance].currentUser.identifier isSharing:@"no" handler:^(NSString* error){
             [[OKLoadingViewController instance]hide];
             OKCase *selCase = self.cases[indexPath.row];
             [OKCaseManager instance].selectedCase = selCase;
-            [self performSegueWithIdentifier:@"selectTimepoint" sender:nil];
+            if ([_cameFromVC isEqualToString:@"Reminder"])
+                [self performSegueWithIdentifier:@"fromCasesToReminder" sender:nil];
+            else
+                [self performSegueWithIdentifier:@"selectTimepoint" sender:nil];
         
         }];
 

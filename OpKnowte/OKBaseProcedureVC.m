@@ -461,6 +461,9 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];
             vc.model = self.model;
+            if (_procedureID == 1) {
+                [vc.model setValue:[NSString stringWithFormat:@"%@; %@; %@; %@; %@",[vc.model valueForKey:@"var_nervesparing"],[vc.model valueForKey:@"var_pelvicDisection"],[vc.model valueForKey:@"var_bladderNeckReconstruction"],[vc.model valueForKey:@"var_sling"],[vc.model valueForKey:@"var_lysisOfAdhesions"]] forKey:@"var_technique"];
+            }
             vc.procedureID = self.procedureID;
             [self.navigationController pushViewController:vc animated:YES];
         }

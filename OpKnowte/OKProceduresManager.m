@@ -251,16 +251,79 @@
                    @"gender":                 [procModel valueForKey:@"var_sex"],
                    @"dateOfService":          dateOfServiceString,
                    
+                   @"anastesia":              [procModel valueForKey:@"var_anastesia"],
+                   @"diagnosis":              [procModel valueForKey:@"var_diagnosis"],
+                   @"deviceimplaned":         [procModel valueForKey:@"var_deviceimplaned"],
+                   @"dilatorsused":           [procModel valueForKey:@"var_dilatorsused"],
+                   @"dilatedto":              [procModel valueForKey:@"var_dilatedto"],
+                   @"dilationwas":            [procModel valueForKey:@"var_dilationwas"],
+                   
+                   @"rightproximal":          [procModel valueForKey:@"var_rightproximal"],
+                   @"rightdistal":            [procModel valueForKey:@"var_rightdistal"],
+                   @"leftproximal":           [procModel valueForKey:@"var_leftproximal"],
+                   @"leftdistal":             [procModel valueForKey:@"var_leftdistal"],
+                   @"devicelength":           [procModel valueForKey:@"var_devicelength"],
+                   @"reartips":               [procModel valueForKey:@"var_reartips"],
+                   
+                   @"reservoirplacement":     [procModel valueForKey:@"var_reservoirplacement"],
+                   @"reservoirside":          [procModel valueForKey:@"var_reservoirside"],
+                   @"reservoirtype":          [procModel valueForKey:@"var_reservoirtype"],
+                   @"reservoirfilled":        [procModel valueForKey:@"var_reservoirfilled"],
+                   @"drainplaced":            [procModel valueForKey:@"var_drainplaced"],
+                   @"volumeofirrigation":     [procModel valueForKey:@"var_volumeofirrigation"],
+                   
+                   @"irrigationantibiotics":  [procModel valueForKey:@"var_irrigationantibiotics"],
+                   @"complications":          [procModel valueForKey:@"var_complications"],
+                   @"followup":               [procModel valueForKey:@"var_followup"]
+                   
                    };
     } else if ([procedureID isEqualToString:@"1"] ){
-        params = @{@"surgeonID":              surgeonID,
-                   @"procedureID":            procedureID,
-                   @"patientName":            [procModel valueForKey:@"var_patientName"],
-                   @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
-                   @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
-                   @"gender":                 [procModel valueForKey:@"var_sex"],
-                   @"dateOfService":          dateOfServiceString,
+        params = @{@"surgeonID":                surgeonID,
+                   @"procedureID":              procedureID,
+                   @"patientName":              [procModel valueForKey:@"var_patientName"],
+                   @"patientDob":               [procModel valueForKey:@"var_patientDOB"],
+                   @"mrNumber":                 [procModel valueForKey:@"var_MRNumber"],
+                   @"gender":                   [procModel valueForKey:@"var_sex"],
+                   @"dateOfService":            dateOfServiceString,
                    
+                   
+                   
+                   @"preOpDX":                  [procModel valueForKey:@"var_preOpDX"],
+                   @"postOpDX":                 [procModel valueForKey:@"var_postOp"],
+                   @"nerveSparing":             [procModel valueForKey:@"var_nervesparing"],
+                   @"assistants":               [procModel valueForKey:@"var_assistant"],
+                   
+                   
+                   @"pelvicLymphNodeDissection":[procModel valueForKey:@"var_pelvicDisection"],
+                   @"bladderNeckReconstruction":[procModel valueForKey:@"var_bladderNeckReconstruction"],
+                   @"sling":                    [procModel valueForKey:@"var_sling"],
+                   @"lysisOfAdhesions":         [procModel valueForKey:@"var_lysisOfAdhesions"],
+                   
+                   
+                   @"anestesia":                [procModel valueForKey:@"var_anesthesia"],
+                   @"ethnicity":                [procModel valueForKey:@"var_ethnicity"],
+                   
+                   @"clinicalStage":            [procModel valueForKey:@"var_stage"],
+                   @"gleasonGrade":             [procModel valueForKey:@"var_grade"],
+                   @"numberOfCores":            [procModel valueForKey:@"var_numberOfCores"],
+                   
+                   @"greatestPercentageOfCore": [procModel valueForKey:@"var_greatestPercentage"],
+                   @"preBxPSA":                 [procModel valueForKey:@"var_preBX"],
+                   
+                   @"prostateVolume":           [procModel valueForKey:@"var_prostateVolume"],
+                   @"BMI":                      [procModel valueForKey:@"var_BMI"],
+                   @"techniqueTaken":           [procModel valueForKey:@"var_technique"],
+                   @"complicatingFactors":      [procModel valueForKey:@"var_factors"],
+                   
+                   @"roomTime":                 [procModel valueForKey:@"var_roomTime"],
+                   @"operativeTime":            [procModel valueForKey:@"var_operativeTime"],
+                   @"consulTime":               [procModel valueForKey:@"var_consulTime"],
+                   
+                   @"EBL":                      [procModel valueForKey:@"var_EBL"],
+                   @"fluids":                   [procModel valueForKey:@"var_fluids"],
+                   @"preOpSHIM":                [procModel valueForKey:@"var_preOpSHIM"],
+                   @"preOpAUA":                 [procModel valueForKey:@"var_preOpAUA"],
+                   @"referringPhysicians":      [procModel valueForKey:@"var_physicans"]
                    };
     }
     

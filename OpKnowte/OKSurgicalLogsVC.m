@@ -273,7 +273,17 @@
         [formater setDateFormat:@"MM-dd-yyyy"];
         NSString *str = [formater stringFromDate:d1];
         
-        body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplations: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complation"]];
+        
+        if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Shockwave Lithotripsy"]) {
+             body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
+        }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+            body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"]];
+        }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Insertion of Penile Prosthesis"]) {
+            body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
+        }else {
+             body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complation"]];
+        }
+       
         
         if (i != [_choosedDetails count]-1) {
             body = [body stringByAppendingFormat:@"\n\n"];

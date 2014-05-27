@@ -14,7 +14,7 @@
 #import "OKDashboardVC.h"
 #import "OKInfoViewController.h"
 
-@interface OKProcedureDetailSummaryViewController () <UITableViewDelegate, UITableViewDataSource,OKBaseVCDelegate>
+@interface OKProcedureDetailSummaryViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSOrderedDictionary *tableDict;
@@ -28,54 +28,20 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
-    
     self.tableView.backgroundColor = [UIColor clearColor];
-    
-    [self draw];
     
     self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 60.f));
     
-    [self setupPullToRefresh];
+    [self addBottomTabBar];
+
+    self.pullToRefreshView.hidden = YES;
+    
+    //[self setupPullToRefresh];
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
 }
-
--(void)draw{
-    OKBottomTabBarView *bottomTabBarView = [[OKBottomTabBarView alloc] init];
-    bottomTabBarView.delegate = self;
-    [self.view addSubview:bottomTabBarView];
-    [bottomTabBarView draw];
-}
-
--(void) goToSettingsVC{
-    
-    if(![self.restorationIdentifier isEqualToString:@"settings"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-        OKSettingsViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"settings"];
-        [self.navigationController pushViewController:vc animated:YES];
-        
-    }
-}
--(void) goToDashboard {
-    if(![self.restorationIdentifier isEqualToString:@"dashboard"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-        OKDashboardVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"dashboard"];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-- (void)goToInfoVC{
-    if(![self.restorationIdentifier isEqualToString:@"info"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-        OKInfoViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"info"];
-        vc.cameFromVC = @"LogoTBButton";
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-//- (BOOL)navBar{
-//    return self.navigationController.navigationBarHidden;
-//}
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -93,22 +59,55 @@
     UIButton *right = [[UIButton alloc] init];
     right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );
     [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
+-(void)backButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)setupPullToRefresh
 {
-    [self.tableView addPullToRefreshWithActionHandler:^{
-        [self performSegueWithIdentifier:@"ongoingClinical" sender:nil];
-        [self.tableView.pullToRefreshView stopAnimating];
-    }];
-    [self.tableView.pullToRefreshView setTitle:@"Pull down to edit" forState:SVPullToRefreshStateAll];
-    [self.tableView.pullToRefreshView setSubtitle:nil forState:SVPullToRefreshStateAll];
-    [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
+        [self.tableView addPullToRefreshWithActionHandler:^{
+            [self performSegueWithIdentifier:@"ongoingClinical" sender:nil];
+            [self.tableView.pullToRefreshView stopAnimating];
+        }];
+        [self.tableView.pullToRefreshView setTitle:@"Pull down to edit" forState:SVPullToRefreshStateAll];
+        [self.tableView.pullToRefreshView setSubtitle:nil forState:SVPullToRefreshStateAll];
+        [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
+}
+
+//- (void)toggleActivityView:(BOOL)isON
+//{
+//	if (!isON)
+//	{
+//		self.pullToRefreshView.hidden = YES;
+//	}
+//	else
+//	{
+//                [self.tableView addPullToRefreshWithActionHandler:^{
+//                    [self performSegueWithIdentifier:@"ongoingClinical" sender:nil];
+//                    [self.tableView.pullToRefreshView stopAnimating];
+//                }];
+//                [self.tableView.pullToRefreshView setTitle:@"Pull down to edit" forState:SVPullToRefreshStateAll];
+//                [self.tableView.pullToRefreshView setSubtitle:nil forState:SVPullToRefreshStateAll];
+//                [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
+//    }
+//}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //check your cell's tag
+    if ( cell.frame.origin.y < self.tableView.frame.origin.y) {
+        
+        NSLog(@"jadskfljeugbrlx,mwrouibefwhdjnvgceorgijow");
+        
+        //Call your custom method to fetch more data and reload the table
+        // You should also remove this custom cell from the table and add one at the bottom
+    }
 }
 
 #pragma mark - Table View methods

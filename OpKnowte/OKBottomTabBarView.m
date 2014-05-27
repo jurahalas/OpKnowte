@@ -76,7 +76,7 @@
         self.frame = CGRectMake(0, self.superview.frame.size.height - 115, 320, 51);
     }
     else {
-        self.frame = CGRectMake(0, self.superview.frame.size.height - 155, 320, 51);
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 95, 320, 51);
     }
 }
 - (void)draw{

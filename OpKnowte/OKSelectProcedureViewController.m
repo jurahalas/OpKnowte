@@ -133,7 +133,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    OKProcedureModel *proc = _allProcArray[indexPath.row];
+    OKProcedureModel *proc = _procArray[indexPath.row];
     [OKProceduresManager instance].selectedProcedure = proc;
     
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
@@ -145,8 +145,11 @@
     } else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToAccessSettings" sender:[NSString stringWithFormat:@"%d", procID]];
         
-    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"] || !_cameFromVC){
+    }else if ([_cameFromVC isEqualToString:@"ongoing"] || !_cameFromVC){
         [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
+        
+    }else if ([_cameFromVC isEqualToString:@"ReminderSettings"]){
+        [self performSegueWithIdentifier:@"toReminder" sender:[NSString stringWithFormat:@"%d", procID]];
         
     } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
@@ -210,11 +213,16 @@
         OKProcedureModel *tappedProc =_allProcArray[i-1];
         sharVC.procTitle = tappedProc.procedureText;
         
-    } else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
+    }else if ([segue.identifier isEqualToString:@"toReminder"]){
+        OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
+        reminderVC.procID = sender;
+        reminderVC.cameFromVC = @"Reminder";
+        
+    }else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
         OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
         reminderVC.procID = sender;
         
-    } else if ([segue.identifier isEqualToString:@"fromSelectProcToOperativeData"]){
+    }else if ([segue.identifier isEqualToString:@"fromSelectProcToOperativeData"]){
         OKIntraOperativeDataViewController * operativeData = (OKIntraOperativeDataViewController *)segue.destinationViewController;
         operativeData.procID = sender;
         int i = [sender intValue];
