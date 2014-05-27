@@ -42,14 +42,6 @@
     [self.dashboardTableView reloadData];
 }
 
-- (IBAction)logOutButton:(id)sender
-{
-    [[OKUserManager instance]logout];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Action" message:@"You have successfully logged out!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//    [alert show];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 #pragma mark - Table View methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
