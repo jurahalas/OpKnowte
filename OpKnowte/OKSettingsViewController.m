@@ -132,6 +132,7 @@
     }else if ([segue.identifier isEqualToString:@"institutions"]){
         OKContactListVC *contactsVC = (OKContactListVC*)segue.destinationViewController;
         contactsVC.contactID = sender;
+        contactsVC.title = @"Institutions";
     }
 }
 
