@@ -31,24 +31,23 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     self.tableView.backgroundColor = [UIColor clearColor];
     
-   self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y+64.f, self.tableView.frame.size.width, (self.tableView.frame.size.height));
-    //self.tableView.contentOffset = CGPointMake(0, -64.f);
-    //[self.tableView setContentInset:UIEdgeInsetsMake(64.f, 0, 0, 0);
+
+    
     [self addBottomTabBar];
     
     [self setupPullToRefresh];
     
-    if (!IS_IOS7) {
+    if (IS_IOS7){
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y+64.f, self.tableView.frame.size.width, (self.tableView.frame.size.height-124.f));
+    }else{
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height-60.f));
     }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
-    
-    
     [super viewWillAppear:animated];
     if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
         self.tableDict = self.ongoingData.twoWeeksItems;

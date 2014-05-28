@@ -64,8 +64,12 @@
         [self setupSixWeeksElements];
 
     [self setupKeyboardNotifications];
+    
+    if (IS_IOS6) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
 }
-
 
 -(void)setupSixWeeksElements
 {
@@ -145,13 +149,16 @@
     UIButton *right = [[UIButton alloc] init];
     right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
     [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
     _cameFromVC = @"ongoing";
 }
 
+-(void)backButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)setupTwoWeeksElements
 {
@@ -437,11 +444,15 @@
 
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    UIColor *color = [UIColor whiteColor];
+    if (IS_IOS6) {
+        color = [UIColor blackColor];
+    }
+    
     NSString *pickerString = [NSString stringWithFormat:@"%@", self.pickerData[row]];
-    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color }];
     return pickerAttributedString;
 }
-
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
