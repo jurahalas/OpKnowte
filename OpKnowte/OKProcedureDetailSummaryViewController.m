@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSOrderedDictionary *tableDict;
 @property (strong, nonatomic) SVPullToRefreshView *pullToRefreshView;
+@property (nonatomic) float savedScrollPosition;
 
 @end
 
@@ -30,13 +31,13 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     self.tableView.backgroundColor = [UIColor clearColor];
     
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 60.f));
-    
+   self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y+64.f, self.tableView.frame.size.width, (self.tableView.frame.size.height));
+    //self.tableView.contentOffset = CGPointMake(0, -64.f);
+    //[self.tableView setContentInset:UIEdgeInsetsMake(64.f, 0, 0, 0);
     [self addBottomTabBar];
-
-    self.pullToRefreshView.hidden = YES;
     
-    //[self setupPullToRefresh];
+    [self setupPullToRefresh];
+    
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
@@ -45,12 +46,17 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
+    
+    
     [super viewWillAppear:animated];
     if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
         self.tableDict = self.ongoingData.twoWeeksItems;
     else
         self.tableDict = self.ongoingData.sixWeeksItems;
     [self.tableView reloadData];
+//    NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:0];
+  //  [_tableView scrollToRowAtIndexPath:index                      atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 
@@ -80,43 +86,28 @@
         [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
 }
 
-//- (void)toggleActivityView:(BOOL)isON
-//{
-//	if (!isON)
-//	{
-//		self.pullToRefreshView.hidden = YES;
-//	}
-//	else
-//	{
-//                [self.tableView addPullToRefreshWithActionHandler:^{
-//                    [self performSegueWithIdentifier:@"ongoingClinical" sender:nil];
-//                    [self.tableView.pullToRefreshView stopAnimating];
-//                }];
-//                [self.tableView.pullToRefreshView setTitle:@"Pull down to edit" forState:SVPullToRefreshStateAll];
-//                [self.tableView.pullToRefreshView setSubtitle:nil forState:SVPullToRefreshStateAll];
-//                [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
-//    }
-//}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //check your cell's tag
-    if ( cell.frame.origin.y < self.tableView.frame.origin.y) {
-        
-        NSLog(@"jadskfljeugbrlx,mwrouibefwhdjnvgceorgijow");
-        
-        //Call your custom method to fetch more data and reload the table
-        // You should also remove this custom cell from the table and add one at the bottom
-    }
-}
-
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.tableDict.allKeys.count;
 }
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    if (self.tableView.contentOffset.y>-64.f){
+//        //_tableView.showsPullToRefresh = NO;
+//        _pullToRefreshView.hidden = YES;
+//    }
+//    else if (self.tableView.contentOffset.y == -64.f) {
+//        _tableView.showsPullToRefresh = NO;
+//    } else {
+//        _tableView.showsPullToRefresh = YES;
+//
+//    }
+//}
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"pipiska");
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"procedureDetailSummaryCell";

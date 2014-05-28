@@ -490,6 +490,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="YbG-2J-oO7">
                             <connections>
@@ -505,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="-638"/>
+            <point key="canvasLocation" x="1482" y="-655"/>
         </scene>
         <!--Ongoing Clinical View Controller - Ongoing Clinical-->
         <scene sceneID="rpZ-70-jMk">
@@ -516,7 +517,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-                                <rect key="frame" x="0.0" y="20" width="320" height="488"/>
+<<<<<<< HEAD
+                                <rect key="frame" x="0.0" y="20.000002339424938" width="320" height="488"/>
+=======
+                                <rect key="frame" x="0.0" y="20.000001172550359" width="320" height="488"/>
+>>>>>>> 063a4f67f5ff7adcc0863693e093e6686585c710
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -3812,18 +3817,36 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cNX-Le-q8P"/>
-        <segue reference="jDh-vb-NmK"/>
-        <segue reference="ljR-8G-8AS"/>
+<<<<<<< HEAD
         <segue reference="iYE-S8-xzH"/>
-        <segue reference="oYk-1x-QUH"/>
-        <segue reference="lPY-Bo-TiM"/>
+        <segue reference="aL2-xa-szT"/>
+=======
         <segue reference="hs5-kv-qjd"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="iYE-S8-xzH"/>
         <segue reference="UMT-op-RBq"/>
+>>>>>>> 063a4f67f5ff7adcc0863693e093e6686585c710
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="R5c-Bb-DU8"/>
+        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="Aik-36-Z3R"/>
+<<<<<<< HEAD
         <segue reference="9Vm-fe-BqP"/>
+        <segue reference="DMv-Rl-71E"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="UMT-op-RBq"/>
+        <segue reference="IcY-8f-Npy"/>
+        <segue reference="dvt-ir-lar"/>
+=======
+        <segue reference="aKz-2x-G8K"/>
         <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
-        <segue reference="ytp-fp-EJd"/>
-        <segue reference="sg6-fY-kvy"/>
+        <segue reference="veZ-bC-PGL"/>
+        <segue reference="DoT-oZ-zGI"/>
+        <segue reference="9Vm-fe-BqP"/>
+>>>>>>> 063a4f67f5ff7adcc0863693e093e6686585c710
     </inferredMetricsTieBreakers>
 </document>

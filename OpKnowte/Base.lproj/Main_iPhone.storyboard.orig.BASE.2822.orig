@@ -2,7 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
+<<<<<<< HEAD
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+=======
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -490,12 +494,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="YbG-2J-oO7">
                             <connections>
                                 <action selector="backButton:" destination="XTe-gD-PYM" id="irz-cd-ogQ"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="info.png" id="fsq-SX-mHD"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -505,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="-638"/>
+            <point key="canvasLocation" x="1482" y="-655"/>
         </scene>
         <!--Ongoing Clinical View Controller - Ongoing Clinical-->
         <scene sceneID="rpZ-70-jMk">
@@ -516,7 +522,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-                                <rect key="frame" x="0.0" y="20" width="320" height="488"/>
+                                <rect key="frame" x="0.0" y="20.000001172550359" width="320" height="488"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2955,7 +2961,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
+<<<<<<< HEAD
+                                <rect key="frame" x="0.0" y="461.00000000000006" width="320" height="35"/>
+=======
                                 <rect key="frame" x="0.0" y="461" width="320" height="35"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3812,18 +3822,35 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cNX-Le-q8P"/>
-        <segue reference="jDh-vb-NmK"/>
-        <segue reference="ljR-8G-8AS"/>
+<<<<<<< HEAD
+        <segue reference="aL2-xa-szT"/>
         <segue reference="iYE-S8-xzH"/>
-        <segue reference="oYk-1x-QUH"/>
-        <segue reference="lPY-Bo-TiM"/>
-        <segue reference="hs5-kv-qjd"/>
         <segue reference="UMT-op-RBq"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="R5c-Bb-DU8"/>
+=======
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="iYE-S8-xzH"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
+        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="Aik-36-Z3R"/>
+<<<<<<< HEAD
+        <segue reference="DMv-Rl-71E"/>
         <segue reference="9Vm-fe-BqP"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="IcY-8f-Npy"/>
+        <segue reference="dvt-ir-lar"/>
+=======
+        <segue reference="aKz-2x-G8K"/>
         <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
-        <segue reference="ytp-fp-EJd"/>
-        <segue reference="sg6-fY-kvy"/>
+        <segue reference="veZ-bC-PGL"/>
+        <segue reference="DoT-oZ-zGI"/>
+        <segue reference="9Vm-fe-BqP"/>
+>>>>>>> 670d36a59791872b51e36cda089034953d365cc7
     </inferredMetricsTieBreakers>
 </document>
