@@ -384,7 +384,6 @@
 
 - (IBAction)diselectAllButton:(id)sender {
     [_choosedDetails removeAllObjects];
-    _deselectAll = YES;
     [_listTableView reloadData];
 }
 
@@ -403,7 +402,8 @@
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _detailsArray = [self getFilterArray:dataArray];
-                _deselectAll = YES;
+                _choosedDetails = [_detailsArray mutableCopy];
+                //_deselectAll = YES;
                 [_listTableView reloadData];
                 [[OKLoadingViewController instance] hide];
             }];
@@ -572,7 +572,8 @@
 }
 -(void)deleteModelFromList:(id)model{
     for (int i = 0; i<_choosedDetails.count; i++) {
-        if ([[_choosedDetails[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
+        id searchedModel = [_choosedDetails objectAtIndex:i];
+        if ([[searchedModel valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
             [_choosedDetails removeObjectAtIndex:i];
         }
     }
@@ -591,15 +592,17 @@
         if (!cell) {
             cell = [[OKSLListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier]  ;
         }
-        if (_deselectAll) {
-            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-            if (indexPath.row == _detailsArray.count-1) {
-                _deselectAll = NO;
+        
+
+    
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        id model = _detailsArray[indexPath.row];
+        for (id choosedModel in _choosedDetails) {
+            if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
+                [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                break;
             }
         }
-    
-    
-        id model = _detailsArray[indexPath.row];
         cell.model = model;
         cell.nameLabel.text = [model valueForKey:@"var_patientName"];
         cell.dateLabel.text = [model valueForKey:@"var_DOS"];
@@ -618,8 +621,23 @@
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-}
+    
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKSLListCell class]]) {
+        OKSLListCell *cell = (OKSLListCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self deleteModelFromList:cell.model];
+    }
 
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKSLListCell class]]) {
+        OKSLListCell *cell = (OKSLListCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+        [self addModelToList:cell.model];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
+    }
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];

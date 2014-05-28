@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 @protocol OKSLListCellDelegate <NSObject>
 
--(void) addModelToList:(id)model;
--(void) deleteModelFromList:(id)model;
+//-(void) addModelToList:(id)model;
+//-(void) deleteModelFromList:(id)model;
 
 @end
 
