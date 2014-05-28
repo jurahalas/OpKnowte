@@ -230,6 +230,11 @@
     {
         [self.scrollView setContentSize:CGSizeMake(320, self.view.bounds.size.height-64)];
         self.scrollView.frame = CGRectMake(0, 64, 320, self.view.bounds.size.height-64);
+       
+        if([[UIDevice currentDevice].systemVersion hasPrefix:@"6"]){ //iOS 6.1 <
+        
+            self.scrollView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height-64);
+        }
     }
     else //iphone 4/4s
     {
@@ -240,7 +245,7 @@
         }
         else //iOS 6.1 <
         {
-            self.scrollView.frame = CGRectMake(0, 44, 320, self.view.bounds.size.height-64);
+            self.scrollView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height-64);
         }
     }
 }
