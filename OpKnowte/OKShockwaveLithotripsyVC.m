@@ -44,7 +44,7 @@
        self.currentPage = 0;
     }
     NSArray *currentPageFieldsArray =[[self.plistArray objectAtIndex:self.currentPage] objectForKey:@"fields" ];
-    self.xPoint = 80;
+    self.xPoint = 16;
     if (self.model == nil) {
         self.model = [[OKShockwaveLithotripsyModel alloc] init];
 
