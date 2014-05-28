@@ -111,11 +111,6 @@
         }];
     }];
     
-    
-    
-    
-    
-    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     segmentControllView.backgroundColor = [UIColor clearColor];
     _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
