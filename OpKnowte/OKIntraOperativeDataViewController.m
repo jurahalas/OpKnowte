@@ -91,6 +91,7 @@
      [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
+    _bottomButton.hidden=YES;
 }
 
 
@@ -215,6 +216,10 @@
                  
                     NSLog(@"Eror - %@", errorMsg);
                     _nationalDataArray = dataArray;
+                    if (errorMsg==nil) {
+                        _bottomButton.hidden=NO;
+
+                    }
 
                 }];
                 [[OKLoadingViewController instance] hide];
@@ -433,6 +438,7 @@
                                                                   cancelButtonTitle:@"OK"
                                                                   otherButtonTitles:nil, nil];
         [analyseError show];
+        [self.navigationController popViewControllerAnimated:YES];
     }else{
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
         OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];

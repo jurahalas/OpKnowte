@@ -39,21 +39,21 @@
                        @"Left vs. Right Renal Mass",
                        @"Patients with Cysto/Stent",
                        @"Tumor Size",
-                       @"Tumor Characteristics",
+//                       @"Tumor Characteristics",
                        @"Cases Requiring Adhesiolysis",
                        @"Cases with Vascular Anomoly",
                        @"Intra-Operative Ultra Sound",
                        @"Deep Margins",
-                       @"Margins",
+//                       @"Margins",
                        @"Renal Collecting System Repair",
                        @"Average Clamp Time",
                        @"Coagulants",
                        @"Blood Loss",
                        @"Console Time",
                        @"Room Time",
-                       @"Complications",
+//                       @"Complications",
                        @"Cases Requiring Transfusion",
-                       @"Advanced Options"
+//                       @"Advanced Options"
                        ];
     [self addBottomTabBar];
     _immediateDataTable.backgroundColor = [UIColor clearColor];
@@ -344,7 +344,7 @@
     
     
 }
--(void)TumorCharacteristics{}
+//-(void)TumorCharacteristics{}
 -(void)AdhesiolysisRequired{
 
     [self reset];
@@ -451,7 +451,7 @@
     
     [self.navigationController pushViewController:controller animated:YES];
 }
--(void)Margins{}
+//-(void)Margins{}
 -(void)RenalSystemRepair{
 
     [self reset];
@@ -611,7 +611,7 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
--(void)Complications{}
+//-(void)Complications{}
 -(void)TransfusionRequired{
 
     [self reset];
