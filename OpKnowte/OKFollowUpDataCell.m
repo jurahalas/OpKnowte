@@ -24,8 +24,11 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     self.backgroundView = cellBG;
     self.backgroundColor = [UIColor clearColor];
-    [_plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-    _buttonIsTapped = NO;
+    
+    UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
+    self.selectedBackgroundView  = cellIsSelected;
+
+    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
@@ -35,23 +38,10 @@
 }
 
 - (IBAction)plusButtonTapped:(id)sender {
-    if (!_buttonIsTapped) {
-        [self setCellButtonBGImageWithGreenMinusIcon:YES];
-        [self.delegate addModelToList:_model];
-    } else {
-        [self setCellButtonBGImageWithGreenMinusIcon:NO];
-        [self.delegate deleteModelFromList:_model];
-    }
-    
+    [self.delegate openSummaryViewWithModel:self.model];
+    NSLog(@"button tapped");
 }
--(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
-    if (minusIcon) {
-        [_plusButton setBackgroundImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
-    } else {
-        [_plusButton setBackgroundImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-    }
-    _buttonIsTapped = minusIcon;
-}
+
 
 
 @end

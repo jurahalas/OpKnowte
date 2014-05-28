@@ -14,6 +14,7 @@
 #import "OKFollowUpDataManager.h"
 #import "OKSelectTimePointViewController.h"
 #import "OKFakeTableViewCell.h"
+#import "OKDetailSummaryVC.h"
 
 @interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
@@ -92,7 +93,20 @@
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
     
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
+    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+        NSLog(@"Eror - %@", errorMsg);
+        
+        if ((dates) && ([dates count] > 0)) {
+            int count = [dates count];
+            _dateFromTF.text = [dates objectAtIndex:0];
+            _dateToTF.text = [dates objectAtIndex:count-1];
+        }
+        [self searchDetails];
+        
+    }];
     
 }
 
@@ -113,34 +127,7 @@
     [self.view addSubview:_pickerBGView];
     [_pickerBGView addSubview:_datePicker];
     _pickerBGView.hidden = YES;
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    
-    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
-        NSLog(@"Eror - %@", errorMsg);
-        
-        if ((dates) && ([dates count] > 0)) {
-            int count = [dates count];
-            _dateFromTF.text = [dates objectAtIndex:0];
-            _dateToTF.text = [dates objectAtIndex:count-1];
-        }
-        OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-        [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:@"1" ToRecordNum:@"1"  handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
-            NSLog(@"Eror - %@", errorMsg);
-            
-            _surgeonDataArray = dataArray;
-            _choosedDetails = [dataArray mutableCopy];
-            [_listTableView reloadData];
-            [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
-                NSLog(@"Eror - %@", errorMsg);
-                
-                _nationalDataArray = dataArray;
-                
-            }];
-            
-        }];
-        [[OKLoadingViewController instance] hide];
-    }];
+   
     
     
 }
@@ -206,7 +193,11 @@
         sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
         sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];       
                                    
-    } 
+    } else if ([segue.identifier isEqualToString:@"fromFUDToDetail"]){
+        OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
+        detailVC.procID = _procID;
+        detailVC.model = sender;
+    }
 }
 
 
@@ -218,6 +209,13 @@
 
 
 - (IBAction)searchButton:(id)sender {
+     [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [self searchDetails];
+   
+    
+}
+
+- (void) searchDetails{
     [_choosedDetails removeAllObjects];
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -225,7 +223,7 @@
     }else{
         
         if ([self varifyDates]) {
-            [[OKLoadingViewController instance] showWithText:@"Loading..."];
+           
             OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:@"1" ToRecordNum:@"1"  handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
@@ -240,7 +238,7 @@
                     _nationalDataArray = dataArray;
                     
                 }];
-                [[OKLoadingViewController instance] hide];
+                 [[OKLoadingViewController instance] hide];
             }];
         }else{
             UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -250,8 +248,6 @@
     }
     
 }
-
-
 -(BOOL)varifyDates{
     NSDate *d1;
     NSDate *d2;
@@ -364,6 +360,14 @@
         }
     }
 }
+
+
+-(void)openSummaryViewWithModel:(id)model{
+    [self performSegueWithIdentifier:@"fromFUDToDetail" sender:model];
+
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -380,16 +384,18 @@
     if (!cell) {
         cell = [[OKFollowUpDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    [cell setCellButtonBGImageWithGreenMinusIcon:YES];
-    if (_deselectAll) {
-        [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-        if (indexPath.row == _surgeonDataArray.count-1) {
-            _deselectAll = NO;
-        }
-    }
-    
-    
-    id model = _surgeonDataArray[indexPath.row];
+         
+         
+         
+         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+          id model = _surgeonDataArray[indexPath.row];
+         for (id choosedModel in _choosedDetails) {
+             if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
+                 [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                 break;
+             }
+         }
+   
     cell.model = model;
     cell.nameLabel.text = [model valueForKey:@"var_patientName"];
     cell.dateLabel.text = [model valueForKey:@"var_DOS"];
@@ -410,6 +416,22 @@
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFollowUpDataCell class]]) {
+        OKFollowUpDataCell *cell = (OKFollowUpDataCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self deleteModelFromList:cell.model];
+    }
+    
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFollowUpDataCell class]]) {
+        OKFollowUpDataCell *cell = (OKFollowUpDataCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+        [self addModelToList:cell.model];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

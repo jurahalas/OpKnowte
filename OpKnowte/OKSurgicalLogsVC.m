@@ -16,6 +16,7 @@
 #import <MessageUI/MessageUI.h>
 #import "OKSendFaxManager.h"
 #import "OKFakeTableViewCell.h"
+#import "OKDetailSummaryVC.h"
 
 
 @interface OKSurgicalLogsVC () <OKSLListCellDelegate, MFMailComposeViewControllerDelegate>
@@ -54,7 +55,6 @@
 
 @property (nonatomic, strong) NSMutableArray *detailsArray;
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
-@property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
 @property (nonatomic, assign) BOOL dateToButtonTapped;
@@ -88,6 +88,20 @@
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
 
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
+    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+        NSLog(@"Eror - %@", errorMsg);
+        
+        if ((dates) && ([dates count] > 0)) {
+            
+            int count = [dates count];
+            _dateFromTF.text = [dates objectAtIndex:0];
+            _dateToTF.text = [dates objectAtIndex:count-1];
+            [self searchDetails];
+        }
+        
+    }];
     
     
 }
@@ -131,21 +145,7 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
-        NSLog(@"Eror - %@", errorMsg);
 
-        if ((dates) && ([dates count] > 0)) {
-            
-            int count = [dates count];
-            _dateFromTF.text = [dates objectAtIndex:0];
-            _dateToTF.text = [dates objectAtIndex:count-1];
-            
-        }
-        [[OKLoadingViewController instance] hide];
-    }];
-    
 }
 
 
@@ -384,38 +384,39 @@
 
 - (IBAction)diselectAllButton:(id)sender {
     [_choosedDetails removeAllObjects];
-    _deselectAll = YES;
     [_listTableView reloadData];
 }
 
 
 - (IBAction)searchButton:(id)sender {
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [self searchDetails];
+}
+- (void) searchDetails{
+    [_choosedDetails removeAllObjects];
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
     }else{
         
         if ([self varifyDates]) {
-            [[OKLoadingViewController instance] showWithText:@"Loading..."];
-           
+            
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:_caseFromLabel.text ToRecordNum:_caseToLabel.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _detailsArray = [self getFilterArray:dataArray];
-                _deselectAll = YES;
+                _choosedDetails = [_detailsArray mutableCopy];
                 [_listTableView reloadData];
-                [[OKLoadingViewController instance] hide];
+               [[OKLoadingViewController instance] hide];
             }];
-    }else{
-        UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [dateError show];
-
+        }else{
+            UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [dateError show];
+            
+        }
     }
 }
-
-}
-
 -(NSMutableArray *)getFilterArray:(NSMutableArray *)data{
     NSMutableArray *filtered = [[NSMutableArray alloc] init];
     
@@ -566,14 +567,30 @@
     
     
 }
+
+-(void)openSummaryViewWithModel:(id)model{
+    [self performSegueWithIdentifier:@"fromSLtoDetail" sender:model];
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+ if ([segue.identifier isEqualToString:@"fromSLtoDetail"]){
+        OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
+        detailVC.procID = _procID;
+        detailVC.model = sender;
+    }
+}
 -(void)addModelToList:(id)model{
     [_choosedDetails addObject:model];
     
 }
 -(void)deleteModelFromList:(id)model{
     for (int i = 0; i<_choosedDetails.count; i++) {
-        if ([[_choosedDetails[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
+        id searchedModel = [_choosedDetails objectAtIndex:i];
+        if ([[searchedModel valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
             [_choosedDetails removeObjectAtIndex:i];
+            break;
         }
     }
 }
@@ -591,15 +608,17 @@
         if (!cell) {
             cell = [[OKSLListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier]  ;
         }
-        if (_deselectAll) {
-            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-            if (indexPath.row == _detailsArray.count-1) {
-                _deselectAll = NO;
+        
+
+    
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        id model = _detailsArray[indexPath.row];
+        for (id choosedModel in _choosedDetails) {
+            if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
+                [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                break;
             }
         }
-    
-    
-        id model = _detailsArray[indexPath.row];
         cell.model = model;
         cell.nameLabel.text = [model valueForKey:@"var_patientName"];
         cell.dateLabel.text = [model valueForKey:@"var_DOS"];
@@ -618,8 +637,23 @@
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-}
+    
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKSLListCell class]]) {
+        OKSLListCell *cell = (OKSLListCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [self deleteModelFromList:cell.model];
+    }
 
+    
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKSLListCell class]]) {
+        OKSLListCell *cell = (OKSLListCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+        [self addModelToList:cell.model];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
+    }
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [textField resignFirstResponder];

@@ -8,6 +8,9 @@
 
 #import "OKBaseViewController.h"
 
-@interface OKDetailSummaryVC : OKBaseViewController
+@interface OKDetailSummaryVC : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
+
+@property(strong,nonatomic) NSString *procID;
+@property(strong,nonatomic) id model;
 
 @end

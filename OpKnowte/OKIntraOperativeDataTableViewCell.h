@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol OKIntraOperativeProtocol <NSObject>
 
--(void) addModelToList:(id)model;
--(void) deleteModelFromList:(id)model;
+-(void) openSummaryViewWithModel:(id)model;
 
 @end
 
@@ -20,9 +19,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
-@property (strong, nonatomic) id model;
-@property (nonatomic) BOOL buttonIsTapped;
 
+
+@property (strong, nonatomic) id model;
 - (IBAction)plusButtonTapped:(id)sender;
--(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon;
+
 @end
