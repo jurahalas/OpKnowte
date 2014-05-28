@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -441,7 +441,7 @@
         <!--Procedure Detail Summary View Controller - Summary-->
         <scene sceneID="K3O-ms-HFp">
             <objects>
-                <viewController id="XTe-gD-PYM" customClass="OKProcedureDetailSummaryViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="XTe-gD-PYM" customClass="OKProcedureDetailSummaryViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WTl-wz-RgR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -517,10 +517,10 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
 <<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="20.00000378828533" width="320" height="488"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="488"/>
 =======
-                                <rect key="frame" x="0.0" y="20.000003644119207" width="320" height="488"/>
->>>>>>> 564ca988b6ce857cc24f2aa98fd38062987c83d9
+                                <rect key="frame" x="0.0" y="20.000002339424938" width="320" height="488"/>
+>>>>>>> 326e60addb29225466392d80a6aada1c02f8a8dc
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2396,18 +2396,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zTr-1F-2pE">
-                                        <rect key="frame" x="233" y="56" width="67" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.071478074599999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Log Out">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logOutButton:" destination="1sY-Xu-fV5" eventType="touchUpInside" id="3lN-Xi-IqU"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -2862,6 +2850,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <connections>
                                     <outlet property="delegate" destination="JBj-cb-b1Z" id="Hjr-5e-bke"/>
                                 </connections>
@@ -2903,7 +2892,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2959,7 +2948,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3039,12 +3028,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Procedure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XNB-rH-qcw">
-                                                    <rect key="frame" x="9" y="7" width="260" height="45"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Procedure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XNB-rH-qcw">
+                                                    <rect key="frame" x="15" y="7" width="260" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                                                    <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="OhN-jk-Frn">
                                                     <rect key="frame" x="288" y="18" width="21" height="22"/>
@@ -3825,41 +3816,33 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
 <<<<<<< HEAD
-        <segue reference="aKz-2x-G8K"/>
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="IcY-8f-Npy"/>
-        <segue reference="Aik-36-Z3R"/>
-        <segue reference="9Vm-fe-BqP"/>
-        <segue reference="DMv-Rl-71E"/>
-=======
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="aKz-2x-G8K"/>
-        <segue reference="Aik-36-Z3R"/>
-        <segue reference="veZ-bC-PGL"/>
-        <segue reference="DoT-oZ-zGI"/>
-        <segue reference="9Vm-fe-BqP"/>
-        <segue reference="IcY-8f-Npy"/>
-        <segue reference="goQ-lN-Lsa"/>
->>>>>>> 564ca988b6ce857cc24f2aa98fd38062987c83d9
+        <segue reference="cNX-Le-q8P"/>
+        <segue reference="jDh-vb-NmK"/>
+        <segue reference="ljR-8G-8AS"/>
+        <segue reference="iYE-S8-xzH"/>
+        <segue reference="oYk-1x-QUH"/>
+        <segue reference="lPY-Bo-TiM"/>
         <segue reference="hs5-kv-qjd"/>
-        <segue reference="NUC-dJ-uGW"/>
-        <segue reference="aL2-xa-szT"/>
+        <segue reference="UMT-op-RBq"/>
+        <segue reference="9Vm-fe-BqP"/>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="IcY-8f-Npy"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="sg6-fY-kvy"/>
+=======
         <segue reference="iYE-S8-xzH"/>
         <segue reference="UMT-op-RBq"/>
-<<<<<<< HEAD
-        <segue reference="sg6-fY-kvy"/>
-        <segue reference="ytp-fp-EJd"/>
-=======
+        <segue reference="aL2-xa-szT"/>
         <segue reference="NUC-dJ-uGW"/>
         <segue reference="hs5-kv-qjd"/>
         <segue reference="goQ-lN-Lsa"/>
+        <segue reference="R5c-Bb-DU8"/>
         <segue reference="ytp-fp-EJd"/>
         <segue reference="Aik-36-Z3R"/>
-        <segue reference="aKz-2x-G8K"/>
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="IcY-8f-Npy"/>
         <segue reference="DoT-oZ-zGI"/>
         <segue reference="9Vm-fe-BqP"/>
->>>>>>> 564ca988b6ce857cc24f2aa98fd38062987c83d9
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="IcY-8f-Npy"/>
+>>>>>>> 326e60addb29225466392d80a6aada1c02f8a8dc
     </inferredMetricsTieBreakers>
 </document>

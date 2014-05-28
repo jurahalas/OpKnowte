@@ -434,8 +434,12 @@
 - (IBAction)rightButtonTapped:(id)sender {
     if ([self canGoToNextVC]) {
         
+        
         if (self.currentPage < (self.plistArray.count - 1) ) {
+            
             if (self.currentPage == 0) {
+                [self.model setValue:_procedureName forKey:@"var_procedureName"];
+
                 OKProceduresManager *manager = [OKProceduresManager instance];
                 [[OKLoadingViewController instance] showWithText:@"Loading..."];
                 [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {

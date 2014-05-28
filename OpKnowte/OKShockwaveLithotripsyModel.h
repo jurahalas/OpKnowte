@@ -37,9 +37,6 @@
 
 @property (strong,nonatomic) NSString *twoWeeksEmail;
 @property (strong,nonatomic) NSString *sixMonthsEmail;
-@property (strong,nonatomic) NSString *Adhesiolyst;
-@property (strong,nonatomic) NSString *Vascular_Anomalies;
-@property (strong,nonatomic) NSString *Pre_Op_2;
 @property (strong,nonatomic) NSString *DetailID;
 @property (strong,nonatomic) NSString *Surgeon_ID;
 

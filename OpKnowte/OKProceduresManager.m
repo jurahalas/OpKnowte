@@ -132,7 +132,10 @@
         for (NSDictionary *variable in json) {
             OKProcedureTemplateVariablesModel *model = [[OKProcedureTemplateVariablesModel alloc] init];
             [model setModelWithDictionary:variable];
-            [variablesArray addObject:model];
+            if (![model.value isEqualToString:@"(var_preSide)"]) {
+                [variablesArray addObject:model];
+            }
+            
         }
         handler([self getErrorMessageFromJSON:json error:error], variablesArray);
     }];

@@ -73,8 +73,6 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:self.view.window];
     [self addBottomTabBar];
-
-    
     if (self.contactInfo != nil) {
         if ([self.contactInfo identifier].length > 0) {
             
@@ -93,8 +91,9 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -118,6 +117,7 @@
         [self scrollViewToOptimalPosition:[self.elements indexOfObject:self.activeTextField]];    } completion:nil];
 }
 
+
 - (void)keyboardWillHide:(NSNotification *)n
 {
     [UIView animateWithDuration:0.3 animations:^{
@@ -127,10 +127,12 @@
     }];
 }
 
+
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 -(IBAction)saveButton:(id)sender
 {
@@ -228,6 +230,11 @@
     {
         [self.scrollView setContentSize:CGSizeMake(320, self.view.bounds.size.height-64)];
         self.scrollView.frame = CGRectMake(0, 64, 320, self.view.bounds.size.height-64);
+       
+        if([[UIDevice currentDevice].systemVersion hasPrefix:@"6"]){ //iOS 6.1 <
+        
+            self.scrollView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height-64);
+        }
     }
     else //iphone 4/4s
     {
@@ -238,7 +245,7 @@
         }
         else //iOS 6.1 <
         {
-            self.scrollView.frame = CGRectMake(0, 44, 320, self.view.bounds.size.height-64);
+            self.scrollView.frame = CGRectMake(0, 0, 320, self.view.bounds.size.height-64);
         }
     }
 }
