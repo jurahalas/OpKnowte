@@ -25,6 +25,12 @@
     self.backgroundColor = [UIColor clearColor];
 }
 
+
+-(void) setLabelsWithKey: (NSString*) key AndValue:(NSString*) value{
+    self.procedureKeyLabel.text = key;
+    self.procedureValueLabel.text = value;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

@@ -18,6 +18,7 @@
 #import "OKImmediateDataVC.h"
 #import "OKFollowUpDataManager.h"
 #import "OKUserManager.h"
+#import "OKDetailSummaryVC.h"
 
 @interface OKIntraOperativeDataViewController ()<OKIntraOperativeProtocol>
 
@@ -375,9 +376,14 @@
         }
     }
 }
--(void)openSummaryViewWithModel:(id)model{
+
+
+-(void)openSummaryViewWithModel:(id)model
+{
+    [self performSegueWithIdentifier:@"fromIODtoSummary" sender:model];
     
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -456,7 +462,6 @@
 
 - (IBAction)analyseTapped:(id)sender
 {
-    [self performSegueWithIdentifier:@"fromIODtoImmediate" sender:nil];
    
     if ([self.selectedCases count] == 0) {
         UIAlertView *analyseError = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -477,9 +482,9 @@
                 _nationalClinicalData = dataArray;
                 [[OKLoadingViewController instance] hide];
                 NSLog(@"%i", self.selectedCases.count);
-//                [self performSegueWithIdentifier:@"fromIODtoImmediate" sender:nil];
             }];
         }];
+        [self performSegueWithIdentifier:@"fromIODtoImmediate" sender:nil];
     }
 }
 
@@ -492,8 +497,14 @@
         sharVC.totalSurgeonCount = _selectedCases.count;
         sharVC.selectedCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
         sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_selectedCases];
-        
+    }else if ([segue.identifier isEqualToString:@"fromIODtoSummary"]){
+        OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
+        detailVC.procID = _procID;
+        detailVC.model = sender;
     }
+
+
+        
 }
 
 

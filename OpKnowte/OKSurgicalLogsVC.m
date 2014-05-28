@@ -16,6 +16,7 @@
 #import <MessageUI/MessageUI.h>
 #import "OKSendFaxManager.h"
 #import "OKFakeTableViewCell.h"
+#import "OKDetailSummaryVC.h"
 
 
 @interface OKSurgicalLogsVC () <OKSLListCellDelegate, MFMailComposeViewControllerDelegate>
@@ -568,10 +569,18 @@
 }
 
 -(void)openSummaryViewWithModel:(id)model{
-    
+    [self performSegueWithIdentifier:@"fromSLtoDetail" sender:model];
+
 }
 
-
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+ if ([segue.identifier isEqualToString:@"fromSLtoDetail"]){
+        OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
+        detailVC.procID = _procID;
+        detailVC.model = sender;
+    }
+}
 -(void)addModelToList:(id)model{
     [_choosedDetails addObject:model];
     

@@ -14,6 +14,7 @@
 #import "OKFollowUpDataManager.h"
 #import "OKSelectTimePointViewController.h"
 #import "OKFakeTableViewCell.h"
+#import "OKDetailSummaryVC.h"
 
 @interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
@@ -192,7 +193,11 @@
         sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
         sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];       
                                    
-    } 
+    } else if ([segue.identifier isEqualToString:@"fromFUDToDetail"]){
+        OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
+        detailVC.procID = _procID;
+        detailVC.model = sender;
+    }
 }
 
 
@@ -358,7 +363,8 @@
 
 
 -(void)openSummaryViewWithModel:(id)model{
-    
+    [self performSegueWithIdentifier:@"fromFUDToDetail" sender:model];
+
 }
 
 
