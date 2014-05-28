@@ -103,8 +103,16 @@
             int count = [dates count];
             _dateFromTF.text = [dates objectAtIndex:0];
             _dateToTF.text = [dates objectAtIndex:count-1];
+            [self searchDetails];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                            message:@"No dates found"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles: nil];
+            [alert show];
+
         }
-        [self searchDetails];
         
     }];
     
