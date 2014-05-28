@@ -29,8 +29,23 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
+    [self setTitleToNavbar];
 }
+
+-(void)setTitleToNavbar
+{
+    if ([_cameFromVC isEqualToString:@"ReminderSettings"]) {
+        self.title = @"Reminder Settings";
+    }else if ([_cameFromVC isEqualToString:@"DataSharingVC"]){
+        self.title = @"Data Sharing";
+    }else if ([_cameFromVC isEqualToString:@"AccessSettingsVC"]){
+        self.title = @"Access Settings";
+    }else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"]){
+        self.title = @"Edit Procedure Template";
+    }
+}
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];

@@ -27,6 +27,9 @@
 @property (nonatomic, weak) OKProcedureDatePicker *datePickerObject;
 @property (nonatomic, weak) OKSelectContact *selectContactObject;
 
+@property (nonatomic, strong) UIScrollView *scrollview;
+@property (nonatomic,strong) UIView *pickerBGView;
+
 @end
 
 @implementation OKBaseProcedureVC
@@ -65,17 +68,38 @@
         [self addRightButtonForiOS6];
         [self addLeftButtonForiOS6];
     }
+    self.scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height-51.f)];
+    self.scrollview.contentSize = CGSizeMake(320, 600);
+    self.scrollview.hidden = NO;
+    self.scrollview.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.scrollview];
+    [self addBottomTabBar];
+    
+    
+    
+    
+    _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
+    _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
+    _pickerBGView.hidden = YES;
+    [self.view addSubview:_pickerBGView];
+    
+    
     self.interactionItems = [[NSMutableArray alloc] init];
-    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
-    self.datePicker = [[OKDatePicker alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
+    self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
+    self.datePicker = [[OKDatePicker alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
     [self.datePicker setTextColor:[UIColor whiteColor]];
     self.picker.hidden = YES;
     self.datePicker.hidden = YES;
     self.picker.delegate = self;
     self.picker.dataSource = self;
     self.picker.showsSelectionIndicator = YES;
-    [self.view addSubview:self.datePicker];
-    [self.view addSubview:self.picker];
+    [_pickerBGView addSubview:self.datePicker];
+    [_pickerBGView addSubview:self.picker];
+    
+
+
+    
+    
 }
 -(void)addRightButtonForiOS6{
     UIButton *right = [[UIButton alloc] init];
@@ -144,7 +168,10 @@
         OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         symbolicTextField.delegate = self;
         
-        [self.view addSubview:symbolicTextField];
+        //[self.view addSubview:symbolicTextField];
+        [self.scrollview addSubview:symbolicTextField];
+        
+        
         [symbolicTextField setTagOfTextField:tag];
         if (symbolicTextField.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], symbolicTextField.tagOfTextField ];
@@ -165,7 +192,9 @@
         OKSelectContact *selectContact = [[OKSelectContact alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         selectContact.delegate = self;
         
-        [self.view addSubview:selectContact];
+        //[self.view addSubview:selectContact];
+        [self.scrollview addSubview:selectContact];
+
         [selectContact setTagOfTextField:tag];
 
         [selectContact setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
@@ -177,7 +206,10 @@
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         numericTextField.delegate = self;
         
-        [self.view addSubview:numericTextField];
+       // [self.view addSubview:numericTextField];
+        [self.scrollview addSubview:numericTextField];
+
+        
         [numericTextField setTagOfTextField:tag];
         if (numericTextField.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], numericTextField.tagOfTextField ];
@@ -195,7 +227,9 @@
         OKProcedureDatePicker *datePicker = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         datePicker.delegate = self;
         
-        [self.view addSubview:datePicker];
+        //[self.view addSubview:datePicker];
+        [self.scrollview addSubview:datePicker];
+
         [datePicker setTagOfTextField:tag];
         if (datePicker.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], datePicker.tagOfTextField ];
@@ -216,7 +250,10 @@
 
         picker.customTextField.inputView = _picker;
         
-        [self.view addSubview:picker];
+     //   [self.view addSubview:picker];
+        [self.scrollview addSubview:picker];
+
+        
         [picker setTagOfTextField:tag];
         if (picker.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], picker.tagOfTextField ];
@@ -246,7 +283,9 @@
         [multiselectView setFieldName:[customElementDictionary objectForKey:@"name"]];
         
         [multiselectView setDataArray:[customElementDictionary objectForKey:@"items"]];
-        [self.view addSubview:multiselectView];
+       /// [self.view addSubview:multiselectView];
+        [self.scrollview addSubview:multiselectView];
+
 
         [self.interactionItems addObject:multiselectView];
     
@@ -254,7 +293,9 @@
         OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         switcher.delegate = self;
 
-        [self.view addSubview:switcher];
+        //[self.view addSubview:switcher];
+        [self.scrollview addSubview:switcher];
+
         [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [switcher setup];
@@ -323,6 +364,7 @@
     if (self.picker.hidden) {
         self.pickerObject = pickerObject;
         self.pickerData = pickerData;
+        _pickerBGView.hidden = NO;
         self.picker.hidden = NO;
         self.datePicker.hidden = YES;
         [self.picker reloadAllComponents];
@@ -339,6 +381,7 @@
 {
     if (self.datePicker.hidden) {
         self.datePickerObject = datePickerObject;
+        _pickerBGView.hidden = NO;
         self.picker.hidden = YES;
         self.datePicker.hidden = NO;
         if(date)
@@ -369,6 +412,7 @@
 {
     self.pickerObject.customTextField.text = self.pickerData[[self.picker selectedRowInComponent:0]];
     self.picker.hidden = YES;
+    _pickerBGView.hidden = YES;
     self.pickerData = nil;
 }
 
@@ -382,6 +426,7 @@
     self.datePickerObject.customTextField.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:self.datePicker.date] ];
     [self.datePickerObject.delegate updateField:self.datePickerObject.fieldName withValue:self.datePickerObject.customTextField.text andTag:self.datePickerObject.tagOfTextField];
     self.datePicker.hidden = YES;
+    _pickerBGView.hidden = YES;
     
 }
 -(void)hidePickersWhenTextFieldBeginsEditing{

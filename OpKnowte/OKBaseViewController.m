@@ -34,6 +34,23 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
 	}
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        [[UINavigationBar appearance] setTitleTextAttributes: @{
+                                                                UITextAttributeTextColor: [UIColor whiteColor],
+                                                                UITextAttributeTextShadowColor: [UIColor clearColor],
+                                                                UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
+                                                                UITextAttributeFont: [UIFont fontWithName:@"AvenirNext-DemiBold" size:19.0f]
+                                                                }];
+
+    }else{
+    
+       
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                        [UIFont fontWithName:@"AvenirNext-DemiBold" size:19.0f], NSFontAttributeName,
+                                        [UIColor whiteColor], NSForegroundColorAttributeName,
+                                            [NSShadow new], NSShadowAttributeName,nil]];
+    }
 
 }
 

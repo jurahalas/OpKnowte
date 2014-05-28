@@ -18,4 +18,5 @@
 @interface OKBottomTabBarView : UIView
 @property (nonatomic, weak) id<OKBaseVCDelegate>delegate;
 -(void) drawBottomTabBar;
+-(void) draw;
 @end

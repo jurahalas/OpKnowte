@@ -50,6 +50,9 @@
     
     bottonTabBarButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     
+    updateButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    updateButton.layer.cornerRadius = 14;
+    
     MDPiker.hidden = NO;
     PikerView.hidden = YES;
     

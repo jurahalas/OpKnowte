@@ -59,8 +59,8 @@
     [self addSubview:_settingsButton];
 }
 
-
 -(void) drawView {
+    
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];
     if (IS_IOS7 || [self.delegate navBar] == true) {
         self.frame = CGRectMake(0, self.superview.frame.size.height - 51, 320, 51);
@@ -69,7 +69,24 @@
         self.frame = CGRectMake(0, self.superview.frame.size.height - 95, 320, 51);
         }
 }
+-(void) dView{
 
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbarBG"]];
+    if (IS_IOS7 || [self.delegate navBar] == true) {
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 115, 320, 51);
+    }
+    else {
+        self.frame = CGRectMake(0, self.superview.frame.size.height - 95, 320, 51);
+    }
+}
+- (void)draw{
+
+    [self dView];
+    [self drawHomeButton];
+    [self drawLogoTBImage];
+    [self drawSettingsButton];
+    
+}
 
 -(void)homeButton:(id)sender
 {

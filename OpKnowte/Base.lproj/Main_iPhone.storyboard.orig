@@ -490,14 +490,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+<<<<<<< HEAD
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+=======
+>>>>>>> 106152e955e79dcf7aa305a9d7b0aa65e2d232dc
                     <navigationItem key="navigationItem" title="Summary" id="jjM-wM-1j1">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="YbG-2J-oO7">
                             <connections>
                                 <action selector="backButton:" destination="XTe-gD-PYM" id="irz-cd-ogQ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="info.png" id="fsq-SX-mHD"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -507,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KD5-A6-3xH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="-655"/>
+            <point key="canvasLocation" x="1482" y="-638"/>
         </scene>
         <!--Ongoing Clinical View Controller - Ongoing Clinical-->
         <scene sceneID="rpZ-70-jMk">
@@ -521,8 +523,8 @@
 <<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="20" width="320" height="488"/>
 =======
-                                <rect key="frame" x="0.0" y="20.000003644119207" width="320" height="488"/>
->>>>>>> 7def76add58e7cc05b5a8fddcde8fb5408932a66
+                                <rect key="frame" x="0.0" y="19.999999999999982" width="320" height="488"/>
+>>>>>>> 106152e955e79dcf7aa305a9d7b0aa65e2d232dc
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -1161,7 +1163,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="OlW-7u-RUV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="OlW-7u-RUV">
                                 <rect key="frame" x="0.0" y="291" width="320" height="277"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1175,23 +1177,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steve Rogers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aXK-ZG-vFm">
-                                                    <rect key="frame" x="43" y="20" width="165" height="21"/>
+                                                    <rect key="frame" x="13" y="20" width="151" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar 02, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QLN-GG-q0j">
-                                                    <rect key="frame" x="210" y="19" width="102" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01-01-1950" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QLN-GG-q0j">
+                                                    <rect key="frame" x="172" y="19" width="93" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zc5-B7-RBb">
-                                                    <rect key="frame" x="10" y="17" width="25" height="25"/>
+                                                    <rect key="frame" x="282" y="17" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal">
+                                                    <state key="normal" image="faxIcon.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -2398,18 +2400,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zTr-1F-2pE">
-                                        <rect key="frame" x="233" y="56" width="67" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.071478074599999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Log Out">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="logOutButton:" destination="1sY-Xu-fV5" eventType="touchUpInside" id="3lN-Xi-IqU"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -2864,6 +2854,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="60" maxX="0.0" maxY="-60"/>
                                 <connections>
                                     <outlet property="delegate" destination="JBj-cb-b1Z" id="Hjr-5e-bke"/>
                                 </connections>
@@ -2905,7 +2896,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2961,7 +2952,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3041,12 +3032,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Procedure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XNB-rH-qcw">
-                                                    <rect key="frame" x="9" y="7" width="260" height="45"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Procedure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XNB-rH-qcw">
+                                                    <rect key="frame" x="15" y="7" width="260" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                                                    <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="OhN-jk-Frn">
                                                     <rect key="frame" x="288" y="18" width="21" height="22"/>
@@ -3827,33 +3820,37 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
 <<<<<<< HEAD
-        <segue reference="aL2-xa-szT"/>
-        <segue reference="iYE-S8-xzH"/>
-        <segue reference="UMT-op-RBq"/>
-        <segue reference="NUC-dJ-uGW"/>
-        <segue reference="hs5-kv-qjd"/>
-        <segue reference="goQ-lN-Lsa"/>
-        <segue reference="ytp-fp-EJd"/>
-        <segue reference="Aik-36-Z3R"/>
         <segue reference="aKz-2x-G8K"/>
         <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
+        <segue reference="Aik-36-Z3R"/>
         <segue reference="DoT-oZ-zGI"/>
         <segue reference="9Vm-fe-BqP"/>
+        <segue reference="iYE-S8-xzH"/>
 =======
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="aKz-2x-G8K"/>
+        <segue reference="cNX-Le-q8P"/>
+        <segue reference="jDh-vb-NmK"/>
+        <segue reference="ljR-8G-8AS"/>
+        <segue reference="iYE-S8-xzH"/>
+        <segue reference="oYk-1x-QUH"/>
+        <segue reference="lPY-Bo-TiM"/>
+        <segue reference="UMT-op-RBq"/>
+>>>>>>> 106152e955e79dcf7aa305a9d7b0aa65e2d232dc
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="hs5-kv-qjd"/>
+        <segue reference="goQ-lN-Lsa"/>
+        <segue reference="R5c-Bb-DU8"/>
+        <segue reference="ytp-fp-EJd"/>
+<<<<<<< HEAD
+        <segue reference="UMT-op-RBq"/>
+=======
         <segue reference="Aik-36-Z3R"/>
-        <segue reference="veZ-bC-PGL"/>
         <segue reference="DoT-oZ-zGI"/>
         <segue reference="9Vm-fe-BqP"/>
+        <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
-        <segue reference="goQ-lN-Lsa"/>
-        <segue reference="hs5-kv-qjd"/>
-        <segue reference="NUC-dJ-uGW"/>
-        <segue reference="aL2-xa-szT"/>
-        <segue reference="iYE-S8-xzH"/>
-        <segue reference="ytp-fp-EJd"/>
->>>>>>> 7def76add58e7cc05b5a8fddcde8fb5408932a66
+        <segue reference="sg6-fY-kvy"/>
+>>>>>>> 106152e955e79dcf7aa305a9d7b0aa65e2d232dc
     </inferredMetricsTieBreakers>
 </document>

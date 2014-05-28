@@ -54,7 +54,6 @@
 
 @property (nonatomic, strong) NSMutableArray *detailsArray;
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
-@property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
 @property (nonatomic, assign) BOOL dateToButtonTapped;
@@ -88,6 +87,20 @@
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
 
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
+    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+        NSLog(@"Eror - %@", errorMsg);
+        
+        if ((dates) && ([dates count] > 0)) {
+            
+            int count = [dates count];
+            _dateFromTF.text = [dates objectAtIndex:0];
+            _dateToTF.text = [dates objectAtIndex:count-1];
+            [self searchDetails];
+        }
+        
+    }];
     
     
 }
@@ -131,21 +144,7 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
-    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
-        NSLog(@"Eror - %@", errorMsg);
 
-        if ((dates) && ([dates count] > 0)) {
-            
-            int count = [dates count];
-            _dateFromTF.text = [dates objectAtIndex:0];
-            _dateToTF.text = [dates objectAtIndex:count-1];
-            
-        }
-        [[OKLoadingViewController instance] hide];
-    }];
-    
 }
 
 
@@ -389,33 +388,34 @@
 
 
 - (IBAction)searchButton:(id)sender {
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [self searchDetails];
+}
+- (void) searchDetails{
+    [_choosedDetails removeAllObjects];
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
     }else{
         
         if ([self varifyDates]) {
-            [[OKLoadingViewController instance] showWithText:@"Loading..."];
-           
+            
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
             [surgicalLogsManager getSurgeonPerformanceDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text FromRecordNum:_caseFromLabel.text ToRecordNum:_caseToLabel.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _detailsArray = [self getFilterArray:dataArray];
                 _choosedDetails = [_detailsArray mutableCopy];
-                //_deselectAll = YES;
                 [_listTableView reloadData];
-                [[OKLoadingViewController instance] hide];
+               [[OKLoadingViewController instance] hide];
             }];
-    }else{
-        UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [dateError show];
-
+        }else{
+            UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [dateError show];
+            
+        }
     }
 }
-
-}
-
 -(NSMutableArray *)getFilterArray:(NSMutableArray *)data{
     NSMutableArray *filtered = [[NSMutableArray alloc] init];
     
@@ -566,6 +566,12 @@
     
     
 }
+
+-(void)openSummaryViewWithModel:(id)model{
+    
+}
+
+
 -(void)addModelToList:(id)model{
     [_choosedDetails addObject:model];
     
@@ -575,6 +581,7 @@
         id searchedModel = [_choosedDetails objectAtIndex:i];
         if ([[searchedModel valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
             [_choosedDetails removeObjectAtIndex:i];
+            break;
         }
     }
 }

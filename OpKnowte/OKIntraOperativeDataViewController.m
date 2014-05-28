@@ -91,6 +91,23 @@
      [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
+
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    
+    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+        NSLog(@"Eror - %@", errorMsg);
+        
+        if ((dates) && ([dates count] > 0)) {
+            int count = [dates count];
+            _dateFromTF.text = [dates objectAtIndex:0];
+            _dateToTF.text = [dates objectAtIndex:count-1];
+            
+        }
+        [self searchDetails];
+        
+    }];
+
 }
 
 
@@ -154,19 +171,7 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    
-    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
-        NSLog(@"Eror - %@", errorMsg);
-        
-        if ((dates) && ([dates count] > 0)) {
-            int count = [dates count];
-            _dateFromTF.text = [dates objectAtIndex:0];
-            _dateToTF.text = [dates objectAtIndex:count-1];
-        }
-        [[OKLoadingViewController instance] hide];
-    }];
+
 }
 
 
@@ -184,19 +189,25 @@
 
 - (IBAction)diselectAllButton:(id)sender {
     [_selectedCases removeAllObjects];
-    _deselectAll = YES;
     [_listTableView reloadData];
 }
 
 
 - (IBAction)searchButton:(id)sender {
+            [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [self searchDetails];
+}
+
+
+- (void) searchDetails{
+    [_selectedCases removeAllObjects];
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
     }else{
         
         if ([self varifyDates]) {
-            [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
             OKFollowUpDataManager *followManager = [OKFollowUpDataManager instance];
             
             OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
@@ -204,7 +215,6 @@
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _cases = [self getFilterArray:dataArray];
-                _deselectAll = YES;
                 
                 [_selectedCases addObjectsFromArray:_cases];
                 
@@ -212,10 +222,10 @@
                 
                 
                 [followManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
-                 
+                    
                     NSLog(@"Eror - %@", errorMsg);
                     _nationalDataArray = dataArray;
-
+                    
                 }];
                 [[OKLoadingViewController instance] hide];
             }];
@@ -225,7 +235,10 @@
             
         }
     }
+    
 }
+
+
 
 -(BOOL)varifyDates{
     NSDate *d1;
@@ -358,10 +371,13 @@
     for (int i = 0; i<_selectedCases.count; i++) {
         if ([[_selectedCases[i] valueForKey:@"DetailID"] isEqualToString:[model valueForKey:@"DetailID"]]) {
             [_selectedCases removeObjectAtIndex:i];
+            break;
         }
     }
 }
-
+-(void)openSummaryViewWithModel:(id)model{
+    
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -376,23 +392,22 @@
         if (!IntraOperativeDataCellIdentifier) {
             IntraOperativeDataCell = [[OKIntraOperativeDataTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IntraOperativeDataCellIdentifier];
         }
-        if (_deselectAll) {
-            [IntraOperativeDataCell setCellButtonBGImageWithGreenMinusIcon:NO];
-            if (indexPath.row == _cases.count-1) {
-                _deselectAll = NO;
+        
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        id model = _cases[indexPath.row];
+        for (id choosedModel in _selectedCases) {
+            if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
+                [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                break;
             }
         }
-        id model = _cases[indexPath.row];
+        
         IntraOperativeDataCell.model = model;
         IntraOperativeDataCell.nameLabel.text = [model valueForKey:@"var_patientName"];
         IntraOperativeDataCell.dateLabel.text = [model valueForKey:@"var_patientDOB"];
         IntraOperativeDataCell.delegate = self;
         
-        for (NSArray * chosedD in _selectedCases) {
-            if ([[chosedD valueForKey:@"var_patientName"] isEqualToString:IntraOperativeDataCell.nameLabel.text]) {
-                [IntraOperativeDataCell setCellButtonBGImageWithGreenMinusIcon:YES];
-            }
-        }
+
         
         return IntraOperativeDataCell;
     
@@ -407,7 +422,24 @@
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKIntraOperativeDataTableViewCell class]]) {
+        OKIntraOperativeDataTableViewCell *cell = (OKIntraOperativeDataTableViewCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self deleteModelFromList:cell.model];
+    }
+    
+    
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKIntraOperativeDataTableViewCell class]]) {
+        OKIntraOperativeDataTableViewCell *cell = (OKIntraOperativeDataTableViewCell *)[_listTableView cellForRowAtIndexPath:indexPath];
+        [self addModelToList:cell.model];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
+    }
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
