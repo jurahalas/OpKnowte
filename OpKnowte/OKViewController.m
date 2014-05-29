@@ -125,7 +125,13 @@
                 [loginFormErrorAlertView show];
                 _loginButton.enabled = YES;
                
-            } [[OKLoadingViewController instance] hide];
+            } else {
+                [self.view endEditing:YES];
+                [self performSegueWithIdentifier:@"loginSegue" sender:self];
+                _loginButton.enabled = YES;
+            }
+            
+            [[OKLoadingViewController instance] hide];
         }];
     }
 
