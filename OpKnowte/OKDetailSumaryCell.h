@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface OKDetailSumaryCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *procedureKeyLabel;
 @property (strong, nonatomic) IBOutlet UILabel *procedureValueLabel;
+
+-(void) setLabelsWithKey: (NSString*) key AndValue:(NSString*) value;
+
 @end

@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol OKFollowUpDataCellDelegate <NSObject>
 
--(void) addModelToList:(id)model;
--(void) deleteModelFromList:(id)model;
+-(void) openSummaryViewWithModel:(id)model;
 
 @end
 
@@ -22,7 +21,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
 
 @property (strong, nonatomic) id model;
-@property (nonatomic) BOOL buttonIsTapped;
 - (IBAction)plusButtonTapped:(id)sender;
--(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon;
+
 @end

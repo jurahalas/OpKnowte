@@ -7,8 +7,15 @@
 //
 
 #import "OKDetailSummaryVC.h"
+#include "OKDetailSumaryCell.h"
+#import "OKProcedureTemplateVariablesModel.h"
+#import "OKProcedureTemplateModel.h"
+#import "OKProceduresManager.h"
+
 
 @interface OKDetailSummaryVC ()
+@property (strong, nonatomic) IBOutlet UITableView *detailSummaryTable;
+@property (strong, nonatomic) NSMutableArray *keysForValues;
 
 @end
 
@@ -26,12 +33,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES ];
+    self.detailSummaryTable.backgroundColor = [UIColor clearColor];
+    
+    self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y+64.f, self.detailSummaryTable.frame.size.width, (self.detailSummaryTable.frame.size.height));
+    [self addBottomTabBar];
+    
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
+    
+    _keysForValues = [[NSMutableArray alloc] init];
+    OKProceduresManager *procedureManager = [OKProceduresManager instance];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [procedureManager getProcedureTemplateVariablesByProcedureID:_procID handler:^(NSString *errorMsg, NSMutableArray *templateVariables) {
+        
+        NSLog(@"Error - %@", errorMsg);
+        _keysForValues = templateVariables;
+        for (int i=0; i<_keysForValues.count; i++) {
+            OKProcedureTemplateVariablesModel *tempModel = _keysForValues[i];
+            if ([_model valueForKey:tempModel.value]==nil) {
+                [_keysForValues removeObjectAtIndex:i];
+                i--;
+            }
+        }
+        [_detailSummaryTable reloadData];
+        [[OKLoadingViewController instance] hide];
+
+    }];
+    
+
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -42,10 +77,53 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
-
--(void)backButton{
+- (IBAction)backButtonTapped:(id)sender {
+    
     [self.navigationController popViewControllerAnimated:YES];
+
 }
+
+
+#pragma mark Table View
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _keysForValues.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"detailCell";
+    OKDetailSumaryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[OKDetailSumaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    
+    //    OKContactManager *contactsManager = [OKContactManager instance];
+    OKProcedureTemplateVariablesModel *variableModel = _keysForValues[indexPath.row];
+    NSString *variableValue = [[NSString alloc] init];
+    if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+        NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+        valuesArray = [_model valueForKey:variableModel.value];
+        for (int i = 0; i < valuesArray.count; i++) {
+            if ([valuesArray[i] isEqualToString:@" "]) {
+                [valuesArray removeObjectAtIndex:i];
+                i--;
+            }
+        }
+        
+        variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+    } else {
+        variableValue = [_model valueForKey:variableModel.value];
+    }
+    
+    
+    [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
+    [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
+    return cell;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
