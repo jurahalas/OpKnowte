@@ -45,7 +45,9 @@
         textFieldImage = [UIImage imageNamed:@"email"];
     } else if ([placeholder isEqualToString:@"MD"]){
         textFieldImage = [UIImage imageNamed:@"degree"];
-    } else {
+    }else if ([placeholder isEqualToString:@"State"]){
+        textFieldImage = nil;
+    }    else {
         textFieldImage = [UIImage imageNamed:@"password"];
     }
     
@@ -54,6 +56,8 @@
     textFieldIcon.image = textFieldImage;
     
     UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+    if ([placeholder isEqualToString:@"State"])
+        textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     textFieldIconView.backgroundColor = [UIColor clearColor];
     [textFieldIconView addSubview:textFieldIcon];
     self.leftView = textFieldIconView;
