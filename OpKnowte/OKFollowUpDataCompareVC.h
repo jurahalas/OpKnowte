@@ -378,4 +378,7 @@
 
 @property (nonatomic)int NationalSize;
 @property (nonatomic)int SurgeonSize;
+
+- (IBAction)compareButtonTapped:(id)sender ;
+- (IBAction)removeButtonTapped:(id)sender;
 @end

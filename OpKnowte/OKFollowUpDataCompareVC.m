@@ -24,6 +24,13 @@
 @property (strong, nonatomic) IBOutlet UIView *gradeNationalView;
 @property (strong, nonatomic) IBOutlet UIView *tmnNationalView;
 
+
+//buttons
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *compareButtons;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *removeButtons;
+
+
+
 @end
 
 @implementation OKFollowUpDataCompareVC
@@ -71,6 +78,50 @@
     }
     return self;
 }
+
+- (IBAction)compareButtonTapped:(id)sender {
+    _marginsNationalView.hidden = !_marginsNationalView.hidden;
+    _changeInBunNationalView.hidden = !_changeInBunNationalView.hidden;
+    _deepMarginsNationalView.hidden = !_deepMarginsNationalView.hidden;
+    _xrayNationalView.hidden = !_xrayNationalView.hidden;
+    _averageCreatinineNationalView.hidden = !_averageCreatinineNationalView.hidden;
+    _liverNationalView.hidden = !_liverNationalView.hidden;
+    _herniaNationalView.hidden = !_herniaNationalView.hidden;
+    _tumorChNationalView.hidden = !_tumorChNationalView.hidden;
+    _ctScanNationalView.hidden = !_ctScanNationalView.hidden;
+    _lengthStayNationalView.hidden = !_lengthStayNationalView.hidden;
+    _complicationsNationalView.hidden = !_complicationsNationalView.hidden;
+    _gradeNationalView.hidden = !_gradeNationalView.hidden;
+    _tmnNationalView.hidden = !_tmnNationalView.hidden;
+    for (UIButton *button in self.compareButtons) {
+        button.hidden = !button.hidden;
+    }
+}
+- (IBAction)removeButtonTapped:(id)sender {
+    _marginsNationalView.hidden = !_marginsNationalView.hidden;
+    _changeInBunNationalView.hidden = !_changeInBunNationalView.hidden;
+    _deepMarginsNationalView.hidden = !_deepMarginsNationalView.hidden;
+    _xrayNationalView.hidden = !_xrayNationalView.hidden;
+    _averageCreatinineNationalView.hidden = !_averageCreatinineNationalView.hidden;
+    _liverNationalView.hidden = !_liverNationalView.hidden;
+    _herniaNationalView.hidden = !_herniaNationalView.hidden;
+    _tumorChNationalView.hidden = !_tumorChNationalView.hidden;
+    _ctScanNationalView.hidden = !_ctScanNationalView.hidden;
+    _lengthStayNationalView.hidden = !_lengthStayNationalView.hidden;
+    _complicationsNationalView.hidden = !_complicationsNationalView.hidden;
+    _gradeNationalView.hidden = !_gradeNationalView.hidden;
+    _tmnNationalView.hidden = !_tmnNationalView.hidden;
+    for (UIButton *button in self.compareButtons) {
+        button.hidden = !button.hidden;
+    }
+}
+
+
+
+
+
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
