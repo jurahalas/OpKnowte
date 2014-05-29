@@ -141,4 +141,6 @@
 
 @property (nonatomic) BOOL isNationalData;
 
+- (IBAction)compareButtonTapped:(id)sender;
+
 @end

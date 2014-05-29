@@ -37,7 +37,8 @@
     _dashboardTableView.frame = CGRectMake(_dashboardTableView.frame.origin.x, _dashboardTableView.frame.origin.y, _dashboardTableView.frame.size.width, (_dashboardTableView.frame.size.height - 60.f));
     _userView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"dashboardBG"]];;
     [self addBottomTabBar];
-    _userNameLabel.text = [OKUserManager instance].currentUser.firstName;
+    NSString *firstNameAndLastName = [NSString stringWithFormat:@"%@ %@",[[OKUserManager instance].currentUser.firstName capitalizedString],  [[OKUserManager instance].currentUser.lastName capitalizedString]];
+    _userNameLabel.text = firstNameAndLastName;
     
     [self.dashboardTableView reloadData];
 }

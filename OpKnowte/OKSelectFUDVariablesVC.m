@@ -313,17 +313,16 @@ float s_creatinineDiffSum;
     return cell;
     
 }
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
 
-    if (buttonIndex == 0) {
-        _showNationalData = YES;
-    }
-    if (buttonIndex == 1) {
-        _showNationalData = NO;
-    }
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    _showNationalData = YES;
+    _tappedCell = indexPath.row;
     if ([_cameFromVC isEqualToString:@"weeks"]) {
-        switch (_tappedCell) {
+        switch (indexPath.row) {
             case 0:{
                 [self TMGstaging];
                 break;
@@ -364,7 +363,7 @@ float s_creatinineDiffSum;
                 break;
         }
     } else {
-        switch (_tappedCell) {
+        switch (indexPath.row) {
             case 0:{
                 [self xray];
                 break;
@@ -393,20 +392,6 @@ float s_creatinineDiffSum;
                 break;
         }
     }
-
-}
-
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"National Data"
-                                                                        message:@"Do you want to see National Data?"
-                                                                       delegate:self
-                                                              cancelButtonTitle:@"No"
-                                                              otherButtonTitles:@"Yes", nil];
-    _tappedCell = indexPath.row;
-    [loginFormSuccessAlertView show];
     
 
     

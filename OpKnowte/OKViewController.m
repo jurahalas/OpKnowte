@@ -126,16 +126,11 @@
                 _loginButton.enabled = YES;
                
             } else {
-                UIAlertView *loginFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Login Success"
-                                                                                    message:@"Congratulations! You are logged in"
-                                                                                    delegate:self
-                                                                                    cancelButtonTitle:@"OK"
-                                                                                    otherButtonTitles:nil, nil];
-                [loginFormSuccessAlertView show];
                 [self.view endEditing:YES];
                 [self performSegueWithIdentifier:@"loginSegue" sender:self];
                 _loginButton.enabled = YES;
             }
+            
             [[OKLoadingViewController instance] hide];
         }];
     }

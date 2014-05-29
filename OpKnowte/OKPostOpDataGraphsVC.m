@@ -10,6 +10,9 @@
 #define IS_IPHONE_5                     ([[UIScreen mainScreen] bounds].size.height == 568)
 
 @interface OKPostOpDataGraphsVC ()
+@property (strong, nonatomic) IBOutlet UIView *nationalDataView;
+@property (strong, nonatomic) IBOutlet UIButton *compareButton;
+@property (strong, nonatomic) IBOutlet UIButton *removeButton;
 
 @end
 
@@ -40,6 +43,8 @@
 
 @synthesize isNationalData;
 
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,6 +54,11 @@
     }
     return self;
 }
+- (IBAction)compareButtonTapped:(id)sender {
+    _nationalDataView.hidden = !_nationalDataView.hidden;
+    _compareButton.hidden = !_compareButton.hidden;
+}
+
 
 - (void)viewDidLoad
 {
@@ -56,7 +66,7 @@
     // Do any additional setup after loading the view from its nib.
     //averageAge = 70;
     self.navigationItem.title = @"Post-Op Data";
-
+    _nationalDataView.hidden = YES;
     if([self.graphToDraw isEqualToString:@"AverageAge"]){
         [self drawAverageAgeGraph];
     }else if([self.graphToDraw isEqualToString:@"DeepMargins"]){
@@ -706,6 +716,7 @@
     [self.view addSubview:averageView];
     
 }
+
 
 
 @end
