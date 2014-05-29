@@ -461,6 +461,12 @@
     
     self.pickerObject.customTextField.text = self.pickerData[row];
     [self.pickerObject.delegate updateField:self.pickerObject.fieldName withValue:self.pickerObject.customTextField.text andTag:self.pickerObject.tagOfTextField];
+    if (!self.picker.hidden) {
+        [self hidePicker];
+    }
+    if (!self.datePicker.hidden) {
+        [self hideDatePicker];
+    }
 
     
 }
