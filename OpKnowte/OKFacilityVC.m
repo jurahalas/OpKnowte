@@ -58,7 +58,17 @@
         }
         
     }
-    
+    if ([_roleID isEqualToString:@"1"]) {
+       self.navigationItem.title =@"Select Surgeon";
+    }else if ([_roleID isEqualToString:@"2"]){
+        self.navigationItem.title =@"Select Assistant";
+    }else if ([_roleID isEqualToString:@"3"]){
+        self.navigationItem.title =@"Select Anesthesiologist";
+    }else if ([_roleID isEqualToString:@"5"]){
+        self.navigationItem.title =@"Select Physician";
+    }else if([_roleID isEqualToString:@"6"]){
+        self.navigationItem.title =@"Other";
+    }
 }
 
 

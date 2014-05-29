@@ -142,7 +142,7 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.title = @"Follow Up Data";
+    self.navigationItem.title = @"Summary";
     [self addLeftButtonToNavbar];
     [self addBottomTabBar];
 

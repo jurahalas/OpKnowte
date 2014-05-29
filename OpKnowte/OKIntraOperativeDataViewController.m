@@ -84,6 +84,7 @@
     self.listTableView.dataSource=self;
     _cases = [[NSMutableArray alloc] init];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.title = @"Performance Data";
     [self addLeftButtonToNavbar];
     _procedureLabel.text = _procTitle;
     _selectedCases = [[NSMutableArray alloc] init];
