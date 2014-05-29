@@ -146,7 +146,13 @@
     for (UIControl *subview in [segmentControl subviews]) {
         
         if ([subview isSelected]){
+            if (IS_IOS7) {
+                
             [subview setTintColor:[UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]];
+        }
+            else{
+                [subview setTintColor:[UIColor redColor]];
+            }
         }
     }
     
