@@ -50,6 +50,7 @@
     [self addRightButtonToNavbar];
     if (![_cameFromVC isEqualToString:@"createProcedureVC"]){
         _roleID = @"4";
+        _facilityTableView.allowsSelection = NO;
     } else {
         _faxAndEmailView.hidden = YES;
         if ([_roleID isEqualToString:@"7"]) {
@@ -57,6 +58,7 @@
         }
         
     }
+    
 }
 
 
@@ -315,7 +317,17 @@
     
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+        NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
+        [contactsArray addObject:cell.contact];
+        [self.delegate setContactFieldWithContactArray:contactsArray];
+    }
+}
 
 -(NSMutableArray *)getEmailAddress:(NSMutableArray *)contacts{
     
