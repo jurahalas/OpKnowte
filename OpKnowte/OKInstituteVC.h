@@ -9,7 +9,7 @@
 #import "OKBaseViewController.h"
 //#import "OKAppDelegate.h"
 
-@interface OKInstituteVC : OKBaseViewController <UITextFieldDelegate>
+@interface OKInstituteVC : OKBaseViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, strong) NSString *contactID;
 @property (nonatomic, strong) NSString *cameFromVC;

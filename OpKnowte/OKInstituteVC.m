@@ -33,6 +33,12 @@
 @property (strong, nonatomic) NSString *updatedBy;
 @property (strong, nonatomic) OKContactModel *contactInfo;
 
+- (IBAction)stateButtonTapped:(id)sender;
+@property (strong, nonatomic) UIPickerView *statesPicker;
+@property (strong, nonatomic) UIView *pickerBGView;
+@property (strong, nonatomic) NSArray *statesData;
+
+
 
 
 
@@ -46,6 +52,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
     self.title = self.contactID;
+    [self setPickerDesign];
+
     
     if ([self.title isEqualToString:@"1"]) {
         self.title =@"Surgeon";
@@ -61,6 +69,67 @@
         self.title=@"Other";
     }
     
+    _nameTextField.tag = 1;
+    _streerAddressTextField.tag = 2;
+    _cityTextField.tag = 3;
+    _stateTextField.tag = 4;
+    _zipTextField.tag = 5;
+    _countryTextField.tag = 6;
+    _emailTextField.tag = 7;
+    _faxTextField.tag = 8;
+    
+    _statesData = [[NSArray alloc] initWithObjects:
+                   @"Alabama",
+                   @"Arkansas",
+                   @"Arizona",
+                   @"California",
+                   @"Colorado",
+                   @"Connecticut",
+                   @"District of Columbia",
+                   @"Delaware",
+                   @"Florida",
+                   @"Georgia",
+                   @"Hawaii",
+                   @"Iowa",
+                   @"Idaho",
+                   @"Illinois",
+                   @"Indiana",
+                   @"Kansas",
+                   @"Kentucky",
+                   @"Louisiana",
+                   @"Massachusetts",
+                   @"Maryland",
+                   @"Maine",
+                   @"Michigan",
+                   @"Minnesota",
+                   @"Missouri",
+                   @"Mississippi",
+                   @"Montana",
+                   @"North Carolina",
+                   @"North Dakota",
+                   @"Nebraska",
+                   @"New Hampshire",
+                   @"New Jersey",
+                   @"New Mexico",
+                   @"Nevada",
+                   @"New York",
+                   @"Ohio",
+                   @"Oklahoma",
+                   @"Oregon",
+                   @"Pennsylvania",
+                   @"Rhode Island",
+                   @"South Carolina",
+                   @"South Dakota",
+                   @"Tennessee",
+                   @"Texas",
+                   @"Utah",
+                   @"Virginia",
+                   @"Vermont",
+                   @"Washington",
+                   @"Wisconsin",
+                   @"West Virginia",
+                   @"Wyoming",
+                   nil];
     self.elements = @[_nameTextField,_streerAddressTextField,_cityTextField ,_stateTextField,_zipTextField,_countryTextField,_emailTextField,_faxTextField,_saveButton];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -91,6 +160,25 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
+}
+
+-(void) setPickerDesign {
+    float yPoint;
+    if (IS_IPHONE_5 ) {
+        yPoint = 355;
+    } else {
+        yPoint = 318;
+    }
+    
+    _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, yPoint, 320, 162)];
+    _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
+    self.statesPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
+    self.statesPicker.delegate = self;
+    self.statesPicker.dataSource = self;
+    [self.view addSubview:_pickerBGView];
+    [_pickerBGView addSubview:_statesPicker];
+    _pickerBGView.hidden = YES;
+    
 }
 
 
@@ -212,15 +300,61 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSInteger index = [self.elements indexOfObject:textField];
-    [self scrollViewToOptimalPosition:index+1];
-    if(index != self.elements.count-2){
-        UITextField *nextField = (UITextField*)[self.elements objectAtIndex:index+1];
-        [nextField becomeFirstResponder];
-    }else{
+    UIResponder* nextResponder = [textField.superview viewWithTag:(textField.tag + 1)];
+    if (textField.tag != _cityTextField.tag) {
         [textField resignFirstResponder];
+        [nextResponder becomeFirstResponder];
+    } else
+        if (textField.tag == _cityTextField.tag){
+        _pickerBGView.hidden = NO;
+        [textField resignFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+        [self animateTextField: textField up: NO];
     }
     return YES;
+
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up {
+    
+    int y;
+    if (IS_IPHONE_5) {
+        y = 70;
+    }else {
+        y = 158;
+    }
+    
+    const int movementDistance = y;// tweak as needed
+    
+    const float movementDuration = 0.3f; // tweak as needed
+    int movement = (up ? -movementDistance : movementDistance);
+    [UIView animateWithDuration:movementDuration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    } completion:nil];
+    if (up) {
+        _animatedKeyboard = YES;
+    } else {
+        _animatedKeyboard = NO;
+    }
+    
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+
+    if (textField.tag == _faxTextField.tag) {
+        textField.returnKeyType = UIReturnKeyDone;
+    } else {
+        textField.returnKeyType = UIReturnKeyNext;
+    }
+    
+    if(textField.tag == _stateTextField.tag) {
+        [self.view endEditing:YES];
+        _pickerBGView.hidden = NO;
+        [_stateTextField resignFirstResponder];
+    } else {
+        _pickerBGView.hidden = YES;
+    }
 }
 
 
@@ -260,12 +394,48 @@
     _countryTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Country:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     _emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     _faxTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Fax:" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
+    [_stateTextField setCustomTextFieldPlaceholder: @"State" Secured:NO DownArrow:YES];
 
 
     _saveButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _saveButton.layer.cornerRadius = 14;
     _saveButton.clipsToBounds = YES;    
 }
+
+#pragma mark - Picker methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    
+    return 1;
+    
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    NSUInteger numRows=[_statesData count];
+    return numRows;
+    
+}
+
+-(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    UIColor *color = [UIColor whiteColor];
+    if (IS_IOS6) {
+        color = [UIColor blackColor];
+    }
+    NSString *pickerString = [NSString stringWithFormat:@"%@", [_statesData objectAtIndex:row]];
+    NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
+    return pickerAttributedString;
+    
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    _stateTextField.text = [NSString stringWithFormat:@"%@", [_statesData objectAtIndex:row]];
+    _pickerBGView.hidden = YES;
+    
+}
+
 
 - (void)viewWillLayoutSubviews
 {
@@ -280,4 +450,14 @@
 }
 
 
+- (IBAction)stateButtonTapped:(id)sender {
+    if (_pickerBGView.hidden) {
+        [self.view endEditing:YES];
+        if (_animatedKeyboard) {
+            [self animateTextField: _zipTextField up: NO];
+        }
+    }
+    _pickerBGView.hidden = !_pickerBGView.hidden;
+    
+}
 @end
