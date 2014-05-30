@@ -70,8 +70,24 @@
     }else if([_roleID isEqualToString:@"6"]){
         self.navigationItem.title =@"Other";
     }
+    
+    if (IS_IOS6) {
+        [self.navigationItem setHidesBackButton:NO];
+        [self addLeftButtonToNavbar];
+    }
+    
 }
-
+    
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
+}
 
 - (void) viewWillAppear:(BOOL)animated
 {

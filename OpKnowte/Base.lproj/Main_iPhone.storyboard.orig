@@ -515,7 +515,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="21.000002613125226" width="320" height="487"/>
+=======
+                                <rect key="frame" x="0.0" y="20.999999999999975" width="320" height="487"/>
+>>>>>>> fa1b36bf4cac2f273279a938ffc324ea30cf05cb
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2029,6 +2033,50 @@
                                 <rect key="frame" x="0.0" y="65" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" id="6yZ-BM-g70">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ios6SG.png" id="2u5-Ua-re4">
+                                                <rect key="frame" x="25" y="5" width="266" height="34"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hhn-XM-0iw">
+                                                <rect key="frame" x="199" y="6" width="91" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="Procedure">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="segmentControllIOS6:" destination="IWN-9Q-DMf" eventType="touchUpInside" id="etD-fI-9W5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sZP-n5-g8c">
+                                                <rect key="frame" x="117" y="5" width="81" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="Indication">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="segmentControllIOS6:" destination="IWN-9Q-DMf" eventType="touchUpInside" id="QAj-oE-tLM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oOd-BY-dmx">
+                                                <rect key="frame" x="25" y="6" width="91" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <state key="normal" title="Case Data">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="segmentControllIOS6:" destination="IWN-9Q-DMf" eventType="touchUpInside" id="ock-R9-3mG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" id="rEA-gv-G5I">
                                         <rect key="frame" x="31" y="11" width="259" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2119,6 +2167,14 @@
                                             <outlet property="caseDataValueLabel" destination="DjR-W5-RKu" id="0Vc-E8-psF"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FakeCell" id="Xsj-A2-ywC" customClass="OKFakeTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xsj-A2-ywC" id="7Ak-FK-v09">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" id="m2c-rw-A5i">
@@ -2171,8 +2227,11 @@
                     <connections>
                         <outlet property="IndicationView" destination="m2c-rw-A5i" id="I9A-IK-fFg"/>
                         <outlet property="caseDataTableView" destination="Vca-jc-CbK" id="UAa-85-uyc"/>
+                        <outlet property="caseDatabtn" destination="oOd-BY-dmx" id="cwV-ZY-Aw8"/>
                         <outlet property="indicationLabel" destination="PlQ-ws-BTh" id="odc-9Z-siU"/>
                         <outlet property="indicationScrollView" destination="ufo-ep-Adc" id="Viw-3S-LEi"/>
+                        <outlet property="indicationbtn" destination="sZP-n5-g8c" id="yCC-je-yYe"/>
+                        <outlet property="procedureBtn" destination="hhn-XM-0iw" id="tGY-yy-s4D"/>
                         <outlet property="procedureLable" destination="Laj-WO-IBV" id="dSM-eq-iQc"/>
                         <outlet property="procedureScrollView" destination="t4I-5L-Hli" id="tcA-D8-olM"/>
                         <outlet property="procedureView" destination="Svj-7t-IB1" id="weM-BL-kFv"/>
@@ -2180,6 +2239,7 @@
                         <outlet property="saveButtonView" destination="EAw-Ad-8IY" id="36H-S4-llQ"/>
                         <outlet property="segmentControl" destination="Par-eZ-aHM" id="CRQ-wA-ZwN"/>
                         <outlet property="segmentControllView" destination="sB1-gk-KcK" id="jYd-a8-t6D"/>
+                        <outlet property="segmentControllios6" destination="6yZ-BM-g70" id="6th-kW-mtG"/>
                         <outlet property="segmentedControllView" destination="rEA-gv-G5I" id="tne-m8-9xh"/>
                         <segue destination="b3m-w2-gJA" kind="push" identifier="fromOpNoteToFacility" id="aL2-xa-szT"/>
                     </connections>
@@ -2964,7 +3024,11 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="461" width="320" height="35"/>
+=======
+                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
+>>>>>>> fa1b36bf4cac2f273279a938ffc324ea30cf05cb
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3884,6 +3948,7 @@
         <image name="greenMagnifier.png" width="25" height="25"/>
         <image name="horizontalDevider.png" width="280" height="1"/>
         <image name="info.png" width="20" height="20"/>
+        <image name="ios6SG.png" width="281" height="34"/>
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="plusGreenIcon.png" width="25" height="25"/>
@@ -3899,9 +3964,20 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
+        <segue reference="iYE-S8-xzH"/>
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="UMT-op-RBq"/>
         <segue reference="DoT-oZ-zGI"/>
         <segue reference="Aik-36-Z3R"/>
         <segue reference="R5c-Bb-DU8"/>
+        <segue reference="evs-oI-wLM"/>
+        <segue reference="ytp-fp-EJd"/>
+        <segue reference="sg6-fY-kvy"/>
+        <segue reference="k5J-7k-w2c"/>
+        <segue reference="9Vm-fe-BqP"/>
+=======
         <segue reference="evs-oI-wLM"/>
         <segue reference="ytp-fp-EJd"/>
         <segue reference="sg6-fY-kvy"/>
@@ -3914,6 +3990,7 @@
         <segue reference="aL2-xa-szT"/>
         <segue reference="NUC-dJ-uGW"/>
         <segue reference="UMT-op-RBq"/>
+>>>>>>> fa1b36bf4cac2f273279a938ffc324ea30cf05cb
         <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
     </inferredMetricsTieBreakers>
