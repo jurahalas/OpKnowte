@@ -9,7 +9,6 @@
 #import "OKFacilityVC.h"
 #import "OKFacilityTableViewCell.h"
 #import "OKInstituteVC.h"
-
 #import "OKProcedureTemplateVariablesModel.h"
 #import "OKContactModel.h"
 
@@ -20,10 +19,12 @@
 @property (strong, nonatomic) IBOutlet UIView *faxAndEmailView;
 @property (strong, nonatomic) NSMutableArray *contactsArray;
 @property (strong, nonatomic) NSMutableArray *contactsSendTo;
+@property (nonatomic) BOOL plusButtonIsPressed;
 
 @end
 
 @implementation OKFacilityVC
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -38,7 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    _plusButtonIsPressed = NO;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     _facilityTableView.backgroundColor = [UIColor clearColor];
     self.facilityTableView.dataSource = self;
@@ -72,11 +73,9 @@
 }
 
 
-- (void) viewWillAppear:(BOOL)animated{
-    
+- (void) viewWillAppear:(BOOL)animated
+{
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    
     OKContactManager *contactManager = [OKContactManager instance];
     if ([_roleID isEqualToString:@"7"]) {
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
@@ -102,15 +101,13 @@
             }
             NSLog(@"Error - %@", error);
             [[OKLoadingViewController instance] hide];
-
         }];
     }
-
-
 }
 
 
--(void) addContactToSendToList:(OKContactModel *)contact{
+-(void) addContactToSendToList:(OKContactModel *)contact
+{
     [_contactsSendTo addObject:contact];
 }
 
@@ -129,25 +126,20 @@
 -(void) addRightButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
-    
     if (IS_IOS7) {
         right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
     } else {
         right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );}
-    
     [right setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
     [right addTarget:self action:@selector(rightButtonTapped) forControlEvents:UIControlEventTouchUpInside];
-    
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.rightBarButtonItem = anotherButton;
-
 }
 
 
--(void) rightButtonTapped {
+-(void) rightButtonTapped
+{
       [self performSegueWithIdentifier:@"addNewInstitution" sender:_roleID];
-    
-    
 }
 
 
@@ -168,15 +160,13 @@
 }
 
 
--(void) sendFaxTo:(NSString*)faxNumberList{
-    
+-(void) sendFaxTo:(NSString*)faxNumberList
+{
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     NSString *faxBody = [self getEmailBodyForProcedure];
     OKSendFaxManager *sendFaxManager = [OKSendFaxManager instance];
     [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList handler:^(NSString *errorMsg, NSDictionary *json) {
-        
         [[OKLoadingViewController instance] hide];
-        
         if (!errorMsg) {
             UIAlertView *alertSuccess = [[UIAlertView alloc] initWithTitle:@""
                                                                       message:[json objectForKey:@"msg"]
@@ -192,15 +182,13 @@
                                                          cancelButtonTitle:@"OK"
                                                          otherButtonTitles: nil];
             [alertFailure show];
-
         }
     }];
-  
-    
 }
      
      
-- (IBAction)emailButtonTapped:(id)sender {
+- (IBAction)emailButtonTapped:(id)sender
+{
     if (_contactsSendTo.count) {
         if ([MFMailComposeViewController canSendMail])
         {
@@ -224,7 +212,6 @@
                                                   otherButtonTitles: nil];
             [alertFailure show];
         }
-
     }else {
         UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@""
                                                         message:@"Please select atleast one institute."
@@ -232,9 +219,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
         [alertNoContacts show];
- 
     }
-    
 }
 
 
@@ -284,30 +269,26 @@
 
 - (IBAction)backButton:(id)sender
 {
-    
-
     [self.navigationController popViewControllerAnimated:YES];
 
     if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
         [self.delegate setContactFieldWithContactArray:_contactsSendTo];
     }
-
-    
 }
 
 
 #pragma mark Table View methods
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _contactsArray.count;
 }
 
 
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 60.f;
 }
-
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -327,20 +308,25 @@
     
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
- 
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+
     if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
         [self.navigationController popViewControllerAnimated:YES];
         
-        OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
         NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
         [contactsArray addObject:cell.contact];
         [self.delegate setContactFieldWithContactArray:contactsArray];
     }
+
 }
 
--(NSMutableArray *)getEmailAddress:(NSMutableArray *)contacts{
-    
+
+-(NSMutableArray *)getEmailAddress:(NSMutableArray *)contacts
+{
     NSMutableArray *emailsArray = [[NSMutableArray alloc]init];
     for (OKContactModel *contact in contacts) {
         [emailsArray addObject:contact.contactEmail];
@@ -364,8 +350,6 @@
     return listFaxNumbers;
     
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
