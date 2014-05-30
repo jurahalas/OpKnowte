@@ -50,17 +50,17 @@
         NSMutableArray *proceduresArray = [[NSMutableArray alloc] init];
         for (NSDictionary *procedure in [json objectForKey:@"contacts"]) {
             if ([procedureID  isEqualToString:@"1"]) {
-//                OKLRRadicalProstatectomyModel *procModel = [[OKLRRadicalProstatectomyModel alloc] init];
-//                [procModel setModelWithDictionary:procedure];
-//                [proceduresArray addObject:procModel];
+                OKLRRadicalProstatectomyModel *procModel = [[OKLRRadicalProstatectomyModel alloc] init];
+                [procModel setModelWithDictionary:procedure];
+                [proceduresArray addObject:procModel];
             } else if ([procedureID  isEqualToString:@"2"]){
                 OKLRPartialNephrectomyModel *procModel = [[OKLRPartialNephrectomyModel alloc] init];
                 [procModel setModelWithDictionary:procedure];
                 [proceduresArray addObject:procModel];
             } else if ([procedureID  isEqualToString:@"9"]){
-//                OKPenileProsthesisModel *procModel = [[OKPenileProsthesisModel alloc] init];
-//                [procModel setModelWithDictionary:procedure];
-//                [proceduresArray addObject:procModel];
+                OKPenileProsthesisModel *procModel = [[OKPenileProsthesisModel alloc] init];
+                [procModel setModelWithDictionary:procedure];
+                [proceduresArray addObject:procModel];
             } else if ([procedureID  isEqualToString:@"10"]){
                 OKShockwaveLithotripsyModel *procModel = [[OKShockwaveLithotripsyModel alloc] init];
                 [procModel setModelWithDictionary:procedure];

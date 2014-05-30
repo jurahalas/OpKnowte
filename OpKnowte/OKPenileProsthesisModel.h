@@ -45,5 +45,6 @@
 @property (strong,nonatomic) NSString *var_complications;
 @property (strong,nonatomic) NSString *var_followup;
 
-
+@property (strong,nonatomic) NSString *DetailID;
+@property (strong,nonatomic) NSString *Surgeon_ID;
 @end
