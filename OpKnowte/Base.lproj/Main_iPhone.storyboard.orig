@@ -515,11 +515,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="21" width="320" height="487"/>
-=======
                                 <rect key="frame" x="0.0" y="21.000002613125226" width="320" height="487"/>
->>>>>>> 3a28ae0db647cda8c2b185400f486111d56d89c9
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2935,10 +2931,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="oDk-o4-eNg">
-                                                    <rect key="frame" x="288" y="18" width="21" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r2Q-2h-Q89">
                                                     <rect key="frame" x="61" y="33" width="211" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2962,7 +2954,6 @@
                                         <connections>
                                             <outlet property="emailLabel" destination="r2Q-2h-Q89" id="Kef-FS-Ifu"/>
                                             <outlet property="facilityNameLabel" destination="Mec-cW-PLw" id="rnH-th-8gz"/>
-                                            <outlet property="rightIcon" destination="oDk-o4-eNg" id="wKh-e4-Ie9"/>
                                             <outlet property="selectFacilityButton" destination="DeP-dg-cQc" id="KWm-Pd-XIl"/>
                                         </connections>
                                     </tableViewCell>
@@ -2973,11 +2964,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000043"/>
-=======
                                 <rect key="frame" x="0.0" y="461" width="320" height="35"/>
->>>>>>> 3a28ae0db647cda8c2b185400f486111d56d89c9
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3912,7 +3899,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
+        <segue reference="DoT-oZ-zGI"/>
+        <segue reference="Aik-36-Z3R"/>
+        <segue reference="R5c-Bb-DU8"/>
         <segue reference="evs-oI-wLM"/>
         <segue reference="ytp-fp-EJd"/>
         <segue reference="sg6-fY-kvy"/>
@@ -3921,16 +3910,6 @@
         <segue reference="DoT-oZ-zGI"/>
         <segue reference="9Vm-fe-BqP"/>
         <segue reference="k5J-7k-w2c"/>
-=======
-        <segue reference="DoT-oZ-zGI"/>
-        <segue reference="Aik-36-Z3R"/>
-        <segue reference="R5c-Bb-DU8"/>
-        <segue reference="evs-oI-wLM"/>
-        <segue reference="ytp-fp-EJd"/>
-        <segue reference="sg6-fY-kvy"/>
-        <segue reference="Yef-L5-Ffj"/>
-        <segue reference="9Vm-fe-BqP"/>
->>>>>>> 3a28ae0db647cda8c2b185400f486111d56d89c9
         <segue reference="iYE-S8-xzH"/>
         <segue reference="aL2-xa-szT"/>
         <segue reference="NUC-dJ-uGW"/>

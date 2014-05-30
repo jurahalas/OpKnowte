@@ -2931,10 +2931,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="oDk-o4-eNg">
-                                                    <rect key="frame" x="288" y="18" width="21" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r2Q-2h-Q89">
                                                     <rect key="frame" x="61" y="33" width="211" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2958,7 +2954,6 @@
                                         <connections>
                                             <outlet property="emailLabel" destination="r2Q-2h-Q89" id="Kef-FS-Ifu"/>
                                             <outlet property="facilityNameLabel" destination="Mec-cW-PLw" id="rnH-th-8gz"/>
-                                            <outlet property="rightIcon" destination="oDk-o4-eNg" id="wKh-e4-Ie9"/>
                                             <outlet property="selectFacilityButton" destination="DeP-dg-cQc" id="KWm-Pd-XIl"/>
                                         </connections>
                                     </tableViewCell>
