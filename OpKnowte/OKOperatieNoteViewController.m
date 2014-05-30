@@ -371,12 +371,19 @@
         } else {
             if ([[json valueForKey:@"status"] isEqualToString:@"false"]) {
                 UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                          message:@"Record number already in use."
+                                                                          message:[json valueForKey:@"msg"]
                                                                          delegate:nil
                                                                 cancelButtonTitle:@"OK"
                                                                 otherButtonTitles: nil];
                 [alertNoContacts show];
                 
+            }else {
+                UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                          message:errorMsg
+                                                                         delegate:nil
+                                                                cancelButtonTitle:@"OK"
+                                                                otherButtonTitles: nil];
+                [alertNoContacts show];
             }
         }
         
