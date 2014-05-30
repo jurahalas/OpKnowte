@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OKDatePicker : UIControl
+@protocol OKDatePickerProtocol <NSObject>
 
+-(void) addDataToTFAndHideIt;
+
+@end
+
+@interface OKDatePicker : UIControl
+@property (nonatomic, weak) id <OKDatePickerProtocol> delegate;
 @property (nonatomic, retain, readwrite) NSDate *minimumDate;
 @property (nonatomic, retain, readwrite) NSDate *maximumDate;
 @property (nonatomic, assign, readwrite) NSDate *date;

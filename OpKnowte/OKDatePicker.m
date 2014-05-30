@@ -424,6 +424,9 @@ typedef enum {
     }
     
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+    
+    [self.delegate addDataToTFAndHideIt];
+    
 }
 
 @end
