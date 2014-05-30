@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2bN-f0-Wk6">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -516,10 +516,10 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
 <<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="19.999999999999982" width="320" height="488"/>
+                                <rect key="frame" x="0.0" y="20.000001172550359" width="320" height="488"/>
 =======
                                 <rect key="frame" x="0.0" y="20.999999999999986" width="320" height="487"/>
->>>>>>> 37ba5ace2d4971523cea2d5a188dd1910f988e0c
+>>>>>>> a886b646b74f7de8e084a475a5b6e6fd367ce079
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -2917,7 +2917,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="496.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="496"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2974,10 +2974,10 @@
                             </tableView>
                             <view contentMode="scaleToFill" id="HtI-AD-C69">
 <<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="461.00000000000006" width="320" height="35"/>
+                                <rect key="frame" x="0.0" y="461" width="320" height="35"/>
 =======
                                 <rect key="frame" x="0.0" y="461" width="320" height="35.000000000000007"/>
->>>>>>> 37ba5ace2d4971523cea2d5a188dd1910f988e0c
+>>>>>>> a886b646b74f7de8e084a475a5b6e6fd367ce079
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fax" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9At-3L-E1k">
@@ -3888,91 +3888,20 @@
     </scenes>
     <resources>
         <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="back.png" width="20" height="20"/>
-        <image name="calendar.png" width="20" height="20"/>
-        <image name="calendar.png" width="20" height="20"/>
-        <image name="calendar.png" width="20" height="20"/>
         <image name="calendar.png" width="20" height="20"/>
         <image name="down.png" width="20" height="20"/>
         <image name="emailIcon.png" width="25" height="25"/>
         <image name="faxIcon.png" width="25" height="25"/>
-        <image name="faxIcon.png" width="25" height="25"/>
-        <image name="faxIcon.png" width="25" height="25"/>
-        <image name="faxIcon.png" width="25" height="25"/>
-        <image name="folder.png" width="20" height="20"/>
-        <image name="folder.png" width="20" height="20"/>
         <image name="folder.png" width="20" height="20"/>
         <image name="forgotPassword.png" width="125" height="23"/>
         <image name="greenMagnifier.png" width="25" height="25"/>
-        <image name="greenMagnifier.png" width="25" height="25"/>
-        <image name="greenMagnifier.png" width="25" height="25"/>
-        <image name="greenMagnifier.png" width="25" height="25"/>
         <image name="horizontalDevider.png" width="280" height="1"/>
-        <image name="horizontalDevider.png" width="280" height="1"/>
-        <image name="horizontalDevider.png" width="280" height="1"/>
-        <image name="info.png" width="20" height="20"/>
         <image name="info.png" width="20" height="20"/>
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="plusGreenIcon.png" width="25" height="25"/>
         <image name="redCross.png" width="25" height="25"/>
-        <image name="redCross.png" width="25" height="25"/>
-        <image name="redCross.png" width="25" height="25"/>
-        <image name="redCross.png" width="25" height="25"/>
         <image name="register.png" width="56" height="23"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
-        <image name="right.png" width="20" height="20"/>
         <image name="right.png" width="20" height="20"/>
         <image name="separator.png" width="2" height="16"/>
         <image name="userImage.png" width="48" height="48"/>
@@ -3983,16 +3912,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="IcY-8f-Npy"/>
         <segue reference="iYE-S8-xzH"/>
         <segue reference="UMT-op-RBq"/>
         <segue reference="aL2-xa-szT"/>
         <segue reference="NUC-dJ-uGW"/>
         <segue reference="hs5-kv-qjd"/>
-=======
->>>>>>> 37ba5ace2d4971523cea2d5a188dd1910f988e0c
         <segue reference="R5c-Bb-DU8"/>
         <segue reference="evs-oI-wLM"/>
         <segue reference="ytp-fp-EJd"/>
@@ -4001,14 +3925,13 @@
         <segue reference="k5J-7k-w2c"/>
         <segue reference="DoT-oZ-zGI"/>
         <segue reference="9Vm-fe-BqP"/>
-<<<<<<< HEAD
-=======
         <segue reference="aL2-xa-szT"/>
         <segue reference="iYE-S8-xzH"/>
         <segue reference="UMT-op-RBq"/>
         <segue reference="NUC-dJ-uGW"/>
->>>>>>> 37ba5ace2d4971523cea2d5a188dd1910f988e0c
         <segue reference="dvt-ir-lar"/>
         <segue reference="IcY-8f-Npy"/>
+        <segue reference="sg6-fY-kvy"/>
+        <segue reference="ytp-fp-EJd"/>
     </inferredMetricsTieBreakers>
 </document>
