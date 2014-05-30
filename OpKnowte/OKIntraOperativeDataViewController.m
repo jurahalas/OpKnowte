@@ -103,12 +103,12 @@
     [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
         
-        [surgicalLogsManager getMaxValueByProcedureID:_procID handler:^(NSString *errorMsg, NSString *maxNumber) {
-            NSLog(@"Error - %@", errorMsg);
-            
-            self.maxValue = maxNumber;
-            [self setDesign];
-        }];
+//        [surgicalLogsManager getMaxValueByProcedureID:_procID handler:^(NSString *errorMsg, NSString *maxNumber) {
+//            NSLog(@"Error - %@", errorMsg);
+//            
+//            self.maxValue = maxNumber;
+//            [self setDesign];
+//        }];
 
         
         if ((dates) && ([dates count] > 0)) {
@@ -133,6 +133,7 @@
     _doneButtonForDatePicker.clipsToBounds = YES;
     _doneButtonForDatePicker.hidden = YES;
     [self.view addSubview:_doneButtonForDatePicker];
+    [self setDesign];
     
 }
 -(void) doneButtonTapped{
@@ -398,8 +399,9 @@
 	[_slider setInRangeTrackImage:image];
     [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes
     
-    int maxV = [self.maxValue intValue];
-    
+    //int maxV = [self.maxValue intValue];
+    int maxV = 1000000;
+
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
@@ -410,7 +412,9 @@
 
 - (void)report:(RangeSlider *)sender
 {
-    int maxV = [self.maxValue intValue];
+   // int maxV = [self.maxValue intValue];
+    int maxV = 1000000;
+
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
@@ -564,6 +568,7 @@
         sharVC.totalSurgeonCount = _selectedCases.count;
         sharVC.selectedCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
         sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_selectedCases];
+        sharVC.procID = _procID;
     }else if ([segue.identifier isEqualToString:@"fromIODtoSummary"]){
         OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
         detailVC.procID = _procID;

@@ -32,29 +32,55 @@
     [super viewDidLoad];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.tableData = @[
-                       @"Average Age of Patient",
-                       @"Male vs. Female",
-                       @"BMI",
-                       @"Left vs. Right Renal Mass",
-                       @"Patients with Cysto/Stent",
-                       @"Tumor Size",
-//                       @"Tumor Characteristics",
-                       @"Cases Requiring Adhesiolysis",
-                       @"Cases with Vascular Anomoly",
-                       @"Intra-Operative Ultra Sound",
-                       @"Deep Margins",
-//                       @"Margins",
-                       @"Renal Collecting System Repair",
-                       @"Average Clamp Time",
-                       @"Coagulants",
-                       @"Blood Loss",
-                       @"Console Time",
-                       @"Room Time",
-//                       @"Complications",
-                       @"Cases Requiring Transfusion",
-//                       @"Advanced Options"
-                       ];
+    if ([_procID isEqualToString:@"1"]) {
+        self.tableData = @[
+                           @"Average Age of Patient",
+                           @"Male vs. Female",
+                           @"BMI",
+                           @"Room Time"
+    
+                           ];
+
+    } else if ([_procID isEqualToString:@"2"]) {
+        self.tableData = @[
+                           @"Average Age of Patient",
+                           @"Male vs. Female",
+                           @"BMI",
+                           @"Left vs. Right Renal Mass",
+                           @"Patients with Cysto/Stent",
+                           @"Tumor Size",
+                           //                       @"Tumor Characteristics",
+                           @"Cases Requiring Adhesiolysis",
+                           @"Cases with Vascular Anomoly",
+                           @"Intra-Operative Ultra Sound",
+                           @"Deep Margins",
+                           //                       @"Margins",
+                           @"Renal Collecting System Repair",
+                           @"Average Clamp Time",
+                           @"Coagulants",
+                           @"Blood Loss",
+                           @"Console Time",
+                           @"Room Time",
+                           //                       @"Complications",
+                           @"Cases Requiring Transfusion"
+                           //                       @"Advanced Options"
+                           ];
+
+    } else if ([_procID isEqualToString:@"9"]) {
+        self.tableData = @[
+                           @"Average Age of Patient",
+                           @"Male vs. Female"
+                           ];
+
+    } else if ([_procID isEqualToString:@"10"]) {
+        self.tableData = @[
+                           @"Average Age of Patient",
+                           @"Male vs. Female"
+
+                           ];
+
+    }
+
     [self addBottomTabBar];
     _immediateDataTable.backgroundColor = [UIColor clearColor];
     self.immediateDataTable.dataSource = self;

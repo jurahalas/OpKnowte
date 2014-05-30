@@ -11,7 +11,7 @@
 
 @interface OKImmediateDataVC : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
 
-
+@property(strong, nonatomic) NSString *procID;
 
 @property (nonatomic) int totalSurgeonCount;
 @property (nonatomic) int totalNationalCount;
