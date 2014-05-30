@@ -75,14 +75,15 @@
     [self.view addSubview:self.scrollview];
     [self addBottomTabBar];
     
+    if (IS_IOS7){
+        _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
+    }else{
+        _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-206, 320, 162)];
+    }
     
-    
-    
-    _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     _pickerBGView.hidden = YES;
     [self.view addSubview:_pickerBGView];
-    
     
     self.interactionItems = [[NSMutableArray alloc] init];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
@@ -290,7 +291,10 @@
         [self.interactionItems addObject:multiselectView];
     
     } else {
-        OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] init];
+        
+            switcher.frame =CGRectMake(0, _xPoint, 320, 43);
+        
         switcher.delegate = self;
 
         //[self.view addSubview:switcher];

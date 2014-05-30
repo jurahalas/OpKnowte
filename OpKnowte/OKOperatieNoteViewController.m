@@ -16,6 +16,7 @@
 #import "OKProcedureTemplateVariablesModel.h"
 #import "OKContactManager.h"
 #import "OKContactModel.h"
+#import "OKFakeTableViewCell.h"
 
 @interface OKOperatieNoteViewController ()
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -40,11 +41,18 @@
 
 @property (strong, nonatomic) IBOutlet UIView *segmentedControllView;
 
+@property (strong, nonatomic) IBOutlet UIView *segmentControllios6;
+
+@property (strong, nonatomic) IBOutlet UIButton *caseDatabtn;
+@property (strong, nonatomic) IBOutlet UIButton *indicationbtn;
+@property (strong, nonatomic) IBOutlet UIButton *procedureBtn;
+
+
 @property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
 @end
 
 @implementation OKOperatieNoteViewController
-@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView;
+@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView,segmentControllios6;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -130,39 +138,53 @@
     self.caseDataTableView.dataSource = self;
     self.caseDataTableView.delegate = self;
     
-    caseDataTableView.frame = CGRectMake(caseDataTableView.frame.origin.x, caseDataTableView.frame.origin.y, caseDataTableView.frame.size.width, (caseDataTableView.frame.size.height - 60.f));
-    
     [self.caseDataTableView reloadData];
     
     self.caseDataTableView.hidden = NO;
     self.IndicationView.hidden = YES;
     self.procedureView.hidden = YES;
     
+    if (IS_IOS7) {
+        
+    segmentControllios6.hidden = YES;
+        
     self.segmentedControllView.layer.borderColor = [[UIColor whiteColor]CGColor];
     self.segmentedControllView.backgroundColor = [UIColor clearColor];
     
+    
     [self .segmentControl setSelectedSegmentIndex:0];
+
+    
+
     
     for (UIControl *subview in [segmentControl subviews]) {
         
         if ([subview isSelected]){
-            if (IS_IOS7) {
-                
-            [subview setTintColor:[UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]];
-        }
-            else{
-                [subview setTintColor:[UIColor redColor]];
-            }
+                [subview setTintColor:[UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]];
         }
     }
     
     [self.segmentControl setDividerImage:[UIImage imageNamed:@"scSeparator"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    if (!IS_IOS7) {
+    }
+    
+    
+    else {
+        
+        self.segmentedControllView.hidden = YES;
+        
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
+
+        segmentControllios6.backgroundColor = [UIColor clearColor];
+        
+        _caseDatabtn.tag = 1;
+        _indicationbtn.tag = 2;
+        _procedureBtn.tag = 3;
+        
+        self.caseDatabtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"1SegmentControll"]];
     }
-	// Do any additional setup after loading the view.
 }
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -308,48 +330,58 @@
 #pragma mark Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _caseDataValues.count;
+    return _caseDataValues.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *FakeCellIdentifier = @"FakeCell";
+    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
+    
     static NSString *cellIdentifier = @"caseData";
-    OKOperatieNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OKOperatieNoteTableViewCell * cell = [[OKOperatieNoteTableViewCell alloc]init];
+    if (indexPath.row < [_caseDataValues count]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-//    OKContactManager *contactsManager = [OKContactManager instance];
-    OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
-    NSString *variableValue = [[NSString alloc] init];
-    if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
-        NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
-        valuesArray = [_model valueForKey:variableModel.value];
-        for (int i = 0; i < valuesArray.count; i++) {
-            if ([valuesArray[i] isEqualToString:@" "]) {
-                [valuesArray removeObjectAtIndex:i];
-                i--;
+//      OKContactManager *contactsManager = [OKContactManager instance];
+        OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:variableModel.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
             }
-        }
         
-        variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
-    } else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
-        variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
-    } else {
-        variableValue = [_model valueForKey:variableModel.value];
+            variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+        } else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value    isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
+            variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
+        } else {
+            variableValue = [_model valueForKey:variableModel.value];
+        }
+    
+        OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
+        caseDataObject.key = variableModel.key;
+        caseDataObject.value = variableValue;
+        [_caseDataArray addObject:caseDataObject];
+    
+    
+        [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
+        [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
+        return cell;
+        
+    }else{
+        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        if (!FakeCell) {
+            FakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FakeCellIdentifier];
+        }
+        return FakeCell;
     }
-    
-    
-
-    
-    OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
-    caseDataObject.key = variableModel.key;
-    caseDataObject.value = variableValue;
-    [_caseDataArray addObject:caseDataObject];
-    
-    
-    [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
-    [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
-    return cell;
 }
 - (IBAction)saveButtonTapped:(id)sender {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
@@ -385,6 +417,33 @@
         
     }];
     
+}
+- (IBAction)segmentControllIOS6:(UIButton *)sender {
+    self.IndicationView.hidden = YES;
+    self.procedureView.hidden = YES;
+    self.caseDataTableView.hidden = YES;
+    
+    self.caseDatabtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"1SegmentControll"]];
+    self.indicationbtn.backgroundColor = nil;
+    self.procedureBtn.backgroundColor = nil;
+    
+    switch (sender.tag) {
+        case 1:
+            self.caseDataTableView.hidden = NO;
+            self.caseDatabtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"1SegmentControll"]];
+            break;
+        case 2:
+            self.IndicationView.hidden = NO;
+            self.indicationbtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"2SegmentControll"]];
+            self.caseDatabtn.backgroundColor = nil;
+            break;
+        case 3:
+            self.procedureView.hidden = NO;
+            self.procedureBtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"3SegmentControll"]];
+            self.caseDatabtn.backgroundColor = nil;
+        default:
+            break;
+    }
 }
 
 @end
