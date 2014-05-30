@@ -73,7 +73,18 @@
 }
 
 
-
+- (void)getMaxValueByProcedureID:(NSString *)procedureID handler:(void (^)(NSString *errorMsg, NSString *maxNumber))handler{
+    
+    NSDictionary *params = @{};
+    
+    NSString *url = [NSString stringWithFormat:@"getMaxValue?procedureID=%@",procedureID];
+    
+    [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
+        NSLog(@"%@",json);
+        NSString *maxValue = [[[json valueForKey:@"mrNumber"] valueForKey:@"maxValue"]objectAtIndex:0];
+        handler([self getErrorMessageFromJSON:json error:error], maxValue);
+    }];
+}
 
 
 

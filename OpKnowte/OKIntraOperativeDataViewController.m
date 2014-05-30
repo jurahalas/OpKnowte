@@ -64,6 +64,8 @@
 @property (nonatomic, strong) NSMutableArray *surgeonClinicalData;
 @property (nonatomic, strong) NSMutableArray *nationalClinicalData;
 
+@property(nonatomic,strong) NSString * maxValue;
+
 @end
 
 @implementation OKIntraOperativeDataViewController
@@ -99,6 +101,14 @@
     OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
     [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
+        
+        [surgicalLogsManager getMaxValueByProcedureID:_procID handler:^(NSString *errorMsg, NSString *maxNumber) {
+            NSLog(@"Error - %@", errorMsg);
+            
+            self.maxValue = maxNumber;
+            [self setDesign];
+        }];
+
         
         if ((dates) && ([dates count] > 0)) {
             int count = [dates count];
@@ -338,9 +348,12 @@
 	image = [UIImage imageNamed:@"fillrange.png"];
 	[_slider setInRangeTrackImage:image];
     [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
+    
+    int maxV = [self.maxValue intValue];
+    
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
     _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
 }
@@ -348,9 +361,10 @@
 
 - (void)report:(RangeSlider *)sender
 {
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
+    int maxV = [self.maxValue intValue];
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
     _caseToLabel.text = caseToString;
 }
 
