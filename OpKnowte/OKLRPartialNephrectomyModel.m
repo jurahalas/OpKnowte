@@ -41,7 +41,7 @@
     _var_roomTime= [dictionary valueForKey:@"Room_Time"];
     _var_complation= [dictionary valueForKey:@"Complations"];
     _var_transfusion= [dictionary valueForKey:@"Transustion"];
-    _var_transfusion= [dictionary valueForKey:@"NoOf_units"];
+    //_var_transfusion= [dictionary valueForKey:@"NoOf_units"];
     _var_cc= [dictionary valueForKey:@"Carbon_Copy"];
     _var_Fax= [dictionary valueForKey:@"FaxNumber"];
     
