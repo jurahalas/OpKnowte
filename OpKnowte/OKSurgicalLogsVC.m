@@ -100,12 +100,7 @@
             _dateToTF.text = [dates objectAtIndex:count-1];
             [self searchDetails];
         } else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"No dates found"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles: nil];
-            [alert show];
+            [[OKLoadingViewController instance] hide];
             
         }
         

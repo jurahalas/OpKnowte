@@ -96,8 +96,8 @@
 
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
-    OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-    [followUpDataManager getNationalDatesByProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
+    OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
+    [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
         
         if ((dates) && ([dates count] > 0)) {
@@ -106,13 +106,8 @@
             _dateToTF.text = [dates objectAtIndex:count-1];
             [self searchDetails];
         } else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"No dates found"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles: nil];
-            [alert show];
-            
+
+           [[OKLoadingViewController instance] hide];
         }
         
         
