@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     self.dataDict =  @{@"Surgeons":@"1",
-                       @"Assistans":@"2",
+                       @"Assistants":@"2",
                        @"Reffering Physicians":@"5"};
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];

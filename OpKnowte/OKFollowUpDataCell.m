@@ -28,7 +28,6 @@
     UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
     self.selectedBackgroundView  = cellIsSelected;
 
-    
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

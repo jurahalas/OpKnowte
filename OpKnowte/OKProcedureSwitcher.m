@@ -13,6 +13,7 @@
 -(void) setup{
     NSLog(@"%hhd", self.customSwitcher.on);
     [self.delegate updateField:self.fieldName withBoolValue:self.customSwitcher.on];
+
 }
 
 
