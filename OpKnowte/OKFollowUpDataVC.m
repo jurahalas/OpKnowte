@@ -56,6 +56,7 @@
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
 @property (nonatomic, assign) BOOL dateToButtonTapped;
+@property (nonatomic, strong) UIButton * doneButtonForDatePicker;
 
 @end
 
@@ -109,8 +110,50 @@
 
 
         }
-        
     }];
+    
+    _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
+    _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
+    _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _doneButtonForDatePicker.layer.cornerRadius = 14;
+    _doneButtonForDatePicker.clipsToBounds = YES;
+    _doneButtonForDatePicker.hidden = YES;
+    [self.view addSubview:_doneButtonForDatePicker];
+    
+}
+-(void) doneButtonTapped{
+    if (!_dateToButtonTapped) {
+        if (_pickerBGView.hidden) {
+            if (_dateFromTF.text.length > 0) {
+                [self.datePicker setDate:[_dateformater dateFromString:_dateFromTF.text]];
+            } else {
+                NSString *str = @"01-01-1950";
+                [self.datePicker setDate:[_dateformater dateFromString:str]];
+            }
+            _dateFromButtonTapped = YES;
+        } else {
+            _dateFromTF.text = [NSString stringWithFormat:@"%@", [_dateformater stringFromDate:self.datePicker.date]];
+            _dateFromButtonTapped = NO;
+        }
+        _pickerBGView.hidden = !_pickerBGView.hidden;
+        
+    }else {
+        if (_pickerBGView.hidden) {
+            if (_dateToTF.text.length > 0) {
+                [self.datePicker setDate:[_dateformater dateFromString:_dateToTF.text]];
+            } else {
+                [self.datePicker setDate:[NSDate date]];
+            }
+            _dateToButtonTapped = YES;
+        } else {
+            _dateToTF.text = [NSString stringWithFormat:@"%@", [_dateformater stringFromDate:self.datePicker.date]];
+            _dateToButtonTapped = NO;
+        }
+        _pickerBGView.hidden = !_pickerBGView.hidden;
+    }
+    _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
     
 }
 
@@ -183,6 +226,7 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
         [alert show];
+        [[OKLoadingViewController instance] hide];
     }
 
 
@@ -215,7 +259,6 @@
 - (IBAction)searchButton:(id)sender {
      [[OKLoadingViewController instance] showWithText:@"Loading..."];
     [self searchDetails];
-   
     
 }
 
@@ -224,6 +267,8 @@
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
+        [[OKLoadingViewController instance] hide];
+
     }else{
         
         if ([self varifyDates]) {
@@ -236,18 +281,18 @@
                 _surgeonDataArray = dataArray;
                 _choosedDetails = [dataArray mutableCopy];
                 [_listTableView reloadData];
-                [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:@"01-01-1850"  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                     NSLog(@"Eror - %@", errorMsg);
                     
                     _nationalDataArray = dataArray;
-                    
+                    [[OKLoadingViewController instance] hide];
+
                 }];
-                 [[OKLoadingViewController instance] hide];
             }];
         }else{
             UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [dateError show];
-            
+            [[OKLoadingViewController instance] hide];
         }
     }
     
@@ -295,6 +340,8 @@
             _dateFromButtonTapped = NO;
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
+        _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
+
         
     }
     
@@ -313,6 +360,8 @@
             _dateToButtonTapped = NO;
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
+        _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
+
     }
     
     

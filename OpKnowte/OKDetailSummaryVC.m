@@ -11,7 +11,7 @@
 #import "OKProcedureTemplateVariablesModel.h"
 #import "OKProcedureTemplateModel.h"
 #import "OKProceduresManager.h"
-
+#import "OKFakeTableViewCell.h"
 
 @interface OKDetailSummaryVC ()
 @property (strong, nonatomic) IBOutlet UITableView *detailSummaryTable;
@@ -36,12 +36,13 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     self.detailSummaryTable.backgroundColor = [UIColor clearColor];
     
-    self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y+64.f, self.detailSummaryTable.frame.size.width, (self.detailSummaryTable.frame.size.height));
+    self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y+64.f, self.detailSummaryTable.frame.size.width, (self.detailSummaryTable.frame.size.height-50));
     [self addBottomTabBar];
     
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
+        self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y-65, self.detailSummaryTable.frame.size.width, self.detailSummaryTable.frame.size.height-50);
     }
     
     _keysForValues = [[NSMutableArray alloc] init];
@@ -72,7 +73,7 @@
     UIButton *right = [[UIButton alloc] init];
     right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
     [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
+    [right addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
@@ -87,41 +88,53 @@
 #pragma mark Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _keysForValues.count;
+    return _keysForValues.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *FakeCellIdentifier = @"FakeCell";
+    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
+    
     static NSString *cellIdentifier = @"detailCell";
-    OKDetailSumaryCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[OKDetailSumaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    OKDetailSumaryCell *cell = [[OKDetailSumaryCell alloc]init];
+
+    if (indexPath.row < [_keysForValues count]) {
     
-    
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[OKDetailSumaryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
     
     //    OKContactManager *contactsManager = [OKContactManager instance];
-    OKProcedureTemplateVariablesModel *variableModel = _keysForValues[indexPath.row];
-    NSString *variableValue = [[NSString alloc] init];
-    if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
-        NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
-        valuesArray = [_model valueForKey:variableModel.value];
-        for (int i = 0; i < valuesArray.count; i++) {
-            if ([valuesArray[i] isEqualToString:@" "]) {
-                [valuesArray removeObjectAtIndex:i];
-                i--;
+        OKProcedureTemplateVariablesModel *variableModel = _keysForValues[indexPath.row];
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:variableModel.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
             }
-        }
         
-        variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
-    } else {
-        variableValue = [_model valueForKey:variableModel.value];
+            variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+        } else {
+            variableValue = [_model valueForKey:variableModel.value];
+        }
+    
+    
+        [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
+        [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
+        return cell;
+    }else {
+        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        if (!FakeCell) {
+            FakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FakeCellIdentifier];
+        }
+        return FakeCell;
     }
-    
-    
-    [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
-    [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
-    return cell;
 }
 
 

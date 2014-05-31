@@ -17,6 +17,7 @@
 #import "OKSendFaxManager.h"
 #import "OKFakeTableViewCell.h"
 #import "OKDetailSummaryVC.h"
+#import "OKProceduresManager.h"
 
 
 @interface OKSurgicalLogsVC () <OKSLListCellDelegate, MFMailComposeViewControllerDelegate>
@@ -53,11 +54,15 @@
 @property(strong,nonatomic) RangeSlider *slider;
 
 
+@property(strong,nonatomic) NSString * maxValue;
+
 @property (nonatomic, strong) NSMutableArray *detailsArray;
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
 @property (nonatomic, assign) BOOL dateFromButtonTapped;
 @property (nonatomic, assign) BOOL dateToButtonTapped;
+@property (nonatomic, strong) UIButton * doneButtonForDatePicker;
+
 @end
 
 @implementation OKSurgicalLogsVC
@@ -83,7 +88,7 @@
     _procedureLabel.text = _procTitle;
     _choosedDetails = [[NSMutableArray alloc] init];
     [self setDatePickerDesign];
-	[self setDesign];
+	
     [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
@@ -92,7 +97,12 @@
     OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
     [surgicalLogsManager getSurgeonDatesByUserID:[OKUserManager instance].currentUser.identifier AndProcedureID:_procID handler:^(NSString *errorMsg, id dates) {
         NSLog(@"Eror - %@", errorMsg);
-        
+//        [surgicalLogsManager getMaxValueByProcedureID:_procID handler:^(NSString *errorMsg, NSString *maxNumber) {
+//            NSLog(@"Error - %@", errorMsg);
+//            
+//            self.maxValue = maxNumber;
+// [self setDesign];
+//        }];
         if ((dates) && ([dates count] > 0)) {
             
             int count = [dates count];
@@ -103,10 +113,54 @@
             [[OKLoadingViewController instance] hide];
             
         }
-        
     }];
+
     
     
+    _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
+    _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
+    _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _doneButtonForDatePicker.layer.cornerRadius = 14;
+    _doneButtonForDatePicker.clipsToBounds = YES;
+    _doneButtonForDatePicker.hidden = YES;
+    [self.view addSubview:_doneButtonForDatePicker];
+     [self setDesign];
+    
+}
+-(void) doneButtonTapped{
+    if (!_dateToButtonTapped) {
+        if (_pickerBGView.hidden) {
+            if (_dateFromTF.text.length > 0) {
+                [self.datePicker setDate:[_dateformater dateFromString:_dateFromTF.text]];
+            } else {
+                NSString *str = @"01-01-1950";
+                [self.datePicker setDate:[_dateformater dateFromString:str]];
+            }
+            _dateFromButtonTapped = YES;
+        } else {
+            _dateFromTF.text = [NSString stringWithFormat:@"%@", [_dateformater stringFromDate:self.datePicker.date]];
+            _dateFromButtonTapped = NO;
+        }
+        _pickerBGView.hidden = !_pickerBGView.hidden;
+        
+    }else {
+        if (_pickerBGView.hidden) {
+            if (_dateToTF.text.length > 0) {
+                [self.datePicker setDate:[_dateformater dateFromString:_dateToTF.text]];
+            } else {
+                [self.datePicker setDate:[NSDate date]];
+            }
+            _dateToButtonTapped = YES;
+        } else {
+            _dateToTF.text = [NSString stringWithFormat:@"%@", [_dateformater stringFromDate:self.datePicker.date]];
+            _dateToButtonTapped = NO;
+        }
+        _pickerBGView.hidden = !_pickerBGView.hidden;
+    }
+    _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
+
 }
 
 -(void) setDatePickerDesign {
@@ -400,6 +454,8 @@
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
+        [[OKLoadingViewController instance] hide];
+
     }else{
         
         if ([self varifyDates]) {
@@ -416,7 +472,7 @@
         }else{
             UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [dateError show];
-            
+            [[OKLoadingViewController instance] hide];
         }
     }
 }
@@ -470,6 +526,7 @@
 
 
 - (IBAction)dateFromButtonTapped:(id)sender {
+
     if (!_dateToButtonTapped) {
         if (_pickerBGView.hidden) {
             if (_dateFromTF.text.length > 0) {
@@ -479,16 +536,20 @@
                 [self.datePicker setDate:[_dateformater dateFromString:str]];
             }
             _dateFromButtonTapped = YES;
+            
+
         } else {
             _dateFromTF.text = [NSString stringWithFormat:@"%@", [_dateformater stringFromDate:self.datePicker.date]];
             _dateFromButtonTapped = NO;
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
+        _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
 
     }
     
 }
 - (IBAction)dateToButtonTapped:(id)sender {
+    
     if (!_dateFromButtonTapped) {
         if (_pickerBGView.hidden) {
             if (_dateToTF.text.length > 0) {
@@ -502,6 +563,8 @@
             _dateToButtonTapped = NO;
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
+        _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
+
     }
     
 
@@ -543,9 +606,14 @@
 	image = [UIImage imageNamed:@"fillrange.png"];
 	[_slider setInRangeTrackImage:image];
     [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
+    
+    
+    //int maxV = [self.maxValue intValue];
+    int maxV = 1000000;
+    
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
     _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
     
@@ -553,9 +621,12 @@
 
 
 - (void)report:(RangeSlider *)sender {
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*100000)];
+    //   int maxV = [self.maxValue intValue];
+    int maxV = 1000000;
+
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*100000)];
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
     _caseToLabel.text = caseToString;
     
 }

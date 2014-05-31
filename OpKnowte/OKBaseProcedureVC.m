@@ -20,7 +20,7 @@
 #import "OKFacilityVC.h"
 #import "OKContactModel.h"
 
-@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate>
+@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate, OKDatePickerProtocol>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) UIScrollView *scrollview;
 @property (nonatomic,strong) UIView *pickerBGView;
+@property (nonatomic, strong) UIButton * doneButtonForDatePicker;
 
 @end
 
@@ -75,14 +76,15 @@
     [self.view addSubview:self.scrollview];
     [self addBottomTabBar];
     
+    if (IS_IOS7){
+        _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
+    }else{
+        _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-206, 320, 162)];
+    }
     
-    
-    
-    _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-162, 320, 162)];
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     _pickerBGView.hidden = YES;
     [self.view addSubview:_pickerBGView];
-    
     
     self.interactionItems = [[NSMutableArray alloc] init];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
@@ -90,6 +92,7 @@
     [self.datePicker setTextColor:[UIColor whiteColor]];
     self.picker.hidden = YES;
     self.datePicker.hidden = YES;
+    self.datePicker.delegate = self;
     self.picker.delegate = self;
     self.picker.dataSource = self;
     self.picker.showsSelectionIndicator = YES;
@@ -97,9 +100,25 @@
     [_pickerBGView addSubview:self.picker];
     
 
+    _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
+    _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
+    _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _doneButtonForDatePicker.layer.cornerRadius = 14;
+    _doneButtonForDatePicker.clipsToBounds = YES;
+    _doneButtonForDatePicker.hidden = YES;
+    [self.view addSubview:_doneButtonForDatePicker];
+    
+}
+-(void) doneButtonTapped{
+    if (!self.picker.hidden) {
+        [self hidePicker];
+    }
+    if (!self.datePicker.hidden) {
+        [self hideDatePicker];
+    }
 
-    
-    
 }
 -(void)addRightButtonForiOS6{
     UIButton *right = [[UIButton alloc] init];
@@ -290,7 +309,10 @@
         [self.interactionItems addObject:multiselectView];
     
     } else {
-        OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
+        OKProcedureSwitcher *switcher = [[OKProcedureSwitcher alloc] init];
+        
+            switcher.frame =CGRectMake(0, _xPoint, 320, 43);
+        
         switcher.delegate = self;
 
         //[self.view addSubview:switcher];
@@ -380,8 +402,11 @@
 -(void)showDatePickerWithDate:(NSDate*)date picker:(OKProcedureDatePicker*)datePickerObject
 {
     if (self.datePicker.hidden) {
+        
         self.datePickerObject = datePickerObject;
         _pickerBGView.hidden = NO;
+        _doneButtonForDatePicker.hidden = NO;
+
         self.picker.hidden = YES;
         self.datePicker.hidden = NO;
         if(date)
@@ -410,6 +435,8 @@
 
 -(void)hidePicker
 {
+    _doneButtonForDatePicker.hidden = YES;
+
     self.pickerObject.customTextField.text = self.pickerData[[self.picker selectedRowInComponent:0]];
     self.picker.hidden = YES;
     _pickerBGView.hidden = YES;
@@ -420,6 +447,8 @@
 
 -(void)hideDatePicker
 {
+    _doneButtonForDatePicker.hidden = YES;
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM-dd-yyyy"];
     
@@ -470,6 +499,13 @@
 
     
 }
+
+
+-(void)addDataToTFAndHideIt{
+
+}
+
+
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
     
