@@ -56,7 +56,7 @@
     _Surgeon_ID= [dictionary valueForKey:@"Surgeon_ID"];
     
 //@property (strong,nonatomic) NSString *var_preSide;
-//@property (strong,nonatomic) NSString *var_age;
+_var_age= [dictionary valueForKey:@"age"];
 //@property (strong,nonatomic) NSString *var_procedureName;
 }
 @end

@@ -113,7 +113,6 @@
             [[OKLoadingViewController instance] hide];
             
         }
-        [[OKLoadingViewController instance] hide];
     }];
 
     
@@ -449,13 +448,14 @@
 - (IBAction)searchButton:(id)sender {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     [self searchDetails];
-    [[OKLoadingViewController instance] hide];
 }
 - (void) searchDetails{
     [_choosedDetails removeAllObjects];
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
+        [[OKLoadingViewController instance] hide];
+
     }else{
         
         if ([self varifyDates]) {

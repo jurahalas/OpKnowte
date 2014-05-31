@@ -85,12 +85,19 @@
     [super viewDidLoad];
     self.listTableView.delegate=self;
     self.listTableView.dataSource=self;
+    
     _cases = [[NSMutableArray alloc] init];
+    _nationalDataArray = [[NSMutableArray alloc] init];
+    _selectedCases = [[NSMutableArray alloc] init];
+    _surgeonClinicalData = [[NSMutableArray alloc] init];
+    _surgeonDataArray = [[NSMutableArray alloc] init];
+    _nationalClinicalData = [[NSMutableArray alloc] init];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.title = @"Performance Data";
     [self addLeftButtonToNavbar];
     _procedureLabel.text = _procTitle;
-    _selectedCases = [[NSMutableArray alloc] init];
+
     [self setDatePickerDesign];
 	[self setDesign];
      [_listTableView reloadData];
@@ -118,10 +125,10 @@
             [self searchDetails];
         } else{
 
-           
+           [[OKLoadingViewController instance] hide];
         }
         
-       [[OKLoadingViewController instance] hide];
+
     }];
     
     _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -254,9 +261,8 @@
 
 
 - (IBAction)searchButton:(id)sender {
-            [[OKLoadingViewController instance] showWithText:@"Loading..."];
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
     [self searchDetails];
-    [[OKLoadingViewController instance] hide];
 }
 
 
@@ -265,6 +271,7 @@
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
+        [[OKLoadingViewController instance] hide];
     }else{
         
         if ([self varifyDates]) {
@@ -282,13 +289,13 @@
                 [_listTableView reloadData];
                 
                 
-                [followManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                [followManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:@"01-01-1850" ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                     
                     NSLog(@"Eror - %@", errorMsg);
                     _nationalDataArray = dataArray;
-                    
+                    [[OKLoadingViewController instance] hide];
+
                 }];
-                [[OKLoadingViewController instance] hide];
             }];
         }else{
             UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

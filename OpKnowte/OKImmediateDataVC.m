@@ -211,21 +211,39 @@
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     
     controller.graphToDraw = @"AverageAge";
+    if (!self.selectedCases.count) {
+        controller.averageAge = 0;
+        controller.maxAge = 0;
+        controller.minAge = 0;
+    }else {
+        if(sumOfAges<=0)
+            sumOfAges = 100;
+        controller.averageAge = sumOfAges/self.selectedCases.count;
+        controller.maxAge = maxAge;
+        controller.minAge = minAge;
+
+    }
     
-    if(sumOfAges<=0)
-        sumOfAges = 100;
-    controller.averageAge = sumOfAges/self.selectedCases.count;
-    controller.maxAge = maxAge;
-    controller.minAge = minAge;
     
     if (!self.isNationalData) {
         
-        if(sur_sumOfAges<=0)
-            sur_sumOfAges = 100;
-        controller.sur_averageAge = sur_sumOfAges/self.surgeonCases.count;
-        controller.sur_maxAge = sur_maxAge;
-        controller.sur_minAge = sur_minAge;
-        controller.isNationalData = YES;
+        if(!self.surgeonCases.count){
+            if(sur_sumOfAges<=0)
+                sur_sumOfAges = 100;
+            controller.sur_averageAge = 0;
+            controller.sur_maxAge = 0;
+            controller.sur_minAge = 0;
+            controller.isNationalData = YES;
+        }else{
+            if(sur_sumOfAges<=0)
+                sur_sumOfAges = 100;
+            controller.sur_averageAge = sur_sumOfAges/self.surgeonCases.count;
+            controller.sur_maxAge = sur_maxAge;
+            controller.sur_minAge = sur_minAge;
+            controller.isNationalData = YES;
+        }
+        
+
         
     }
     
@@ -249,11 +267,21 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"MaleFemale";
-    
-    controller.malePercentage = percentage;
+    if (!self.selectedCases.count) {
+        
+        controller.malePercentage = 0;
+    }else {
+        controller.malePercentage = percentage;
+    }
     
     if (!self.isNationalData) {
         percentage = (sur_maleCount/self.surgeonCases.count)*100;
+        if (!self.surgeonCases.count) {
+            
+            controller.sur_malePercentage = 0;
+        }else {
+            controller.sur_malePercentage = percentage;
+        }
         controller.sur_malePercentage = percentage;
         controller.isNationalData = YES;
     }
@@ -271,15 +299,29 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"BMI";
-    
-    controller.bmiPercentage = bmiCount/self.selectedCases.count;
-    controller.maxBmi = maxBmi;
-    controller.minBmi = minBmi;
+    if (!self.selectedCases.count) {
+        
+        controller.bmiPercentage = 0;
+        controller.maxBmi = 0;
+        controller.minBmi = 0;
+    }else {
+        controller.bmiPercentage = bmiCount/self.selectedCases.count;
+        controller.maxBmi = maxBmi;
+        controller.minBmi = minBmi;
+    }
+
     NSLog(@"%hhd", isNationalData);
     if (!self.isNationalData) {
-        controller.sur_bmiPercentage = sur_bmiCount/self.surgeonCases.count;
-        controller.sur_maxBmi = sur_maxBmi;
-        controller.sur_minBmi = sur_minBmi;
+        if (!self.surgeonCases.count) {
+            controller.sur_bmiPercentage = 0;
+            controller.sur_maxBmi = 0;
+            controller.sur_minBmi = 0;
+        } else{
+            controller.sur_bmiPercentage = sur_bmiCount/self.surgeonCases.count;
+            controller.sur_maxBmi = sur_maxBmi;
+            controller.sur_minBmi = sur_minBmi;
+        }
+        
         controller.isNationalData = YES;
     }
     
@@ -300,12 +342,25 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"LeftRightRenal";
-    
+    if (!self.selectedCases.count) {
+        controller.LRMPercentage = 0;
+
+    } else{
+        controller.LRMPercentage = percentage;
+
+    }
     controller.LRMPercentage = percentage;
     
     if (!self.isNationalData) {
+
         percentage = (sur_LRMCount/self.surgeonCases.count)*100;
-        controller.sur_LRMPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_LRMPercentage = 0;
+            
+        } else{
+            controller.sur_LRMPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -328,10 +383,23 @@
     controller.graphToDraw = @"CytoStent";
     
     controller.cytoStentPercentage = percentage;
-    
+    if (!self.selectedCases.count) {
+        controller.cytoStentPercentage = 0;
+        
+    } else{
+        controller.cytoStentPercentage = percentage;
+        
+    }
     if (!self.isNationalData) {
         percentage = (sur_cytoStentCount/self.surgeonCases.count)*100;
-        controller.sur_cytoStentPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_cytoStentPercentage = 0;
+            
+        } else{
+            controller.sur_cytoStentPercentage = percentage;
+            
+        }
+
         controller.isNationalData = YES;
     }
     
@@ -350,15 +418,28 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"TumorSize";
-    
-    controller.tumorSizePercentage = tumorSizeCount/self.selectedCases.count;
-    controller.maxTumorSize = maxTumorSize;
-    controller.minTumorSize = minTumorSize;
+    if (!self.selectedCases.count) {
+        controller.tumorSizePercentage = 0;
+        controller.maxTumorSize = 0;
+        controller.minTumorSize = 0;
+    } else{
+        controller.tumorSizePercentage = tumorSizeCount/self.selectedCases.count;
+        controller.maxTumorSize = maxTumorSize;
+        controller.minTumorSize = minTumorSize;
+    }
+
     
     if (!self.isNationalData) {
-        controller.sur_tumorSizePercentage = sur_tumorSizeCount/self.surgeonCases.count;
-        controller.sur_maxTumorSize = sur_maxTumorSize;
-        controller.sur_minTumorSize = sur_minTumorSize;
+        if (!self.surgeonCases.count) {
+            controller.sur_tumorSizePercentage = 0;
+            controller.sur_maxTumorSize = 0;
+            controller.sur_minTumorSize = 0;
+        } else{
+            controller.sur_tumorSizePercentage = sur_tumorSizeCount/self.surgeonCases.count;
+            controller.sur_maxTumorSize = sur_maxTumorSize;
+            controller.sur_minTumorSize = sur_minTumorSize;
+        }
+
         controller.isNationalData = YES;
     }
     
@@ -380,12 +461,23 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"Adhesiolysis";
-    
-    controller.requiredPercentage = percentage;
+    if (!self.selectedCases.count) {
+        controller.requiredPercentage = 0;
+
+    } else{
+        controller.requiredPercentage = percentage;
+
+    }
     
     if (!self.isNationalData) {
         percentage = (sur_adhesiolysisCount/self.surgeonCases.count)*100;
-        controller.sur_requiredPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_requiredPercentage = 0;
+       
+        } else{
+            controller.sur_requiredPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -407,12 +499,23 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"VasAnomoly";
-    
-    controller.anomoliesPercentage = percentage;
+    if (!self.selectedCases.count) {
+        controller.anomoliesPercentage = 0;
+        
+    } else{
+        controller.anomoliesPercentage = percentage;
+        
+    }
     
     if (!self.isNationalData) {
         percentage = (sur_vasAnomolyCount/self.surgeonCases.count)*100;
-        controller.sur_anomoliesPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_anomoliesPercentage = 0;
+            
+        } else{
+            controller.sur_anomoliesPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -435,11 +538,22 @@
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"IOUS";
     
-    controller.iousPercentage = percentage;
-    
+    if (!self.selectedCases.count) {
+        controller.iousPercentage = 0;
+        
+    } else{
+        controller.iousPercentage = percentage;
+        
+    }
     if (!self.isNationalData) {
         percentage = (sur_intraOpUSCount/self.surgeonCases.count)*100;
-        controller.iousPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.iousPercentage = 0;
+            
+        } else{
+            controller.iousPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -463,10 +577,22 @@
     controller.graphToDraw = @"DeepMargins";
     
     controller.dmPositive = percentage;
-    
+    if (!self.selectedCases.count) {
+        controller.dmPositive = 0;
+        
+    } else{
+        controller.dmPositive = percentage;
+        
+    }
     if (!self.isNationalData) {
         percentage = (sur_positiveDMargins/self.surgeonCases.count)*100;
-        controller.sur_dmPositive = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_dmPositive = 0;
+            
+        } else{
+            controller.sur_dmPositive = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -487,12 +613,23 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"RenalSR";
-    
-    controller.renalRSPercentage = percentage;
-    
+    if (!self.selectedCases.count) {
+        controller.renalRSPercentage = 0;
+        
+    } else{
+        controller.renalRSPercentage = percentage;
+        
+    }
+
     if (!self.isNationalData) {
         percentage = (sur_renalSRCount/self.surgeonCases.count)*100;
-        controller.sur_renalRSPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_renalRSPercentage = 0;
+            
+        } else{
+            controller.sur_renalRSPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -511,15 +648,29 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"ClampTime";
-    
-    controller.clampTimePercentage = clampTimeCount/self.selectedCases.count;
-    controller.maxClampTime = maxClampTime;
-    controller.minClampTime = minClampTime;
+    if (!self.selectedCases.count) {
+        controller.clampTimePercentage = 0;
+        controller.maxClampTime = 0;
+        controller.minClampTime = 0;
+    } else{
+        controller.clampTimePercentage = clampTimeCount/self.selectedCases.count;
+        controller.maxClampTime = maxClampTime;
+        controller.minClampTime = minClampTime;
+    }
+
     
     if (!self.isNationalData) {
-        controller.sur_clampTimePercentage = sur_clampTimeCount/self.surgeonCases.count;
-        controller.sur_maxClampTime = sur_maxClampTime;
-        controller.sur_minClampTime = sur_minClampTime;
+        if (!self.surgeonCases.count) {
+            controller.sur_clampTimePercentage = 0;
+            controller.sur_maxClampTime = 0;
+            controller.sur_minClampTime = 0;
+        } else{
+            controller.sur_clampTimePercentage = sur_clampTimeCount/self.surgeonCases.count;
+            controller.sur_maxClampTime = sur_maxClampTime;
+            controller.sur_minClampTime = sur_minClampTime;
+        }
+
+
         controller.isNationalData = YES;
     }
     
@@ -542,11 +693,22 @@
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"Coagulant";
     
-    controller.coagulantPercentage = percentage;
-    
+    if (!self.selectedCases.count) {
+        controller.coagulantPercentage = 0;
+
+    } else{
+        controller.coagulantPercentage = percentage;
+
+    }
     if (!self.isNationalData) {
         percentage = (sur_coagulantCount/self.surgeonCases.count)*100;
-        controller.sur_coagulantPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_coagulantPercentage = 0;
+            
+        } else{
+            controller.sur_coagulantPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -565,15 +727,28 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"BloodLoss";
-    
-    controller.bloodLossPercentage = bloodLossCount/self.selectedCases.count;
-    controller.minBloodLoss = minBloodLoss;
-    controller.maxBloodLoss = maxBloodLoss;
+    if (!self.selectedCases.count) {
+        controller.bloodLossPercentage = 0;
+        controller.minBloodLoss = 0;
+        controller.maxBloodLoss = 0;
+    } else{
+        controller.bloodLossPercentage = bloodLossCount/self.selectedCases.count;
+        controller.minBloodLoss = minBloodLoss;
+        controller.maxBloodLoss = maxBloodLoss;
+    }
+
     
     if (!self.isNationalData) {
-        controller.sur_bloodLossPercentage = sur_bloodLossCount/self.surgeonCases.count;
-        controller.sur_minBloodLoss = sur_minBloodLoss;
-        controller.sur_maxBloodLoss = sur_maxBloodLoss;
+        if (!self.surgeonCases.count) {
+            controller.sur_bloodLossPercentage = 0;
+            controller.sur_minBloodLoss = 0;
+            controller.sur_maxBloodLoss = 0;
+        } else{
+            controller.sur_bloodLossPercentage = sur_bloodLossCount/self.surgeonCases.count;
+            controller.sur_minBloodLoss = sur_minBloodLoss;
+            controller.sur_maxBloodLoss = sur_maxBloodLoss;
+        }
+
         controller.isNationalData = YES;
     }
     
@@ -591,15 +766,28 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"ConsoleTime";
-    
-    controller.consolePercentage = consoleTimeCount/self.selectedCases.count;
-    controller.maxConsoleTime = maxConsoleTime;
-    controller.minConsoleTime = minConsoleTime;
+    if (!self.selectedCases.count) {
+        controller.consolePercentage = 0;
+        controller.maxConsoleTime = 0;
+        controller.minConsoleTime = 0;
+    } else{
+        controller.consolePercentage = consoleTimeCount/self.selectedCases.count;
+        controller.maxConsoleTime = maxConsoleTime;
+        controller.minConsoleTime = minConsoleTime;
+    }
+
     
     if (!self.isNationalData) {
-        controller.sur_consolePercentage = sur_consoleTimeCount/self.surgeonCases.count;
-        controller.sur_maxConsoleTime = sur_maxConsoleTime;
-        controller.sur_minConsoleTime = sur_minConsoleTime;
+        if (!self.surgeonCases.count) {
+            controller.sur_consolePercentage = 0;
+            controller.sur_maxConsoleTime = 0;
+            controller.sur_minConsoleTime = 0;
+        } else{
+            controller.sur_consolePercentage = sur_consoleTimeCount/self.surgeonCases.count;
+            controller.sur_maxConsoleTime = sur_maxConsoleTime;
+            controller.sur_minConsoleTime = sur_minConsoleTime;
+        }
+
         controller.isNationalData = YES;
     }
     
@@ -618,15 +806,28 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"RoomTime";
-    
-    controller.roomTimePercentage = roomTimeCount/self.selectedCases.count;
-    controller.minRoomTime = minRoomTime;
-    controller.maxRoomTime = maxRoomTime;
+    if (!self.selectedCases.count) {
+        controller.roomTimePercentage = 0;
+        controller.minRoomTime = 0;
+        controller.maxRoomTime = 0;
+    } else{
+        controller.roomTimePercentage = roomTimeCount/self.selectedCases.count;
+        controller.minRoomTime = minRoomTime;
+        controller.maxRoomTime = maxRoomTime;
+    }
+
     
     if (!self.isNationalData) {
-        controller.sur_roomTimePercentage = sur_roomTimeCount/self.surgeonCases.count;
-        controller.sur_minRoomTime = sur_minRoomTime;
-        controller.sur_maxRoomTime = sur_maxRoomTime;
+        if (!self.surgeonCases.count) {
+            controller.sur_roomTimePercentage = 0;
+            controller.sur_minRoomTime = 0;
+            controller.sur_maxRoomTime = 0;
+        } else{
+            controller.sur_roomTimePercentage = sur_roomTimeCount/self.surgeonCases.count;
+            controller.sur_minRoomTime = sur_minRoomTime;
+            controller.sur_maxRoomTime = sur_maxRoomTime;
+        }
+
         controller.isNationalData = YES;
     }
     
@@ -648,12 +849,23 @@
     
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     controller.graphToDraw = @"Transfusion";
-    
-    controller.transfusionPercentage = percentage;
+    if (!self.selectedCases.count) {
+        controller.transfusionPercentage = 0;
+
+    } else{
+        controller.transfusionPercentage = percentage;
+
+    }
     
     if (!self.isNationalData) {
         percentage = (sur_transfusionCount/self.surgeonCases.count)*100;
-        controller.sur_transfusionPercentage = percentage;
+        if (!self.surgeonCases.count) {
+            controller.sur_transfusionPercentage = 0;
+            
+        } else{
+            controller.sur_transfusionPercentage = percentage;
+            
+        }
         controller.isNationalData = YES;
     }
     
@@ -734,7 +946,9 @@
 
 -(void)CalculateValues{
     
-    //if(!isCalculated){
+    if ([_procID isEqualToString:@"2"]) {
+        
+    
     for(int i=0;i<self.selectedCases.count;i++){
         
         NSDictionary *dic = [self.selectedCases objectAtIndex:i];
@@ -1044,6 +1258,180 @@
                     sur_minBloodLoss = val;
                 }
             }
+        }
+    }
+    } else if([_procID isEqualToString:@"9"] || [_procID isEqualToString:@"10"]) {
+        for(int i=0;i<self.selectedCases.count;i++){
+            
+            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sumOfAges+= age;
+            if(i == 0){
+                maxAge = age;
+                minAge = age;
+            }
+            else{
+                if(age>maxAge){
+                    maxAge = age;
+                }
+                if(age<minAge){
+                    minAge = age;
+                }
+            }
+
+            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+                maleCount+=1;
+            }
+        }
+
+        
+        for(int i=0;i<self.surgeonCases.count;i++){
+            
+            NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sur_sumOfAges+= age;
+            if(i == 0){
+                sur_maxAge = age;
+                sur_minAge = age;
+            }
+            else{
+                if(age>sur_maxAge){
+                    sur_maxAge = age;
+                }
+                if(age<sur_minAge){
+                    sur_minAge = age;
+                }
+            }
+            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+                sur_maleCount+=1;
+            }
+
+        }
+  
+    }else{
+        for(int i=0;i<self.selectedCases.count;i++){
+            
+            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sumOfAges+= age;
+            if(i == 0){
+                maxAge = age;
+                minAge = age;
+            }
+            else{
+                if(age>maxAge){
+                    maxAge = age;
+                }
+                if(age<minAge){
+                    minAge = age;
+                }
+            }
+            
+            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+                maleCount+=1;
+            }
+            if([dic valueForKey:@"var_BMI"]){
+                float bmi = [[dic valueForKey:@"var_BMI"] floatValue];
+                bmiCount+= bmi;
+                if(i == 0){
+                    minBmi = bmi;
+                    maxBmi = bmi;
+                }else{
+                    if(bmi>maxBmi){
+                        maxBmi = bmi;
+                    }
+                    if(bmi<minBmi){
+                        minBmi = bmi;
+                    }
+                }
+            }
+            if([dic valueForKey:@"var_roomTime"]){
+                NSString *str = [dic valueForKey:@"var_roomTime"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
+                roomTimeCount+=val;
+                if(i == 0){
+                    minRoomTime = val;
+                    maxRoomTime = val;
+                }else{
+                    if(val>maxRoomTime){
+                        maxRoomTime = val;
+                    }
+                    if(val<minRoomTime){
+                        minRoomTime = val;
+                    }
+                }
+            }
+        }
+        
+        
+        for(int i=0;i<self.surgeonCases.count;i++){
+            
+            NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sur_sumOfAges+= age;
+            if(i == 0){
+                sur_maxAge = age;
+                sur_minAge = age;
+            }
+            else{
+                if(age>sur_maxAge){
+                    sur_maxAge = age;
+                }
+                if(age<sur_minAge){
+                    sur_minAge = age;
+                }
+            }
+            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+                sur_maleCount+=1;
+            }
+            if([dic valueForKey:@"var_BMI"]){
+                float bmi = [[dic valueForKey:@"var_BMI"] floatValue];
+                sur_bmiCount+= bmi;
+                if(i == 0){
+                    sur_minBmi = bmi;
+                    sur_maxBmi = bmi;
+                }else{
+                    if(bmi>sur_maxBmi){
+                        sur_maxBmi = bmi;
+                    }
+                    if(bmi<sur_minBmi){
+                        sur_minBmi = bmi;
+                    }
+                }
+            }
+            if([dic valueForKey:@"var_roomTime"]){
+                NSString *str = [dic valueForKey:@"var_roomTime"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
+                sur_roomTimeCount+=val;
+                if(i == 0){
+                    sur_minRoomTime = val;
+                    sur_maxRoomTime = val;
+                }else{
+                    if(val>sur_maxRoomTime){
+                        sur_maxRoomTime = val;
+                    }
+                    if(val<sur_minRoomTime){
+                        sur_minRoomTime = val;
+                    }
+                }
+            }
+            
         }
     }
     

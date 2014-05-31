@@ -177,6 +177,7 @@
     if ([procedureID isEqualToString:@"10"]) {
         params = @{@"surgeonID":              surgeonID,
                    @"procedureID":            procedureID,
+                   @"age":                      [procModel valueForKey:@"var_age"],
                    @"patientName":            [procModel valueForKey:@"var_patientName"],
                    @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
@@ -200,6 +201,7 @@
     } else if ([procedureID isEqualToString:@"2"]){
         params = @{@"surgeonID":                surgeonID,
                    @"procedureID":              procedureID,
+                                      @"age":                      [procModel valueForKey:@"var_age"],
                    @"patientName":              [procModel valueForKey:@"var_patientName"],
                    @"patientDob":               [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":                 [procModel valueForKey:@"var_MRNumber"],
@@ -248,6 +250,7 @@
     } else if ([procedureID isEqualToString:@"9"]){
         params = @{@"surgeonID":              surgeonID,
                    @"procedureID":            procedureID,
+                                      @"age":                      [procModel valueForKey:@"var_age"],
                    @"patientName":            [procModel valueForKey:@"var_patientName"],
                    @"patientDob":             [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":               [procModel valueForKey:@"var_MRNumber"],
@@ -283,6 +286,7 @@
     } else if ([procedureID isEqualToString:@"1"] ){
         params = @{@"surgeonID":                surgeonID,
                    @"procedureID":              procedureID,
+                                      @"age":                      [procModel valueForKey:@"var_age"],
                    @"patientName":              [procModel valueForKey:@"var_patientName"],
                    @"patientDob":               [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":                 [procModel valueForKey:@"var_MRNumber"],

@@ -19,7 +19,8 @@
     _var_sex= [dictionary valueForKey:@"Gender"];
     _var_procedureName = [dictionary valueForKey:@"PROCEDURE_ID"];
 
-    
+    _var_age= [dictionary valueForKey:@"age"];
+
     _var_anesthesiaPerformed = [dictionary valueForKey:@"Anesthesia_Performed"];
     _var_anesthesiaLocation= [dictionary valueForKey:@"Anesthesia_Location"];
     _var_stonesCount= [dictionary valueForKey:@"Stones_Count"];

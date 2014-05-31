@@ -12,7 +12,8 @@
 -(void) setModelWithDictionary:(NSDictionary *)dictionary
 {
     
-    
+    _var_age= [dictionary valueForKey:@"age"];
+
 
     _var_patientName= [dictionary valueForKey:@"Patient_Name"];
     _DetailID= [dictionary valueForKey:@"DetailID"];

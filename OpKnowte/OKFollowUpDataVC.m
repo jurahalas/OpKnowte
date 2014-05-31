@@ -110,7 +110,6 @@
 
 
         }
-        [[OKLoadingViewController instance] hide];
     }];
     
     _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -260,7 +259,6 @@
 - (IBAction)searchButton:(id)sender {
      [[OKLoadingViewController instance] showWithText:@"Loading..."];
     [self searchDetails];
-   [[OKLoadingViewController instance] hide];
     
 }
 
@@ -269,6 +267,8 @@
     if (_dateFromTF.text.length == 0 || _dateToTF.text.length == 0) {
         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Please fill all required fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [emptyFieldsError show];
+        [[OKLoadingViewController instance] hide];
+
     }else{
         
         if ([self varifyDates]) {
@@ -281,13 +281,13 @@
                 _surgeonDataArray = dataArray;
                 _choosedDetails = [dataArray mutableCopy];
                 [_listTableView reloadData];
-                [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:_dateFromTF.text  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                [followUpDataManager getNationalPerformancDataByUserID:[OKUserManager instance].currentUser.identifier ProcedureID:_procID FromTime:@"01-01-1850"  ToTime:_dateToTF.text handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                     NSLog(@"Eror - %@", errorMsg);
                     
                     _nationalDataArray = dataArray;
-                    
+                    [[OKLoadingViewController instance] hide];
+
                 }];
-                 [[OKLoadingViewController instance] hide];
             }];
         }else{
             UIAlertView *dateError = [[UIAlertView alloc] initWithTitle:@"" message:@"From time cannot be in future of To time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

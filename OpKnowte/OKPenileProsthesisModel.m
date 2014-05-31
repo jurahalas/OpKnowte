@@ -14,6 +14,7 @@
 //id: "1",
 //procedureID: "9",
 //surgeonID: "286",
+    _var_age= [dictionary valueForKey:@"age"];
 
     //_var_sex = [dictionary valueForKey:@"Patient_Name"];
     //_var_surgeon = [dictionary valueForKey:@"Patient_Name"];
