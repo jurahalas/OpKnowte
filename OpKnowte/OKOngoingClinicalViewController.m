@@ -257,7 +257,7 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
-    [dict setObject:@"postOperativeCreatine" forKey:@"name"];
+    [dict setObject:@"postOperativeCreatinine" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
     [dict setObject:@"Post-Operative Creatine" forKey:@"placeholder"];
     
@@ -463,6 +463,10 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     self.pickerObject.customTextField.text = self.pickerData[row];
     [self.pickerObject.delegate updateField:self.pickerObject.fieldName withValue:self.pickerObject.customTextField.text andTag:self.pickerObject.tagOfTextField];
+
+    if (!self.PikerView.hidden) {
+        [self hidePicker];
+    }
 }
 
 

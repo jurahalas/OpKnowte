@@ -49,10 +49,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
+    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks){
         self.tableDict = self.ongoingData.twoWeeksItems;
-    else
+    }else{
         self.tableDict = self.ongoingData.sixWeeksItems;
+    }
     [self.tableView reloadData];
 //    NSIndexPath * index = [NSIndexPath indexPathForRow:0 inSection:0];
   //  [_tableView scrollToRowAtIndexPath:index                      atScrollPosition:UITableViewScrollPositionTop animated:YES];

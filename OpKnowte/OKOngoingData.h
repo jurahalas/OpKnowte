@@ -15,7 +15,7 @@ enum OKProcedureSummaryDetailPeriod {
 
 @interface OKOngoingData : OKBaseModel
 
-@property (nonatomic, strong) NSString *caseID;
+//@property (nonatomic, strong) NSString *caseID;
 
 //2 weeks
 @property (nonatomic, strong) NSString *tStage;

@@ -129,10 +129,19 @@
                 
                     [[OKLoadingViewController instance]hide];
                     if(!errorMsg){
-                        if(![ongoingData.caseID isEqualToString:@""])
-                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
-                        else
-                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                        if ([cameFromVC isEqualToString:@"weeks"]) {
+                            if(![ongoingData.tStage isEqualToString:@""]){
+                                [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                            }else{
+                                [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                            }
+                        }else if ([cameFromVC isEqualToString:@"months"]){
+                            if(![ongoingData.chestXray isEqualToString:@""]){
+                                [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                            }else{
+                                [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                            }
+                        }
                     }
                 }];
             }else
