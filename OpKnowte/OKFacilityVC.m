@@ -69,8 +69,9 @@
         self.navigationItem.title =@"Select Physician";
     }else if([_roleID isEqualToString:@"6"]){
         self.navigationItem.title =@"Other";
+    } else if([_roleID isEqualToString:@"7"]){
+        self.navigationItem.title =@"Select CC";
     }
-    
     if (IS_IOS6) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
