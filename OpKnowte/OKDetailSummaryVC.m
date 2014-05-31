@@ -36,13 +36,13 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     self.detailSummaryTable.backgroundColor = [UIColor clearColor];
     
-    self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y+64.f, self.detailSummaryTable.frame.size.width, (self.detailSummaryTable.frame.size.height));
+    self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y+64.f, self.detailSummaryTable.frame.size.width, (self.detailSummaryTable.frame.size.height-50));
     [self addBottomTabBar];
     
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
-        self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y-65, self.detailSummaryTable.frame.size.width, self.detailSummaryTable.frame.size.height);
+        self.detailSummaryTable.frame = CGRectMake(self.detailSummaryTable.frame.origin.x, self.detailSummaryTable.frame.origin.y-65, self.detailSummaryTable.frame.size.width, self.detailSummaryTable.frame.size.height-50);
     }
     
     _keysForValues = [[NSMutableArray alloc] init];
