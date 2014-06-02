@@ -123,10 +123,10 @@
         cell.textLabel.text = selCase.patientName;
     }else{
         if ([_procID isEqualToString:@"9"]) {
-            cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row, selCase.patientNameNineProc];;
+            cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientNameNineProc];;
 
         }else{
-            cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row, selCase.patientName];;
+            cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];;
 
         }
     }
