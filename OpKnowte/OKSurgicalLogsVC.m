@@ -126,6 +126,7 @@
     _doneButtonForDatePicker.clipsToBounds = YES;
     _doneButtonForDatePicker.hidden = YES;
     [self.view addSubview:_doneButtonForDatePicker];
+    
      [self setDesign];
     
 }

@@ -99,7 +99,7 @@
     _procedureLabel.text = _procTitle;
 
     [self setDatePickerDesign];
-	[self setDesign];
+	//[self setDesign];
      [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
@@ -140,6 +140,7 @@
     _doneButtonForDatePicker.clipsToBounds = YES;
     _doneButtonForDatePicker.hidden = YES;
     [self.view addSubview:_doneButtonForDatePicker];
+    
     [self setDesign];
     
 }
@@ -406,26 +407,29 @@
 	[_slider setInRangeTrackImage:image];
     [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes
     
+    
     //int maxV = [self.maxValue intValue];
     int maxV = 1000000;
-
+    
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
     _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
+    
+
 }
 
 
-- (void)report:(RangeSlider *)sender
-{
-   // int maxV = [self.maxValue intValue];
+- (void)report:(RangeSlider *)sender {
+    //   int maxV = [self.maxValue intValue];
     int maxV = 1000000;
-
+    
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
     NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*maxV)];
     _caseToLabel.text = caseToString;
+    
 }
 
 

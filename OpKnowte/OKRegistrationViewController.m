@@ -211,7 +211,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 
     _MDTextField.text = [NSString stringWithFormat:@"%@", [_MDPickerData objectAtIndex:row]];
-
+    _pickerBGView.hidden = YES;
 }
 
 #pragma mark - IBActions
