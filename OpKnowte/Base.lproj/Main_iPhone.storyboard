@@ -1985,7 +1985,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="QQf-QI-Alq">
-                                                    <rect key="frame" x="296" y="17" width="18" height="25"/>
+                                                    <rect key="frame" x="291" y="20" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -2965,7 +2965,7 @@
             <objects>
                 <viewController storyboardIdentifier="FacilityVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b3m-w2-gJA" customClass="OKFacilityVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="F4i-1r-20h">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568.00000000000011"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="euz-Ib-NEC">
