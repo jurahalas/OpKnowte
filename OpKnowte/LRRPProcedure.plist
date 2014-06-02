@@ -313,26 +313,26 @@
 				<string>Greatest Percentage of Core Involved</string>
 				<key>items</key>
 				<array>
-					<string>&lt;5%</string>
-					<string>5%-10%</string>
-					<string>10%-15%</string>
-					<string>15%-20%</string>
-					<string>20%-25%</string>
-					<string>25%-30%</string>
-					<string>30%-35%</string>
-					<string>35%-40%</string>
-					<string>40%-45%</string>
-					<string>45%-50%</string>
-					<string>50%-55%</string>
-					<string>55%-60%</string>
-					<string>60%-65%</string>
-					<string>65%-70%</string>
-					<string>70%-75%</string>
-					<string>75%-80%</string>
-					<string>80%-85%</string>
-					<string>85%-90%</string>
-					<string>90%-95%</string>
-					<string>95%-100%</string>
+					<string>&lt; 5%</string>
+					<string>5% - 10%</string>
+					<string>10% - 15%</string>
+					<string>15% - 20%</string>
+					<string>20% - 25%</string>
+					<string>25% - 30%</string>
+					<string>30% - 35%</string>
+					<string>35% - 40%</string>
+					<string>40% - 45%</string>
+					<string>45% - 50%</string>
+					<string>50% - 55%</string>
+					<string>55% - 60%</string>
+					<string>60% - 65%</string>
+					<string>65% - 70%</string>
+					<string>70% - 75%</string>
+					<string>75% - 80%</string>
+					<string>80% - 85%</string>
+					<string>85% - 90%</string>
+					<string>90% - 95%</string>
+					<string>95% - 100%</string>
 				</array>
 			</dict>
 		</array>
