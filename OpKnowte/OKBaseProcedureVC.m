@@ -532,10 +532,16 @@
                 [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
                     if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
                          [[OKLoadingViewController instance] hide];
-                        id nextVC = [self nextVC];
-                        [self.navigationController pushViewController:nextVC animated:YES];
-                    }
-                    else {
+                        int mrn = [[self.model valueForKey:@"var_MRNumber"] integerValue];
+                        if ( mrn > 1000000) {
+                            UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number can't be greater than 1000000." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            [emptyFieldsError show];
+                        } else {
+                            id nextVC = [self nextVC];
+                            [self.navigationController pushViewController:nextVC animated:YES];
+
+                        }
+                    } else {
                          [[OKLoadingViewController instance] hide];
                         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                         [emptyFieldsError show];
