@@ -52,7 +52,11 @@
     _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
     [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
-    _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
+    if (IS_IOS7) {
+        _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
+    }else {
+        _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-80, 100, 30);
+    }
     _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _doneButtonForDatePicker.layer.cornerRadius = 14;
     _doneButtonForDatePicker.clipsToBounds = YES;
@@ -103,8 +107,13 @@
 -(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
     OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*) _variablesArray[row];
     NSString *pickerString = [NSString stringWithFormat:@"%@: %@",model.ID, model.key];
+    if (IS_IOS7) {
     NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     return pickerAttributedString;
+    }else{
+        NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];
+        return pickerAttributedString;
+    }
 }
 
 - (IBAction)backButton:(id)sender {
