@@ -13,6 +13,7 @@
 -(void)setModelWithDictionary:(NSDictionary *)dictionary
 {
     self.identifier = [dictionary objectForKey:@"DetailID"];
+    self.patientNameNineProc = [dictionary objectForKey:@"patientName"];
     self.patientName = [dictionary objectForKey:@"Patient_Name"];
     self.patientDOB = [dictionary objectForKey:@"Patient_Dob"];
     [self updateAge:[dictionary objectForKey:@"Patient_Dob"]];

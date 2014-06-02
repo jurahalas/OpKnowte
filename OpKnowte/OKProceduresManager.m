@@ -130,11 +130,14 @@
         
         NSMutableArray *variablesArray = [[NSMutableArray alloc] init];
         for (NSDictionary *variable in json) {
-            OKProcedureTemplateVariablesModel *model = [[OKProcedureTemplateVariablesModel alloc] init];
-            [model setModelWithDictionary:variable];
-            if (![model.value isEqualToString:@"(var_preSide)"]) {
-                [variablesArray addObject:model];
+            if (![[variable valueForKey:@"order"] isEqualToString:@"0"]) {
+                OKProcedureTemplateVariablesModel *model = [[OKProcedureTemplateVariablesModel alloc] init];
+                [model setModelWithDictionary:variable];
+                if (![model.value isEqualToString:@"(var_preSide)"]) {
+                    [variablesArray addObject:model];
+                }
             }
+           
             
         }
         handler([self getErrorMessageFromJSON:json error:error], variablesArray);

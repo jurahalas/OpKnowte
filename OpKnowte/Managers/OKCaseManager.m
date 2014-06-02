@@ -27,11 +27,17 @@
     NSDictionary *params = @{@"procedureID":procID,
                              @"surgeonID":surgeonID};
     [self requestWithMethod:@"GET" path:@"getCaseByProcIDSurgeonID" params:params handler:^(NSError *error, id json) {
+        NSLog(@"Error - %@", error);
+        NSLog(@"JSON - %@", json);
+
         NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
         if(!errorMsg)
             handler(nil, [self casesFromJSON:json]);
         else
             handler(errorMsg,nil);
+        
+        NSLog(@"Error - %@", errorMsg);
+        
     }];
 }
 

@@ -10,6 +10,7 @@
 
 @interface OKCase : OKBaseModel
 
+@property (nonatomic,strong) NSString *patientNameNineProc;
 @property (nonatomic, strong) NSString *patientName;
 @property (nonatomic, strong) NSString *patientDOB;
 @property (nonatomic, strong) NSString *age;

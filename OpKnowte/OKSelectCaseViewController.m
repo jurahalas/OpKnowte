@@ -119,11 +119,17 @@
     
     OKCase *selCase = self.cases[indexPath.row];
     
-    if(self.fromSettings)
+    if(self.fromSettings){
         cell.textLabel.text = selCase.patientName;
-    else
-        cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row, selCase.patientName];;
-    
+    }else{
+        if ([_procID isEqualToString:@"9"]) {
+            cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row, selCase.patientNameNineProc];;
+
+        }else{
+            cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row, selCase.patientName];;
+
+        }
+    }
     cell.dataLable.text = selCase.dateOfServiceString;
     [cell setCellBGImageLight:indexPath.row];
     return cell;
