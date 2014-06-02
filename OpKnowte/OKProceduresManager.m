@@ -298,7 +298,7 @@
                    
                    
                    
-                   @"preOpDX":                  [procModel valueForKey:@"var_preOpDX"],
+                   @"preOpDx":                  [procModel valueForKey:@"var_preOpDX"],
                    @"postOpDX":                 [procModel valueForKey:@"var_postOp"],
                    @"nerveSparing":             [procModel valueForKey:@"var_nervesparing"],
                    @"surgeonName":              [procModel valueForKey:@"var_surgeon"],
