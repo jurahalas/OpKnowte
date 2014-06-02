@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *indicationPicker;
 @property (strong, nonatomic) IBOutlet UITextView *indicationTextView;
 @property (strong, nonatomic) IBOutlet UIView *pickerBGView;
+@property (nonatomic, strong) UIButton * doneButtonForDatePicker;
 
 
 @end
@@ -47,7 +48,26 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
+    [self.view bringSubviewToFront:_pickerBGView];
+    _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
+    _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
+    _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    _doneButtonForDatePicker.layer.cornerRadius = 14;
+    _doneButtonForDatePicker.clipsToBounds = YES;
+    _doneButtonForDatePicker.hidden = YES;
+    [self.view addSubview:_doneButtonForDatePicker];
+    
+    
+}
+-(void) doneButtonTapped{
+    _indicationPicker.hidden = !_indicationPicker.hidden;
+    _pickerBGView.hidden = !_pickerBGView.hidden;
+    _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden;
+
+    [self.view endEditing:YES];
+    
 }
 -(void) addLeftButtonToNavbar
 {
@@ -70,6 +90,7 @@
 -(void) rightButtonTapped {
     _indicationPicker.hidden = !_indicationPicker.hidden;
     _pickerBGView.hidden = !_pickerBGView.hidden;
+        _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden;
      [self.view endEditing:YES];
 }
 
