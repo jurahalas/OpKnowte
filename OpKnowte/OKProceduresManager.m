@@ -201,7 +201,7 @@
     } else if ([procedureID isEqualToString:@"2"]){
         params = @{@"surgeonID":                surgeonID,
                    @"procedureID":              procedureID,
-                                      @"age":                      [procModel valueForKey:@"var_age"],
+                   @"age":                      [procModel valueForKey:@"var_age"],
                    @"patientName":              [procModel valueForKey:@"var_patientName"],
                    @"patientDob":               [procModel valueForKey:@"var_patientDOB"],
                    @"mrNumber":                 [procModel valueForKey:@"var_MRNumber"],

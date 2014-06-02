@@ -96,6 +96,7 @@
         }
     }
     if (choosedModelsArray.count) {
+        int choosedModelArrayCount = choosedModelsArray.count;
         for (int i = 0; i<choosedModelsArray.count; i++) {
             OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*)choosedModelsArray[i];
             int modelID = (int)model.ID;
@@ -111,6 +112,9 @@
                     break;
                 }
             }
+        }
+        if (choosedModelArrayCount == choosedModelsArray.count) {
+            [choosedModelsArray addObject:contact];
         }
 
     } else {
