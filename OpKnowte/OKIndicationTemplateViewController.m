@@ -40,6 +40,8 @@
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     [self addRightButtonToNavbar];
     NSString *indicationText = _templateModel.indicationText;
+    indicationText = [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
+    indicationText = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
         indicationText = [indicationText stringByReplacingOccurrencesOfString:model.value withString: [NSString stringWithFormat:@"%@", model.ID]];
     }
@@ -119,7 +121,7 @@
 - (IBAction)backButton:(id)sender {
     NSString *indicationText =  _indicationTextView.text;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:model.value];
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:[NSString stringWithFormat:@"(%@)",model.value]];
     }
     _templateModel.indicationText = indicationText;
     
