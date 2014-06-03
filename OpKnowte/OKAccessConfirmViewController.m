@@ -27,12 +27,18 @@
     }
     return self;
 }
+
+
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 -(void)viewDidAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -52,8 +58,10 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];

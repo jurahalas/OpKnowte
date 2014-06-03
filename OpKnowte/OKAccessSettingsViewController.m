@@ -27,7 +27,7 @@
     
     self.dataDict =  @{@"Surgeons":@"1",
                        @"Assistans":@"2",
-                       @"Outher":@"6"};
+                       @"Others":@"6"};
     
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -47,14 +47,20 @@
     accessArray = [[NSMutableArray alloc] init];
     
     userID = [OKUserManager instance].currentUser.identifier;
-    [self getAccessVariables];
 
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self getAccessVariables];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -66,15 +72,11 @@
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
 -(void)getAccessVariables{
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    
     OKAccessSettingManager *accessManager = [OKAccessSettingManager instance];
     [accessManager getAccessSettingsWithUserID:userID AndProcedureID:procID handler:^(NSString* error, NSMutableArray* aArray){
         NSLog(@"Error - %@", error);
         
         self.accessArray = aArray ;
-        
-        [[OKLoadingViewController instance] hide];
     }];
 }
 - (IBAction)backButton:(id)sender
@@ -85,27 +87,29 @@
 
 - (IBAction)updateSettingsButton:(id)sender
 {
-    UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Access Settings" message:@"Access Settings is updated" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [customAlertView show];
-    
     NSString * contactEmail = [choosedContacts componentsJoinedByString:@","];
     
     NSLog(@"%@",contactEmail);
-    
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
         OKAccessSettingManager *aM = [OKAccessSettingManager instance];
         [aM updateAccessSettingsWithUserID:userID withProcedureID:procID withContactEmail:contactEmail handler:^(NSString *errorMsg, NSDictionary *json) {
+            if (!errorMsg) {
+                UIAlertView *customAlertView = [[UIAlertView alloc] initWithTitle:@"Access Settings" message:@"Access Settings is updated" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [customAlertView show];
+            }
             NSLog(@"Error - %@", errorMsg);}];
-    
+    [[OKLoadingViewController instance] hide];
+
     [self getAccessVariables];
+    
     
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
--(void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"choseContact"]){
