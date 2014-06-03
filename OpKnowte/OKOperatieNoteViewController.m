@@ -207,7 +207,9 @@
     
     
     NSString *indicationText = _templateModel.indicationText;
-    
+    indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    indicationText = [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
+
     for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
         
         NSString *variableValue = [[NSString alloc] init];

@@ -54,8 +54,9 @@
             OKOngoingData *ongData = [OKOngoingData new];
             [ongData setModelWithDictionary:[[json objectForKey:@"clinicalData"] objectAtIndex:0]];
             handler(nil, ongData);
-        }else
+        }else{
             handler(errorMsg, nil);
+        }
     }];
 }
 
