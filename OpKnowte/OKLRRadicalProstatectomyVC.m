@@ -78,7 +78,7 @@
         NSLog(@"------%@", element);
         OKProcedureTextField *complicationsTF = element;
         
-        if ([newValue isEqualToString:@"other"]) {
+        if ([newValue isEqualToString:@"Other"]) {
             complicationsTF.customTextField.enabled = YES;
         } else {
             complicationsTF.customTextField.enabled = NO;
