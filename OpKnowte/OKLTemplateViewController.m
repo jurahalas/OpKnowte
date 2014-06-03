@@ -39,6 +39,8 @@
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     [self addRightButtonToNavbar];
     NSString *procedureText = _templateModel.procedureText;
+    procedureText = [procedureText stringByReplacingOccurrencesOfString:@")" withString:@""];
+    procedureText = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
         procedureText = [procedureText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"%@", model.ID]];
     }
@@ -47,6 +49,8 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
+    
+    
     [self.view bringSubviewToFront:_pickerBGView];
     _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
     [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -118,7 +122,7 @@
 - (IBAction)backButton:(id)sender {
     NSString *procedureText =  _procedureTextView.text;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:model.value];
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:[NSString stringWithFormat:@"(%@)",model.value]];
     }
     _templateModel.procedureText = procedureText;
 
