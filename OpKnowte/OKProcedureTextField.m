@@ -22,6 +22,9 @@
     _customTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:placeHolder attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
 }
 
+- (IBAction)touchToTextField:(id)sender {
+    [self.delegate openBMICalc:self.fieldName];
+}
 
 -(void)setType:(enum OKProcedureTextFieldType)type{
     if (type == OKProcedureSymbolicTF) {

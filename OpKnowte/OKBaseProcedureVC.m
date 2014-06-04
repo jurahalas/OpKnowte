@@ -20,7 +20,7 @@
 #import "OKFacilityVC.h"
 #import "OKContactModel.h"
 
-@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate, OKDatePickerProtocol>
+@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate, OKDatePickerProtocol,OKProcedureTextFieldDelegate>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
@@ -208,6 +208,8 @@
             symbolicTextField.customTextField.text = @"same";
             [symbolicTextField setupWithValue:@"same"];
         }
+
+        
         if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
             symbolicTextField.customTextField.enabled = NO;
         } else if (_procedureID == 2 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
@@ -614,7 +616,22 @@
 
 }
 
-
+-(void)openBMICalc:(NSString *)currentFieldName{
+    
+    [self.view endEditing:YES];
+    
+    NSLog(@"sadasdasd");
+    
+    if ([currentFieldName isEqualToString: @"var_BMI"] || [currentFieldName isEqualToString: @"var_bmi"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
+                                                        message:nil
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Manual Input"
+                                              otherButtonTitles:@"BMI Calc",nil];
+        [alert show];
+    }
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

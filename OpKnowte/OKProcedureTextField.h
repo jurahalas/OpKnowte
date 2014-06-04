@@ -13,11 +13,14 @@ enum OKProcedureTextFieldType {
     OKProcedureSymbolicTF = 0,
     OKProcedureNumericTF
 };
+@protocol OKProcedureTextFieldDelegate <OKBaseProcedureElementDelegate>
 
+-(void)openBMICalc:(NSString*)currentFieldName;
+@end
 @interface OKProcedureTextField : OKBaseProcedureElement <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
-@property (nonatomic, weak) id<OKBaseProcedureElementDelegate>delegate;
+@property (nonatomic, weak) id<OKProcedureTextFieldDelegate>delegate;
 @property (nonatomic) NSInteger tagOfTextField;
 @property (nonatomic, assign) BOOL isTheLastTF;
 
