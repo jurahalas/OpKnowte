@@ -22,7 +22,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (nonatomic) NSInteger tagOfTextField;
 @property (nonatomic) BOOL buttonTapped;
+@property (nonatomic, strong) NSDate *startDate;
 
 -(void) setTagOfTextField:(NSInteger)tagOfTextField;
+
+
 
 @end

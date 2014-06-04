@@ -265,6 +265,11 @@
         OKProcedureDatePicker *datePicker = [[OKProcedureDatePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         datePicker.delegate = self;
         
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_patientDOB"]) {
+            NSDate *today = [NSDate dateWithTimeIntervalSince1970:0];
+            [datePicker setStartDate:today];
+        }
+        
         //[self.view addSubview:datePicker];
         [self.scrollview addSubview:datePicker];
 
@@ -287,7 +292,7 @@
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
         //[picker setup];
-
+        
         if (_procedureID == 1 || _procedureID ==9) {
             NSMutableArray *pickerArray = [[NSMutableArray alloc] initWithObjects:@"Male", nil];
 
@@ -296,6 +301,7 @@
                 picker.customTextField.text = [pickerArray objectAtIndex:0];
                 [picker setDataArray:pickerArray];
                 [picker setValue:@"Male"];
+                [picker setupWithValue:@"Male"];
             }
         }else{
             [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
@@ -322,7 +328,7 @@
             pickerArray = [self convertStoneSizeArray:[customElementDictionary objectForKey:@"items"]];
         } else {
             pickerArray = [customElementDictionary objectForKey:@"items"];
-        }        
+        }
         
         if (_procedureID == 1 && _currentPage == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
             picker.button.enabled = NO;

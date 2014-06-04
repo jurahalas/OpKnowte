@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *button;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic) NSInteger tagOfTextField;
+-(void) setupWithValue:(NSString*)value;
+
 
 -(void) setDataArray:(NSMutableArray *)dataArray;
 
