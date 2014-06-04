@@ -75,18 +75,6 @@
             }
         }
         
-        NSLog(@"------%@", element);
-        OKProcedureTextField *complicationsTF = element;
-        
-        if ([newValue isEqualToString:@"Other"]) {
-            complicationsTF.customTextField.enabled = YES;
-        } else {
-            complicationsTF.customTextField.enabled = NO;
-            complicationsTF.customTextField.text = @"";
-             [self.model setValue:newValue forKey:@"var_ethnicity"];
-        }
-
-        
     }else {
         [self.model setValue:newValue forKey:name];
     }

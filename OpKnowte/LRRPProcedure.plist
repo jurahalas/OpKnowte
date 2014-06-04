@@ -240,16 +240,6 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_ethnicity</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string>Ethnicity</string>
-				<key>items</key>
-				<array/>
-			</dict>
-			<dict>
-				<key>name</key>
 				<string>var_stage</string>
 				<key>type</key>
 				<string>picker</string>
