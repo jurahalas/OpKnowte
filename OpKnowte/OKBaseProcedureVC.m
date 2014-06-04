@@ -574,6 +574,10 @@
             }
             
         } else {
+            if (_procedureID == 1 && ([[self.model valueForKey:@"var_physicans"] isEqualToString:@""] || [self.model valueForKey:@"var_physicans"] == nil)) {
+                  [self.model setValue:@"None" forKey:@"var_physicans"];
+                [self.model setValue:@"None" forKey:@"var_physicans_names"];
+            }
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];
             vc.model = self.model;

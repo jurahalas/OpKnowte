@@ -226,23 +226,18 @@
 {
     if ([self.contactID isEqualToString:@"2"] || [self.contactID isEqualToString:@"3"]) {
         
-        _streerAddressTextField.text = @" ";
-        _cityTextField.text = @" ";
-        _stateTextField.text = @" ";
-        _zipTextField.text = @" ";
-        _countryTextField.text = @" ";
-        _emailTextField.text = @"qw@i.ua";
-        _faxTextField.text = @" ";
-        
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
         
         if ([_nameTextField.text isEqual: @""] ){
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill name field" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             [[OKLoadingViewController instance] hide];
-        
+            
         }else{
+            
+            _emailTextField.text = @"qweqweqwe@i.ua";
+            
             [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
                 
                 if(error != nil){
