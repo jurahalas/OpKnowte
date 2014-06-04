@@ -262,8 +262,7 @@
         datePicker.delegate = self;
         
         if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_patientDOB"]) {
-            NSTimeInterval *interval;
-            NSDate *today = [NSDate dateWithTimeIntervalSince1970:*interval];
+            NSDate *today = [NSDate dateWithTimeIntervalSince1970:0];
             [datePicker setStartDate:today];
         }
         
