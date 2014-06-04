@@ -71,7 +71,7 @@
 				<key>name</key>
 				<string>var_preOpDX</string>
 				<key>type</key>
-				<string>picker</string>
+				<string>symbolicTextField</string>
 				<key>placeholder</key>
 				<string>Pre-op Diagnosis</string>
 				<key>items</key>
@@ -237,16 +237,6 @@
 					<string>Latino</string>
 					<string>Other</string>
 				</array>
-			</dict>
-			<dict>
-				<key>name</key>
-				<string>var_ethnicity</string>
-				<key>type</key>
-				<string>symbolicTextField</string>
-				<key>placeholder</key>
-				<string>Ethnicity</string>
-				<key>items</key>
-				<array/>
 			</dict>
 			<dict>
 				<key>name</key>

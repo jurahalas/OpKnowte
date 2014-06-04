@@ -17,8 +17,8 @@
 
 @implementation OKProcedurePicker
 
--(void) setup{
-    _customTextField.text = @"";
+-(void) setupWithValue:(NSString*)value{
+    _customTextField.text = value;
     _customTextField.enabled = NO;
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     [self setTextFieldRightImage];
