@@ -205,6 +205,18 @@
         if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_surgeon"]) {
             symbolicTextField.customTextField.text = [NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
         }
+        if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 2 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 2 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_transfusion"]){
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 9 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 10 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+            symbolicTextField.customTextField.enabled = NO;
+        }
+        
         [self.interactionItems addObject:symbolicTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"selectContact"]) {
@@ -290,6 +302,13 @@
             pickerArray = [customElementDictionary objectForKey:@"items"];
         }
         [picker setDataArray:pickerArray];
+        
+        
+        if (_procedureID == 1 && _currentPage == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
+            picker.button.enabled = NO;
+        } else if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
+            picker.button.enabled = NO;
+        }
         [self.interactionItems addObject:picker];
 
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {

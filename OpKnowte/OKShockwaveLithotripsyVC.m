@@ -120,6 +120,7 @@
         
         NSLog(@"------%@", element);
         OKProcedureTextField *complicationsTF = element;
+        complicationsTF.customTextField.enabled = NO;
         if (newValue) {
             complicationsTF.customTextField.enabled = YES;
         } else {
