@@ -218,6 +218,10 @@
             symbolicTextField.customTextField.enabled = NO;
         } else if (_procedureID == 10 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
             symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 1 && _currentPage == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
+            symbolicTextField.customTextField.text = @"Prostate Cancer";
+            [symbolicTextField setupWithValue:@"Prostate Cancer"];
+
         }
         
         [self.interactionItems addObject:symbolicTextField];
