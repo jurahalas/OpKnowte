@@ -288,6 +288,11 @@
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
         [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
         //[picker setup];
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_factors"]) {
+            picker.customTextField.text = [[customElementDictionary objectForKey:@"items"] objectAtIndex:0];
+            [picker setupWithValue:[[customElementDictionary objectForKey:@"items"] objectAtIndex:0]];
+        }
+
         
         if (_procedureID == 1 || _procedureID ==9) {
             NSMutableArray *pickerArray = [[NSMutableArray alloc] initWithObjects:@"Male", nil];
