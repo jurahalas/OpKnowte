@@ -25,8 +25,7 @@
 
 
 - (IBAction)customButtonTapped:(id)sender {
-    
-    [self.delegate showDatePickerWithDate:[NSDate date] picker:self];
+        [self.delegate showDatePickerWithDate:_startDate picker:self];
 }
 
 
