@@ -71,7 +71,7 @@
 				<key>name</key>
 				<string>var_preOpDX</string>
 				<key>type</key>
-				<string>picker</string>
+				<string>symbolicTextField</string>
 				<key>placeholder</key>
 				<string>Pre-op Diagnosis</string>
 				<key>items</key>
