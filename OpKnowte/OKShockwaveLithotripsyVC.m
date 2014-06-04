@@ -120,12 +120,13 @@
         
         NSLog(@"------%@", element);
         OKProcedureTextField *complicationsTF = element;
+        complicationsTF.customTextField.enabled = NO;
         if (newValue) {
             complicationsTF.customTextField.enabled = YES;
         } else {
             complicationsTF.customTextField.enabled = NO;
             complicationsTF.customTextField.text = @"";
-            [self.model setValue:@"NO" forKey:@"var_complications"];
+            [self.model setValue:@"None" forKey:@"var_complications"];
         }
     } else {
         

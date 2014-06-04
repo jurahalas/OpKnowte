@@ -208,6 +208,18 @@
             symbolicTextField.customTextField.text = @"same";
             [symbolicTextField setupWithValue:@"same"];
         }
+        if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 2 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 2 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_transfusion"]){
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 9 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+            symbolicTextField.customTextField.enabled = NO;
+        } else if (_procedureID == 10 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+            symbolicTextField.customTextField.enabled = NO;
+        }
+        
         [self.interactionItems addObject:symbolicTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"selectContact"]) {
@@ -279,6 +291,7 @@
 
                 picker.customTextField.text = [pickerArray objectAtIndex:0];
                 [picker setDataArray:pickerArray];
+                [picker setValue:@"Male"];
             }
         }else{
             [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
@@ -305,8 +318,13 @@
             pickerArray = [self convertStoneSizeArray:[customElementDictionary objectForKey:@"items"]];
         } else {
             pickerArray = [customElementDictionary objectForKey:@"items"];
-        }
+        }        
         
+        if (_procedureID == 1 && _currentPage == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
+            picker.button.enabled = NO;
+        } else if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
+            picker.button.enabled = NO;
+        }
         [self.interactionItems addObject:picker];
 
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {
@@ -572,6 +590,10 @@
             }
             
         } else {
+            if (_procedureID == 1 && ([[self.model valueForKey:@"var_physicans"] isEqualToString:@""] || [self.model valueForKey:@"var_physicans"] == nil)) {
+                  [self.model setValue:@"None" forKey:@"var_physicans"];
+                [self.model setValue:@"None" forKey:@"var_physicans_names"];
+            }
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             OKOperatieNoteViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OperativeNoteVC"];
             vc.model = self.model;

@@ -45,7 +45,11 @@
     self.facilityTableView.dataSource = self;
     self.facilityTableView.delegate = self;
     _contactsSendTo = [[NSMutableArray alloc] init];
-    _facilityTableView.frame = CGRectMake(_facilityTableView.frame.origin.x, _facilityTableView.frame.origin.y, _facilityTableView.frame.size.width, (_facilityTableView.frame.size.height - 57.f));
+    if (IS_IOS7) {
+    _facilityTableView.frame = CGRectMake(_facilityTableView.frame.origin.x, _facilityTableView.frame.origin.y, _facilityTableView.frame.size.width, (_facilityTableView.frame.size.height+25));
+    }else{
+        _facilityTableView.frame = CGRectMake(_facilityTableView.frame.origin.x, _facilityTableView.frame.origin.y, _facilityTableView.frame.size.width, (_facilityTableView.frame.size.height-57));
+    }
     [self addBottomTabBar];
    
     [self addRightButtonToNavbar];

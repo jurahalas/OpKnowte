@@ -205,12 +205,14 @@
 				<key>name</key>
 				<string>var_anesthesia</string>
 				<key>type</key>
-				<string>symbolicTextField</string>
+				<string>picker</string>
 				<key>placeholder</key>
 				<string>Anesthesia</string>
 				<key>items</key>
 				<array>
-					<string>anesthesiologist</string>
+					<string>General</string>
+					<string>Spinal</string>
+					<string>Sedation</string>
 				</array>
 			</dict>
 		</array>

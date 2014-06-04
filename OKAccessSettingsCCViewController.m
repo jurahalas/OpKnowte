@@ -70,7 +70,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO animated:YES ];
+  //  [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self getContactsList];
 }
 
@@ -162,9 +162,6 @@
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-    
-    //[self.delegate updateWithController:self andArray:_choosedContacts];
-    
 }
 
 

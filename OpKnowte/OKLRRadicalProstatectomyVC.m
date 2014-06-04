@@ -198,7 +198,7 @@
             break;
         }
         case 7:{
-            if ([self.model valueForKey:@"var_EBL"] == nil ||[self.model valueForKey:@"var_fluids"]== nil ||[self.model valueForKey:@"var_preOpSHIM"]== nil ||[self.model valueForKey:@"var_preOpAUA"]== nil ||[self.model valueForKey:@"var_physicans"]== nil ) {
+            if ([self.model valueForKey:@"var_EBL"] == nil ||[self.model valueForKey:@"var_fluids"]== nil ||[self.model valueForKey:@"var_preOpSHIM"]== nil ||[self.model valueForKey:@"var_preOpAUA"]== nil) {
                 return NO;
             } else {
                 return YES;
