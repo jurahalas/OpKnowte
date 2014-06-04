@@ -265,8 +265,23 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"picker"]) {
         OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         picker.delegate = self;
+        [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
+        [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
         //[picker setup];
 
+        if (_procedureID == 1 || _procedureID ==9) {
+            NSMutableArray *pickerArray = [[NSMutableArray alloc] initWithObjects:@"Male", nil];
+
+            if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_sex"]) {
+
+                picker.customTextField.text = [pickerArray objectAtIndex:0];
+                [picker setDataArray:pickerArray];
+            }
+        }else{
+            [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
+
+        }
+        
         picker.customTextField.inputView = _picker;
         
      //   [self.view addSubview:picker];
@@ -281,15 +296,14 @@
             [picker setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
             
         }
-        [picker setFieldName:[customElementDictionary objectForKey:@"name"]];
-        [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
+       
         NSMutableArray *pickerArray = [[NSMutableArray alloc] init];
         if ([[[customElementDictionary objectForKey:@"items"] objectAtIndex:0] isEqualToString:@"0,1"] ){
             pickerArray = [self convertStoneSizeArray:[customElementDictionary objectForKey:@"items"]];
         } else {
             pickerArray = [customElementDictionary objectForKey:@"items"];
         }
-        [picker setDataArray:pickerArray];
+        
         [self.interactionItems addObject:picker];
 
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {
