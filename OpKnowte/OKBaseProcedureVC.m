@@ -204,6 +204,9 @@
         [symbolicTextField setType:0];
         if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_surgeon"]) {
             symbolicTextField.customTextField.text = [NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+        }else if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_postOp"]){
+            symbolicTextField.customTextField.text = @"same";
+            [symbolicTextField setupWithValue:@"same"];
         }
         [self.interactionItems addObject:symbolicTextField];
         

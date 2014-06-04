@@ -23,5 +23,6 @@ enum OKProcedureTextFieldType {
 
 -(void)setType:(enum OKProcedureTextFieldType)type;
 -(void) setTagOfTextField:(NSInteger)tagOfTextField;
+-(void) setupWithValue:(NSString*)value;
 
 @end

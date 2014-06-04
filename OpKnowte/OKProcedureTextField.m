@@ -10,8 +10,8 @@
 
 @implementation OKProcedureTextField 
 
--(void) setup{
-    _customTextField.text = @"";
+-(void) setupWithValue:(NSString*)value{
+    _customTextField.text = value;
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
 
