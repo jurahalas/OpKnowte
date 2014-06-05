@@ -10,8 +10,8 @@
 
 @implementation OKSelectContact
 
--(void) setup{
-    _customTextField.text = @"";
+-(void) setupWithValue:(NSArray*)value{
+    _customTextField.text =@"";
     _customTextField.enabled = NO;
     [self.delegate updateField:self.fieldName withValue:self.contactIDs andTag:self.tagOfTextField];
     [self setTextFieldRightImage];

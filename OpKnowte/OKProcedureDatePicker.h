@@ -25,6 +25,8 @@
 @property (nonatomic, strong) NSDate *startDate;
 
 -(void) setTagOfTextField:(NSInteger)tagOfTextField;
+-(void) setupWithValue:(NSString*)value;
+
 
 
 

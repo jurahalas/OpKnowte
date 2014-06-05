@@ -199,6 +199,7 @@
             [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
 
         }
+     
         [symbolicTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [symbolicTextField setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [symbolicTextField setType:0];
@@ -206,7 +207,7 @@
             symbolicTextField.customTextField.text = [NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
         }else if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_postOp"]){
             symbolicTextField.customTextField.text = @"same";
-            [symbolicTextField setupWithValue:@"same"];
+//            [symbolicTextField setupWithValue:@"same"];
         }
         if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
             symbolicTextField.customTextField.enabled = NO;
@@ -220,8 +221,13 @@
             symbolicTextField.customTextField.enabled = NO;
         } else if (_procedureID == 1 && _currentPage == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
             symbolicTextField.customTextField.text = @"Prostate Cancer";
-            [symbolicTextField setupWithValue:@"Prostate Cancer"];
+//            [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];
 
+        }
+        
+        if (self.model) {
+            
+            [symbolicTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
         }
         
         [self.interactionItems addObject:symbolicTextField];
@@ -229,7 +235,11 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"selectContact"]) {
         OKSelectContact *selectContact = [[OKSelectContact alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         selectContact.delegate = self;
-        
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_assistant"]){
+            if (selectContact.contactIDs) {
+                [selectContact setupWithValue:_selectContactObject];
+            }
+        }
         //[self.view addSubview:selectContact];
         [self.scrollview addSubview:selectContact];
 
@@ -238,6 +248,12 @@
         [selectContact setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [selectContact setFieldName:[customElementDictionary objectForKey:@"name"]];
         [selectContact setRoleID:[[customElementDictionary objectForKey:@"items"]objectAtIndex:0 ]];
+        
+        if (self.model) {
+            
+            [selectContact setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+        }
+        
         [self.interactionItems addObject:selectContact];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
@@ -259,6 +275,12 @@
         [numericTextField setFieldName:[customElementDictionary objectForKey:@"name"]];
         [numericTextField setType:OKProcedureNumericTF];
         
+        if (self.model) {
+            
+            [numericTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+        }
+        
+        
         [self.interactionItems addObject:numericTextField];
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"DatePicker"]) {
@@ -266,8 +288,10 @@
         datePicker.delegate = self;
         
         if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_patientDOB"]) {
-            NSDate *today = [NSDate dateWithTimeIntervalSince1970:0];
-            [datePicker setStartDate:today];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+            NSDate *temp = [dateFormatter dateFromString:@"01-01-1964"];
+            [datePicker setStartDate:temp];
         }
         
         //[self.view addSubview:datePicker];
@@ -282,6 +306,12 @@
             
         }
         [datePicker setFieldName:[customElementDictionary objectForKey:@"name"]];
+
+        
+        if (self.model) {
+            
+            [datePicker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+        }
 
         [self.interactionItems addObject:datePicker];
         
@@ -340,6 +370,11 @@
         } else if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
             picker.button.enabled = NO;
         }
+        if (self.model) {
+            
+            [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+        }
+        
         [self.interactionItems addObject:picker];
 
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"multiselect"]) {
@@ -355,6 +390,10 @@
        /// [self.view addSubview:multiselectView];
         [self.scrollview addSubview:multiselectView];
 
+        if (self.model) {
+            
+            [multiselectView setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+        }
 
         [self.interactionItems addObject:multiselectView];
     
