@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSString *contactID;
 @property (nonatomic, strong) NSString *cameFromVC;
+@property (nonatomic, strong) OKContactModel *selectedContact;
 - (IBAction)saveButton:(id)sender;
 
 @end
