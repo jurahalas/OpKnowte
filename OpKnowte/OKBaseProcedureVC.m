@@ -31,6 +31,18 @@
 @property (nonatomic,strong) UIView *pickerBGView;
 @property (nonatomic, strong) UIButton * doneButtonForDatePicker;
 
+@property (nonatomic,strong)UIView * bmiBackgroundView;
+
+@property (nonatomic, strong) UIView *bmiView;
+@property (nonatomic, strong) OKCustomTextField * height;
+@property (nonatomic, strong) OKCustomTextField * weight;
+@property (nonatomic, strong) UIButton * calc;
+@property (nonatomic, strong) UIButton * cancel;
+@property (nonatomic, strong) NSString * BMIValue;
+@property (nonatomic, weak) OKProcedureTextField *BMITextField;
+@property (nonatomic, strong) UIAlertView *alertBMI;
+
+
 @end
 
 @implementation OKBaseProcedureVC
@@ -110,7 +122,12 @@
     _doneButtonForDatePicker.hidden = YES;
     [self.view addSubview:_doneButtonForDatePicker];
     
+    [self drawBMIView];
+    _bmiBackgroundView.hidden = YES;
+    _bmiView.hidden = YES;
+    
 }
+
 -(void) doneButtonTapped{
     if (!self.picker.hidden) {
         [self hidePicker];
@@ -248,7 +265,9 @@
         
        // [self.view addSubview:numericTextField];
         [self.scrollview addSubview:numericTextField];
-
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_BMI"] || [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_bmi"]) {
+            _BMITextField = numericTextField;
+        }
         
         [numericTextField setTagOfTextField:tag];
         if (numericTextField.tagOfTextField >0) {
@@ -404,6 +423,7 @@
 
 - (void)goToNextElementFrom:(id)sender
 {
+    [self.view endEditing:YES];
     OKProcedureTextField *nextItem = nil;
     int rangeStart = [self.interactionItems indexOfObject:sender];
     for (int index = rangeStart; index < self.interactionItems.count; index++){
@@ -566,14 +586,16 @@
 
 
 - (IBAction)backButtonTapped:(id)sender {
+     [self.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
-
+   
 }
 
 
 - (IBAction)rightButtonTapped:(id)sender {
     if ([self canGoToNextVC]) {
         
+        [self.view endEditing:YES];
         
         if (self.currentPage < (self.plistArray.count - 1) ) {
             
@@ -633,71 +655,134 @@
 }
 
 -(void)openBMICalc:(NSString *)currentFieldName{
-
-//    if ([currentFieldName isEqualToString: @"var_BMI"] || [currentFieldName isEqualToString: @"var_bmi"]) {
-//        
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
-//                                                        message:nil
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"Manual Input"
-//                                              otherButtonTitles:@"BMI Calc",nil];
-//        [alert show];
-//    }
     
+    if ((_currentPage ==5 && [currentFieldName isEqualToString: @"var_BMI"])){
+        
+        
+        _alertBMI = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"Manual Input"
+                                              otherButtonTitles:@"BMI Calc",nil];
+        [_alertBMI show];
+        [self.view endEditing:YES];
+    }
+    else if (_currentPage ==3 && [currentFieldName isEqualToString: @"var_bmi"]) {
+    
+        _alertBMI = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
+                                               message:nil
+                                              delegate:self
+                                     cancelButtonTitle:@"Manual Input"
+                                     otherButtonTitles:@"BMI Calc",nil];
+        [_alertBMI show];
+        [self.view endEditing:YES];
+    } else if (_currentPage !=3 && _currentPage !=5){
+        _alertBMI = nil;
+    
+    }
 }
 
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//
-//    if (buttonIndex == 0) {
-//        NSLog(@"Manual Input was presset");
-//    }else if (buttonIndex ==1){
-//        
-//        [self.view endEditing:YES];
-//        
-//        UIView * bmiView = [[UIView alloc]initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height)];
-//        bmiView.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
-//        
-//        
-//        OKProcedureTextField * height = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 10, 320, 43)];
-//        height.placeHolder = @"Height (inches)";
-//        height.delegate = self;
-//        
-//        [bmiView addSubview:height];
-//        
-//        OKProcedureTextField * weight = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 63, 320, 43)];
-//        weight.placeHolder = @"Weight (pounds)";
-//        weight.delegate = self;
-//        [bmiView addSubview:weight];
-//        
-//        UIButton * calc = [[UIButton alloc]initWithFrame:CGRectMake(20, 130, 280, 38)];
-//        [UIButton buttonWithType:UIButtonTypeCustom];
-//        [calc setTitle:@"Calcucate BMI" forState:UIControlStateNormal];
-//        calc.layer.cornerRadius = 14;
-//        calc.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
-//        [bmiView addSubview:calc];
-//        
-//        
-//        
-//  //     if ([height.text isEqualToString:@""] && [weight.text isEqualToString:@""]) {
-//    //        [calc addTarget:self action:@selector(bmiButtonCaclParameters: AndWeight:)
-//      //      forControlEvents:UIControlEventTouchUpInside];
-////        } else{
-////            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please,fill all fields"delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-////            [alert show];
-////
-////        }
-//        
-//        [self.view addSubview:bmiView];
-//        
-//    }
-//}
-//
-//-(void)bmiButtonCaclParameters :(NSString *)height AndWeight:(NSString*)weight{
-//        float value = ([weight floatValue]/([height floatValue]*[height floatValue]))*703;
-////[------ setText:[NSString stringWithFormat:@"%.2f",bmiValue]];
-//
-//}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+    if (buttonIndex ==1){
+        [self.view endEditing:YES];
+        _bmiBackgroundView.hidden = NO;
+        _bmiView.hidden = NO;
+    } else {
+        
+        [_BMITextField becomeCustomTextFieldFirstResponder];
+        [_alertBMI dismissWithClickedButtonIndex:[_alertBMI cancelButtonIndex] animated:YES];
+        self.alertBMI = nil;
+        
+    }
+}
+
+-(void)drawBMIView{
+    
+    UIColor *color = [UIColor lightGrayColor];
+    
+    _bmiBackgroundView = [[UIView alloc]init];
+    _bmiBackgroundView.frame = self.view.frame;
+    _bmiBackgroundView.backgroundColor = [UIColor whiteColor];
+    _bmiBackgroundView.alpha = 0.3f;
+    
+    _bmiView = [[UIView alloc]initWithFrame:CGRectMake(5, 130, self.view.frame.size.width-10, self.view.frame.size.height-350)];
+    _bmiView.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
+    _bmiView.layer.cornerRadius = 14;
+    _bmiView.layer.masksToBounds = YES;
+
+    
+    
+    _height = [[OKCustomTextField alloc] initWithFrame:CGRectMake(20, 10, 280, 38)];
+    _height.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Height (inches)"attributes:@{NSForegroundColorAttributeName: color}];
+    [_height setKeyboardType:UIKeyboardTypeNumberPad];
+    _height.borderStyle = UITextBorderStyleRoundedRect;
+    _height.backgroundColor = [UIColor clearColor];
+    _height.layer.cornerRadius = 14;
+    _height.layer.masksToBounds=YES;
+    _height.layer.borderColor=[[UIColor whiteColor]CGColor];
+    _height.layer.borderWidth= 1.0f;
+    _height.textColor = [UIColor whiteColor];
+    _height.delegate = self;
+    [_bmiView addSubview:_height];
+    
+    
+    _weight = [[OKCustomTextField alloc] initWithFrame:CGRectMake(20, 63, 280, 38)];
+    [_weight setKeyboardType:UIKeyboardTypeNumberPad];
+    _weight.borderStyle = UITextBorderStyleRoundedRect;
+    _weight.backgroundColor = [UIColor clearColor];
+    _weight.layer.cornerRadius = 14;
+    _weight.layer.masksToBounds=YES;
+    _weight.layer.borderColor=[[UIColor whiteColor]CGColor];
+    _weight.layer.borderWidth= 1.0f;
+    _weight.textColor = [UIColor whiteColor];
+    _weight.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Weight (pounds)" attributes:@{NSForegroundColorAttributeName: color}];
+    _weight.delegate = self;
+    [_bmiView addSubview:_weight];
+    
+    _calc = [[UIButton alloc]initWithFrame:CGRectMake(20, 120, 280, 38)];
+    [UIButton buttonWithType:UIButtonTypeCustom];
+    [_calc setTitle:@"Calcucate BMI" forState:UIControlStateNormal];
+    _calc.layer.cornerRadius = 14;
+    _calc.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    [_calc addTarget:self action:@selector(bmiButtonCacl) forControlEvents:UIControlEventTouchUpInside];
+    [_bmiView addSubview:_calc];
+    
+    _cancel = [[UIButton alloc]initWithFrame:CGRectMake(20, 170, 280, 38)];
+    [UIButton buttonWithType:UIButtonTypeCustom];
+    [_cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    _cancel.layer.cornerRadius = 14;
+    _cancel.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    [_cancel addTarget:self action:@selector(bmiCancel) forControlEvents:UIControlEventTouchUpInside];
+    [_bmiView addSubview:_cancel];
+    
+    
+    [self.view addSubview:_bmiBackgroundView];
+    [self.view addSubview:_bmiView];
+}
+
+-(void)bmiButtonCacl{
+    
+    if ([_height.text isEqualToString:@"" ]|| [_weight.text isEqualToString:@""]) {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please fill all field" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }else{
+        float value = ([_weight.text floatValue]/([_height.text floatValue]*[_height.text floatValue]))*703;
+        _BMIValue = [NSString stringWithFormat:@"%.2f", value];
+        NSLog(@"BMI Value %@",_BMIValue);
+        _BMITextField.customTextField.text = _BMIValue;
+        [_BMITextField.delegate updateField:_BMITextField.fieldName withValue:_BMITextField.customTextField.text andTag:_BMITextField.tagOfTextField];
+        [self.view endEditing:YES];
+        _bmiView.hidden = YES;
+        _bmiBackgroundView.hidden = YES;
+    }
+}
+
+-(void)bmiCancel{
+    [self.view endEditing:YES];
+    _bmiView.hidden = YES;
+    _bmiBackgroundView.hidden = YES;
+}
 
 - (void)didReceiveMemoryWarning
 {

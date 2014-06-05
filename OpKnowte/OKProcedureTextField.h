@@ -18,6 +18,7 @@ enum OKProcedureTextFieldType {
 -(void)openBMICalc:(NSString*)currentFieldName;
 @end
 @interface OKProcedureTextField : OKBaseProcedureElement <UITextFieldDelegate>
+-(void) becomeCustomTextFieldFirstResponder;
 
 @property (strong, nonatomic) IBOutlet OKCustomTextField *customTextField;
 @property (nonatomic, weak) id<OKProcedureTextFieldDelegate>delegate;

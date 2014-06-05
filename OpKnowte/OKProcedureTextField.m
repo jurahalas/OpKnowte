@@ -14,7 +14,9 @@
     _customTextField.text = value;
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
-
+-(void) becomeCustomTextFieldFirstResponder{
+    [_customTextField becomeFirstResponder];
+}
 
 -(void)setPlaceHolder:(NSString*)placeHolder
 {

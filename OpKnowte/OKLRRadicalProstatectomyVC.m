@@ -162,7 +162,7 @@
             break;
         }
         case 4:{
-            if ([self.model valueForKey:@"var_ethnicity"] == nil ||[self.model valueForKey:@"var_stage"]== nil ||[self.model valueForKey:@"var_grade"]== nil ||[self.model valueForKey:@"var_numberOfCores"]== nil||[self.model valueForKey:@"var_greatestPercentage"]== nil ) {
+            if ([self.model valueForKey:@"var_stage"]== nil ||[self.model valueForKey:@"var_grade"]== nil ||[self.model valueForKey:@"var_numberOfCores"]== nil||[self.model valueForKey:@"var_greatestPercentage"]== nil ) {
                 return NO;
             } else {
                 return YES;
