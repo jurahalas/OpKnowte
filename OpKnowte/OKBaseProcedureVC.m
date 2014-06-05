@@ -207,7 +207,7 @@
             symbolicTextField.customTextField.text = [NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
         }else if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_postOp"]){
             symbolicTextField.customTextField.text = @"same";
-//            [symbolicTextField setupWithValue:@"same"];
+            [symbolicTextField setupWithValue:@"same"];
         }
         if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
             symbolicTextField.customTextField.enabled = NO;
@@ -221,7 +221,7 @@
             symbolicTextField.customTextField.enabled = NO;
         } else if (_procedureID == 1 && _currentPage == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
             symbolicTextField.customTextField.text = @"Prostate Cancer";
-//            [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];
+            [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];
 
         }
         
