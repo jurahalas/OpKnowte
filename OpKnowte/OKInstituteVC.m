@@ -266,8 +266,14 @@
                     [[OKLoadingViewController instance] hide];
                     
                 }else{
-                    UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
-                    [addInstitutionFormSuccessAlertView show];
+                    if (_selectedContact != nil) {
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Update institution Success" message:@"Congratulations! Contact was updated successfully" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        [addInstitutionFormSuccessAlertView show];
+                    } else {
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        [addInstitutionFormSuccessAlertView show];
+                    }
+
                     [self.view endEditing:YES];
                     _saveButton.enabled = YES;
                     [[OKLoadingViewController instance] hide];
