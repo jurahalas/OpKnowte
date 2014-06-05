@@ -23,4 +23,6 @@
 @property (nonatomic, strong) NSString *roleID;
 
 - (void) setRoleID:(NSString *)roleID;
+-(void) setupWithValue:(NSArray*)value;
+
 @end

@@ -7,11 +7,12 @@
 //
 
 #import "OKContactListVC.h"
-
+#import "OKInstituteVC.h"
 @interface OKContactListVC ()
 @property (strong, nonatomic) IBOutlet UITableView *contactsTable;
 @property(strong, nonatomic) NSArray *contactsArray;
 @property(strong, nonatomic) NSString *selectedContactID;
+@property (strong, nonatomic) OKContactModel *selectedContact;
 @end
 
 @implementation OKContactListVC
@@ -77,41 +78,49 @@
         OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
         instVC.contactID = self.contactID;
         instVC.cameFromVC = @"ContactListVC";
+        if (_selectedContact!= nil) {
+            instVC.selectedContact = _selectedContact;
+        }
     }
+
 }
 
 
 -(void) addContactTapped
 {
+    _selectedContact = nil;
     [self performSegueWithIdentifier:@"fromContactListToInstitute" sender:_contactID];
+    
 }
 
 
 -(void) deleteContactTapped
 {
-    if (_selectedContactID==nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                          message:@"You must select contact to delete it"
-                                                                         delegate:self
-                                                                cancelButtonTitle:@"OK"
-                                                                otherButtonTitles:nil, nil];
-        [alert show];
-        [self.view endEditing:YES];
-        
-    }else{
-        OKContactManager *manager = [OKContactManager instance];
-        [manager deleteContactWithContactID:self.selectedContactID handler:^(NSString *errorMsg) {
-            if (!errorMsg) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                                                  message:@"Сontact was successfully removed"
-                                                                                 delegate:self
-                                                                        cancelButtonTitle:@"OK"
-                                                                        otherButtonTitles:nil, nil];
-                [alert show];
-            }
-            [self getContactsList];
-        }];
-    }
+
+    [self.contactsTable setEditing:!self.contactsTable.editing animated:YES];
+//    if (_selectedContactID==nil) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                                          message:@"You must select contact to delete it"
+//                                                                         delegate:self
+//                                                                cancelButtonTitle:@"OK"
+//                                                                otherButtonTitles:nil, nil];
+//        [alert show];
+//        [self.view endEditing:YES];
+//        
+//    }else{
+//        OKContactManager *manager = [OKContactManager instance];
+//        [manager deleteContactWithContactID:self.selectedContactID handler:^(NSString *errorMsg) {
+//            if (!errorMsg) {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+//                                                                                  message:@"Сontact was successfully removed"
+//                                                                                 delegate:self
+//                                                                        cancelButtonTitle:@"OK"
+//                                                                        otherButtonTitles:nil, nil];
+//                [alert show];
+//            }
+//            [self getContactsList];
+//        }];
+//    }
 }
 
 
@@ -161,10 +170,49 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OKContactModel *contact = [OKContactModel new];
-    contact = self.contactsArray[indexPath.row];
-    self.selectedContactID = contact.identifier;
+    _selectedContact = self.contactsArray[indexPath.row];
+
+    [self performSegueWithIdentifier:@"fromContactListToInstitute" sender:_contactID];
+    
+    
 }
+
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        OKContactModel *contact = [OKContactModel new];
+        contact = self.contactsArray[indexPath.row];
+        NSString *selectedContactID = contact.identifier;
+        OKContactManager *manager = [OKContactManager instance];
+        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+            if (!errorMsg) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                message:@"Сontact was successfully removed"
+                                                                delegate:self
+                                                        cancelButtonTitle:@"OK"
+                                                        otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            [self getContactsList];
+        }];
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

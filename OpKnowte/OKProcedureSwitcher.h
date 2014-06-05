@@ -16,5 +16,4 @@
 @property (nonatomic, strong) IBOutlet UISwitch *customSwitcher;
 
 
-
 @end

@@ -22,5 +22,7 @@
 
 - (IBAction)buttonTapped:(id)sender;
 -(void) setDataArray:(NSArray *)dataArray;
+-(void) setupWithValue:(NSString*)value;
+
 
 @end
