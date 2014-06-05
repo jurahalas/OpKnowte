@@ -53,7 +53,25 @@
     [self setAllDesign];
     self.title = self.contactID;
     [self setPickerDesign];
+    if (_selectedContact != nil) {
+        _nameTextField.text = _selectedContact.name;
+        _streerAddressTextField.text = _selectedContact.contactStreetAddress;
+        _cityTextField.text = _selectedContact.contactCity;
+        _stateTextField.text = _selectedContact.contactState;
+        _zipTextField.text = _selectedContact.contactZip;
+        _countryTextField.text = _selectedContact.contactCountry;
+        _emailTextField.text = _selectedContact.contactEmail;
+        _faxTextField.text = _selectedContact.contactFax;
 
+        NSString *selectedContactID = _selectedContact.identifier;
+        OKContactManager *manager = [OKContactManager instance];
+        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+            if (!errorMsg) {
+
+            }
+            
+        }];
+    }
     
     if ([self.title isEqualToString:@"1"]) {
         self.title =@"Surgeon";
@@ -248,8 +266,14 @@
                     [[OKLoadingViewController instance] hide];
                     
                 }else{
-                    UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
-                    [addInstitutionFormSuccessAlertView show];
+                    if (_selectedContact != nil) {
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Update institution Success" message:@"Congratulations! Contact was updated successfully" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        [addInstitutionFormSuccessAlertView show];
+                    } else {
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        [addInstitutionFormSuccessAlertView show];
+                    }
+
                     [self.view endEditing:YES];
                     _saveButton.enabled = YES;
                     [[OKLoadingViewController instance] hide];
