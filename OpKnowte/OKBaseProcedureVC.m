@@ -20,7 +20,7 @@
 #import "OKFacilityVC.h"
 #import "OKContactModel.h"
 
-@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate, OKDatePickerProtocol,OKProcedureTextFieldDelegate>
+@interface OKBaseProcedureVC () <OKProcedureDatePickerDelegate, OKProcedurePickerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, OKProcedureMultiselectDelegate, UITextFieldDelegate, OKSelectContactDelegate, OKFacilityVCDelegate, OKDatePickerProtocol,OKProcedureTextFieldDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, weak) OKProcedurePicker *pickerObject;
@@ -338,9 +338,9 @@
         }
         
         if (_procedureID == 1 && _currentPage == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
-            picker.button.enabled = NO;
+            [picker setButtonEnabled:NO];
         } else if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
-            picker.button.enabled = NO;
+            [picker setButtonEnabled:NO];
         }
         [self.interactionItems addObject:picker];
 
@@ -373,6 +373,7 @@
         [switcher setFieldName:[customElementDictionary objectForKey:@"name"]];
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [switcher setup];
+
         [self.interactionItems addObject:switcher];
     }
     _xPoint += 43;
@@ -632,21 +633,71 @@
 }
 
 -(void)openBMICalc:(NSString *)currentFieldName{
-    
-    [self.view endEditing:YES];
-    
-    NSLog(@"sadasdasd");
-    
-    if ([currentFieldName isEqualToString: @"var_BMI"] || [currentFieldName isEqualToString: @"var_bmi"]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
-                                                        message:nil
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Manual Input"
-                                              otherButtonTitles:@"BMI Calc",nil];
-        [alert show];
-    }
+
+//    if ([currentFieldName isEqualToString: @"var_BMI"] || [currentFieldName isEqualToString: @"var_bmi"]) {
+//        
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
+//                                                        message:nil
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"Manual Input"
+//                                              otherButtonTitles:@"BMI Calc",nil];
+//        [alert show];
+//    }
     
 }
+
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//
+//    if (buttonIndex == 0) {
+//        NSLog(@"Manual Input was presset");
+//    }else if (buttonIndex ==1){
+//        
+//        [self.view endEditing:YES];
+//        
+//        UIView * bmiView = [[UIView alloc]initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height)];
+//        bmiView.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
+//        
+//        
+//        OKProcedureTextField * height = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 10, 320, 43)];
+//        height.placeHolder = @"Height (inches)";
+//        height.delegate = self;
+//        
+//        [bmiView addSubview:height];
+//        
+//        OKProcedureTextField * weight = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, 63, 320, 43)];
+//        weight.placeHolder = @"Weight (pounds)";
+//        weight.delegate = self;
+//        [bmiView addSubview:weight];
+//        
+//        UIButton * calc = [[UIButton alloc]initWithFrame:CGRectMake(20, 130, 280, 38)];
+//        [UIButton buttonWithType:UIButtonTypeCustom];
+//        [calc setTitle:@"Calcucate BMI" forState:UIControlStateNormal];
+//        calc.layer.cornerRadius = 14;
+//        calc.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+//        [bmiView addSubview:calc];
+//        
+//        
+//        
+//  //     if ([height.text isEqualToString:@""] && [weight.text isEqualToString:@""]) {
+//    //        [calc addTarget:self action:@selector(bmiButtonCaclParameters: AndWeight:)
+//      //      forControlEvents:UIControlEventTouchUpInside];
+////        } else{
+////            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Please,fill all fields"delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+////            [alert show];
+////
+////        }
+//        
+//        [self.view addSubview:bmiView];
+//        
+//    }
+//}
+//
+//-(void)bmiButtonCaclParameters :(NSString *)height AndWeight:(NSString*)weight{
+//        float value = ([weight floatValue]/([height floatValue]*[height floatValue]))*703;
+////[------ setText:[NSString stringWithFormat:@"%.2f",bmiValue]];
+//
+//}
 
 - (void)didReceiveMemoryWarning
 {

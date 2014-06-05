@@ -77,5 +77,10 @@
 - (IBAction)textFieldChanged:(id)sender {
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
 }
+-(void) setButtonEnabled:(BOOL) enabled{
+    self.button.enabled = enabled;
+    self.customTextField.enabled = enabled;
+    [self endEditing:YES];
+}
 
 @end

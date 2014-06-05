@@ -25,5 +25,6 @@
 
 
 -(void) setDataArray:(NSMutableArray *)dataArray;
+-(void) setButtonEnabled:(BOOL) enabled;
 
 @end
