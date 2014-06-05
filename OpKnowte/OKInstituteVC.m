@@ -63,14 +63,7 @@
         _emailTextField.text = _selectedContact.contactEmail;
         _faxTextField.text = _selectedContact.contactFax;
 
-        NSString *selectedContactID = _selectedContact.identifier;
-        OKContactManager *manager = [OKContactManager instance];
-        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
-            if (!errorMsg) {
 
-            }
-            
-        }];
     }
     
     if ([self.title isEqualToString:@"1"]) {
@@ -269,6 +262,14 @@
                     if (_selectedContact != nil) {
                         UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Update institution Success" message:@"Congratulations! Contact was updated successfully" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                         [addInstitutionFormSuccessAlertView show];
+                        NSString *selectedContactID = _selectedContact.identifier;
+                        OKContactManager *manager = [OKContactManager instance];
+                        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+                            if (!errorMsg) {
+                                
+                            }
+                            
+                        }];
                     } else {
                         UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                         [addInstitutionFormSuccessAlertView show];
@@ -306,8 +307,22 @@
                 [[OKLoadingViewController instance] hide];
                 
             }else{
-                UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
-                [addInstitutionFormSuccessAlertView show];
+                if (_selectedContact != nil) {
+                    UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Update institution Success" message:@"Congratulations! Contact was updated successfully" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                    [addInstitutionFormSuccessAlertView show];
+                    NSString *selectedContactID = _selectedContact.identifier;
+                    OKContactManager *manager = [OKContactManager instance];
+                    [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+                        if (!errorMsg) {
+                            
+                        }
+                        
+                    }];
+                } else {
+                    UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                    [addInstitutionFormSuccessAlertView show];
+                }
+               
                 [self.view endEditing:YES];
                 _saveButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
@@ -321,7 +336,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        if ([alertView.message isEqualToString:@"Congratulations! You added new contact"]) {
+        if ([alertView.message isEqualToString:@"Congratulations! You added new contact"] || [alertView.message isEqualToString:@"Congratulations! Contact was updated successfully"]) {
             [self.navigationController popViewControllerAnimated:YES];
         }
         if ([_cameFromVC isEqualToString:@"FacilityVC"]) {

@@ -79,7 +79,6 @@
         instVC.contactID = self.contactID;
         instVC.cameFromVC = @"ContactListVC";
         if (_selectedContact!= nil) {
-            OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
             instVC.selectedContact = _selectedContact;
         }
     }
