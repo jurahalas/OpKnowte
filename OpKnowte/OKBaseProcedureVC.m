@@ -392,8 +392,10 @@
             [picker setButtonEnabled:NO];
         }
         if (self.model) {
-            
-            [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+            if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"]){
+                [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+
+            }
         }
         
         [self.interactionItems addObject:picker];
