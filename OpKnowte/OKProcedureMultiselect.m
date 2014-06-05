@@ -17,7 +17,8 @@
 
 @implementation OKProcedureMultiselect
 
--(void) setup{
+-(void) setupWithValue:(NSString*)value{
+    _customTextField.text = value;
      [self setTextFieldRightImage];
      _customTextField.enabled = NO;
 }

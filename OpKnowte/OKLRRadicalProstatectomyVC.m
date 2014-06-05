@@ -66,7 +66,8 @@
         [self.model setValue:age forKey:@"var_age"];
         [self.model setValue:newValue forKey:name];
         [self.model setValue:[NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title] forKey:@"var_surgeon"];
-    } else if ([name isEqualToString:@"var_ethnicity?"] ) {
+    }
+    else if ([name isEqualToString:@"var_ethnicity?"] ) {
         id element = nil;
         for (id searchedElement in self.interactionItems) {
             if ([[searchedElement valueForKey:@"fieldName"] isEqualToString:@"var_ethnicity"]) {
@@ -75,7 +76,7 @@
             }
         }
         
-    }else {
+    } else {
         [self.model setValue:newValue forKey:name];
     }
     
@@ -162,7 +163,7 @@
             break;
         }
         case 4:{
-            if ([self.model valueForKey:@"var_ethnicity"] == nil ||[self.model valueForKey:@"var_stage"]== nil ||[self.model valueForKey:@"var_grade"]== nil ||[self.model valueForKey:@"var_numberOfCores"]== nil||[self.model valueForKey:@"var_greatestPercentage"]== nil ) {
+            if ([self.model valueForKey:@"var_stage"]== nil ||[self.model valueForKey:@"var_grade"]== nil ||[self.model valueForKey:@"var_numberOfCores"]== nil||[self.model valueForKey:@"var_greatestPercentage"]== nil ) {
                 return NO;
             } else {
                 return YES;

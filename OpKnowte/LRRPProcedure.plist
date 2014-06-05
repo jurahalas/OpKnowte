@@ -224,7 +224,7 @@
 		<array>
 			<dict>
 				<key>name</key>
-				<string>var_ethnicity?</string>
+				<string>var_ethnicity</string>
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
