@@ -361,9 +361,11 @@
             }
         
             variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
-        } else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value    isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
-            variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
-        } else {
+        }
+//        else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value    isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
+//            variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
+//        }
+        else {
             variableValue = [_model valueForKey:variableModel.value];
         }
     

@@ -21,7 +21,10 @@
 -(void) becomeCustomTextFieldFirstResponder{
     [_customTextField becomeFirstResponder];
 }
+-(void) resignCustomTextFieldFirstResponder{
+    [_customTextField resignFirstResponder];
 
+}
 -(void)setPlaceHolder:(NSString*)placeHolder
 {
     [super setPlaceHolder:placeHolder];
@@ -29,7 +32,7 @@
 }
 
 - (IBAction)touchToTextField:(id)sender {
-    [self.delegate openBMICalc:self.fieldName];
+    [self.delegate openBMICalc:self.fieldName withSelf:self];
 }
 
 -(void)setType:(enum OKProcedureTextFieldType)type{
