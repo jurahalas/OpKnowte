@@ -121,10 +121,10 @@
     if (!cell) {
         cell = [[OKSelectProcedureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
     OKProcedureModel *procedure = (OKProcedureModel*)self.procArray[indexPath.row];
-    cell.procedureLabel.text = procedure.procedureText;
-    [cell setCellBGImageLight:indexPath.row];
+
+        cell.procedureLabel.text = procedure.procedureShortName;
+        [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
 
@@ -138,7 +138,7 @@
     
     OKSelectProcedureCell *cell = (OKSelectProcedureCell *)[_selectProcedureTableView cellForRowAtIndexPath:indexPath];
     NSInteger procID = [proc.identifier integerValue];
-    NSString *procName = proc.procedureText;
+    NSString *procName = proc.procedureShortName;
     if ([_cameFromVC isEqualToString:@"DataSharingVC"]) {
         [self performSegueWithIdentifier:@"fromSelectProcToDataShar" sender:[NSString stringWithFormat:@"%d", procID]];
         
@@ -175,13 +175,13 @@
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
             vc = [[OKShockwaveLithotripsyVC alloc] init];
         }else
-        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Partial Nephrectomy"]) {
+        if ([cell.procedureLabel.text isEqualToString:@"Robotic Partial Nephrectomy"]) {
             vc = [[OKLRPartialNephrectomyVC alloc] init];
         }else
         if ([cell.procedureLabel.text isEqualToString:@"Insertion of Penile Prosthesis"]) {
             vc = [[OKPenileProsthesisVC alloc] init];
         }else
-        if ([cell.procedureLabel.text isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
+        if ([cell.procedureLabel.text isEqualToString:@"Robotic Radical Prostatectomy"]) {
             vc = [[OKLRRadicalProstatectomyVC alloc] init];
         }
         [vc setValue:@(procID) forKey:@"procedureID"];
