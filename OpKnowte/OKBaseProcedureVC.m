@@ -855,6 +855,12 @@
                                               cancelButtonTitle:@"Manual Input"
                                               otherButtonTitles:@"BMI Calc",nil];
         [_alertBMI show];
+        for (int i = 0 ; i<_interactionItems.count; i++) {
+            if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
+                OKProcedureTextField *tf = _interactionItems[i];
+                [tf resignCustomTextFieldFirstResponder];
+            }
+        }
         [self.view endEditing:YES];
     }
     else if (_currentPage ==3 && [currentFieldName isEqualToString: @"var_bmi"]) {
@@ -865,20 +871,35 @@
                                      cancelButtonTitle:@"Manual Input"
                                      otherButtonTitles:@"BMI Calc",nil];
         [_alertBMI show];
+        for (int i = 0 ; i<_interactionItems.count; i++) {
+            if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
+                OKProcedureTextField *tf = _interactionItems[i];
+                [tf resignCustomTextFieldFirstResponder];
+            }
+        }
         [self.view endEditing:YES];
     } else if (_currentPage !=3 && _currentPage !=5){
         _alertBMI = nil;
     
     }
     if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
+        [_TimeTextField resignFirstResponder];
         _TimeTextField = tappedTF;
+        [_TimeTextField resignFirstResponder];
+
+
         _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
                                                message:nil
                                               delegate:self
                                      cancelButtonTitle:@"Manual Input"
                                      otherButtonTitles:@"Time Calc",nil];
         [_alertTime show];
-        [self.view endEditing:YES];
+        //for (int i = 0 ; i<_interactionItems.count; i++) {
+           // if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
+            //    OKProcedureTextField *tf = _interactionItems[i];
+          //      [tf resignCustomTextFieldFirstResponder];
+        //    }
+      //  }
     } else{
         _alertTime = nil;
     }
@@ -889,10 +910,14 @@
     if (buttonIndex ==1){
         if ([alertView.title isEqualToString:@"BMI Calculator"]) {
             [self.view endEditing:YES];
+            [_TimeTextField resignCustomTextFieldFirstResponder];
+
             _bmiBackgroundView.hidden = NO;
             _bmiView.hidden = NO;
         } else {
             [self.view endEditing:YES];
+            [_TimeTextField resignFirstResponder];
+
             _timeView.hidden = NO;
             _timeBackgroundView.hidden = NO;
 

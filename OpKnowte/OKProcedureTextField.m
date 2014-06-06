@@ -18,13 +18,20 @@
         _customTextField.text = @"";
     }
 }
+
+
 -(void) becomeCustomTextFieldFirstResponder{
     [_customTextField becomeFirstResponder];
 }
+
+
 -(void) resignCustomTextFieldFirstResponder{
+    [self.view endEditing:YES];
     [_customTextField resignFirstResponder];
 
 }
+
+
 -(void)setPlaceHolder:(NSString*)placeHolder
 {
     [super setPlaceHolder:placeHolder];
@@ -57,6 +64,8 @@
 
 -(BOOL)resignFirstResponder
 {
+    [self endEditing:YES];
+
     [self.customTextField resignFirstResponder];
     return YES;
 }
