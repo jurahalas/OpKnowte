@@ -409,7 +409,7 @@
     
     
     //int maxV = [self.maxValue intValue];
-    int maxV = 1000000;
+    int maxV = 2000;
     
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;
@@ -423,7 +423,7 @@
 
 - (void)report:(RangeSlider *)sender {
     //   int maxV = [self.maxValue intValue];
-    int maxV = 1000000;
+    int maxV = 2000;
     
 	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*maxV)];
 	_caseFromLabel.text = caseFromString;

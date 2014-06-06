@@ -13,7 +13,7 @@
 @interface OKContactsVC ()
 
 @property (strong, nonatomic) IBOutlet UITableView *contactsTableView;
-
+@property (strong, nonatomic) NSDictionary * contactID;
 @end
 
 @implementation OKContactsVC
@@ -23,9 +23,14 @@
 {
     [super viewDidLoad];
     
-    self.dataDict =  @{@"Surgeons":@"1",
+    self.dataDict =  @{@"1":@"Surgeons",
+                       @"2":@"Assistants",
+                       @"5":@"Reffering Physicians"};
+    
+    self.contactID = @{@"Surgeons":@"1",
                        @"Assistants":@"2",
                        @"Reffering Physicians":@"5"};
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];
     _contactsTableView.backgroundColor = [UIColor clearColor];
@@ -64,7 +69,7 @@
 {
     if([segue.identifier isEqualToString:@"contactList"]){
         OKContactListVC *contactVC = (OKContactListVC*)segue.destinationViewController;
-        contactVC.contactID = [self.dataDict valueForKey:sender];
+        contactVC.contactID = [self.contactID valueForKey:sender];
         contactVC.cameFromVC = @"ContactsVC";
     }
 }
@@ -88,14 +93,14 @@
     if (!cell) {
         cell = [[OKContactsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.contactsLabel.text = [self.dataDict.allKeys objectAtIndex:indexPath.row];
+    cell.contactsLabel.text = [self.dataDict.allValues objectAtIndex:indexPath.row];
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"contactList" sender:self.dataDict.allKeys[indexPath.row]];
+    [self performSegueWithIdentifier:@"contactList" sender:self.dataDict.allValues[indexPath.row]];
 }
 
 
