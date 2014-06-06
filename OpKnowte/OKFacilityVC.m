@@ -55,7 +55,7 @@
     [self addRightButtonToNavbar];
     if (![_cameFromVC isEqualToString:@"createProcedureVC"]){
         _roleID = @"4";
-        _facilityTableView.allowsSelection = NO;
+        _facilityTableView.allowsSelection = YES;
     } else {
         _faxAndEmailView.hidden = YES;
         if ([_roleID isEqualToString:@"7"]) {
@@ -333,19 +333,33 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+    if (![_roleID isEqualToString:@"4"]) {
+        OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
 
-    if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
-        [self.navigationController popViewControllerAnimated:YES];
+        if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
+            [self.navigationController popViewControllerAnimated:YES];
         
-        NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
-        [contactsArray addObject:cell.contact];
-        [self.delegate setContactFieldWithContactArray:contactsArray];
+            NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
+            [contactsArray addObject:cell.contact];
+            [self.delegate setContactFieldWithContactArray:contactsArray];
+        }
+    }else{
+        
+        OKFacilityTableViewCell * cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+        [cell facilityButton:cell.contact];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([_roleID isEqualToString:@"4"]) {
+        if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFacilityTableViewCell class]]) {
+            OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+            [cell facilityButton:cell.contact];
+        }
+    }
+}
 
 -(NSMutableArray *)getEmailAddress:(NSMutableArray *)contacts
 {

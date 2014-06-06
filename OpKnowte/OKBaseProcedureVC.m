@@ -798,8 +798,8 @@
                     if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
                          [[OKLoadingViewController instance] hide];
                         int mrn = [[self.model valueForKey:@"var_MRNumber"] integerValue];
-                        if ( mrn > 1000000) {
-                            UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number can't be greater than 1000000." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        if ( mrn > 2000) {
+                            UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number can't be greater than 2000." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                             [emptyFieldsError show];
                         } else {
                             id nextVC = [self nextVC];
@@ -965,6 +965,7 @@
     _height.layer.borderColor=[[UIColor whiteColor]CGColor];
     _height.layer.borderWidth= 1.0f;
     _height.textColor = [UIColor whiteColor];
+    _height.tintColor = [UIColor whiteColor];
     _height.delegate = self;
     [_bmiView addSubview:_height];
     
@@ -978,6 +979,7 @@
     _weight.layer.borderColor=[[UIColor whiteColor]CGColor];
     _weight.layer.borderWidth= 1.0f;
     _weight.textColor = [UIColor whiteColor];
+    _weight.tintColor = [UIColor whiteColor];
     _weight.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Weight (pounds)" attributes:@{NSForegroundColorAttributeName: color}];
     _weight.delegate = self;
     [_bmiView addSubview:_weight];
