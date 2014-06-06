@@ -764,6 +764,7 @@
     _height.layer.borderColor=[[UIColor whiteColor]CGColor];
     _height.layer.borderWidth= 1.0f;
     _height.textColor = [UIColor whiteColor];
+    _height.tintColor = [UIColor whiteColor];
     _height.delegate = self;
     [_bmiView addSubview:_height];
     
@@ -777,6 +778,7 @@
     _weight.layer.borderColor=[[UIColor whiteColor]CGColor];
     _weight.layer.borderWidth= 1.0f;
     _weight.textColor = [UIColor whiteColor];
+    _weight.tintColor = [UIColor whiteColor];
     _weight.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Weight (pounds)" attributes:@{NSForegroundColorAttributeName: color}];
     _weight.delegate = self;
     [_bmiView addSubview:_weight];
