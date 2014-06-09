@@ -796,29 +796,19 @@
                 [[OKLoadingViewController instance] showWithText:@"Loading..."];
                 [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
                     if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
-                         [[OKLoadingViewController instance] hide];
-                        int mrn = [[self.model valueForKey:@"var_MRNumber"] integerValue];
-                        if ( mrn > 2000) {
-                            UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number can't be greater than 2000." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            [emptyFieldsError show];
-                        } else {
-                            id nextVC = [self nextVC];
-                            [self.navigationController pushViewController:nextVC animated:YES];
-
-                        }
+                        [[OKLoadingViewController instance] hide];
+                        id nextVC = [self nextVC];
+                        [self.navigationController pushViewController:nextVC animated:YES];
                     } else {
                          [[OKLoadingViewController instance] hide];
                         UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                         [emptyFieldsError show];
                     }
-                    
                 }];
-
             }else {
                 id nextVC = [self nextVC];
                 [self.navigationController pushViewController:nextVC animated:YES];
             }
-            
         } else {
             if (_procedureID == 1 && ([[self.model valueForKey:@"var_physicans"] isEqualToString:@""] || [self.model valueForKey:@"var_physicans"] == nil)) {
                   [self.model setValue:@"None" forKey:@"var_physicans"];
