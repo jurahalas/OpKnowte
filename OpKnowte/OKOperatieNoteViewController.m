@@ -233,12 +233,18 @@
             indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
         }
     }
+    indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"None;" withString:@""];
+    indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO;" withString:@""];
+    indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO" withString:@""];
+    indicationText =  [indicationText stringByReplacingOccurrencesOfString:@";" withString:@","];
+//    indicationText =  [indicationText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
     
     indicationLabel.text = indicationText;
-    NSString *indicationString = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    indicationString = [indicationString stringByReplacingOccurrencesOfString:@")" withString:@""];
+//    NSString *indicationString = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+//    indicationString = [indicationString stringByReplacingOccurrencesOfString:@")" withString:@""];
     
-    [_templateDictionary setObject:indicationString forKey:@"indicationText"];
+    [_templateDictionary setObject:indicationText forKey:@"indicationText"];
     
     [indicationLabel sizeToFit];
     indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, indicationLabel.frame.size.height+80);
