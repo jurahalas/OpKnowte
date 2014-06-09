@@ -37,7 +37,7 @@
 }
 
 - (IBAction)touchToTextField:(id)sender {
- //   [self.delegate openBMICalc:self.fieldName withSelf:self];
+    [self.delegate openBMICalc:self.fieldName withSelf:self];
 }
 
 -(void)setType:(enum OKProcedureTextFieldType)type{

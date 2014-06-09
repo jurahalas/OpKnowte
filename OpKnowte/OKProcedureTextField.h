@@ -15,7 +15,7 @@ enum OKProcedureTextFieldType {
 };
 @protocol OKProcedureTextFieldDelegate <OKBaseProcedureElementDelegate>
 
-//-(void)openBMICalc:(NSString*)currentFieldName withSelf:(id)tappedTF;
+-(void)openBMICalc:(NSString*)currentFieldName withSelf:(id)tappedTF;
 @end
 @interface OKProcedureTextField : OKBaseProcedureElement <UITextFieldDelegate>
 -(void) becomeCustomTextFieldFirstResponder;

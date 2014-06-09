@@ -461,6 +461,8 @@
             [self drawBMIButton];
         }
         
+        
+        
         [numericTextField setTagOfTextField:tag];
         if (numericTextField.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], numericTextField.tagOfTextField ];
@@ -892,88 +894,43 @@
 
 }
 
-//-(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
-//    
-////    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-////    [center addObserver:self selector:@selector(didShow) name:UIKeyboardDidShowNotification object:nil];
-////    [center addObserver:self selector:@selector(didHide) name:UIKeyboardWillHideNotification object:nil];
-////
-////    if ([self didShow]) {
-////        
-////    }
-//    
-//    if ((_currentPage ==5 && [currentFieldName isEqualToString: @"var_BMI"])){
-//        
-//        _alertBMI = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
-//                                                        message:nil
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"Manual Input"
-//                                              otherButtonTitles:@"BMI Calc",nil];
-//        [_alertBMI show];
-//        for (int i = 0 ; i<_interactionItems.count; i++) {
-//            if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
-//                OKProcedureTextField *tf = _interactionItems[i];
-//                [tf resignCustomTextFieldFirstResponder];
-//            }
-//        }
-//        [self.view endEditing:YES];
-//    }
-//    else if (_currentPage ==3 && [currentFieldName isEqualToString: @"var_bmi"]) {
-//    
-//        [self.view endEditing:YES];
-//        
-//        _alertBMI = [[UIAlertView alloc] initWithTitle:@"BMI Calculator"
-//                                               message:nil
-//                                              delegate:self
-//                                     cancelButtonTitle:@"Manual Input"
-//                                     otherButtonTitles:@"BMI Calc",nil];
-//        [_alertBMI show];
-//        for (int i = 0 ; i<_interactionItems.count; i++) {
-//            if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
-//                OKProcedureTextField *tf = _interactionItems[i];
-//                [tf resignCustomTextFieldFirstResponder];
-//            }
-//        }
-//        [self.view endEditing:YES];
-//    } else if (_currentPage !=3 && _currentPage !=5){
-//        _alertBMI = nil;
-//    
-//    }
-//    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
-//        
-//        [self.view endEditing:YES];
-//        
-//        [_TimeTextField resignFirstResponder];
-//        _TimeTextField = tappedTF;
-//        [_TimeTextField resignFirstResponder];
-//
-//
-//        _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
-//                                               message:nil
-//                                              delegate:self
-//                                     cancelButtonTitle:@"Manual Input"
-//                                     otherButtonTitles:@"Time Calc",nil];
-//        [_alertTime show];
-//        //for (int i = 0 ; i<_interactionItems.count; i++) {
-//           // if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
-//            //    OKProcedureTextField *tf = _interactionItems[i];
-//          //      [tf resignCustomTextFieldFirstResponder];
-//        //    }
-//      //  }
-//    } else{
-//        _alertTime = nil;
-//    }
-//}
-//
-//- (BOOL)didShow 
-//{
-//    return YES;
-//}
-//
-//- (BOOL)didHide
-//{
-//    return YES;
-//}
+-(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
+
+    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
+        
+        [self.view endEditing:YES];
+        
+        [_TimeTextField resignFirstResponder];
+        _TimeTextField = tappedTF;
+        [_TimeTextField resignFirstResponder];
+
+
+        _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
+                                               message:nil
+                                              delegate:self
+                                     cancelButtonTitle:@"Manual Input"
+                                     otherButtonTitles:@"Time Calc",nil];
+        [_alertTime show];
+        //for (int i = 0 ; i<_interactionItems.count; i++) {
+           // if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
+            //    OKProcedureTextField *tf = _interactionItems[i];
+          //      [tf resignCustomTextFieldFirstResponder];
+        //    }
+      //  }
+    } else{
+        _alertTime = nil;
+    }
+}
+
+- (BOOL)didShow 
+{
+    return YES;
+}
+
+- (BOOL)didHide
+{
+    return YES;
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
