@@ -223,6 +223,8 @@
 		AC2B0E4A190B247B0089206D /* OKOperatieNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2B0E49190B247B0089206D /* OKOperatieNoteTableViewCell.m */; };
 		AC2F0AB3192D3106004FF9E0 /* navbarBG6.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2F0AB2192D3106004FF9E0 /* navbarBG6.png */; };
 		AC3F9798190ED0A000655128 /* OKOngoingClinicalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */; };
+		AC61C8F0194587A6001A11F1 /* OKBMIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC61C8EE194587A6001A11F1 /* OKBMIViewController.m */; };
+		AC61C8F1194587A6001A11F1 /* OKBMIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC61C8EF194587A6001A11F1 /* OKBMIViewController.xib */; };
 		AC7AF46B191B648900B41548 /* OKCaseDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7AF46A191B648900B41548 /* OKCaseDataTableViewCell.m */; };
 		AC7E429B1924ED9700F58A24 /* OKIntraOperativeDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E429A1924ED9700F58A24 /* OKIntraOperativeDataViewController.m */; };
 		AC7E429E1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E429D1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m */; };
@@ -597,6 +599,9 @@
 		AC2F0AB2192D3106004FF9E0 /* navbarBG6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarBG6.png; sourceTree = "<group>"; };
 		AC3F9796190ED0A000655128 /* OKOngoingClinicalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKOngoingClinicalViewController.h; sourceTree = "<group>"; };
 		AC3F9797190ED0A000655128 /* OKOngoingClinicalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKOngoingClinicalViewController.m; sourceTree = "<group>"; };
+		AC61C8ED194587A6001A11F1 /* OKBMIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBMIViewController.h; sourceTree = "<group>"; };
+		AC61C8EE194587A6001A11F1 /* OKBMIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBMIViewController.m; sourceTree = "<group>"; };
+		AC61C8EF194587A6001A11F1 /* OKBMIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKBMIViewController.xib; sourceTree = "<group>"; };
 		AC7AF469191B648900B41548 /* OKCaseDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKCaseDataTableViewCell.h; sourceTree = "<group>"; };
 		AC7AF46A191B648900B41548 /* OKCaseDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKCaseDataTableViewCell.m; sourceTree = "<group>"; };
 		AC7E42991924ED9700F58A24 /* OKIntraOperativeDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKIntraOperativeDataViewController.h; sourceTree = "<group>"; };
@@ -959,6 +964,7 @@
 		008D5B571907DC600039E8B7 /* Custom elements */ = {
 			isa = PBXGroup;
 			children = (
+				AC61C8F2194587AF001A11F1 /* BMI */,
 				009E084C192E056C00DA61C6 /* Select Contact */,
 				0061E2CF1918BA79007170D3 /* Base Procedure Element */,
 				E1DE705819177C330088913C /* Multiselect */,
@@ -1495,6 +1501,16 @@
 			name = "Ongoing Clinical View";
 			sourceTree = "<group>";
 		};
+		AC61C8F2194587AF001A11F1 /* BMI */ = {
+			isa = PBXGroup;
+			children = (
+				AC61C8ED194587A6001A11F1 /* OKBMIViewController.h */,
+				AC61C8EE194587A6001A11F1 /* OKBMIViewController.m */,
+				AC61C8EF194587A6001A11F1 /* OKBMIViewController.xib */,
+			);
+			name = BMI;
+			sourceTree = "<group>";
+		};
 		AC7E42981924ED4F00F58A24 /* Intra-operative Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -1914,6 +1930,7 @@
 				00A64D6B19064DB400740DC7 /* magnifier.png in Resources */,
 				AC1A9DC119387A4500595CC2 /* 3SegmentControll@2x.png in Resources */,
 				AC1A9DBF19387A4500595CC2 /* 2SegmentControll@2x.png in Resources */,
+				AC61C8F1194587A6001A11F1 /* OKBMIViewController.xib in Resources */,
 				AC1A9DC019387A4500595CC2 /* 3SegmentControll.png in Resources */,
 				00A64D5B19064DB400740DC7 /* calendar.png in Resources */,
 				00A64D931906716C00740DC7 /* navbarBG.png in Resources */,
@@ -2133,6 +2150,7 @@
 				008BCE9819179D6F00E1D18D /* OKProcedureTemplateVariablesModel.m in Sources */,
 				008B26F11920DFEE00B0AF9E /* OKSurgicalLogsManager.m in Sources */,
 				AC7E429E1924EDC200F58A24 /* OKIntraOperativeDataTableViewCell.m in Sources */,
+				AC61C8F0194587A6001A11F1 /* OKBMIViewController.m in Sources */,
 				00862953190CF372006EBA9C /* OKProcedureSwitcher.m in Sources */,
 				00A3F06C1924B074003A7447 /* OKFollowUpDataCell.m in Sources */,
 				00A53B6419012A9E00BEF07D /* OKTimePointModel.m in Sources */,

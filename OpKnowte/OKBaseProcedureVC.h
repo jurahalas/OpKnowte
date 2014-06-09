@@ -16,6 +16,7 @@
 @property (nonatomic, assign) NSInteger currentPage;
 @property (strong, nonatomic) OKDatePicker *datePicker;
 @property (strong, nonatomic) UIPickerView *picker;
+@property (nonatomic ,strong) NSString * BMIValue;
 
 @property (strong, nonatomic) id model;
 @property (nonatomic) int procedureID;

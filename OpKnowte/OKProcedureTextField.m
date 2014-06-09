@@ -19,16 +19,14 @@
     }
 }
 
-
 -(void) becomeCustomTextFieldFirstResponder{
     [_customTextField becomeFirstResponder];
 }
 
 
 -(void) resignCustomTextFieldFirstResponder{
+        [_customTextField resignFirstResponder];
     [self.view endEditing:YES];
-    [_customTextField resignFirstResponder];
-
 }
 
 
@@ -39,7 +37,7 @@
 }
 
 - (IBAction)touchToTextField:(id)sender {
-    [self.delegate openBMICalc:self.fieldName withSelf:self];
+ //   [self.delegate openBMICalc:self.fieldName withSelf:self];
 }
 
 -(void)setType:(enum OKProcedureTextFieldType)type{
