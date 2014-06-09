@@ -515,7 +515,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-                                <rect key="frame" x="0.0" y="21" width="320" height="487.00000123370597"/>
+                                <rect key="frame" x="0.0" y="21.000002461128574" width="320" height="487"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -640,7 +640,7 @@
                         <segue destination="etU-ag-MlO" kind="push" identifier="fromSelectProcToOperativeData" id="JwJ-1e-A9O"/>
                         <segue destination="ZKR-1F-KMK" kind="push" identifier="fromSelectProcToFollowUpData" id="VEZ-Kb-dUr"/>
                         <segue destination="dLQ-jH-65l" kind="push" identifier="fromSelectProcToOngoingClinical" id="veZ-bC-PGL"/>
-                        <segue destination="WIT-md-SDl" kind="push" identifier="toReminder" id="cK6-Wk-pfO"/>
+                        <segue destination="zNm-fe-JEM" kind="push" identifier="fronProceduresToReminder" id="xVx-XM-TfW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D8-zs-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -759,7 +759,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ykd-1u-CKa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2267" y="55"/>
+            <point key="canvasLocation" x="2301" y="41"/>
         </scene>
         <!--Surgeon Perfomance DataVC - Surgeon Performance Data-->
         <scene sceneID="fTg-XZ-om9">
@@ -3964,19 +3964,20 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="R5c-Bb-DU8"/>
-        <segue reference="hs5-kv-qjd"/>
-        <segue reference="NUC-dJ-uGW"/>
-        <segue reference="aL2-xa-szT"/>
         <segue reference="iYE-S8-xzH"/>
-        <segue reference="UMT-op-RBq"/>
-        <segue reference="Aik-36-Z3R"/>
-        <segue reference="k5J-7k-w2c"/>
-        <segue reference="DoT-oZ-zGI"/>
-        <segue reference="9Vm-fe-BqP"/>
-        <segue reference="dvt-ir-lar"/>
-        <segue reference="IcY-8f-Npy"/>
+        <segue reference="aL2-xa-szT"/>
+        <segue reference="NUC-dJ-uGW"/>
+        <segue reference="hs5-kv-qjd"/>
         <segue reference="dCD-SH-NGU"/>
         <segue reference="sg6-fY-kvy"/>
+        <segue reference="aKz-2x-G8K"/>
+        <segue reference="dvt-ir-lar"/>
+        <segue reference="IcY-8f-Npy"/>
+        <segue reference="xVx-XM-TfW"/>
+        <segue reference="Aik-36-Z3R"/>
+        <segue reference="veZ-bC-PGL"/>
+        <segue reference="9Vm-fe-BqP"/>
+        <segue reference="DoT-oZ-zGI"/>
+        <segue reference="k5J-7k-w2c"/>
     </inferredMetricsTieBreakers>
 </document>

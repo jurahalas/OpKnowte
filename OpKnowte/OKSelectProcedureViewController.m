@@ -149,7 +149,7 @@
         [self performSegueWithIdentifier:@"fromProceduresToCases" sender:[NSString stringWithFormat:@"%d", procID]];
         
     }else if ([_cameFromVC isEqualToString:@"ReminderSettings"]){
-        [self performSegueWithIdentifier:@"toReminder" sender:[NSString stringWithFormat:@"%d", procID]];
+        [self performSegueWithIdentifier:@"fronProceduresToReminder" sender:[NSString stringWithFormat:@"%d", procID]];
         
     } else if ([_cameFromVC isEqualToString:@"EditProcTemplateVC"] ){
         [self performSegueWithIdentifier:@"fromSelectProcToEditTemplate" sender:[NSString stringWithFormat:@"%d", procID]];
@@ -214,10 +214,9 @@
         OKProcedureModel *tappedProc =_allProcArray[i-1];
         sharVC.procTitle = tappedProc.procedureText;
         
-    }else if ([segue.identifier isEqualToString:@"toReminder"]){
-        OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
+    }else if ([segue.identifier isEqualToString:@"fronProceduresToReminder"]){
+        OKReminderVC *reminderVC = (OKReminderVC*)segue.destinationViewController;
         reminderVC.procID = sender;
-        reminderVC.cameFromVC = @"Reminder";
         
     }else if ([segue.identifier isEqualToString:@"fromProceduresToCases"]){
         OKSelectCaseViewController *reminderVC = (OKSelectCaseViewController*)segue.destinationViewController;
