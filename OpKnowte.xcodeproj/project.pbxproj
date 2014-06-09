@@ -203,6 +203,7 @@
 		18D6C6A81922349400688992 /* OKSelectContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6A71922349400688992 /* OKSelectContactsCell.m */; };
 		18D6C6AB192256B000688992 /* OKSelectContactTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6AA192256B000688992 /* OKSelectContactTypeVC.m */; };
 		18D6C6AF192256FF00688992 /* OKSelectContactTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6C6AE192256FF00688992 /* OKSelectContactTypeCell.m */; };
+		18E215D31945F93A00447C1C /* OKTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E215D21945F93A00447C1C /* OKTimer.m */; };
 		42586C056B4A4A96881CF205 /* libPods-OpKnowte.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A79ACA12C742CCBF9A4418 /* libPods-OpKnowte.a */; };
 		AC07E7C7190E411600892B99 /* segmentControllBG.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C5190E411600892B99 /* segmentControllBG.png */; };
 		AC07E7C8190E411600892B99 /* segmentControllBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */; };
@@ -568,6 +569,8 @@
 		18D6C6AA192256B000688992 /* OKSelectContactTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactTypeVC.m; sourceTree = "<group>"; };
 		18D6C6AD192256FF00688992 /* OKSelectContactTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSelectContactTypeCell.h; sourceTree = "<group>"; };
 		18D6C6AE192256FF00688992 /* OKSelectContactTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSelectContactTypeCell.m; sourceTree = "<group>"; };
+		18E215D11945F93A00447C1C /* OKTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKTimer.h; sourceTree = "<group>"; };
+		18E215D21945F93A00447C1C /* OKTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKTimer.m; sourceTree = "<group>"; };
 		1D45806E665745168EA24A1F /* Pods-OpKnowte.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpKnowte.xcconfig"; path = "Pods/Pods-OpKnowte.xcconfig"; sourceTree = "<group>"; };
 		AC07E7C5190E411600892B99 /* segmentControllBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentControllBG.png; sourceTree = "<group>"; };
 		AC07E7C6190E411600892B99 /* segmentControllBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentControllBG@2x.png"; sourceTree = "<group>"; };
@@ -796,6 +799,8 @@
 		007A0C9918F53AB100D183F1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				18E215D11945F93A00447C1C /* OKTimer.h */,
+				18E215D21945F93A00447C1C /* OKTimer.m */,
 				007A0C9618F53AAA00D183F1 /* OKRegistrationViewController.h */,
 				007A0C9718F53AAA00D183F1 /* OKRegistrationViewController.m */,
 				E10023F518F529E9008421D4 /* OKViewController.h */,
@@ -2093,6 +2098,7 @@
 				00C3DBB8191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m in Sources */,
 				00897C4219226A90007C4452 /* OKDetailSummaryVC.m in Sources */,
 				18061C8218F7EBA6005197F9 /* OKApiClient.m in Sources */,
+				18E215D31945F93A00447C1C /* OKTimer.m in Sources */,
 				0060D83C18FD35D200AFC7B4 /* OKBottomTabBarView.m in Sources */,
 				0087600C1927A23000D460DE /* OKSelectFUDVariablesVC.m in Sources */,
 				00897C4619226AE6007C4452 /* OKDetailSumaryCell.m in Sources */,

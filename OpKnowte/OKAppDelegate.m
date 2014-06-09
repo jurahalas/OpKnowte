@@ -10,11 +10,15 @@
 #define DELEGATE ((OKAppDelegate*)[[UIApplication sharedApplication] delegate])
 
 #import "OKAppDelegate.h"
+#import "OKTimer.h"
+#import "OKViewController.h"
 
 @implementation OKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
+
     if (IS_IOS7) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG"] forBarMetrics:UIBarMetricsDefault ];
         [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
@@ -29,11 +33,22 @@
         [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNextBold" size:10.f], nil]];
     }
     
-
-    
     [self restoreCurrentUser];
     
     return YES;
+}
+
+
+-(void)applicationDidTimeout:(NSNotification *) notif
+{    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"user"];
+    [defaults synchronize];
+    [OKUserManager instance].currentUser = nil;
+    
+    UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
+
+    [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];
 }
 
 
