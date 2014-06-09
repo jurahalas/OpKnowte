@@ -16,5 +16,7 @@
 @property (strong, nonatomic) OKOngoingData *ongoingData;
 @property (nonatomic, assign) enum OKProcedureSummaryDetailPeriod detailPeriod;
 @property (strong, nonatomic) NSString *cameFromVC;
+@property (strong, nonatomic) NSString *procID;
+
 
 @end

@@ -179,7 +179,7 @@
         [[OKLoadingViewController instance] hide];
     }else{
         OKProceduresManager *procManager = [OKProceduresManager instance];
-        [procManager updateReminderSettingsWithProcedureID:_procID patientID:[OKCaseManager instance].selectedCase.identifier userID:[OKUserManager instance].currentUser.identifier days:_noOfDays andList:contactIDs handler:^(NSString *errorMsg, NSDictionary *json) {
+        [procManager updateReminderSettingsWithProcedureID:_procID patientID:@"1" userID:[OKUserManager instance].currentUser.identifier days:_noOfDays andList:contactIDs handler:^(NSString *errorMsg, NSDictionary *json) {
             if (errorMsg) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Update Setting Error"
                                                                                   message:errorMsg
