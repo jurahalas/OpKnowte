@@ -168,6 +168,7 @@
     }else if ([segue.identifier isEqualToString:@"ongoingClinical"]){
         OKOngoingClinicalViewController *summaryVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
         summaryVC.ongoingData = sender;
+        summaryVC.procID = _procID;
         summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
     }
 

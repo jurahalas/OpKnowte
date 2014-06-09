@@ -14,6 +14,7 @@
 #import "OKProceduresManager.h"
 #import "OKProcedureModel.h"
 #import "OKTemplateManager.h"
+#import "OKSelectTimePointViewController.h"
 
 @interface OKSelectCaseViewController ()<UITableViewDelegate , UITableViewDataSource>
 
@@ -167,6 +168,10 @@
         OKSelectCaseViewController *contactVC = (OKSelectCaseViewController*)segue.destinationViewController;
         contactVC.procID = _procID;
         contactVC.detailID = _detailID;
+    }else if ([segue.identifier isEqualToString:@"selectTimepoint"]){
+        OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
+        timePoint.procID = _procID;
+
     }
 }
 

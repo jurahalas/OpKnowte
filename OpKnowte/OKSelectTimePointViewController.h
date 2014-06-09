@@ -13,6 +13,8 @@
 @interface OKSelectTimePointViewController : OKBaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSString *cameFromVC;
+@property (nonatomic, strong) NSString *procID;
+
 
 @property (nonatomic, retain) NSMutableArray *performanceCases;
 @property (nonatomic, retain) NSMutableArray *surgeonCases;

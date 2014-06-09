@@ -160,17 +160,9 @@
     }else if ([_cameFromVC isEqualToString:@"FollowUpDataVC"]){
         [self performSegueWithIdentifier:@"fromSelectProcToFollowUpData" sender:[NSString stringWithFormat:@"%d", procID]];
         
-    }
-    
-    
-    
-    else if ([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
+    }else if ([_cameFromVC isEqualToString:@"OKPerformanceVC"]){
         [self performSegueWithIdentifier:@"fromSelectProcToOperativeData" sender:[NSString stringWithFormat:@"%d", procID]];
-    }
-    
-    
-    
-    else if ([_cameFromVC isEqualToString:@"ImmediatePostOperative"]){
+    }else if ([_cameFromVC isEqualToString:@"ImmediatePostOperative"]){
         id vc = nil;
         if ([cell.procedureLabel.text isEqualToString:@"Shockwave Lithotripsy"]) {
             vc = [[OKShockwaveLithotripsyVC alloc] init];
