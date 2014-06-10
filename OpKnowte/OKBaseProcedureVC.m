@@ -53,7 +53,14 @@
 @property (nonatomic, strong) UIButton * cancelTime;
 @property (nonatomic, strong) NSString * timeValue;
 @property (nonatomic, weak) OKProcedureTextField *TimeTextField;
+@property (nonatomic, weak) OKProcedureTextField *TimeRoomTextField;
+@property (nonatomic, weak) OKProcedureTextField *TimeOPTextField;
+@property (nonatomic, weak) OKProcedureTextField *TimeCTextField;
 @property (nonatomic, strong) UIAlertView *alertTime;
+@property (nonatomic,strong) UIButton * TimeButton;
+@property (nonatomic,strong) UIButton * TimeRoomButton;
+@property (nonatomic,strong) UIButton * TimeOPButton;
+@property (nonatomic,strong) UIButton * TimeCButton;
 
 @property (strong, nonatomic) UIPickerView *timePicker;
 @property (nonatomic,strong) UIView *timePickerBGView;
@@ -69,6 +76,8 @@
 
 @property (nonatomic, strong) OKBMIViewController *bmiView;
 
+@property (nonatomic,strong) OKProcedureTextField * currentTF;
+@property (nonatomic,strong) UIButton * currentButton;
 @end
 
 @implementation OKBaseProcedureVC
@@ -110,6 +119,7 @@
                                                           @"11",
                                                           @"12"
                                                           ]];
+    
     _minutesArray = [[NSMutableArray alloc] initWithArray:@[@"00",
                                                             @"01",
                                                             @"02",
@@ -167,12 +177,12 @@
                                                             @"57",
                                                             @"58",
                                                             @"59"
-
-                                                          ]];
+                                                            
+                                                            ]];
     _ampmArray = [[NSMutableArray alloc] initWithArray:@[@"AM",
-                                                          @"PM"
-                                                          ]];
-    if (IS_IOS7) {
+                                                         @"PM"
+                                                         ]];
+       if (IS_IOS7) {
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
         self.navigationItem.leftBarButtonItem = backButton;
         UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
@@ -217,19 +227,20 @@
     [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
     _doneButtonForDatePicker.frame = CGRectMake(210, _pickerBGView.frame.origin.y-35, 100, 30);
-    _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+   _doneButtonForDatePicker.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _doneButtonForDatePicker.layer.cornerRadius = 14;
     _doneButtonForDatePicker.clipsToBounds = YES;
     _doneButtonForDatePicker.hidden = YES;
     [self.view addSubview:_doneButtonForDatePicker];
+    [self.view bringSubviewToFront:_doneButtonForDatePicker];
     
     [self drawBMIView];
     _bmiBackgroundView.hidden = YES;
   //  _bmiView.hidden = YES;
     
     [self drawTimeView];
-
-   
+    _currentTF = [[OKProcedureTextField alloc]init];
+    _currentButton = [[UIButton alloc]init];
 }
 -(void) BMIButtontapped{
     _BMIButton.hidden = NO;
@@ -460,9 +471,22 @@
             _BMITextField = numericTextField;
             [self drawBMIButton];
         }
-        
-        
-        
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString: @"var_counselTime"]) {
+            _TimeTextField = numericTextField;
+            [self drawTimeButton];
+        }
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString: @"var_roomTime"]) {
+            _TimeRoomTextField = numericTextField;
+            [self drawRoomButton];
+        }
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString: @"var_operativeTime"] ) {
+            _TimeOPTextField = numericTextField;
+            [self drawOPButton];
+        }
+        if ([[customElementDictionary objectForKey:@"name"] isEqualToString: @"var_consulTime"] ) {
+            _TimeCTextField = numericTextField;
+            [self drawCButton];
+        }
         [numericTextField setTagOfTextField:tag];
         if (numericTextField.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], numericTextField.tagOfTextField ];
@@ -570,7 +594,7 @@
             [picker setButtonEnabled:NO];
         }
         if (self.model) {
-            if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"]){
+            if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"] && ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_reservoirplacement?"]){
                 [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
 
             }
@@ -761,9 +785,8 @@
 
 #pragma mark - picker data source
 
-
-
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
     UIColor *color = [UIColor whiteColor];
     if (IS_IOS6) {
         color = [UIColor blackColor];
@@ -771,11 +794,11 @@
     if (pickerView.tag == 200) {
         if (component == 0) {
             
-            NSString *pickerString = [NSString stringWithFormat:@"%@", _hoursArray[row]];
+            NSString *pickerString = [NSString stringWithFormat:@"%@", _hoursArray[row%12]];
             NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
             return pickerAttributedString;
         } else if (component == 1){
-            NSString *pickerString = [NSString stringWithFormat:@"%@", _minutesArray[row]];
+            NSString *pickerString = [NSString stringWithFormat:@"%@", _minutesArray[row%60]];
             NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
             return pickerAttributedString;
         } else{
@@ -790,15 +813,14 @@
         return pickerAttributedString;
 
     }
-    
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (pickerView.tag == 200) {
         if (component == 0) {
-            return 12;
+            return [_hoursArray objectAtIndex:(12 % [_hoursArray count])];
         } else if (component == 1){
-            return 60;
+            return [_hoursArray objectAtIndex:(60 % [_hoursArray count])];
         } else{
             return 2;
         }
@@ -826,7 +848,6 @@
         [self hideDatePicker];
     }
 
-    
 }
 
 
@@ -895,42 +916,102 @@
 }
 
 -(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
+//
+//    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
+//        
+//        [self.view endEditing:YES];
+//        
+//        [_TimeTextField resignFirstResponder];
+//        _TimeTextField = tappedTF;
+//        [_TimeTextField resignFirstResponder];
+//
+//
+//        _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
+//                                               message:nil
+//                                              delegate:self
+//                                     cancelButtonTitle:@"Manual Input"
+//                                     otherButtonTitles:@"Time Calc",nil];
+//        [_alertTime show];
+//        //for (int i = 0 ; i<_interactionItems.count; i++) {
+//           // if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
+//            //    OKProcedureTextField *tf = _interactionItems[i];
+//          //      [tf resignCustomTextFieldFirstResponder];
+//        //    }
+//      //  }
+//    } else{
+//        _alertTime = nil;
+//    }
+}
 
-    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
-        
-        [self.view endEditing:YES];
-        
-        [_TimeTextField resignFirstResponder];
-        _TimeTextField = tappedTF;
-        [_TimeTextField resignFirstResponder];
+-(void)drawTimeButton
+{
+    _TimeButton = [[UIButton alloc]initWithFrame:_TimeTextField.frame];
+    [_TimeButton addTarget:self action:@selector(TimeButtontapped:) forControlEvents:UIControlEventTouchUpInside ];
+    [self.scrollview addSubview:_TimeButton];
+    [self.scrollview bringSubviewToFront:_TimeButton];
+    _TimeButton.tag = 100;
+}
+-(void)drawRoomButton
+{
+    _TimeRoomButton = [[UIButton alloc]initWithFrame:_TimeRoomTextField.frame];
+    [_TimeRoomButton addTarget:self action:@selector(TimeButtontapped:) forControlEvents:UIControlEventTouchUpInside ];
+    [self.scrollview addSubview:_TimeRoomButton];
+    [self.scrollview bringSubviewToFront:_TimeRoomButton];
+    _TimeRoomButton.tag = 200;
+}
+-(void)drawOPButton
+{
+    _TimeOPButton = [[UIButton alloc]initWithFrame:_TimeOPTextField.frame];
+    [_TimeOPButton addTarget:self action:@selector(TimeButtontapped:) forControlEvents:UIControlEventTouchUpInside ];
+    [self.scrollview addSubview:_TimeOPButton];
+    [self.scrollview bringSubviewToFront:_TimeOPButton];
+    _TimeOPButton.tag = 300;
+    
 
+}
+-(void)drawCButton
+{
+    _TimeCButton = [[UIButton alloc]initWithFrame:_TimeCTextField.frame];
+    [_TimeCButton addTarget:self action:@selector(TimeButtontapped:) forControlEvents:UIControlEventTouchUpInside ];
+    [self.scrollview addSubview:_TimeCButton];
+    [self.scrollview bringSubviewToFront:_TimeCButton];
+    _TimeCButton.tag = 400;
 
-        _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
-                                               message:nil
-                                              delegate:self
-                                     cancelButtonTitle:@"Manual Input"
-                                     otherButtonTitles:@"Time Calc",nil];
-        [_alertTime show];
-        //for (int i = 0 ; i<_interactionItems.count; i++) {
-           // if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
-            //    OKProcedureTextField *tf = _interactionItems[i];
-          //      [tf resignCustomTextFieldFirstResponder];
-        //    }
-      //  }
-    } else{
-        _alertTime = nil;
+}
+
+-(void) TimeButtontapped: (id) sender{
+    NSInteger tid = ((UIControl *) sender).tag;
+    if (tid == 100){
+        _currentTF = nil;
+        _currentButton = nil;
+        _currentTF = _TimeTextField;
+        _currentButton = _TimeButton;
+    } else if (tid == 200){
+        _currentTF = nil;
+        _currentButton = nil;
+        _currentTF = _TimeRoomTextField;
+        _currentButton = _TimeRoomButton;
+    } else if (tid == 300){
+        _currentTF = nil;
+        _currentButton = nil;
+        _currentTF = _TimeOPTextField;
+        _currentButton = _TimeOPButton;
+    }else if (tid ==400){
+        _currentTF = nil;
+        _currentButton = nil;
+        _currentTF = _TimeCTextField;
+        _currentButton = _TimeCButton;
     }
+    _currentButton.hidden = NO;
+    [self.view endEditing:YES];
+            _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
+                                                   message:nil
+                                                  delegate:self
+                                         cancelButtonTitle:@"Manual Input"
+                                         otherButtonTitles:@"Time Calc",nil];
+            [_alertTime show];
 }
 
-- (BOOL)didShow 
-{
-    return YES;
-}
-
-- (BOOL)didHide
-{
-    return YES;
-}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
@@ -942,7 +1023,7 @@
             _bmiView.view.hidden = NO;
         } else {
             [self.view endEditing:YES];
-            [_TimeTextField resignFirstResponder];
+            [_currentTF resignFirstResponder];
 
             _timeView.hidden = NO;
             _timeBackgroundView.hidden = NO;
@@ -956,7 +1037,8 @@
              [_alertBMI dismissWithClickedButtonIndex:[_alertBMI cancelButtonIndex] animated:YES];
              self.alertBMI = nil;
          } else {
-             [_TimeTextField becomeCustomTextFieldFirstResponder];
+             _currentButton.hidden = YES;
+             [_currentTF becomeCustomTextFieldFirstResponder];
              [_alertTime dismissWithClickedButtonIndex:[_alertTime cancelButtonIndex] animated:YES];
              _alertTime = nil;
          }
@@ -1082,7 +1164,8 @@
     _doneButtonForTimePicker.layer.cornerRadius = 14;
     _doneButtonForTimePicker.clipsToBounds = YES;
     _doneButtonForTimePicker.hidden = YES;
-    [self.view addSubview:_doneButtonForDatePicker];
+    [self.view addSubview:_doneButtonForTimePicker];
+    [self.view bringSubviewToFront:_doneButtonForTimePicker];
     
 }
 
@@ -1099,10 +1182,11 @@
         NSTimeInterval timeInterval = [dateTo timeIntervalSinceDate:dateFrom];
         NSInteger minutes = timeInterval / 60.f ;
         
-        _TimeTextField.customTextField.text = [NSString stringWithFormat:@"%d", minutes];
-        [_TimeTextField resignCustomTextFieldFirstResponder];
+        _currentTF.customTextField.text = [NSString stringWithFormat:@"%d", minutes];
+        [_currentTF resignCustomTextFieldFirstResponder];
+            
+        [_currentTF.delegate updateField:_currentTF.fieldName withValue:_currentTF.customTextField.text andTag:_currentTF.tagOfTextField];
 
-        [_TimeTextField.delegate updateField:_TimeTextField.fieldName withValue:_TimeTextField.customTextField.text andTag:_TimeTextField.tagOfTextField];
         [self.view endEditing:YES];
         _timeView.hidden = YES;
         
@@ -1119,7 +1203,7 @@
 -(void)timeCancel{
     [self.view endEditing:YES];
     _timeView.hidden = YES;
-    [_TimeTextField resignCustomTextFieldFirstResponder];
+    [_currentTF resignCustomTextFieldFirstResponder];
 
     _timeBackgroundView.hidden = YES;
 }
@@ -1165,12 +1249,16 @@
 }
 
 -(void) doneTimeButtonTapped{
+//    NSUInteger max = 16384;
+//	NSUInteger base10 = (max/2)-(max/2)%10;
+//	[_timePicker selectRow:[_timePicker selectedRowInComponent:0]%10+base10 inComponent:0 animated:false];
     if (!_timeToButtonTapped) {
         if (_timePickerBGView.hidden) {
             _timeFromButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
@@ -1184,8 +1272,8 @@
         if (_timePickerBGView.hidden) {
             _timeToButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeTo.text = timeTo;
