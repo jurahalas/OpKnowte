@@ -247,8 +247,6 @@
             
         }else{
             
-            _emailTextField.text = @"qweqweqwe@i.ua";
-            
             [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
                 
                 if(error != nil){

@@ -119,6 +119,7 @@
                                                           @"11",
                                                           @"12"
                                                           ]];
+    
     _minutesArray = [[NSMutableArray alloc] initWithArray:@[@"00",
                                                             @"01",
                                                             @"02",
@@ -176,12 +177,12 @@
                                                             @"57",
                                                             @"58",
                                                             @"59"
-
-                                                          ]];
+                                                            
+                                                            ]];
     _ampmArray = [[NSMutableArray alloc] initWithArray:@[@"AM",
-                                                          @"PM"
-                                                          ]];
-    if (IS_IOS7) {
+                                                         @"PM"
+                                                         ]];
+       if (IS_IOS7) {
         UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(backButtonTapped:)];
         self.navigationItem.leftBarButtonItem = backButton;
         UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"right"] style:UIBarButtonItemStyleBordered target:self action:@selector(rightButtonTapped:)];
@@ -784,9 +785,8 @@
 
 #pragma mark - picker data source
 
-
-
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
     UIColor *color = [UIColor whiteColor];
     if (IS_IOS6) {
         color = [UIColor blackColor];
@@ -794,11 +794,11 @@
     if (pickerView.tag == 200) {
         if (component == 0) {
             
-            NSString *pickerString = [NSString stringWithFormat:@"%@", _hoursArray[row]];
+            NSString *pickerString = [NSString stringWithFormat:@"%@", _hoursArray[row%12]];
             NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
             return pickerAttributedString;
         } else if (component == 1){
-            NSString *pickerString = [NSString stringWithFormat:@"%@", _minutesArray[row]];
+            NSString *pickerString = [NSString stringWithFormat:@"%@", _minutesArray[row%60]];
             NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
             return pickerAttributedString;
         } else{
@@ -813,15 +813,14 @@
         return pickerAttributedString;
 
     }
-    
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (pickerView.tag == 200) {
         if (component == 0) {
-            return 12;
+            return [_hoursArray objectAtIndex:(12 % [_hoursArray count])];
         } else if (component == 1){
-            return 60;
+            return [_hoursArray objectAtIndex:(60 % [_hoursArray count])];
         } else{
             return 2;
         }
@@ -849,7 +848,6 @@
         [self hideDatePicker];
     }
 
-    
 }
 
 
@@ -1251,12 +1249,16 @@
 }
 
 -(void) doneTimeButtonTapped{
+//    NSUInteger max = 16384;
+//	NSUInteger base10 = (max/2)-(max/2)%10;
+//	[_timePicker selectRow:[_timePicker selectedRowInComponent:0]%10+base10 inComponent:0 animated:false];
     if (!_timeToButtonTapped) {
         if (_timePickerBGView.hidden) {
             _timeFromButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
@@ -1270,8 +1272,8 @@
         if (_timePickerBGView.hidden) {
             _timeToButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeTo.text = timeTo;
