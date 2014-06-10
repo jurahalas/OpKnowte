@@ -149,7 +149,7 @@
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Stone size in milimeters (#</string>
+				<string>Stone size in centimeters (#</string>
 				<key>items</key>
 				<array>
 					<string>0,1</string>

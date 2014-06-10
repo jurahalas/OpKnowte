@@ -47,7 +47,6 @@
     [OKUserManager instance].currentUser = nil;
     
     UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
-
     [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];
 }
 
