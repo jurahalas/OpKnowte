@@ -559,7 +559,7 @@
        
         NSMutableArray *pickerArray = [[NSMutableArray alloc] init];
         if ([[[customElementDictionary objectForKey:@"items"] objectAtIndex:0] isEqualToString:@"0,1"] ){
-            pickerArray = [self convertStoneSizeArray:[customElementDictionary objectForKey:@"items"]];
+            [picker setDataArray:[self convertStoneSizeArray:[customElementDictionary objectForKey:@"items"]]];
         } else {
             pickerArray = [customElementDictionary objectForKey:@"items"];
         }
@@ -621,7 +621,7 @@
 {
     NSMutableArray * b = [[NSMutableArray alloc]init];
     
-    for(float i = .1; i<= 25.1 ; i+=.1){
+    for(float i = .1; i<= 2.5 ; i+=.1){
         NSString *fltString = [NSString stringWithFormat:@"%.1f", i];
         
         [b addObject:fltString];
