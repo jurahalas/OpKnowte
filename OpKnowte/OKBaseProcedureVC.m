@@ -594,7 +594,7 @@
             [picker setButtonEnabled:NO];
         }
         if (self.model) {
-            if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"]){
+            if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"] && ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_reservoirplacement?"]){
                 [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
 
             }
