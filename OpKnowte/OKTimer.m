@@ -34,6 +34,7 @@ NSTimer     *myidleTimer;
     myidleTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(idleTimerExceeded) userInfo:nil repeats:NO];
 }
 
+
 -(void)idleTimerExceeded
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kApplicationDidTimeoutNotification object:nil];
