@@ -250,8 +250,13 @@
                                           delegate:self
                                  cancelButtonTitle:@"Manual Input"
                                  otherButtonTitles:@"BMI Calc",nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeBMi) name:@"" object:<#(id)#>];
     [_alertBMI show];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeBMi) name:@"alertBMI" object:nil];
+}
+
+-(void)offTimeBMi{
+    self.alertBMI = nil;
+    [self.view endEditing:YES];
 }
 
 -(void)drawBMIButton
@@ -1014,11 +1019,12 @@
                                          cancelButtonTitle:@"Manual Input"
                                          otherButtonTitles:@"Time Calc",nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeAlert) name:@"offTimeAlert" object:nil];
     [_alertTime show];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeAlert) name:@"offTimeAlert" object:nil];
 }
 -(void)offTimeAlert{
     self.alertTime = nil;
+    [self.view endEditing:YES];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -1284,11 +1290,25 @@
             NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
+         
+            if ([timeTo intValue]< [_timeFrom.text intValue]) {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
+                                                                 message:@"Time To can't be bigger than Time From"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+
+                [alert show];
+                 _timePickerBGView.hidden = NO;
+                
+            } else {
             _timeTo.text = timeTo;
             _timeToButtonTapped = NO;
-            
+                
+             _timePickerBGView.hidden = !_timePickerBGView.hidden;
+            }
         }
-        _timePickerBGView.hidden = !_timePickerBGView.hidden;
+       
     }
     _timePicker.hidden = NO;
     _doneButtonForTimePicker.hidden = !_doneButtonForTimePicker.hidden;

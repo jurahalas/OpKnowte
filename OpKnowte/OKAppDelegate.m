@@ -19,7 +19,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ofTimeAlert:) name:@"allertTime" object:nil];
 
     if (IS_IOS7) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG"] forBarMetrics:UIBarMetricsDefault ];
@@ -50,6 +49,9 @@
     OKBaseProcedureVC * vc = [[OKBaseProcedureVC alloc]init];
     vc.alertBMI = nil;
     vc.alertTime = nil;
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"alertBMI" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"offTimeAlert" object:nil];
     
     UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
     [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];
