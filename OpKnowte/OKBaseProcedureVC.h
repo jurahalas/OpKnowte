@@ -23,6 +23,9 @@
 @property (nonatomic,strong) NSArray *plistArray;
 @property (nonatomic) int xPoint;
 @property (nonatomic, strong) NSString *procedureName;
+@property (nonatomic, strong) UIAlertView *alertBMI;
+@property (nonatomic, strong) UIAlertView *alertTime;
+
 - (void)updateField:(NSString*)name withValue:(NSString*)newValue  andTag:(NSInteger) tag;
 - (void)updateField:(NSString*)name withBoolValue:(BOOL)newValue;
 - (void) addCustomElementFromDictionary: (NSDictionary *) customElementDictionary withTag:(int) tag;

@@ -182,7 +182,7 @@
 -(BOOL) canGoToNextVC {
     switch (self.currentPage) {
         case 0:{
-            if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil ) {
+            if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil || [self.model valueForKey:@"var_preOp"] == nil ||[self.model valueForKey:@"var_postOp"]== nil ||[self.model valueForKey:@"var_cysto"]== nil) {
                 return NO;
             } else {
                 return YES;
@@ -190,14 +190,6 @@
             break;
         }
         case 1:{
-            if ([self.model valueForKey:@"var_preOp"] == nil ||[self.model valueForKey:@"var_postOp"]== nil ||[self.model valueForKey:@"var_cysto"]== nil ) {
-                return NO;
-            } else {
-                return YES;
-            }
-            break;
-        }
-        case 2:{
             if ([self.model valueForKey:@"var_surgeon"] == nil ||[self.model valueForKey:@"var_assistant"]== nil ||[self.model valueForKey:@"var_anesthesiologist"]== nil) {
                 return NO;
             } else {
@@ -205,7 +197,7 @@
             }
             break;
         }
-        case 3:{
+        case 2:{
             if ([self.model valueForKey:@"var_tumorSize"] == nil ||[self.model valueForKey:@"var_location"]== nil ||[self.model valueForKey:@"var_tumorChar"]== nil ||[self.model valueForKey:@"var_history"]== nil ||[self.model valueForKey:@"var_bmi"]== nil ) {
                 return NO;
             } else {
@@ -213,7 +205,7 @@
             }
             break;
         }
-        case 4:{
+        case 3:{
             if ([self.model valueForKey:@"var_adhesions"] == nil ||[self.model valueForKey:@"var_adhTook"]== nil ||[self.model valueForKey:@"var_vasAnomolies"]== nil ) {
                 return NO;
             } else {
@@ -221,7 +213,7 @@
             }
             break;
         }
-        case 5:{
+        case 4:{
             if ([self.model valueForKey:@"var_renalUltraSound"] == nil ||[self.model valueForKey:@"var_margin"]== nil ||[self.model valueForKey:@"var_RCSRepair"]== nil ||[self.model valueForKey:@"var_clamp"]== nil ||[self.model valueForKey:@"var_coagulant"]== nil||[self.model valueForKey:@"var_bloodLoss"]== nil ) {
                 return NO;
             } else {
@@ -229,7 +221,7 @@
             }
             break;
         }
-        case 6:{
+        case 5:{
             if ([self.model valueForKey:@"var_counselTime"] == nil ||[self.model valueForKey:@"var_roomTime"]== nil ||[self.model valueForKey:@"var_complation"]== nil ||[self.model valueForKey:@"var_transfusion"]== nil ||[self.model valueForKey:@"var_cc"]== nil ) {
                 return NO;
             } else {

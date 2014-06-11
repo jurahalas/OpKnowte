@@ -38,10 +38,11 @@
 @property (nonatomic, strong) UIButton * calc;
 @property (nonatomic, strong) UIButton * cancel;
 @property (nonatomic, weak) OKProcedureTextField *BMITextField;
-@property (nonatomic, strong) UIAlertView *alertBMI;
+
 @property (nonatomic,strong) UIButton * BMIButton;
 
-
+@property (nonatomic, strong) NSString * dateTo;
+@property (nonatomic, strong) NSString * dateFrom;
 
 @property (nonatomic,strong)UIView * timeBackgroundView;
 @property (nonatomic, strong) UIView *timeView;
@@ -56,7 +57,7 @@
 @property (nonatomic, weak) OKProcedureTextField *TimeRoomTextField;
 @property (nonatomic, weak) OKProcedureTextField *TimeOPTextField;
 @property (nonatomic, weak) OKProcedureTextField *TimeCTextField;
-@property (nonatomic, strong) UIAlertView *alertTime;
+
 @property (nonatomic,strong) UIButton * TimeButton;
 @property (nonatomic,strong) UIButton * TimeRoomButton;
 @property (nonatomic,strong) UIButton * TimeOPButton;
@@ -241,6 +242,9 @@
     [self drawTimeView];
     _currentTF = [[OKProcedureTextField alloc]init];
     _currentButton = [[UIButton alloc]init];
+    
+    _dateTo = [[NSString alloc]init];
+    _dateFrom = [[NSString alloc]init];
 }
 -(void) BMIButtontapped{
     _BMIButton.hidden = NO;
@@ -250,7 +254,12 @@
                                           delegate:self
                                  cancelButtonTitle:@"Manual Input"
                                  otherButtonTitles:@"BMI Calc",nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeBMi:) name:@"offAlertBMI" object:nil];
     [_alertBMI show];
+}
+-(void)offTimeBMi:(NSNotification *)not{
+    self.alertBMI = nil;
+    [self.view endEditing:YES];
 }
 
 -(void)drawBMIButton
@@ -264,12 +273,25 @@
 -(void) drawBMIView{
     
     _bmiBackgroundView = [[UIView alloc]init];
-    _bmiBackgroundView.frame = self.view.frame;
+    if (IS_IOS7) {
+        _bmiBackgroundView.frame = self.view.frame;
+    }else{
+        _bmiBackgroundView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -20, self.view.frame.size.width, self.view.frame.size.height);
+    }
     _bmiBackgroundView.backgroundColor = [UIColor whiteColor];
     _bmiBackgroundView.alpha = 0.3f;
     
     _bmiView = [[OKBMIViewController alloc]initWithNibName:@"OKBMIViewController" bundle:nil];
-    [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+    if (IS_IPHONE_5) {
+        [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+    }else if (!IS_IPHONE_5){
+        if (IS_IOS6) {
+            [_bmiView.view setFrame:CGRectMake(5, 20, self.view.frame.size.width-10, self.view.frame.size.height-240)];
+        }else{
+            [_bmiView.view setFrame:CGRectMake(5, 80, self.view.frame.size.width-10, self.view.frame.size.height-300)];
+        }
+    }
+        
     _bmiView.view.layer.cornerRadius = 14.f;
     _bmiView.view.alpha = 1.f;
     _bmiView.view.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
@@ -405,17 +427,17 @@
         }
 
         
-        if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
+        if (_procedureID == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 2 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
+        } else if (_procedureID == 2  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 2 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_transfusion"]){
+        } else if (_procedureID == 2  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_transfusion"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 9 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+        } else if (_procedureID == 9  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 10 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+        } else if (_procedureID == 10  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 1 && _currentPage == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
+        } else if (_procedureID == 1  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
             symbolicTextField.customTextField.text = @"Prostate Cancer";
             [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];
 
@@ -588,9 +610,9 @@
             pickerArray = [customElementDictionary objectForKey:@"items"];
         }
         
-        if (_procedureID == 1 && _currentPage == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
+        if (_procedureID == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
             [picker setButtonEnabled:NO];
-        } else if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
+        } else if (_procedureID == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
             [picker setButtonEnabled:NO];
         }
         if (self.model) {
@@ -847,9 +869,6 @@
     if (!self.datePicker.hidden) {
         [self hideDatePicker];
     }
-    if (pickerView.tag == 200) {
-        
-    }
 
 }
 
@@ -918,7 +937,7 @@
 
 }
 
--(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
+//-(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
 //
 //    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
 //        
@@ -944,7 +963,7 @@
 //    } else{
 //        _alertTime = nil;
 //    }
-}
+//}
 
 -(void)drawTimeButton
 {
@@ -1012,9 +1031,14 @@
                                                   delegate:self
                                          cancelButtonTitle:@"Manual Input"
                                          otherButtonTitles:@"Time Calc",nil];
-            [_alertTime show];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeAlert:) name:@"offTimeAlert" object:nil];
+    [_alertTime show];
 }
-
+-(void)offTimeAlert:(NSNotification *)not{
+    self.alertTime = nil;
+    [self.view endEditing:YES];
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 
@@ -1055,11 +1079,23 @@
     UIColor *color = [UIColor lightGrayColor];
     
     _timeBackgroundView = [[UIView alloc]init];
-    _timeBackgroundView.frame = self.view.frame;
+    if (IS_IOS7) {
+        _timeBackgroundView.frame = self.view.frame;
+    }else{
+        _timeBackgroundView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -20, self.view.frame.size.width, self.view.frame.size.height);
+    }
     _timeBackgroundView.backgroundColor = [UIColor whiteColor];
     _timeBackgroundView.alpha = 0.3f;
     
-    _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 130, self.view.frame.size.width-10, self.view.frame.size.height-350)];
+    if(IS_IPHONE_5){
+        _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+    }else if(!IS_IPHONE_5){
+        if (IS_IOS6){
+            _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 40, self.view.frame.size.width-10, self.view.frame.size.height-290)];
+        }else{
+            _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 100, self.view.frame.size.width-10, self.view.frame.size.height-310)];
+        }
+    }
     _timeView.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
     _timeView.layer.cornerRadius = 14;
     _timeView.layer.masksToBounds = YES;
@@ -1116,7 +1152,7 @@
 
     
     
-    _calcTime = [[UIButton alloc]initWithFrame:CGRectMake(20, 120, 280, 38)];
+    _calcTime = [[UIButton alloc]initWithFrame:CGRectMake(20, 120, 133, 38)];
     [UIButton buttonWithType:UIButtonTypeCustom];
     [_calcTime setTitle:@"Calcucate Time" forState:UIControlStateNormal];
     _calcTime.layer.cornerRadius = 14;
@@ -1124,7 +1160,7 @@
     [_calcTime addTarget:self action:@selector(timeButtonCacl) forControlEvents:UIControlEventTouchUpInside];
     [_timeView addSubview:_calcTime];
     
-    _cancelTime = [[UIButton alloc]initWithFrame:CGRectMake(20, 170, 280, 38)];
+    _cancelTime = [[UIButton alloc]initWithFrame:CGRectMake(160, 120, 133, 38)];
     [UIButton buttonWithType:UIButtonTypeCustom];
     [_cancelTime setTitle:@"Cancel" forState:UIControlStateNormal];
     _cancelTime.layer.cornerRadius = 14;
@@ -1178,6 +1214,10 @@
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please fill all field" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }else{
+        if ([_dateTo floatValue] < [_dateFrom floatValue]) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Time To can't be smaller that Time From" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }else{
         NSDateFormatter *dateFromatter = [[NSDateFormatter alloc]init];
         [dateFromatter setDateFormat:@"hh:mma"];
         NSDate *dateFrom = [dateFromatter dateFromString:_timeFrom.text];
@@ -1199,8 +1239,9 @@
 
         _timeBackgroundView.hidden = YES;
         _doneButtonForTimePicker.hidden = YES;
-
+        }
     }
+        
 }
 
 -(void)timeCancel{
@@ -1216,11 +1257,14 @@
         if (_timePickerBGView.hidden) {
             _timeFromButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];;
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
+            
+            _dateFrom = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeFromButtonTapped = NO;
 
         }
@@ -1236,11 +1280,14 @@
         if (_timePickerBGView.hidden) {
             _timeToButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];;
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeTo.text = timeTo;
+            
+            _dateTo = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeToButtonTapped = NO;
             
         }
@@ -1265,6 +1312,9 @@
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
+            
+            _dateFrom = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeFromButtonTapped = NO;
             
         }
@@ -1279,7 +1329,11 @@
             NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeTo.text = timeTo;
+            
+            _dateTo = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeToButtonTapped = NO;
             
         }
