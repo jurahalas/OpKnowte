@@ -1216,8 +1216,8 @@
         if (_timePickerBGView.hidden) {
             _timeFromButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];;
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
@@ -1236,8 +1236,8 @@
         if (_timePickerBGView.hidden) {
             _timeToButtonTapped = YES;
         } else {
-            NSString *hoursSTR = _hoursArray[[_timePicker selectedRowInComponent:0]];
-            NSString *minutesSTR =_minutesArray[[_timePicker selectedRowInComponent:1]];
+            NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
+            NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];;
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeTo.text = timeTo;
