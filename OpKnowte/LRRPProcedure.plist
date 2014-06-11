@@ -60,13 +60,6 @@
 					<string>Male</string>
 				</array>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
 				<string>var_preOpDX</string>
@@ -172,13 +165,6 @@
 					<string>Less than 30 minutes</string>
 				</array>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
 				<string>var_surgeon</string>

@@ -423,17 +423,17 @@
         }
 
         
-        if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
+        if (_procedureID == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_vasAnomolies"]) {
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 2 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
+        } else if (_procedureID == 2  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_coagulant"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 2 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_transfusion"]){
+        } else if (_procedureID == 2  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_transfusion"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 9 && _currentPage == 5 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+        } else if (_procedureID == 9  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 10 && _currentPage == 6 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
+        } else if (_procedureID == 10  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complications"]){
             symbolicTextField.customTextField.enabled = NO;
-        } else if (_procedureID == 1 && _currentPage == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
+        } else if (_procedureID == 1  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
             symbolicTextField.customTextField.text = @"Prostate Cancer";
             [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];
 
@@ -606,9 +606,9 @@
             pickerArray = [customElementDictionary objectForKey:@"items"];
         }
         
-        if (_procedureID == 1 && _currentPage == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
+        if (_procedureID == 1 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"]) {
             [picker setButtonEnabled:NO];
-        } else if (_procedureID == 2 && _currentPage == 4 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
+        } else if (_procedureID == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
             [picker setButtonEnabled:NO];
         }
         if (self.model) {

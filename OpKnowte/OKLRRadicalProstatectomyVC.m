@@ -131,15 +131,16 @@
 -(BOOL) canGoToNextVC {
     switch (self.currentPage) {
         case 0:{
-            if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil ) {
+            if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil || [self.model valueForKey:@"var_preOpDX"] == nil ||[self.model valueForKey:@"var_postOp"]== nil ||[self.model valueForKey:@"var_nervesparing"]== nil ) {
                 return NO;
             } else {
                 return YES;
             }
             break;
         }
+
         case 1:{
-            if ([self.model valueForKey:@"var_preOpDX"] == nil ||[self.model valueForKey:@"var_postOp"]== nil ||[self.model valueForKey:@"var_nervesparing"]== nil ) {
+            if ([self.model valueForKey:@"var_pelvicDisection"] == nil ||[self.model valueForKey:@"var_bladderNeckReconstruction"]== nil ||[self.model valueForKey:@"var_sling"]== nil ||[self.model valueForKey:@"var_lysisOfAdhesions"]== nil || [self.model valueForKey:@"var_surgeon"] == nil ||[self.model valueForKey:@"var_assistant"]== nil ||[self.model valueForKey:@"var_anesthesia"]== nil  ) {
                 return NO;
             } else {
                 return YES;
@@ -147,22 +148,6 @@
             break;
         }
         case 2:{
-            if ([self.model valueForKey:@"var_pelvicDisection"] == nil ||[self.model valueForKey:@"var_bladderNeckReconstruction"]== nil ||[self.model valueForKey:@"var_sling"]== nil ||[self.model valueForKey:@"var_lysisOfAdhesions"]== nil ) {
-                return NO;
-            } else {
-                return YES;
-            }
-            break;
-        }
-        case 3:{
-            if ([self.model valueForKey:@"var_surgeon"] == nil ||[self.model valueForKey:@"var_assistant"]== nil ||[self.model valueForKey:@"var_anesthesia"]== nil ) {
-                return NO;
-            } else {
-                return YES;
-            }
-            break;
-        }
-        case 4:{
             if ([self.model valueForKey:@"var_stage"]== nil ||[self.model valueForKey:@"var_grade"]== nil ||[self.model valueForKey:@"var_numberOfCores"]== nil||[self.model valueForKey:@"var_greatestPercentage"]== nil ) {
                 return NO;
             } else {
@@ -170,7 +155,7 @@
             }
             break;
         }
-        case 5:{
+        case 3:{
             if ([self.model valueForKey:@"var_preBX"] == nil ||[self.model valueForKey:@"var_prostateVolume"]== nil ||[self.model valueForKey:@"var_BMI"]== nil ||[self.model valueForKey:@"var_factors"]== nil) {
                 return NO;
             } else {
@@ -178,7 +163,7 @@
             }
             break;
         }
-        case 6:{
+        case 4:{
             if ([self.model valueForKey:@"var_roomTime"] == nil ||[self.model valueForKey:@"var_operativeTime"]== nil ||[self.model valueForKey:@"var_consulTime"]== nil  ) {
                 return NO;
             } else {
@@ -186,7 +171,7 @@
             }
             break;
         }
-        case 7:{
+        case 5:{
             if ([self.model valueForKey:@"var_EBL"] == nil ||[self.model valueForKey:@"var_fluids"]== nil ||[self.model valueForKey:@"var_preOpSHIM"]== nil ||[self.model valueForKey:@"var_preOpAUA"]== nil) {
                 return NO;
             } else {

@@ -27,8 +27,18 @@
 
 
 -(void) setLabelsWithKey: (NSString*) key AndValue:(NSString*) value{
-    self.procedureKeyLabel.text = key;
-    self.procedureValueLabel.text = value;
+    if (key != nil) {
+        self.procedureKeyLabel.text = key;
+
+    } else {
+        self.procedureKeyLabel.text = @"N/A";
+    }
+    if (value != nil && ![value isKindOfClass:[NSNull class]] && value != NULL ) {
+        self.procedureValueLabel.text = value;
+    }else {
+        self.procedureValueLabel.text = @"N/A";
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
