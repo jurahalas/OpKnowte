@@ -250,8 +250,12 @@
                                           delegate:self
                                  cancelButtonTitle:@"Manual Input"
                                  otherButtonTitles:@"BMI Calc",nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeBMi) name:@"" object:<#(id)#>];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeBMi:) name:@"offAlertBMI" object:nil];
     [_alertBMI show];
+}
+-(void)offTimeBMi:(NSNotification *)not{
+    self.alertBMI = nil;
+    [self.view endEditing:YES];
 }
 
 -(void)drawBMIButton
@@ -265,12 +269,25 @@
 -(void) drawBMIView{
     
     _bmiBackgroundView = [[UIView alloc]init];
-    _bmiBackgroundView.frame = self.view.frame;
+    if (IS_IOS7) {
+        _bmiBackgroundView.frame = self.view.frame;
+    }else{
+        _bmiBackgroundView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -20, self.view.frame.size.width, self.view.frame.size.height);
+    }
     _bmiBackgroundView.backgroundColor = [UIColor whiteColor];
     _bmiBackgroundView.alpha = 0.3f;
     
     _bmiView = [[OKBMIViewController alloc]initWithNibName:@"OKBMIViewController" bundle:nil];
-    [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+    if (IS_IPHONE_5) {
+        [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+    }else if (!IS_IPHONE_5){
+        if (IS_IOS6) {
+            [_bmiView.view setFrame:CGRectMake(5, 20, self.view.frame.size.width-10, self.view.frame.size.height-240)];
+        }else{
+            [_bmiView.view setFrame:CGRectMake(5, 80, self.view.frame.size.width-10, self.view.frame.size.height-300)];
+        }
+    }
+        
     _bmiView.view.layer.cornerRadius = 14.f;
     _bmiView.view.alpha = 1.f;
     _bmiView.view.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
@@ -848,9 +865,6 @@
     if (!self.datePicker.hidden) {
         [self hideDatePicker];
     }
-    if (pickerView.tag == 200) {
-        
-    }
 
 }
 
@@ -1014,11 +1028,12 @@
                                          cancelButtonTitle:@"Manual Input"
                                          otherButtonTitles:@"Time Calc",nil];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeAlert) name:@"offTimeAlert" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeAlert:) name:@"offTimeAlert" object:nil];
     [_alertTime show];
 }
--(void)offTimeAlert{
+-(void)offTimeAlert:(NSNotification *)not{
     self.alertTime = nil;
+    [self.view endEditing:YES];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -1060,11 +1075,23 @@
     UIColor *color = [UIColor lightGrayColor];
     
     _timeBackgroundView = [[UIView alloc]init];
-    _timeBackgroundView.frame = self.view.frame;
+    if (IS_IOS7) {
+        _timeBackgroundView.frame = self.view.frame;
+    }else{
+        _timeBackgroundView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y -20, self.view.frame.size.width, self.view.frame.size.height);
+    }
     _timeBackgroundView.backgroundColor = [UIColor whiteColor];
     _timeBackgroundView.alpha = 0.3f;
     
-    _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 130, self.view.frame.size.width-10, self.view.frame.size.height-350)];
+    if(IS_IPHONE_5){
+        _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+    }else if(!IS_IPHONE_5){
+        if (IS_IOS6){
+            _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 40, self.view.frame.size.width-10, self.view.frame.size.height-290)];
+        }else{
+            _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 100, self.view.frame.size.width-10, self.view.frame.size.height-310)];
+        }
+    }
     _timeView.backgroundColor = [UIColor colorWithRed:40.f/255 green:67.f/255 blue:89.f/255 alpha:1.f];
     _timeView.layer.cornerRadius = 14;
     _timeView.layer.masksToBounds = YES;
@@ -1121,7 +1148,7 @@
 
     
     
-    _calcTime = [[UIButton alloc]initWithFrame:CGRectMake(20, 120, 280, 38)];
+    _calcTime = [[UIButton alloc]initWithFrame:CGRectMake(20, 120, 133, 38)];
     [UIButton buttonWithType:UIButtonTypeCustom];
     [_calcTime setTitle:@"Calcucate Time" forState:UIControlStateNormal];
     _calcTime.layer.cornerRadius = 14;
@@ -1129,7 +1156,7 @@
     [_calcTime addTarget:self action:@selector(timeButtonCacl) forControlEvents:UIControlEventTouchUpInside];
     [_timeView addSubview:_calcTime];
     
-    _cancelTime = [[UIButton alloc]initWithFrame:CGRectMake(20, 170, 280, 38)];
+    _cancelTime = [[UIButton alloc]initWithFrame:CGRectMake(160, 120, 133, 38)];
     [UIButton buttonWithType:UIButtonTypeCustom];
     [_cancelTime setTitle:@"Cancel" forState:UIControlStateNormal];
     _cancelTime.layer.cornerRadius = 14;
@@ -1183,6 +1210,10 @@
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please fill all field" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }else{
+        if ([_timeTo.text intValue] < [_timeFrom.text intValue]) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Time To can't be smaller that Time From" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }else{
         NSDateFormatter *dateFromatter = [[NSDateFormatter alloc]init];
         [dateFromatter setDateFormat:@"hh:mma"];
         NSDate *dateFrom = [dateFromatter dateFromString:_timeFrom.text];
@@ -1204,8 +1235,9 @@
 
         _timeBackgroundView.hidden = YES;
         _doneButtonForTimePicker.hidden = YES;
-
+        }
     }
+        
 }
 
 -(void)timeCancel{

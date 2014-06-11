@@ -19,7 +19,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ofTimeAlert:) name:@"allertTime" object:nil];
 
     if (IS_IOS7) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG"] forBarMetrics:UIBarMetricsDefault ];
@@ -46,18 +45,14 @@
     [defaults removeObjectForKey:@"user"];
     [defaults synchronize];
     [OKUserManager instance].currentUser = nil;
-
-    OKBaseProcedureVC * vc = [[OKBaseProcedureVC alloc]init];
-    vc.alertBMI = nil;
-    vc.alertTime = nil;
     
     UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
     [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];
     [self.window endEditing:YES];
-}
-
--(void)ofTimeAlert:(NSNotification *) no{
-
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"offAlertBMI" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"offTimeAlert" object:nil];
+    
 }
 
 -(void)restoreCurrentUser
