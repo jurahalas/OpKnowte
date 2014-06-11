@@ -818,9 +818,9 @@
 {
     if (pickerView.tag == 200) {
         if (component == 0) {
-            return [_hoursArray objectAtIndex:(12 % [_hoursArray count])];
+            return 144;
         } else if (component == 1){
-            return [_hoursArray objectAtIndex:(60 % [_hoursArray count])];
+            return 360;
         } else{
             return 2;
         }
@@ -846,6 +846,9 @@
     }
     if (!self.datePicker.hidden) {
         [self hideDatePicker];
+    }
+    if (pickerView.tag == 200) {
+        
     }
 
 }
