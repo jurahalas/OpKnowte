@@ -18,14 +18,12 @@
 #import "OKContactModel.h"
 #import "OKFakeTableViewCell.h"
 
-@interface OKOperatieNoteViewController ()
+@interface OKOperatieNoteViewController () <UITextFieldDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 @property (strong, nonatomic) IBOutlet UIView *segmentControllView;
 @property (strong, nonatomic) IBOutlet UITableView *caseDataTableView;
 @property (strong, nonatomic) IBOutlet UIView *IndicationView;
-@property (strong, nonatomic) IBOutlet UILabel *indicationLabel;
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
-@property (strong, nonatomic) IBOutlet UILabel *procedureLable;
 @property (strong, nonatomic) IBOutlet UIScrollView *indicationScrollView;
 @property (strong, nonatomic) IBOutlet UIScrollView *procedureScrollView;
 
@@ -46,13 +44,14 @@
 @property (strong, nonatomic) IBOutlet UIButton *caseDatabtn;
 @property (strong, nonatomic) IBOutlet UIButton *indicationbtn;
 @property (strong, nonatomic) IBOutlet UIButton *procedureBtn;
-
+@property (strong, nonatomic) IBOutlet UITextView *indicationTextView;
+@property (strong, nonatomic) IBOutlet UITextView *procedureText;
 
 @property (strong, nonatomic) OKProcedureTemplateModel *templateModel;
 @end
 
 @implementation OKOperatieNoteViewController
-@synthesize segmentControl,caseDataTableView,IndicationView,indicationLabel,procedureView,procedureLable,indicationScrollView,procedureScrollView,segmentControllView,segmentControllios6;
+@synthesize segmentControl,caseDataTableView,IndicationView,procedureView,indicationScrollView,procedureScrollView,segmentControllView,segmentControllios6;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -165,10 +164,7 @@
     }
     
     [self.segmentControl setDividerImage:[UIImage imageNamed:@"scSeparator"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    }
-    
-    
-    else {
+    }else {
         
         self.segmentedControllView.hidden = YES;
         
@@ -184,6 +180,18 @@
         self.caseDatabtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"1SegmentControll"]];
     }
 }
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        [_templateDictionary setObject:textView.text forKey:@"indicationText"];
+    }
+    return YES;
+}
+
 
 -(void) addLeftButtonToNavbar
 {
@@ -243,12 +251,12 @@
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO" withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@";" withString:@","];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"YES," withString:@""];
-    indicationLabel.text = indicationText;
+    _indicationTextView.text = indicationText;
     [_templateDictionary setObject:indicationText forKey:@"indicationText"];
     
-    [indicationLabel sizeToFit];
-    indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, indicationLabel.frame.size.height+80);
-    [indicationScrollView addSubview:indicationLabel];
+    [_indicationTextView sizeToFit];
+    indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, _indicationTextView.frame.size.height+250);
+    [indicationScrollView addSubview:_indicationTextView];
     [self.IndicationView addSubview:indicationScrollView];
     
 }
@@ -404,15 +412,16 @@
     procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"NO." withString:@""];
     procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"None." withString:@""];
 
-    procedureLable.text = procedureText;
+    
     NSString *procedureString = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     procedureString = [procedureString stringByReplacingOccurrencesOfString:@")" withString:@""];
-    
+   
+    _procedureText.text = procedureText;
     [_templateDictionary setObject:procedureString forKey:@"procedureText"];
     
-    [procedureLable sizeToFit];
-    procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, procedureLable.frame.size.height+80);
-    [procedureScrollView addSubview:procedureLable];
+    [_procedureText sizeToFit];
+    procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, _procedureText.frame.size.height+300);
+    [procedureScrollView addSubview:_procedureText];
     [self.procedureView addSubview:procedureScrollView];
     
 }
