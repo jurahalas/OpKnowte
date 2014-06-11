@@ -282,6 +282,24 @@
         }
     }
     
+    if (_procedureID == 1) {
+        
+        if ([[_model valueForKey:@"var_pelvicDisection"] isEqualToString:@"None"]) {
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"Next the (if yes to #8 )(lymph node packets ) prostate and seminal vesicles were captured in the endocatch bag to be retrieved later in the case. We then checked for hemostasis which was very excellent. There was no evidence of rectal injury." withString:@""];
+        }
+        if ([[_model valueForKey:@"var_bladderNeckReconstruction"] isEqualToString:@"NO"]) {
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(NO) If yes: The bladder neck was then pulled up and repaired with a 2-0 vicryl and a standard tennis racket repair." withString:@""];
+        }
+        
+    }
+    
+    procedureText =  [procedureText stringByReplacingOccurrencesOfString:@")" withString:@""];
+    procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"NO." withString:@""];
+    procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"None." withString:@""];
+
+
+    
     
     procedureLable.text = procedureText;
     
