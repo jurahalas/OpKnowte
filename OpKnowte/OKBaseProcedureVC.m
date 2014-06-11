@@ -41,7 +41,8 @@
 
 @property (nonatomic,strong) UIButton * BMIButton;
 
-
+@property (nonatomic, strong) NSString * dateTo;
+@property (nonatomic, strong) NSString * dateFrom;
 
 @property (nonatomic,strong)UIView * timeBackgroundView;
 @property (nonatomic, strong) UIView *timeView;
@@ -241,6 +242,9 @@
     [self drawTimeView];
     _currentTF = [[OKProcedureTextField alloc]init];
     _currentButton = [[UIButton alloc]init];
+    
+    _dateTo = [[NSString alloc]init];
+    _dateFrom = [[NSString alloc]init];
 }
 -(void) BMIButtontapped{
     _BMIButton.hidden = NO;
@@ -1210,7 +1214,7 @@
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Please fill all field" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }else{
-        if ([_timeTo.text intValue] < [_timeFrom.text intValue]) {
+        if ([_dateTo floatValue] < [_dateFrom floatValue]) {
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:nil message:@"Time To can't be smaller that Time From" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }else{
@@ -1258,6 +1262,9 @@
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
+            
+            _dateFrom = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeFromButtonTapped = NO;
 
         }
@@ -1278,6 +1285,9 @@
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeTo.text = timeTo;
+            
+            _dateTo = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeToButtonTapped = NO;
             
         }
@@ -1302,6 +1312,9 @@
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
+            
+            _dateFrom = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeFromButtonTapped = NO;
             
         }
@@ -1316,7 +1329,11 @@
             NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeTo.text = timeTo;
+            
+            _dateTo = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            
             _timeToButtonTapped = NO;
             
         }
