@@ -80,7 +80,7 @@
             } else {
                 complicationsTF.customTextField.enabled = NO;
                 complicationsTF.customTextField.text = @"";
-                [self.model setValue:@"NO" forKey:@"var_reservoirplacement"];
+                [self.model setValue:newValue forKey:@"var_reservoirplacement"];
             }
             
         } else {
