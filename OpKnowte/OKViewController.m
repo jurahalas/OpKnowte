@@ -29,6 +29,20 @@
     [self.view endEditing:YES];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
+    
+}
+
+- (BOOL)connectedToInternet
+{
+    NSString *urlString = @"http://www.google.com/";
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"HEAD"];
+    NSHTTPURLResponse *response;
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error: NULL];
+    
+    return ([response statusCode] == 200) ? YES : NO;
 }
 
 
@@ -107,33 +121,42 @@
 #pragma mark - IBActions
 - (IBAction)loginButton:(id)sender {
     [self.view endEditing:YES];
-    if (_animatedKeyboard) {
-        [self animateTextField: _passwordTextField up: NO];
-    }
+    
+    if([self connectedToInternet] == NO)
+    {
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"No Internet Conection" message:@"Please, check you conection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }else
+        {
+        if (_animatedKeyboard) {
+            [self animateTextField: _passwordTextField up: NO];
+        }
 
-    OKUserManager *usermanager = [OKUserManager instance];
+        OKUserManager *usermanager = [OKUserManager instance];
    
-    if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""] || _passwordTextField.text == nil || _passwordTextField.text  == nil) {
-        UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [loginFormAlertView show];
-    }else {
-        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+        if ([_emailTextField.text  isEqual: @""] || [_passwordTextField.text  isEqual: @""] || _passwordTextField.text == nil || _passwordTextField.text  == nil) {
+            UIAlertView *loginFormAlertView = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"Please complete all fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [loginFormAlertView show];
+        }else {
+            [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-        _loginButton.enabled = NO;
-        [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
+            _loginButton.enabled = NO;
+            [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
             if (error != nil) {
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Login Error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [loginFormErrorAlertView show];
                 _loginButton.enabled = YES;
                
-            } else {
-                [self.view endEditing:YES];
-                [self performSegueWithIdentifier:@"loginSegue" sender:self];
-                _loginButton.enabled = YES;
-            }
+                } else {
+                    [self.view endEditing:YES];
+                    [self performSegueWithIdentifier:@"loginSegue" sender:self];
+                    _loginButton.enabled = YES;
+                }
             
-            [[OKLoadingViewController instance] hide];
-        }];
+                [[OKLoadingViewController instance] hide];
+            }];
+        }
+        
     }
 
 }
