@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.view endEditing:YES];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
 }

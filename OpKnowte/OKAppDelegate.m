@@ -12,12 +12,14 @@
 #import "OKAppDelegate.h"
 #import "OKTimer.h"
 #import "OKViewController.h"
+#import "OKBaseProcedureVC.h"
 
 @implementation OKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ofTimeAlert:) name:@"allertTime" object:nil];
 
     if (IS_IOS7) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbarBG"] forBarMetrics:UIBarMetricsDefault ];
@@ -38,19 +40,25 @@
     return YES;
 }
 
-
 -(void)applicationDidTimeout:(NSNotification *) notif
 {    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"user"];
     [defaults synchronize];
     [OKUserManager instance].currentUser = nil;
+
+    OKBaseProcedureVC * vc = [[OKBaseProcedureVC alloc]init];
+    vc.alertBMI = nil;
+    vc.alertTime = nil;
     
     UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
-
     [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];
+    [self.window endEditing:YES];
 }
 
+-(void)ofTimeAlert:(NSNotification *) no{
+
+}
 
 -(void)restoreCurrentUser
 {

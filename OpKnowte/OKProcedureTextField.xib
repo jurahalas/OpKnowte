@@ -23,7 +23,6 @@
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <action selector="textFieldChanged:" destination="-1" eventType="editingChanged" id="ANk-Fu-Cbh"/>
-                        <action selector="touchToTextField:" destination="-1" eventType="editingDidBegin" id="scX-OJ-9Ri"/>
                         <outlet property="delegate" destination="-1" id="S3p-wd-5NB"/>
                     </connections>
                 </textField>

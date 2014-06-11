@@ -38,7 +38,7 @@
 @property (nonatomic, strong) UIButton * calc;
 @property (nonatomic, strong) UIButton * cancel;
 @property (nonatomic, weak) OKProcedureTextField *BMITextField;
-@property (nonatomic, strong) UIAlertView *alertBMI;
+
 @property (nonatomic,strong) UIButton * BMIButton;
 
 
@@ -56,7 +56,7 @@
 @property (nonatomic, weak) OKProcedureTextField *TimeRoomTextField;
 @property (nonatomic, weak) OKProcedureTextField *TimeOPTextField;
 @property (nonatomic, weak) OKProcedureTextField *TimeCTextField;
-@property (nonatomic, strong) UIAlertView *alertTime;
+
 @property (nonatomic,strong) UIButton * TimeButton;
 @property (nonatomic,strong) UIButton * TimeRoomButton;
 @property (nonatomic,strong) UIButton * TimeOPButton;
@@ -250,6 +250,7 @@
                                           delegate:self
                                  cancelButtonTitle:@"Manual Input"
                                  otherButtonTitles:@"BMI Calc",nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeBMi) name:@"" object:<#(id)#>];
     [_alertBMI show];
 }
 
@@ -918,7 +919,7 @@
 
 }
 
--(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
+//-(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
 //
 //    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
 //        
@@ -944,7 +945,7 @@
 //    } else{
 //        _alertTime = nil;
 //    }
-}
+//}
 
 -(void)drawTimeButton
 {
@@ -1012,9 +1013,13 @@
                                                   delegate:self
                                          cancelButtonTitle:@"Manual Input"
                                          otherButtonTitles:@"Time Calc",nil];
-            [_alertTime show];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(offTimeAlert) name:@"offTimeAlert" object:nil];
+    [_alertTime show];
 }
-
+-(void)offTimeAlert{
+    self.alertTime = nil;
+}
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 

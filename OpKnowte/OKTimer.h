@@ -1,7 +1,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kApplicationTimeoutInMinutes 5
+#define kApplicationTimeoutInMinutes 0.1
 #define kApplicationDidTimeoutNotification @"AppTimeOut"
 
 @interface OKTimer : UIApplication
