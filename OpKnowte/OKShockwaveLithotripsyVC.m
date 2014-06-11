@@ -71,10 +71,10 @@
         if ([self.model valueForKey:name] != nil) {
             array = [self.model valueForKey:name];
         }
-        
-        [array replaceObjectAtIndex:(tag-1) withObject:newValue];
+        if(newValue != nil){
+            [array replaceObjectAtIndex:(tag-1) withObject:newValue];
+        }
         [self.model setValue:array forKey:name];
-
 
     } else {
         
