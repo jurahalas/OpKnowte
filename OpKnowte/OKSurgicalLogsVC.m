@@ -466,6 +466,10 @@
                 NSLog(@"Eror - %@", errorMsg);
                 
                 _detailsArray = [self getFilterArray:dataArray];
+                
+                NSSortDescriptor* sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"_var_DOS" ascending:YES];
+                [_detailsArray sortUsingDescriptors:[NSArray arrayWithObject:sortByDate]];
+                
                 _choosedDetails = [_detailsArray mutableCopy];
                 [_listTableView reloadData];
                [[OKLoadingViewController instance] hide];

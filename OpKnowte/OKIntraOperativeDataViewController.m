@@ -285,6 +285,9 @@
                 
                 _cases = [self getFilterArray:dataArray];
                 
+                NSSortDescriptor* sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"_var_DOS" ascending:YES];
+                [_cases sortUsingDescriptors:[NSArray arrayWithObject:sortByDate]];
+                
                 [_selectedCases addObjectsFromArray:_cases];
                 
                 [_listTableView reloadData];
@@ -492,7 +495,7 @@
         
         IntraOperativeDataCell.model = model;
         IntraOperativeDataCell.nameLabel.text = [model valueForKey:@"var_patientName"];
-        IntraOperativeDataCell.dateLabel.text = [model valueForKey:@"var_patientDOB"];
+        IntraOperativeDataCell.dateLabel.text = [model valueForKey:@"var_DOS"];
         IntraOperativeDataCell.CaseLabel.text = [NSString stringWithFormat:@"%@.",[model valueForKey:@"DetailID"]];
         IntraOperativeDataCell.delegate = self;
         
