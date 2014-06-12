@@ -204,7 +204,7 @@
         sharVC.procID = sender;
         int i = [sender  intValue] ;
         OKProcedureModel *tappedProc =_allProcArray[i-1];
-        sharVC.procTitle = tappedProc.procedureText;
+        sharVC.procTitle = tappedProc.procedureShortName;
         
     }else if ([segue.identifier isEqualToString:@"fronProceduresToReminder"]){
         OKReminderVC *reminderVC = (OKReminderVC*)segue.destinationViewController;
@@ -219,14 +219,14 @@
         operativeData.procID = sender;
         int i = [sender intValue];
         OKProcedureModel *tappedProc = _allProcArray[i-1];
-        operativeData.procTitle = tappedProc.procedureText;
+        operativeData.procTitle = tappedProc.procedureShortName;
         
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToFollowUpData"]){
         OKFollowUpDataVC *reminderVC = (OKFollowUpDataVC*)segue.destinationViewController;
         reminderVC.procID = sender;
         int i = [sender  intValue] ;
         OKProcedureModel *tappedProc =_allProcArray[i-1];
-        reminderVC.procTitle = tappedProc.procedureText;
+        reminderVC.procTitle = tappedProc.procedureShortName;
     }
 }
 
