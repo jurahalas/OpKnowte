@@ -479,9 +479,9 @@
     OKOperatieNoteTableViewCell * cell = [[OKOperatieNoteTableViewCell alloc]init];
     if (indexPath.row < [_caseDataValues count]) {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+        if (!cell) {
+            cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
 //      OKContactManager *contactsManager = [OKContactManager instance];
         OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
         NSString *variableValue = [[NSString alloc] init];

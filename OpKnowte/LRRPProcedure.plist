@@ -189,6 +189,18 @@
 			</dict>
 			<dict>
 				<key>name</key>
+				<string>var_anesthesiologist</string>
+				<key>type</key>
+				<string>selectContact</string>
+				<key>placeholder</key>
+				<string>Anesthesiologist</string>
+				<key>items</key>
+				<array>
+					<string>3</string>
+				</array>
+			</dict>
+			<dict>
+				<key>name</key>
 				<string>var_anesthesia</string>
 				<key>type</key>
 				<string>picker</string>
