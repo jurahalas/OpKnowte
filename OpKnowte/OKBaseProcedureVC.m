@@ -895,9 +895,9 @@
             if (self.currentPage == 0) {
                 [self.model setValue:_procedureName forKey:@"var_procedureName"];
 
-                OKProceduresManager *manager = [OKProceduresManager instance];
-                [[OKLoadingViewController instance] showWithText:@"Loading..."];
-                [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
+//                OKProceduresManager *manager = [OKProceduresManager instance];
+//                [[OKLoadingViewController instance] showWithText:@"Loading..."];
+//                [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
 //                    if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
                         [[OKLoadingViewController instance] hide];
                         id nextVC = [self nextVC];
@@ -907,7 +907,7 @@
 //                        UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
 //                        [emptyFieldsError show];
 //                    }
-                }];
+  //              }];
             }else {
                 id nextVC = [self nextVC];
                 [self.navigationController pushViewController:nextVC animated:YES];
