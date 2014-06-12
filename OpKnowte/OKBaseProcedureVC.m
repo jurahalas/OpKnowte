@@ -667,7 +667,7 @@
 {
     NSMutableArray * b = [[NSMutableArray alloc]init];
     
-    for(float i = .1; i<= 2.5 ; i+=.1){
+    for(float i = .5; i<= 25 ; i+=.5){
         NSString *fltString = [NSString stringWithFormat:@"%.1f", i];
         
         [b addObject:fltString];
