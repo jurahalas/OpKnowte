@@ -60,6 +60,10 @@
     if([defaults objectForKey:@"user"]!=nil){
         [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
     }
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:@"lastUserEmail"] != nil && ![[[NSUserDefaults standardUserDefaults] valueForKey:@"lastUserEmail"] isEqualToString:@""]) {
+        _emailTextField.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"lastUserEmail"];
+    }
+   
 }
 
 
@@ -149,6 +153,7 @@
                
                 } else {
                     [self.view endEditing:YES];
+                    [[NSUserDefaults standardUserDefaults] setValue:_emailTextField.text forKey:@"lastUserEmail"];
                     [self performSegueWithIdentifier:@"loginSegue" sender:self];
                     _loginButton.enabled = YES;
                 }

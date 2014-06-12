@@ -211,28 +211,12 @@
 - (IBAction)emailButtonTapped:(id)sender
 {
     if (_contactsSendTo.count) {
-        if ([MFMailComposeViewController canSendMail])
-        {
-            MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
-            mailer.mailComposeDelegate = self;
-            [mailer setSubject:@"Operative Note"];
-            [mailer setToRecipients:[self getEmailAddress:_contactsSendTo]];
-            [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:NO];
-            [self presentViewController:mailer animated:YES completion:^{
-                [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-            }];
-            
-            mailer = nil;
-        }
-        else
-        {
-            UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
-                                                            message:@"There are no Email accounts configured. You can add or create Email account in Settings."
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles: nil];
-            [alertFailure show];
-        }
+        UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@""
+                                                               message:@"This method of delivery is not HIPPA compliant."
+                                                              delegate:self
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles: nil];
+        [alertFailure show];
     }else {
         UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@""
                                                         message:@"Please select atleast one institute."
@@ -242,7 +226,42 @@
         [alertNoContacts show];
     }
 }
+-(void) sendEmailIfPossible{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+        mailer.mailComposeDelegate = self;
+        [mailer setSubject:@"Operative Note"];
+        [mailer setToRecipients:[self getEmailAddress:_contactsSendTo]];
+        [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:NO];
+        [self presentViewController:mailer animated:YES completion:^{
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        }];
+        
+        mailer = nil;
+    }
+    else
+    {
+        UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
+                                                               message:@"There are no Email accounts configured. You can add or create Email account in Settings."
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles: nil];
+        [alertFailure show];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex == 0) {
+        if ([alertView.message isEqualToString:@"This method of delivery is not HIPPA compliant."]) {
+            
+            [self sendEmailIfPossible];
+            
+        }
+    }
 
+}
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
