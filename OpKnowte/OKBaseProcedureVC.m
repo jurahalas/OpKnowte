@@ -898,15 +898,15 @@
                 OKProceduresManager *manager = [OKProceduresManager instance];
                 [[OKLoadingViewController instance] showWithText:@"Loading..."];
                 [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
-                    if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
+//                    if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
                         [[OKLoadingViewController instance] hide];
                         id nextVC = [self nextVC];
                         [self.navigationController pushViewController:nextVC animated:YES];
-                    } else {
-                         [[OKLoadingViewController instance] hide];
-                        UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        [emptyFieldsError show];
-                    }
+//                    } else {
+//                         [[OKLoadingViewController instance] hide];
+//                        UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                        [emptyFieldsError show];
+//                    }
                 }];
             }else {
                 id nextVC = [self nextVC];

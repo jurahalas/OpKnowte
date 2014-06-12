@@ -488,8 +488,8 @@
     
     for (int i = 0; i<total; i++) {
         id model = data[i];
-        int MRNumber =[[model valueForKey:@"var_MRNumber"] intValue];
-        if ( MRNumber >= from && MRNumber <=to ) {
+        int DetailID =[[model valueForKey:@"DetailID"] intValue];
+        if ( DetailID >= from && DetailID <=to ) {
             [filtered addObject:data[i]];
         }
     }
@@ -697,6 +697,7 @@
         cell.model = model;
         cell.nameLabel.text = [model valueForKey:@"var_patientName"];
         cell.dateLabel.text = [model valueForKey:@"var_DOS"];
+        cell.CaseLabel.text = [NSString stringWithFormat:@"%@.",[model valueForKey:@"DetailID"]];
         cell.delegate = self;
         return cell;
     }

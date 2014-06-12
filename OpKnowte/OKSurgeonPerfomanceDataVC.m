@@ -129,9 +129,9 @@
 	image = [UIImage imageNamed:@"fillrange.png"];
 	[_slider setInRangeTrackImage:image];
     [_slider addTarget:self action:@selector(report:) forControlEvents:UIControlEventValueChanged]; // The slider sends actions when the value of the minimum or maximum changes	
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*1000)];
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*2000)];
 	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*1000)];
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*2000)];
     _caseToLabel.text = caseToString;
     [self.dateView addSubview:_slider];
     
@@ -139,9 +139,9 @@
 
 
 - (void)report:(RangeSlider *)sender {
-	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*1000)];
+	NSString *caseFromString = [NSString stringWithFormat:@"%d", (int)(_slider.min*2000)];
 	_caseFromLabel.text = caseFromString;
-    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*1000)];
+    NSString *caseToString = [NSString stringWithFormat:@"%d", (int)(_slider.max*2000)];
     _caseToLabel.text = caseToString;
 
 }
