@@ -451,8 +451,12 @@
         }
         
         if (self.model) {
-            
-            [symbolicTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+            if (![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_vasAnomolies"] ||
+                ![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_coagulant"] ||
+                ![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_transfusion"] ||
+                ![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_complications"]) {
+                [symbolicTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+            }
         }
         
         [self.interactionItems addObject:symbolicTextField];
@@ -689,6 +693,7 @@
 #pragma mark - OKProcedureTextFieldDelegate
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue  andTag:(NSInteger) tag
 {
+    
 
 }
 
@@ -713,6 +718,7 @@
 
 #pragma mark - OKProcedureSwitcherDelegate
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{
+    
     
 }
 
@@ -1270,7 +1276,6 @@
             if ([_timeFrom.text isEqualToString:@""]) {
                 [_timePicker selectRow:12*6 inComponent:0 animated:YES];
                 [_timePicker selectRow:60*3 inComponent:1 animated:YES];
-                [_timePicker selectRow:0 inComponent:2 animated:YES];
             }  else{
                 NSString *hoursSTR = [_timeFrom.text substringWithRange:NSMakeRange(0,2)]  ;
                 NSString *minutesSTR = [_timeFrom.text substringWithRange:NSMakeRange(3, 2)];
@@ -1339,7 +1344,6 @@
             if ([_timeTo.text isEqualToString:@""]) {
                 [_timePicker selectRow:12*6 inComponent:0 animated:YES];
                 [_timePicker selectRow:60*3 inComponent:1 animated:YES];
-                [_timePicker selectRow:0 inComponent:2 animated:YES];
             }else{
                 NSString *hoursSTR = [_timeTo.text substringWithRange:NSMakeRange(0,2)]  ;
                 NSString *minutesSTR = [_timeTo.text substringWithRange:NSMakeRange(3, 2)];
