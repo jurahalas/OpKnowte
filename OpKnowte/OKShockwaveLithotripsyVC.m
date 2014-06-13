@@ -144,7 +144,7 @@
 -(BOOL) canGoToNextVC {
     switch (self.currentPage) {
         case 0:{
-            if ([self.model valueForKey:@"var_patientName"] == nil ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil || [self.model valueForKey:@"var_anesthesiaPerformed"] == nil ||[self.model valueForKey:@"var_anesthesiaLocation"]== nil ||[self.model valueForKey:@"var_stonesCount"]== nil) {
+            if ([self.model valueForKey:@"var_patientName"] ||[self.model valueForKey:@"var_patientDOB"]== nil ||[self.model valueForKey:@"var_MRNumber"]== nil ||[self.model valueForKey:@"var_DOS"]== nil ||[self.model valueForKey:@"var_sex"]== nil || [self.model valueForKey:@"var_anesthesiaPerformed"] == nil ||[self.model valueForKey:@"var_anesthesiaLocation"]== nil ||[self.model valueForKey:@"var_stonesCount"]== nil) {
                 return NO;
             } else {
 

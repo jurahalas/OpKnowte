@@ -902,6 +902,17 @@
    
 }
 
+//-(void)checkForFillFileds{
+//    for (id textField in self.interactionItems) {
+//       
+//        if ([textField isKindOfClass:[OKProcedureTextField class]]) {
+//            OKProcedureTextField *tF = textField;
+//            if ([tF.customTextField.text isE) {
+//                <#statements#>
+//            }
+//        }
+//    }
+//}
 
 - (IBAction)rightButtonTapped:(id)sender {
     if ([self canGoToNextVC]) {
