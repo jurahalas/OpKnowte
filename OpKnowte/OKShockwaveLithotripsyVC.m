@@ -58,7 +58,6 @@
             }
         } else {
             [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:0];
-
         }
     }
 }

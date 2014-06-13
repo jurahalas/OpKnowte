@@ -448,6 +448,8 @@
             symbolicTextField.customTextField.text = @"Prostate Cancer";
             [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];        
         }
+<<<<<<< HEAD
+        
         if (self.model) {
             if (![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_vasAnomolies"] ||
                 ![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_coagulant"] ||
@@ -455,6 +457,11 @@
                 ![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_complications"]) {
                 [symbolicTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
             }
+=======
+            if (self.model) {
+            
+            [symbolicTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
+>>>>>>> 51db1a8efd9b45bcdd0bb61c1d9b7c1993d4bd71
         }
         
         [self.interactionItems addObject:symbolicTextField];
@@ -625,13 +632,8 @@
         }
         if (self.model) {
             if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"] && ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_reservoirplacement?"]){
-                
-                if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"] || ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]) {
-                
                 [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
-                
-                }
-                
+
             }
         }
         

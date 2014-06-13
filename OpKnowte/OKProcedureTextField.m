@@ -7,11 +7,12 @@
 //
 
 #import "OKProcedureTextField.h"
+#import "OKLRPartialNephrectomyVC.h"
 
 @implementation OKProcedureTextField 
 
 -(void) setupWithValue:(NSString*)value{
-    if (value) {
+    if (![value isEqualToString:@"NO"]) {
         _customTextField.text = value;
         [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     }else{
@@ -73,16 +74,18 @@
     }
 }
 
-
 -(void)setValue:(NSString*)value
 {
     self.customTextField.text = value;
 }
 
 
-- (IBAction)textFieldChanged:(id)sender {
+- (IBAction)textFieldChanged:(id)sender
+{
     [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
+
 }
+
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     [self.delegate hidePickersWhenTextFieldBeginsEditing];

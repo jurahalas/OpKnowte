@@ -19,7 +19,11 @@
 
 -(void) setupWithValue:(NSString*)value{
     if (![value isKindOfClass:[NSArray class]]) {
+        if (![value isEqualToString:@"NO"]) {
         _customTextField.text = value;
+        }else{
+            _customTextField.text = @"";
+        }
     }else{
         _customTextField.text = @"";
     }
