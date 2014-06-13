@@ -241,6 +241,11 @@
     
     if (buttonIndex == 0) {
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+        if ([alertView.message isEqualToString:@"This method of delivery is not HIPPA compliant."]) {
+            
+            [self sendEmailIfPossible];
+            
+        }
 
     }
     if (buttonIndex == 1) {
@@ -294,8 +299,12 @@
 
 - (IBAction)emailButtonTapped:(id)sender {
     if (_choosedDetails.count) {
-        [self generatePDF];
-        [self sendEmail:[self getMessageBody]];
+        UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@""
+                                                               message:@"This method of delivery is not HIPPA compliant."
+                                                              delegate:self
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles: nil];
+        [alertFailure show];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                         message:@"Choose at least one case"
@@ -304,6 +313,10 @@
                                               otherButtonTitles: nil];
         [alert show];
     }
+}
+-(void)sendEmailIfPossible{
+    [self generatePDF];
+    [self sendEmail:[self getMessageBody]];
 }
 
 
@@ -334,7 +347,7 @@
         
         if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Shockwave Lithotripsy"]) {
              body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
-        }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Robotic Radical Prostatectomy"]) {
+        }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
             body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"]];
         }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Insertion of Penile Prosthesis"]) {
             body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];

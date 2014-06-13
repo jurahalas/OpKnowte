@@ -241,7 +241,7 @@
         
         if ([_nameTextField.text isEqual: @""] ){
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please name field" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             [[OKLoadingViewController instance] hide];
             
@@ -280,16 +280,70 @@
             }];
         }
              
-    }else{
+    }else if ([self.contactID isEqualToString:@"4"]){
     
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
+        
+        BOOL isEmailValidate = [OKInstituteVC validateEmail:_emailTextField.text];
+        
+        if ([_nameTextField.text isEqualToString: @""] || [_emailTextField.text isEqualToString:@""] || [_faxTextField.text isEqualToString:@""]){
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            [[OKLoadingViewController instance] hide];
+        }else if (!isEmailValidate) {
+            [OKInstituteVC showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
+        }else if ([_faxTextField.text length]<5){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Fax-field should be at least 5 symbols" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            [[OKLoadingViewController instance] hide];
+        }else{
+            [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
+                
+                if(error != nil){
+                    
+                    UIAlertView *addInstitutionFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Add contact error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [addInstitutionFormErrorAlertView show];
+                    _saveButton.enabled = YES;
+                    [[OKLoadingViewController instance] hide];
+                    
+                }else{
+                    if (_selectedContact != nil) {
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Update institution Success" message:@"Congratulations! Contact was updated successfully" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        [addInstitutionFormSuccessAlertView show];
+                        NSString *selectedContactID = _selectedContact.identifier;
+                        OKContactManager *manager = [OKContactManager instance];
+                        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+                            if (!errorMsg) {
+                                
+                            }
+                            
+                        }];
+                    } else {
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        [addInstitutionFormSuccessAlertView show];
+                    }
+                    
+                    [self.view endEditing:YES];
+                    _saveButton.enabled = YES;
+                    [[OKLoadingViewController instance] hide];
+                }
+            }];
+        }
+
+    }else{
+        
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
+    BOOL isEmailValidate = [OKInstituteVC validateEmail:_emailTextField.text];
+        
     if ([_nameTextField.text isEqual: @""] || [_emailTextField.text isEqual: @""] || [_streerAddressTextField.text isEqual: @""] || [_cityTextField.text isEqual: @""] || [_stateTextField.text isEqual: @""] || [_zipTextField.text isEqual: @""] || [_countryTextField.text isEqual: @""] || [_faxTextField.text isEqual: @""]){
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         [[OKLoadingViewController instance] hide];
-        
+    }else if (!isEmailValidate) {
+        [OKInstituteVC showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
     }else if ([_faxTextField.text length]<5){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Fax-field should be at least 5 symbols" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -330,6 +384,35 @@
     }
 }
 
++ (void)showInfoAlertView:(NSString *)title withMessage:(NSString *)message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+    alert = nil;
+}
+
++ (BOOL)validateEmail:(NSString *)inputText {
+    NSString *emailRegex = @"[A-Z0-9a-z][A-Z0-9a-z._%+-]*@[A-Za-z0-9][A-Za-z0-9.-]*\\.[A-Za-z]{2,6}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    NSRange aRange;
+    if([emailTest evaluateWithObject:inputText]) {
+        aRange = [inputText rangeOfString:@"." options:NSBackwardsSearch range:NSMakeRange(0, [inputText length])];
+        int indexOfDot = aRange.location;
+        
+        if(aRange.location != NSNotFound) {
+            NSString *topLevelDomain = [inputText substringFromIndex:indexOfDot];
+            topLevelDomain = [topLevelDomain lowercaseString];
+            NSSet *TLD;
+            TLD = [NSSet setWithObjects:@".aero", @".asia", @".biz", @".cat", @".com", @".coop", @".edu", @".gov", @".info", @".int", @".jobs", @".mil", @".mobi", @".museum", @".name", @".net", @".org", @".pro", @".tel", @".travel", @".ac", @".ad", @".ae", @".af", @".ag", @".ai", @".al", @".am", @".an", @".ao", @".aq", @".ar", @".as", @".at", @".au", @".aw", @".ax", @".az", @".ba", @".bb", @".bd", @".be", @".bf", @".bg", @".bh", @".bi", @".bj", @".bm", @".bn", @".bo", @".br", @".bs", @".bt", @".bv", @".bw", @".by", @".bz", @".ca", @".cc", @".cd", @".cf", @".cg", @".ch", @".ci", @".ck", @".cl", @".cm", @".cn", @".co", @".cr", @".cu", @".cv", @".cx", @".cy", @".cz", @".de", @".dj", @".dk", @".dm", @".do", @".dz", @".ec", @".ee", @".eg", @".er", @".es", @".et", @".eu", @".fi", @".fj", @".fk", @".fm", @".fo", @".fr", @".ga", @".gb", @".gd", @".ge", @".gf", @".gg", @".gh", @".gi", @".gl", @".gm", @".gn", @".gp", @".gq", @".gr", @".gs", @".gt", @".gu", @".gw", @".gy", @".hk", @".hm", @".hn", @".hr", @".ht", @".hu", @".id", @".ie", @" No", @".il", @".im", @".in", @".io", @".iq", @".ir", @".is", @".it", @".je", @".jm", @".jo", @".jp", @".ke", @".kg", @".kh", @".ki", @".km", @".kn", @".kp", @".kr", @".kw", @".ky", @".kz", @".la", @".lb", @".lc", @".li", @".lk", @".lr", @".ls", @".lt", @".lu", @".lv", @".ly", @".ma", @".mc", @".md", @".me", @".mg", @".mh", @".mk", @".ml", @".mm", @".mn", @".mo", @".mp", @".mq", @".mr", @".ms", @".mt", @".mu", @".mv", @".mw", @".mx", @".my", @".mz", @".na", @".nc", @".ne", @".nf", @".ng", @".ni", @".nl", @".no", @".np", @".nr", @".nu", @".nz", @".om", @".pa", @".pe", @".pf", @".pg", @".ph", @".pk", @".pl", @".pm", @".pn", @".pr", @".ps", @".pt", @".pw", @".py", @".qa", @".re", @".ro", @".rs", @".ru", @".rw", @".sa", @".sb", @".sc", @".sd", @".se", @".sg", @".sh", @".si", @".sj", @".sk", @".sl", @".sm", @".sn", @".so", @".sr", @".st", @".su", @".sv", @".sy", @".sz", @".tc", @".td", @".tf", @".tg", @".th", @".tj", @".tk", @".tl", @".tm", @".tn", @".to", @".tp", @".tr", @".tt", @".tv", @".tw", @".tz", @".ua", @".ug", @".uk", @".us", @".uy", @".uz", @".va", @".vc", @".ve", @".vg", @".vi", @".vn", @".vu", @".wf", @".ws", @".ye", @".yt", @".za", @".zm", @".zw", nil];
+            
+            if(topLevelDomain != nil && ([TLD containsObject:topLevelDomain])) {
+                [[OKLoadingViewController instance]hide];
+                return TRUE;
+            }
+        }
+    }
+    [[OKLoadingViewController instance]hide];
+    return FALSE;
+}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
