@@ -39,10 +39,10 @@
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     [self addRightButtonToNavbar];
     NSString *procedureText = _templateModel.procedureText;
-    procedureText = [procedureText stringByReplacingOccurrencesOfString:@")" withString:@""];
-    procedureText = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+//    procedureText = [procedureText stringByReplacingOccurrencesOfString:@")" withString:@""];
+//    procedureText = [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        procedureText = [procedureText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"%@", model.ID]];
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:model.value withString:[NSString stringWithFormat:@"%@", model.key]];
     }
     _procedureTextView.text = procedureText;
     if (!IS_IOS7) {
@@ -104,9 +104,13 @@
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
+
+
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return _variablesArray.count;
 }
+
+
 -(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component{
     OKProcedureTemplateVariablesModel *model = (OKProcedureTemplateVariablesModel*) _variablesArray[row];
     NSString *pickerString = [NSString stringWithFormat:@"%@: %@",model.ID, model.key];
@@ -119,10 +123,24 @@
     }
 }
 
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        NSString *procedureText =  _procedureTextView.text;
+        _templateModel.procedureText = procedureText;
+        [self.delegate updateTemplateModelWith:_templateModel];
+    }
+    
+    return YES;
+}
+
 - (IBAction)backButton:(id)sender {
     NSString *procedureText =  _procedureTextView.text;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:[NSString stringWithFormat:@"(%@)",model.value]];
+        procedureText = [procedureText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.key] withString:[NSString stringWithFormat:@"(%@)",model.value]];
     }
     _templateModel.procedureText = procedureText;
 
