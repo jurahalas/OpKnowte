@@ -241,6 +241,11 @@
     
     if (buttonIndex == 0) {
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
+        if ([alertView.message isEqualToString:@"This method of delivery is not HIPPA compliant."]) {
+            
+            [self sendEmailIfPossible];
+            
+        }
 
     }
     if (buttonIndex == 1) {
@@ -294,8 +299,12 @@
 
 - (IBAction)emailButtonTapped:(id)sender {
     if (_choosedDetails.count) {
-        [self generatePDF];
-        [self sendEmail:[self getMessageBody]];
+        UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@""
+                                                               message:@"This method of delivery is not HIPPA compliant."
+                                                              delegate:self
+                                                     cancelButtonTitle:@"OK"
+                                                     otherButtonTitles: nil];
+        [alertFailure show];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                         message:@"Choose at least one case"
@@ -304,6 +313,10 @@
                                               otherButtonTitles: nil];
         [alert show];
     }
+}
+-(void)sendEmailIfPossible{
+    [self generatePDF];
+    [self sendEmail:[self getMessageBody]];
 }
 
 

@@ -189,7 +189,7 @@
 				<array>
 					<string>Endophytic</string>
 					<string>Exophytic</string>
-					<string>Both</string>
+					<string>Both (endophytic / exophytic)</string>
 				</array>
 			</dict>
 			<dict>
@@ -372,7 +372,7 @@
 				<key>type</key>
 				<string>symbolicTextField</string>
 				<key>placeholder</key>
-				<string>Complications</string>
+				<string>Complications (default to none)</string>
 				<key>items</key>
 				<array/>
 			</dict>

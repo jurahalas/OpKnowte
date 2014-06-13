@@ -162,6 +162,9 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
+    if (textField.tag <=2) {
+        textField.text = [textField.text capitalizedString];
+    }
     [textField resignFirstResponder];
 
 }
@@ -246,7 +249,7 @@
     else {
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
          _continueButton.enabled = NO;
-        [[OKUserManager instance] signupWithFirstName:_firstNameTextField.text lastName:_lastNameTextField.text userEmail:_emailTextField.text password:_passwordTextField.text userTitle:_MDTextField.text handler:^(NSString *error) {
+        [[OKUserManager instance] signupWithFirstName:[_firstNameTextField.text capitalizedString] lastName:[_lastNameTextField.text capitalizedString] userEmail:_emailTextField.text password:_passwordTextField.text userTitle:_MDTextField.text handler:^(NSString *error) {
            
             if (error != nil) {
                 UIAlertView *signUpFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Sign up error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
