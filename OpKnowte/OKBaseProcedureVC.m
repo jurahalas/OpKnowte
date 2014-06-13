@@ -439,11 +439,9 @@
             symbolicTextField.customTextField.enabled = NO;
         } else if (_procedureID == 1  && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_preOpDX"]){
             symbolicTextField.customTextField.text = @"Prostate Cancer";
-            [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];
-
+            [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];        
         }
-        
-        if (self.model) {
+            if (self.model) {
             
             [symbolicTextField setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
         }
@@ -486,9 +484,8 @@
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         numericTextField.delegate = self;
-        
-       // [self.view addSubview:numericTextField];
         [self.scrollview addSubview:numericTextField];
+        
         if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_BMI"] || [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_bmi"]) {
             _BMITextField = numericTextField;
             [self drawBMIButton];
@@ -662,6 +659,7 @@
     }
     _xPoint += 43;
 }
+
 
 -(NSMutableArray*)convertStoneSizeArray:(NSMutableArray *) Array
 {
@@ -894,20 +892,8 @@
             
             if (self.currentPage == 0) {
                 [self.model setValue:_procedureName forKey:@"var_procedureName"];
-
-//                OKProceduresManager *manager = [OKProceduresManager instance];
-//                [[OKLoadingViewController instance] showWithText:@"Loading..."];
-//                [manager checkMRNumberByNumber:[self.model valueForKey:@"var_MRNumber"] handler:^(NSString *errorMsg, NSDictionary *response) {
-//                    if ([[response objectForKey:@"status"] isEqualToString:@"true"]) {
-                        [[OKLoadingViewController instance] hide];
-                        id nextVC = [self nextVC];
-                        [self.navigationController pushViewController:nextVC animated:YES];
-//                    } else {
-//                         [[OKLoadingViewController instance] hide];
-//                        UIAlertView *emptyFieldsError = [[UIAlertView alloc] initWithTitle:@"" message:@"Medical Record Number already exists. Please try another one." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//                        [emptyFieldsError show];
-//                    }
-  //              }];
+                id nextVC = [self nextVC];
+                [self.navigationController pushViewController:nextVC animated:YES];
             }else {
                 id nextVC = [self nextVC];
                 [self.navigationController pushViewController:nextVC animated:YES];
@@ -937,33 +923,6 @@
 
 }
 
-//-(void)openBMICalc:(NSString *)currentFieldName withSelf:(id)tappedTF{
-//
-//    if ([currentFieldName isEqualToString: @"var_counselTime"] || [currentFieldName isEqualToString: @"var_roomTime"] || [currentFieldName isEqualToString: @"var_operativeTime"] || [currentFieldName isEqualToString: @"var_consulTime"] ) {
-//        
-//        [self.view endEditing:YES];
-//        
-//        [_TimeTextField resignFirstResponder];
-//        _TimeTextField = tappedTF;
-//        [_TimeTextField resignFirstResponder];
-//
-//
-//        _alertTime = [[UIAlertView alloc] initWithTitle:@"Time Calculator"
-//                                               message:nil
-//                                              delegate:self
-//                                     cancelButtonTitle:@"Manual Input"
-//                                     otherButtonTitles:@"Time Calc",nil];
-//        [_alertTime show];
-//        //for (int i = 0 ; i<_interactionItems.count; i++) {
-//           // if ([_interactionItems[i] isKindOfClass:[OKProcedureTextField class]]) {
-//            //    OKProcedureTextField *tf = _interactionItems[i];
-//          //      [tf resignCustomTextFieldFirstResponder];
-//        //    }
-//      //  }
-//    } else{
-//        _alertTime = nil;
-//    }
-//}
 
 -(void)drawTimeButton
 {

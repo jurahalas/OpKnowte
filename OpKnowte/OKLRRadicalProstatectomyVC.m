@@ -56,6 +56,24 @@
 #pragma mark - OKProcedureTextFieldDelegate
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue andTag:(NSInteger)tag
 {
+    if ([name isEqualToString:@"var_BMI"] && [newValue intValue]>50) {
+        
+        NSArray *neededElements = [self.interactionItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fieldName == %@", name]];
+        if(neededElements.count>0){
+            OKProcedureTextField *tf = neededElements[0];
+            [tf setValue:@"50"];
+        }
+        newValue = @"50";
+        
+    }else if ([name isEqualToString:@"var_roomTime"] && [newValue intValue]>360){
+        NSArray *neededElements = [self.interactionItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fieldName == %@", name]];
+        if(neededElements.count>0){
+            OKProcedureTextField *tf = neededElements[0];
+            [tf setValue:@"360"];
+        }
+        newValue = @"360";
+        
+    }
     
     if ([name isEqualToString:@"var_patientDOB"]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
