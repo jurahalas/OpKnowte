@@ -64,6 +64,7 @@
 @property (nonatomic,strong) UIButton * TimeCButton;
 
 @property (strong, nonatomic) UIPickerView *timePicker;
+@property (strong, nonatomic) UIPickerView *timeToPicker;
 @property (nonatomic,strong) UIView *timePickerBGView;
 
 @property (nonatomic, strong) NSMutableArray *hoursArray;
@@ -79,6 +80,10 @@
 
 @property (nonatomic,strong) OKProcedureTextField * currentTF;
 @property (nonatomic,strong) UIButton * currentButton;
+
+@property (nonatomic,strong) NSMutableArray * currentTime;
+@property (nonatomic) int tag;
+
 @end
 
 @implementation OKBaseProcedureVC
@@ -245,6 +250,8 @@
     
     _dateTo = [[NSString alloc]init];
     _dateFrom = [[NSString alloc]init];
+    
+    _currentTime = [[NSMutableArray alloc]init];
 }
 -(void) BMIButtontapped{
     _BMIButton.hidden = NO;
@@ -818,6 +825,7 @@
             
             NSString *pickerString = [NSString stringWithFormat:@"%@", _hoursArray[row%12]];
             NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color}];
+            
             return pickerAttributedString;
         } else if (component == 1){
             NSString *pickerString = [NSString stringWithFormat:@"%@", _minutesArray[row%60]];
@@ -836,6 +844,7 @@
 
     }
 }
+
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (pickerView.tag == 200) {
@@ -1059,12 +1068,12 @@
         
     } else {
          if ([alertView.title isEqualToString:@"BMI Calculator"]) {
-             _BMIButton.hidden = YES;
+            // _BMIButton.hidden = YES;
              [_BMITextField becomeCustomTextFieldFirstResponder];
              [_alertBMI dismissWithClickedButtonIndex:[_alertBMI cancelButtonIndex] animated:YES];
              self.alertBMI = nil;
          } else {
-             _currentButton.hidden = YES;
+            // _currentButton.hidden = YES;
              [_currentTF becomeCustomTextFieldFirstResponder];
              [_alertTime dismissWithClickedButtonIndex:[_alertTime cancelButtonIndex] animated:YES];
              _alertTime = nil;
@@ -1246,6 +1255,8 @@
 
 -(void)timeCancel{
     [self.view endEditing:YES];
+    _timePickerBGView.hidden = YES;
+    _doneButtonForTimePicker.hidden = YES;
     _timeView.hidden = YES;
     [_currentTF resignCustomTextFieldFirstResponder];
 
@@ -1256,14 +1267,41 @@
     if (!_timeToButtonTapped) {
         if (_timePickerBGView.hidden) {
             _timeFromButtonTapped = YES;
+            if ([_timeFrom.text isEqualToString:@""]) {
+                [_timePicker selectRow:12*6 inComponent:0 animated:YES];
+                [_timePicker selectRow:60*3 inComponent:1 animated:YES];
+                [_timePicker selectRow:0 inComponent:2 animated:YES];
+            }  else{
+                NSString *hoursSTR = [_timeFrom.text substringWithRange:NSMakeRange(0,2)]  ;
+                NSString *minutesSTR = [_timeFrom.text substringWithRange:NSMakeRange(3, 2)];
+                NSString *ampmSTR = [_timeFrom.text substringWithRange:NSMakeRange(5, 2)];
+                NSArray *arr = [[NSArray alloc] initWithArray:[self getHoursIn:hoursSTR andMinutes:minutesSTR andAMorPMvalue:ampmSTR]];
+                int hourInt = (int)[arr objectAtIndex:0 ];
+                int minuteInt = (int)[arr objectAtIndex:1 ];
+                int ampmInt = (int)[arr objectAtIndex:2 ];
+                
+                [_timePicker selectRow:hourInt inComponent:0 animated:YES];
+                [_timePicker selectRow:minuteInt inComponent:1 animated:YES];
+                [_timePicker selectRow:ampmInt inComponent:2 animated:YES];
+                
+            }
+            
         } else {
+            
             NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
             NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];;
             NSString *ampmSTR =_ampmArray[[_timePicker selectedRowInComponent:2]];
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
             
-            _dateFrom = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+       //     [self getHoursIn:hoursSTR andMinutes:minutesSTR andAMorPMvalue:ampmSTR];
+            if ([ampmSTR isEqualToString:@"AM"]) {
+                ampmSTR = @"0";
+            }else {
+                ampmSTR = @"12";
+            }
+            
+            _dateFrom = [NSString stringWithFormat:@"%@.%@.%@",ampmSTR ,hoursSTR, minutesSTR ];
             
             _timeFromButtonTapped = NO;
 
@@ -1275,10 +1313,50 @@
     }
     
 }
+-(NSArray*) getHoursIn:(NSString *)hour andMinutes:(NSString *)minutes andAMorPMvalue:(NSString *)ampm{
+    int hoursInt = [hour intValue];
+    hoursInt = (hoursInt-1)*6;
+    int minutesInt = [minutes intValue];
+    minutesInt = minutesInt*3;
+    int ampmInt;
+    if ([ampm isEqualToString:@"AM"]) {
+        ampmInt = 0;
+    }else {
+        ampmInt = 1;
+    }
+    NSArray *arr = @[[NSNumber numberWithInt:hoursInt], [NSNumber numberWithInt:minutesInt], [NSNumber numberWithInt: ampmInt]];
+    
+    return arr;
+}
+
 -(void) timeToButtomTapped {
+    
+    
     if (!_timeFromButtonTapped) {
         if (_timePickerBGView.hidden) {
             _timeToButtonTapped = YES;
+            
+            if ([_timeTo.text isEqualToString:@""]) {
+                [_timePicker selectRow:12*6 inComponent:0 animated:YES];
+                [_timePicker selectRow:60*3 inComponent:1 animated:YES];
+                [_timePicker selectRow:0 inComponent:2 animated:YES];
+            }else{
+                NSString *hoursSTR = [_timeTo.text substringWithRange:NSMakeRange(0,2)]  ;
+                NSString *minutesSTR = [_timeTo.text substringWithRange:NSMakeRange(3, 2)];
+                NSString *ampmSTR = [_timeTo.text substringWithRange:NSMakeRange(5, 2)];
+                NSArray *arr = [[NSArray alloc] initWithArray:[self getHoursIn:hoursSTR andMinutes:minutesSTR andAMorPMvalue:ampmSTR]];
+                int hourInt = (int)[arr objectAtIndex:0 ];
+                int minuteInt = (int)[arr objectAtIndex:1 ];
+                int ampmInt = (int)[arr objectAtIndex:2 ];
+
+                [_timePicker selectRow:hourInt inComponent:0 animated:YES];
+                [_timePicker selectRow:minuteInt inComponent:1 animated:YES];
+                [_timePicker selectRow:ampmInt inComponent:2 animated:YES];
+                
+            }
+
+            
+
         } else {
             NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
             NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];;
@@ -1286,7 +1364,15 @@
             NSString *timeTo = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeTo.text = timeTo;
             
-            _dateTo = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            //[self getHoursIn:hoursSTR andMinutes:minutesSTR andAMorPMvalue:ampmSTR];
+            
+            if ([ampmSTR isEqualToString:@"AM"]) {
+                ampmSTR = @"0";
+            }else {
+                ampmSTR = @"12";
+            }
+            
+            _dateTo = [NSString stringWithFormat:@"%@.%@.%@",ampmSTR ,hoursSTR, minutesSTR ];
             
             _timeToButtonTapped = NO;
             
@@ -1299,12 +1385,29 @@
 }
 
 -(void) doneTimeButtonTapped{
-//    NSUInteger max = 16384;
-//	NSUInteger base10 = (max/2)-(max/2)%10;
-//	[_timePicker selectRow:[_timePicker selectedRowInComponent:0]%10+base10 inComponent:0 animated:false];
+    
     if (!_timeToButtonTapped) {
         if (_timePickerBGView.hidden) {
             _timeFromButtonTapped = YES;
+            if ([_timeFrom.text isEqualToString:@""]) {
+                [_timePicker selectRow:12*6 inComponent:0 animated:YES];
+                [_timePicker selectRow:60*3 inComponent:1 animated:YES];
+                [_timePicker selectRow:0 inComponent:2 animated:YES];
+            }  else{
+                NSString *hoursSTR = [_timeFrom.text substringWithRange:NSMakeRange(0,2)]  ;
+                NSString *minutesSTR = [_timeFrom.text substringWithRange:NSMakeRange(3, 2)];
+                NSString *ampmSTR = [_timeFrom.text substringWithRange:NSMakeRange(5, 2)];
+                NSArray *arr = [[NSArray alloc] initWithArray:[self getHoursIn:hoursSTR andMinutes:minutesSTR andAMorPMvalue:ampmSTR]];
+                int hourInt = (int)[arr objectAtIndex:0 ];
+                int minuteInt = (int)[arr objectAtIndex:1 ];
+                int ampmInt = (int)[arr objectAtIndex:2 ];
+                
+                [_timePicker selectRow:hourInt inComponent:0 animated:YES];
+                [_timePicker selectRow:minuteInt inComponent:1 animated:YES];
+                [_timePicker selectRow:ampmInt inComponent:2 animated:YES];
+                
+            }
+
         } else {
             
             NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
@@ -1313,7 +1416,13 @@
             NSString *timeFrom = [NSString stringWithFormat:@"%@:%@%@",hoursSTR, minutesSTR, ampmSTR];
             _timeFrom.text = timeFrom;
             
-            _dateFrom = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            if ([ampmSTR isEqualToString:@"AM"]) {
+                ampmSTR = @"0";
+            }else {
+                ampmSTR = @"12";
+            }
+            
+            _dateFrom = [NSString stringWithFormat:@"%@.%@.%@",ampmSTR ,hoursSTR, minutesSTR ];
             
             _timeFromButtonTapped = NO;
             
@@ -1324,6 +1433,24 @@
     }else {
         if (_timePickerBGView.hidden) {
             _timeToButtonTapped = YES;
+            if ([_timeTo.text isEqualToString:@""]) {
+                [_timePicker selectRow:12*6 inComponent:0 animated:YES];
+                [_timePicker selectRow:60*3 inComponent:1 animated:YES];
+                [_timePicker selectRow:0 inComponent:2 animated:YES];
+            }else{
+                NSString *hoursSTR = [_timeTo.text substringWithRange:NSMakeRange(0,2)]  ;
+                NSString *minutesSTR = [_timeTo.text substringWithRange:NSMakeRange(3, 2)];
+                NSString *ampmSTR = [_timeTo.text substringWithRange:NSMakeRange(5, 2)];
+                NSArray *arr = [[NSArray alloc] initWithArray:[self getHoursIn:hoursSTR andMinutes:minutesSTR andAMorPMvalue:ampmSTR]];
+                int hourInt = (int)[arr objectAtIndex:0 ];
+                int minuteInt = (int)[arr objectAtIndex:1 ];
+                int ampmInt = (int)[arr objectAtIndex:2 ];
+                
+                [_timePicker selectRow:hourInt inComponent:0 animated:YES];
+                [_timePicker selectRow:minuteInt inComponent:1 animated:YES];
+                [_timePicker selectRow:ampmInt inComponent:2 animated:YES];
+                
+            }
         } else {
             NSString *hoursSTR = [_hoursArray objectAtIndex:( [_timePicker selectedRowInComponent:0] % [_hoursArray count])];
             NSString *minutesSTR =[_minutesArray objectAtIndex:( [_timePicker selectedRowInComponent:1] % [_minutesArray count])];
@@ -1332,7 +1459,13 @@
             
             _timeTo.text = timeTo;
             
-            _dateTo = [NSString stringWithFormat:@"%@.%@%@",hoursSTR, minutesSTR, ampmSTR];
+            if ([ampmSTR isEqualToString:@"AM"]) {
+                ampmSTR = @"0";
+            }else {
+                ampmSTR = @"12";
+            }
+            
+            _dateTo = [NSString stringWithFormat:@"%@.%@.%@",ampmSTR ,hoursSTR, minutesSTR ];
             
             _timeToButtonTapped = NO;
             
