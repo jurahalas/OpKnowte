@@ -9,7 +9,7 @@
 #import "OKIndicationTemplateViewController.h"
 #import "OKProcedureTemplateVariablesModel.h"
 
-@interface OKIndicationTemplateViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface OKIndicationTemplateViewController () <UIPickerViewDataSource, UITextFieldDelegate, UIPickerViewDelegate, UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPickerView *indicationPicker;
 @property (strong, nonatomic) IBOutlet UITextView *indicationTextView;
 @property (strong, nonatomic) IBOutlet UIView *pickerBGView;
@@ -40,10 +40,10 @@
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     [self addRightButtonToNavbar];
     NSString *indicationText = _templateModel.indicationText;
-    indicationText = [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
-    indicationText = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
+//    indicationText = [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
+//    indicationText = [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        indicationText = [indicationText stringByReplacingOccurrencesOfString:model.value withString: [NSString stringWithFormat:@"%@", model.ID]];
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:model.value withString: [NSString stringWithFormat:@"%@", model.key]];
     }
     _indicationTextView.text = indicationText;
     if (!IS_IOS7) {
@@ -118,10 +118,25 @@
     }
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        NSString *indicationText =  _indicationTextView.text;
+        _templateModel.indicationText = indicationText;
+        [self.delegate updateTemplateModelWith:_templateModel];
+    }
+
+    return YES;
+}
+
+
+
 - (IBAction)backButton:(id)sender {
     NSString *indicationText =  _indicationTextView.text;
     for (OKProcedureTemplateVariablesModel *model in _variablesArray){
-        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.ID] withString:[NSString stringWithFormat:@"(%@)",model.value]];
+        indicationText = [indicationText stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@", model.key] withString:[NSString stringWithFormat:@"(%@)",model.value]];
     }
     _templateModel.indicationText = indicationText;
     
