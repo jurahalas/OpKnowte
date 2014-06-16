@@ -431,6 +431,9 @@
         }else if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_postOp"]){
             symbolicTextField.customTextField.text = @"same";
             [symbolicTextField setupWithValue:@"same"];
+        }else if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complation"]){
+            symbolicTextField.customTextField.text = @"None";
+            [symbolicTextField setupWithValue:@"None"];
         }
 
         
