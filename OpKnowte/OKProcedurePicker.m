@@ -21,14 +21,14 @@
     if (![value isKindOfClass:[NSArray class]]) {
         if (![value isEqualToString:@"NO"]) {
         _customTextField.text = value;
+        [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
+
         }else{
             _customTextField.text = @"";
+            [self.delegate updateField:self.fieldName withValue:@"NO" andTag:self.tagOfTextField];
         }
-    }else{
-        _customTextField.text = @"";
     }
     _customTextField.enabled = NO;
-    [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     [self setTextFieldRightImage];
 }
 

@@ -902,19 +902,41 @@
    
 }
 
-//-(void)checkForFillFileds{
-//    for (id textField in self.interactionItems) {
-//       
-//        if ([textField isKindOfClass:[OKProcedureTextField class]]) {
-//            OKProcedureTextField *tF = textField;
-//            if ([tF.customTextField.text isE) {
-//                <#statements#>
-//            }
-//        }
-//    }
-//}
+-(BOOL)checkForFillFileds{
+    for (id textField in self.interactionItems) {
+        if ([textField isKindOfClass:[OKProcedureTextField class]]) {
+            OKProcedureTextField *tF = textField;
+            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"]){
+                    return YES;
+            }else if([tF.customTextField.text isEqualToString:@""]){
+                return NO;
+                break;
+            }
+        }
+    }for (id dataPicker in self.interactionItems) {
+        if ([dataPicker isKindOfClass:[OKProcedureDatePicker class]]) {
+            OKProcedureDatePicker * dPicker = dataPicker;
+            if ([dPicker.customTextField.text isEqualToString:@""]) {
+                return NO;
+                break;
+            }
+        }
+    }for (id picker in self.interactionItems) {
+        if ([picker isKindOfClass:[OKProcedurePicker class]]) {
+            OKProcedurePicker * procPicker = picker;
+            if ([procPicker.customTextField.placeholder isEqualToString:@"Lysis of Adhesions"]) {
+                return YES;
+            }else if ([procPicker.customTextField.text isEqualToString:@""]) {
+                return NO;
+                break;
+            }
+        }
+    }
+    return YES;
+}
 
 - (IBAction)rightButtonTapped:(id)sender {
+    if ([self checkForFillFileds]) {
     if ([self canGoToNextVC]) {
         
         [self.view endEditing:YES];
@@ -951,7 +973,14 @@
                                               otherButtonTitles: nil];
         [alert show];
     }
-
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"Please fill all fields"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
 }
 
 
