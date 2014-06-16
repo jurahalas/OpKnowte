@@ -910,31 +910,30 @@
         if ([textField isKindOfClass:[OKProcedureTextField class]]) {
             OKProcedureTextField *tF = textField;
             if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"]){
-                    return YES;
+                
             }else if([tF.customTextField.text isEqualToString:@""]){
                 return NO;
                 break;
             }
         }
-    }for (id dataPicker in self.interactionItems) {
-        if ([dataPicker isKindOfClass:[OKProcedureDatePicker class]]) {
-            OKProcedureDatePicker * dPicker = dataPicker;
+        if ([textField isKindOfClass:[OKProcedureDatePicker class]]) {
+            OKProcedureDatePicker * dPicker = textField;
             if ([dPicker.customTextField.text isEqualToString:@""]) {
                 return NO;
                 break;
             }
         }
-    }for (id picker in self.interactionItems) {
-        if ([picker isKindOfClass:[OKProcedurePicker class]]) {
-            OKProcedurePicker * procPicker = picker;
+        if ([textField isKindOfClass:[OKProcedurePicker class]]) {
+            OKProcedurePicker * procPicker = textField;
             if ([procPicker.customTextField.placeholder isEqualToString:@"Lysis of Adhesions"]) {
-                return YES;
+                
             }else if ([procPicker.customTextField.text isEqualToString:@""]) {
                 return NO;
                 break;
             }
         }
     }
+
     return YES;
 }
 
