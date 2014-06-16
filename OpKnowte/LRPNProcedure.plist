@@ -225,7 +225,7 @@
 				<key>type</key>
 				<string>switcher</string>
 				<key>placeholder</key>
-				<string>Intra-abdominal Adhesions</string>
+				<string>Adhesiolysis</string>
 				<key>items</key>
 				<array/>
 			</dict>
@@ -235,7 +235,7 @@
 				<key>type</key>
 				<string>picker</string>
 				<key>placeholder</key>
-				<string>Intra-abdominal Adhesions</string>
+				<string>Adhesiolysis</string>
 				<key>items</key>
 				<array>
 					<string>Less than 30 mins</string>

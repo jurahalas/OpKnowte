@@ -993,7 +993,7 @@
         if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"No"]){
             renalSRCount+=1;
         }
-        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"No coagulants"]){
+        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"NO"]){
             coagulantCount+=1;
         }
         if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"No"]){
@@ -1150,7 +1150,7 @@
         if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"No"]){
             sur_renalSRCount+=1;
         }
-        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"No coagulants"]){
+        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"NO"]){
             sur_coagulantCount+=1;
         }
         if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"No"]){
