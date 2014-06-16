@@ -969,7 +969,7 @@
                 minAge = age;
             }
         }
-        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"NO"]){
             positiveDMargins+=1;
         }
         if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
@@ -978,25 +978,25 @@
         if([[dic valueForKey:@"var_preOp"] isEqualToString:@"Left renal mass"]){
             LRMCount+=1;
         }
-        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"NO"]){
             cytoStentCount+=1;
         }
-        if(![[dic valueForKey:@"Adhesiolyst"] isEqualToString:@""]){
+        if(![[dic valueForKey:@"var_adhTook"] isEqualToString:@"NO"]){
             adhesiolysisCount+=1;
         }
-        if(![[dic valueForKey:@"Vascular_Anomalies"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_vasAnomolies"] isEqualToString:@"NO"]){
             vasAnomolyCount+=1;
         }
-        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"NO"]){
             intraOpUSCount+=1;
         }
-        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"NO"]){
             renalSRCount+=1;
         }
         if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"NO"]){
             coagulantCount+=1;
         }
-        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"NO"]){
             transfusionCount+=1;
         }
         if([dic valueForKey:@"var_tumorSize"]){
@@ -1126,7 +1126,7 @@
                 sur_minAge = age;
             }
         }
-        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"NO"]){
             sur_positiveDMargins+=1;
         }
         if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
@@ -1135,25 +1135,25 @@
         if([[dic valueForKey:@"var_preOp"] isEqualToString:@"Left renal mass"]){
             sur_LRMCount+=1;
         }
-        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"NO"]){
             sur_cytoStentCount+=1;
         }
-        if(![[dic valueForKey:@"Adhesiolyst"] isEqualToString:@""]){
+        if(![[dic valueForKey:@"var_adhTook"] isEqualToString:@"NO"]){
             sur_adhesiolysisCount+=1;
         }
-        if(![[dic valueForKey:@"Vascular_Anomalies"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_vasAnomolies"] isEqualToString:@"NO"]){
             sur_vasAnomolyCount+=1;
         }
-        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"NO"]){
             sur_intraOpUSCount+=1;
         }
-        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"NO"]){
             sur_renalSRCount+=1;
         }
         if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"NO"]){
             sur_coagulantCount+=1;
         }
-        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"No"]){
+        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"NO"]){
             sur_transfusionCount+=1;
         }
         if([dic valueForKey:@"var_tumorSize"]){
