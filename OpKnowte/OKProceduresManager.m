@@ -297,13 +297,13 @@
                    @"dateOfService":            dateOfServiceString,
                    
                    
-                   
+                   //var_anesthesiologist
                    @"preOpDx":                  [procModel valueForKey:@"var_preOpDX"],
                    @"postOpDX":                 [procModel valueForKey:@"var_postOp"],
                    @"nerveSparing":             [procModel valueForKey:@"var_nervesparing"],
                    @"surgeonName":              [procModel valueForKey:@"var_surgeon"],
                    @"assistants":               [procModel valueForKey:@"var_assistant"],
-                   
+                   @"anesthesiologist":         [procModel valueForKey:@"var_anesthesiologist"],
                    
                    @"pelvicLymphNodeDissection":[procModel valueForKey:@"var_pelvicDisection"],
                    @"bladderNeckReconstruction":[procModel valueForKey:@"var_bladderNeckReconstruction"],

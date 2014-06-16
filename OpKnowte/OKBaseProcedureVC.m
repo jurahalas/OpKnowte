@@ -939,6 +939,7 @@
 }
 
 - (IBAction)rightButtonTapped:(id)sender {
+    
     if ([self checkForFillFileds]) {
     if ([self canGoToNextVC]) {
         
