@@ -12,7 +12,7 @@
 @implementation OKProcedureTextField 
 
 -(void) setupWithValue:(NSString*)value{
-    if (![value isEqualToString:@"NO"]) {
+    if (![value isEqualToString:@"NO"] && ![value isEqualToString:@"None"]) {
         _customTextField.text = value;
         [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     }else{

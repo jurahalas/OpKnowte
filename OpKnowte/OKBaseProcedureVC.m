@@ -83,6 +83,7 @@
 
 @property (nonatomic,strong) NSMutableArray * currentTime;
 @property (nonatomic) int tag;
+@property (nonatomic) BOOL switcher;
 
 @end
 
@@ -432,7 +433,6 @@
             symbolicTextField.customTextField.text = @"same";
             [symbolicTextField setupWithValue:@"same"];
         }else if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_complation"]){
-            symbolicTextField.customTextField.text = @"None";
             [symbolicTextField setupWithValue:@"None"];
         }
 
@@ -674,6 +674,12 @@
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [switcher setup];
 
+        if ([[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_vasAnomolies?"]) {
+            _switcher = YES;
+        }else{
+            _switcher = NO;
+        }
+        
         [self.interactionItems addObject:switcher];
     }
     _xPoint += 43;
@@ -909,8 +915,8 @@
     for (id textField in self.interactionItems) {
         if ([textField isKindOfClass:[OKProcedureTextField class]]) {
             OKProcedureTextField *tF = textField;
-            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"]){
-                
+            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Complications"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Reservoir placement"]){
+                return YES;
             }else if([tF.customTextField.text isEqualToString:@""]){
                 return NO;
                 break;
@@ -925,8 +931,8 @@
         }
         if ([textField isKindOfClass:[OKProcedurePicker class]]) {
             OKProcedurePicker * procPicker = textField;
-            if ([procPicker.customTextField.placeholder isEqualToString:@"Lysis of Adhesions"]) {
-                
+            if ([procPicker.customTextField.placeholder isEqualToString:@"Adhesiolysis"]) {
+                return YES;
             }else if ([procPicker.customTextField.text isEqualToString:@""]) {
                 return NO;
                 break;

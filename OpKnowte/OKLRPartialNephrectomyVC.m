@@ -103,9 +103,17 @@
             [tf setValue:@"360"];
         }
         newValue = @"360";
-        
-    }
     
+    }else if ([name isEqualToString:@"var_complation"] ){
+        OKProcedureTextField *tf ;
+        if (![newValue isEqualToString:@""]) {
+            tf.customTextField.text = newValue;
+            name = @"var_complation";
+        }else {
+            newValue = @"None";
+            name = @"var_complation";
+        }
+    }
     if ([name isEqualToString:@"anterior/posterior"]) {
         
     }else {
@@ -211,7 +219,6 @@
     } else {
         [self.model setValue:boolToString forKey:name];
     }
-    
 }
 -(id) nextVC{
     OKLRPartialNephrectomyVC *nextVC = [[OKLRPartialNephrectomyVC alloc] init];

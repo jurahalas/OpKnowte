@@ -114,7 +114,7 @@
         } else {
             complicationsTF.customTextField.enabled = NO;
             complicationsTF.customTextField.text = @"";
-            [self.model setValue:@"NO" forKey:@"var_complications"];
+            [self.model setValue:@"None" forKey:@"var_complications"];
         }
     } else {
        [self.model setValue:boolToString forKey:name];
