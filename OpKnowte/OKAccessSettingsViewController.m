@@ -57,8 +57,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self getAccessVariables];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self getAccessVariables];
 }
 
 -(void) addLeftButtonToNavbar

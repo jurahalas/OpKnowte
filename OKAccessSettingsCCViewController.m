@@ -70,7 +70,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-  //  [self.navigationController setNavigationBarHidden:NO animated:YES ];
+    [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self getContactsList];
 }
 
@@ -118,29 +118,31 @@
 
 -(void) deleteContactTapped
 {
-    if (selectedContactID==nil) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"You must select contact to delete it"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
-        [self.view endEditing:YES];
-        
-    }else{
-        OKContactManager *manager = [OKContactManager instance];
-        [manager deleteContactWithContactID:self.selectedContactID handler:^(NSString *errorMsg) {
-            if (!errorMsg) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                                message:@"Сontact was successfully removed"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil, nil];
-                [alert show];
-            }
-            [self getContactsList];
-        }];
-    }
+    
+    [self.accessSettingsTableView setEditing:!self.accessSettingsTableView.editing animated:YES];
+//    if (selectedContactID==nil) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                        message:@"You must select contact to delete it"
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil, nil];
+//        [alert show];
+//        [self.view endEditing:YES];
+//        
+//    }else{
+//        OKContactManager *manager = [OKContactManager instance];
+//        [manager deleteContactWithContactID:self.selectedContactID handler:^(NSString *errorMsg) {
+//            if (!errorMsg) {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+//                                                                message:@"Сontact was successfully removed"
+//                                                               delegate:self
+//                                                      cancelButtonTitle:@"OK"
+//                                                      otherButtonTitles:nil, nil];
+//                [alert show];
+//            }
+//            [self getContactsList];
+//        }];
+//    }
 }
 
 
@@ -219,6 +221,36 @@
     contact = self.contactsArray[indexPath.row];
     self.selectedContactID = contact.identifier;
 }
+
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete;
+}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        OKContactModel *contact = [OKContactModel new];
+        contact = self.contactsArray[indexPath.row];
+        NSString *selectedContactID = contact.identifier;
+        OKContactManager *manager = [OKContactManager instance];
+        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+            if (!errorMsg) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                message:@"Сontact was successfully removed"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            [self getContactsList];
+        }];
+    }
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
