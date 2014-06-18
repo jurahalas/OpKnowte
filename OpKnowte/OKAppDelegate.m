@@ -46,12 +46,14 @@
     [defaults synchronize];
     [OKUserManager instance].currentUser = nil;
     
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"offAlertBMI" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"offTimeAlert" object:nil];
+    
     UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
     [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];
     [self.window endEditing:YES];
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"offAlertBMI" object:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"offTimeAlert" object:nil];
+
     
 }
 

@@ -268,7 +268,9 @@
     [_alertBMI show];
 }
 -(void)offTimeBMi:(NSNotification *)not{
+    [_alertBMI dismissWithClickedButtonIndex:0 animated:TRUE];
     self.alertBMI = nil;
+    self.alertBMI.hidden = YES;
     [self.view endEditing:YES];
 }
 
@@ -1091,6 +1093,7 @@
     [_alertTime show];
 }
 -(void)offTimeAlert:(NSNotification *)not{
+    [_alertTime dismissWithClickedButtonIndex:0 animated:TRUE];
     self.alertTime = nil;
     [self.view endEditing:YES];
 }

@@ -271,6 +271,7 @@
                 [self performSegueWithIdentifier:@"registrationSegue" sender:self];
                 _continueButton.enabled = YES;
                 [[OKLoadingViewController instance] hide];
+                [self.view endEditing:YES];
             }
         }];
     }
