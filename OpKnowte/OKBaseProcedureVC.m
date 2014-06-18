@@ -83,7 +83,8 @@
 
 @property (nonatomic,strong) NSMutableArray * currentTime;
 @property (nonatomic) int tag;
-@property (nonatomic) BOOL switcher;
+
+@property (nonatomic,strong) NSString * boolValue;
 
 @end
 
@@ -253,6 +254,7 @@
     _dateFrom = [[NSString alloc]init];
     
     _currentTime = [[NSMutableArray alloc]init];
+    _boolValue = [[NSString alloc]init];
 }
 -(void) BMIButtontapped{
     _BMIButton.hidden = NO;
@@ -266,7 +268,9 @@
     [_alertBMI show];
 }
 -(void)offTimeBMi:(NSNotification *)not{
+    [_alertBMI dismissWithClickedButtonIndex:0 animated:TRUE];
     self.alertBMI = nil;
+    self.alertBMI.hidden = YES;
     [self.view endEditing:YES];
 }
 
@@ -451,6 +455,7 @@
             symbolicTextField.customTextField.text = @"Prostate Cancer";
             [symbolicTextField setupWithValue:symbolicTextField.customTextField.text];        
         }
+        
         if (self.model) {
             if (![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_vasAnomolies"] ||
                 ![[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_coagulant"] ||
@@ -674,12 +679,6 @@
         [switcher setPlaceHolder:[customElementDictionary objectForKey:@"placeholder"] ];
         [switcher setup];
 
-        if ([[customElementDictionary objectForKey:@"name"]isEqualToString:@"var_vasAnomolies?"]) {
-            _switcher = YES;
-        }else{
-            _switcher = NO;
-        }
-        
         [self.interactionItems addObject:switcher];
     }
     _xPoint += 43;
@@ -912,11 +911,34 @@
 }
 
 -(BOOL)checkForFillFileds{
-    for (id textField in self.interactionItems) {
+    
+    for (int i = 0; i<[self.interactionItems count]; i++) {
+        
+        id textField = self.interactionItems[i];
         if ([textField isKindOfClass:[OKProcedureTextField class]]) {
             OKProcedureTextField *tF = textField;
-            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Complications"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Reservoir placement"]){
-                return YES;
+            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
+                OKProcedureSwitcher *switcher = self.interactionItems[i-1];
+                if (switcher.customSwitcher.isOn){
+                    if([tF.customTextField.text isEqualToString:@""]){
+                        return NO;
+                        break;
+                    }
+                }
+            }else if( [tF.customTextField.placeholder isEqualToString:@"Complications"] ){
+                
+            }else if ([tF.customTextField.placeholder isEqualToString:@"Reservoir placement"]){
+                
+                OKProcedurePicker *picker = self.interactionItems[i-1];
+                if ([picker.customTextField.text isEqualToString:@"other"]){
+                    if([tF.customTextField.text isEqualToString:@""]){
+                        return NO;
+                        break;
+                    }
+                }
+                
+                
+                
             }else if([tF.customTextField.text isEqualToString:@""]){
                 return NO;
                 break;
@@ -931,8 +953,15 @@
         }
         if ([textField isKindOfClass:[OKProcedurePicker class]]) {
             OKProcedurePicker * procPicker = textField;
-            if ([procPicker.customTextField.placeholder isEqualToString:@"Adhesiolysis"]) {
-                return YES;
+            if ([procPicker.fieldName isEqualToString:@"var_lysisOfAdhesions"] || [procPicker.fieldName isEqualToString:@"var_adhTook"]) {
+                OKProcedureSwitcher *switcher = self.interactionItems[i-1];
+
+                if (switcher.customSwitcher.isOn){
+                    if([procPicker.customTextField.text isEqualToString:@""]){
+                        return NO;
+                        break;
+                    }
+                }
             }else if ([procPicker.customTextField.text isEqualToString:@""]) {
                 return NO;
                 break;
@@ -1063,6 +1092,7 @@
     [_alertTime show];
 }
 -(void)offTimeAlert:(NSNotification *)not{
+    [_alertTime dismissWithClickedButtonIndex:0 animated:TRUE];
     self.alertTime = nil;
     [self.view endEditing:YES];
 }

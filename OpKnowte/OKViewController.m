@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (nonatomic) BOOL animatedKeyboard;
+@property (strong, nonatomic) NSString * Signin;
 @end
 
 @implementation OKViewController
@@ -29,6 +30,7 @@
     [self.view endEditing:YES];
     [self setAllDesign];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
+    _Signin = [[NSString alloc]init];
     
 }
 
@@ -49,15 +51,16 @@
 -(void) viewWillAppear:(BOOL)animated {
     
     [self.view endEditing:YES];
-    
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self.view endEditing:YES];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if([defaults objectForKey:@"user"]!=nil){
+    if([defaults objectForKey:@"user"]!=nil && [_Signin isEqualToString:@"YES"] ){
         [self performSegueWithIdentifier:@"dashboardSegue" sender:self];
     }
     if ([[NSUserDefaults standardUserDefaults] valueForKey:@"lastUserEmail"] != nil && ![[[NSUserDefaults standardUserDefaults] valueForKey:@"lastUserEmail"] isEqualToString:@""]) {
@@ -66,6 +69,16 @@
    
 }
 
+- (void)signin {
+    OKUserManager *usermanager = [OKUserManager instance];
+    [usermanager signinWithEmail:_emailTextField.text password:_passwordTextField.text handler:^(NSString* error){
+    if (error != nil) {
+            _Signin = @"NO";
+        } else {
+            _Signin = @"YES";
+        }
+    }];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -189,8 +202,6 @@
 
 - (IBAction)registerButton:(id)sender
 {
-    
-
     [self.view endEditing:YES];
     if (_animatedKeyboard) {
         [self animateTextField: _passwordTextField up: NO];

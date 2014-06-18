@@ -12,11 +12,16 @@
 @implementation OKProcedureTextField 
 
 -(void) setupWithValue:(NSString*)value{
-    if (![value isEqualToString:@"NO"] && ![value isEqualToString:@"None"]) {
-        _customTextField.text = value;
+    if ([self.fieldName isEqualToString:@"var_stonesLocations"] || [self.fieldName isEqualToString:@"var_stonesSizes"] || [self.fieldName isEqualToString:@"var_totalShocks"] || [self.fieldName isEqualToString:@"var_fragmentations"]) {
+    //    _customTextField.text = value;
         [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
     }else{
-        _customTextField.text = @"";
+        if (![value isEqualToString:@"NO"] && ![value isEqualToString:@"None"]) {
+            _customTextField.text = value;
+            [self.delegate updateField:self.fieldName withValue:self.customTextField.text andTag:self.tagOfTextField];
+        }else{
+            _customTextField.text = @"";
+        }
     }
 }
 

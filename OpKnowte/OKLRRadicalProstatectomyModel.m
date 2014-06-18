@@ -31,7 +31,8 @@
     _var_surgeon = [dictionary valueForKey:@"surgeonName"];
     _var_assistant = [dictionary valueForKey:@"Assistants"];
     _var_anesthesia = [dictionary valueForKey:@"Anestesia"];
-    
+    _var_anesthesiologist= [dictionary valueForKey:@"Anesthesiologist"];
+
     
     _var_pelvicDisection = [dictionary valueForKey:@"PelvicLymphNodeDissection"];
     _var_bladderNeckReconstruction = [dictionary valueForKey:@"BladderNeckReconstruction"];
