@@ -921,7 +921,7 @@
         id textField = self.interactionItems[i];
         if ([textField isKindOfClass:[OKProcedureTextField class]]) {
             OKProcedureTextField *tF = textField;
-            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
+            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
                 OKProcedureSwitcher *switcher = self.interactionItems[i-1];
                 if (switcher.customSwitcher.isOn){
                     if([tF.customTextField.text isEqualToString:@""]){
@@ -929,7 +929,7 @@
                         break;
                     }
                 }
-            }else if( [tF.customTextField.placeholder isEqualToString:@"Complications"] ){
+            }else if( [tF.customTextField.placeholder isEqualToString:@"Complications"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
                 
             }else if ([tF.customTextField.placeholder isEqualToString:@"Reservoir placement"]){
                 
@@ -979,7 +979,6 @@
             }
         }
     }
-
     return YES;
 }
 

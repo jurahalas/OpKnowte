@@ -222,7 +222,8 @@
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"YES," withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     indicationText = [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
-
+    
+    
     for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
         
         NSString *variableValue = [[NSString alloc] init];
@@ -271,6 +272,7 @@
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(" withString:@""];
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"NO." withString:@""];
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"None." withString:@""];
+        
         
         if ([[_model valueForKey:@"var_pelvicDisection"] isEqualToString:@"YES"]) {
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"Next the if yes to #8 lymph node packets  prostate and seminal vesicles were captured in the endocatch bag to be retrieved later in the case. We then checked for hemostasis which was very excellent. There was no evidence of rectal injury." withString:@"    Next the prostate and seminal vesicles were captured in the endocatch bag to be retrieved later in the case. We then checked for hemostasis which was very excellent. There was no evidence of rectal injury."];
