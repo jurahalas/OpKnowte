@@ -329,6 +329,13 @@
 				<key>items</key>
 				<array/>
 			</dict>
+		</array>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string></string>
+		<key>fields</key>
+		<array>
 			<dict>
 				<key>name</key>
 				<string>var_bloodLoss</string>
@@ -339,13 +346,6 @@
 				<key>items</key>
 				<array/>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
 				<string>var_counselTime</string>
