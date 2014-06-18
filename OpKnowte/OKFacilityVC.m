@@ -237,7 +237,6 @@
         [self presentViewController:mailer animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
-        
         mailer = nil;
     }
     else
