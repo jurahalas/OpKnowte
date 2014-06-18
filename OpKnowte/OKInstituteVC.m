@@ -178,17 +178,22 @@
     if (IS_IPHONE_5 ) {
         yPoint = 355;
     } else {
-        yPoint = 318;
+        if (IS_IOS7) {
+            yPoint = 318;
+        }else{
+            yPoint = 230;
+        }
     }
-    
+
     _pickerBGView = [[UIView alloc] initWithFrame:CGRectMake(0, yPoint, 320, 162)];
     _pickerBGView.backgroundColor = [UIColor colorWithRed:24/255. green:59/255. blue:85/255. alpha:.90];
     self.statesPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 320, 162)];
     self.statesPicker.delegate = self;
     self.statesPicker.dataSource = self;
-    [self.view addSubview:_pickerBGView];
     [_pickerBGView addSubview:_statesPicker];
+    [self.view addSubview:_pickerBGView];
     _pickerBGView.hidden = YES;
+    [self.view bringSubviewToFront:_pickerBGView];
     
 }
 
@@ -246,6 +251,16 @@
             [[OKLoadingViewController instance] hide];
             
         }else{
+            
+            if(IS_IOS6){
+                _streerAddressTextField.text = @"";
+                _cityTextField.text = @"";
+                _stateTextField.text = @"";
+                _zipTextField.text = @"";
+                _countryTextField.text = @"";
+                _emailTextField.text = @"";
+                _faxTextField.text = @"";
+            }
             
             [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
                 
