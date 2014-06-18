@@ -47,7 +47,14 @@
 @implementation OKInstituteVC
 
 - (void)viewDidLoad {
-    
+    _nameTextField.text = @"";
+    _streerAddressTextField.text = @"";
+    _cityTextField.text = @"";
+    _stateTextField.text = @"";
+    _zipTextField.text = @"";
+    _countryTextField.text = @"";
+    _emailTextField.text = @"";
+    _faxTextField.text = @"";
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     [self setAllDesign];
