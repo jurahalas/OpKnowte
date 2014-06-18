@@ -69,9 +69,12 @@
         _noOfDays = [reminderSettings valueForKey:@"noOfDays"];
         if ([[self getAge:[reminderSettings valueForKey:@"noOfDays"]] intValue] > 0) {
             _daysPickerTextField.text=[NSString stringWithFormat:@"%@",[self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
+            _explanationTextLabel.text = [NSString stringWithFormat: @" An email will be sent to user or team member at %@ days after time point is reached", [self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
            
+        }else{
+            _explanationTextLabel.text = [NSString stringWithFormat: @" An email will be sent to user or team member at x days after time point is reached"];
+        
         }
-        _explanationTextLabel.text = [NSString stringWithFormat: @" An email will be sent to user or team member at %@ days after time point is reached", [self getAge:[reminderSettings valueForKey:@"noOfDays"]]];
 
         [[OKLoadingViewController instance] hide];
 
