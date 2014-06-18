@@ -295,7 +295,11 @@
     
     _bmiView = [[OKBMIViewController alloc]initWithNibName:@"OKBMIViewController" bundle:nil];
     if (IS_IPHONE_5) {
-        [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+        if (IS_IOS6) {
+            [_bmiView.view setFrame:CGRectMake(5, 110, self.view.frame.size.width-10, self.view.frame.size.height-330)];
+        }else{
+            [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+            }
     }else if (!IS_IPHONE_5){
         if (IS_IOS6) {
             [_bmiView.view setFrame:CGRectMake(5, 20, self.view.frame.size.width-10, self.view.frame.size.height-240)];
@@ -967,6 +971,13 @@
                 break;
             }
         }
+        if ([textField isKindOfClass:[OKSelectContact class]]) {
+            OKSelectContact * selectContact = textField;
+            if ([selectContact.customTextField.text isEqualToString:@""]) {
+                return NO;
+                break;
+            }
+        }
     }
 
     return YES;
@@ -1146,7 +1157,11 @@
     _timeBackgroundView.alpha = 0.3f;
     
     if(IS_IPHONE_5){
+        if (IS_IOS6) {
+            _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 130, self.view.frame.size.width-10, self.view.frame.size.height-380)];
+        }else{
         _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+        }
     }else if(!IS_IPHONE_5){
         if (IS_IOS6){
             _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 40, self.view.frame.size.width-10, self.view.frame.size.height-290)];
