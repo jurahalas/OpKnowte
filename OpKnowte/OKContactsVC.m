@@ -25,11 +25,11 @@
     
     self.dataDict =  @{@"1":@"Surgeons",
                        @"2":@"Assistants",
-                       @"5":@"Reffering Physicians"};
+                       @"5":@"Refering Physicians"};
     
     self.contactID = @{@"Surgeons":@"1",
                        @"Assistants":@"2",
-                       @"Reffering Physicians":@"5"};
+                       @"Refering Physicians":@"5"};
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self addBottomTabBar];

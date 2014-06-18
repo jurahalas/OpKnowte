@@ -295,7 +295,11 @@
     
     _bmiView = [[OKBMIViewController alloc]initWithNibName:@"OKBMIViewController" bundle:nil];
     if (IS_IPHONE_5) {
-        [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+        if (IS_IOS6) {
+            [_bmiView.view setFrame:CGRectMake(5, 110, self.view.frame.size.width-10, self.view.frame.size.height-330)];
+        }else{
+            [_bmiView.view setFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+            }
     }else if (!IS_IPHONE_5){
         if (IS_IOS6) {
             [_bmiView.view setFrame:CGRectMake(5, 20, self.view.frame.size.width-10, self.view.frame.size.height-240)];
@@ -917,7 +921,7 @@
         id textField = self.interactionItems[i];
         if ([textField isKindOfClass:[OKProcedureTextField class]]) {
             OKProcedureTextField *tF = textField;
-            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
+            if ([tF.customTextField.placeholder isEqualToString:@"Descriprion (if Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Enter Coagulants"] || [tF.customTextField.placeholder isEqualToString:@"# of units (is Yes)"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
                 OKProcedureSwitcher *switcher = self.interactionItems[i-1];
                 if (switcher.customSwitcher.isOn){
                     if([tF.customTextField.text isEqualToString:@""]){
@@ -925,7 +929,7 @@
                         break;
                     }
                 }
-            }else if( [tF.customTextField.placeholder isEqualToString:@"Complications"] ){
+            }else if( [tF.customTextField.placeholder isEqualToString:@"Complications"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
                 
             }else if ([tF.customTextField.placeholder isEqualToString:@"Reservoir placement"]){
                 
@@ -963,6 +967,13 @@
                     }
                 }
             }else if ([procPicker.customTextField.text isEqualToString:@""]) {
+                return NO;
+                break;
+            }
+        }
+        if ([textField isKindOfClass:[OKSelectContact class]]) {
+            OKSelectContact * selectContact = textField;
+            if ([selectContact.customTextField.text isEqualToString:@""]) {
                 return NO;
                 break;
             }
@@ -1145,7 +1156,11 @@
     _timeBackgroundView.alpha = 0.3f;
     
     if(IS_IPHONE_5){
+        if (IS_IOS6) {
+            _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 130, self.view.frame.size.width-10, self.view.frame.size.height-380)];
+        }else{
         _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 170, self.view.frame.size.width-10, self.view.frame.size.height-400)];
+        }
     }else if(!IS_IPHONE_5){
         if (IS_IOS6){
             _timeView = [[UIView alloc]initWithFrame:CGRectMake(5, 40, self.view.frame.size.width-10, self.view.frame.size.height-290)];
