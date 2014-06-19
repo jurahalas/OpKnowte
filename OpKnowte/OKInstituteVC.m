@@ -258,17 +258,6 @@
             [[OKLoadingViewController instance] hide];
             
         }else{
-            
-            if(IS_IOS6){
-                _streerAddressTextField.text = @"";
-                _cityTextField.text = @"";
-                _stateTextField.text = @"";
-                _zipTextField.text = @"";
-                _countryTextField.text = @"";
-                _emailTextField.text = @"";
-                _faxTextField.text = @"";
-            }
-            
             [[OKContactManager instance] addContactWithName:_nameTextField.text roleID:_contactID  email:_emailTextField.text steetAddress:_streerAddressTextField.text city:_cityTextField.text state:_stateTextField.text zip:_zipTextField.text country:_countryTextField.text fax:_faxTextField.text updatedBy:[OKUserManager instance].currentUser.identifier handler:^(NSString *error){
                 
                 if(error != nil){
