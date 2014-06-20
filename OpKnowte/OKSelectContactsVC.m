@@ -116,6 +116,8 @@
     OKContactModel *contact = [OKContactModel new];
     contact = self.contactsArray[indexPath.row];
     self.selectedContactID = contact.identifier;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning
