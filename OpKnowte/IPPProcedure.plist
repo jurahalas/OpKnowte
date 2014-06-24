@@ -378,7 +378,8 @@
 				<string>Follow up</string>
 				<key>items</key>
 				<array>
-					<string>2 weeks</string>
+					<string>6 weeks</string>
+					<string>3 months</string>
 					<string>6 months</string>
 					<string>12 months</string>
 					<string>18 months</string>

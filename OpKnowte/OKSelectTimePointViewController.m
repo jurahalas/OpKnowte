@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *selectTimePointTableView;
 @property (strong, nonatomic) NSArray *timePointsArray;
+@property (strong, nonatomic) NSArray *timePointsPenile;
 @property (nonatomic) int timepointID;
 
 @property (strong, nonatomic) OKCase *caseObj;
@@ -42,7 +43,8 @@
     [self addBottomTabBar];
     
     self.caseObj = [OKCaseManager instance].selectedCase;
-        
+    
+    
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     [timePointsManager getAllTimePointsWithHandler:^(NSString* error, NSArray* timePointsArray){
@@ -50,7 +52,24 @@
         [self.selectTimePointTableView reloadData];
         [[OKLoadingViewController instance] hide];
     }];
-     
+    
+    if ([_procID isEqualToString:@"9"]) {
+        _timePointsPenile = [[NSArray alloc] initWithObjects:
+                            @"6 weeks",
+                            @"3 months",
+                            @"6 months",
+                            @"12 months",
+                            @"18 months",
+                            @"24 months",
+                            @"30 months",
+                            @"36 months",
+                            @"42 months",
+                            @"48 months",
+                            @"54 months",
+                            @"60 months",
+                            nil];
+    }
+    
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
@@ -91,17 +110,16 @@
     }
     
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
-    
-    if (indexPath.row == 11) {
-        [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
+    if ([_procID isEqualToString:@"9"]){
+            [cell.timePointLabel setText:[_timePointsPenile objectAtIndex:indexPath.row]];
     }else{
-//        int procedure = [[OKProceduresManager instance].selectedProcedure.identifier intValue];
-//        if (procedure == 10) {
-//            [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
-//        }else{
-            [cell.timePointLabel setText:timePoint.timePointName];
-//        }
+        [cell.timePointLabel setText:timePoint.timePointName];
     }
+//    if (indexPath.row == 11) {
+//        [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
+//    }else{
+//        [cell.timePointLabel setText:timePoint.timePointName];
+//    }
     [cell setCellBGImageLight:(int)indexPath.row];
     return cell;
 }

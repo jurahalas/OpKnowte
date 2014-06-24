@@ -164,14 +164,20 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"fromCasesToReminder"]){
-        OKSelectCaseViewController *contactVC = (OKSelectCaseViewController*)segue.destinationViewController;
-        contactVC.procID = _procID;
-        contactVC.detailID = _detailID;
-    }else if ([segue.identifier isEqualToString:@"selectTimepoint"]){
+    
+    if ([_procID isEqualToString:@"9"] && [segue.identifier isEqualToString:@"fromCasesToReminder"]) {
         OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
         timePoint.procID = _procID;
 
+    }else{
+        if([segue.identifier isEqualToString:@"fromCasesToReminder"]){
+            OKSelectCaseViewController *contactVC = (OKSelectCaseViewController*)segue.destinationViewController;
+            contactVC.procID = _procID;
+            contactVC.detailID = _detailID;
+        }else if ([segue.identifier isEqualToString:@"selectTimepoint"]){
+            OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
+            timePoint.procID = _procID;
+        }
     }
 }
 

@@ -10,12 +10,19 @@
 
 enum OKProcedureSummaryDetailPeriod {
     OKProcedureSummaryDetailTwoWeeks = 0,
-    OKProcedureSummaryDetailSixWeeks
+    OKProcedureSummaryDetailSixWeeks,
+    OKProcedureSummaryDetailPenile
 };
 
 @interface OKOngoingData : OKBaseModel
 
 //@property (nonatomic, strong) NSString *caseID;
+
+//penile
+@property (nonatomic, strong) NSString *averageCyclingTime;
+@property (nonatomic, strong) NSString *percentOfErosion;
+@property (nonatomic, strong) NSString *percentOfInfection;
+@property (nonatomic, strong) NSString *percentOfMechnicalFailure;
 
 //2 weeks
 @property (nonatomic, strong) NSString *tStage;
@@ -43,14 +50,17 @@ enum OKProcedureSummaryDetailPeriod {
 @property (nonatomic, strong) NSString *Bun;
 @property (nonatomic, strong ) NSString *Creatinine;
 
+-(NSOrderedDictionary*)penileItems;
 -(NSOrderedDictionary*)twoWeeksItems;
 -(NSOrderedDictionary*)sixWeeksItems;
 
 //used to check if all of the needed data is filled
+-(BOOL)checkPenileData;
 -(BOOL)checkTwoWeeksData;
 -(BOOL)checkSixWeeksData;
 
 //used to create add data request
+-(NSDictionary*)penileDictionaryForSending;
 -(NSDictionary*)twoWeeksDictionaryForSending;
 -(NSDictionary*)sixWeeksDictionaryForSending;
 

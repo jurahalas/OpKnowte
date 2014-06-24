@@ -71,6 +71,40 @@
     }
 }
 
+-(void)setupPenileElements
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    [dict setObject:@"averageCyclingTime" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Average time to begin cycling of device" forKey:@"placeholder"];
+    
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"percentOfErosion" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Percent occurrence of erosion" forKey:@"placeholder"];
+    
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"percentOfInfection" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Percent occurrence of infection" forKey:@"placeholder"];
+    
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"percentOfMechnicalFailure" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Percent occurrence of mechanical failure" forKey:@"placeholder"];
+    
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
+}
+
 -(void)setupSixWeeksElements
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -144,6 +178,7 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
 }
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -478,7 +513,7 @@
 
 - (IBAction)updateTapped:(id)sender
 {
-    if((self.detailPeriod == OKProcedureSummaryDetailTwoWeeks && !self.ongoingData.checkTwoWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailSixWeeks && !self.ongoingData.checkSixWeeksData)){
+    if((self.detailPeriod == OKProcedureSummaryDetailTwoWeeks && !self.ongoingData.checkTwoWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailSixWeeks && !self.ongoingData.checkSixWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailPenile && !self.ongoingData.checkPenileData)){
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"You need to fill all of the fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else {

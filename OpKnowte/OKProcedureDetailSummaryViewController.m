@@ -51,6 +51,8 @@
     [super viewWillAppear:animated];
     if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks){
         self.tableDict = self.ongoingData.twoWeeksItems;
+    }else if (self.detailPeriod == OKProcedureSummaryDetailPenile){
+        self.tableDict = self.ongoingData.penileItems;
     }else{
         self.tableDict = self.ongoingData.sixWeeksItems;
     }
