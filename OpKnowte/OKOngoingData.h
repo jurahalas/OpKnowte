@@ -23,6 +23,8 @@ enum OKProcedureSummaryDetailPeriod {
 @property (nonatomic, strong) NSString *percentOfErosion;
 @property (nonatomic, strong) NSString *percentOfInfection;
 @property (nonatomic, strong) NSString *percentOfMechnicalFailure;
+@property (nonatomic, strong) NSString *caseID;
+
 
 //2 weeks
 @property (nonatomic, strong) NSString *tStage;

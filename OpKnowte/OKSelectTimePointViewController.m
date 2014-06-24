@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSArray *timePointsArray;
 @property (strong, nonatomic) NSArray *timePointsPenile;
 @property (nonatomic) int timepointID;
+@property (strong, nonatomic) NSString *caseNumber;
 
 @property (strong, nonatomic) OKCase *caseObj;
 
@@ -143,7 +144,12 @@
         [[OKLoadingViewController instance]showWithText:@"Loading"];
         [[OKUserManager instance]getUserAccess:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg) {
             if(!errorMsg){
-                [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
+                if ([_procID isEqualToString:@"9"]) {
+                    _caseNumber = _caseObj.caseID;
+                }else{
+                    _caseNumber = [OKCaseManager instance].selectedCase.identifier;
+                }
+                [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:_caseNumber timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
                 
                     [[OKLoadingViewController instance]hide];
                     if(!errorMsg){
@@ -182,12 +188,22 @@
     }else if ([segue.identifier isEqualToString:@"summaryVC"]){
         OKProcedureDetailSummaryViewController *summaryVC = (OKProcedureDetailSummaryViewController*)segue.destinationViewController;
         summaryVC.ongoingData = sender;
-        summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+        summaryVC.caseNumber = _caseNumber;
+        if ([_procID isEqualToString:@"9"]) {
+            summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
+        }else{
+            summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+        }
     }else if ([segue.identifier isEqualToString:@"ongoingClinical"]){
         OKOngoingClinicalViewController *summaryVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
         summaryVC.ongoingData = sender;
         summaryVC.procID = _procID;
-        summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+        summaryVC.caseNumber = _caseNumber;
+        if ([_procID isEqualToString:@"9"]) {
+            summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
+        }else{
+            summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+        }
     }
 
 }

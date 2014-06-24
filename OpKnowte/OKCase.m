@@ -47,6 +47,32 @@
     self.preOp = [dictionary objectForKey:@"Pre_Op_1"];
     self.preSide = [dictionary objectForKey:@"Pre_Op_2"];
     self.procedureName = [dictionary objectForKey:@"PROCEDURE_ID"];
+    self.anastesia = [dictionary objectForKey:@"anastesia"];
+    self.complications = [dictionary objectForKey:@"complications"];
+    self.dateOfService = [dictionary objectForKey:@"dateOfService"];
+    self.deviceimplaned = [dictionary objectForKey:@"deviceimplaned"];
+    self.devicelength = [dictionary objectForKey:@"devicelength"];
+    self.diagnosis = [dictionary objectForKey:@"diagnosis"];
+    self.dilatedto = [dictionary objectForKey:@"dilatedto"];
+    self.dilationwas = [dictionary objectForKey:@"dilationwas"];
+    self.dilatorsused = [dictionary objectForKey:@"dilatorsused"];
+    self.drainplaced = [dictionary objectForKey:@"drainplaced"];
+    self.followup = [dictionary objectForKey:@"followup"];
+    self.gender = [dictionary objectForKey:@"gender"];
+    self.caseID = [dictionary objectForKey:@"id"];
+    self.leftdistal = [dictionary objectForKey:@"leftdistal"];
+    self.leftproximal = [dictionary objectForKey:@"leftproximal"];
+    self.mrNumber = [dictionary objectForKey:@"mrNumber"];
+    self.patientDob = [dictionary objectForKey:@"patientDob"];
+    self.procedureID = [dictionary objectForKey:@"procedureID"];
+    self.reservoirfilled = [dictionary objectForKey:@"reservoirfilled"];
+    self.reservoirplacement = [dictionary objectForKey:@"reservoirplacement"];
+    self.reservoirside = [dictionary objectForKey:@"reservoirside"];
+    self.reservoirtype = [dictionary objectForKey:@"reservoirtype"];
+    self.rightdistal = [dictionary objectForKey:@"rightdistal"];
+    self.rightproximal = [dictionary objectForKey:@"rightproximal"];
+    self.surgeonID = [dictionary objectForKey:@"surgeonID"];
+    self.volumeofirrigation = [dictionary objectForKey:@"volumeofirrigation"];
 }
 
 

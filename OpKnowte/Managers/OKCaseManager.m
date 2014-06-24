@@ -48,6 +48,7 @@
                              @"userID":[OKUserManager instance].currentUser.identifier,
                              @"caseID":caseID,
                              @"timePointID":timePointID};
+   
     [self requestWithMethod:@"GET" path:@"getOngoingClinicalDetail" params:params handler:^(NSError *error, id json) {
         NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
         if(!errorMsg){
@@ -69,11 +70,16 @@
                              @"timePointID":timePointID};
     
     NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
-    if(twoWeeks)
-        [params2 addEntriesFromDictionary:ongoingData.twoWeeksDictionaryForSending];
-    else
-        [params2 addEntriesFromDictionary:ongoingData.sixWeeksDictionaryForSending];
-
+    if(twoWeeks){
+        [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
+    }else if(!twoWeeks){
+        [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
+    }else{
+        [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
+    }
+    
+    
+    
     [self requestWithMethod:@"POST" path:@"addOngoingClinicalDetail" params:params2 handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
     }];

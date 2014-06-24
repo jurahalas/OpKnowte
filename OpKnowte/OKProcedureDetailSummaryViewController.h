@@ -15,5 +15,6 @@
 
 @property (nonatomic, strong) OKOngoingData *ongoingData;
 @property (nonatomic, assign) enum OKProcedureSummaryDetailPeriod detailPeriod;
+@property(nonatomic, strong) NSString *caseNumber;
 
 @end

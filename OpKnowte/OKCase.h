@@ -45,6 +45,36 @@
 @property (nonatomic, strong) NSArray *cc;
 @property (nonatomic, strong) NSString *preSide;
 @property (nonatomic, strong) NSString *Fax;
+@property (nonatomic, strong) NSString *irrigationantibiotics;
+
+@property (nonatomic, strong) NSString *anastesia;
+@property (nonatomic, strong) NSString *complications;
+@property (nonatomic, strong) NSString *dateOfService;
+@property (nonatomic, strong) NSString *deviceimplaned;
+@property (nonatomic, strong) NSString *devicelength;
+@property (nonatomic, strong) NSString *diagnosis;
+@property (nonatomic, strong) NSString *dilatedto;
+@property (nonatomic, strong) NSString *dilationwas;
+@property (nonatomic, strong) NSString *dilatorsused;
+@property (nonatomic, strong) NSString *drainplaced;
+@property (nonatomic, strong) NSString *followup;
+
+@property (nonatomic, strong) NSString *gender;
+@property (nonatomic, strong) NSString *caseID;
+@property (nonatomic, strong) NSString *leftdistal;
+@property (nonatomic, strong) NSString *leftproximal;
+@property (nonatomic, strong) NSString *mrNumber;
+@property (nonatomic, strong) NSString *patientDob;
+@property (nonatomic, strong) NSString *procedureID;
+@property (nonatomic, strong) NSString *reservoirfilled;
+@property (nonatomic, strong) NSString *reservoirplacement;
+
+@property (nonatomic, strong) NSString *reservoirside;
+@property (nonatomic, strong) NSString *reservoirtype;
+@property (nonatomic, strong) NSString *rightdistal;
+@property (nonatomic, strong) NSString *rightproximal;
+@property (nonatomic, strong) NSString *surgeonID;
+@property (nonatomic, strong) NSString *volumeofirrigation;
 
 -(NSString*)dateOfServiceString;
 

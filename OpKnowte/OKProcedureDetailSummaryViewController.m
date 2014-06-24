@@ -132,6 +132,7 @@
         OKOngoingClinicalViewController *ongVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
         ongVC.ongoingData = self.ongoingData;
         ongVC.detailPeriod = self.detailPeriod;
+        ongVC.caseNumber = _caseNumber;
     }
 }
 

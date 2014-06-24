@@ -26,10 +26,11 @@
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
     
     @try {
-        [dict setObject:self.tStage forKey:@"averageCyclingTime"];
-        [dict setObject:self.nStage forKey:@"percentOfErosion"];
-        [dict setObject:self.mStage forKey:@"percentOfInfection"];
-        [dict setObject:self.tumorChar forKey:@"percentOfMechnicalFailure"];
+        [dict setObject:self.averageCyclingTime forKey:@"averageCyclingTime"];
+        [dict setObject:self.percentOfErosion forKey:@"percentOfErosion"];
+        [dict setObject:self.percentOfInfection forKey:@"percentOfInfection"];
+        [dict setObject:self.percentOfMechnicalFailure forKey:@"percentOfMechnicalFailure"];
+//        [dict setObject:self.caseID forKey:@"caseID"];
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in penileItems: %@",exception);
@@ -174,6 +175,7 @@
         id obj = [self valueForKey:name];
         if(!obj){
             allDataFilled = NO;
+            NSLog(@"%@", name);
             break;
         }
     }

@@ -58,13 +58,14 @@
     
     PikerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
-    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks)
+    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks){
         [self setupTwoWeeksElements];
-    else
+    }else if(self.detailPeriod == OKProcedureSummaryDetailSixWeeks){
         [self setupSixWeeksElements];
-
+    }else{
+        [self setupPenileElements];
+    }
     [self setupKeyboardNotifications];
-    
     if (IS_IOS6) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
@@ -519,7 +520,16 @@
     }else {
         BOOL forTwoWeeks = self.detailPeriod==OKProcedureSummaryDetailTwoWeeks;
         [[OKLoadingViewController instance]showWithText:@"Sending data..."];
-        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:[OKCaseManager instance].selectedCase.identifier timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forTwoWeeks:forTwoWeeks handler:^(NSString *errorMsg) {
+        NSString *caseNumber1 = [[NSString alloc] init];
+        if ([_procID isEqualToString:@"9"]) {
+            caseNumber1 = _caseNumber;
+        }else{
+            caseNumber1 = [OKCaseManager instance].selectedCase.identifier;
+        }
+
+        NSLog(@"%@", _ongoingData);
+        
+        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forTwoWeeks:forTwoWeeks handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
