@@ -62,7 +62,7 @@
 }
 
 
-- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forTwoWeeks:(BOOL)twoWeeks handler:(void(^)(NSString *errorMsg))handler
+- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
 {
     NSDictionary *params1 = @{@"procedureID":procedureID,
                              @"userID":[OKUserManager instance].currentUser.identifier,
@@ -70,11 +70,12 @@
                              @"timePointID":timePointID};
     
     NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
-    if(twoWeeks){
-        [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
-    }else if(!twoWeeks){
-        [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
-    }else{
+    
+    if([forProcedure isEqualToString:@"1"]){
+        [params2 addEntriesFromDictionary:ongoingData.twoWeeksDictionaryForSending];
+    }else if([forProcedure isEqualToString:@"2"]){
+        [params2 addEntriesFromDictionary:ongoingData.sixWeeksDictionaryForSending];
+    }else if([forProcedure isEqualToString:@"3"]){
         [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
     }
     

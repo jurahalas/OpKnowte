@@ -20,6 +20,6 @@
 
 - (void)getOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, OKOngoingData *ongoingData ))handler;
 
-- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forTwoWeeks:(BOOL)twoWeeks handler:(void(^)(NSString *errorMsg))handler;
+- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
 
 @end

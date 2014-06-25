@@ -514,11 +514,23 @@
 
 - (IBAction)updateTapped:(id)sender
 {
-    if((self.detailPeriod == OKProcedureSummaryDetailTwoWeeks && !self.ongoingData.checkTwoWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailSixWeeks && !self.ongoingData.checkSixWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailPenile && !self.ongoingData.checkPenileData)){
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"You need to fill all of the fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }else {
-        BOOL forTwoWeeks = self.detailPeriod==OKProcedureSummaryDetailTwoWeeks;
+//    if((self.detailPeriod == OKProcedureSummaryDetailTwoWeeks && !self.ongoingData.checkTwoWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailSixWeeks && !self.ongoingData.checkSixWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailPenile && !self.ongoingData.checkPenileData)){
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"You need to fill all of the fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//    }else {
+    NSString *forProcedure = [[NSString alloc] init];
+    
+    
+    NSLog(@"%@", _procID);
+
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailTwoWeeks) {
+        forProcedure = @"1";
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailSixWeeks){
+        forProcedure = @"2";
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
+        forProcedure = @"3";
+    }
+    
         [[OKLoadingViewController instance]showWithText:@"Sending data..."];
         NSString *caseNumber1 = [[NSString alloc] init];
         if ([_procID isEqualToString:@"9"]) {
@@ -526,14 +538,13 @@
         }else{
             caseNumber1 = [OKCaseManager instance].selectedCase.identifier;
         }
+        self.ongoingData.caseID = _caseNumber;
 
-        NSLog(@"%@", _ongoingData);
-        
-        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forTwoWeeks:forTwoWeeks handler:^(NSString *errorMsg) {
+        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
-    }
+//    }
 }
 
 

@@ -26,11 +26,10 @@
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
     
     @try {
-        [dict setObject:self.averageCyclingTime forKey:@"averageCyclingTime"];
-        [dict setObject:self.percentOfErosion forKey:@"percentOfErosion"];
-        [dict setObject:self.percentOfInfection forKey:@"percentOfInfection"];
-        [dict setObject:self.percentOfMechnicalFailure forKey:@"percentOfMechnicalFailure"];
-//        [dict setObject:self.caseID forKey:@"caseID"];
+        [dict setObject:self.averageCyclingTime forKey:@"Average time to begin cycling of device"];
+        [dict setObject:self.percentOfErosion forKey:@"Percent occurrence of erosion"];
+        [dict setObject:self.percentOfInfection forKey:@" Percent occurrence of infection"];
+        [dict setObject:self.percentOfMechnicalFailure forKey:@"Percent occurrence of mechnical failure"];
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in penileItems: %@",exception);
@@ -93,7 +92,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 6; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -118,7 +117,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 15; i++)
+    for (i = 5; i < 20; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

@@ -9,9 +9,9 @@
 #import "OKBaseModel.h"
 
 enum OKProcedureSummaryDetailPeriod {
-    OKProcedureSummaryDetailTwoWeeks = 0,
-    OKProcedureSummaryDetailSixWeeks,
-    OKProcedureSummaryDetailPenile
+    OKProcedureSummaryDetailTwoWeeks = 1,
+    OKProcedureSummaryDetailSixWeeks = 2,
+    OKProcedureSummaryDetailPenile = 3
 };
 
 @interface OKOngoingData : OKBaseModel
@@ -24,7 +24,6 @@ enum OKProcedureSummaryDetailPeriod {
 @property (nonatomic, strong) NSString *percentOfInfection;
 @property (nonatomic, strong) NSString *percentOfMechnicalFailure;
 @property (nonatomic, strong) NSString *caseID;
-
 
 //2 weeks
 @property (nonatomic, strong) NSString *tStage;
