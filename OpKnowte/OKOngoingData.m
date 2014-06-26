@@ -107,7 +107,6 @@
     
     free(properties);
     return dict;
-
 }
 
 -(NSDictionary*)twoWeeksDictionaryForSending
@@ -142,17 +141,25 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 14; i < count; i++)
+    for (i = 19; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
         
         id obj = [self valueForKey:name];
-        if(!obj)
+        if(!obj){
             obj = @"";
+        }
+        if ([name isEqualToString:@"chestXray"] && [obj isEqualToString:@""]) {
+            obj = @"Negative";
+            [dict setObject:obj forKey:name];
+        }else if ([name isEqualToString:@"liverEnzymes"] && [obj isEqualToString:@""]){
+            obj = @"Normal";
+            [dict setObject:obj forKey:name];
+        }
         [dict setObject:obj forKey:name];
     }
-    
+
     free(properties);
     return dict;
 }
@@ -161,10 +168,8 @@
 -(BOOL)checkPenileData
 {
     BOOL allDataFilled = YES;
-    
     unsigned count;
     objc_property_t *properties = class_copyPropertyList([self class], &count);
-    
     unsigned i;
     for (i = 1; i < 5; i++)
     {
@@ -215,7 +220,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 15; i < count; i++)
+    for (i = 19; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

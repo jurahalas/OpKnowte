@@ -125,8 +125,6 @@
     }else{
         if ([_procID isEqualToString:@"9"]) {
             cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientNameNineProc];;
-//            _detailID = [NSString stringWithFormat:@"%@", selCase.caseID];;
-
         }else{
             cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];;
 

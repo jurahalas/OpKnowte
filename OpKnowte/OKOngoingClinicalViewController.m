@@ -450,6 +450,10 @@
             
             if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"Yes"] || [newValue isEqualToString:@"Positive"]){
                 [interactionItem setEnabled:YES];
+            }else if ([newValue isEqualToString:@"Negative"]){
+                [self.ongoingData setValue:newValue forKey:fieldName];
+            }else if ([newValue isEqualToString:@"Normal"]){
+                [self.ongoingData setValue:newValue forKey:fieldName];
             }else{
                 [interactionItem setEnabled:NO];
                 [self.ongoingData setValue:@"" forKey:fieldName];
@@ -514,15 +518,8 @@
 
 - (IBAction)updateTapped:(id)sender
 {
-//    if((self.detailPeriod == OKProcedureSummaryDetailTwoWeeks && !self.ongoingData.checkTwoWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailSixWeeks && !self.ongoingData.checkSixWeeksData) || (self.detailPeriod == OKProcedureSummaryDetailPenile && !self.ongoingData.checkPenileData)){
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"You need to fill all of the fields." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alert show];
-//    }else {
     NSString *forProcedure = [[NSString alloc] init];
     
-    
-    NSLog(@"%@", _procID);
-
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailTwoWeeks) {
         forProcedure = @"1";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailSixWeeks){
@@ -544,7 +541,6 @@
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
-//    }
 }
 
 

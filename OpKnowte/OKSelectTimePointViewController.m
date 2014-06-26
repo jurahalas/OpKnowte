@@ -153,17 +153,24 @@
                 
                     [[OKLoadingViewController instance]hide];
                     if(!errorMsg){
-                        if ([cameFromVC isEqualToString:@"weeks"]) {
-                            if(![ongoingData.tStage isEqualToString:@""]){
-                                [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
-                            }else{
-                                [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
-                            }
-                        }else if ([cameFromVC isEqualToString:@"months"]){
-                            if(![ongoingData.chestXray isEqualToString:@""]){
-                                [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
-                            }else{
-                                [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                        
+                        if ([_procID isEqualToString:@"9"] && [ongoingData.averageCyclingTime isEqualToString:@""]) {
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"9"] && ![ongoingData.averageCyclingTime isEqualToString:@""]){
+                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        }else{
+                            if ([cameFromVC isEqualToString:@"weeks"]) {
+                                if(![ongoingData.tStage isEqualToString:@""]){
+                                    [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                                }else{
+                                    [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                                }
+                            }else if ([cameFromVC isEqualToString:@"months"]){
+                                if(![ongoingData.Bun isEqualToString:@""] && ongoingData.Bun!=nil){
+                                    [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                                }else{
+                                    [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                                }
                             }
                         }
                     }
