@@ -53,6 +53,8 @@
         self.tableDict = self.ongoingData.twoWeeksItems;
     }else if (self.detailPeriod == OKProcedureSummaryDetailPenile){
         self.tableDict = self.ongoingData.penileItems;
+    }else if (self.detailPeriod == OKProcedureSummaryDetailRobotic){
+        self.tableDict = self.ongoingData.roboticItems;
     }else{
         self.tableDict = self.ongoingData.sixWeeksItems;
     }
@@ -93,18 +95,6 @@
 {
     return self.tableDict.allKeys.count;
 }
-//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    if (self.tableView.contentOffset.y>-64.f){
-//        //_tableView.showsPullToRefresh = NO;
-//        _pullToRefreshView.hidden = YES;
-//    }
-//    else if (self.tableView.contentOffset.y == -64.f) {
-//        _tableView.showsPullToRefresh = NO;
-//    } else {
-//        _tableView.showsPullToRefresh = YES;
-//
-//    }
-//}
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

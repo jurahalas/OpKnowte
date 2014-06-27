@@ -20,23 +20,55 @@
     }];
 }
 
+-(NSOrderedDictionary*)roboticItems
+{
+    
+    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
+    
+    @try {
+        [dict setObject:self.T forKey:@"T"];
+        [dict setObject:self.N forKey:@"N"];
+        [dict setObject:self.gleason forKey:@"Gleason"];
+        [dict setObject:self.positiveMargin forKey:@"Positive Margin"];
+        [dict setObject:self.cystogram forKey:@"Cystogram"];
+        [dict setObject:self.Ileus forKey:@"Ileus, %"];
+        [dict setObject:self.transfusion forKey:@"Transfusion, %"];
+        [dict setObject:self.woundInfection forKey:@"Wound Infection, %"];
+        [dict setObject:self.urineLeak forKey:@"Urine leak, %"];
+        [dict setObject:self.bowelInjury forKey:@"Bowel Injury, %"];
+        [dict setObject:self.DVT forKey:@"DVT, %"];
+        [dict setObject:self.PE forKey:@"PE, %"];
+        [dict setObject:self.reAdmission forKey:@"Re-admission within 30 days, %"];
+        [dict setObject:self.returnToORWithin forKey:@"Return to the OR within 30 days, %"];
+        [dict setObject:self.death forKey:@"Death, %"];
+        
+        [dict setObject:self.complications forKey:@"Complications"];
+        [dict setObject:self.lengthOfStay forKey:@"Length of Stay, night(s)"];
+
+    }
+    @catch (NSException *exception) {
+        NSLog(@"OKOngoing data exception in roboticItems: %@",exception);
+    }
+    return dict;
+    
+}
+
 -(NSOrderedDictionary*)penileItems
 {
- 
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
     
     @try {
         [dict setObject:self.averageCyclingTime forKey:@"Average time to begin cycling of device"];
-        [dict setObject:self.percentOfErosion forKey:@"Percent occurrence of erosion"];
-        [dict setObject:self.percentOfInfection forKey:@" Percent occurrence of infection"];
-        [dict setObject:self.percentOfMechnicalFailure forKey:@"Percent occurrence of mechnical failure"];
+        [dict setObject:self.percentOfErosion forKey:@"Occurrence of erosion, %"];
+        [dict setObject:self.percentOfInfection forKey:@"Occurrence of infection, %"];
+        [dict setObject:self.percentOfMechnicalFailure forKey:@"Occurrence of mechanical failure, %"];
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in penileItems: %@",exception);
     }
     return dict;
-
 }
+
 
 -(NSOrderedDictionary*)twoWeeksItems
 {
@@ -85,6 +117,32 @@
 }
 
 
+-(NSDictionary*)roboticDictionaryForSending
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 0; i < 17; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        id obj = [self valueForKey:name];
+        if(!obj){
+            obj = @"";
+            NSLog(@"%@", name);
+            [dict removeObjectForKey:name];
+        }
+        [dict setObject:obj forKey:name];
+    }
+    
+    free(properties);
+    return dict;
+}
+
+
 -(NSDictionary*)penileDictionaryForSending
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -92,7 +150,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 6; i++)
+    for (i = 17; i < 23; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -116,7 +174,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 5; i < 20; i++)
+    for (i = 15; i < 30; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -141,7 +199,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 19; i < count; i++)
+    for (i = 20; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

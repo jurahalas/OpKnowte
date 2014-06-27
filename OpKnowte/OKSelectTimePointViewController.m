@@ -158,6 +158,10 @@
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"9"] && ![ongoingData.averageCyclingTime isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"1"] && ![ongoingData.gleason isEqualToString:@""]){
+                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"1"] && [ongoingData.gleason isEqualToString:@""]){
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else{
                             if ([cameFromVC isEqualToString:@"weeks"]) {
                                 if(![ongoingData.tStage isEqualToString:@""]){
@@ -198,6 +202,8 @@
         summaryVC.caseNumber = _caseNumber;
         if ([_procID isEqualToString:@"9"]) {
             summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
+        }else if ([_procID isEqualToString:@"1"]){
+            summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
         }else{
             summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }
@@ -208,6 +214,8 @@
         summaryVC.caseNumber = _caseNumber;
         if ([_procID isEqualToString:@"9"]) {
             summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
+        }else if ([_procID isEqualToString:@"1"]){
+            summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
         }else{
             summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }

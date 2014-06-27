@@ -62,6 +62,8 @@
         [self setupTwoWeeksElements];
     }else if(self.detailPeriod == OKProcedureSummaryDetailSixWeeks){
         [self setupSixWeeksElements];
+    }else if(self.detailPeriod == OKProcedureSummaryDetailRobotic){
+        [self setupRoboticElements];
     }else{
         [self setupPenileElements];
     }
@@ -71,6 +73,123 @@
         [self addLeftButtonToNavbar];
     }
 }
+
+-(void)setupRoboticElements
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    [dict setObject:@"T" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"T2a", @"T2b", @"T2c", @"T3a", @"T3b", @"T4"] forKey:@"items"];
+    [dict setObject:@"T" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
+    [dict setObject:@"N" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"N", @"NX", @"N0", @"N1"] forKey:@"items"];
+    [dict setObject:@"N" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
+    [dict setObject:@"gleason" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"(3+3)", @"(3+4)", @"(4+3)", @"(4+4)", @"(4+5)", @"(5+5)"] forKey:@"items"];
+    [dict setObject:@"Gleason" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"positiveMargin" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
+    [dict setObject:@"Positive Margin" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    
+    [dict setObject:@"cystogram" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
+    [dict setObject:@"Cystogram" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    
+    [dict setObject:@"lengthOfStay" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:[self postOpHospitalStayItems] forKey:@"items"];
+    [dict setObject:@"Post-Op Hospital Stay" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
+    [dict setObject:@"complications" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"Complications" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"Ileus" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Ileus, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    
+    [dict setObject:@"transfusion" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Transfusion, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
+    [dict setObject:@"woundInfection" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Wound Infection, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
+    [dict setObject:@"urineLeak" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Urine leak, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"bowelInjury" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Bowel Injury, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"DVT" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"DVT, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"PE" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"PE, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"reAdmission" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Re-admission within 30 days, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+   
+    [dict setObject:@"returnToORWithin" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Return to the OR within 30 days, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"death" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"Death, %" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+}
+
 
 -(void)setupPenileElements
 {
@@ -85,21 +204,21 @@
     
     [dict setObject:@"percentOfErosion" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Percent occurrence of erosion" forKey:@"placeholder"];
+    [dict setObject:@"Occurrence of erosion, %" forKey:@"placeholder"];
     
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
     [dict setObject:@"percentOfInfection" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Percent occurrence of infection" forKey:@"placeholder"];
+    [dict setObject:@"Occurrence of infection, %" forKey:@"placeholder"];
     
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
     [dict setObject:@"percentOfMechnicalFailure" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Percent occurrence of mechanical failure" forKey:@"placeholder"];
+    [dict setObject:@"Occurrence of mechanical failure, %" forKey:@"placeholder"];
     
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -441,10 +560,28 @@
 -(void)updateField:(NSString*)name withValue:(NSString*)newValue  andTag:(NSInteger) tag
 {
     NSRange onRange = [name rangeOfString:@"_on"];
+
+    if (([name isEqualToString:@"Ileus"] || [name isEqualToString:@"transfusion"] ||
+         [name isEqualToString:@"woundInfection"] || [name isEqualToString:@"urineLeak"] ||
+         [name isEqualToString:@"bowelInjury"] || [name isEqualToString:@"DVT"] ||
+         [name isEqualToString:@"PE"] || [name isEqualToString:@"reAdmission"] ||
+         [name isEqualToString:@"returnToORWithin"] || [name isEqualToString:@"death"] ||
+         [name isEqualToString:@"percentOfErosion"] || [name isEqualToString:@"percentOfInfection"] ||
+         [name isEqualToString:@"percentOfMechnicalFailure"]) && ([newValue intValue]>100)) {
+        
+        NSArray *neededElements = [self.interactionItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fieldName == %@", name]];
+        if(neededElements.count>0){
+            OKProcedureTextField *tf = neededElements[0];
+            [tf setValue:@"100"];
+        }
+        newValue = @"100";
+    }
+    
     if(onRange.location != NSNotFound){
         NSString *fieldName = [name substringToIndex:onRange.location];
 
         NSArray *neededItems = [self.interactionItems filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"fieldName == %@", fieldName]];
+      
         if(neededItems.count > 0){
             id interactionItem = neededItems[0];
             
@@ -526,6 +663,8 @@
         forProcedure = @"2";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
         forProcedure = @"3";
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
+        forProcedure = @"4";
     }
     
         [[OKLoadingViewController instance]showWithText:@"Sending data..."];
