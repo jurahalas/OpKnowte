@@ -751,7 +751,6 @@
     
     [textField resignFirstResponder];
     return YES;
-    
 }
 
 - (void)didReceiveMemoryWarning

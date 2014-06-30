@@ -22,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *selectTimePointTableView;
 @property (strong, nonatomic) NSArray *timePointsArray;
 @property (strong, nonatomic) NSArray *timePointsPenile;
+@property (strong, nonatomic) NSArray *timePointShockwave;
+
 @property (nonatomic) int timepointID;
 @property (strong, nonatomic) NSString *caseNumber;
 
@@ -69,14 +71,17 @@
                             @"54 months",
                             @"60 months",
                             nil];
+    }else if ([_procID isEqualToString:@"10"]){
+        _timePointShockwave = @[_followUp];
     }
     
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -98,7 +103,11 @@
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _timePointsArray.count;
+    if ([_procID isEqualToString:@"10"]) {
+        return _timePointShockwave.count;
+    }else{
+        return _timePointsArray.count;
+    }
 }
 
 
@@ -112,7 +121,9 @@
     
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
     if ([_procID isEqualToString:@"9"]){
-            [cell.timePointLabel setText:[_timePointsPenile objectAtIndex:indexPath.row]];
+        [cell.timePointLabel setText:[_timePointsPenile objectAtIndex:indexPath.row]];
+    }else if ([_procID isEqualToString:@"10"]){
+        [cell.timePointLabel setText:[_timePointShockwave objectAtIndex:indexPath.row]];
     }else{
         [cell.timePointLabel setText:timePoint.timePointName];
     }
@@ -204,6 +215,8 @@
             summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"1"]){
             summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+        }else if ([_procID isEqualToString:@"10"]){
+            summaryVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{
             summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }
@@ -216,6 +229,8 @@
             summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"1"]){
             summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+        }else if ([_procID isEqualToString:@"10"]){
+            summaryVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{
             summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }

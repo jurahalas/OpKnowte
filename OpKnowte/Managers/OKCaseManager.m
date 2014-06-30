@@ -79,8 +79,9 @@
         [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
     }else if([forProcedure isEqualToString:@"4"]){
         [params2 addEntriesFromDictionary:ongoingData.roboticDictionaryForSending];
+    }else if([forProcedure isEqualToString:@"5"]){
+        [params2 addEntriesFromDictionary:ongoingData.shockwaveDictionaryForSending];
     }
-    
     
     [self requestWithMethod:@"POST" path:@"addOngoingClinicalDetail" params:params2 handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);

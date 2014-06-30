@@ -641,9 +641,7 @@
                 if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_lysisOfAdhesions"] || ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]) {
                 
                 [picker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
-                
                 }
-                
             }
         }
         

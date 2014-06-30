@@ -36,7 +36,6 @@
     
     
     
-    
     //_twoWeeksEmail= [dictionary valueForKey:@"twoWeeksEmail"];
     //_sixMonthsEmail= [dictionary valueForKey:@"sixMonthsEmail"];
     _DetailID= [dictionary valueForKey:@"DetailID"];

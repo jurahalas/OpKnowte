@@ -12,12 +12,16 @@ enum OKProcedureSummaryDetailPeriod {
     OKProcedureSummaryDetailTwoWeeks = 1,
     OKProcedureSummaryDetailSixWeeks = 2,
     OKProcedureSummaryDetailPenile = 3,
-    OKProcedureSummaryDetailRobotic = 4
+    OKProcedureSummaryDetailRobotic = 4,
+    OKProcedureSummaryDetailShockwave = 5
 };
 
 @interface OKOngoingData : OKBaseModel
 
-//@property (nonatomic, strong) NSString *caseID;
+//shockwave
+@property (nonatomic, strong) NSString *stoneFragmentation;
+@property (nonatomic, strong) NSString *postprocedureComplications;
+
 
 //radical
 @property (nonatomic, strong) NSString *T;
@@ -70,6 +74,8 @@ enum OKProcedureSummaryDetailPeriod {
 @property (nonatomic, strong) NSString *Bun;
 @property (nonatomic, strong ) NSString *Creatinine;
 
+
+-(NSOrderedDictionary*)shockwaveItems;
 -(NSOrderedDictionary*)roboticItems;
 -(NSOrderedDictionary*)penileItems;
 -(NSOrderedDictionary*)twoWeeksItems;
@@ -81,6 +87,7 @@ enum OKProcedureSummaryDetailPeriod {
 -(BOOL)checkSixWeeksData;
 
 //used to create add data request
+-(NSDictionary*)shockwaveDictionaryForSending;
 -(NSDictionary*)roboticDictionaryForSending;
 -(NSDictionary*)penileDictionaryForSending;
 -(NSDictionary*)twoWeeksDictionaryForSending;

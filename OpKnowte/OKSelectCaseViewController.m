@@ -149,6 +149,7 @@
             [[OKLoadingViewController instance]hide];
             OKCase *selCase = self.cases[indexPath.row];
             [OKCaseManager instance].selectedCase = selCase;
+            _followUp = [OKCaseManager instance].selectedCase.followup;
             if ([_cameFromVC isEqualToString:@"Reminder"])
                 [self performSegueWithIdentifier:@"fromCasesToReminder" sender:nil];
             else
@@ -173,6 +174,8 @@
         }else if ([segue.identifier isEqualToString:@"selectTimepoint"]){
             OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
             timePoint.procID = _procID;
+            timePoint.followUp = _followUp;
+            
         }
     }
 }

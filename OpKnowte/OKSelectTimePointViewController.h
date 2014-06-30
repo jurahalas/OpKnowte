@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) NSString *cameFromVC;
 @property (nonatomic, strong) NSString *procID;
+@property (nonatomic, strong) NSString *followUp;
+
 
 
 @property (nonatomic, retain) NSMutableArray *performanceCases;

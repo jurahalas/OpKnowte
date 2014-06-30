@@ -18,5 +18,7 @@
 @property(strong, nonatomic) NSString *procID;
 @property(strong, nonatomic) NSString *detailID;
 @property(strong, nonatomic) NSString *cameFromVC;
+@property(strong, nonatomic) NSString *followUp;
+
 
 @end

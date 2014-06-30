@@ -57,7 +57,7 @@
     self.dilationwas = [dictionary objectForKey:@"dilationwas"];
     self.dilatorsused = [dictionary objectForKey:@"dilatorsused"];
     self.drainplaced = [dictionary objectForKey:@"drainplaced"];
-    self.followup = [dictionary objectForKey:@"followup"];
+    self.followup = [dictionary objectForKey:@"FollowUp"];
     self.gender = [dictionary objectForKey:@"gender"];
     self.caseID = [dictionary objectForKey:@"id"];
     self.leftdistal = [dictionary objectForKey:@"leftdistal"];

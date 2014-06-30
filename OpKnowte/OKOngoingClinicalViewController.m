@@ -64,6 +64,8 @@
         [self setupSixWeeksElements];
     }else if(self.detailPeriod == OKProcedureSummaryDetailRobotic){
         [self setupRoboticElements];
+    }else if(self.detailPeriod == OKProcedureSummaryDetailShockwave){
+        [self setupShockwaveElements];
     }else{
         [self setupPenileElements];
     }
@@ -72,6 +74,31 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
+}
+
+
+-(void)setupShockwaveElements
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    for (int j = 0; j < [[self.ongoingData valueForKey:@"var_stonesCount" ] intValue]; j++) {
+          
+        [dict setObject:@"stoneFragmentation_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Resolved", @"Residual fragment"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+    }
+
 }
 
 -(void)setupRoboticElements
@@ -665,6 +692,8 @@
         forProcedure = @"3";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
         forProcedure = @"4";
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
+        forProcedure = @"5";
     }
     
         [[OKLoadingViewController instance]showWithText:@"Sending data..."];
