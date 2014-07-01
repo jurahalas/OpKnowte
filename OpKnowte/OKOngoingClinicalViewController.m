@@ -81,8 +81,8 @@
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    for (int j = 0; j < [[self.ongoingData valueForKey:@"var_stonesCount" ] intValue]; j++) {
-          
+    for (int j = 0; j < [[self.ongoingData valueForKey:@"var_stonesCount" ] intValue]; j++)
+    {
         [dict setObject:@"stoneFragmentation_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
         [dict setObject:@[@"Resolved", @"Residual fragment"] forKey:@"items"];
@@ -94,12 +94,17 @@
         [dict setObject:@"symbolicTextField" forKey:@"type"];
         [dict setObject:@"Stone Fragmentation" forKey:@"placeholder"];
         [dict setObject:@"yes" forKey:@"depends"];
-        
         [self addCustomElement:dict];
         [dict removeAllObjects];
     }
 
+    [dict setObject:@"postprocedureComplications" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
 }
+
 
 -(void)setupRoboticElements
 {
@@ -692,7 +697,7 @@
         forProcedure = @"3";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
         forProcedure = @"4";
-    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
         forProcedure = @"5";
     }
     

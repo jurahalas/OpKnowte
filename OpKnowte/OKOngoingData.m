@@ -20,19 +20,19 @@
     }];
 }
 
--(NSOrderedDictionary*)shockwaveItems
-{
-    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-    
-    @try {
-        [dict setObject:self.stoneFragmentation forKey:@"Stone fragmentation #1"];
-        [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"OKOngoing data exception in shockwaveItems: %@",exception);
-    }
-    return dict;
-}
+//-(NSOrderedDictionary*)shockwaveItems
+//{
+//    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
+//    
+//    @try {
+//        [dict setObject:self.stoneFragmentation forKey:@"Stone fragmentation #1"];
+//        [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+//    }
+//    @catch (NSException *exception) {
+//        NSLog(@"OKOngoing data exception in shockwaveItems: %@",exception);
+//    }
+//    return dict;
+//}
 
 
 -(NSOrderedDictionary*)roboticItems

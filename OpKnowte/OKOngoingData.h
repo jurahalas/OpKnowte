@@ -8,7 +8,8 @@
 
 #import "OKBaseModel.h"
 
-enum OKProcedureSummaryDetailPeriod {
+enum OKProcedureSummaryDetailPeriod
+{
     OKProcedureSummaryDetailTwoWeeks = 1,
     OKProcedureSummaryDetailSixWeeks = 2,
     OKProcedureSummaryDetailPenile = 3,
@@ -19,9 +20,12 @@ enum OKProcedureSummaryDetailPeriod {
 @interface OKOngoingData : OKBaseModel
 
 //shockwave
-@property (nonatomic, strong) NSString *stoneFragmentation;
+@property (nonatomic, strong) NSString *stoneFragmentation1;
+@property (nonatomic, strong) NSString *stoneFragmentation2;
+@property (nonatomic, strong) NSString *stoneFragmentation3;
+@property (nonatomic, strong) NSString *stoneFragmentation4;
+@property (nonatomic, strong) NSString *stoneFragmentation5;
 @property (nonatomic, strong) NSString *postprocedureComplications;
-
 
 //radical
 @property (nonatomic, strong) NSString *T;
@@ -41,7 +45,6 @@ enum OKProcedureSummaryDetailPeriod {
 @property (nonatomic, strong) NSString *death;
 @property (nonatomic, strong) NSString *lengthOfStay;
 @property (nonatomic, strong) NSString *complications;
-
 
 //penile
 @property (nonatomic, strong) NSString *averageCyclingTime;
@@ -73,7 +76,6 @@ enum OKProcedureSummaryDetailPeriod {
 @property (nonatomic, strong) NSString *CtScan;
 @property (nonatomic, strong) NSString *Bun;
 @property (nonatomic, strong ) NSString *Creatinine;
-
 
 -(NSOrderedDictionary*)shockwaveItems;
 -(NSOrderedDictionary*)roboticItems;

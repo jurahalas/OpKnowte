@@ -61,6 +61,7 @@
         }
         [_detailSummaryTable reloadData];
         [[OKLoadingViewController instance] hide];
+        
 
     }];
     

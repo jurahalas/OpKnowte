@@ -8,7 +8,6 @@
 
 #import "OKShockwaveLithotripsyVC.h"
 #import "OKShockwaveLithotripsyModel.h"
-
 #import "OKProcedureTextField.h"
 #import "OKProcedureSwitcher.h"
 #import "OKProcedureDatePicker.h"
@@ -20,20 +19,19 @@
 
 @interface OKShockwaveLithotripsyVC ()
 
-
-
 @end
 
 @implementation OKShockwaveLithotripsyVC
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -49,9 +47,7 @@
         self.model = [[OKShockwaveLithotripsyModel alloc] init];
 
     }
-    
     for (int i = 0; i < currentPageFieldsArray.count; i++) {
-    
         if (self.currentPage >=1 && self.currentPage <= 4) {
             for (int j = 0; j < [[self.model valueForKey:@"var_stonesCount" ] intValue]; j++) {
                 [self addCustomElementFromDictionary:[currentPageFieldsArray objectAtIndex:i] withTag:j+1];
@@ -74,9 +70,7 @@
             [array replaceObjectAtIndex:(tag-1) withObject:newValue];
         }
         [self.model setValue:array forKey:name];
-
     } else {
-        
         if ([name isEqualToString:@"var_patientDOB"]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"MM-dd-yyyy"];
@@ -86,19 +80,13 @@
             [self.model setValue:age forKey:@"var_age"];
             [self.model setValue:newValue forKey:name];
             [self.model setValue:[NSString stringWithFormat:@"%@ %@ , %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title] forKey:@"var_surgeon"];
-            
-            
-            
         } else {
-            
             [self.model setValue:newValue forKey:name];
         }
     }
-    
-
-
-    
 }
+
+
 #pragma mark - OKProcedureSwitcherDelegate
 -(void)updateField:(NSString*)name withBoolValue:(BOOL)newValue{
     NSString *boolToString = @"";
@@ -133,6 +121,8 @@
 
     }
 }
+
+
 -(id) nextVC{
     OKShockwaveLithotripsyVC *nextVC = [[OKShockwaveLithotripsyVC alloc] init];
     nextVC.model = self.model;
@@ -140,6 +130,7 @@
     nextVC.currentPage = (self.currentPage + 1);
     return nextVC;
 }
+
 
 -(BOOL) canGoToNextVC {
     switch (self.currentPage) {

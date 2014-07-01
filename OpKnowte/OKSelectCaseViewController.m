@@ -26,6 +26,7 @@
 @implementation OKSelectCaseViewController
 @synthesize tableView;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -48,9 +49,9 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-
-
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -89,14 +90,13 @@
 
 
 #pragma mark IBAction metods
-
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark Table View datasource
 
+#pragma mark Table View datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.cases.count;
@@ -161,16 +161,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     if ([_procID isEqualToString:@"9"] && [segue.identifier isEqualToString:@"fromCasesToReminder"]) {
         OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
         timePoint.procID = _procID;
-
     }else{
         if([segue.identifier isEqualToString:@"fromCasesToReminder"]){
-            OKSelectCaseViewController *contactVC = (OKSelectCaseViewController*)segue.destinationViewController;
-            contactVC.procID = _procID;
-            contactVC.detailID = _detailID;
+            OKSelectCaseViewController *caseVC = (OKSelectCaseViewController*)segue.destinationViewController;
+            caseVC.procID = _procID;
+            caseVC.detailID = _detailID;
         }else if ([segue.identifier isEqualToString:@"selectTimepoint"]){
             OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
             timePoint.procID = _procID;
