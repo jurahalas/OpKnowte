@@ -20,19 +20,24 @@
     }];
 }
 
-//-(NSOrderedDictionary*)shockwaveItems
-//{
-//    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-//    
-//    @try {
-//        [dict setObject:self.stoneFragmentation forKey:@"Stone fragmentation #1"];
-//        [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-//    }
-//    @catch (NSException *exception) {
-//        NSLog(@"OKOngoing data exception in shockwaveItems: %@",exception);
-//    }
-//    return dict;
-//}
+-(NSOrderedDictionary*)shockwaveItems
+{
+    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
+    
+    @try {
+        [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1"];
+        [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2"];
+        [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3"];
+        [dict setObject:self.stoneFragmentation4 forKey:@"Stone fragmentation #4"];
+        [dict setObject:self.stoneFragmentation5 forKey:@"Stone fragmentation #5"];
+
+        [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"OKOngoing data exception in shockwaveItems: %@",exception);
+    }
+    return dict;
+}
 
 
 -(NSOrderedDictionary*)roboticItems
@@ -139,7 +144,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 10; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

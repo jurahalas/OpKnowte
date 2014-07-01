@@ -81,23 +81,20 @@
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    for (int j = 0; j < [[self.ongoingData valueForKey:@"var_stonesCount" ] intValue]; j++)
-    {
-        [dict setObject:@"stoneFragmentation_on" forKey:@"name"];
-        [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Resolved", @"Residual fragment"] forKey:@"items"];
-        [dict setObject:@"Stone Fragmentation" forKey:@"placeholder"];
-        [self addCustomElement:dict];
-        [dict removeAllObjects];
-        
-        [dict setObject:@"stoneFragmentation" forKey:@"name"];
-        [dict setObject:@"symbolicTextField" forKey:@"type"];
-        [dict setObject:@"Stone Fragmentation" forKey:@"placeholder"];
-        [dict setObject:@"yes" forKey:@"depends"];
-        [self addCustomElement:dict];
-        [dict removeAllObjects];
-    }
-
+    [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Resolved", @"Residual fragment"] forKey:@"items"];
+    [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"stoneFragmentation1" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+    [dict setObject:@"Residual fragment" forKey:@"depends"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
     [dict setObject:@"postprocedureComplications" forKey:@"name"];
     [dict setObject:@"symbolicTextField" forKey:@"type"];
     [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
