@@ -125,6 +125,7 @@
         ongVC.ongoingData = self.ongoingData;
         ongVC.detailPeriod = self.detailPeriod;
         ongVC.caseNumber = _caseNumber;
+        ongVC.stonesCount = _stonesCount;
     }
 }
 

@@ -19,6 +19,8 @@
 @property(strong, nonatomic) NSString *detailID;
 @property(strong, nonatomic) NSString *cameFromVC;
 @property(strong, nonatomic) NSString *followUp;
+@property(strong, nonatomic) NSString *stonesCount;
+
 
 
 @end

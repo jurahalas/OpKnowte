@@ -25,13 +25,33 @@
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
     
     @try {
-        [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1"];
-        [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2"];
-        [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3"];
-        [dict setObject:self.stoneFragmentation4 forKey:@"Stone fragmentation #4"];
-        [dict setObject:self.stoneFragmentation5 forKey:@"Stone fragmentation #5"];
-
-        [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+        if ([self.stoneFragmentation5 isEqualToString:@""] && [self.stoneFragmentation4 isEqualToString:@""] && [self.stoneFragmentation3 isEqualToString:@""] && [self.stoneFragmentation2 isEqualToString:@""]) {
+            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
+            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+        }else if ([self.stoneFragmentation5 isEqualToString:@""] && [self.stoneFragmentation4 isEqualToString:@""] && [self.stoneFragmentation3 isEqualToString:@""]){
+            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
+            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
+            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+        }else if ([self.stoneFragmentation5 isEqualToString:@""] && [self.stoneFragmentation4 isEqualToString:@""]){
+            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
+            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
+            [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3, mm"];
+            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+        }else if ([self.stoneFragmentation5 isEqualToString:@""]){
+            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
+            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
+            [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3, mm"];
+            [dict setObject:self.stoneFragmentation4 forKey:@"Stone fragmentation #4, mm"];
+            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+        }else{
+            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
+            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
+            [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3, mm"];
+            [dict setObject:self.stoneFragmentation4 forKey:@"Stone fragmentation #4, mm"];
+            [dict setObject:self.stoneFragmentation5 forKey:@"Stone fragmentation #5, mm"];
+            
+            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
+        }
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in shockwaveItems: %@",exception);
@@ -144,7 +164,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 40; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -171,7 +191,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 17; i++)
+    for (i = 6; i < 43; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -197,7 +217,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 17; i < 23; i++)
+    for (i = 20; i < 27; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -221,7 +241,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 15; i < 40; i++)
+    for (i = 20; i < 43; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -246,7 +266,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 20; i < count; i++)
+    for (i = 25; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

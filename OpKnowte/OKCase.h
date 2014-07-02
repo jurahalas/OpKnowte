@@ -58,6 +58,8 @@
 @property (nonatomic, strong) NSString *dilatorsused;
 @property (nonatomic, strong) NSString *drainplaced;
 @property (nonatomic, strong) NSString *followup;
+@property (nonatomic, strong) NSString *stonesCount;
+
 
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *caseID;

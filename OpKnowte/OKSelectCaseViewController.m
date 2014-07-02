@@ -149,7 +149,8 @@
             [[OKLoadingViewController instance]hide];
             OKCase *selCase = self.cases[indexPath.row];
             [OKCaseManager instance].selectedCase = selCase;
-            _followUp = [OKCaseManager instance].selectedCase.followup;
+            _followUp = selCase.followup;
+            _stonesCount = selCase.stonesCount;
             if ([_cameFromVC isEqualToString:@"Reminder"])
                 [self performSegueWithIdentifier:@"fromCasesToReminder" sender:nil];
             else
@@ -173,7 +174,7 @@
             OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
             timePoint.procID = _procID;
             timePoint.followUp = _followUp;
-            
+            timePoint.stonesCount = _stonesCount;
         }
     }
 }

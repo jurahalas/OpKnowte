@@ -174,6 +174,10 @@
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"1"] && [ongoingData.gleason isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"10"] && ![ongoingData.stoneFragmentation1 isEqualToString:@""]){
+                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"10"] && [ongoingData.stoneFragmentation1 isEqualToString:@""]){
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else{
                             if ([cameFromVC isEqualToString:@"weeks"]) {
                                 if(![ongoingData.tStage isEqualToString:@""]){
@@ -212,6 +216,7 @@
         OKProcedureDetailSummaryViewController *summaryVC = (OKProcedureDetailSummaryViewController*)segue.destinationViewController;
         summaryVC.ongoingData = sender;
         summaryVC.caseNumber = _caseNumber;
+        summaryVC.stonesCount = _stonesCount;
         if ([_procID isEqualToString:@"9"]) {
             summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"1"]){
@@ -222,18 +227,19 @@
             summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }
     }else if ([segue.identifier isEqualToString:@"ongoingClinical"]){
-        OKOngoingClinicalViewController *summaryVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
-        summaryVC.ongoingData = sender;
-        summaryVC.procID = _procID;
-        summaryVC.caseNumber = _caseNumber;
+        OKOngoingClinicalViewController *ongVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
+        ongVC.ongoingData = sender;
+        ongVC.procID = _procID;
+        ongVC.caseNumber = _caseNumber;
+        ongVC.stonesCount = _stonesCount;
         if ([_procID isEqualToString:@"9"]) {
-            summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
+            ongVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"1"]){
-            summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+            ongVC.detailPeriod = OKProcedureSummaryDetailRobotic;
         }else if ([_procID isEqualToString:@"10"]){
-            summaryVC.detailPeriod = OKProcedureSummaryDetailShockwave;
+            ongVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{
-            summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+            ongVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }
     }
 }

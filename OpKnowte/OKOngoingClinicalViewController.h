@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSString *cameFromVC;
 @property (strong, nonatomic) NSString *procID;
 @property (strong, nonatomic) NSString *caseNumber;
+@property (strong, nonatomic) NSString *stonesCount;
+
 
 
 

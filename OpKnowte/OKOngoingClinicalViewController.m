@@ -81,25 +81,259 @@
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
-    [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
-    [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Resolved", @"Residual fragment"] forKey:@"items"];
-    [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
+    if ([_stonesCount isEqualToString:@"1"]) {
+       
+        [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation1" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 1, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"postprocedureComplications" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+    }else if ([_stonesCount isEqualToString:@"2"]){
     
-    [dict setObject:@"stoneFragmentation1" forKey:@"name"];
-    [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
-    [dict setObject:@"Residual fragment" forKey:@"depends"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
+        [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation1" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 1, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 2, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+
+        
+        [dict setObject:@"postprocedureComplications" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+    }else if ([_stonesCount isEqualToString:@"3"]){
     
-    [dict setObject:@"postprocedureComplications" forKey:@"name"];
-    [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
+        [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation1" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 1, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 2, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+       
+        [dict setObject:@"stoneFragmentation3_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 3" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation3" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 3, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+
+        
+        
+        [dict setObject:@"postprocedureComplications" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+    
+    }else if ([_stonesCount isEqualToString:@"4"]){
+    
+        [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation1" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 1, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 2, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation3_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 3" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation3" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 3, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation4_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 4" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation4" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 4, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"postprocedureComplications" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+    
+    }else if ([_stonesCount isEqualToString:@"5"]){
+    
+        [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation1" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 1, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation2" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 2, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation3_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 3" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation3" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 3, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation4_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 4" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation4" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 4, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation5_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@"Stone Fragmentation 5" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"stoneFragmentation5" forKey:@"name"];
+        [dict setObject:@"numericTextField" forKey:@"type"];
+        [dict setObject:@"Stone Fragmentation 5, mm" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
+        [dict setObject:@"postprocedureComplications" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+    }        
 }
 
 
@@ -614,7 +848,7 @@
         if(neededItems.count > 0){
             id interactionItem = neededItems[0];
             
-            if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"Yes"] || [newValue isEqualToString:@"Positive"]){
+            if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"Yes"] || [newValue isEqualToString:@"Positive"] || [newValue isEqualToString:@"Residual fragmentation"]){
                 [interactionItem setEnabled:YES];
             }else if ([newValue isEqualToString:@"Negative"]){
                 [self.ongoingData setValue:newValue forKey:fieldName];

@@ -44,7 +44,6 @@ enum OKProcedureSummaryDetailPeriod
 @property (nonatomic, strong) NSString *returnToORWithin;
 @property (nonatomic, strong) NSString *death;
 @property (nonatomic, strong) NSString *lengthOfStay;
-@property (nonatomic, strong) NSString *complications;
 
 //penile
 @property (nonatomic, strong) NSString *averageCyclingTime;
@@ -66,6 +65,8 @@ enum OKProcedureSummaryDetailPeriod
 @property (nonatomic, strong) NSString *postOperativeBun;
 @property (nonatomic, strong) NSString *postOperativeCreatinine;
 @property (nonatomic, strong) NSString *additionalDiagnosis;
+@property (nonatomic, strong) NSString *complications;
+
 
 //6 WEEKS
 @property (nonatomic, strong) NSString *chestXray;
