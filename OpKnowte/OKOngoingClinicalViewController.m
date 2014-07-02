@@ -97,11 +97,20 @@
         [self addCustomElement:dict];
         [dict removeAllObjects];
         
-        [dict setObject:@"postprocedureComplications" forKey:@"name"];
-        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"postprocedureComplications_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"No", @"Yes"] forKey:@"items"];
         [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
+        
+        [dict setObject:@"postprocedureComplications" forKey:@"name"];
+        [dict setObject:@"symbolicTextField" forKey:@"type"];
+        [dict setObject:@"Postprocedure Complications (if Yes)" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+
         
     }else if ([_stonesCount isEqualToString:@"2"]){
     
@@ -134,9 +143,17 @@
         [dict removeAllObjects];
 
         
+        [dict setObject:@"postprocedureComplications_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"No", @"Yes"] forKey:@"items"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
         [dict setObject:@"postprocedureComplications" forKey:@"name"];
         [dict setObject:@"symbolicTextField" forKey:@"type"];
-        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [dict setObject:@"Postprocedure Complications (if Yes)" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
         
@@ -183,12 +200,18 @@
         [dict setObject:@"yes" forKey:@"depends"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
-
         
+        [dict setObject:@"postprocedureComplications_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"No", @"Yes"] forKey:@"items"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
         
         [dict setObject:@"postprocedureComplications" forKey:@"name"];
         [dict setObject:@"symbolicTextField" forKey:@"type"];
-        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [dict setObject:@"Postprocedure Complications (if Yes)" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
     
@@ -250,9 +273,17 @@
         [self addCustomElement:dict];
         [dict removeAllObjects];
         
+        [dict setObject:@"postprocedureComplications_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"No", @"Yes"] forKey:@"items"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
         [dict setObject:@"postprocedureComplications" forKey:@"name"];
         [dict setObject:@"symbolicTextField" forKey:@"type"];
-        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [dict setObject:@"Postprocedure Complications (if Yes)" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
     
@@ -328,9 +359,17 @@
         [self addCustomElement:dict];
         [dict removeAllObjects];
         
+        [dict setObject:@"postprocedureComplications_on" forKey:@"name"];
+        [dict setObject:@"picker" forKey:@"type"];
+        [dict setObject:@[@"No", @"Yes"] forKey:@"items"];
+        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [self addCustomElement:dict];
+        [dict removeAllObjects];
+        
         [dict setObject:@"postprocedureComplications" forKey:@"name"];
         [dict setObject:@"symbolicTextField" forKey:@"type"];
-        [dict setObject:@"Postprocedure Complications" forKey:@"placeholder"];
+        [dict setObject:@"Postprocedure Complications (if Yes)" forKey:@"placeholder"];
+        [dict setObject:@"yes" forKey:@"depends"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
     }        

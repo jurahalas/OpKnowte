@@ -9,7 +9,8 @@
 #import "OKProcedureTextField.h"
 #import "OKLRPartialNephrectomyVC.h"
 
-@implementation OKProcedureTextField 
+@implementation OKProcedureTextField
+
 
 -(void) setupWithValue:(NSString*)value{
     if ([self.fieldName isEqualToString:@"var_stonesLocations"] || [self.fieldName isEqualToString:@"var_stonesSizes"] || [self.fieldName isEqualToString:@"var_totalShocks"] || [self.fieldName isEqualToString:@"var_fragmentations"]) {
@@ -23,6 +24,17 @@
             _customTextField.text = @"";
         }
     }
+}
+
+
+-(void)cancelNumberPad{
+    [_customTextField resignFirstResponder];
+    _customTextField.text = @"";
+}
+
+-(void)doneWithNumberPad{
+    NSString *numberFromTheKeyboard = _customTextField.text;
+    [_customTextField resignFirstResponder];
 }
 
 -(void) becomeCustomTextFieldFirstResponder{
@@ -47,8 +59,18 @@
         _customTextField.keyboardType = UIKeyboardTypeDefault;
     } else {
         _customTextField.keyboardType = UIKeyboardTypeDecimalPad;
+        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+        numberToolbar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_568"]];
+        numberToolbar.items = [NSArray arrayWithObjects:
+                               [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelNumberPad)],
+                               [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                               [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                               nil];
+        [numberToolbar sizeToFit];
+        _customTextField.inputAccessoryView = numberToolbar;
     }
 }
+
 
 -(void) setTagOfTextField:(NSInteger)tagOfTextField {
     _tagOfTextField = tagOfTextField;
@@ -78,6 +100,7 @@
         self.customTextField.text = nil;
     }
 }
+
 
 -(void)setValue:(NSString*)value
 {
