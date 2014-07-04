@@ -163,13 +163,6 @@
 					<string>difficult due to anatomy</string>
 				</array>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
 				<string>var_rightproximal</string>

@@ -11,19 +11,17 @@
 #import "OKFollowUpDataCompareVC.h"
 
 @interface OKSelectFUDVariablesVC ()
+
 @property (strong, nonatomic) IBOutlet UITableView *selectVariablesTable;
 @property (strong, nonatomic) NSArray *sixMonthArray;
 @property (strong, nonatomic) NSArray *twoWeeksArray;
 @property (nonatomic) int tappedCell;
 @property (nonatomic, assign) BOOL showNationalData;
+
 @end
-//===================================================================================================================
-//===================================================================================================================
-//===================================                                       =========================================
-//===================================   6   M O N T H   V A R I A B L E S   =========================================
-//===================================                                       =========================================
-//===================================================================================================================
-//===================================================================================================================
+
+//6 month
+
 float twoWeeks;
 float sixMonths;
 
@@ -77,13 +75,9 @@ float s_Lymphadenopathy;
 float s_LiverMetastasis;
 float s_BoneMetastasis;
 float s_BrainMetastasis;
-//===================================================================================================================
-//===================================================================================================================
-//===================================                                       =========================================
-//===================================   2   W E E K S   V A R I A B L E S   =========================================
-//===================================                                       =========================================
-//===================================================================================================================
-//===================================================================================================================
+
+
+//2 weeks
 
 float twoWeeks;
 float sixMonths;
@@ -223,14 +217,15 @@ float s_creatinineDiffSum;
 
 @implementation OKSelectFUDVariablesVC
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
@@ -403,13 +398,8 @@ float s_creatinineDiffSum;
     // Dispose of any resources that can be recreated.
 }
 
-//===================================================================================================================
-//===================================================================================================================
-//===================================                                       =========================================
-//===================================   C O P Y   F R O M   O L D   A P P   =========================================
-//===================================                                       =========================================
-//===================================================================================================================
-//===================================================================================================================
+
+//from old app
 
 -(void)resetCounter{
     twoWeeks = 0;
@@ -475,8 +465,7 @@ float s_creatinineDiffSum;
     Transfusion = 0;
     Death = 0;
     OtherComp = 0;
-    
-    //==================================================================================================================
+   
     
     twoWeeks = 0;
     sixMonths = 0;
@@ -505,9 +494,6 @@ float s_creatinineDiffSum;
     BoneMetastasis = 0;
     BrainMetastasis = 0;
 }
-
-
-
 
 
 -(void)resetSurgeonCounter{
@@ -576,8 +562,7 @@ float s_creatinineDiffSum;
     s_Death = 0;
     s_OtherComp = 0;
     
-    //==================================================================================================================
-    
+    ///////////////
     s_twoWeeks = 0;
     s_sixMonths = 0;
     
@@ -891,6 +876,8 @@ float s_creatinineDiffSum;
     }
     
 }
+
+
 -(void)calculateSurgeonData{
     
     [self resetSurgeonCounter];
@@ -1179,17 +1166,9 @@ float s_creatinineDiffSum;
     
 }
 
-//===================================================================================================================
-//===================================================================================================================
-//=====================================                                   ===========================================
-//=====================================   2   W E E K S   M E T H O D S   ===========================================
-//=====================================                                   ===========================================
-//===================================================================================================================
-//===================================================================================================================
+// 2 weeks methods
 
 -(void)TMGstaging{
-    
-
         [self calculate];
         [self calculateSurgeonData];
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1214,8 +1193,6 @@ float s_creatinineDiffSum;
             controller.MAge = (N/twoWeeks)*100;
             controller.M0Age = (M0/twoWeeks)*100;
             controller.M1Age = (M1/twoWeeks)*100;
-            
-            
         }else{
             controller.TxAge = 0;
             controller.T0Age = 0;
@@ -1281,7 +1258,6 @@ float s_creatinineDiffSum;
             controller.s_M0Age = 0;
             controller.s_M1Age = 0;
         }
-        
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"TNM";
@@ -1290,8 +1266,8 @@ float s_creatinineDiffSum;
     
 }
 
+
 -(void)tumorCh{
-    
         [self calculate];
         [self calculateSurgeonData];
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1336,15 +1312,10 @@ float s_creatinineDiffSum;
     controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-        
-    
-    
 }
 
 
 -(void)fuhrmanGrade{
-    
-
         [self calculate];
         [self calculateSurgeonData];
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1370,22 +1341,16 @@ float s_creatinineDiffSum;
             controller.s_FGthreeByFour = 0;
             controller.s_FGfourByFour = 0;
         }
-        
-        
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"FGrade";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
 
 -(void)margins{
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1396,7 +1361,6 @@ float s_creatinineDiffSum;
             controller.mPositive = 0;
             controller.mNegative = 0;
         }
-        
         if(s_twoWeeks>0){
             controller.s_mPositive = (s_mPositive/s_twoWeeks)*100;
             controller.s_mNegative = (s_mNegative/s_twoWeeks)*100;
@@ -1404,20 +1368,16 @@ float s_creatinineDiffSum;
             controller.s_mPositive = 0;
             controller.s_mNegative = 0;
         }
-        
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"margins";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
+
 -(void)dMargin{
-    
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1435,22 +1395,16 @@ float s_creatinineDiffSum;
             controller.s_dmPositive = 0;
             controller.s_dmNegative = 0;
         }
-        
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"dMargin";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
 
 -(void)nights{
-    
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1478,17 +1432,13 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
 }
 
 
 -(void)complications{
-    
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1547,16 +1497,13 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"complications";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
+
 -(void)changeBUN{
-    
         [self calculate];
         [self calculateSurgeonData];
         NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
@@ -1575,17 +1522,13 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
--(void)changeCreatinine{
-    
 
+-(void)changeCreatinine{
         [self calculate];
         [self calculateSurgeonData];
         NSLog(@" ^^^^^^ SUM OF Creatinine  : %f",creatinineDiffSum);
@@ -1601,31 +1544,16 @@ float s_creatinineDiffSum;
         }else{
             controller.s_creatinineSum = 0;
         }
-        
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
-    
 }
 
-//===================================================================================================================
-//===================================================================================================================
-//===================================                                       =========================================
-//===================================   6   M O N T H   V A R I A B L E S   =========================================
-//===================================                                       =========================================
-//===================================================================================================================
-//===================================================================================================================
-
-
+// 6 month variables
 
 -(void)xray{
-    
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1643,17 +1571,13 @@ float s_creatinineDiffSum;
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
         controller.graphView = @"xray";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
 }
 
 
 -(void)Liver{
-    
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1678,14 +1602,10 @@ float s_creatinineDiffSum;
     controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
 }
 
 
 -(void)Hernia{
-    
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1708,18 +1628,13 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_sixMonths;
         
         controller.graphView = @"hernia";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
 
 -(void)CTScan{
-    
-
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -1758,17 +1673,13 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_sixMonths;
         
         controller.graphView = @"CTScan";
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
-        [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
--(void)BUN{
-    
 
+-(void)BUN{
         [self calculate];
         [self calculateSurgeonData];
         NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunSum);
@@ -1794,14 +1705,10 @@ float s_creatinineDiffSum;
     controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
 }
 
--(void)Creatinine{
-    
 
+-(void)Creatinine{
         [self calculate];
         [self calculateSurgeonData];
         NSLog(@" ^^^^^^ SUM OF Creatinine  : %f",creatinineSum);
@@ -1809,50 +1716,19 @@ float s_creatinineDiffSum;
         controller.graphView = @"AverageCreatinine";
         if(sixMonths>0){
             controller.averageCreatinine = creatinineSum/sixMonths;
-            
         }else{
             controller.averageCreatinine = 0;
-            
         }
         if(s_sixMonths>0){
             controller.s_averageCreatinine = s_creatinineSum/s_sixMonths;
-            
         }else{
             controller.s_averageCreatinine = 0;
         }
-        
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-        
-    
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

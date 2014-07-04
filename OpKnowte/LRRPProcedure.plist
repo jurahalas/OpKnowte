@@ -213,13 +213,6 @@
 					<string>Sedation</string>
 				</array>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
 				<string>var_ethnicity</string>
@@ -381,13 +374,6 @@
 					<string>Rectal injury</string>
 				</array>
 			</dict>
-		</array>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string></string>
-		<key>fields</key>
-		<array>
 			<dict>
 				<key>name</key>
 				<string>var_roomTime</string>

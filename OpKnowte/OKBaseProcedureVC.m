@@ -201,7 +201,7 @@
         [self addLeftButtonForiOS6];
     }
     self.scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height-51.f)];
-    self.scrollview.contentSize = CGSizeMake(320, 600);
+    self.scrollview.contentSize = CGSizeMake(320, 620);
     self.scrollview.hidden = NO;
     self.scrollview.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.scrollview];
@@ -574,7 +574,6 @@
 
         
         if (self.model) {
-            
             [datePicker setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
         }
 
@@ -591,9 +590,7 @@
             picker.customTextField.text = [[customElementDictionary objectForKey:@"items"] objectAtIndex:0];
             [picker setupWithValue:[[customElementDictionary objectForKey:@"items"] objectAtIndex:0]];
         }
-
-        
-        if (_procedureID == 1 || _procedureID ==9) {
+        if (_procedureID == 1 || _procedureID == 9) {
             NSMutableArray *pickerArray = [[NSMutableArray alloc] initWithObjects:@"Male", nil];
 
             if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_sex"]) {
