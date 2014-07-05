@@ -179,6 +179,28 @@
         
         self.caseDatabtn.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"1SegmentControll"]];
     }
+    [self setupNotifications];
+}
+
+
+-(void)setupNotifications
+{
+    [[NSNotificationCenter defaultCenter]addObserverForName:UIKeyboardWillShowNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        
+        CGRect frame_ind = CGRectMake(self.indicationTextView.frame.origin.x, self.indicationTextView.frame.origin.y, self.indicationTextView.frame.size.width, self.indicationTextView.frame.size.height-180);
+        CGRect frame_proc = CGRectMake(self.procedureText.frame.origin.x, self.procedureText.frame.origin.y, self.procedureText.frame.size.width, self.procedureText.frame.size.height-180);
+        
+        [self.indicationTextView setFrame:frame_ind];
+        [self.procedureText setFrame:frame_proc];
+    }];
+    
+    [[NSNotificationCenter defaultCenter]addObserverForName:UIKeyboardDidHideNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        CGRect frame_ind = CGRectMake(self.indicationTextView.frame.origin.x, self.indicationTextView.frame.origin.y, self.indicationTextView.frame.size.width, self.indicationTextView.frame.size.height+180);
+        CGRect frame_proc = CGRectMake(self.procedureText.frame.origin.x, self.procedureText.frame.origin.y, self.procedureText.frame.size.width, self.procedureText.frame.size.height+180);
+        
+        [self.indicationTextView setFrame:frame_ind];
+        [self.procedureText setFrame:frame_proc];
+    }];
 }
 
 
@@ -221,7 +243,7 @@
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@";" withString:@","];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"YES," withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    indicationText = [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
+    indicationText =  [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
     
     
     for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
@@ -254,13 +276,8 @@
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"YES," withString:@""];
     _indicationTextView.text = indicationText;
     [_templateDictionary setObject:indicationText forKey:@"indicationText"];
-    
-    [_indicationTextView sizeToFit];
-    indicationScrollView.contentSize = CGSizeMake(indicationScrollView.contentSize.width, _indicationTextView.frame.size.height+250);
-    [indicationScrollView addSubview:_indicationTextView];
-    [self.IndicationView addSubview:indicationScrollView];
-    
 }
+
 
 -(void)procedureMethod{
     
@@ -420,20 +437,16 @@
    
     _procedureText.text = procedureText;
     [_templateDictionary setObject:procedureString forKey:@"procedureText"];
-    
-    [_procedureText sizeToFit];
-    procedureScrollView.contentSize = CGSizeMake(procedureScrollView.contentSize.width, _procedureText.frame.size.height+300);
-    [procedureScrollView addSubview:_procedureText];
-    [self.procedureView addSubview:procedureScrollView];
-    
 }
 
-#pragma mark IBAction
 
+#pragma mark IBAction
 - (IBAction)backButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 - (IBAction)segmentControlButton:(UISegmentedControl *)sender {
     UIColor *selectedColor = [UIColor colorWithRed: 255/255.0 green:0/255.0 blue:0/255.0 alpha:1.0];
     UIColor *deselectedColor = [UIColor colorWithRed: 255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
