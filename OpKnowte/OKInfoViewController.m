@@ -22,7 +22,8 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:YES ];
-    NSString *infoText = [NSString stringWithFormat:@"This application will allow for easy capture of\n anonymous surgical data via dictated and\n manual entry. The application will be HIPPA\n compilant and password protected. The\n software will allow for queries and analysis of\n outcomes. The owner will have the option of\n participating in a nationalized/globalized\n database that will allow for bench-marking. In\n addition the owners will be able to request\n that their datalog be shared with hospital\n credentialing services and boards of\n certification. the national pooled database\n will be a valuable resource for defining\n acceptable outcomes and defining\n benchmarks for quality of care."];
+    
+    NSString *infoText = [NSString stringWithFormat:@"  Op Knowte will allow for easy capture of\n anonymous surgical data via dictated and\n manual entry. The application is HIPPA\n compilant and password protected. The\n software will allow for queries and analysis of\n outcomes. The owner will have the option of\n participating in a nationalized/globalized\n database that will allow for bench-marking. In\n addition the owners will be able to request\n that their datalog be shared with hospital\n credentialing services and boards of\n certification. the national pooled database\n will be a valuable resource for defining\n acceptable outcomes and defining\n benchmarks for quality of care."];
     _infoTextLabel.text = infoText;
     
     _continueButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
