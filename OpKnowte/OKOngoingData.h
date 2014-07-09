@@ -15,8 +15,7 @@ enum OKProcedureSummaryDetailPeriod
     OKProcedureSummaryDetailPenile = 3,
     OKProcedureSummaryDetailRobotic = 4,
     OKProcedureSummaryDetailShockwave = 5,
-    OKProcedureSummaryFollowPenile = 5
-
+    OKProcedureSummaryFollowPenile = 6
 };
 
 @interface OKOngoingData : OKBaseModel

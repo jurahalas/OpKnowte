@@ -68,7 +68,7 @@
                             @"48 months",
                             @"60 months",
                             nil];
-    }else if ([_procID isEqualToString:@"10"]){
+    }else if ([_procID isEqualToString:@"10"] && _followUp != nil ){
         _timePointShockwave = @[_followUp];
     }
     
@@ -157,8 +157,11 @@
         
         [[OKFollowUpDataManager instance] getFollowUpDataForCaseID:_caseID timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
           
-            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
-
+            if (![ongoingData.beginCyclingDevice isEqualToString:@""]) {
+                [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+            }else{
+                [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+            }
         }];
         
     }else{
@@ -226,10 +229,13 @@
         summaryVC.ongoingData = sender;
         summaryVC.caseNumber = _caseNumber;
         summaryVC.stonesCount = _stonesCount;
-        if ([_procID isEqualToString:@"9"]) {
-            summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
+        if ([_procID isEqualToString:@"9"] && [_cameFromVC isEqualToString:@"FollowUpData"]) {
+            summaryVC.detailPeriod = OKProcedureSummaryFollowPenile;
+            summaryVC.caseNumber = _caseID;
         }else if ([_procID isEqualToString:@"1"]){
             summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+        }else if ([_procID isEqualToString:@"9"]){
+            summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"10"]){
             summaryVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{

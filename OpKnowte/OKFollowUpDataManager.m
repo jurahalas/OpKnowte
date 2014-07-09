@@ -137,7 +137,7 @@
     
     NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
     
-    if([forProcedure isEqualToString:@"3"]){
+    if([forProcedure isEqualToString:@"6"]){
         [params2 addEntriesFromDictionary:ongoingData.penileFollowDictionaryForSending];
     }
     

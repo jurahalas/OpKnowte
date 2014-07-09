@@ -30,13 +30,8 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     self.tableView.backgroundColor = [UIColor clearColor];
-    
-
-    
     [self addBottomTabBar];
-    
     [self setupPullToRefresh];
-    
     if (IS_IOS7){
         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y+64.f, self.tableView.frame.size.width, (self.tableView.frame.size.height-124.f));
     }else{
@@ -45,6 +40,7 @@
         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height-60.f));
     }
 }
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -57,6 +53,8 @@
         self.tableDict = self.ongoingData.roboticItems;
     }else if (self.detailPeriod == OKProcedureSummaryDetailShockwave){
         self.tableDict = self.ongoingData.shockwaveItems;
+    }else if (self.detailPeriod == OKProcedureSummaryFollowPenile){
+        self.tableDict = self.ongoingData.penileFollowItems;
     }else{
         self.tableDict = self.ongoingData.sixWeeksItems;
     }
@@ -92,6 +90,7 @@
         [self.tableView.pullToRefreshView setTextColor:[UIColor whiteColor]];
 }
 
+
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -99,9 +98,6 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"pipiska");
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"procedureDetailSummaryCell";
@@ -116,8 +112,8 @@
     return cell;
 }
 
-#pragma mark - prepare for segue
 
+#pragma mark - prepare for segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"ongoingClinical"]){

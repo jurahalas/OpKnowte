@@ -443,12 +443,12 @@
     }
       [tableView deselectRowAtIndexPath:indexPath animated:YES];
           id model = _surgeonDataArray[indexPath.row];
-         for (id choosedModel in _choosedDetails) {
-             if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
-                 [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-                 break;
-             }
-         }
+//         for (id choosedModel in _choosedDetails) {
+//             if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
+////                 [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+//                 break;
+//             }
+//         }
    
     cell.model = model;
     cell.nameLabel.text = [model valueForKey:@"var_patientName"];

@@ -69,6 +69,7 @@
         [self setupShockwaveElements];
     }else if(self.detailPeriod == OKProcedureSummaryFollowPenile){
         [self setupPenileFollowUpElements];
+        self.title = @"Follow Up";
     }else{
         [self setupPenileElements];
     }
@@ -727,31 +728,45 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
-//    [dict setObject:@"infection_on" forKey:@"name"];
-//    [dict setObject:@"picker" forKey:@"type"];
-//    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
-//    [dict setObject:@"Infection (yes/no)" forKey:@"placeholder"];
-//    [self addCustomElement:dict];
-//    [dict removeAllObjects];
+    [dict setObject:@"infection_on" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@"Infection (yes/no)" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
     
     [dict setObject:@"infection" forKey:@"name"];
     [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Infection" forKey:@"placeholder"];
-//    [dict setObject:@"yes" forKey:@"depends"];
+    [dict setObject:@"Infection (if Yes)" forKey:@"placeholder"];
+    [dict setObject:@"yes" forKey:@"depends"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"mechanicalFailure_on" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@"Mechanical Failure (yes/no)" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
     [dict setObject:@"mechanicalFailure" forKey:@"name"];
     [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Mechanical Failure" forKey:@"placeholder"];
-//    [dict setObject:@"yes" forKey:@"depends"];
+    [dict setObject:@"Mechanical Failure (if Yes)" forKey:@"placeholder"];
+    [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
-   
+    
+    [dict setObject:@"erosion_on" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@"Erosion (yes/no)" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
     [dict setObject:@"erosion" forKey:@"name"];
     [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Erosion" forKey:@"placeholder"];
-//    [dict setObject:@"yes" forKey:@"depends"];
+    [dict setObject:@"Erosion (if Yes)" forKey:@"placeholder"];
+    [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
@@ -941,9 +956,7 @@
             
             if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"Yes"] || [newValue isEqualToString:@"Positive"] || [newValue isEqualToString:@"Residual fragmentation"]){
                 [interactionItem setEnabled:YES];
-            }else if ([newValue isEqualToString:@"Negative"]){
-                [self.ongoingData setValue:newValue forKey:fieldName];
-            }else if ([newValue isEqualToString:@"Normal"]){
+            }else if ([newValue isEqualToString:@"Negative"] || [newValue isEqualToString:@"Normal"] || [newValue isEqualToString:@"No"]){
                 [self.ongoingData setValue:newValue forKey:fieldName];
             }else{
                 [interactionItem setEnabled:NO];
@@ -1026,14 +1039,14 @@
     
         [[OKLoadingViewController instance]showWithText:@"Sending data..."];
         NSString *caseNumber1 = [[NSString alloc] init];
-        if ([_procID isEqualToString:@"9"]) {
+        if ([_procID isEqualToString:@"9"] || [[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9) {
             caseNumber1 = _caseNumber;
         }else{
             caseNumber1 = [OKCaseManager instance].selectedCase.identifier;
         }
         self.ongoingData.caseID = _caseNumber;
     
-    if ([_procID isEqualToString:@"9"]) {
+    if (self.detailPeriod == OKProcedureSummaryFollowPenile) {
         [[OKFollowUpDataManager instance] addFollowUpDataForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
