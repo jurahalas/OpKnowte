@@ -310,8 +310,6 @@ float s_creatinineDiffSum;
 }
 
 
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     _showNationalData = YES;
@@ -590,6 +588,8 @@ float s_creatinineDiffSum;
     s_BoneMetastasis = 0;
     s_BrainMetastasis = 0;
 }
+
+
 -(void)calculate{
     
     [self resetCounter];

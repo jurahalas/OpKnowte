@@ -156,6 +156,24 @@
     return dict;
 }
 
+-(NSOrderedDictionary*)penileFollowItems
+{
+    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
+    @try {
+        [dict setObject:self.beginCyclingDevice forKey:@"When did the patient begin cycling the device?"];
+        [dict setObject:self.infection forKey:@"Infection"];
+        [dict setObject:self.mechanicalFailure forKey:@"Mechanical failure"];
+        [dict setObject:self.erosion forKey:@"Erosion"];
+        [dict setObject:self.discontinue forKey:@"Discontinue tracking patient"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Follow Up data exception in penileFollowItems: %@",exception);
+    }
+    
+    return dict;
+}
+
+
 
 -(NSDictionary*)shockwaveDictionaryForSending
 {
@@ -285,6 +303,34 @@
         [dict setObject:obj forKey:name];
     }
 
+    free(properties);
+    return dict;
+}
+
+
+-(NSDictionary*)penileFollowDictionaryForSending
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 0; i < 52; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        id obj = [self valueForKey:name];
+        if(!obj){
+            obj = @"";
+        }
+        if ([obj isEqualToString:@""]) {
+            [dict removeObjectForKey:name];
+        }else{
+            [dict setObject:obj forKey:name];
+        }
+    }
+    
     free(properties);
     return dict;
 }

@@ -11,6 +11,7 @@
 #import "OKLRRadicalProstatectomyModel.h"
 #import "OKLRPartialNephrectomyModel.h"
 #import "OKPenileProsthesisModel.h"
+#import "OKUserManager.h"
 
 @implementation OKFollowUpDataManager
 + (OKFollowUpDataManager *)instance
@@ -87,23 +88,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -(id)getDatesDictionaryFrom:(NSDictionary *)response {
     NSMutableArray *dates = [[NSMutableArray alloc]init];
     NSDictionary *dict = response;
@@ -124,6 +108,7 @@
     return dates;
 }
 
+
 -(NSArray *)sortCasesAccordingToDate:(NSArray *)array{
     NSArray *newArray = [array sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *c1, NSDictionary *c2)
                          {
@@ -141,5 +126,46 @@
     NSArray *ary = [newArray mutableCopy];
     return ary;
 }
+
+
+- (void)addFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
+{
+    NSDictionary *params1 = @{@"procedureID":procedureID,
+                              @"userID":[OKUserManager instance].currentUser.identifier,
+                              @"caseID":caseID,
+                              @"timePointID":timePointID};
+    
+    NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
+    
+    if([forProcedure isEqualToString:@"3"]){
+        [params2 addEntriesFromDictionary:ongoingData.penileFollowDictionaryForSending];
+    }
+    
+    [self requestWithMethod:@"POST" path:@"addFollowUpData" params:params2 handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+    }];
+}
+
+
+- (void)getFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, OKOngoingData *ongoingData ))handler
+{
+    NSDictionary *params = @{@"procedureID":procedureID,
+                             @"userID":[OKUserManager instance].currentUser.identifier,
+                             @"caseID":caseID,
+                             @"timePointID":timePointID};
+    
+    [self requestWithMethod:@"GET" path:@"getFollowUpData" params:params handler:^(NSError *error, id json) {
+        NSString *errorMsg = [self getErrorMessageFromJSON:json error:error];
+        if(!errorMsg){
+            OKOngoingData *ongData = [OKOngoingData new];
+            [ongData setModelWithDictionary:[[json objectForKey:@"followData"] objectAtIndex:0]];
+            handler(nil, ongData);
+        }else{
+            handler(errorMsg, nil);
+        }
+    }];
+}
+
+
 
 @end

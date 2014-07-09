@@ -13,6 +13,7 @@
 #import "OKCaseManager.h"
 #import "OKTimePointsManager.h"
 #import "OKProceduresManager.h"
+#import "OKFollowUpDataManager.h"
 
 @interface OKOngoingClinicalViewController ()<OKProcedurePickerDelegate>
 
@@ -66,6 +67,8 @@
         [self setupRoboticElements];
     }else if(self.detailPeriod == OKProcedureSummaryDetailShockwave){
         [self setupShockwaveElements];
+    }else if(self.detailPeriod == OKProcedureSummaryFollowPenile){
+        [self setupPenileFollowUpElements];
     }else{
         [self setupPenileElements];
     }
@@ -601,21 +604,6 @@
     [dict removeAllObjects];
 }
 
--(void) addLeftButtonToNavbar
-{
-    UIButton *right = [[UIButton alloc] init];
-    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
-    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
-    self.navigationItem.leftBarButtonItem = anotherButton;
-    _cameFromVC = @"ongoing";
-}
-
--(void)backButton{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)setupTwoWeeksElements
 {
@@ -696,7 +684,7 @@
     [dict setObject:@"preOperativeBun" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
     [dict setObject:@"Pre-Operative Bun" forKey:@"placeholder"];
-
+    
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
@@ -728,6 +716,70 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
 }
+
+-(void)setupPenileFollowUpElements
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    [dict setObject:@"beginCyclingDevice" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"When did the patient begin cycling the device?" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+//    [dict setObject:@"infection_on" forKey:@"name"];
+//    [dict setObject:@"picker" forKey:@"type"];
+//    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
+//    [dict setObject:@"Infection (yes/no)" forKey:@"placeholder"];
+//    [self addCustomElement:dict];
+//    [dict removeAllObjects];
+    
+    [dict setObject:@"infection" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"Infection" forKey:@"placeholder"];
+//    [dict setObject:@"yes" forKey:@"depends"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"mechanicalFailure" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"Mechanical Failure" forKey:@"placeholder"];
+//    [dict setObject:@"yes" forKey:@"depends"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+   
+    [dict setObject:@"erosion" forKey:@"name"];
+    [dict setObject:@"symbolicTextField" forKey:@"type"];
+    [dict setObject:@"Erosion" forKey:@"placeholder"];
+//    [dict setObject:@"yes" forKey:@"depends"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"discontinue" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@" Discontinue tracking patient" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+}
+
+
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width+27, [UIImage imageNamed:@"back"].size.height );
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
+    _cameFromVC = @"ongoing";
+}
+
+-(void)backButton{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 
 -(void)setupKeyboardNotifications
@@ -919,19 +971,19 @@
     self.pickerData = nil;
 }
 
-#pragma mark - picker data source
 
+#pragma mark - picker data source
 -(NSAttributedString*) pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     UIColor *color = [UIColor whiteColor];
     if (IS_IOS6) {
         color = [UIColor blackColor];
     }
-    
     NSString *pickerString = [NSString stringWithFormat:@"%@", self.pickerData[row]];
     NSAttributedString *pickerAttributedString = [[NSAttributedString alloc]initWithString:pickerString attributes:@{NSForegroundColorAttributeName: color }];
     return pickerAttributedString;
 }
+
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
@@ -942,7 +994,6 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     self.pickerObject.customTextField.text = self.pickerData[row];
     [self.pickerObject.delegate updateField:self.pickerObject.fieldName withValue:self.pickerObject.customTextField.text andTag:self.pickerObject.tagOfTextField];
-
     if (!self.PikerView.hidden) {
         [self hidePicker];
     }
@@ -963,6 +1014,8 @@
         forProcedure = @"1";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailSixWeeks){
         forProcedure = @"2";
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9 && self.detailPeriod==OKProcedureSummaryFollowPenile){
+        forProcedure = @"6";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
         forProcedure = @"3";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
@@ -979,11 +1032,20 @@
             caseNumber1 = [OKCaseManager instance].selectedCase.identifier;
         }
         self.ongoingData.caseID = _caseNumber;
-
+    
+    if ([_procID isEqualToString:@"9"]) {
+        [[OKFollowUpDataManager instance] addFollowUpDataForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
+            [[OKLoadingViewController instance]hide];
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+    }else{
+    
         [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
+        
+    }
 }
 
 

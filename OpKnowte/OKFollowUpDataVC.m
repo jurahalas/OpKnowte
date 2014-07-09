@@ -83,7 +83,7 @@
     _nationalClinicalData = [[NSMutableArray alloc] init];
     
     _choosedDetails = [[NSMutableArray alloc] init];
-    
+    _follow = NO;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.title = @"Follow Up Data";
     [self addLeftButtonToNavbar];
@@ -234,13 +234,15 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"fromFollowUpDataToTimePoints"]){
-        OKSelectTimePointViewController *sharVC = (OKSelectTimePointViewController*)segue.destinationViewController;
-        sharVC.cameFromVC = @"FollowUpData";
-        sharVC.performanceCases = [[NSMutableArray alloc] initWithArray:_nationalClinicalData];
-        sharVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonClinicalData];
-        sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
-        sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];       
-                                   
+        OKSelectTimePointViewController *selTP = (OKSelectTimePointViewController*)segue.destinationViewController;
+        selTP.cameFromVC = @"FollowUpData";
+        selTP.performanceCases = [[NSMutableArray alloc] initWithArray:_nationalClinicalData];
+        selTP.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonClinicalData];
+        selTP.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
+        selTP.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];
+        selTP.procID = _procID;
+        selTP.follow = YES;
+        selTP.caseID = _caseID;
     } else if ([segue.identifier isEqualToString:@"fromFUDToDetail"]){
         OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
         detailVC.procID = _procID;
@@ -261,6 +263,7 @@
     [self searchDetails];
     
 }
+
 
 - (void) searchDetails{
     [_choosedDetails removeAllObjects];
@@ -295,8 +298,9 @@
             [[OKLoadingViewController instance] hide];
         }
     }
-    
 }
+
+
 -(BOOL)varifyDates{
     NSDate *d1;
     NSDate *d2;
@@ -346,6 +350,8 @@
     }
     
 }
+
+
 - (IBAction)dateToButtonTapped:(id)sender {
     if (!_dateFromButtonTapped) {
         if (_pickerBGView.hidden) {
@@ -361,11 +367,9 @@
         }
         _pickerBGView.hidden = !_pickerBGView.hidden;
         _doneButtonForDatePicker.hidden = !_doneButtonForDatePicker.hidden ;
-
     }
-    
-    
 }
+
 
 - (void)backButton {
     [self.navigationController popViewControllerAnimated:YES];
@@ -437,10 +441,7 @@
     if (!cell) {
         cell = [[OKFollowUpDataCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-         
-         
-         
-         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+      [tableView deselectRowAtIndexPath:indexPath animated:YES];
           id model = _surgeonDataArray[indexPath.row];
          for (id choosedModel in _choosedDetails) {
              if ([[model valueForKey:@"DetailID"] isEqualToString:[choosedModel valueForKey:@"DetailID"]]) {
@@ -456,9 +457,7 @@
     
          return cell;
          
-     }
-    
-    else{
+     }else{
         FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
         if (!FakeCell) {
             FakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FakeCellIdentifier];
@@ -467,25 +466,26 @@
     }
     
 }
+
+
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFollowUpDataCell class]]) {
+  if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFollowUpDataCell class]]) {
         OKFollowUpDataCell *cell = (OKFollowUpDataCell *)[_listTableView cellForRowAtIndexPath:indexPath];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self deleteModelFromList:cell.model];
     }
-    
-    
 }
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFollowUpDataCell class]]) {
         OKFollowUpDataCell *cell = (OKFollowUpDataCell *)[_listTableView cellForRowAtIndexPath:indexPath];
         [self addModelToList:cell.model];
+        _caseID = [cell.model valueForKey:@"DetailID"];
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-        
     }
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
@@ -493,6 +493,8 @@
     return YES;
     
 }
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

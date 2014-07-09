@@ -14,7 +14,9 @@ enum OKProcedureSummaryDetailPeriod
     OKProcedureSummaryDetailSixWeeks = 2,
     OKProcedureSummaryDetailPenile = 3,
     OKProcedureSummaryDetailRobotic = 4,
-    OKProcedureSummaryDetailShockwave = 5
+    OKProcedureSummaryDetailShockwave = 5,
+    OKProcedureSummaryFollowPenile = 5
+
 };
 
 @interface OKOngoingData : OKBaseModel
@@ -67,7 +69,6 @@ enum OKProcedureSummaryDetailPeriod
 @property (nonatomic, strong) NSString *additionalDiagnosis;
 @property (nonatomic, strong) NSString *complications;
 
-
 //6 WEEKS
 @property (nonatomic, strong) NSString *chestXray;
 //@property (nonatomic, strong) NSString *BunCreatinine;
@@ -78,11 +79,22 @@ enum OKProcedureSummaryDetailPeriod
 @property (nonatomic, strong) NSString *Bun;
 @property (nonatomic, strong ) NSString *Creatinine;
 
+//follow up
+
+//penile
+@property (nonatomic, strong) NSString *beginCyclingDevice;
+@property (nonatomic, strong) NSString *infection;
+@property (nonatomic, strong) NSString *mechanicalFailure;
+@property (nonatomic, strong) NSString *erosion;
+@property (nonatomic, strong) NSString *discontinue;
+
 -(NSOrderedDictionary*)shockwaveItems;
 -(NSOrderedDictionary*)roboticItems;
 -(NSOrderedDictionary*)penileItems;
 -(NSOrderedDictionary*)twoWeeksItems;
 -(NSOrderedDictionary*)sixWeeksItems;
+//follow up
+-(NSOrderedDictionary*)penileFollowItems;
 
 //used to check if all of the needed data is filled
 -(BOOL)checkPenileData;
@@ -95,5 +107,10 @@ enum OKProcedureSummaryDetailPeriod
 -(NSDictionary*)penileDictionaryForSending;
 -(NSDictionary*)twoWeeksDictionaryForSending;
 -(NSDictionary*)sixWeeksDictionaryForSending;
+
+//follow up
+-(NSDictionary*)penileFollowDictionaryForSending;
+
+
 
 @end

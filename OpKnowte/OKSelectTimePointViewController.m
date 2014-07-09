@@ -16,6 +16,7 @@
 #import "OKProcedureModel.h"
 #import "OKSelectFUDVariablesVC.h"
 #import "OKOngoingClinicalViewController.h"
+#import "OKFollowUpDataManager.h"
 
 @interface OKSelectTimePointViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -62,13 +63,9 @@
                             @"3 months",
                             @"6 months",
                             @"12 months",
-                            @"18 months",
                             @"24 months",
-                            @"30 months",
                             @"36 months",
-                            @"42 months",
                             @"48 months",
-                            @"54 months",
                             @"60 months",
                             nil];
     }else if ([_procID isEqualToString:@"10"]){
@@ -106,7 +103,10 @@
 {
     if ([_procID isEqualToString:@"10"]) {
         return _timePointShockwave.count;
-    }else{
+    }else if ([_procID isEqualToString:@"9"]){
+        return _timePointsPenile.count;
+    }
+    else{
         return _timePointsArray.count;
     }
 }
@@ -150,8 +150,17 @@
         cameFromVC = @"months";
     }
     _timepointID = indexPath.row+1;
-    if([_cameFromVC isEqualToString:@"FollowUpData"]){
+    
+    if([_cameFromVC isEqualToString:@"FollowUpData"] && !_follow){
         [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
+    }else if ([_cameFromVC isEqualToString:@"FollowUpData"] && _follow){
+        
+        [[OKFollowUpDataManager instance] getFollowUpDataForCaseID:_caseID timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
+          
+            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+
+        }];
+        
     }else{
         [[OKLoadingViewController instance]showWithText:@"Loading"];
         [[OKUserManager instance]getUserAccess:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg) {
@@ -232,7 +241,10 @@
         ongVC.procID = _procID;
         ongVC.caseNumber = _caseNumber;
         ongVC.stonesCount = _stonesCount;
-        if ([_procID isEqualToString:@"9"]) {
+        if ([_procID isEqualToString:@"9"] && [_cameFromVC isEqualToString:@"FollowUpData"]) {
+            ongVC.detailPeriod = OKProcedureSummaryFollowPenile;
+            ongVC.caseNumber = _caseID;
+        }else if ([_procID isEqualToString:@"9"]){
             ongVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"1"]){
             ongVC.detailPeriod = OKProcedureSummaryDetailRobotic;

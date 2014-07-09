@@ -9,6 +9,10 @@
 #import "OKBaseViewController.h"
 
 @interface OKFollowUpDataVC : OKBaseViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
 @property(strong, nonatomic) NSString *procID;
 @property (strong, nonatomic) NSString *procTitle;
+@property (strong, nonatomic) NSString *caseID;
+@property (nonatomic, assign) BOOL follow;
+
 @end
