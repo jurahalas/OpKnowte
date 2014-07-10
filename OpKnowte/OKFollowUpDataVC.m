@@ -204,33 +204,43 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)selectTimePeriodButtonTapped:(id)sender {
-    if (_choosedDetails.count) {
-        [[OKLoadingViewController instance] showWithText:@"Loading..."];
-        OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-        [followUpDataManager getClinicalDetailsByCaseArray:_choosedDetails handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+- (IBAction)selectTimePeriodButtonTapped:(id)sender
+{
+    if (_caseID) {
+        if (_choosedDetails.count) {
+            [[OKLoadingViewController instance] showWithText:@"Loading..."];
+            OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
+            [followUpDataManager getClinicalDetailsByCaseArray:_choosedDetails handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
             
-            NSLog(@"Eror - %@", errorMsg);
-            _surgeonClinicalData = dataArray;
-            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
-                _nationalClinicalData = dataArray;
-                [[OKLoadingViewController instance] hide];
-                [self performSegueWithIdentifier:@"fromFollowUpDataToTimePoints" sender:nil];
-            }]; 
-        }];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                _surgeonClinicalData = dataArray;
+                [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+                    NSLog(@"Eror - %@", errorMsg);
+                    _nationalClinicalData = dataArray;
+                    [[OKLoadingViewController instance] hide];
+                    [self performSegueWithIdentifier:@"fromFollowUpDataToTimePoints" sender:nil];
+                }];
+            }];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                         message:@"Choose at least one case"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
+            [alert show];
+            [[OKLoadingViewController instance] hide];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                        message:@"Choose case, please"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
         [alert show];
-        [[OKLoadingViewController instance] hide];
     }
-
-
 }
+
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"fromFollowUpDataToTimePoints"]){

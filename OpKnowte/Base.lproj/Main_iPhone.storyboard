@@ -373,7 +373,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
                                 <rect key="frame" x="0.0" y="21" width="320" height="487"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="dLQ-jH-65l" id="3fi-ss-b1V"/>
@@ -416,6 +416,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="-200" maxY="0.0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Ongoing Clinical" id="asa-dG-Afs">
                         <barButtonItem key="leftBarButtonItem" image="back.png" id="1Va-ki-xWc">
