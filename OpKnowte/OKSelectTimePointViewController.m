@@ -70,8 +70,22 @@
                             nil];
     }else if ([_procID isEqualToString:@"10"] && _followUp != nil ){
         _timePointShockwave = @[_followUp];
+    }else if ([_procID isEqualToString:@"10"] && _follow)
+    {
+        _timePointShockwave = [[ NSArray alloc] initWithObjects:@"1 week",
+                               @"2 weeks",
+                               @"3 weeks",
+                               @"4 weeks",
+                               @"5 weeks",
+                               @"6 weeks",
+                               @"7 weeks",
+                               @"8 weeks",
+                               @"9 weeks",
+                               @"10 weeks",
+                               @"11 weeks",
+                               @"12 weeks",
+                               nil];
     }
-    
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
@@ -105,8 +119,7 @@
         return _timePointShockwave.count;
     }else if ([_procID isEqualToString:@"9"]){
         return _timePointsPenile.count;
-    }
-    else{
+    }else{
         return _timePointsArray.count;
     }
 }
@@ -119,16 +132,16 @@
     if (!cell) {
         cell = [[OKSelectTimePointCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
+
     if ([_procID isEqualToString:@"9"]){
         [cell.timePointLabel setText:[_timePointsPenile objectAtIndex:indexPath.row]];
     }else if ([_procID isEqualToString:@"10"]){
         [cell.timePointLabel setText:[_timePointShockwave objectAtIndex:indexPath.row]];
     }else{
+        OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
         [cell.timePointLabel setText:timePoint.timePointName];
-    }
-//    if (indexPath.row == 11) {
+    }    
+   //    if (indexPath.row == 11) {
 //        [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
 //    }else{
 //        [cell.timePointLabel setText:timePoint.timePointName];
@@ -151,7 +164,7 @@
     }
     _timepointID = indexPath.row+1;
     
-    if([_cameFromVC isEqualToString:@"FollowUpData"] && !_follow){
+    if([_cameFromVC isEqualToString:@"FollowUpData"] && ([_procID isEqualToString:@"10"] || [_procID isEqualToString:@"1"] || [_procID isEqualToString:@"2"])){
         [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
     }else if ([_cameFromVC isEqualToString:@"FollowUpData"] && _follow){
         

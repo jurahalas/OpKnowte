@@ -260,17 +260,18 @@
 				<string>Follow up</string>
 				<key>items</key>
 				<array>
+					<string>1 week</string>
 					<string>2 weeks</string>
-					<string>6 months</string>
-					<string>12 months</string>
-					<string>18 months</string>
-					<string>24 months</string>
-					<string>30 months</string>
-					<string>36 months</string>
-					<string>42 months</string>
-					<string>48 months</string>
-					<string>54 months</string>
-					<string>60 months</string>
+					<string>3 weeks</string>
+					<string>4 weeks</string>
+					<string>5 weeks</string>
+					<string>6 weeks</string>
+					<string>7 weeks</string>
+					<string>8 weeks</string>
+					<string>9 weeks</string>
+					<string>10 weeks</string>
+					<string>11 weeks</string>
+					<string>12 weeks</string>
 				</array>
 			</dict>
 		</array>
