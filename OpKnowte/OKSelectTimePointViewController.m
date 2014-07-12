@@ -141,21 +141,22 @@
         OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
         [cell.timePointLabel setText:timePoint.timePointName];
     }    
-   //    if (indexPath.row == 11) {
-//        [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
-//    }else{
-//        [cell.timePointLabel setText:timePoint.timePointName];
-//    }
     [cell setCellBGImageLight:(int)indexPath.row];
+    
     return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OKTimePointModel *timePoint = self.timePointsArray[indexPath.row];
-    [OKTimePointsManager instance].selectedTimePoint = timePoint;
-
+    OKTimePointModel *timePoint;
+    if ([_procID isEqualToString:@"10"]) {
+         timePoint = _timePointShockwave[indexPath.row];
+        [OKTimePointsManager instance].selectedTimePoint = timePoint;
+    }else{
+        timePoint = self.timePointsArray[indexPath.row];
+        [OKTimePointsManager instance].selectedTimePoint = timePoint;
+    }
     NSString *cameFromVC = [[NSString alloc] init];
     if (indexPath.row == 0) {
         cameFromVC = @"weeks";

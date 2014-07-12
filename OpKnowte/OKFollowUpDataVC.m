@@ -20,37 +20,25 @@
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
 @property (strong, nonatomic) IBOutlet UILabel *procedureLabel;
 @property (strong, nonatomic) IBOutlet UIButton *procedureButton;
-
-
 @property (strong, nonatomic) IBOutlet UIView *dateView;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateFromTF;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateToTF;
-
 @property (strong, nonatomic) OKDatePicker *datePicker;
 @property (strong, nonatomic) UIView *pickerBGView;
 @property (strong, nonatomic) IBOutlet UIButton *dateFromButton;
 @property (strong, nonatomic)IBOutlet UIButton *dateToButton;
-
-
-
-
 @property (strong, nonatomic) IBOutlet UIView *searchView;
 @property (strong, nonatomic) IBOutlet UILabel *diselectAllLabel;
 @property (strong, nonatomic) IBOutlet UIButton *diselectAllButton;
 @property (strong, nonatomic) IBOutlet UILabel *searchLabel;
 @property (strong, nonatomic) IBOutlet UIButton *searchButton;
-
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
-
 @property (strong, nonatomic) IBOutlet UIView *selectTimePeriodView;
 @property (strong, nonatomic) IBOutlet UIButton *selectTimePeriodButton;
-
 @property (nonatomic, strong) NSMutableArray *surgeonDataArray;
 @property (nonatomic, strong) NSMutableArray *nationalDataArray;
-
 @property (nonatomic, strong) NSMutableArray *surgeonClinicalData;
 @property (nonatomic, strong) NSMutableArray *nationalClinicalData;
-
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
 @property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
@@ -93,7 +81,7 @@
     [_listTableView reloadData];
     _dateFromButton.tag = 1;
     _dateToButton.tag = 2;
-    
+
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     
     OKSurgicalLogsManager *surgicalLogsManager = [OKSurgicalLogsManager instance];
