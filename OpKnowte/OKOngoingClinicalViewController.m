@@ -89,7 +89,7 @@
        
         [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -120,7 +120,7 @@
     
         [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -134,7 +134,7 @@
         
         [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -165,7 +165,7 @@
     
         [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -179,7 +179,7 @@
         
         [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -193,7 +193,7 @@
        
         [dict setObject:@"stoneFragmentation3_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 3" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -223,7 +223,7 @@
     
         [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -237,7 +237,7 @@
         
         [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -251,7 +251,7 @@
         
         [dict setObject:@"stoneFragmentation3_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 3" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -265,7 +265,7 @@
         
         [dict setObject:@"stoneFragmentation4_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 4" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -295,7 +295,7 @@
     
         [dict setObject:@"stoneFragmentation1_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 1" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -309,7 +309,7 @@
         
         [dict setObject:@"stoneFragmentation2_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 2" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -323,7 +323,7 @@
         
         [dict setObject:@"stoneFragmentation3_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 3" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -337,7 +337,7 @@
         
         [dict setObject:@"stoneFragmentation4_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 4" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -351,7 +351,7 @@
         
         [dict setObject:@"stoneFragmentation5_on" forKey:@"name"];
         [dict setObject:@"picker" forKey:@"type"];
-        [dict setObject:@[@"Negative", @"Residual fragmentation"] forKey:@"items"];
+        [dict setObject:@[@"Resolved", @"Residual fragmentation"] forKey:@"items"];
         [dict setObject:@"Stone Fragmentation 5" forKey:@"placeholder"];
         [self addCustomElement:dict];
         [dict removeAllObjects];
@@ -956,7 +956,7 @@
             
             if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"Yes"] || [newValue isEqualToString:@"Positive"] || [newValue isEqualToString:@"Residual fragmentation"]){
                 [interactionItem setEnabled:YES];
-            }else if ([newValue isEqualToString:@"Negative"] || [newValue isEqualToString:@"Normal"] || [newValue isEqualToString:@"No"]){
+            }else if ([newValue isEqualToString:@"Resolved"] || [newValue isEqualToString:@"Normal"] || [newValue isEqualToString:@"No"]){
                 [self.ongoingData setValue:newValue forKey:fieldName];
             }else{
                 [interactionItem setEnabled:NO];
