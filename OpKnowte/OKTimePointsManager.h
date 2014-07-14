@@ -15,6 +15,6 @@
 
 + (OKTimePointsManager *)instance;
 
-- (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler;
+- (void)getAllTimePointsWithProcID:(NSString*)procID WithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler;
 
 @end

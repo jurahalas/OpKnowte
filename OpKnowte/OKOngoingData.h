@@ -15,20 +15,30 @@ enum OKProcedureSummaryDetailPeriod
     OKProcedureSummaryDetailPenile = 3,
     OKProcedureSummaryDetailRobotic = 4,
     OKProcedureSummaryDetailShockwave = 5,
-    OKProcedureSummaryFollowPenile = 6
+    OKProcedureSummaryFollowPenile = 6,
+    OKProcedureSummaryDetailRobotic6Weeks = 7
 };
 
 @interface OKOngoingData : OKBaseModel
 
 //shockwave
-@property (nonatomic, strong) NSString *stoneFragmentation1;
-@property (nonatomic, strong) NSString *stoneFragmentation2;
-@property (nonatomic, strong) NSString *stoneFragmentation3;
-@property (nonatomic, strong) NSString *stoneFragmentation4;
-@property (nonatomic, strong) NSString *stoneFragmentation5;
-@property (nonatomic, strong) NSString *postprocedureComplications;
+@property (nonatomic, strong) NSString *stoneLocation;
+@property (nonatomic, strong) NSString *stoneSize;
+@property (nonatomic, strong) NSString *numberOfShockwaves;
+@property (nonatomic, strong) NSString *shockwaveRate;
+@property (nonatomic, strong) NSString *twoMinutePause;
+@property (nonatomic, strong) NSString *stoneLocationComplications;
+@property (nonatomic, strong) NSString *stoneSizeComplications;
+@property (nonatomic, strong) NSString *numberOfShockwavesComplications;
+@property (nonatomic, strong) NSString *shockwaveRateComplications;
+@property (nonatomic, strong) NSString *twoMinutePauseComplications;
 
 //radical
+@property (nonatomic, strong) NSString *PSA;
+@property (nonatomic, strong) NSString *continence;
+@property (nonatomic, strong) NSString *erectileFunction;
+@property (nonatomic, strong) NSString *bladderNeckContracture;
+@property (nonatomic, strong) NSString *mortality;
 @property (nonatomic, strong) NSString *T;
 @property (nonatomic, strong) NSString *N;
 @property (nonatomic, strong) NSString *gleason;
@@ -89,6 +99,7 @@ enum OKProcedureSummaryDetailPeriod
 
 -(NSOrderedDictionary*)shockwaveItems;
 -(NSOrderedDictionary*)roboticItems;
+-(NSOrderedDictionary*)roboticItems6Weeks;
 -(NSOrderedDictionary*)penileItems;
 -(NSOrderedDictionary*)twoWeeksItems;
 -(NSOrderedDictionary*)sixWeeksItems;
@@ -103,6 +114,7 @@ enum OKProcedureSummaryDetailPeriod
 //used to create add data request
 -(NSDictionary*)shockwaveDictionaryForSending;
 -(NSDictionary*)roboticDictionaryForSending;
+-(NSDictionary*)robotic6WeeksDictionaryForSending;
 -(NSDictionary*)penileDictionaryForSending;
 -(NSDictionary*)twoWeeksDictionaryForSending;
 -(NSDictionary*)sixWeeksDictionaryForSending;

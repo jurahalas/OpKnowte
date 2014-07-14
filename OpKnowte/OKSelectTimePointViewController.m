@@ -51,7 +51,8 @@
     
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
-    [timePointsManager getAllTimePointsWithHandler:^(NSString* error, NSArray* timePointsArray){
+    [timePointsManager getAllTimePointsWithProcID:_procID WithHandler:^(NSString *errorMsg, NSArray *timePointsArray) {
+        
         _timePointsArray = timePointsArray;
         [self.selectTimePointTableView reloadData];
         [[OKLoadingViewController instance] hide];
@@ -121,18 +122,7 @@
     }
     
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
-    if ([_procID isEqualToString:@"9"]){
-        [cell.timePointLabel setText:[_timePointsPenile objectAtIndex:indexPath.row]];
-    }else if ([_procID isEqualToString:@"10"]){
-        [cell.timePointLabel setText:[_timePointShockwave objectAtIndex:indexPath.row]];
-    }else{
-        [cell.timePointLabel setText:timePoint.timePointName];
-    }
-//    if (indexPath.row == 11) {
-//        [cell.timePointLabel setText:[self.timePointsArray objectAtIndex:indexPath.row]];
-//    }else{
-//        [cell.timePointLabel setText:timePoint.timePointName];
-//    }
+    [cell.timePointLabel setText:timePoint.timePointName];
     [cell setCellBGImageLight:(int)indexPath.row];
     return cell;
 }
@@ -182,13 +172,17 @@
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"9"] && ![ongoingData.averageCyclingTime isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"1"] && ![ongoingData.continence isEqualToString:@""] && [[OKTimePointsManager instance].selectedTimePoint.identifier integerValue] > 12){
+                            [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
+                        }else if ([_procID isEqualToString:@"1"] && [ongoingData.continence isEqualToString:@""] && [[OKTimePointsManager instance].selectedTimePoint.identifier integerValue] > 12){
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"1"] && ![ongoingData.gleason isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"1"] && [ongoingData.gleason isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
-                        }else if ([_procID isEqualToString:@"10"] && ![ongoingData.stoneFragmentation1 isEqualToString:@""]){
+                        }else if ([_procID isEqualToString:@"10"] && ![ongoingData.stoneLocation isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
-                        }else if ([_procID isEqualToString:@"10"] && [ongoingData.stoneFragmentation1 isEqualToString:@""]){
+                        }else if ([_procID isEqualToString:@"10"] && [ongoingData.stoneLocation isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else{
                             if ([cameFromVC isEqualToString:@"weeks"]) {
@@ -233,7 +227,11 @@
             summaryVC.detailPeriod = OKProcedureSummaryFollowPenile;
             summaryVC.caseNumber = _caseID;
         }else if ([_procID isEqualToString:@"1"]){
-            summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+            if ([[OKTimePointsManager instance].selectedTimePoint.identifier integerValue]>12) {
+                summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic6Weeks;
+            }else{
+                summaryVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+            }
         }else if ([_procID isEqualToString:@"9"]){
             summaryVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"10"]){
@@ -253,7 +251,11 @@
         }else if ([_procID isEqualToString:@"9"]){
             ongVC.detailPeriod = OKProcedureSummaryDetailPenile;
         }else if ([_procID isEqualToString:@"1"]){
-            ongVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+            if ([[OKTimePointsManager instance].selectedTimePoint.identifier integerValue]>12) {
+                ongVC.detailPeriod = OKProcedureSummaryDetailRobotic6Weeks;
+            }else{
+                ongVC.detailPeriod = OKProcedureSummaryDetailRobotic;
+            }
         }else if ([_procID isEqualToString:@"10"]){
             ongVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{

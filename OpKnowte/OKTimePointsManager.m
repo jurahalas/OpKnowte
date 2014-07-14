@@ -19,9 +19,11 @@
 }
 
 
-- (void)getAllTimePointsWithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler
+- (void)getAllTimePointsWithProcID:(NSString*)procID WithHandler:(void(^)(NSString *errorMsg, NSArray *timePointsArray))handler
 {
-    [self requestWithMethod:@"GET" path:@"getAllTimePoints" params:nil handler:^(NSError *error, id json) {
+    NSDictionary *params = @{@"procedureID": procID};
+    
+    [self requestWithMethod:@"GET" path:@"getTimePointsByProcedureId" params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         
         NSMutableArray *timePointsArray = [[NSMutableArray alloc] init];

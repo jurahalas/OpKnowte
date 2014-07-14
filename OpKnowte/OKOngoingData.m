@@ -25,33 +25,17 @@
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
     
     @try {
-        if ([self.stoneFragmentation5 isEqualToString:@""] && [self.stoneFragmentation4 isEqualToString:@""] && [self.stoneFragmentation3 isEqualToString:@""] && [self.stoneFragmentation2 isEqualToString:@""]) {
-            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
-            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-        }else if ([self.stoneFragmentation5 isEqualToString:@""] && [self.stoneFragmentation4 isEqualToString:@""] && [self.stoneFragmentation3 isEqualToString:@""]){
-            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
-            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
-            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-        }else if ([self.stoneFragmentation5 isEqualToString:@""] && [self.stoneFragmentation4 isEqualToString:@""]){
-            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
-            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
-            [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3, mm"];
-            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-        }else if ([self.stoneFragmentation5 isEqualToString:@""]){
-            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
-            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
-            [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3, mm"];
-            [dict setObject:self.stoneFragmentation4 forKey:@"Stone fragmentation #4, mm"];
-            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-        }else{
-            [dict setObject:self.stoneFragmentation1 forKey:@"Stone fragmentation #1, mm"];
-            [dict setObject:self.stoneFragmentation2 forKey:@"Stone fragmentation #2, mm"];
-            [dict setObject:self.stoneFragmentation3 forKey:@"Stone fragmentation #3, mm"];
-            [dict setObject:self.stoneFragmentation4 forKey:@"Stone fragmentation #4, mm"];
-            [dict setObject:self.stoneFragmentation5 forKey:@"Stone fragmentation #5, mm"];
-            
-            [dict setObject:self.postprocedureComplications forKey:@"Postprocedure complications"];
-        }
+        [dict setObject:self.stoneLocation forKey:@"Stone location"];
+        [dict setObject:self.stoneSize forKey:@"Stone size"];
+        [dict setObject:self.numberOfShockwaves forKey:@"Number of shockwaves"];
+        [dict setObject:self.shockwaveRate forKey:@"Shockwave rate"];
+        [dict setObject:self.twoMinutePause forKey:@"2 minute pause was delivered"];
+        
+        [dict setObject:self.stoneLocationComplications forKey:@"Stone location (complications)"];
+        [dict setObject:self.stoneSizeComplications forKey:@"Stone size (complications)"];
+        [dict setObject:self.numberOfShockwavesComplications forKey:@"Number of shockwaves (complications)"];
+        [dict setObject:self.shockwaveRateComplications forKey:@"Shockwave rate (complications)"];
+        [dict setObject:self.twoMinutePauseComplications forKey:@"2 minute pause was delivered (complications)"];    
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in shockwaveItems: %@",exception);
@@ -81,13 +65,30 @@
         [dict setObject:self.reAdmission forKey:@"Re-admission within 30 days, %"];
         [dict setObject:self.returnToORWithin forKey:@"Return to the OR within 30 days, %"];
         [dict setObject:self.death forKey:@"Death, %"];
-        
-        [dict setObject:self.complications forKey:@"Complications"];
         [dict setObject:self.lengthOfStay forKey:@"Length of Stay, night(s)"];
 
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in roboticItems: %@",exception);
+    }
+    return dict;
+    
+}
+
+-(NSOrderedDictionary*)roboticItems6Weeks
+{
+    
+    NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
+    
+    @try {
+        [dict setObject:self.PSA forKey:@"PSA"];
+        [dict setObject:self.continence forKey:@"continence"];
+        [dict setObject:self.erectileFunction forKey:@"erectileFunction"];
+        [dict setObject:self.bladderNeckContracture forKey:@"bladderNeckContracture"];
+        [dict setObject:self.mortality forKey:@"mortality"];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"OKOngoing data exception in roboticItems6Weeks: %@",exception);
     }
     return dict;
     
@@ -191,9 +192,12 @@
         if(!obj){
             obj = @"";
             NSLog(@"%@", name);
-            [dict removeObjectForKey:name];
         }
-        [dict setObject:obj forKey:name];
+        if ([obj isEqualToString:@""]) {
+            [dict removeObjectForKey:name];
+        }else{
+            [dict setObject:obj forKey:name];
+        }
     }
     
     free(properties);
@@ -209,7 +213,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 6; i < 43; i++)
+    for (i = 6; i < 45; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -218,9 +222,40 @@
         if(!obj){
             obj = @"";
             NSLog(@"%@", name);
-            [dict removeObjectForKey:name];
         }
-        [dict setObject:obj forKey:name];
+        if ([obj isEqualToString:@""]) {
+            [dict removeObjectForKey:name];
+        }else{
+            [dict setObject:obj forKey:name];
+        }
+    }
+    
+    free(properties);
+    return dict;
+}
+
+-(NSDictionary*)robotic6WeeksDictionaryForSending
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([self class], &count);
+    
+    unsigned i;
+    for (i = 0; i < 43; i++)
+    {
+        objc_property_t property = properties[i];
+        NSString *name = [NSString stringWithUTF8String:property_getName(property)];
+        
+        id obj = [self valueForKey:name];
+        if(!obj){
+            obj = @"";
+            NSLog(@"%@", name);
+        }
+        if ([obj isEqualToString:@""]) {
+            [dict removeObjectForKey:name];
+        }else{
+            [dict setObject:obj forKey:name];
+        }
     }
     
     free(properties);
@@ -235,7 +270,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 20; i < 27; i++)
+    for (i = 0; i < 61; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -245,7 +280,11 @@
             obj = @"";
             NSLog(@"%@", name);
         }
-        [dict setObject:obj forKey:name];
+        if ([obj isEqualToString:@""]) {
+            [dict removeObjectForKey:name];
+        }else{
+            [dict setObject:obj forKey:name];
+        }
     }
     
     free(properties);
@@ -259,7 +298,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 20; i < 43; i++)
+    for (i = 0; i < 61; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -268,6 +307,7 @@
         if(!obj){
             obj = @"";
             NSLog(@"%@", name);
+            [dict removeObjectForKey:name];
         }
         [dict setObject:obj forKey:name];
     }
@@ -300,7 +340,11 @@
             obj = @"Normal";
             [dict setObject:obj forKey:name];
         }
-        [dict setObject:obj forKey:name];
+        if ([obj isEqualToString:@""]) {
+            [dict removeObjectForKey:name];
+        }else{
+            [dict setObject:obj forKey:name];
+        }
     }
 
     free(properties);

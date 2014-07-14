@@ -51,6 +51,8 @@
         self.tableDict = self.ongoingData.penileItems;
     }else if (self.detailPeriod == OKProcedureSummaryDetailRobotic){
         self.tableDict = self.ongoingData.roboticItems;
+    }else if (self.detailPeriod == OKProcedureSummaryDetailRobotic6Weeks){
+        self.tableDict = self.ongoingData.roboticItems6Weeks;
     }else if (self.detailPeriod == OKProcedureSummaryDetailShockwave){
         self.tableDict = self.ongoingData.shockwaveItems;
     }else if (self.detailPeriod == OKProcedureSummaryFollowPenile){

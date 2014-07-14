@@ -79,6 +79,8 @@
         [params2 addEntriesFromDictionary:ongoingData.penileDictionaryForSending];
     }else if([forProcedure isEqualToString:@"4"]){
         [params2 addEntriesFromDictionary:ongoingData.roboticDictionaryForSending];
+    }else if([forProcedure isEqualToString:@"7"]){
+        [params2 addEntriesFromDictionary:ongoingData.robotic6WeeksDictionaryForSending];
     }else if([forProcedure isEqualToString:@"5"]){
         [params2 addEntriesFromDictionary:ongoingData.shockwaveDictionaryForSending];
     }
