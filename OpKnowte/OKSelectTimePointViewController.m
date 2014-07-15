@@ -58,21 +58,6 @@
         [[OKLoadingViewController instance] hide];
     }];
     
-    if ([_procID isEqualToString:@"9"]) {
-        _timePointsPenile = [[NSArray alloc] initWithObjects:
-                            @"6 weeks",
-                            @"3 months",
-                            @"6 months",
-                            @"12 months",
-                            @"24 months",
-                            @"36 months",
-                            @"48 months",
-                            @"60 months",
-                            nil];
-    }else if ([_procID isEqualToString:@"10"] && _followUp != nil ){
-        _timePointShockwave = @[_followUp];
-    }
-    
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
@@ -102,14 +87,7 @@
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([_procID isEqualToString:@"10"]) {
-        return _timePointShockwave.count;
-    }else if ([_procID isEqualToString:@"9"]){
-        return _timePointsPenile.count;
-    }
-    else{
-        return _timePointsArray.count;
-    }
+    return _timePointsArray.count;
 }
 
 
@@ -274,7 +252,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

@@ -385,17 +385,14 @@ float s_creatinineDiffSum;
                 break;
         }
     }
-    
-
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
 
 //from old app
 

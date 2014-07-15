@@ -69,9 +69,6 @@
         [self setupRoboticElements6Weeks];
     }else if(self.detailPeriod == OKProcedureSummaryDetailShockwave){
         [self setupShockwaveElements];
-    }else if(self.detailPeriod == OKProcedureSummaryFollowPenile){
-        [self setupPenileFollowUpElements];
-        self.title = @"Follow Up";
     }else{
         [self setupPenileElements];
     }
@@ -571,66 +568,6 @@
     [dict removeAllObjects];
 }
 
--(void)setupPenileFollowUpElements
-{
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
-    [dict setObject:@"beginCyclingDevice" forKey:@"name"];
-    [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"When did the patient begin cycling the device?" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"infection_on" forKey:@"name"];
-    [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
-    [dict setObject:@"Infection (yes/no)" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"infection" forKey:@"name"];
-    [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Infection (if Yes)" forKey:@"placeholder"];
-    [dict setObject:@"yes" forKey:@"depends"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"mechanicalFailure_on" forKey:@"name"];
-    [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
-    [dict setObject:@"Mechanical Failure (yes/no)" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"mechanicalFailure" forKey:@"name"];
-    [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Mechanical Failure (if Yes)" forKey:@"placeholder"];
-    [dict setObject:@"yes" forKey:@"depends"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"erosion_on" forKey:@"name"];
-    [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
-    [dict setObject:@"Erosion (yes/no)" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"erosion" forKey:@"name"];
-    [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Erosion (if Yes)" forKey:@"placeholder"];
-    [dict setObject:@"yes" forKey:@"depends"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"discontinue" forKey:@"name"];
-    [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
-    [dict setObject:@" Discontinue tracking patient" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-}
-
 
 -(void) addLeftButtonToNavbar
 {
@@ -644,10 +581,10 @@
     _cameFromVC = @"ongoing";
 }
 
+
 -(void)backButton{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 
 -(void)setupKeyboardNotifications
@@ -884,8 +821,6 @@
         forProcedure = @"1";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailSixWeeks){
         forProcedure = @"2";
-    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9 && self.detailPeriod==OKProcedureSummaryFollowPenile){
-        forProcedure = @"6";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
         forProcedure = @"3";
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1 &&  tp <= 12){
@@ -905,19 +840,10 @@
         }
         self.ongoingData.caseID = _caseNumber;
     
-    if (self.detailPeriod == OKProcedureSummaryFollowPenile) {
-        [[OKFollowUpDataManager instance] addFollowUpDataForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
-            [[OKLoadingViewController instance]hide];
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-    }else{
-    
         [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
-        
-    }
 }
 
 

@@ -55,8 +55,6 @@
         self.tableDict = self.ongoingData.roboticItems6Weeks;
     }else if (self.detailPeriod == OKProcedureSummaryDetailShockwave){
         self.tableDict = self.ongoingData.shockwaveItems;
-    }else if (self.detailPeriod == OKProcedureSummaryFollowPenile){
-        self.tableDict = self.ongoingData.penileFollowItems;
     }else{
         self.tableDict = self.ongoingData.sixWeeksItems;
     }

@@ -103,8 +103,6 @@ enum OKProcedureSummaryDetailPeriod
 -(NSOrderedDictionary*)penileItems;
 -(NSOrderedDictionary*)twoWeeksItems;
 -(NSOrderedDictionary*)sixWeeksItems;
-//follow up
--(NSOrderedDictionary*)penileFollowItems;
 
 //used to check if all of the needed data is filled
 -(BOOL)checkPenileData;
@@ -118,9 +116,6 @@ enum OKProcedureSummaryDetailPeriod
 -(NSDictionary*)penileDictionaryForSending;
 -(NSDictionary*)twoWeeksDictionaryForSending;
 -(NSDictionary*)sixWeeksDictionaryForSending;
-
-//follow up
--(NSDictionary*)penileFollowDictionaryForSending;
 
 
 

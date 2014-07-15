@@ -137,10 +137,6 @@
     
     NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
     
-    if([forProcedure isEqualToString:@"6"]){
-        [params2 addEntriesFromDictionary:ongoingData.penileFollowDictionaryForSending];
-    }
-    
     [self requestWithMethod:@"POST" path:@"addFollowUpData" params:params2 handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
     }];
