@@ -73,7 +73,6 @@
            
         }else{
             _explanationTextLabel.text = [NSString stringWithFormat: @" An email will be sent to user or team member at x days after time point is reached"];
-        
         }
 
         [[OKLoadingViewController instance] hide];

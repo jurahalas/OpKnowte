@@ -231,15 +231,14 @@ float s_creatinineDiffSum;
 {
     [super viewDidLoad];
     _selectVariablesTable.backgroundColor = [UIColor clearColor];
-    _sixMonthArray = [[NSArray alloc] initWithObjects:
-                      @"Chest Xray",
+    
+    _sixMonthArray = @[@"Chest Xray",
                       @"Liver Enzymes",
                       @"Post Site Hernia",
                       @"CT Scan",
                       @"Bun",
-                      @"Creatine", nil];
-    _twoWeeksArray = [[NSArray alloc] initWithObjects:
-                      @"TNM Staging",
+                      @"Creatine"];
+    _twoWeeksArray = @[@"TNM Staging",
                       @"Tumor Characteristics",
                       @"Fuhrman Grade",
                       @"Margins",
@@ -247,8 +246,7 @@ float s_creatinineDiffSum;
                       @"Length Stay",
                       @"Complications",
                       @"Change in BUN",
-                      @"Change in Creatine",
-                        nil];
+                      @"Change in Creatine"];
 
     _selectVariablesTable.dataSource = self;
     _selectVariablesTable.delegate = self;
@@ -257,8 +255,9 @@ float s_creatinineDiffSum;
     [self addBottomTabBar];
     [self addLeftButtonToNavbar];
     self.navigationItem.title = @"Select Variables";
-
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -272,7 +271,6 @@ float s_creatinineDiffSum;
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
-    
 }
 
 - (void)backButton {

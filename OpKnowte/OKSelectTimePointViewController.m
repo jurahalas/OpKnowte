@@ -17,6 +17,7 @@
 #import "OKSelectFUDVariablesVC.h"
 #import "OKOngoingClinicalViewController.h"
 #import "OKFollowUpDataManager.h"
+#import "OKLRRadicalProstatectomyModel.h"
 
 @interface OKSelectTimePointViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -24,10 +25,9 @@
 @property (strong, nonatomic) NSArray *timePointsArray;
 @property (strong, nonatomic) NSArray *timePointsPenile;
 @property (strong, nonatomic) NSArray *timePointShockwave;
-
 @property (nonatomic) int timepointID;
 @property (strong, nonatomic) NSString *caseNumber;
-
+@property (strong, nonatomic) NSString *selectedCases;
 @property (strong, nonatomic) OKCase *caseObj;
 
 @end
@@ -48,22 +48,25 @@
     
     self.caseObj = [OKCaseManager instance].selectedCase;
     
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    for (int i=0; i<_totalSurgeonCases.count; i++) {
+//        OKLRRadicalProstatectomyModel *shockwaveCase = (OKLRRadicalProstatectomyModel*)_totalSurgeonCases[i];
+//        [array addObject:shockwaveCase.DetailID];
+//        self.selectedCases = [array componentsJoinedByString:@" "];
+//    }
     
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     [timePointsManager getAllTimePointsWithProcID:_procID WithHandler:^(NSString *errorMsg, NSArray *timePointsArray) {
-        
         _timePointsArray = timePointsArray;
         [self.selectTimePointTableView reloadData];
         [[OKLoadingViewController instance] hide];
     }];
-    
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
 }
-
 
 
 -(void) addLeftButtonToNavbar
@@ -76,6 +79,7 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
+
 
 #pragma mark - IBActions
 - (IBAction)backButton:(id)sender
@@ -98,7 +102,6 @@
     if (!cell) {
         cell = [[OKSelectTimePointCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
     OKTimePointModel *timePoint = (OKTimePointModel*)self.timePointsArray[indexPath.row];
     [cell.timePointLabel setText:timePoint.timePointName];
     [cell setCellBGImageLight:(int)indexPath.row];
@@ -248,6 +251,7 @@
     [super viewWillDisappear:animated];
     [self.selectTimePointTableView deselectRowAtIndexPath:self.selectTimePointTableView.indexPathForSelectedRow animated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

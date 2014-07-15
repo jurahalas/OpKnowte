@@ -559,11 +559,11 @@
     }else{
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
         OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-        [followUpDataManager getClinicalDetailsByCaseArray:_selectedCases handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+        [followUpDataManager getClinicalDetailsByCaseArray:_selectedCases andProcedureId:_procID handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
             
             NSLog(@"Eror - %@", errorMsg);
             _surgeonClinicalData = dataArray;
-            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray andProcedureId:_procID handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 _nationalClinicalData = dataArray;
                 [[OKLoadingViewController instance] hide];

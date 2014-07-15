@@ -117,11 +117,6 @@
 }
 
 
-
-
-
-
-
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -133,10 +128,14 @@
     self.navigationItem.leftBarButtonItem = anotherButton;
     
 }
-- (void)backButton {
+
+
+- (void)backButton
+{
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
 
 - (void)viewDidLoad
 {
@@ -191,6 +190,8 @@
     _gradeNationalView.hidden = _showNationalData;
     _tmnNationalView.hidden = _showNationalData;
 }
+
+
 -(void)showTMGGraph{
     
     if (IS_IPHONE_5) {
@@ -259,7 +260,9 @@
     
 }
 
--(void)showTumorChGraph{
+
+-(void)showTumorChGraph
+{
     if (IS_IPHONE_5) {
         
         CGRect frame = self.tumorChView.frame;
@@ -298,6 +301,7 @@
     [_scrollView addSubview:self.tumorChView];
 }
 
+
 -(void)showFGGraph{
     if (IS_IPHONE_5) {
         
@@ -329,6 +333,7 @@
     [_scrollView addSubview:self.FGradeView];
 }
 
+
 -(void)showMarginsGraph{
     
     if (IS_IPHONE_5) {
@@ -358,6 +363,7 @@
     [_scrollView addSubview:self.marginsView];
 }
 
+
 -(void)showDMarginsGraph{
     
     if (IS_IPHONE_5) {
@@ -386,8 +392,8 @@
     self.DMarginView.frame = CGRectMake(self.DMarginView.frame.origin.x, self.DMarginView.frame.origin.y-64, self.DMarginView.frame.size.width, self.DMarginView.frame.size.height);
 
     [_scrollView addSubview:self.DMarginView];
-
 }
+
 
 -(void)showNights{
     
@@ -416,6 +422,7 @@
 
     [_scrollView addSubview:self.nightsGraph];
 }
+
 
 -(void)showComplicationsGraph{
     if (IS_IPHONE_5) {
@@ -467,6 +474,7 @@
     [_scrollView addSubview:self.complicationsGraph];
 }
 
+
 -(void)showChangeBUNGraph{
     changeTitle.text = @"Change in BUN";
     if (IS_IPHONE_5) {
@@ -492,9 +500,8 @@
     self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
 
     [_scrollView addSubview:self.changeBUNView];
-    
-    
 }
+
 
 -(void)showChangeCreatinineGraph{
     changeTitle.text = @"Change in Creatinine";
@@ -523,6 +530,8 @@
 
     [_scrollView addSubview:self.changeBUNView];
 }
+
+
 -(void)showXrayGraph{
     if (IS_IPHONE_5) {
         
@@ -550,6 +559,7 @@
 
     [_scrollView addSubview:self.xrayGraph];
 }
+
 
 -(void)showLiverGraph{
     if (IS_IPHONE_5) {
@@ -579,6 +589,7 @@
     [_scrollView addSubview:self.liverGraph];
 }
 
+
 -(void)showHerniaGraph{
     if (IS_IPHONE_5) {
         
@@ -606,6 +617,7 @@
     
     [_scrollView addSubview:self.herniaGraph];
 }
+
 
 -(void)showCTScanGraph{
     if (IS_IPHONE_5) {
@@ -645,6 +657,7 @@
     [_scrollView addSubview:self.CtScanGraph];
 }
 
+
 -(void)showAverageCreatinineGraph{
     averageViewTitleLabel.text = @"Average Creatinine";
     
@@ -674,6 +687,7 @@
     [_scrollView addSubview:self.averageView];
 }
 
+
 -(void)showAverageBUNGraph{
     averageViewTitleLabel.text = @"Average BUN";
     if (IS_IPHONE_5) {
@@ -702,10 +716,10 @@
     [_scrollView addSubview:self.averageView];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

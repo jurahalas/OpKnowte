@@ -107,8 +107,6 @@
             [self searchDetails];
         }else{
             [[OKLoadingViewController instance] hide];
-            
-            
         }
     }];
     
@@ -208,11 +206,11 @@
     if (_choosedDetails.count) {
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
         OKFollowUpDataManager *followUpDataManager = [OKFollowUpDataManager instance];
-        [followUpDataManager getClinicalDetailsByCaseArray:_choosedDetails handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+        [followUpDataManager getClinicalDetailsByCaseArray:_choosedDetails andProcedureId:_procID handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
             
             NSLog(@"Eror - %@", errorMsg);
             _surgeonClinicalData = dataArray;
-            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
+            [followUpDataManager getClinicalDetailsByCaseArray:_nationalDataArray andProcedureId:_procID handler:^(NSString *errorMsg, NSMutableArray *dataArray) {
                 NSLog(@"Eror - %@", errorMsg);
                 _nationalClinicalData = dataArray;
                 [[OKLoadingViewController instance] hide];
@@ -287,7 +285,6 @@
                     
                     _nationalDataArray = dataArray;
                     [[OKLoadingViewController instance] hide];
-                    
                 }];
             }];
         }else{

@@ -12,6 +12,7 @@
 #import "OKLRPartialNephrectomyModel.h"
 #import "OKPenileProsthesisModel.h"
 #import "OKUserManager.h"
+#import "OKProceduresManager.h"
 
 @implementation OKFollowUpDataManager
 + (OKFollowUpDataManager *)instance
@@ -68,7 +69,7 @@
         handler([self getErrorMessageFromJSON:json error:error], proceduresArray);
     }];
 }
-- (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler{
+- (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray andProcedureId:(NSString*)procID handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler{
     
     NSDictionary *params = @{};
     NSMutableArray *idArray = [[NSMutableArray alloc] init];
@@ -76,14 +77,14 @@
         [idArray addObject:[caseArray[i] valueForKey:@"DetailID"]];
     }
     NSString *list = [idArray componentsJoinedByString:@","];
-    NSString *url = [NSString stringWithFormat:@"getClinicalDetailByCaseIDs?caseIDs=%@",list];
+    procID = [OKProceduresManager instance].selectedProcedure.identifier;
+    NSString *url = [NSString stringWithFormat:@"getClinicalDetailByCaseIDs?caseIDs=%@&procedureID=%@",list, procID];
     
     [self requestWithMethod:@"GET" path:url params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         NSMutableArray *dataArray = [[NSMutableArray alloc] initWithArray:[json objectForKey:@"clinicalData"]];
         handler([self getErrorMessageFromJSON:json error:error], dataArray);
     }];
-
     
 }
 
@@ -128,19 +129,19 @@
 }
 
 
-- (void)addFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
-{
-    NSDictionary *params1 = @{@"procedureID":procedureID,
-                              @"userID":[OKUserManager instance].currentUser.identifier,
-                              @"caseID":caseID,
-                              @"timePointID":timePointID};
-    
-    NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
-    
-    [self requestWithMethod:@"POST" path:@"addFollowUpData" params:params2 handler:^(NSError *error, id json) {
-        handler([self getErrorMessageFromJSON:json error:error]);
-    }];
-}
+//- (void)addFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
+//{
+//    NSDictionary *params1 = @{@"procedureID":procedureID,
+//                              @"userID":[OKUserManager instance].currentUser.identifier,
+//                              @"caseID":caseID,
+//                              @"timePointID":timePointID};
+//    
+//    NSMutableDictionary *params2 = [NSMutableDictionary dictionaryWithDictionary:params1];
+//    
+//    [self requestWithMethod:@"POST" path:@"addFollowUpData" params:params2 handler:^(NSError *error, id json) {
+//        handler([self getErrorMessageFromJSON:json error:error]);
+//    }];
+//}
 
 
 - (void)getFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, OKOngoingData *ongoingData ))handler
