@@ -9,6 +9,7 @@
 #import "OKSelectFUDVariablesVC.h"
 #import "OKSelectFUDVariablesCell.h"
 #import "OKFollowUpDataCompareVC.h"
+#import "OKProceduresManager.h"
 
 @interface OKSelectFUDVariablesVC ()
 
@@ -232,21 +233,47 @@ float s_creatinineDiffSum;
     [super viewDidLoad];
     _selectVariablesTable.backgroundColor = [UIColor clearColor];
     
-    _sixMonthArray = @[@"Chest Xray",
-                      @"Liver Enzymes",
-                      @"Post Site Hernia",
-                      @"CT Scan",
-                      @"Bun",
-                      @"Creatine"];
-    _twoWeeksArray = @[@"TNM Staging",
-                      @"Tumor Characteristics",
-                      @"Fuhrman Grade",
-                      @"Margins",
-                      @"Deep Margins",
-                      @"Length Stay",
-                      @"Complications",
-                      @"Change in BUN",
-                      @"Change in Creatine"];
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        
+        _twoWeeksArray = @[@"TN Staging",
+                           @"Gleason",
+                           @"Positive Margin",
+                           @"Cystogram",
+                           @"Ileus",
+                           @"Transfusion",
+                           @"Wound Infection",
+                           @"Urine Leak",
+                           @"Bowel Injury",
+                           @"DVT",
+                           @"PE",
+                           @"Re-admission within 30 days",
+                           @"Return to the OR whithin 30 days",
+                           @"Death",
+                           @"Length of Stay"];
+        _sixMonthArray = @[@"PSA",
+                           @"Continence",
+                           @"Erectile Function",
+                           @"Bladder Neck Contracture",
+                           @"Mortality"];
+
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+
+        _sixMonthArray = @[@"Chest Xray",
+                           @"Liver Enzymes",
+                           @"Post Site Hernia",
+                           @"CT Scan",
+                           @"Bun",
+                           @"Creatine"];
+        _twoWeeksArray = @[@"TNM Staging",
+                           @"Tumor Characteristics",
+                           @"Fuhrman Grade",
+                           @"Margins",
+                           @"Deep Margins",
+                           @"Length Stay",
+                           @"Complications",
+                           @"Change in BUN",
+                           @"Change in Creatine"];
+        }
 
     _selectVariablesTable.dataSource = self;
     _selectVariablesTable.delegate = self;
@@ -312,78 +339,156 @@ float s_creatinineDiffSum;
     
     _showNationalData = YES;
     _tappedCell = indexPath.row;
-    if ([_cameFromVC isEqualToString:@"weeks"]) {
-        switch (indexPath.row) {
-            case 0:{
-                [self TMGstaging];
-                break;
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        if ([_cameFromVC isEqualToString:@"weeks"]) {
+            switch (indexPath.row) {
+                case 0:{
+                    [self TMGstaging];
+                    break;
+                }
+                case 1:{
+                    [self tumorCh];
+                    break;
+                }
+                case 2:{
+                    [self fuhrmanGrade];
+                    break;
+                }
+                case 3:{
+                    [self margins];
+                    break;
+                }
+                case 4:{
+                    [self dMargin];
+                    break;
+                }
+                case 5:{
+                    [self nights];
+                    break;
+                }
+                case 6:{
+                    [self complications];
+                    break;
+                }
+                case 7:{
+                    [self changeBUN];
+                    break;
+                }
+                case 8:{
+                    [self changeCreatinine];
+                    break;
+                }
+                default:
+                    break;
             }
-            case 1:{
-                [self tumorCh];
-                break;
+        } else {
+            switch (indexPath.row) {
+                case 0:{
+                    [self xray];
+                    break;
+                }
+                case 1:{
+                    [self Liver];
+                    break;
+                }
+                case 2:{
+                    [self Hernia];
+                    break;
+                }
+                case 3:{
+                    [self CTScan];
+                    break;
+                }
+                case 4:{
+                    [self BUN];
+                    break;
+                }
+                case 5:{
+                    [self Creatinine];
+                    break;
+                }
+                default:
+                    break;
             }
-            case 2:{
-                [self fuhrmanGrade];
-                break;
-            }
-            case 3:{
-                [self margins];
-                break;
-            }
-            case 4:{
-                [self dMargin];
-                break;
-            }
-            case 5:{
-                [self nights];
-                break;
-            }
-            case 6:{
-                [self complications];
-                break;
-            }
-            case 7:{
-                [self changeBUN];
-                break;
-            }
-            case 8:{
-                [self changeCreatinine];
-                break;
-            }
-            default:
-                break;
         }
-    } else {
-        switch (indexPath.row) {
-            case 0:{
-                [self xray];
-                break;
+
+        
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+        if ([_cameFromVC isEqualToString:@"weeks"]) {
+            switch (indexPath.row) {
+                case 0:{
+                    [self TMGstaging];
+                    break;
+                }
+                case 1:{
+                    [self tumorCh];
+                    break;
+                }
+                case 2:{
+                    [self fuhrmanGrade];
+                    break;
+                }
+                case 3:{
+                    [self margins];
+                    break;
+                }
+                case 4:{
+                    [self dMargin];
+                    break;
+                }
+                case 5:{
+                    [self nights];
+                    break;
+                }
+                case 6:{
+                    [self complications];
+                    break;
+                }
+                case 7:{
+                    [self changeBUN];
+                    break;
+                }
+                case 8:{
+                    [self changeCreatinine];
+                    break;
+                }
+                default:
+                    break;
             }
-            case 1:{
-                [self Liver];
-                break;
+        } else {
+            switch (indexPath.row) {
+                case 0:{
+                    [self xray];
+                    break;
+                }
+                case 1:{
+                    [self Liver];
+                    break;
+                }
+                case 2:{
+                    [self Hernia];
+                    break;
+                }
+                case 3:{
+                    [self CTScan];
+                    break;
+                }
+                case 4:{
+                    [self BUN];
+                    break;
+                }
+                case 5:{
+                    [self Creatinine];
+                    break;
+                }
+                default:
+                    break;
             }
-            case 2:{
-                [self Hernia];
-                break;
-            }
-            case 3:{
-                [self CTScan];
-                break;
-            }
-            case 4:{
-                [self BUN];
-                break;
-            }
-            case 5:{
-                [self Creatinine];
-                break;
-            }
-            default:
-                break;
         }
+
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -588,286 +693,502 @@ float s_creatinineDiffSum;
 -(void)calculate{
     
     [self resetCounter];
-    
-    for (int i = 0; i < [self.performanceCases count]; i++) {
-        NSDictionary *dict = [self.performanceCases objectAtIndex:i];
-        NSLog(@"%@",[dict objectForKey:@"timePointID"]);
-        
-        if ([[dict objectForKey:@"timePointID"] isEqualToString:@"1"]) {
-            twoWeeks++;
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        for (int i = 0; i < [self.performanceCases count]; i++) {
+            NSDictionary *dict = [self.performanceCases objectAtIndex:i];
+            NSLog(@"%@",[dict objectForKey:@"timePointID"]);
             
-            NSString *tStage = [dict objectForKey:@"tStage"];
-            //NSLog(@"%@", tStage);
-            if (tStage.length > 0) {
-                if ([tStage isEqualToString:@"TX"]) {
-                    Tx++;
-                }else if ([tStage isEqualToString:@"T0"]){
-                    T0++;
-                }else if ([tStage isEqualToString:@"T1"]){
-                    T1++;
-                }else if ([tStage isEqualToString:@"T1a"]){
-                    T1a++;
-                }else if ([tStage isEqualToString:@"T1b"]){
-                    T1b++;
-                }else if ([tStage isEqualToString:@"T2"]){
-                    T2++;
-                }else if ([tStage isEqualToString:@"T2a"]){
-                    T2a++;
-                }else if ([tStage isEqualToString:@"T2b"]){
-                    T2b++;
-                }else if ([tStage isEqualToString:@"T3"]){
-                    T3++;
-                }else if ([tStage isEqualToString:@"T3a"]){
-                    T3a++;
-                }else if ([tStage isEqualToString:@"T3b"]){
-                    T3b++;
-                }else if ([tStage isEqualToString:@"T3c"]){
-                    T3c++;
-                }else if ([tStage isEqualToString:@"T4"]){
-                    T4++;
-                }
-            }
-            
-            if([dict objectForKey:@"preOperativeBun"] && [dict objectForKey:@"postOperativeBun"]){
+            if ([[dict objectForKey:@"timePointID"] isEqualToString:@"12"]) {
+                twoWeeks++;
                 
-                float preob = [[dict objectForKey:@"preOperativeBun"] floatValue];
-                float postob = [[dict objectForKey:@"postOperativeBun"] floatValue];
-                float result = postob - preob;
-                if(result<0)
-                    result = result*(-1);
-                bunDiffSum+=result;
-            }
-            
-            if([dict objectForKey:@"preOperativeCreatinine"] && [dict objectForKey:@"postOperativeCreatinine"]){
-                
-                float preob = [[dict objectForKey:@"preOperativeCreatinine"] floatValue];
-                float postob = [[dict objectForKey:@"postOperativeCreatinine"] floatValue];
-                float result = postob - preob;
-                if(result<0)
-                    result = result*(-1);
-                creatinineDiffSum+=result;
-            }
-            
-            NSString *nStage = [dict objectForKey:@"nStage"];
-            //NSLog(@"%@", nStage);
-            if (nStage.length > 0) {
-                if ([nStage isEqualToString:@"N"]) {
-                    N++;
-                }else if ([nStage isEqualToString:@"NX"]){
-                    Nx++;
-                }else if ([nStage isEqualToString:@"N0"]){
-                    N0++;
-                }else if ([nStage isEqualToString:@"N1"]){
-                    N1++;
-                }
-            }
-            
-            NSString *mStage = [dict objectForKey:@"mStage"];
-            //NSLog(@"%@", mStage);
-            if (mStage.length > 0) {
-                if ([mStage isEqualToString:@"M"]) {
-                    M++;
-                }else if ([mStage isEqualToString:@"M0"]){
-                    M0++;
-                }else if ([mStage isEqualToString:@"M1"]){
-                    M1++;
-                }
-            }
-            
-            NSString *tumorCh = [dict objectForKey:@"tumorChar"];
-            //NSLog(@"%@", tumorCh);
-            if (mStage.length > 0) {
-                if ([tumorCh isEqualToString:@"Clear Cell"]) {
-                    ClearAll++;
-                }else if ([tumorCh isEqualToString:@"Papillary"]){
-                    Papillary++;
-                }else if ([tumorCh isEqualToString:@"Chromophobe"]){
-                    Chromophobe++;
-                }else if ([tumorCh isEqualToString:@"Sarcomatoid"]){
-                    Sarcomatoid++;
-                }else if ([tumorCh isEqualToString:@"angiomyolipoma"]){
-                    angiomyolipoma++;
-                }else if ([tumorCh isEqualToString:@"oncocytoma"]){
-                    oncocytoma++;
-                }else if ([tumorCh isEqualToString:@"other"]){
-                    other++;
-                }
-            }
-            
-            
-            
-            NSString *FGrade = [dict objectForKey:@"fuhrmanGrade"];
-            //NSLog(@"%@", FGrade);
-            if (FGrade.length > 0) {
-                if ([FGrade isEqualToString:@"1/4"]) {
-                    FGoneByFour++;
-                }else if ([FGrade isEqualToString:@"2/4"]){
-                    FGtwoByFour++;
-                }else if ([FGrade isEqualToString:@"3/4"]){
-                    FGthreeByFour++;
-                }else if ([FGrade isEqualToString:@"4/4"]){
-                    FGfourByFour++;
-                }
-            }
-            
-            NSString *margins = [dict objectForKey:@"margins"];
-            //NSLog(@"%@", margins);
-            if (margins.length > 0) {
-                if ([margins isEqualToString:@"Positive"]) {
-                    mPositive++;
-                }else if ([margins isEqualToString:@"Negative"]){
-                    mNegative++;
-                }
-            }
-            
-            
-            NSString *dMargins = [dict objectForKey:@"deepMargin"];
-            //NSLog(@"%@", dMargins);
-            if (dMargins.length > 0) {
-                if ([dMargins isEqualToString:@"Positive"]) {
-                    dmPositive++;
-                }else if ([dMargins isEqualToString:@"Negative"]){
-                    dmNegative++;
-                }
-            }
-            
-            
-            
-            if([dict objectForKey:@"lengthOfStay"]){
-                NSString *nights = [dict objectForKey:@"lengthOfStay"];
-                //NSLog(@"%@", nights);
-                NSArray *ary = [nights componentsSeparatedByString:@" "];
-                float stay = [[ary objectAtIndex:0] floatValue];
-                stayCount+=stay;
-                if(twoWeeks == 1){
-                    minStay = stay;
-                    maxStay = stay;
-                }else{
-                    if(stay>maxStay){
-                        maxStay = stay;
-                    }
-                    if(stay<minStay){
-                        minStay = stay;
+                NSString *tStage = [dict objectForKey:@"tStage"];
+                //NSLog(@"%@", tStage);
+                if (tStage.length > 0) {
+                    if ([tStage isEqualToString:@"T2a"]){
+                        T2a++;
+                    }else if ([tStage isEqualToString:@"T2b"]){
+                        T2b++;
+                    }else if ([tStage isEqualToString:@"T2c"]){
+                        T3++;
+                    }else if ([tStage isEqualToString:@"T3a"]){
+                        T3a++;
+                    }else if ([tStage isEqualToString:@"T3b"]){
+                        T3b++;
+                    }else if ([tStage isEqualToString:@"T4"]){
+                        T4++;
                     }
                 }
-            }
-            
-            NSString *complication = [dict objectForKey:@"complications"];
-            //NSLog(@"%@", complication);
-            if (complication.length > 0) {
-                if ([complication isEqualToString:@"Ileus"]) {
-                    Ileus++;
-                }else if ([complication isEqualToString:@"Bowel injury"]){
-                    BowelInjury++;
-                }else if ([complication isEqualToString:@"Infection"]){
-                    Infection++;
-                }else if ([complication isEqualToString:@"Urine leak"]){
-                    UrineLeak++;
-                }else if ([complication isEqualToString:@"DVT"]){
-                    DVT++;
-                }else if ([complication isEqualToString:@"PE"]){
-                    PE++;
-                }else if ([complication isEqualToString:@"Cardiac event"]){
-                    CardiacEvent++;
-                }else if ([complication isEqualToString:@"Hernia"]){
-                    Hernia++;
-                }else if ([complication isEqualToString:@"Transfusion"]){
-                    Transfusion++;
-                    NSLog(@"%f",Transfusion);
-                }else if ([complication isEqualToString:@"Death"]){
-                    Death++;
-                }else if ([complication isEqualToString:@"Other"]){
-                    OtherComp++;
+                
+                NSString *nStage = [dict objectForKey:@"nStage"];
+                //NSLog(@"%@", nStage);
+                if (nStage.length > 0) {
+                    if ([nStage isEqualToString:@"NX"]){
+                        Nx++;
+                    }else if ([nStage isEqualToString:@"N0"]){
+                        N0++;
+                    }else if ([nStage isEqualToString:@"N1"]){
+                        N1++;
+                    }
                 }
-            }
+                
+                NSString *ctscan = [dict objectForKey:@"gleason"];
+                //NSLog(@"%@", ctscan);
+                if (ctscan.length > 0) {
+                    if ([ctscan isEqualToString:@"(3+3)"]) {
+                        metastaticDisease++;
+                    }else if ([ctscan isEqualToString:@"(3+4)"]){
+                        LocalRecurrence++;
+                    }else if ([ctscan isEqualToString:@"(4+3)"]){
+                        Lymphadenopathy++;
+                    }else if ([ctscan isEqualToString:@"(4+4)"]){
+                        LiverMetastasis++;
+                    }else if ([ctscan isEqualToString:@"(4+5)"]){
+                        BoneMetastasis++;
+                    }else if ([ctscan isEqualToString:@"(5+5)"]){
+                        BrainMetastasis++;
+                    }
+                }
+                
 
-            
-        }else if ([[dict objectForKey:@"timePointID"] intValue] >1 && [[dict objectForKey:@"timePointID"] intValue] <12 && [[dict objectForKey:@"timePointID"] intValue] == self.timepointID){
-            sixMonths++;
-            
-            NSString *xray = [dict objectForKey:@"chestXray"];
-            //NSLog(@"%@", xray);
-            if (xray.length > 0) {
-                if ([xray isEqualToString:@"Positive"]) {
-                    xrayPositive++;
-                }else if ([xray isEqualToString:@"Negative"]){
-                    xrayNegative++;
-                }
-            }
-            
-            if([dict objectForKey:@"Bun"]){
-                float bun = [[dict objectForKey:@"Bun"] floatValue];
-                bunSum+=bun;
-                if(sixMonths == 1){
-                    minBun = bun;
-                    maxBun = bun;
-                }else{
-                    if(bun>maxBun){
-                        maxBun = bun;
+                NSString *hernia = [dict objectForKey:@"portSiteHemia"];
+                //NSLog(@"%@", hernia);
+                if (hernia.length > 0) {
+                    if ([hernia isEqualToString:@"Yes"]) {
+                        herniaYES++;
+                    }else if ([hernia isEqualToString:@"No"]){
+                        herniaNO++;
                     }
-                    if(bun<minBun){
+                }
+                
+                NSString *hernia2 = [dict objectForKey:@"portSiteHemia"];
+                //NSLog(@"%@", hernia);
+                if (hernia2.length > 0) {
+                    if ([hernia2 isEqualToString:@"Yes"]) {
+                        herniaYES++;
+                    }else if ([hernia2 isEqualToString:@"No"]){
+                        herniaNO++;
+                    }
+                }
+                
+                if([dict objectForKey:@"lengthOfStay"]){
+                    NSString *nights = [dict objectForKey:@"lengthOfStay"];
+                    //NSLog(@"%@", nights);
+                    NSArray *ary = [nights componentsSeparatedByString:@" "];
+                    float stay = [[ary objectAtIndex:0] floatValue];
+                    stayCount+=stay;
+                    if(twoWeeks == 1){
+                        minStay = stay;
+                        maxStay = stay;
+                    }else{
+                        if(stay>maxStay){
+                            maxStay = stay;
+                        }
+                        if(stay<minStay){
+                            minStay = stay;
+                        }
+                    }
+                }
+                
+                NSString *complication = [dict objectForKey:@"complications"];
+                //NSLog(@"%@", complication);
+                if (complication.length > 0) {
+                    if ([complication isEqualToString:@"Ileus"]) {
+                        Ileus++;
+                    }else if ([complication isEqualToString:@"Bowel injury"]){
+                        BowelInjury++;
+                    }else if ([complication isEqualToString:@"Infection"]){
+                        Infection++;
+                    }else if ([complication isEqualToString:@"Urine leak"]){
+                        UrineLeak++;
+                    }else if ([complication isEqualToString:@"DVT"]){
+                        DVT++;
+                    }else if ([complication isEqualToString:@"PE"]){
+                        PE++;
+                    }else if ([complication isEqualToString:@"Cardiac event"]){
+                        CardiacEvent++;
+                    }else if ([complication isEqualToString:@"Hernia"]){
+                        Hernia++;
+                    }else if ([complication isEqualToString:@"Transfusion"]){
+                        Transfusion++;
+                        NSLog(@"%f",Transfusion);
+                    }else if ([complication isEqualToString:@"Death"]){
+                        Death++;
+                    }else if ([complication isEqualToString:@"Other"]){
+                        OtherComp++;
+                    }
+                }
+                
+                
+            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <25 && [[dict objectForKey:@"timePointID"] intValue] == self.timepointID){
+                sixMonths++;
+                
+                NSString *xray = [dict objectForKey:@"chestXray"];
+                //NSLog(@"%@", xray);
+                if (xray.length > 0) {
+                    if ([xray isEqualToString:@"Positive"]) {
+                        xrayPositive++;
+                    }else if ([xray isEqualToString:@"Negative"]){
+                        xrayNegative++;
+                    }
+                }
+                
+                if([dict objectForKey:@"Bun"]){
+                    float bun = [[dict objectForKey:@"Bun"] floatValue];
+                    bunSum+=bun;
+                    if(sixMonths == 1){
                         minBun = bun;
+                        maxBun = bun;
+                    }else{
+                        if(bun>maxBun){
+                            maxBun = bun;
+                        }
+                        if(bun<minBun){
+                            minBun = bun;
+                        }
                     }
                 }
-            }
-            
-            if([dict objectForKey:@"Creatinine"]){
-                float crt = [[dict objectForKey:@"Creatinine"] floatValue];
-                creatinineSum+= crt;
-                if(sixMonths == 1){
-                    minCreatinine = crt;
-                    maxCreatinine = crt;
-                }else{
-                    if(crt>maxCreatinine){
-                        maxCreatinine = crt;
-                    }
-                    if(crt<minCreatinine){
+                
+                if([dict objectForKey:@"Creatinine"]){
+                    float crt = [[dict objectForKey:@"Creatinine"] floatValue];
+                    creatinineSum+= crt;
+                    if(sixMonths == 1){
                         minCreatinine = crt;
+                        maxCreatinine = crt;
+                    }else{
+                        if(crt>maxCreatinine){
+                            maxCreatinine = crt;
+                        }
+                        if(crt<minCreatinine){
+                            minCreatinine = crt;
+                        }
                     }
                 }
-            }
-            
-            NSString *liver = [dict objectForKey:@"liverEnzymes"];
-            //NSLog(@"%@", liver);
-            if (xray.length > 0) {
-                if ([liver isEqualToString:@"Normal"]) {
-                    liverNormal++;
-                }else if ([liver isEqualToString:@"Abnormal"]){
-                    liverAbNormal++;
+                
+                NSString *liver = [dict objectForKey:@"liverEnzymes"];
+                //NSLog(@"%@", liver);
+                if (xray.length > 0) {
+                    if ([liver isEqualToString:@"Normal"]) {
+                        liverNormal++;
+                    }else if ([liver isEqualToString:@"Abnormal"]){
+                        liverAbNormal++;
+                    }
                 }
-            }
-            
-            NSString *hernia = [dict objectForKey:@"portSiteHemia"];
-            //NSLog(@"%@", hernia);
-            if (hernia.length > 0) {
-                if ([hernia isEqualToString:@"Yes"]) {
-                    herniaYES++;
-                }else if ([hernia isEqualToString:@"No"]){
-                    herniaNO++;
+                
+                NSString *hernia = [dict objectForKey:@"portSiteHemia"];
+                //NSLog(@"%@", hernia);
+                if (hernia.length > 0) {
+                    if ([hernia isEqualToString:@"Yes"]) {
+                        herniaYES++;
+                    }else if ([hernia isEqualToString:@"No"]){
+                        herniaNO++;
+                    }
                 }
-            }
-            
-            
-            NSString *ctscan = [dict objectForKey:@"CtScan"];
-            //NSLog(@"%@", ctscan);
-            if (ctscan.length > 0) {
-                if ([ctscan isEqualToString:@"No evidence of metastatic disease"]) {
-                    metastaticDisease++;
-                }else if ([ctscan isEqualToString:@"Local recurrence"]){
-                    LocalRecurrence++;
-                }else if ([ctscan isEqualToString:@"Lymphadenopathy"]){
-                    Lymphadenopathy++;
-                }else if ([ctscan isEqualToString:@"Liver metastasis"]){
-                    LiverMetastasis++;
-                }else if ([ctscan isEqualToString:@"Bone metastasis"]){
-                    BoneMetastasis++;
-                }else if ([ctscan isEqualToString:@"Brain metastasis"]){
-                    BrainMetastasis++;
+                
+                
+                NSString *ctscan = [dict objectForKey:@"CtScan"];
+                //NSLog(@"%@", ctscan);
+                if (ctscan.length > 0) {
+                    if ([ctscan isEqualToString:@"No evidence of metastatic disease"]) {
+                        metastaticDisease++;
+                    }else if ([ctscan isEqualToString:@"Local recurrence"]){
+                        LocalRecurrence++;
+                    }else if ([ctscan isEqualToString:@"Lymphadenopathy"]){
+                        Lymphadenopathy++;
+                    }else if ([ctscan isEqualToString:@"Liver metastasis"]){
+                        LiverMetastasis++;
+                    }else if ([ctscan isEqualToString:@"Bone metastasis"]){
+                        BoneMetastasis++;
+                    }else if ([ctscan isEqualToString:@"Brain metastasis"]){
+                        BrainMetastasis++;
+                    }
                 }
+                
             }
             
         }
-        
+
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+        for (int i = 0; i < [self.performanceCases count]; i++) {
+            NSDictionary *dict = [self.performanceCases objectAtIndex:i];
+            NSLog(@"%@",[dict objectForKey:@"timePointID"]);
+            
+            if ([[dict objectForKey:@"timePointID"] isEqualToString:@"1"]) {
+                twoWeeks++;
+                
+                NSString *tStage = [dict objectForKey:@"tStage"];
+                //NSLog(@"%@", tStage);
+                if (tStage.length > 0) {
+                    if ([tStage isEqualToString:@"TX"]) {
+                        Tx++;
+                    }else if ([tStage isEqualToString:@"T0"]){
+                        T0++;
+                    }else if ([tStage isEqualToString:@"T1"]){
+                        T1++;
+                    }else if ([tStage isEqualToString:@"T1a"]){
+                        T1a++;
+                    }else if ([tStage isEqualToString:@"T1b"]){
+                        T1b++;
+                    }else if ([tStage isEqualToString:@"T2"]){
+                        T2++;
+                    }else if ([tStage isEqualToString:@"T2a"]){
+                        T2a++;
+                    }else if ([tStage isEqualToString:@"T2b"]){
+                        T2b++;
+                    }else if ([tStage isEqualToString:@"T3"]){
+                        T3++;
+                    }else if ([tStage isEqualToString:@"T3a"]){
+                        T3a++;
+                    }else if ([tStage isEqualToString:@"T3b"]){
+                        T3b++;
+                    }else if ([tStage isEqualToString:@"T3c"]){
+                        T3c++;
+                    }else if ([tStage isEqualToString:@"T4"]){
+                        T4++;
+                    }
+                }
+                
+                if([dict objectForKey:@"preOperativeBun"] && [dict objectForKey:@"postOperativeBun"]){
+                    
+                    float preob = [[dict objectForKey:@"preOperativeBun"] floatValue];
+                    float postob = [[dict objectForKey:@"postOperativeBun"] floatValue];
+                    float result = postob - preob;
+                    if(result<0)
+                        result = result*(-1);
+                    bunDiffSum+=result;
+                }
+                
+                if([dict objectForKey:@"preOperativeCreatinine"] && [dict objectForKey:@"postOperativeCreatinine"]){
+                    
+                    float preob = [[dict objectForKey:@"preOperativeCreatinine"] floatValue];
+                    float postob = [[dict objectForKey:@"postOperativeCreatinine"] floatValue];
+                    float result = postob - preob;
+                    if(result<0)
+                        result = result*(-1);
+                    creatinineDiffSum+=result;
+                }
+                
+                NSString *nStage = [dict objectForKey:@"nStage"];
+                //NSLog(@"%@", nStage);
+                if (nStage.length > 0) {
+                    if ([nStage isEqualToString:@"N"]) {
+                        N++;
+                    }else if ([nStage isEqualToString:@"NX"]){
+                        Nx++;
+                    }else if ([nStage isEqualToString:@"N0"]){
+                        N0++;
+                    }else if ([nStage isEqualToString:@"N1"]){
+                        N1++;
+                    }
+                }
+                
+                NSString *mStage = [dict objectForKey:@"mStage"];
+                //NSLog(@"%@", mStage);
+                if (mStage.length > 0) {
+                    if ([mStage isEqualToString:@"M"]) {
+                        M++;
+                    }else if ([mStage isEqualToString:@"M0"]){
+                        M0++;
+                    }else if ([mStage isEqualToString:@"M1"]){
+                        M1++;
+                    }
+                }
+                
+                NSString *tumorCh = [dict objectForKey:@"tumorChar"];
+                //NSLog(@"%@", tumorCh);
+                if (mStage.length > 0) {
+                    if ([tumorCh isEqualToString:@"Clear Cell"]) {
+                        ClearAll++;
+                    }else if ([tumorCh isEqualToString:@"Papillary"]){
+                        Papillary++;
+                    }else if ([tumorCh isEqualToString:@"Chromophobe"]){
+                        Chromophobe++;
+                    }else if ([tumorCh isEqualToString:@"Sarcomatoid"]){
+                        Sarcomatoid++;
+                    }else if ([tumorCh isEqualToString:@"angiomyolipoma"]){
+                        angiomyolipoma++;
+                    }else if ([tumorCh isEqualToString:@"oncocytoma"]){
+                        oncocytoma++;
+                    }else if ([tumorCh isEqualToString:@"other"]){
+                        other++;
+                    }
+                }
+                
+                
+                
+                NSString *FGrade = [dict objectForKey:@"fuhrmanGrade"];
+                //NSLog(@"%@", FGrade);
+                if (FGrade.length > 0) {
+                    if ([FGrade isEqualToString:@"1/4"]) {
+                        FGoneByFour++;
+                    }else if ([FGrade isEqualToString:@"2/4"]){
+                        FGtwoByFour++;
+                    }else if ([FGrade isEqualToString:@"3/4"]){
+                        FGthreeByFour++;
+                    }else if ([FGrade isEqualToString:@"4/4"]){
+                        FGfourByFour++;
+                    }
+                }
+                
+                NSString *margins = [dict objectForKey:@"margins"];
+                //NSLog(@"%@", margins);
+                if (margins.length > 0) {
+                    if ([margins isEqualToString:@"Positive"]) {
+                        mPositive++;
+                    }else if ([margins isEqualToString:@"Negative"]){
+                        mNegative++;
+                    }
+                }
+                
+                
+                NSString *dMargins = [dict objectForKey:@"deepMargin"];
+                //NSLog(@"%@", dMargins);
+                if (dMargins.length > 0) {
+                    if ([dMargins isEqualToString:@"Positive"]) {
+                        dmPositive++;
+                    }else if ([dMargins isEqualToString:@"Negative"]){
+                        dmNegative++;
+                    }
+                }
+                
+                
+                
+                if([dict objectForKey:@"lengthOfStay"]){
+                    NSString *nights = [dict objectForKey:@"lengthOfStay"];
+                    //NSLog(@"%@", nights);
+                    NSArray *ary = [nights componentsSeparatedByString:@" "];
+                    float stay = [[ary objectAtIndex:0] floatValue];
+                    stayCount+=stay;
+                    if(twoWeeks == 1){
+                        minStay = stay;
+                        maxStay = stay;
+                    }else{
+                        if(stay>maxStay){
+                            maxStay = stay;
+                        }
+                        if(stay<minStay){
+                            minStay = stay;
+                        }
+                    }
+                }
+                
+                NSString *complication = [dict objectForKey:@"complications"];
+                //NSLog(@"%@", complication);
+                if (complication.length > 0) {
+                    if ([complication isEqualToString:@"Ileus"]) {
+                        Ileus++;
+                    }else if ([complication isEqualToString:@"Bowel injury"]){
+                        BowelInjury++;
+                    }else if ([complication isEqualToString:@"Infection"]){
+                        Infection++;
+                    }else if ([complication isEqualToString:@"Urine leak"]){
+                        UrineLeak++;
+                    }else if ([complication isEqualToString:@"DVT"]){
+                        DVT++;
+                    }else if ([complication isEqualToString:@"PE"]){
+                        PE++;
+                    }else if ([complication isEqualToString:@"Cardiac event"]){
+                        CardiacEvent++;
+                    }else if ([complication isEqualToString:@"Hernia"]){
+                        Hernia++;
+                    }else if ([complication isEqualToString:@"Transfusion"]){
+                        Transfusion++;
+                        NSLog(@"%f",Transfusion);
+                    }else if ([complication isEqualToString:@"Death"]){
+                        Death++;
+                    }else if ([complication isEqualToString:@"Other"]){
+                        OtherComp++;
+                    }
+                }
+                
+                
+            }else if ([[dict objectForKey:@"timePointID"] intValue] >1 && [[dict objectForKey:@"timePointID"] intValue] <12 && [[dict objectForKey:@"timePointID"] intValue] == self.timepointID){
+                sixMonths++;
+                
+                NSString *xray = [dict objectForKey:@"chestXray"];
+                //NSLog(@"%@", xray);
+                if (xray.length > 0) {
+                    if ([xray isEqualToString:@"Positive"]) {
+                        xrayPositive++;
+                    }else if ([xray isEqualToString:@"Negative"]){
+                        xrayNegative++;
+                    }
+                }
+                
+                if([dict objectForKey:@"Bun"]){
+                    float bun = [[dict objectForKey:@"Bun"] floatValue];
+                    bunSum+=bun;
+                    if(sixMonths == 1){
+                        minBun = bun;
+                        maxBun = bun;
+                    }else{
+                        if(bun>maxBun){
+                            maxBun = bun;
+                        }
+                        if(bun<minBun){
+                            minBun = bun;
+                        }
+                    }
+                }
+                
+                if([dict objectForKey:@"Creatinine"]){
+                    float crt = [[dict objectForKey:@"Creatinine"] floatValue];
+                    creatinineSum+= crt;
+                    if(sixMonths == 1){
+                        minCreatinine = crt;
+                        maxCreatinine = crt;
+                    }else{
+                        if(crt>maxCreatinine){
+                            maxCreatinine = crt;
+                        }
+                        if(crt<minCreatinine){
+                            minCreatinine = crt;
+                        }
+                    }
+                }
+                
+                NSString *liver = [dict objectForKey:@"liverEnzymes"];
+                //NSLog(@"%@", liver);
+                if (xray.length > 0) {
+                    if ([liver isEqualToString:@"Normal"]) {
+                        liverNormal++;
+                    }else if ([liver isEqualToString:@"Abnormal"]){
+                        liverAbNormal++;
+                    }
+                }
+                
+                NSString *hernia = [dict objectForKey:@"portSiteHemia"];
+                //NSLog(@"%@", hernia);
+                if (hernia.length > 0) {
+                    if ([hernia isEqualToString:@"Yes"]) {
+                        herniaYES++;
+                    }else if ([hernia isEqualToString:@"No"]){
+                        herniaNO++;
+                    }
+                }
+                
+                
+                NSString *ctscan = [dict objectForKey:@"CtScan"];
+                //NSLog(@"%@", ctscan);
+                if (ctscan.length > 0) {
+                    if ([ctscan isEqualToString:@"No evidence of metastatic disease"]) {
+                        metastaticDisease++;
+                    }else if ([ctscan isEqualToString:@"Local recurrence"]){
+                        LocalRecurrence++;
+                    }else if ([ctscan isEqualToString:@"Lymphadenopathy"]){
+                        Lymphadenopathy++;
+                    }else if ([ctscan isEqualToString:@"Liver metastasis"]){
+                        LiverMetastasis++;
+                    }else if ([ctscan isEqualToString:@"Bone metastasis"]){
+                        BoneMetastasis++;
+                    }else if ([ctscan isEqualToString:@"Brain metastasis"]){
+                        BrainMetastasis++;
+                    }
+                }
+                
+            }
+            
+        }
+  
     }
     
 }
