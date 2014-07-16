@@ -12,6 +12,7 @@
 
 @implementation OKOngoingData
 
+
 -(void)setModelWithDictionary:(NSDictionary *)dictionary
 {
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -19,6 +20,7 @@
             [self setValue:obj forKey:key];
     }];
 }
+
 
 -(NSOrderedDictionary*)shockwaveItems
 {
@@ -75,29 +77,27 @@
     
 }
 
+
 -(NSOrderedDictionary*)roboticItems6Weeks
 {
-    
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-    
     @try {
         [dict setObject:self.PSA forKey:@"PSA"];
-        [dict setObject:self.continence forKey:@"continence"];
-        [dict setObject:self.erectileFunction forKey:@"erectileFunction"];
-        [dict setObject:self.bladderNeckContracture forKey:@"bladderNeckContracture"];
-        [dict setObject:self.mortality forKey:@"mortality"];
+        [dict setObject:self.continence forKey:@"Continence, %"];
+        [dict setObject:self.erectileFunction forKey:@"Erectile Function, %"];
+        [dict setObject:self.bladderNeckContracture forKey:@"Bladder Neck Contracture, %"];
+        [dict setObject:self.mortality forKey:@"Mortality, %"];
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in roboticItems6Weeks: %@",exception);
     }
     return dict;
-    
 }
+
 
 -(NSOrderedDictionary*)penileItems
 {
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-    
     @try {
         [dict setObject:self.averageCyclingTime forKey:@"Average time to begin cycling of device"];
         [dict setObject:self.percentOfErosion forKey:@"Occurrence of erosion, %"];
@@ -114,7 +114,6 @@
 -(NSOrderedDictionary*)twoWeeksItems
 {
     NSMutableOrderedDictionary *dict = [[NSMutableOrderedDictionary alloc]init];
-
     @try {
         [dict setObject:self.tStage forKey:@"T"];
         [dict setObject:self.nStage forKey:@"N"];
@@ -153,7 +152,6 @@
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in sixWeeksItems: %@",exception);
     }
-
     return dict;
 }
 
@@ -181,7 +179,6 @@
             [dict setObject:obj forKey:name];
         }
     }
-    
     free(properties);
     return dict;
 }
@@ -211,10 +208,10 @@
             [dict setObject:obj forKey:name];
         }
     }
-    
     free(properties);
     return dict;
 }
+
 
 -(NSDictionary*)robotic6WeeksDictionaryForSending
 {
@@ -239,7 +236,6 @@
             [dict setObject:obj forKey:name];
         }
     }
-    
     free(properties);
     return dict;
 }
@@ -273,6 +269,7 @@
     return dict;
 }
 
+
 -(NSDictionary*)twoWeeksDictionaryForSending
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -293,7 +290,6 @@
         }
         [dict setObject:obj forKey:name];
     }
-    
     free(properties);
     return dict;
 }
@@ -328,7 +324,6 @@
             [dict setObject:obj forKey:name];
         }
     }
-
     free(properties);
     return dict;
 }

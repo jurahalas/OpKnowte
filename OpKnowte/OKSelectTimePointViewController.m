@@ -48,13 +48,6 @@
     
     self.caseObj = [OKCaseManager instance].selectedCase;
     
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    for (int i=0; i<_totalSurgeonCases.count; i++) {
-//        OKLRRadicalProstatectomyModel *shockwaveCase = (OKLRRadicalProstatectomyModel*)_totalSurgeonCases[i];
-//        [array addObject:shockwaveCase.DetailID];
-//        self.selectedCases = [array componentsJoinedByString:@" "];
-//    }
-    
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     [timePointsManager getAllTimePointsWithProcID:_procID WithHandler:^(NSString *errorMsg, NSArray *timePointsArray) {
@@ -161,10 +154,10 @@
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"1"] && [ongoingData.gleason isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
+                        }else if (([_procID isEqualToString:@"10"] && [ongoingData.stoneLocation isEqualToString:@""]) || (ongoingData.stoneLocation == nil)){
+                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"10"] && ![ongoingData.stoneLocation isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
-                        }else if ([_procID isEqualToString:@"10"] && [ongoingData.stoneLocation isEqualToString:@""]){
-                            [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else{
                             if ([cameFromVC isEqualToString:@"weeks"]) {
                                 if(![ongoingData.tStage isEqualToString:@""]){

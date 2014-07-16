@@ -202,10 +202,11 @@
 -(void)setupRoboticElements6Weeks
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-
+    
     [dict setObject:@"PSA" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"PSA, %" forKey:@"placeholder"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@"PSA" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
