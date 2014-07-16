@@ -238,7 +238,7 @@
     
     if ([_firstNameTextField.text isEqual: @""] || [_passwordTextField.text isEqual: @""] || [_confirmPasswordField.text isEqual: @""] || [_emailTextField.text isEqual: @""]
         || [_MDTextField.text isEqual: @""] || [_lastNameTextField.text isEqual: @""]) {
-        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill all fields"];
+        [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please fill out all fields"];
     }
     else if (!isEmailValidate) {
         [OKRegistrationViewController showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];

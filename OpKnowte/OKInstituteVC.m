@@ -299,7 +299,7 @@
         
         if ([_nameTextField.text isEqualToString: @""] || [_emailTextField.text isEqualToString:@""] || [_faxTextField.text isEqualToString:@""]){
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill out all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             [[OKLoadingViewController instance] hide];
         }else if (!isEmailValidate) {
@@ -350,7 +350,7 @@
         
     if ([_nameTextField.text isEqual: @""] || [_emailTextField.text isEqual: @""] || [_streerAddressTextField.text isEqual: @""] || [_cityTextField.text isEqual: @""] || [_stateTextField.text isEqual: @""] || [_zipTextField.text isEqual: @""] || [_countryTextField.text isEqual: @""] || [_faxTextField.text isEqual: @""]){
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill out all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         [[OKLoadingViewController instance] hide];
     }else if (!isEmailValidate) {

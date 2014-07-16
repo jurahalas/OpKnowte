@@ -54,7 +54,7 @@
     
     if ([_height.text isEqualToString:@""]||[_weight.text isEqualToString:@""]) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
-                                                         message:@"Please fill all fields"
+                                                         message:@"Please fill out all fields"
                                                         delegate:self
                                                cancelButtonTitle:@"OK"
                                                otherButtonTitles:nil];

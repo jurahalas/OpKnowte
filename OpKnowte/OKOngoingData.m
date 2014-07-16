@@ -153,7 +153,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < count; i++)
+    for (i = 0; i < 51; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

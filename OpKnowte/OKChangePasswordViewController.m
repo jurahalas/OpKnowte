@@ -132,7 +132,7 @@
     
     if ([theOldPasswordTextField.text isEqual: @""] || [theNewPasswordTextField.text isEqual: @""] || [theConfirmPasswordTextField.text isEqual: @""]){
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please fill out all fields" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         
     }else if (![theNewPasswordTextField.text isEqualToString:theConfirmPasswordTextField.text]){

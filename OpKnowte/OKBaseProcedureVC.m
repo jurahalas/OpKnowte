@@ -1010,7 +1010,7 @@
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"Please fill all fields"
+                                                        message:@"Please fill out all fields"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
@@ -1018,7 +1018,7 @@
     }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"Please fill all fields"
+                                                        message:@"Please fill out all fields"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles: nil];
