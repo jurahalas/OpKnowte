@@ -7,8 +7,16 @@
 //
 
 #import "OKBaseViewController.h"
-
 @interface OKFollowUpDataCompareVC : OKBaseViewController
+
+@property (strong, nonatomic) IBOutlet UILabel *TMNStagingLabel;
+@property (strong, nonatomic) IBOutlet UILabel *CTScanLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *XRayLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *liverLabel;
+@property (strong, nonatomic) IBOutlet UILabel *herniaLabel;
+@property (strong, nonatomic) IBOutlet UILabel *fuhrmanLabel;
 
 @property (nonatomic, assign) BOOL showNationalData;
 

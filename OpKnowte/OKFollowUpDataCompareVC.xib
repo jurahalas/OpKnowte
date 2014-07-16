@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -17,6 +17,7 @@
                 <outlet property="CNationalSampleSize" destination="1079" id="1109"/>
                 <outlet property="CSurgeonSampleSize" destination="1080" id="1110"/>
                 <outlet property="CTNationalSampleSize" destination="1075" id="1117"/>
+                <outlet property="CTScanLabel" destination="1032" id="5zD-UA-JMN"/>
                 <outlet property="CTSurgeonSampleSize" destination="1076" id="1118"/>
                 <outlet property="CardiacEventView" destination="925" id="947"/>
                 <outlet property="ChromophobeView" destination="828" id="842"/>
@@ -73,6 +74,7 @@
                 <outlet property="T4" destination="744" id="804"/>
                 <outlet property="TCNationalSampleSize" destination="1073" id="1095"/>
                 <outlet property="TCSurgeonSampleSize" destination="1074" id="1096"/>
+                <outlet property="TMNStagingLabel" destination="23" id="sLV-Hq-EV5"/>
                 <outlet property="TNMNationalSampleSize" destination="1085" id="1097"/>
                 <outlet property="TNMStagingView" destination="15" id="820"/>
                 <outlet property="TNMSurgeonSampleSize" destination="1086" id="1098"/>
@@ -81,6 +83,7 @@
                 <outlet property="UrineLeakView" destination="919" id="941"/>
                 <outlet property="XRNationalSampleSize" destination="1065" id="1099"/>
                 <outlet property="XRSurgeonSampleSize" destination="1066" id="1100"/>
+                <outlet property="XRayLabel" destination="972" id="wEH-Pw-9sI"/>
                 <outlet property="angiomyolipomaView" destination="832" id="846"/>
                 <outlet property="averageCreatinineNationalView" destination="cig-uA-lHv" id="rLb-1J-Xgr"/>
                 <outlet property="averageLabel" destination="1047" id="1056"/>
@@ -96,14 +99,17 @@
                 <outlet property="deepMarginsNationalView" destination="Ka9-KS-SJY" id="i7C-h8-RmQ"/>
                 <outlet property="dmNegativeView" destination="891" id="900"/>
                 <outlet property="dmPositiveView" destination="889" id="898"/>
+                <outlet property="fuhrmanLabel" destination="72" id="sCy-e6-BWf"/>
                 <outlet property="gradeNationalView" destination="2CL-fj-0jw" id="6gx-pY-8rf"/>
                 <outlet property="herniaGraph" destination="995" id="1004"/>
+                <outlet property="herniaLabel" destination="996" id="qlf-Hs-85A"/>
                 <outlet property="herniaNOView" destination="1001" id="1007"/>
                 <outlet property="herniaNationalView" destination="3Br-eh-6Ua" id="37s-Fk-eG3"/>
                 <outlet property="herniaYESView" destination="1003" id="1005"/>
                 <outlet property="lengthStayNationalView" destination="rhD-dC-aCg" id="Dnb-Cz-JQT"/>
                 <outlet property="liverAbNormalView" destination="988" id="1012"/>
                 <outlet property="liverGraph" destination="985" id="994"/>
+                <outlet property="liverLabel" destination="993" id="AJO-sE-kq8"/>
                 <outlet property="liverNationalView" destination="Ffv-tR-ye7" id="77E-h3-JYA"/>
                 <outlet property="liverNormalView" destination="986" id="1009"/>
                 <outlet property="mNegativeView" destination="880" id="886"/>
@@ -153,6 +159,7 @@
                 <outlet property="s_T3" destination="769" id="798"/>
                 <outlet property="s_T3a" destination="768" id="799"/>
                 <outlet property="s_T3b" destination="770" id="802"/>
+                <outlet property="s_T3c" destination="771" id="VMQ-L8-46B"/>
                 <outlet property="s_T4" destination="772" id="806"/>
                 <outlet property="s_TransfusionView" destination="930" id="952"/>
                 <outlet property="s_Tx" destination="759" id="782"/>
@@ -603,7 +610,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="381"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chest X-ray" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="972" customClass="CustomLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chest X-ray" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="972">
                     <rect key="frame" x="20" y="20" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -847,7 +854,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Liver Enzymes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="993" customClass="CustomLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Liver Enzymes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="993">
                     <rect key="frame" x="20" y="20" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -976,7 +983,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="384"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Port Site Hernia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="996" customClass="CustomLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Port Site Hernia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="996">
                     <rect key="frame" x="20" y="20" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -1304,7 +1311,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="563"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="CT Scan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1032" customClass="CustomLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="CT Scan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1032">
                     <rect key="frame" x="20" y="20" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -1859,7 +1866,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fuhrman Grade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72" customClass="CustomLabel">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fuhrman Grade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72">
                     <rect key="frame" x="20" y="20" width="280" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
