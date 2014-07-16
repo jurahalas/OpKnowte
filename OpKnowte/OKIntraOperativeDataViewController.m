@@ -19,6 +19,7 @@
 #import "OKFollowUpDataManager.h"
 #import "OKUserManager.h"
 #import "OKDetailSummaryVC.h"
+#import "OKTimePointsManager.h"
 
 @interface OKIntraOperativeDataViewController ()<OKIntraOperativeProtocol>
 
@@ -589,12 +590,7 @@
         detailVC.procID = _procID;
         detailVC.model = sender;
     }
-
-
-        
 }
-
-
 
 
 @end

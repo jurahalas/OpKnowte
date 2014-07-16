@@ -57,18 +57,8 @@
         [dict setObject:self.gleason forKey:@"Gleason"];
         [dict setObject:self.positiveMargin forKey:@"Positive Margin"];
         [dict setObject:self.cystogram forKey:@"Cystogram"];
-        [dict setObject:self.Ileus forKey:@"Ileus, %"];
-        [dict setObject:self.transfusion forKey:@"Transfusion, %"];
-        [dict setObject:self.woundInfection forKey:@"Wound Infection, %"];
-        [dict setObject:self.urineLeak forKey:@"Urine leak, %"];
-        [dict setObject:self.bowelInjury forKey:@"Bowel Injury, %"];
-        [dict setObject:self.DVT forKey:@"DVT, %"];
-        [dict setObject:self.PE forKey:@"PE, %"];
-        [dict setObject:self.reAdmission forKey:@"Re-admission within 30 days, %"];
-        [dict setObject:self.returnToORWithin forKey:@"Return to the OR within 30 days, %"];
-        [dict setObject:self.death forKey:@"Death, %"];
+        [dict setObject:self.complications forKey:@"Complications"];
         [dict setObject:self.lengthOfStay forKey:@"Length of Stay, night(s)"];
-
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in roboticItems: %@",exception);
@@ -163,7 +153,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 40; i++)
+    for (i = 0; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -192,7 +182,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 6; i < 45; i++)
+    for (i = 6; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -220,7 +210,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 43; i++)
+    for (i = 0; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -248,7 +238,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 61; i++)
+    for (i = 0; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];
@@ -277,7 +267,7 @@
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     
     unsigned i;
-    for (i = 0; i < 61; i++)
+    for (i = 0; i < count; i++)
     {
         objc_property_t property = properties[i];
         NSString *name = [NSString stringWithUTF8String:property_getName(property)];

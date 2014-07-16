@@ -44,16 +44,6 @@ enum OKProcedureSummaryDetailPeriod
 @property (nonatomic, strong) NSString *gleason;
 @property (nonatomic, strong) NSString *positiveMargin;
 @property (nonatomic, strong) NSString *cystogram;
-@property (nonatomic, strong) NSString *Ileus;
-@property (nonatomic, strong) NSString *transfusion;
-@property (nonatomic, strong) NSString *woundInfection;
-@property (nonatomic, strong) NSString *urineLeak;
-@property (nonatomic, strong) NSString *bowelInjury;
-@property (nonatomic, strong) NSString *DVT;
-@property (nonatomic, strong) NSString *PE;
-@property (nonatomic, strong) NSString *reAdmission;
-@property (nonatomic, strong) NSString *returnToORWithin;
-@property (nonatomic, strong) NSString *death;
 @property (nonatomic, strong) NSString *lengthOfStay;
 
 //penile

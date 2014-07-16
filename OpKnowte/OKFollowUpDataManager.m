@@ -13,6 +13,7 @@
 #import "OKPenileProsthesisModel.h"
 #import "OKUserManager.h"
 #import "OKProceduresManager.h"
+#import "OKTimePointsManager.h"
 
 @implementation OKFollowUpDataManager
 + (OKFollowUpDataManager *)instance
@@ -69,7 +70,7 @@
         handler([self getErrorMessageFromJSON:json error:error], proceduresArray);
     }];
 }
-- (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray andProcedureId:(NSString*)procID handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler{
+- (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray andProcedureId:(NSString*)procID  handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler{
     
     NSDictionary *params = @{};
     NSMutableArray *idArray = [[NSMutableArray alloc] init];
@@ -85,7 +86,6 @@
         NSMutableArray *dataArray = [[NSMutableArray alloc] initWithArray:[json objectForKey:@"clinicalData"]];
         handler([self getErrorMessageFromJSON:json error:error], dataArray);
     }];
-    
 }
 
 

@@ -671,7 +671,6 @@ float s_creatinineDiffSum;
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
         for (int i = 0; i < [self.performanceCases count]; i++) {
             NSDictionary *dict = [self.performanceCases objectAtIndex:i];
-            NSLog(@"%@",[dict objectForKey:@"timePointID"]);
             
             if ([[dict objectForKey:@"timePointID"] isEqualToString:@"12"]) {
                 twoWeeks++;
@@ -791,10 +790,8 @@ float s_creatinineDiffSum;
                 }
                 
                 
-            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <25 && [[dict objectForKey:@"timePointID"] intValue] == self.timepointID){
+            }else if ([[dict objectForKey:@"timePointID"] intValue] >12){
                 sixMonths++;
-                
-
                 
                 NSString *hernia = [dict objectForKey:@"PSA"];
                 //NSLog(@"%@", hernia);
@@ -809,14 +806,14 @@ float s_creatinineDiffSum;
                 
                 NSString *FGrade = [dict objectForKey:@"continence"];
                 //NSLog(@"%@", FGrade);
-                float frGradeFloat = [[dict objectForKey:@"continence"] floatValue];
+               // float frGradeFloat = [[dict objectForKey:@"continence"] floatValue];
                 if (FGrade.length > 0) {
-                    if (frGradeFloat == 0) {
+                    if ([FGrade isEqualToString:@"0"]) {
                         FGoneByFour++;
-                    }else if (frGradeFloat > 0 && frGradeFloat < 4){
-                        FGtwoByFour++;
-                    }else if (frGradeFloat > 3){
-                        FGthreeByFour++;
+                    }else if ([FGrade isEqualToString:@"1"] || [FGrade isEqualToString:@"2"] || [FGrade isEqualToString:@"2"]){
+                        FGoneByFour++;
+                    }else {
+                        FGoneByFour++;
                     }
                 }
                 
@@ -853,8 +850,6 @@ float s_creatinineDiffSum;
                         }
                     }
                 }
-                
-
                 
                 if([dict objectForKey:@"mortality"]){
                     
@@ -1147,9 +1142,7 @@ float s_creatinineDiffSum;
             }
             
         }
-  
     }
-    
 }
 
 
@@ -1196,7 +1189,7 @@ float s_creatinineDiffSum;
                 }
                 
                 NSString *ctscan = [dict objectForKey:@"gleason"];
-                //NSLog(@"%@", ctscan);
+                NSLog(@"%@", ctscan);
                 if (ctscan.length > 0) {
                     if ([ctscan isEqualToString:@"(3+3)"]) {
                         s_metastaticDisease++;
@@ -1280,7 +1273,7 @@ float s_creatinineDiffSum;
                 }
                 
                 
-            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <25 && [[dict objectForKey:@"timePointID"] intValue] == self.timepointID){
+            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <25){
                 s_sixMonths++;
                 
                 
@@ -1298,13 +1291,13 @@ float s_creatinineDiffSum;
                 
                 NSString *FGrade = [dict objectForKey:@"continence"];
                 //NSLog(@"%@", FGrade);
-                float frGradeFloat = [[dict objectForKey:@"continence"] floatValue];
+               // float frGradeFloat = [dict objectForKey:@"continence"];
                 if (FGrade.length > 0) {
-                    if (frGradeFloat == 0) {
+                    if ([FGrade isEqualToString:@"0"]) {
                         s_FGoneByFour++;
-                    }else if (frGradeFloat > 0 && frGradeFloat < 4){
+                    }else if ([FGrade isEqualToString:@"1"] || [FGrade isEqualToString:@"2"] || [FGrade isEqualToString:@"2"]){
                         s_FGtwoByFour++;
-                    }else if (frGradeFloat > 3){
+                    }else {
                         s_FGthreeByFour++;
                     }
                 }
@@ -1794,6 +1787,37 @@ float s_creatinineDiffSum;
 -(void)fuhrmanGrade{
         [self calculate];
         [self calculateSurgeonData];
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.FGoneByFour = (FGoneByFour/sixMonths)*100;
+            controller.FGtwoByFour = (FGtwoByFour/sixMonths)*100;
+            controller.FGthreeByFour = (FGthreeByFour/sixMonths)*100;
+            controller.FGfourByFour = (FGfourByFour/sixMonths)*100;
+        }else{
+            controller.FGoneByFour = 0;
+            controller.FGtwoByFour = 0;
+            controller.FGthreeByFour = 0;
+            controller.FGfourByFour = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_FGoneByFour = (s_FGoneByFour/s_sixMonths)*100;
+            controller.s_FGtwoByFour = (s_FGtwoByFour/s_sixMonths)*100;
+            controller.s_FGthreeByFour = (s_FGthreeByFour/s_sixMonths)*100;
+            controller.s_FGfourByFour = (s_FGfourByFour/s_sixMonths)*100;
+        }else{
+            controller.s_FGoneByFour = 0;
+            controller.s_FGtwoByFour = 0;
+            controller.s_FGthreeByFour = 0;
+            controller.s_FGfourByFour = 0;
+        }
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"FGrade";
+        controller.showNationalData = _showNationalData;
+
+        [self.navigationController pushViewController:controller animated:YES];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2) {
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         if(twoWeeks>0){
             controller.FGoneByFour = (FGoneByFour/twoWeeks)*100;
@@ -1821,8 +1845,11 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"FGrade";
         controller.showNationalData = _showNationalData;
-
+        
         [self.navigationController pushViewController:controller animated:YES];
+    
+    
+    }
 }
 
 
@@ -1982,8 +2009,31 @@ float s_creatinineDiffSum;
 -(void)changeBUN{
         [self calculate];
         [self calculateSurgeonData];
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+
         NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        controller.graphView = @"BUN";
+        if(sixMonths>0){
+            controller.bunSum = bunDiffSum/sixMonths;
+        }else{
+            controller.bunSum = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_bunSum = s_bunDiffSum/s_sixMonths;
+        }else{
+            controller.s_bunSum = 0;
+        }
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.showNationalData = _showNationalData;
+
+        [self.navigationController pushViewController:controller animated:YES];
+    }else     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2) {
+        
+        NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         controller.graphView = @"BUN";
         if(twoWeeks>0){
             controller.bunSum = bunDiffSum/twoWeeks;
@@ -1999,8 +2049,9 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.showNationalData = _showNationalData;
-
+        
         [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 
@@ -2030,9 +2081,30 @@ float s_creatinineDiffSum;
 // 6 month variables
 
 -(void)xray{
+    
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+
+    
+    if(twoWeeks>0)
+        {
+            controller.xrayPositive = (xrayPositive/twoWeeks)*100;
+            controller.xrayNegative = (xrayNegative/twoWeeks)*100;
+        }
+        if(s_twoWeeks>0)
+        {
+            controller.s_xrayPositive = (s_xrayPositive/s_twoWeeks)*100;
+            controller.s_xrayNegative = (s_xrayNegative/s_twoWeeks)*100;
+        }
+        
+        controller.NationalSize = twoWeeks;
+        controller.SurgeonSize = s_twoWeeks;
+        controller.graphView = @"xray";
+        controller.showNationalData = _showNationalData;
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+        
         if(sixMonths>0)
         {
             controller.xrayPositive = (xrayPositive/sixMonths)*100;
@@ -2048,8 +2120,11 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_sixMonths;
         controller.graphView = @"xray";
         controller.showNationalData = _showNationalData;
-
-        [self.navigationController pushViewController:controller animated:YES];
+    }
+    
+    
+    [self.navigationController pushViewController:controller animated:YES];
+        
 }
 
 
@@ -2057,6 +2132,28 @@ float s_creatinineDiffSum;
         [self calculate];
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+
+        if(twoWeeks>0){
+            controller.liverNormal = (liverNormal/twoWeeks)*100;
+            controller.liverAbNormal = (liverAbNormal/twoWeeks)*100;
+        }else{
+            controller.liverNormal = 0;
+            controller.liverAbNormal = 0;
+        }
+        if(s_twoWeeks>0){
+            controller.s_liverNormal = (s_liverNormal/s_twoWeeks)*100;
+            controller.s_liverAbNormal = (s_liverAbNormal/s_twoWeeks)*100;
+        }else{
+            controller.s_liverNormal = 0;
+            controller.s_liverAbNormal = 0;
+        }
+        controller.graphView = @"liver";
+        
+        controller.NationalSize = twoWeeks;
+        controller.SurgeonSize = s_twoWeeks;
+        controller.showNationalData = _showNationalData;
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
         if(sixMonths>0){
             controller.liverNormal = (liverNormal/sixMonths)*100;
             controller.liverAbNormal = (liverAbNormal/sixMonths)*100;
@@ -2075,9 +2172,10 @@ float s_creatinineDiffSum;
         
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
-    controller.showNationalData = _showNationalData;
-
-        [self.navigationController pushViewController:controller animated:YES];
+        controller.showNationalData = _showNationalData;
+    }
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -2105,15 +2203,61 @@ float s_creatinineDiffSum;
         
         controller.graphView = @"hernia";
         controller.showNationalData = _showNationalData;
-
-        [self.navigationController pushViewController:controller animated:YES];
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
 -(void)CTScan{
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        
         [self calculate];
         [self calculateSurgeonData];
-    OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(twoWeeks>0){
+            controller.metastaticDisease = (metastaticDisease/twoWeeks)*100;
+            controller.LocalRecurrence = (LocalRecurrence/twoWeeks)*100;
+            controller.Lymphadenopathy = (Lymphadenopathy/twoWeeks)*100;
+            controller.LiverMetastasis = (LiverMetastasis/twoWeeks)*100;
+            controller.BoneMetastasis = (BoneMetastasis/twoWeeks)*100;
+            controller.BrainMetastasis = (BrainMetastasis/twoWeeks)*100;
+        }else{
+            controller.metastaticDisease = 0;
+            controller.LocalRecurrence = 0;
+            controller.Lymphadenopathy = 0;
+            controller.LiverMetastasis = 0;
+            controller.BoneMetastasis = 0;
+            controller.BrainMetastasis = 0;
+        }
+        if(s_twoWeeks>0){
+            controller.s_metastaticDisease = (s_metastaticDisease/s_twoWeeks)*100;
+            controller.s_LocalRecurrence = (s_LocalRecurrence/s_twoWeeks)*100;
+            controller.s_Lymphadenopathy = (s_Lymphadenopathy/s_twoWeeks)*100;
+            controller.s_LiverMetastasis = (s_LiverMetastasis/s_twoWeeks)*100;
+            controller.s_BoneMetastasis = (s_BoneMetastasis/s_twoWeeks)*100;
+            controller.s_BrainMetastasis = (s_BrainMetastasis/s_twoWeeks)*100;
+        }else{
+            controller.s_metastaticDisease = 0;
+            controller.s_LocalRecurrence = 0;
+            controller.s_Lymphadenopathy = 0;
+            controller.s_LiverMetastasis = 0;
+            controller.s_BoneMetastasis = 0;
+            controller.s_BrainMetastasis = 0;
+        }
+        
+        controller.NationalSize = twoWeeks;
+        controller.SurgeonSize = s_twoWeeks;
+        
+        controller.graphView = @"CTScan";
+        controller.showNationalData = _showNationalData;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+    
+        [self calculate];
+        [self calculateSurgeonData];
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         if(sixMonths>0){
             controller.metastaticDisease = (metastaticDisease/sixMonths)*100;
             controller.LocalRecurrence = (LocalRecurrence/sixMonths)*100;
@@ -2150,8 +2294,11 @@ float s_creatinineDiffSum;
         
         controller.graphView = @"CTScan";
         controller.showNationalData = _showNationalData;
-
-    [self.navigationController pushViewController:controller animated:YES];
+        
+        [self.navigationController pushViewController:controller animated:YES];
+    
+    }
+    
 }
 
 

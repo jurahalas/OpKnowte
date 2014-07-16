@@ -115,19 +115,8 @@
     }
     _timepointID = indexPath.row+1;
     
-    if([_cameFromVC isEqualToString:@"FollowUpData"] && !_follow){
+    if([_cameFromVC isEqualToString:@"FollowUpData"]){
         [self performSegueWithIdentifier:@"fromSelectTimeToSelectVariables" sender:cameFromVC];
-    }else if ([_cameFromVC isEqualToString:@"FollowUpData"] && _follow){
-        
-        [[OKFollowUpDataManager instance] getFollowUpDataForCaseID:_caseID timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
-          
-            if (![ongoingData.beginCyclingDevice isEqualToString:@""]) {
-                [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
-            }else{
-                [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
-            }
-        }];
-        
     }else{
         [[OKLoadingViewController instance]showWithText:@"Loading"];
         [[OKUserManager instance]getUserAccess:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg) {
@@ -154,7 +143,7 @@
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"1"] && [ongoingData.gleason isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
-                        }else if (([_procID isEqualToString:@"10"] && [ongoingData.stoneLocation isEqualToString:@""]) || (ongoingData.stoneLocation == nil)){
+                        }else if (([_procID isEqualToString:@"10"] && [ongoingData.stoneLocation isEqualToString:@""]) && (ongoingData.stoneLocation == nil)){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"10"] && ![ongoingData.stoneLocation isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];

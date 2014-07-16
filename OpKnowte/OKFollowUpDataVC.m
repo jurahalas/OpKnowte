@@ -15,6 +15,7 @@
 #import "OKSelectTimePointViewController.h"
 #import "OKFakeTableViewCell.h"
 #import "OKDetailSummaryVC.h"
+#import "OKTimePointsManager.h"
 
 @interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;

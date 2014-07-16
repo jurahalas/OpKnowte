@@ -17,7 +17,7 @@
 
 - (void)getNationalPerformancDataByUserID:(NSString*) userID ProcedureID:(NSString *)procedureID FromTime:(NSString *)fromDate ToTime:(NSString *)toDate handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler;
 
-- (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray andProcedureId:(NSString*)procID handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler;
+- (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray andProcedureId:(NSString*)procID  handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler;
 
 //- (void)addFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
 

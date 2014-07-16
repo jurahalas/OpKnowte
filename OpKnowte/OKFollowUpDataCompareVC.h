@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *herniaLabel;
 @property (strong, nonatomic) IBOutlet UILabel *fuhrmanLabel;
 
+@property (strong, nonatomic) IBOutlet UIImageView *TNMStagingLine;
+@property (strong, nonatomic) IBOutlet UIImageView *TNMStagingBottomLine;
 @property (nonatomic, assign) BOOL showNationalData;
 
 @property (nonatomic, retain) IBOutlet UIView *TNMStagingView;

@@ -114,7 +114,7 @@
     
     [dict setObject:@"twoMinutePause" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"2 minute pause was delivered" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -122,7 +122,7 @@
 ///////////////////////////////
     [dict setObject:@"stoneLocationComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"Stone location (complications)" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -138,7 +138,7 @@
     
     [dict setObject:@"stoneSizeComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"Stone size (complications)" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -154,7 +154,7 @@
     
     [dict setObject:@"numberOfShockwavesComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"Number of shockwaves (complications)" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -170,7 +170,7 @@
     
     [dict setObject:@"shockwaveRateComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"Shockwave rate (complications)" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -185,7 +185,7 @@
 
     [dict setObject:@"twoMinutePauseComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"2 minute pause was delivered (complications)" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -205,7 +205,7 @@
     
     [dict setObject:@"PSA" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"PSA" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -284,65 +284,10 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
-    
-    [dict setObject:@"Ileus" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Ileus, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    
-    [dict setObject:@"transfusion" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Transfusion, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-
-    [dict setObject:@"woundInfection" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Wound Infection, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-
-    [dict setObject:@"urineLeak" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Urine leak, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"bowelInjury" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Bowel Injury, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"DVT" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"DVT, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"PE" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"PE, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"reAdmission" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Re-admission within 30 days, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-   
-    [dict setObject:@"returnToORWithin" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Return to the OR within 30 days, %" forKey:@"placeholder"];
-    [self addCustomElement:dict];
-    [dict removeAllObjects];
-    
-    [dict setObject:@"death" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Death, %" forKey:@"placeholder"];
+    [dict setObject:@"complications" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"Ileus", @"Transfusion", @"Wound Infection", @"Urine Leak", @"Bowel Injury", @"DVT", @"PE", @"Re-admission within 30 days", @"Return to the OR within 30 days", @"Death"] forKey:@"items"];
+    [dict setObject:@"Complications" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
 }
@@ -434,7 +379,7 @@
     
     [dict setObject:@"portSiteHemia" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"Yes", @"No"] forKey:@"items"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
     [dict setObject:@"Port Site Hernia" forKey:@"placeholder"];
     
     [self addCustomElement:dict];
