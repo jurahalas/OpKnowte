@@ -271,6 +271,13 @@ float s_creatinineDiffSum;
                            @"Occurrence of mechanical failure"];
     
         _twoWeeksArray = _sixMonthArray;
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        _sixMonthArray = @[@"Stone location (complications)",
+                           @"Number of shockwaves (complications)",
+                           @"2 minutes pause was delivered (complications)",
+                           @"D"];
+        
+        _twoWeeksArray = _sixMonthArray;
     }
 
     _selectVariablesTable.dataSource = self;
@@ -298,9 +305,10 @@ float s_creatinineDiffSum;
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
 
-- (void)backButton {
+
+- (void)backButton
+{
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 
@@ -2215,7 +2223,6 @@ float s_creatinineDiffSum;
 -(void)changeCreatinine{
         [self calculate];
         [self calculateSurgeonData];
-   
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9) {
         NSLog(@" ^^^^^^ SUM OF Creatinine  : %f",creatinineDiffSum);
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
@@ -2233,9 +2240,7 @@ float s_creatinineDiffSum;
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
         controller.showNationalData = _showNationalData;
-    
         [self.navigationController pushViewController:controller animated:YES];
-
     }else{
     NSLog(@" ^^^^^^ SUM OF Creatinine  : %f",creatinineDiffSum);
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];

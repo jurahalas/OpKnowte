@@ -83,11 +83,9 @@
             _templateModel = [[OKProcedureTemplateModel alloc] init];
             [_templateModel  setModelWithDictionary:template];
             
-            
             NSString *tempStr =  _templateModel.caseData;
             tempStr = [tempStr stringByReplacingOccurrencesOfString:@"(" withString:@""];
             tempStr = [tempStr stringByReplacingOccurrencesOfString:@")" withString:@""];
-            
             
             NSMutableArray *selectedCaseDataArray = [NSMutableArray arrayWithArray:[tempStr componentsSeparatedByString:@","]];
             

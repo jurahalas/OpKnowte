@@ -44,6 +44,7 @@
 
 - (void)getOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, OKOngoingData *ongoingData ))handler
 {
+    
     NSDictionary *params = @{@"procedureID":procedureID,
                              @"userID":[OKUserManager instance].currentUser.identifier,
                              @"caseID":caseID,

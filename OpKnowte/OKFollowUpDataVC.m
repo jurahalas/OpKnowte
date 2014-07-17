@@ -16,42 +16,31 @@
 #import "OKFakeTableViewCell.h"
 #import "OKDetailSummaryVC.h"
 #import "OKTimePointsManager.h"
+#import "OKSelectFUDVariablesVC.h"
 
 @interface OKFollowUpDataVC () <OKFollowUpDataCellDelegate>
 @property (strong, nonatomic) IBOutlet UIView *procedureView;
 @property (strong, nonatomic) IBOutlet UILabel *procedureLabel;
 @property (strong, nonatomic) IBOutlet UIButton *procedureButton;
-
-
 @property (strong, nonatomic) IBOutlet UIView *dateView;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateFromTF;
 @property (strong, nonatomic) IBOutlet OKCustomTextField *dateToTF;
-
 @property (strong, nonatomic) OKDatePicker *datePicker;
 @property (strong, nonatomic) UIView *pickerBGView;
 @property (strong, nonatomic) IBOutlet UIButton *dateFromButton;
 @property (strong, nonatomic)IBOutlet UIButton *dateToButton;
-
-
-
-
 @property (strong, nonatomic) IBOutlet UIView *searchView;
 @property (strong, nonatomic) IBOutlet UILabel *diselectAllLabel;
 @property (strong, nonatomic) IBOutlet UIButton *diselectAllButton;
 @property (strong, nonatomic) IBOutlet UILabel *searchLabel;
 @property (strong, nonatomic) IBOutlet UIButton *searchButton;
-
 @property (strong, nonatomic) IBOutlet UITableView *listTableView;
-
 @property (strong, nonatomic) IBOutlet UIView *selectTimePeriodView;
 @property (strong, nonatomic) IBOutlet UIButton *selectTimePeriodButton;
-
 @property (nonatomic, strong) NSMutableArray *surgeonDataArray;
 @property (nonatomic, strong) NSMutableArray *nationalDataArray;
-
 @property (nonatomic, strong) NSMutableArray *surgeonClinicalData;
 @property (nonatomic, strong) NSMutableArray *nationalClinicalData;
-
 @property (nonatomic, strong) NSMutableArray *choosedDetails;
 @property (nonatomic, assign) BOOL deselectAll;
 @property (nonatomic, strong) NSDateFormatter *dateformater;
@@ -120,8 +109,9 @@
     _doneButtonForDatePicker.clipsToBounds = YES;
     _doneButtonForDatePicker.hidden = YES;
     [self.view addSubview:_doneButtonForDatePicker];
-    
 }
+
+
 -(void) doneButtonTapped{
     if (!_dateToButtonTapped) {
         if (_pickerBGView.hidden) {
@@ -193,15 +183,10 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
-    
-    
-}
-
-
 - (IBAction)procedureButtonTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 - (IBAction)selectTimePeriodButtonTapped:(id)sender {
     if (_choosedDetails.count) {
@@ -215,7 +200,12 @@
                 NSLog(@"Eror - %@", errorMsg);
                 _nationalClinicalData = dataArray;
                 [[OKLoadingViewController instance] hide];
-                [self performSegueWithIdentifier:@"fromFollowUpDataToTimePoints" sender:nil];
+                
+                if ([_procID isEqualToString:@"10"]) {
+                    [self performSegueWithIdentifier:@"fromFUToSelectVariables" sender:nil];
+                }else{
+                    [self performSegueWithIdentifier:@"fromFollowUpDataToTimePoints" sender:nil];
+                }
             }];
         }];
     } else {
@@ -240,11 +230,17 @@
         sharVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
         sharVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];
         sharVC.procID = _procID;
-        
     } else if ([segue.identifier isEqualToString:@"fromFUDToDetail"]){
         OKDetailSummaryVC *detailVC =(OKDetailSummaryVC*)segue.destinationViewController;
         detailVC.procID = _procID;
         detailVC.model = sender;
+    }else if([segue.identifier isEqualToString:@"fromFUToSelectVariables"]){
+        OKSelectFUDVariablesVC *selectFUD = (OKSelectFUDVariablesVC*)segue.destinationViewController;
+        selectFUD.cameFromVC = sender;
+        selectFUD.performanceCases = [[NSMutableArray alloc] initWithArray:_nationalClinicalData];
+        selectFUD.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonClinicalData];
+        selectFUD.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
+        selectFUD.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];
     }
 }
 
@@ -381,6 +377,11 @@
     _dateToTF.text = @"";
     
     _searchView.backgroundColor = [UIColor clearColor];
+   
+    if ([_procID isEqualToString:@"10"]){
+        [_selectTimePeriodButton setTitle:@"Select variables" forState:UIControlStateNormal];
+    }
+
     _selectTimePeriodView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     _selectTimePeriodButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     _selectTimePeriodButton.layer.cornerRadius = 14;

@@ -51,6 +51,7 @@
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKTimePointsManager *timePointsManager = [OKTimePointsManager instance];
     [timePointsManager getAllTimePointsWithProcID:_procID WithHandler:^(NSString *errorMsg, NSArray *timePointsArray) {
+        
         _timePointsArray = timePointsArray;
         [self.selectTimePointTableView reloadData];
         [[OKLoadingViewController instance] hide];
@@ -59,6 +60,7 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
+    
 }
 
 
@@ -108,7 +110,7 @@
     [OKTimePointsManager instance].selectedTimePoint = timePoint;
 
     NSString *cameFromVC = [[NSString alloc] init];
-    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9) {
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9 || [[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
         cameFromVC = @"months";
     }else{
         if (indexPath.row == 0) {
@@ -131,6 +133,7 @@
                 }else{
                     _caseNumber = [OKCaseManager instance].selectedCase.identifier;
                 }
+                
                 [[OKCaseManager instance]getOngoingClinicalDetailsForCaseID:_caseNumber timePointID:timePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier handler:^(NSString *errorMsg, OKOngoingData *ongoingData) {
                 
                     [[OKLoadingViewController instance]hide];

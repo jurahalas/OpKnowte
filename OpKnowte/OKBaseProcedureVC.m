@@ -592,9 +592,8 @@
         }
         if (_procedureID == 1 || _procedureID == 9) {
             NSMutableArray *pickerArray = [[NSMutableArray alloc] initWithObjects:@"Male", nil];
-
             if ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_sex"]) {
-
+                picker.enabled = NO;
                 picker.customTextField.text = [pickerArray objectAtIndex:0];
                 [picker setDataArray:pickerArray];
                 [picker setValue:@"Male"];
@@ -604,13 +603,11 @@
             [picker setDataArray:[customElementDictionary objectForKey:@"items"]];
 
         }
-        
         picker.customTextField.inputView = _picker;
         
      //   [self.view addSubview:picker];
         [self.scrollview addSubview:picker];
 
-        
         [picker setTagOfTextField:tag];
         if (picker.tagOfTextField >0) {
             NSString *placeholder = [NSString stringWithFormat:@"%@%d)",[customElementDictionary objectForKey:@"placeholder"], picker.tagOfTextField ];
