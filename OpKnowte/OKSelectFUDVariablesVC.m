@@ -264,7 +264,14 @@ float s_creatinineDiffSum;
                            @"Complications",
                            @"Change in BUN",
                            @"Change in Creatine"];
-        }
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
+            _sixMonthArray = @[@"Average time to begin cycling of device",
+                           @"Occurrence of erosion",
+                           @"Occurrence of infection",
+                           @"Occurrence of mechanical failure"];
+    
+        _twoWeeksArray = _sixMonthArray;
+    }
 
     _selectVariablesTable.dataSource = self;
     _selectVariablesTable.delegate = self;
@@ -461,9 +468,30 @@ float s_creatinineDiffSum;
             }
         }
 
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
+            switch (indexPath.row) {
+                case 0:{
+                    [self BUN];
+                    break;
+                }
+                case 1:{
+                    [self Creatinine];
+                    break;
+                }
+                case 2:{
+                    [self changeBUN];
+                    break;
+                }
+                case 3:{
+                    [self changeCreatinine];
+                    break;
+                }
+                default:
+                    break;
+            }
     }
     
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -1142,7 +1170,62 @@ float s_creatinineDiffSum;
             }
             
         }
+    
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
+        for (int i = 0; i < [self.performanceCases count]; i++) {
+            NSDictionary *dict = [self.performanceCases objectAtIndex:i];
+            sixMonths++;
+            
+            
+            if([dict objectForKey:@"averageCyclingTime"]){
+                float bun = [[dict objectForKey:@"averageCyclingTime"] floatValue];
+                bunSum+=bun;
+                if(sixMonths == 1){
+                    minBun = bun;
+                    maxBun = bun;
+                }else{
+                    if(bun>maxBun){
+                        maxBun = bun;
+                    }
+                    if(bun<minBun){
+                        minBun = bun;
+                    }
+                }
+            }
+            
+            if([dict objectForKey:@"percentOfErosion"]){
+                float crt = [[dict objectForKey:@"percentOfErosion"] floatValue];
+                creatinineSum+= crt;
+                if(sixMonths == 1){
+                    minCreatinine = crt;
+                    maxCreatinine = crt;
+                }else{
+                    if(crt>maxCreatinine){
+                        maxCreatinine = crt;
+                    }
+                    if(crt<minCreatinine){
+                        minCreatinine = crt;
+                    }
+                }
+            }
+
+            if([dict objectForKey:@"percentOfInfection"]){
+                float preob = [[dict objectForKey:@"percentOfInfection"] floatValue];
+                    bunDiffSum+=preob;
+            }
+                
+            
+            if([dict objectForKey:@"percentOfMechnicalFailure"]){
+                    
+                    float preob = [[dict objectForKey:@"percentOfMechnicalFailure"] floatValue];
+                        creatinineDiffSum+=preob;
+                }
+                
+            
+            
+        }
     }
+    
 }
 
 
@@ -1631,7 +1714,61 @@ float s_creatinineDiffSum;
             }
             
         }
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
+        for (int i = 0; i < [self.surgeonCases count]; i++) {
+            NSDictionary *dict = [self.surgeonCases objectAtIndex:i];
+            s_sixMonths++;
+            
+            
+            if([dict objectForKey:@"averageCyclingTime"]){
+                float bun = [[dict objectForKey:@"averageCyclingTime"] floatValue];
+                s_bunSum+=bun;
+                if(s_sixMonths == 1){
+                    s_minBun = bun;
+                    s_maxBun = bun;
+                }else{
+                    if(bun>s_maxBun){
+                        s_maxBun = bun;
+                    }
+                    if(bun<minBun){
+                        s_minBun = bun;
+                    }
+                }
+            }
+            
+            if([dict objectForKey:@"percentOfErosion"]){
+                float crt = [[dict objectForKey:@"percentOfErosion"] floatValue];
+                s_creatinineSum+= crt;
+                if(sixMonths == 1){
+                    s_minCreatinine = crt;
+                    s_maxCreatinine = crt;
+                }else{
+                    if(crt>s_maxCreatinine){
+                        s_maxCreatinine = crt;
+                    }
+                    if(crt<s_minCreatinine){
+                        s_minCreatinine = crt;
+                    }
+                }
+            }
+            
+            if([dict objectForKey:@"percentOfInfection"]){
+                float preob = [[dict objectForKey:@"percentOfInfection"] floatValue];
+                s_bunDiffSum+=preob;
+            }
+            
+            
+            if([dict objectForKey:@"percentOfMechnicalFailure"]){
+                
+                float preob = [[dict objectForKey:@"percentOfMechnicalFailure"] floatValue];
+                s_creatinineDiffSum+=preob;
+            }
+            
+            
+            
+        }
     }
+
     
 }
 
@@ -2051,6 +2188,26 @@ float s_creatinineDiffSum;
         controller.showNationalData = _showNationalData;
         
         [self.navigationController pushViewController:controller animated:YES];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9) {
+        NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        controller.graphView = @"BUN";
+        if(sixMonths>0){
+            controller.bunSum = bunDiffSum/sixMonths;
+        }else{
+            controller.bunSum = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_bunSum = s_bunDiffSum/s_sixMonths;
+        }else{
+            controller.s_bunSum = 0;
+        }
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.showNationalData = _showNationalData;
+        
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -2058,7 +2215,29 @@ float s_creatinineDiffSum;
 -(void)changeCreatinine{
         [self calculate];
         [self calculateSurgeonData];
+   
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9) {
         NSLog(@" ^^^^^^ SUM OF Creatinine  : %f",creatinineDiffSum);
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        controller.graphView = @"Creatinine";
+        if(sixMonths>0){
+            controller.creatinineSum = creatinineDiffSum/sixMonths;
+        }else{
+            controller.creatinineSum = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_creatinineSum = s_creatinineDiffSum/s_sixMonths;
+        }else{
+            controller.s_creatinineSum = 0;
+        }
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.showNationalData = _showNationalData;
+    
+        [self.navigationController pushViewController:controller animated:YES];
+
+    }else{
+    NSLog(@" ^^^^^^ SUM OF Creatinine  : %f",creatinineDiffSum);
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         controller.graphView = @"Creatinine";
         if(twoWeeks>0){
@@ -2074,8 +2253,9 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.showNationalData = _showNationalData;
-
         [self.navigationController pushViewController:controller animated:YES];
+    }
+
 }
 
 // 6 month variables
