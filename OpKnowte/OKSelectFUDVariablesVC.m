@@ -2030,7 +2030,7 @@ float s_creatinineDiffSum;
         controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
-    }else     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2) {
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2) {
         
         NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];

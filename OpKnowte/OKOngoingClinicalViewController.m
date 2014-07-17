@@ -693,9 +693,9 @@
         if(neededItems.count > 0){
             id interactionItem = neededItems[0];
             
-            if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"Yes"] || [newValue isEqualToString:@"Positive"] || [newValue isEqualToString:@"Residual fragmentation"]){
+            if([newValue isEqualToString:@"Abnormal"] || [newValue isEqualToString:@"YES"] || [newValue isEqualToString:@"Positive"] || [newValue isEqualToString:@"Residual fragmentation"]){
                 [interactionItem setEnabled:YES];
-            }else if ([newValue isEqualToString:@"Resolved"] || [newValue isEqualToString:@"Negative"] || [newValue isEqualToString:@"Normal"] || [newValue isEqualToString:@"No"]){
+            }else if ([newValue isEqualToString:@"Resolved"] || [newValue isEqualToString:@"Negative"] || [newValue isEqualToString:@"Normal"] || [newValue isEqualToString:@"NO"]){
                 [self.ongoingData setValue:newValue forKey:fieldName];
             }else{
                 [interactionItem setEnabled:NO];
