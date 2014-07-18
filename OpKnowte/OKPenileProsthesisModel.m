@@ -19,7 +19,7 @@
     _var_MRNumber = [dictionary valueForKey:@"mrNumber"];
     _var_DOS = [dictionary valueForKey:@"dateOfService"];
     _var_procedureName = [dictionary valueForKey:@"PROCEDURE_ID"];
-    _var_anastesia = [dictionary valueForKey:@"anastesia"];
+    _var_anastesia = [dictionary valueForKey:@"anesthesia"];
     _var_diagnosis = [dictionary valueForKey:@"diagnosis"];
     _var_deviceimplaned = [dictionary valueForKey:@"deviceimplaned"];
     _var_dilatorsused = [dictionary valueForKey:@"dilatorsused"];

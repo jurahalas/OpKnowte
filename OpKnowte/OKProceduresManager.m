@@ -260,7 +260,7 @@
                    @"gender":                 [procModel valueForKey:@"var_sex"],
                    @"dateOfService":          dateOfServiceString,
                    
-                   @"anastesia":              [procModel valueForKey:@"var_anastesia"],
+                   @"anesthesia":             [procModel valueForKey:@"var_anastesia"],
                    @"diagnosis":              [procModel valueForKey:@"var_diagnosis"],
                    @"deviceimplaned":         [procModel valueForKey:@"var_deviceimplaned"],
                    @"dilatorsused":           [procModel valueForKey:@"var_dilatorsused"],
