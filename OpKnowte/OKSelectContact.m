@@ -33,8 +33,6 @@
 }
 
 
-
-
 -(void) setTagOfTextField:(NSInteger)tagOfTextField{
     _tagOfTextField = tagOfTextField;
 }

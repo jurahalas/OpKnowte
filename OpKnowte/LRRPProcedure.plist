@@ -400,7 +400,7 @@
 				<key>type</key>
 				<string>numericTextField</string>
 				<key>placeholder</key>
-				<string>Consul Time</string>
+				<string>Consultation time</string>
 				<key>items</key>
 				<array/>
 			</dict>

@@ -499,11 +499,7 @@
             [selectContact setupWithValue:[self.model valueForKey:[customElementDictionary objectForKey:@"name"]]];
         }
         
-
-        
-        
-        [self.interactionItems addObject:selectContact];
-        
+        [self.interactionItems addObject:selectContact];        
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         numericTextField.delegate = self;
@@ -581,6 +577,7 @@
         
         
     } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"picker"]) {
+
         OKProcedurePicker *picker = [[OKProcedurePicker alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         picker.delegate = self;
         [picker setFieldName:[customElementDictionary objectForKey:@"name"]];

@@ -298,7 +298,8 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     [dict setObject:@"averageCyclingTime" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"1 week", @"2 weeks", @"3 weeks", @"4 weeks", @"5 weeks", @"6 weeks", @"7 weeks", @"8 weeks", @"9 weeks", @"10 weeks", @"11 weeks", @"12 weeks"] forKey:@"items"];
     [dict setObject:@"Average time to begin cycling of device" forKey:@"placeholder"];
     
     [self addCustomElement:dict];
