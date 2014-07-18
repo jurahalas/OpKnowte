@@ -95,12 +95,17 @@
                 <outlet property="changeBUNView" destination="958" id="967"/>
                 <outlet property="changeInBunNationalView" destination="A5e-pg-2SI" id="DJ2-kN-iPv"/>
                 <outlet property="changeTitle" destination="966" id="970"/>
+                <outlet property="complicationsBottomLine" destination="M4R-Ge-okb" id="hgk-sH-vkw"/>
                 <outlet property="complicationsGraph" destination="9" id="957"/>
+                <outlet property="complicationsLabel" destination="84" id="aq1-gd-klJ"/>
+                <outlet property="complicationsLine" destination="n3S-2C-3l2" id="j2c-A3-6HO"/>
                 <outlet property="complicationsNationalView" destination="0FR-oA-s4i" id="O7r-Uk-x6E"/>
                 <outlet property="ctScanNationalView" destination="faW-5s-iPV" id="kEl-FI-BgU"/>
+                <outlet property="dMarginsLabel" destination="896" id="kLo-8m-xs2"/>
                 <outlet property="deepMarginsNationalView" destination="Ka9-KS-SJY" id="i7C-h8-RmQ"/>
                 <outlet property="dmNegativeView" destination="891" id="900"/>
                 <outlet property="dmPositiveView" destination="889" id="898"/>
+                <outlet property="fuhrmanBottomLine" destination="CKE-F9-q13" id="HzY-s2-bKd"/>
                 <outlet property="fuhrmanLabel" destination="72" id="sCy-e6-BWf"/>
                 <outlet property="gradeNationalView" destination="2CL-fj-0jw" id="6gx-pY-8rf"/>
                 <outlet property="herniaGraph" destination="995" id="1004"/>
@@ -116,6 +121,7 @@
                 <outlet property="liverNormalView" destination="986" id="1009"/>
                 <outlet property="mNegativeView" destination="880" id="886"/>
                 <outlet property="mPositiveView" destination="879" id="884"/>
+                <outlet property="marginsLabel" destination="146" id="Dhi-Ot-uGv"/>
                 <outlet property="marginsNationalView" destination="fvm-t7-bvv" id="tyt-4P-Vpo"/>
                 <outlet property="marginsView" destination="5" id="883"/>
                 <outlet property="metastaticDiseaseView" destination="1028" id="1033"/>

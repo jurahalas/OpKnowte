@@ -25,6 +25,12 @@
 @property (strong, nonatomic) IBOutlet UIView *complicationsNationalView;
 @property (strong, nonatomic) IBOutlet UIView *gradeNationalView;
 @property (strong, nonatomic) IBOutlet UIView *tmnNationalView;
+@property (strong, nonatomic) IBOutlet UILabel *complicationsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *marginsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dMarginsLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *complicationsLine;
+@property (strong, nonatomic) IBOutlet UIImageView *complicationsBottomLine;
+@property (strong, nonatomic) IBOutlet UIImageView *fuhrmanBottomLine;
 
 
 //buttons
@@ -451,46 +457,146 @@
         _scrollView.contentSize = self.FGradeView.bounds.size;
         self.FGradeView.frame = CGRectMake(self.FGradeView.frame.origin.x, self.FGradeView.frame.origin.y-64, self.FGradeView.frame.size.width, self.FGradeView.frame.size.height);
         [_scrollView addSubview:self.FGradeView];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        _fuhrmanLabel.text = @"2 minute pause was delivered (complications)";
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.FGradeView.frame;
+            frame.origin.y = 57;
+            [self.FGradeView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.FGradeView.frame;
+            frame.origin.y = 45;
+            [self.FGradeView setFrame:frame];
+        }
+        
+        [self.FGNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.FGSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.FGoneByFourView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.FGoneByFour]];
+        [self.FGtwoByFourView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.FGtwoByFour]];
+        self.FGthreeByFourView.hidden = YES;
+        self.FGfourByFourView.hidden = YES;
+        
+        [self.s_FGoneByFourView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.s_FGoneByFour]];
+        [self.s_FGtwoByFourView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.s_FGtwoByFour]];
+        self.s_FGthreeByFourView.hidden = YES;
+        self.s_FGfourByFourView.hidden = YES;
+        
+        //[self.view addSubview:self.FGradeView];
+        
+        
+        for (UIButton *button in self.compareButtons) {
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y-50, button.frame.size.width, button.frame.size.height);
+        }
+        for (UIButton *button in self.removeButtons) {
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y-50, button.frame.size.width, button.frame.size.height);
+        }
+        
+        
+        _fuhrmanBottomLine.frame = CGRectMake(_fuhrmanBottomLine.frame.origin.x, _fuhrmanBottomLine.frame.origin.y-50, _fuhrmanBottomLine.frame.size.width, _fuhrmanBottomLine.frame.size.height);
+        
+        _gradeNationalView.frame = CGRectMake(_gradeNationalView.frame.origin.x, _gradeNationalView.frame.origin.y-50, _gradeNationalView.frame.size.width, _gradeNationalView.frame.size.height-50);
+        
+        _scrollView.contentSize = self.FGradeView.bounds.size;
+        self.FGradeView.frame = CGRectMake(self.FGradeView.frame.origin.x, self.FGradeView.frame.origin.y-64, self.FGradeView.frame.size.width, self.FGradeView.frame.size.height);
+        [_scrollView addSubview:self.FGradeView];
     }
+
 }
 
 
 -(void)showMarginsGraph{
-    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
-    } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
-    }
-    if (IS_IPHONE_5) {
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+        _marginsLabel.text = @"Stone location (complications)";
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.marginsView.frame;
+            frame.origin.y = 57;
+            [self.marginsView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.marginsView.frame;
+            frame.origin.y = 45;
+            [self.marginsView setFrame:frame];
+        }
         
-        CGRect frame = self.marginsView.frame;
-        frame.origin.y = 57;
-        [self.marginsView setFrame:frame];
+        [self.MNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.MSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
         
-    }else{
-        CGRect frame = self.marginsView.frame;
-        frame.origin.y = 45;
-        [self.marginsView setFrame:frame];
-    }
-    
-    [self.MNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
-    [self.MSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-    
-    [self.mPositiveView setText:[NSString stringWithFormat:@" Positive = %.0f %%",self.mPositive]];
-    [self.mNegativeView setText:[NSString stringWithFormat:@" Negative = %.0f %%",self.mNegative]];
-    [self.s_mPositiveView setText:[NSString stringWithFormat:@" Positive = %.0f %%",self.s_mPositive]];
-    [self.s_mNegativeView setText:[NSString stringWithFormat:@" Negative = %.0f %%",self.s_mNegative]];
-    
-    //[self.view addSubview:self.marginsView];
-    _scrollView.contentSize = self.marginsView.bounds.size;
-    self.marginsView.frame = CGRectMake(self.marginsView.frame.origin.x, self.marginsView.frame.origin.y-64, self.marginsView.frame.size.width, self.marginsView.frame.size.height);
+        [self.mPositiveView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.mPositive]];
+        [self.mNegativeView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.mNegative]];
+        [self.s_mPositiveView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.s_mPositive]];
+        [self.s_mNegativeView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.s_mNegative]];
+        
+        //[self.view addSubview:self.marginsView];
+        _scrollView.contentSize = self.marginsView.bounds.size;
+        self.marginsView.frame = CGRectMake(self.marginsView.frame.origin.x, self.marginsView.frame.origin.y-64, self.marginsView.frame.size.width, self.marginsView.frame.size.height);
+        
+        [_scrollView addSubview:self.marginsView];
 
-    [_scrollView addSubview:self.marginsView];
+    }else{
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.marginsView.frame;
+            frame.origin.y = 57;
+            [self.marginsView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.marginsView.frame;
+            frame.origin.y = 45;
+            [self.marginsView setFrame:frame];
+        }
+        
+        [self.MNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.MSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.mPositiveView setText:[NSString stringWithFormat:@" Positive = %.0f %%",self.mPositive]];
+        [self.mNegativeView setText:[NSString stringWithFormat:@" Negative = %.0f %%",self.mNegative]];
+        [self.s_mPositiveView setText:[NSString stringWithFormat:@" Positive = %.0f %%",self.s_mPositive]];
+        [self.s_mNegativeView setText:[NSString stringWithFormat:@" Negative = %.0f %%",self.s_mNegative]];
+        
+        //[self.view addSubview:self.marginsView];
+        _scrollView.contentSize = self.marginsView.bounds.size;
+        self.marginsView.frame = CGRectMake(self.marginsView.frame.origin.x, self.marginsView.frame.origin.y-64, self.marginsView.frame.size.width, self.marginsView.frame.size.height);
+
+        [_scrollView addSubview:self.marginsView];
+    }
 }
 
 
 -(void)showDMarginsGraph{
-    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
-    } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+        _dMarginsLabel.text = @"Stone size (complications)";
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.DMarginView.frame;
+            frame.origin.y = 57;
+            [self.DMarginView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.DMarginView.frame;
+            frame.origin.y = 45;
+            [self.DMarginView setFrame:frame];
+        }
+        
+        [self.DMNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.DMSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.dmPositiveView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.dmPositive]];
+        [self.dmNegativeView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.dmNegative]];
+        [self.s_dmPositiveView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.s_dmPositive]];
+        [self.s_dmNegativeView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.s_dmNegative]];
+        
+        //[self.view addSubview:self.DMarginView];
+        _scrollView.contentSize = self.DMarginView.bounds.size;
+        self.DMarginView.frame = CGRectMake(self.DMarginView.frame.origin.x, self.DMarginView.frame.origin.y-64, self.DMarginView.frame.size.width, self.DMarginView.frame.size.height);
+        
+        [_scrollView addSubview:self.DMarginView];
+
     }
+    
     if (IS_IPHONE_5) {
         
         CGRect frame = self.DMarginView.frame;
@@ -673,7 +779,67 @@
         self.complicationsGraph.frame = CGRectMake(self.complicationsGraph.frame.origin.x, self.complicationsGraph.frame.origin.y-64, self.complicationsGraph.frame.size.width, self.complicationsGraph.frame.size.height);
         
         [_scrollView addSubview:self.complicationsGraph];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        _complicationsLabel.text =@"Stone location";
+        if (IS_IPHONE_5) {
+            CGRect frame = self.complicationsGraph.frame;
+            frame.origin.y = 57;
+            [self.complicationsGraph setFrame:frame];
+            
+        }else{
+            CGRect frame = self.complicationsGraph.frame;
+            frame.origin.y = 45;
+            [self.complicationsGraph setFrame:frame];
+        }
+
+        [self.CNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.CSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.IleusView setText:[NSString stringWithFormat:@"Upper pole, renal = %.0f %%",self.Ileus]];
+        [self.BowelInjuryView setText:[NSString stringWithFormat:@"Mid-renal = %.0f %%",self.BowelInjury]];
+        [self.InfectionView setText:[NSString stringWithFormat:@"Lower pole, renal = %.0f %%",self.Infection]];
+        [self.UrineLeakView setText:[NSString stringWithFormat:@"Renal pelvis = %.0f %%",self.UrineLeak]];
+        [self.DVTView setText:[NSString stringWithFormat:@"Ureteropelvic Junction = %.0f %%",self.DVT]];
+        [self.PEView setText:[NSString stringWithFormat:@"Proximal ureter = %.0f %%",self.PE]];
+        [self.CardiacEventView setText:[NSString stringWithFormat:@"Mid ureter = %.0f %%",self.CardiacEvent]];
+        [self.HerniaView setText:[NSString stringWithFormat:@"Distal ureter = %.0f %%",self.Hernia]];
+        self.TransfusionView.hidden = YES;
+        self.DeathView.hidden = YES;
+        self.OtherCompView.hidden = YES;
+
+        
+        [self.s_IleusView setText:[NSString stringWithFormat:@"Upper pole, renal = %.0f %%",self.s_Ileus]];
+        [self.s_BowelInjuryView setText:[NSString stringWithFormat:@"Mid-renal = %.0f %%",self.s_BowelInjury]];
+        [self.s_InfectionView setText:[NSString stringWithFormat:@"Lower pole, renal = %.0f %%",self.s_Infection]];
+        [self.s_UrineLeakView setText:[NSString stringWithFormat:@"Renal pelvis = %.0f %%",self.s_UrineLeak]];
+        [self.s_DVTView setText:[NSString stringWithFormat:@"Ureteropelvic Junction = %.0f %%",self.s_DVT]];
+        [self.s_PEView setText:[NSString stringWithFormat:@"Proximal ureter = %.0f %%",self.s_PE]];
+        [self.s_CardiacEventView setText:[NSString stringWithFormat:@"Mid ureter = %.0f %%",self.s_CardiacEvent]];
+        
+        [self.s_HerniaView setText:[NSString stringWithFormat:@"Distal ureter = %.0f %%",self.s_Hernia]];
+        self.s_TransfusionView.hidden = YES;
+        self.s_DeathView.hidden = YES;
+        self.s_OtherCompView.hidden = YES;
+        //[self.view addSubview:self.complicationsGraph];
+        
+        for (UIButton *button in self.compareButtons) {
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y-80, button.frame.size.width, button.frame.size.height);
+        }
+        for (UIButton *button in self.removeButtons) {
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y-80, button.frame.size.width, button.frame.size.height);
+        }
+       
+        
+        _complicationsBottomLine.frame = CGRectMake(_complicationsBottomLine.frame.origin.x, _complicationsBottomLine.frame.origin.y-80, _complicationsBottomLine.frame.size.width, _complicationsBottomLine.frame.size.height);
+        
+        _complicationsNationalView.frame = CGRectMake(_complicationsNationalView.frame.origin.x, _complicationsNationalView.frame.origin.y-80, _complicationsNationalView.frame.size.width, _complicationsNationalView.frame.size.height-80);
+        
+        _scrollView.contentSize = self.complicationsGraph.bounds.size;
+        self.complicationsGraph.frame = CGRectMake(self.complicationsGraph.frame.origin.x, self.complicationsGraph.frame.origin.y-64, self.complicationsGraph.frame.size.width, self.complicationsGraph.frame.size.height);
+        
+        [_scrollView addSubview:self.complicationsGraph];
     }
+
 }
 
 
@@ -734,7 +900,7 @@
         
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
     
-        changeTitle.text = @"Infection";
+        changeTitle.text = @"Occurrence of infection";
         if (IS_IPHONE_5) {
             
             CGRect frame = self.changeBUNView.frame;
@@ -758,7 +924,34 @@
         self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
         
         [_scrollView addSubview:self.changeBUNView];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        
+        changeTitle.text = @"Shockwave Rate";
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.changeBUNView.frame;
+            frame.origin.y = 57;
+            [self.changeBUNView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.changeBUNView.frame;
+            frame.origin.y = 45;
+            [self.changeBUNView setFrame:frame];
+        }
+        
+        [self.BUNNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.BUNSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.bunView setText:[NSString stringWithFormat:@"Average rate  = %.1f ",self.bunSum]];
+        [self.s_bunView setText:[NSString stringWithFormat:@"Average rate  = %.1f ",self.s_bunSum]];
+        //[self.view addSubview:self.changeBUNView];
+        
+        _scrollView.contentSize = self.changeBUNView.bounds.size;
+        self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
+        
+        [_scrollView addSubview:self.changeBUNView];
     }
+
 }
 
 
@@ -876,7 +1069,36 @@
         self.xrayGraph.frame = CGRectMake(self.xrayGraph.frame.origin.x, self.xrayGraph.frame.origin.y-64, self.xrayGraph.frame.size.width, self.xrayGraph.frame.size.height);
         
         [_scrollView addSubview:self.xrayGraph];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        _XRayLabel.text = @"Number of shockwaves (complications)";
+
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.xrayGraph.frame;
+            frame.origin.y = 57;
+            [self.xrayGraph setFrame:frame];
+            
+        }else{
+            CGRect frame = self.xrayGraph.frame;
+            frame.origin.y = 45;
+            [self.xrayGraph setFrame:frame];
+        }
+        
+        [self.XRNationalSampleSize setText:[NSString stringWithFormat:@"(N = %i)",self.NationalSize]];
+        [self.XRSurgeonSampleSize setText:[NSString stringWithFormat:@"(N = %i)",self.SurgeonSize]];
+        
+        [self.xrayNegativeView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.xrayNegative]];
+        [self.xrayPositiveView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.xrayPositive]];
+        [self.s_xrayNegativeView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_xrayNegative]];
+        [self.s_xrayPositiveView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_xrayPositive]];
+        //[self.view addSubview:self.xrayGraph];
+        
+        _scrollView.contentSize = self.xrayGraph.bounds.size;
+        self.xrayGraph.frame = CGRectMake(self.xrayGraph.frame.origin.x, self.xrayGraph.frame.origin.y-64, self.xrayGraph.frame.size.width, self.xrayGraph.frame.size.height);
+        
+        [_scrollView addSubview:self.xrayGraph];
     }
+
  }
 
 
@@ -936,7 +1158,35 @@
         self.liverGraph.frame = CGRectMake(self.liverGraph.frame.origin.x, self.liverGraph.frame.origin.y-64, self.liverGraph.frame.size.width, self.liverGraph.frame.size.height);
         
         [_scrollView addSubview:self.liverGraph];
+    } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+       _liverLabel.text = @"Shockwave rate (complications)";
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.liverGraph.frame;
+            frame.origin.y = 57;
+            [self.liverGraph setFrame:frame];
+            
+        }else{
+            CGRect frame = self.liverGraph.frame;
+            frame.origin.y = 45;
+            [self.liverGraph setFrame:frame];
+        }
+        
+        [self.LNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.LSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.liverAbNormalView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.liverAbNormal]];
+        [self.liverNormalView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.liverNormal]];
+        [self.s_liverAbNormalView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_liverAbNormal]];
+        [self.s_liverNormalView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_liverNormal]];
+        //[self.view addSubview:self.liverGraph];
+        
+        _scrollView.contentSize = self.liverGraph.bounds.size;
+        self.liverGraph.frame = CGRectMake(self.liverGraph.frame.origin.x, self.liverGraph.frame.origin.y-64, self.liverGraph.frame.size.width, self.liverGraph.frame.size.height);
+        
+        [_scrollView addSubview:self.liverGraph];
     }
+
 }
 
 
@@ -971,6 +1221,34 @@
 
     } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
         
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.herniaGraph.frame;
+            frame.origin.y = 57;
+            [self.herniaGraph setFrame:frame];
+            
+        }else{
+            CGRect frame = self.herniaGraph.frame;
+            frame.origin.y = 45;
+            [self.herniaGraph setFrame:frame];
+        }
+        
+        [self.HNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.HSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.herniaYES]];
+        [self.herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.herniaNO]];
+        [self.s_herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_herniaYES]];
+        [self.s_herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_herniaNO]];
+        //[self.view addSubview:self.herniaGraph];
+        
+        _scrollView.contentSize = self.herniaGraph.bounds.size;
+        self.herniaGraph.frame = CGRectMake(self.herniaGraph.frame.origin.x, self.herniaGraph.frame.origin.y-64, self.herniaGraph.frame.size.width, self.herniaGraph.frame.size.height);
+        
+        [_scrollView addSubview:self.herniaGraph];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        _herniaLabel.text = @"2 minutes pause was performed";
+
         if (IS_IPHONE_5) {
             
             CGRect frame = self.herniaGraph.frame;
@@ -1190,7 +1468,36 @@
         self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
         
         [_scrollView addSubview:self.averageView];
-   }
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        
+        averageViewTitleLabel.text = @"№ of shockwaves";
+        
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.averageView.frame;
+            frame.origin.y = 57;
+            [self.averageView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.averageView.frame;
+            frame.origin.y = 45;
+            [self.averageView setFrame:frame];
+        }
+        
+        [self.AVNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.AVSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.averageLabel setText:[NSString stringWithFormat:@"Average number = %.1f",self.averageCreatinine]];
+        [self.s_averageLabel setText:[NSString stringWithFormat:@"Average number = %.1f",self.s_averageCreatinine]];
+        
+        //[self.view addSubview:self.averageView];
+        
+        _scrollView.contentSize = self.averageView.bounds.size;
+        self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
+        
+        [_scrollView addSubview:self.averageView];
+    }
+
 }
 
 
@@ -1281,6 +1588,34 @@
         self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
         
         [_scrollView addSubview:self.averageView];    
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        
+        averageViewTitleLabel.text = @"Stone Size";
+        
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.averageView.frame;
+            frame.origin.y = 57;
+            [self.averageView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.averageView.frame;
+            frame.origin.y = 45;
+            [self.averageView setFrame:frame];
+        }
+        
+        [self.AVNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.AVSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.averageLabel setText:[NSString stringWithFormat:@"Average size = %.1f",self.averageBun]];
+        [self.s_averageLabel setText:[NSString stringWithFormat:@"Average size = %.1f",self.s_averageBun]];
+        
+        //[self.view addSubview:self.averageView];
+        
+        _scrollView.contentSize = self.averageView.bounds.size;
+        self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
+        
+        [_scrollView addSubview:self.averageView];
     }
 }
 

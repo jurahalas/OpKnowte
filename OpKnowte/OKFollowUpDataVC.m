@@ -217,9 +217,8 @@
         [alert show];
         [[OKLoadingViewController instance] hide];
     }
-    
-    
 }
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"fromFollowUpDataToTimePoints"]){
@@ -235,12 +234,12 @@
         detailVC.procID = _procID;
         detailVC.model = sender;
     }else if([segue.identifier isEqualToString:@"fromFUToSelectVariables"]){
-        OKSelectFUDVariablesVC *selectFUD = (OKSelectFUDVariablesVC*)segue.destinationViewController;
-        selectFUD.cameFromVC = sender;
-        selectFUD.performanceCases = [[NSMutableArray alloc] initWithArray:_nationalClinicalData];
-        selectFUD.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonClinicalData];
-        selectFUD.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
-        selectFUD.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];
+        OKSelectFUDVariablesVC *selectVC = (OKSelectFUDVariablesVC*)segue.destinationViewController;
+        selectVC.cameFromVC = sender;
+        selectVC.performanceCases = [[NSMutableArray alloc] initWithArray:_nationalClinicalData];
+        selectVC.surgeonCases = [[NSMutableArray alloc] initWithArray:_surgeonClinicalData];
+        selectVC.totlaNationalCases = [[NSMutableArray alloc] initWithArray:_nationalDataArray];
+        selectVC.totalSurgeonCases = [[NSMutableArray alloc] initWithArray:_choosedDetails];
     }
 }
 

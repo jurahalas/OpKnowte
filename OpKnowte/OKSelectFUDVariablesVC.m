@@ -246,9 +246,8 @@ float s_creatinineDiffSum;
                            @"Erectile Function",
                            @"Bladder Neck Contracture",
                            @"Mortality"];
-
+        
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
-
         _sixMonthArray = @[@"Chest Xray",
                            @"Liver Enzymes",
                            @"Post Site Hernia",
@@ -266,17 +265,21 @@ float s_creatinineDiffSum;
                            @"Change in Creatine"];
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
             _sixMonthArray = @[@"Average time to begin cycling of device",
-                           @"Occurrence of erosion",
-                           @"Occurrence of infection",
-                           @"Occurrence of mechanical failure"];
-    
+                               @"Occurrence of erosion",
+                               @"Occurrence of infection",
+                               @"Occurrence of mechanical failure"];
         _twoWeeksArray = _sixMonthArray;
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
-        _sixMonthArray = @[@"Stone location (complications)",
-                           @"Number of shockwaves (complications)",
-                           @"2 minutes pause was delivered (complications)",
-                           @"D"];
-        
+        _sixMonthArray = @[@"Stone location",
+                           @"Stone size",
+                           @"Number of shockwaves",
+                           @"Shockwave rate",
+                           @"2 minute pause",
+                           @"Stone location(complications)",
+                           @"Stone size(complications)",
+                           @"Number of shockwaves(complications)",
+                           @"Shockwave rate(complications)",
+                           @"2 minute pause(complications)"];
         _twoWeeksArray = _sixMonthArray;
     }
 
@@ -497,6 +500,51 @@ float s_creatinineDiffSum;
                 default:
                     break;
             }
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        switch (indexPath.row) {
+            case 0:{
+                [self complications];
+                break;
+            }
+            case 1:{
+                [self BUN];
+                break;
+            }
+            case 2:{
+                [self Creatinine];
+                break;
+            }
+            case 3:{
+                [self changeBUN];
+                break;
+            }
+            case 4:{
+                [self Hernia];
+                break;
+            }
+            case 5:{
+                [self margins];
+                break;
+            }
+            case 6:{
+                [self dMargin];
+                break;
+            }
+            case 7:{
+                [self xray];
+                break;
+            }
+            case 8:{
+                [self Liver];
+                break;
+            }
+            case 9:{
+                [self fuhrmanGrade];
+                break;
+            }
+            default:
+                break;
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -1232,8 +1280,147 @@ float s_creatinineDiffSum;
             
             
         }
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        for (int i = 0; i < [self.performanceCases count]; i++) {
+            NSDictionary *dict = [self.performanceCases objectAtIndex:i];
+            sixMonths++;
+            
+            NSString *complication = [dict objectForKey:@"stoneLocation"];
+            //NSLog(@"%@", complication);
+            if (complication.length > 0) {
+                if ([complication isEqualToString:@"Upper pole, renal"]) {
+                    Ileus++;
+                }else if ([complication isEqualToString:@"Mid-renal"]){
+                    BowelInjury++;
+                }else if ([complication isEqualToString:@"Lower pole, renal"]){
+                    Infection++;
+                }else if ([complication isEqualToString:@"Renal pelvis"]){
+                    UrineLeak++;
+                }else if ([complication isEqualToString:@"Ureteropelvic Junction"]){
+                    DVT++;
+                }else if ([complication isEqualToString:@"Proximal ureter"]){
+                    PE++;
+                }else if ([complication isEqualToString:@"Mid ureter"]){
+                    CardiacEvent++;
+                }else if ([complication isEqualToString:@"Distal ureter"]){
+                    Hernia++;
+                }
+            }
+            
+            if([dict objectForKey:@"stoneSize"]){
+                float bun = [[dict objectForKey:@"stoneSize"] floatValue];
+                bunSum+=bun;
+                if(sixMonths == 1){
+                    minBun = bun;
+                    maxBun = bun;
+                }else{
+                    if(bun>maxBun){
+                        maxBun = bun;
+                    }
+                    if(bun<minBun){
+                        minBun = bun;
+                    }
+                }
+            }
+            
+            if([dict objectForKey:@"numberOfShockwaves"]){
+                float crt = [[dict objectForKey:@"numberOfShockwaves"] floatValue];
+                creatinineSum+= crt;
+                if(sixMonths == 1){
+                    minCreatinine = crt;
+                    maxCreatinine = crt;
+                }else{
+                    if(crt>maxCreatinine){
+                        maxCreatinine = crt;
+                    }
+                    if(crt<minCreatinine){
+                        minCreatinine = crt;
+                    }
+                }
+            }
+            
+            
+            if([dict objectForKey:@"shockwaveRate"]){
+                float bun = [[dict objectForKey:@"shockwaveRate"] floatValue];
+                bunSum+=bun;
+                if(sixMonths == 1){
+                    minBun = bun;
+                    maxBun = bun;
+                }else{
+                    if(bun>maxBun){
+                        maxBun = bun;
+                    }
+                    if(bun<minBun){
+                        minBun = bun;
+                    }
+                }
+            }
+
+            NSString *hernia = [dict objectForKey:@"twoMinutePause"];
+            //NSLog(@"%@", hernia);
+            if (hernia.length > 0) {
+                if ([hernia isEqualToString:@"YES"]) {
+                    herniaYES++;
+                }else if ([hernia isEqualToString:@"NO"]){
+                    herniaNO++;
+                }
+            }
+            
+            NSString *margins = [dict objectForKey:@"stoneLocationComplications"];
+            //NSLog(@"%@", margins);
+            if (margins.length > 0) {
+                if ([margins isEqualToString:@"NO"]) {
+                    mNegative++;
+                }else{
+                    mPositive++;
+                }
+            }
+            
+            NSString *dMargins = [dict objectForKey:@"stoneSizeComplications"];
+            //NSLog(@"%@", dMargins);
+            if (dMargins.length > 0) {
+                if ([dMargins isEqualToString:@"NO"]) {
+                    dmNegative++;
+                }else{
+                    dmPositive++;
+                }
+            }
+            
+            NSString *xray = [dict objectForKey:@"numberOfShockwavesComplications"];
+            //NSLog(@"%@", xray);
+            if (xray.length > 0) {
+                if ([xray isEqualToString:@"NO"]) {
+                    xrayNegative++;
+                }else{
+                    xrayPositive++;
+                }
+            }
+            
+            
+            NSString *liver = [dict objectForKey:@"shockwaveRateComplications"];
+            //NSLog(@"%@", liver);
+            if (xray.length > 0) {
+                if ([liver isEqualToString:@"NO"]) {
+                    liverAbNormal++;
+                }else{
+                    liverNormal++;
+                }
+            }
+            
+            NSString *FGrade = [dict objectForKey:@"twoMinutePauseComplications"];
+            //NSLog(@"%@", FGrade);
+            if (FGrade.length > 0) {
+                if ([FGrade isEqualToString:@"NO"]) {
+                    FGoneByFour++;
+                }else{
+                    FGtwoByFour++;
+                }
+            }
+            
+            
+            
+        }
     }
-    
 }
 
 
@@ -1775,13 +1962,143 @@ float s_creatinineDiffSum;
             
             
         }
-    }
-
     
+    
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        for (int i = 0; i < [self.surgeonCases count]; i++) {
+            NSDictionary *dict = [self.surgeonCases objectAtIndex:i];
+            s_sixMonths++;
+            
+            NSString *complication = [dict objectForKey:@"stoneLocation"];
+            //NSLog(@"%@", complication);
+            if (complication.length > 0) {
+                if ([complication isEqualToString:@"Upper pole, renal"]) {
+                    s_Ileus++;
+                }else if ([complication isEqualToString:@"Mid-renal"]){
+                    s_BowelInjury++;
+                }else if ([complication isEqualToString:@"Lower pole, renal"]){
+                    s_Infection++;
+                }else if ([complication isEqualToString:@"Renal pelvis"]){
+                    s_UrineLeak++;
+                }else if ([complication isEqualToString:@"Ureteropelvic Junction"]){
+                    s_DVT++;
+                }else if ([complication isEqualToString:@"Proximal ureter"]){
+                    s_PE++;
+                }else if ([complication isEqualToString:@"Mid ureter"]){
+                    s_CardiacEvent++;
+                }else if ([complication isEqualToString:@"Distal ureter"]){
+                    s_Hernia++;
+                }
+            }
+            
+            if([dict objectForKey:@"stoneSize"]){
+                float bun = [[dict objectForKey:@"stoneSize"] floatValue];
+                s_bunSum+=bun;
+                if(s_sixMonths == 1){
+                    s_minBun = bun;
+                    s_maxBun = bun;
+                }else{
+                    if(bun>s_maxBun){
+                        s_maxBun = bun;
+                    }
+                    if(bun<s_minBun){
+                        s_minBun = bun;
+                    }
+                }
+            }
+            
+            if([dict objectForKey:@"numberOfShockwaves"]){
+                float crt = [[dict objectForKey:@"numberOfShockwaves"] floatValue];
+                s_creatinineSum+= crt;
+                if(s_sixMonths == 1){
+                    s_minCreatinine = crt;
+                    s_maxCreatinine = crt;
+                }else{
+                    if(crt>s_maxCreatinine){
+                        s_maxCreatinine = crt;
+                    }
+                    if(crt<s_minCreatinine){
+                        s_minCreatinine = crt;
+                    }
+                }
+            }
+            
+            
+            if([dict objectForKey:@"shockwaveRate"]){
+                float preob = [[dict objectForKey:@"shockwaveRate"] floatValue];
+                s_bunDiffSum+=preob;
+            }
+            
+            NSString *hernia = [dict objectForKey:@"twoMinutePause"];
+            //NSLog(@"%@", hernia);
+            if (hernia.length > 0) {
+                if ([hernia isEqualToString:@"YES"]) {
+                    s_herniaYES++;
+                }else if ([hernia isEqualToString:@"NO"]){
+                    s_herniaNO++;
+                }
+            }
+          
+            
+            
+            NSString *margins = [dict objectForKey:@"stoneLocationComplications"];
+            //NSLog(@"%@", margins);
+            if (margins.length > 0) {
+                if ([margins isEqualToString:@"NO"]) {
+                    s_mNegative++;
+                }else{
+                    s_mPositive++;
+                }
+            }
+            
+            NSString *dMargins = [dict objectForKey:@"stoneSizeComplications"];
+            //NSLog(@"%@", dMargins);
+            if (dMargins.length > 0) {
+                if ([dMargins isEqualToString:@"NO"]) {
+                    s_dmNegative++;
+                }else{
+                    s_dmPositive++;
+                }
+            }
+            
+            NSString *xray = [dict objectForKey:@"numberOfShockwavesComplications"];
+            //NSLog(@"%@", xray);
+            if (xray.length > 0) {
+                if ([xray isEqualToString:@"NO"]) {
+                    s_xrayNegative++;
+                }else{
+                    s_xrayPositive++;
+                }
+            }
+            
+            
+            NSString *liver = [dict objectForKey:@"shockwaveRateComplications"];
+            //NSLog(@"%@", liver);
+            if (xray.length > 0) {
+                if ([liver isEqualToString:@"NO"]) {
+                    s_liverAbNormal++;
+                }else{
+                    s_liverNormal++;
+                }
+            }
+            
+            NSString *FGrade = [dict objectForKey:@"twoMinutePauseComplications"];
+            //NSLog(@"%@", FGrade);
+            if (FGrade.length > 0) {
+                if ([FGrade isEqualToString:@"NO"]) {
+                    s_FGoneByFour++;
+                }else{
+                    s_FGtwoByFour++;
+                }
+            }
+              
+            
+        }
+    }
 }
 
-// 2 weeks methods
 
+// 2 weeks methods
 -(void)TMGstaging{
         [self calculate];
         [self calculateSurgeonData];
@@ -1884,6 +2201,54 @@ float s_creatinineDiffSum;
 -(void)tumorCh{
         [self calculate];
         [self calculateSurgeonData];
+    
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.ClearAll = (ClearAll/sixMonths)*100;
+            controller.Papillary = (Papillary/sixMonths)*100;
+            controller.Chromophobe = (Chromophobe/sixMonths)*100;
+            controller.Sarcomatoid = (Sarcomatoid/sixMonths)*100;
+            controller.oncocytoma = (oncocytoma/sixMonths)*100;
+            controller.other = (other/sixMonths)*100;
+            controller.angiomyolipoma = (angiomyolipoma/sixMonths)*100;
+        }else{
+            controller.ClearAll = 0;
+            controller.Papillary = 0;
+            controller.Chromophobe = 0;
+            controller.Sarcomatoid = 0;
+            controller.oncocytoma = 0;
+            controller.other = 0;
+            controller.angiomyolipoma = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_ClearAll = (s_ClearAll/s_sixMonths)*100;
+            controller.s_Papillary = (s_Papillary/s_sixMonths)*100;
+            controller.s_Chromophobe = (s_Chromophobe/s_sixMonths)*100;
+            controller.s_Sarcomatoid = (s_Sarcomatoid/s_sixMonths)*100;
+            controller.s_oncocytoma = (s_oncocytoma/s_sixMonths)*100;
+            controller.s_other = (s_other/s_sixMonths)*100;
+            controller.s_angiomyolipoma = (s_angiomyolipoma/s_sixMonths)*100;
+        }else{
+            controller.s_ClearAll = 0;
+            controller.s_Papillary = 0;
+            controller.s_Chromophobe = 0;
+            controller.s_Sarcomatoid = 0;
+            controller.s_oncocytoma = 0;
+            controller.s_other = 0;
+            controller.s_angiomyolipoma = 0;
+        }
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"tumorCh";
+        controller.showNationalData = _showNationalData;
+
+        [self.navigationController pushViewController:controller animated:YES];
+   
+    }else{
+
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         if(twoWeeks>0){
             controller.ClearAll = (ClearAll/twoWeeks)*100;
@@ -1923,9 +2288,11 @@ float s_creatinineDiffSum;
         controller.NationalSize = twoWeeks;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"tumorCh";
-    controller.showNationalData = _showNationalData;
-
+        controller.showNationalData = _showNationalData;
+        
         [self.navigationController pushViewController:controller animated:YES];
+    }
+
 }
 
 
@@ -1994,6 +2361,36 @@ float s_creatinineDiffSum;
         [self.navigationController pushViewController:controller animated:YES];
     
     
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.FGoneByFour = (FGoneByFour/sixMonths)*100;
+            controller.FGtwoByFour = (FGtwoByFour/sixMonths)*100;
+            controller.FGthreeByFour = (FGthreeByFour/sixMonths)*100;
+            controller.FGfourByFour = (FGfourByFour/sixMonths)*100;
+        }else{
+            controller.FGoneByFour = 0;
+            controller.FGtwoByFour = 0;
+            controller.FGthreeByFour = 0;
+            controller.FGfourByFour = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_FGoneByFour = (s_FGoneByFour/s_sixMonths)*100;
+            controller.s_FGtwoByFour = (s_FGtwoByFour/s_sixMonths)*100;
+            controller.s_FGthreeByFour = (s_FGthreeByFour/s_sixMonths)*100;
+            controller.s_FGfourByFour = (s_FGfourByFour/s_sixMonths)*100;
+        }else{
+            controller.s_FGoneByFour = 0;
+            controller.s_FGtwoByFour = 0;
+            controller.s_FGthreeByFour = 0;
+            controller.s_FGfourByFour = 0;
+        }
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"FGrade";
+        controller.showNationalData = _showNationalData;
+        
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
@@ -2001,7 +2398,35 @@ float s_creatinineDiffSum;
 -(void)margins{
         [self calculate];
         [self calculateSurgeonData];
+    
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+    
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.mPositive = (mPositive/sixMonths)*100;
+            controller.mNegative = (mNegative/sixMonths)*100;
+        }else{
+            controller.mPositive = 0;
+            controller.mNegative = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_mPositive = (s_mPositive/s_sixMonths)*100;
+            controller.s_mNegative = (s_mNegative/s_sixMonths)*100;
+        }else{
+            controller.s_mPositive = 0;
+            controller.s_mNegative = 0;
+        }
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"margins";
+        controller.showNationalData = _showNationalData;
+
+        [self.navigationController pushViewController:controller animated:YES];
+   
+    
+    }else{
+        
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         if(twoWeeks>0){
             controller.mPositive = (mPositive/twoWeeks)*100;
             controller.mNegative = (mNegative/twoWeeks)*100;
@@ -2020,15 +2445,45 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"margins";
         controller.showNationalData = _showNationalData;
-
+        
         [self.navigationController pushViewController:controller animated:YES];
+
+    }
 }
 
 
 -(void)dMargin{
         [self calculate];
         [self calculateSurgeonData];
+    
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.dmPositive = (dmPositive/sixMonths)*100;
+            controller.dmNegative = (dmNegative/sixMonths)*100;
+        }else{
+            controller.dmPositive = 0;
+            controller.dmNegative = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_dmPositive = (s_dmPositive/s_sixMonths)*100;
+            controller.s_dmNegative = (s_dmNegative/s_sixMonths)*100;
+        }else{
+            controller.s_dmPositive = 0;
+            controller.s_dmNegative = 0;
+        }
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"dMargin";
+        controller.showNationalData = _showNationalData;
+
+        [self.navigationController pushViewController:controller animated:YES];
+        
+        
+    }else{
+    
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         if(twoWeeks>0){
             controller.dmPositive = (dmPositive/twoWeeks)*100;
             controller.dmNegative = (dmNegative/twoWeeks)*100;
@@ -2047,8 +2502,13 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_twoWeeks;
         controller.graphView = @"dMargin";
         controller.showNationalData = _showNationalData;
-
+        
         [self.navigationController pushViewController:controller animated:YES];
+
+    
+    
+    
+    }
 }
 
 
@@ -2089,19 +2549,18 @@ float s_creatinineDiffSum;
 -(void)complications{
         [self calculate];
         [self calculateSurgeonData];
-    OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
-        if(twoWeeks>0){
-            controller.Ileus = (Ileus/twoWeeks)*100;
-            controller.BowelInjury = (BowelInjury/twoWeeks)*100;
-            controller.Infection = (Infection/twoWeeks)*100;
-            controller.UrineLeak = (UrineLeak/twoWeeks)*100;
-            controller.DVT = (DVT/twoWeeks)*100;
-            controller.PE = (PE/twoWeeks)*100;
-            controller.CardiacEvent = (CardiacEvent/twoWeeks)*100;
-            controller.Hernia = (Hernia/twoWeeks)*100;
-            controller.Transfusion = (Transfusion/twoWeeks)*100;
-            controller.Death = (Death/twoWeeks)*100;
-            controller.OtherComp = (OtherComp/twoWeeks)*100;
+    
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.Ileus = (Ileus/sixMonths)*100;
+            controller.BowelInjury = (BowelInjury/sixMonths)*100;
+            controller.Infection = (Infection/sixMonths)*100;
+            controller.UrineLeak = (UrineLeak/sixMonths)*100;
+            controller.DVT = (DVT/sixMonths)*100;
+            controller.PE = (PE/sixMonths)*100;
+            controller.CardiacEvent = (CardiacEvent/sixMonths)*100;
+            controller.Hernia = (Hernia/sixMonths)*100;
         }else{
             controller.Ileus = 0;
             controller.BowelInjury = 0;
@@ -2111,23 +2570,17 @@ float s_creatinineDiffSum;
             controller.PE = 0;
             controller.CardiacEvent = 0;
             controller.Hernia = 0;
-            controller.Transfusion = 0;
-            controller.Death = 0;
-            controller.OtherComp = 0;
         }
         
-        if(s_twoWeeks>0){
-            controller.s_Ileus = (s_Ileus/s_twoWeeks)*100;
-            controller.s_BowelInjury = (s_BowelInjury/s_twoWeeks)*100;
-            controller.s_Infection = (s_Infection/s_twoWeeks)*100;
-            controller.s_UrineLeak = (s_UrineLeak/s_twoWeeks)*100;
-            controller.s_DVT = (s_DVT/s_twoWeeks)*100;
-            controller.s_PE = (s_PE/s_twoWeeks)*100;
-            controller.s_CardiacEvent = (s_CardiacEvent/s_twoWeeks)*100;
-            controller.s_Hernia = (s_Hernia/s_twoWeeks)*100;
-            controller.s_Transfusion = (s_Transfusion/s_twoWeeks)*100;
-            controller.s_Death = (s_Death/s_twoWeeks)*100;
-            controller.s_OtherComp = (s_OtherComp/s_twoWeeks)*100;
+        if(s_sixMonths>0){
+            controller.s_Ileus = (s_Ileus/s_sixMonths)*100;
+            controller.s_BowelInjury = (s_BowelInjury/s_sixMonths)*100;
+            controller.s_Infection = (s_Infection/s_sixMonths)*100;
+            controller.s_UrineLeak = (s_UrineLeak/s_sixMonths)*100;
+            controller.s_DVT = (s_DVT/s_sixMonths)*100;
+            controller.s_PE = (s_PE/s_sixMonths)*100;
+            controller.s_CardiacEvent = (s_CardiacEvent/s_sixMonths)*100;
+            controller.s_Hernia = (s_Hernia/s_sixMonths)*100;
         }else{
             controller.s_Ileus = 0;
             controller.s_BowelInjury = 0;
@@ -2137,17 +2590,77 @@ float s_creatinineDiffSum;
             controller.s_PE = 0;
             controller.s_CardiacEvent = 0;
             controller.s_Hernia = 0;
-            controller.s_Transfusion = 0;
-            controller.s_Death = 0;
-            controller.s_OtherComp = 0;
-        }
+           }
         
-        controller.NationalSize = twoWeeks;
-        controller.SurgeonSize = s_twoWeeks;
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
         controller.graphView = @"complications";
         controller.showNationalData = _showNationalData;
-
+        
         [self.navigationController pushViewController:controller animated:YES];
+    
+    }else{
+    
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+            if(twoWeeks>0){
+                controller.Ileus = (Ileus/twoWeeks)*100;
+                controller.BowelInjury = (BowelInjury/twoWeeks)*100;
+                controller.Infection = (Infection/twoWeeks)*100;
+                controller.UrineLeak = (UrineLeak/twoWeeks)*100;
+                controller.DVT = (DVT/twoWeeks)*100;
+                controller.PE = (PE/twoWeeks)*100;
+                controller.CardiacEvent = (CardiacEvent/twoWeeks)*100;
+                controller.Hernia = (Hernia/twoWeeks)*100;
+                controller.Transfusion = (Transfusion/twoWeeks)*100;
+                controller.Death = (Death/twoWeeks)*100;
+                controller.OtherComp = (OtherComp/twoWeeks)*100;
+            }else{
+                controller.Ileus = 0;
+                controller.BowelInjury = 0;
+                controller.Infection = 0;
+                controller.UrineLeak = 0;
+                controller.DVT = 0;
+                controller.PE = 0;
+                controller.CardiacEvent = 0;
+                controller.Hernia = 0;
+                controller.Transfusion = 0;
+                controller.Death = 0;
+                controller.OtherComp = 0;
+            }
+            
+            if(s_twoWeeks>0){
+                controller.s_Ileus = (s_Ileus/s_twoWeeks)*100;
+                controller.s_BowelInjury = (s_BowelInjury/s_twoWeeks)*100;
+                controller.s_Infection = (s_Infection/s_twoWeeks)*100;
+                controller.s_UrineLeak = (s_UrineLeak/s_twoWeeks)*100;
+                controller.s_DVT = (s_DVT/s_twoWeeks)*100;
+                controller.s_PE = (s_PE/s_twoWeeks)*100;
+                controller.s_CardiacEvent = (s_CardiacEvent/s_twoWeeks)*100;
+                controller.s_Hernia = (s_Hernia/s_twoWeeks)*100;
+                controller.s_Transfusion = (s_Transfusion/s_twoWeeks)*100;
+                controller.s_Death = (s_Death/s_twoWeeks)*100;
+                controller.s_OtherComp = (s_OtherComp/s_twoWeeks)*100;
+            }else{
+                controller.s_Ileus = 0;
+                controller.s_BowelInjury = 0;
+                controller.s_Infection = 0;
+                controller.s_UrineLeak = 0;
+                controller.s_DVT = 0;
+                controller.s_PE = 0;
+                controller.s_CardiacEvent = 0;
+                controller.s_Hernia = 0;
+                controller.s_Transfusion = 0;
+                controller.s_Death = 0;
+                controller.s_OtherComp = 0;
+            }
+            
+            controller.NationalSize = twoWeeks;
+            controller.SurgeonSize = s_twoWeeks;
+            controller.graphView = @"complications";
+            controller.showNationalData = _showNationalData;
+
+            [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 
@@ -2175,6 +2688,7 @@ float s_creatinineDiffSum;
         controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
+   
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2) {
         
         NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
@@ -2216,7 +2730,28 @@ float s_creatinineDiffSum;
         controller.showNationalData = _showNationalData;
         
         [self.navigationController pushViewController:controller animated:YES];
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+        NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunDiffSum);
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        controller.graphView = @"BUN";
+        if(sixMonths>0){
+            controller.bunSum = bunDiffSum/sixMonths;
+        }else{
+            controller.bunSum = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_bunSum = s_bunDiffSum/s_sixMonths;
+        }else{
+            controller.s_bunSum = 0;
+        }
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.showNationalData = _showNationalData;
+        
+        [self.navigationController pushViewController:controller animated:YES];
     }
+
 }
 
 
@@ -2305,6 +2840,23 @@ float s_creatinineDiffSum;
         controller.SurgeonSize = s_sixMonths;
         controller.graphView = @"xray";
         controller.showNationalData = _showNationalData;
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        
+        if(sixMonths>0)
+        {
+            controller.xrayPositive = (xrayPositive/sixMonths)*100;
+            controller.xrayNegative = (xrayNegative/sixMonths)*100;
+        }
+        if(s_sixMonths>0)
+        {
+            controller.s_xrayPositive = (s_xrayPositive/s_sixMonths)*100;
+            controller.s_xrayNegative = (s_xrayNegative/s_sixMonths)*100;
+        }
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"xray";
+        controller.showNationalData = _showNationalData;
     }
     
     
@@ -2358,7 +2910,28 @@ float s_creatinineDiffSum;
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
         controller.showNationalData = _showNationalData;
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10){
+        if(sixMonths>0){
+            controller.liverNormal = (liverNormal/sixMonths)*100;
+            controller.liverAbNormal = (liverAbNormal/sixMonths)*100;
+        }else{
+            controller.liverNormal = 0;
+            controller.liverAbNormal = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_liverNormal = (s_liverNormal/s_sixMonths)*100;
+            controller.s_liverAbNormal = (s_liverAbNormal/s_sixMonths)*100;
+        }else{
+            controller.s_liverNormal = 0;
+            controller.s_liverAbNormal = 0;
+        }
+        controller.graphView = @"liver";
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.showNationalData = _showNationalData;
     }
+
     
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -2490,7 +3063,8 @@ float s_creatinineDiffSum;
 -(void)BUN{
         [self calculate];
         [self calculateSurgeonData];
-        NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunSum);
+
+    NSLog(@" ^^^^^^ SUM OF BUN  : %f",bunSum);
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         controller.graphView = @"AverageBUN";
         if(sixMonths>0){
@@ -2507,10 +3081,9 @@ float s_creatinineDiffSum;
             controller.s_averageBun = 0;
             
         }
-        
         controller.NationalSize = sixMonths;
         controller.SurgeonSize = s_sixMonths;
-    controller.showNationalData = _showNationalData;
+        controller.showNationalData = _showNationalData;
 
         [self.navigationController pushViewController:controller animated:YES];
 }
