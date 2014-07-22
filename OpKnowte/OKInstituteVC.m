@@ -251,8 +251,10 @@
         
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
         
-        if ([_nameTextField.text isEqual: @""] ){
-            
+        BOOL isEmailValidate = [OKInstituteVC validateEmail:_emailTextField.text];
+        if (!isEmailValidate) {
+            [OKInstituteVC showInfoAlertView:@"Error" withMessage:@"Please enter valid email"];
+        }else if ([_nameTextField.text isEqual: @""] ){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please name field" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
             [[OKLoadingViewController instance] hide];

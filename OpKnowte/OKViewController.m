@@ -214,29 +214,6 @@
    
     if (buttonIndex == 0) {
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
-//        OKContactManager *contactManager = [OKContactManager instance];
-//        [contactManager addContactWithRoleID:@"1" name:@"Johny Cage" email:@"jonhy.cage@gmail.com" steetAddress:@"qqqqqqq" city:@"qqqqqq" state:@"qqqqqqq" zip:@"qqqqqqqq" country:@"qqqqqqqq" fax:@"qqqqqqqq" contactID:@"0" updatedBy:@"130"/*[[NSUserDefaults standardUserDefaults] objectForKey:@"loginedUserID"]*/ handler:^(NSString* error){
-//            if (error != nil) {
-//                NSLog(@"Error add - %@",error);
-//            } else {
-//
-//            }
-//        }];
-//
-//        [contactManager deleteContactWithContactID:@"149" handler:^(NSString* error){
-//            if (error != nil) {
-//                NSLog(@"Error delete - %@",error);
-//            } else {
-//                
-//            }
-//        }];
-//        [contactManager getContactsByUserID:@"130" roleID:@"1" handler:^(NSString* error){
-//            if (error != nil) {
-//                NSLog(@"Error  get - %@",error);
-//            } else {
-//                
-//            }
-//        }];
     }
     if (buttonIndex == 1) {
 
