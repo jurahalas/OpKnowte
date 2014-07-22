@@ -83,8 +83,9 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -95,14 +96,16 @@
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
 }
+
+
 - (IBAction)backButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -110,9 +113,11 @@
     return 3;
 }
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60.f;
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellIdentifier = @"template";
@@ -177,7 +182,10 @@
     }
 }
 
+
 -(void) updateTemplateModelWith:(OKProcedureTemplateModel *)templateModel{
     _templateModel = templateModel;
 }
+
+
 @end
