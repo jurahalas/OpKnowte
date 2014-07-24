@@ -230,7 +230,6 @@
     [_pickerBGView addSubview:self.datePicker];
     [_pickerBGView addSubview:self.picker];
     
-
     _doneButtonForDatePicker = [UIButton buttonWithType:UIButtonTypeCustom];
     [_doneButtonForDatePicker addTarget:self action:@selector(doneButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [_doneButtonForDatePicker setTitle:@"Done" forState:UIControlStateNormal];
@@ -346,6 +345,8 @@
     }
 
 }
+
+
 -(void)addRightButtonForiOS6{
     UIButton *right = [[UIButton alloc] init];
     right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"right"].size.width+27, [UIImage imageNamed:@"right"].size.height );
@@ -790,8 +791,6 @@
 
 -(void)hidePicker
 {
-    _doneButtonForDatePicker.hidden = YES;
-
     self.pickerObject.customTextField.text = self.pickerData[[self.picker selectedRowInComponent:0]];
     self.picker.hidden = YES;
     _pickerBGView.hidden = YES;
@@ -1293,7 +1292,8 @@
 
         [self.view endEditing:YES];
         _timeView.hidden = YES;
-        
+        _timePickerBGView.hidden = YES;
+
         
         _timeTo.text = @"";
         _timeFrom.text = @"";
