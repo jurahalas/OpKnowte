@@ -38,15 +38,14 @@
 @property (strong, nonatomic) UIView *pickerBGView;
 @property (strong, nonatomic) NSArray *statesData;
 
-
-
-
-
 @end
+
+
 
 @implementation OKInstituteVC
 
 - (void)viewDidLoad {
+    
     _nameTextField.text = @"";
     _streerAddressTextField.text = @"";
     _cityTextField.text = @"";

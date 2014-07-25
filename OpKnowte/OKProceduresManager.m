@@ -223,7 +223,7 @@
                    @"tumorSizeCm":              [procModel valueForKey:@"var_tumorSize"],
                    @"location":                 [procModel valueForKey:@"var_location"],
                    @"tumorChar":                [procModel valueForKey:@"var_tumorChar"],
-                   @"previousAbdominalSurgeries":[procModel valueForKey:@"var_history"],
+//                   @"previousAbdominalSurgeries":[procModel valueForKey:@"var_history"],
                    @"BMI":                      [procModel valueForKey:@"var_bmi"],
                    
                    @"intraAbdominalAdhesions":  [procModel valueForKey:@"var_adhesions"],

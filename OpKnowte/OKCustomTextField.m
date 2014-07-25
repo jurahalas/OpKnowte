@@ -14,8 +14,7 @@
     [self drawCustomTextField];
 }
 -(void) drawCustomTextField{
-    
-    
+   
     if (IS_IOS7) {
         self.tintColor = [UIColor whiteColor];
     } else {
@@ -33,7 +32,37 @@
     textFieldIconView.backgroundColor = [UIColor clearColor];
     self.leftView = textFieldIconView;
     self.leftViewMode = UITextFieldViewModeAlways;
+   
+    if (self.keyboardType == UIKeyboardTypeDefault) {
+        self.keyboardType = UIKeyboardTypeDefault;
+    }else if ( self.keyboardType == UIKeyboardTypeEmailAddress){
+        self.keyboardType = UIKeyboardTypeEmailAddress;
+    }else {
+        self.keyboardType = UIKeyboardTypeDecimalPad;
+        UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+        numberToolbar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_568"]];
+        numberToolbar.items = [NSArray arrayWithObjects:
+                               [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancelNumberPad)],
+                               [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                               [[UIBarButtonItem alloc]initWithTitle:@"Apply" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                               nil];
+        [numberToolbar sizeToFit];
+        self.inputAccessoryView = numberToolbar;
+    }
+
 }
+
+-(void)cancelNumberPad
+{
+    [self resignFirstResponder];
+    self.text = @"";
+}
+
+-(void)doneWithNumberPad
+{
+    [self resignFirstResponder];
+}
+
 
 
 -(void) setCustomTextFieldPlaceholder: (NSString*) placeholder Secured:(BOOL) secured DownArrow:(BOOL) downArrow

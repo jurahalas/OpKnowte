@@ -501,7 +501,7 @@
         }
         
         [self.interactionItems addObject:selectContact];        
-    } else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
+    }else if ([[customElementDictionary objectForKey:@"type"] isEqualToString:@"numericTextField"]) {
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, _xPoint, 320, 43)];
         numericTextField.delegate = self;
         [self.scrollview addSubview:numericTextField];
