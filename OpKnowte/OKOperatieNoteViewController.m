@@ -107,12 +107,10 @@
                 }
             }
             
-            
             [self.caseDataTableView reloadData];
             [self indicationMethod];
             [self procedureMethod];
             [[OKLoadingViewController instance] hide];
-            
         }];
     }];
     

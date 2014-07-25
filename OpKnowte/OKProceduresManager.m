@@ -137,8 +137,6 @@
                     [variablesArray addObject:model];
                 }
             }
-           
-            
         }
         handler([self getErrorMessageFromJSON:json error:error], variablesArray);
     }];

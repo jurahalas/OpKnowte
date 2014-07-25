@@ -11,7 +11,6 @@
 @implementation OKLRPartialNephrectomyModel
 -(void) setModelWithDictionary:(NSDictionary *)dictionary
 {
-
     _var_patientName= [dictionary valueForKey:@"Patient_Name"];
     _var_patientDOB= [dictionary valueForKey:@"Patient_Dob"];
     _var_MRNumber= [dictionary valueForKey:@"MRNumber"];
@@ -26,7 +25,7 @@
     _var_tumorSize= [dictionary valueForKey:@"TumorSize_cm"];
     _var_location= [dictionary valueForKey:@"Location"];
     _var_tumorChar= [dictionary valueForKey:@"Tumor_Char"];
-    _var_history= [dictionary valueForKey:@"Previous_AS"];
+//    _var_history= [dictionary valueForKey:@"Previous_AS"];
     _var_bmi= [dictionary valueForKey:@"BMI"];
     _var_adhesions= [dictionary valueForKey:@"Intra_AA"];
     _var_adhTook= [dictionary valueForKey:@"Description_intraAA"];
@@ -44,9 +43,7 @@
     //_var_transfusion= [dictionary valueForKey:@"NoOf_units"];
     _var_cc= [dictionary valueForKey:@"Carbon_Copy"];
     _var_Fax= [dictionary valueForKey:@"FaxNumber"];
-    
     _var_procedureName = [dictionary valueForKey:@"PROCEDURE_ID"];
-    
     _twoWeeksEmail= [dictionary valueForKey:@"twoWeeksEmail"];
     _sixMonthsEmail= [dictionary valueForKey:@"sixMonthsEmail"];
     _Adhesiolyst= [dictionary valueForKey:@"Adhesiolyst"];
@@ -54,9 +51,10 @@
     _Pre_Op_2= [dictionary valueForKey:@"Pre_Op_2"];
     _DetailID= [dictionary valueForKey:@"DetailID"];
     _Surgeon_ID= [dictionary valueForKey:@"Surgeon_ID"];
-    
-//@property (strong,nonatomic) NSString *var_preSide;
-_var_age= [dictionary valueForKey:@"age"];
-//@property (strong,nonatomic) NSString *var_procedureName;
+    _var_psurgeries = [dictionary valueForKey:@"Previous_AS"];
+    //@property (strong,nonatomic) NSString *var_preSide;
+    _var_age= [dictionary valueForKey:@"age"];
+    //@property (strong,nonatomic) NSString *var_procedureName;
 }
+
 @end

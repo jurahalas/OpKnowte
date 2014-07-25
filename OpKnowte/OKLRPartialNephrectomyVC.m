@@ -248,7 +248,7 @@
             break;
         }
         case 2:{
-             if ([self.model valueForKey:@"var_tumorSize"] == nil ||[self.model valueForKey:@"var_location"]== nil ||[self.model valueForKey:@"var_tumorChar"]== nil ||[self.model valueForKey:@"var_history"]== nil ||[self.model valueForKey:@"var_bmi"]== nil) {
+             if ([self.model valueForKey:@"var_tumorSize"] == nil ||[self.model valueForKey:@"var_location"]== nil ||[self.model valueForKey:@"var_tumorChar"]== nil ||[self.model valueForKey:@"var_psurgeries"]== nil ||[self.model valueForKey:@"var_bmi"]== nil) {
                 return NO;
             }
             else {

@@ -447,8 +447,8 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if ([_faxTextField.text length] > 9) {
-        _faxTextField.text = [_faxTextField.text substringToIndex:9];
+    if ([_faxTextField.text length] > 10) {
+        _faxTextField.text = [_faxTextField.text substringToIndex:10];
         return NO;
     }
     return YES;

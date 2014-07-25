@@ -33,6 +33,8 @@
 //-------------
 @property (strong,nonatomic) NSString *var_assistant;
 @property (strong,nonatomic) NSString *var_anesthesiologist;
+@property (strong,nonatomic) NSString *var_psurgeries;
+
 
 @property (strong,nonatomic) NSString *var_tumorSize;
 @property (strong,nonatomic) NSString *var_location;

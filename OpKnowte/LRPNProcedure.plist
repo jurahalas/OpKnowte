@@ -194,7 +194,7 @@
 			</dict>
 			<dict>
 				<key>name</key>
-				<string>var_history</string>
+				<string>var_psurgeries</string>
 				<key>type</key>
 				<string>switcher</string>
 				<key>placeholder</key>
