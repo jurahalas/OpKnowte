@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <AFHTTPClient.h>
 
-#define BASE_URL @"http://magnificent-planet.ru/"
+//#define BASE_URL @"http://magnificent-planet.ru/"
+#define BASE_URL @"http://knowte.esy.es/"
 
 @interface OKApiClient : AFHTTPClient
 
