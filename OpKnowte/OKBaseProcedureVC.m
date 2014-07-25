@@ -919,7 +919,7 @@
                 }
             }else if( [tF.customTextField.placeholder isEqualToString:@"Complications"] || [tF.customTextField.placeholder isEqualToString:@"Complications description"] ){
                 
-            }else if ([tF.customTextField.placeholder isEqualToString:@"Reservoir placement"]){
+            }else if ([tF.customTextField.placeholder isEqualToString:@"Reservoir placement (if \"other\")"]){
                 
                 OKProcedurePicker *picker = self.interactionItems[i-1];
                 if ([picker.customTextField.text isEqualToString:@"other"]){
