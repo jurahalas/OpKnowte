@@ -251,7 +251,7 @@
 				<key>type</key>
 				<string>symbolicTextField</string>
 				<key>placeholder</key>
-				<string>Reservoir placement</string>
+				<string>Reservoir placement (if &quot;other&quot;)</string>
 				<key>items</key>
 				<array/>
 			</dict>
