@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <HockeySDK/HockeySDK.h>
 
 //custom views
 #import "OKBaseViewController.h"

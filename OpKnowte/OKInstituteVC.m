@@ -246,6 +246,8 @@
 
 -(IBAction)saveButton:(id)sender
 {
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
+
     if ([self.contactID isEqualToString:@"2"] || [self.contactID isEqualToString:@"3"]) {
         
         [[OKLoadingViewController instance] showWithText:@"Loading..."];
@@ -281,7 +283,7 @@
                             
                         }];
                     } else {
-                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"New contact added" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                         [addInstitutionFormSuccessAlertView show];
                     }
 
@@ -332,7 +334,7 @@
                             
                         }];
                     } else {
-                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                        UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"You have added a new institution" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                         [addInstitutionFormSuccessAlertView show];
                     }
                     
@@ -383,7 +385,7 @@
                         
                     }];
                 } else {
-                    UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:@"Add institution Success" message:@"Congratulations! You added new contact" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
+                    UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"New contact added" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
                     [addInstitutionFormSuccessAlertView show];
                 }
                
@@ -394,7 +396,9 @@
         }];
     }
     }
+    [[OKLoadingViewController instance] showWithText:@"Loading..."];
 }
+
 
 + (void)showInfoAlertView:(NSString *)title withMessage:(NSString *)message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -429,19 +433,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        if ([alertView.message isEqualToString:@"Congratulations! You added new contact"] || [alertView.message isEqualToString:@"Congratulations! Contact was updated successfully"]) {
+        if ([alertView.message isEqualToString:@"New contact added"] || [alertView.message isEqualToString:@"Congratulations! Contact was updated successfully"] || [alertView.message isEqualToString:@"You have added a new institution"]) {
             [self.navigationController popViewControllerAnimated:YES];
         }
-        if ([_cameFromVC isEqualToString:@"FacilityVC"]) {
-//            [self.navigationController popViewControllerAnimated:YES ];
-        } else if ([_cameFromVC isEqualToString:@"ContactsVC"]) {
-            [self performSegueWithIdentifier:@"backToDashboard" sender:self];
-        }else if ([_cameFromVC isEqualToString:@"AccessSettingsCCViewController"]){
-//            [self.navigationController popViewControllerAnimated:YES];
-        }else if ([_cameFromVC isEqualToString:@"ContactListVC"]){
-//            [self.navigationController popViewControllerAnimated:YES];
-        }
-        
     }
 }
 
