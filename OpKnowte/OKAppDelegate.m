@@ -35,13 +35,6 @@
     }
     
     [self restoreCurrentUser];
-    
-    
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"e8f28c8ef6a8760eee6400b783d90a88"];
-    [[BITHockeyManager sharedHockeyManager] startManager];
-    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
-
-    
     return YES;
 }
 

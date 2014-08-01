@@ -176,7 +176,6 @@
 		185F829919000AA400C5566A /* OKLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185F829819000AA400C5566A /* OKLoadingViewController.m */; };
 		187A6D5C19265D240044E700 /* OKImmediateDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6D5B19265D240044E700 /* OKImmediateDataVC.m */; };
 		187A6D5F19265DAC0044E700 /* OKImmediateDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 187A6D5E19265DAC0044E700 /* OKImmediateDataCell.m */; };
-		187B1F551987E9C40078D335 /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187B1F4F1987E9B10078D335 /* HockeySDK.framework */; };
 		1881B08218FD6BB800F61CE8 /* OKProceduresManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881B08118FD6BB800F61CE8 /* OKProceduresManager.m */; };
 		1881B08518FDC77500F61CE8 /* OKProcedureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1881B08418FDC77500F61CE8 /* OKProcedureModel.m */; };
 		188608EB190FA1CB00BD1D77 /* emailIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 188608E1190FA1CB00BD1D77 /* emailIcon@2x.png */; };
@@ -721,7 +720,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				187B1F551987E9C40078D335 /* HockeySDK.framework in Frameworks */,
 				00224F50191BD74F00702428 /* MessageUI.framework in Frameworks */,
 				E10023E018F529E9008421D4 /* CoreGraphics.framework in Frameworks */,
 				E10023E218F529E9008421D4 /* UIKit.framework in Frameworks */,
