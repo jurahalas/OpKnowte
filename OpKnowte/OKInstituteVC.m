@@ -277,10 +277,6 @@
                         NSString *selectedContactID = _selectedContact.identifier;
                         OKContactManager *manager = [OKContactManager instance];
                         [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
-                            if (!errorMsg) {
-                                
-                            }
-                            
                         }];
                     } else {
                         UIAlertView *addInstitutionFormSuccessAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"New contact added" delegate:self cancelButtonTitle:@"OK"  otherButtonTitles:nil, nil];
@@ -396,7 +392,6 @@
         }];
     }
     }
-    [[OKLoadingViewController instance] showWithText:@"Loading..."];
 }
 
 

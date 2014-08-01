@@ -25,7 +25,7 @@
                              @"faxNumber":  faxNumbers
                             };
    
-    [self requestWithMethod:@"POST" path:@"http://magnificent-planet.ru/sendFaxByUserId" params:params handler:^(NSError *error, id json) {
+    [self requestWithMethod:@"POST" path:@"sendFaxByUserId" params:params handler:^(NSError *error, id json) {
         NSLog(@"%@",json);
         
        handler([self getErrorMessageFromJSON:json error:error], json);

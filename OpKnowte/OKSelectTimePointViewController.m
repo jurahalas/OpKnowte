@@ -151,7 +151,7 @@
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"1"] && [ongoingData.gleason isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
-                        }else if (([_procID isEqualToString:@"10"] && [ongoingData.stoneLocation isEqualToString:@""]) || ongoingData.stoneLocation == nil){
+                        }else if ([_procID isEqualToString:@"10"] && ([ongoingData.stoneLocation isEqualToString:@""] || ongoingData.stoneLocation == nil)){
                             [self performSegueWithIdentifier:@"ongoingClinical" sender:ongoingData];
                         }else if ([_procID isEqualToString:@"10"] && ![ongoingData.stoneLocation isEqualToString:@""]){
                             [self performSegueWithIdentifier:@"summaryVC" sender:ongoingData];

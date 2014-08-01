@@ -626,6 +626,9 @@
             [picker setButtonEnabled:NO];
         } else if (_procedureID == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_adhTook"]){
             [picker setButtonEnabled:NO];
+        } else if ((_procedureID == 1 || _procedureID == 9 || _procedureID == 10) && ([[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_anesthesia"] || [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_anastesia"] || [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_anesthesiaPerformed"])){
+            
+            [picker setupWithValue:[customElementDictionary objectForKey:@"items"][0]];
         }
         if (self.model) {
             if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"] && ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_reservoirplacement?"]){

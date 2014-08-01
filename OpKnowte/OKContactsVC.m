@@ -103,32 +103,6 @@
     [self performSegueWithIdentifier:@"contactList" sender:self.dataDict.allValues[indexPath.row]];
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

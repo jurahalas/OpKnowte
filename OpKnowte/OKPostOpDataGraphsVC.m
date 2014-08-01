@@ -433,11 +433,11 @@
     
     averageViewTitleLabel.text = @"Male vs. Female";
     
-    oneLabel.text = [NSString stringWithFormat:@"%i %% Female",(100-malePercentage)];
-    twoLabel.text = [NSString stringWithFormat:@"%i %% Male",malePercentage];
+    oneLabel.text = [NSString stringWithFormat:@"%i %% Female",malePercentage];
+    twoLabel.text = [NSString stringWithFormat:@"%i %% Male", (100-malePercentage)];
     
-    self.oneSurLabel.text = [NSString stringWithFormat:@"%i %% Female",(100-sur_malePercentage)];
-    self.twoSurLabel.text = [NSString stringWithFormat:@"%i %% Male",sur_malePercentage];
+    self.oneSurLabel.text = [NSString stringWithFormat:@"%i %% Female",sur_malePercentage];
+    self.twoSurLabel.text = [NSString stringWithFormat:@"%i %% Male",(100-sur_malePercentage)];
     
     [twoLabel setHidden:NO];
     if (!self.isNationalData) {

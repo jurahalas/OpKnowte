@@ -231,8 +231,8 @@
                 UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"Password reset instructions sent to your email address." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                 }
-                [[OKLoadingViewController instance] hide];
             }];
+            [[OKLoadingViewController instance] hide];
         }
     }
 }

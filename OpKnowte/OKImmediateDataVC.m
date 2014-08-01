@@ -8,6 +8,7 @@
 
 #import "OKImmediateDataVC.h"
 #import "OKPostOpDataGraphsVC.h"
+#import "OKProceduresManager.h"
 
 @interface OKImmediateDataVC ()
 @property (strong, nonatomic) IBOutlet UITableView *immediateDataTable;
@@ -35,10 +36,9 @@
     if ([_procID isEqualToString:@"1"]) {
         self.tableData = @[
                            @"Average Age of Patient",
-                           @"Male vs. Female",
+//                           @"Male vs. Female",
                            @"BMI",
-                           @"Room Time"
-    
+                           @"Room Time",
                            ];
 
     } else if ([_procID isEqualToString:@"2"]) {
@@ -49,7 +49,7 @@
                            @"Left vs. Right Renal Mass",
                            @"Patients with Cysto/Stent",
                            @"Tumor Size",
-                           //                       @"Tumor Characteristics",
+//                           @"Tumor Characteristics",
                            @"Cases Requiring Adhesiolysis",
                            @"Cases with Vascular Anomoly",
                            @"Intra-Operative Ultra Sound",
@@ -61,7 +61,7 @@
                            @"Blood Loss",
                            @"Console Time",
                            @"Room Time",
-                           //                       @"Complications",
+//                           @"Complications",
                            @"Cases Requiring Transfusion"
                            //                       @"Advanced Options"
                            ];
@@ -157,8 +157,6 @@
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Transfusion"]){
         [self TransfusionRequired];
     }
-
-
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -724,41 +722,75 @@
 
     [self reset];
     [self CalculateValues];
-    
-    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
-    controller.graphToDraw = @"BloodLoss";
-    if (!self.selectedCases.count) {
-        controller.bloodLossPercentage = 0;
-        controller.minBloodLoss = 0;
-        controller.maxBloodLoss = 0;
-    } else{
-        controller.bloodLossPercentage = bloodLossCount/self.selectedCases.count;
-        controller.minBloodLoss = minBloodLoss;
-        controller.maxBloodLoss = maxBloodLoss;
-    }
 
-    
-    if (!self.isNationalData) {
-        if (!self.surgeonCases.count) {
-            controller.sur_bloodLossPercentage = 0;
-            controller.sur_minBloodLoss = 0;
-            controller.sur_maxBloodLoss = 0;
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        controller.graphToDraw = @"BloodLoss";
+        if (!self.selectedCases.count) {
+            controller.bloodLossPercentage = 0;
+            controller.minBloodLoss = 0;
+            controller.maxBloodLoss = 0;
         } else{
-            controller.sur_bloodLossPercentage = sur_bloodLossCount/self.surgeonCases.count;
-            controller.sur_minBloodLoss = sur_minBloodLoss;
-            controller.sur_maxBloodLoss = sur_maxBloodLoss;
+            controller.bloodLossPercentage = bloodLossCount/self.selectedCases.count;
+            controller.minBloodLoss = minBloodLoss;
+            controller.maxBloodLoss = maxBloodLoss;
+        }
+        if (!self.isNationalData) {
+            if (!self.surgeonCases.count) {
+                controller.sur_bloodLossPercentage = 0;
+                controller.sur_minBloodLoss = 0;
+                controller.sur_maxBloodLoss = 0;
+            } else{
+                controller.sur_bloodLossPercentage = sur_bloodLossCount/self.surgeonCases.count;
+                controller.sur_minBloodLoss = sur_minBloodLoss;
+                controller.sur_maxBloodLoss = sur_maxBloodLoss;
+            }
+            controller.isNationalData = YES;
+        }
+        
+        controller.NationalSize = self.totalNationalCount;
+        controller.SurgeonSize = self.totalSurgeonCount;
+        //controller.NationalSize = [self.selectedCases count];
+        //controller.SurgeonSize = [self.surgeonCases count];
+  
+    }else{
+        controller.graphToDraw = @"BloodLoss";
+        if (!self.selectedCases.count) {
+            controller.bloodLossPercentage = 0;
+            controller.minBloodLoss = 0;
+            controller.maxBloodLoss = 0;
+        } else{
+            controller.bloodLossPercentage = bloodLossCount/self.selectedCases.count;
+            controller.minBloodLoss = minBloodLoss;
+            controller.maxBloodLoss = maxBloodLoss;
         }
 
-        controller.isNationalData = YES;
+        
+        if (!self.isNationalData) {
+            if (!self.surgeonCases.count) {
+                controller.sur_bloodLossPercentage = 0;
+                controller.sur_minBloodLoss = 0;
+                controller.sur_maxBloodLoss = 0;
+            } else{
+                controller.sur_bloodLossPercentage = sur_bloodLossCount/self.surgeonCases.count;
+                controller.sur_minBloodLoss = sur_minBloodLoss;
+                controller.sur_maxBloodLoss = sur_maxBloodLoss;
+            }
+
+            controller.isNationalData = YES;
+        }
+        
+        controller.NationalSize = self.totalNationalCount;
+        controller.SurgeonSize = self.totalSurgeonCount;
+        //controller.NationalSize = [self.selectedCases count];
+        //controller.SurgeonSize = [self.surgeonCases count];
     }
-    
-    controller.NationalSize = self.totalNationalCount;
-    controller.SurgeonSize = self.totalSurgeonCount;
-    //controller.NationalSize = [self.selectedCases count];
-    //controller.SurgeonSize = [self.surgeonCases count];
     
     [self.navigationController pushViewController:controller animated:YES];
 }
+
+
 -(void)ConsoleTime{
 
     [self reset];
@@ -946,7 +978,57 @@
 
 -(void)CalculateValues{
     
-    if ([_procID isEqualToString:@"2"]) {
+//    if ([_procID isEqualToString:@"1"]) {
+//        
+//        for(int i=0;i<self.selectedCases.count;i++){
+//////blood loss
+//            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
+//            if([dic valueForKey:@"var_bloodLoss"]){
+//                NSString *str = [dic valueForKey:@"var_bloodLoss"];
+//                NSArray *ary = [str componentsSeparatedByString:@" "];
+//                int val = [[ary objectAtIndex:0] intValue];
+//                NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
+//                bloodLossCount+=val;
+//                if(i == 0){
+//                    minBloodLoss = val;
+//                    maxBloodLoss = val;
+//                }else{
+//                    if(val>maxBloodLoss){
+//                        maxBloodLoss = val;
+//                    }
+//                    if(val<minBloodLoss){
+//                        minBloodLoss = val;
+//                    }
+//                }
+//            }
+//        }
+//        for(int i=0;i<self.surgeonCases.count;i++){
+//
+//            NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
+//            if([dic valueForKey:@"var_bloodLoss"]){
+//                NSString *str = [dic valueForKey:@"var_bloodLoss"];
+//                NSArray *ary = [str componentsSeparatedByString:@" "];
+//                int val = [[ary objectAtIndex:0] intValue];
+//                NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
+//                sur_bloodLossCount+=val;
+//                if(i == 0){
+//                    sur_minBloodLoss = val;
+//                    sur_maxBloodLoss = val;
+//                }else{
+//                    if(val>sur_maxBloodLoss){
+//                        sur_maxBloodLoss = val;
+//                    }
+//                    if(val<sur_minBloodLoss){
+//                        sur_minBloodLoss = val;
+//                    }
+//                }
+//            }
+//        
+//        }
+//
+//        
+//    }else
+        if ([_procID isEqualToString:@"2"]) {
         
     
     for(int i=0;i<self.selectedCases.count;i++){
