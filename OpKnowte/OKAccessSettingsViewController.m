@@ -26,7 +26,7 @@
 {
     
     self.dataDict =  @{@"Surgeons":@"1",
-                       @"Assistans":@"2",
+                       @"Assistants":@"2",
                        @"Others":@"6"};
     
     [super viewDidLoad];

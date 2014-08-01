@@ -820,9 +820,9 @@ float s_creatinineDiffSum;
                 NSString *liver = [dict objectForKey:@"cystogram"];
                 //NSLog(@"%@", liver);
                 if (xray.length > 0) {
-                    if ([liver isEqualToString:@"YES"]) {
+                    if ([liver isEqualToString:@"extravasation"]) {
                         liverNormal++;
-                    }else if ([liver isEqualToString:@"NO"]){
+                    }else if ([liver isEqualToString:@"no extravasation"]){
                         liverAbNormal++;
                     }
                 }
@@ -1497,9 +1497,9 @@ float s_creatinineDiffSum;
                 NSString *liver = [dict objectForKey:@"cystogram"];
                 //NSLog(@"%@", liver);
                 if (xray.length > 0) {
-                    if ([liver isEqualToString:@"YES"]) {
+                    if ([liver isEqualToString:@"extravasation"]) {
                         s_liverNormal++;
-                    }else if ([liver isEqualToString:@"NO"]){
+                    }else if ([liver isEqualToString:@"no extravasation"]){
                         s_liverAbNormal++;
                     }
                 }

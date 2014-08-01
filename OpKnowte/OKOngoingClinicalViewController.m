@@ -271,7 +271,7 @@
     
     [dict setObject:@"cystogram" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
+    [dict setObject:@[@"extravasation", @"no extravasation"] forKey:@"items"];
     [dict setObject:@"Cystogram" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];

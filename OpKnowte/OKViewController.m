@@ -216,20 +216,19 @@
         NSLog(@"THE 'Cancel' BUTTON WAS PRESSED");
     }
     if (buttonIndex == 1) {
-
+        [[OKLoadingViewController instance] showWithText:@"Loading..."];
         if ([alertView.title isEqualToString:@"Restore Password"]) {
-            [[OKLoadingViewController instance] showWithText:@"Loading..."];
             OKUserManager *usermanager = [OKUserManager instance];
             [usermanager recoverPasswordWithEmail:[alertView textFieldAtIndex:0].text handler:^(NSString* error){
                 if ([[alertView textFieldAtIndex:0].text isEqualToString:@""]) {
-                    UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@" Restore password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Restore password error" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                     _forgotPasswordButton.enabled = YES;
                     [[OKLoadingViewController instance] hide];
                 }else{
                     [[OKLoadingViewController instance] showWithText:@"Loading..."];
 
-                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Restore Password" message:error delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *loginFormErrorAlertView = [[UIAlertView alloc] initWithTitle:nil message:@"Password reset instructions sent to your email address." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [loginFormErrorAlertView show];
                 }
                 [[OKLoadingViewController instance] hide];

@@ -1121,10 +1121,10 @@
         [self.LNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
         [self.LSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
         
-        [self.liverAbNormalView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.liverAbNormal]];
-        [self.liverNormalView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.liverNormal]];
-        [self.s_liverAbNormalView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_liverAbNormal]];
-        [self.s_liverNormalView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_liverNormal]];
+        [self.liverAbNormalView setText:[NSString stringWithFormat:@"No extravasation = %.0f %%",self.liverAbNormal]];
+        [self.liverNormalView setText:[NSString stringWithFormat:@"extravasation = %.0f %%",self.liverNormal]];
+        [self.s_liverAbNormalView setText:[NSString stringWithFormat:@"extravasation = %.0f %%",self.s_liverAbNormal]];
+        [self.s_liverNormalView setText:[NSString stringWithFormat:@"No extravasation = %.0f %%",self.s_liverNormal]];
         //[self.view addSubview:self.liverGraph];
         
         _scrollView.contentSize = self.liverGraph.bounds.size;
