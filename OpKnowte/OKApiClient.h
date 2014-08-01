@@ -11,6 +11,8 @@
 
 #define BASE_URL @"http://rmd-sw.dyndns.info:55010/"
 //#define BASE_URL @"http://knowte.esy.es/"
+//#define BASE_URL @"http://magnificent-planet.ru/"
+
 
 @interface OKApiClient : AFHTTPClient
 
