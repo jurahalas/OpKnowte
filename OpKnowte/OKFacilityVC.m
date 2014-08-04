@@ -226,6 +226,8 @@
         [alertNoContacts show];
     }
 }
+
+
 -(void) sendEmailIfPossible{
     if ([MFMailComposeViewController canSendMail])
     {
@@ -238,9 +240,7 @@
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
         mailer = nil;
-    }
-    else
-    {
+    }else{
         UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
                                                                message:@"There are no Email accounts configured. You can add or create Email account in Settings."
                                                               delegate:nil
@@ -249,9 +249,10 @@
         [alertFailure show];
     }
 }
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
     if (buttonIndex == 0) {
         if ([alertView.message isEqualToString:@"This method of delivery is not HIPPA compliant."]) {
             
@@ -423,9 +424,6 @@
     }
     
     body = [body stringByAppendingFormat:@"\nIndications: %@ \n\n Procedures: %@", [_templateDictionary objectForKey:@"indicationText"], [_templateDictionary objectForKey:@"procedureText"]];
-    
-    body = [body stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    body = [body stringByReplacingOccurrencesOfString:@")" withString:@""];
     
     return body;
 }

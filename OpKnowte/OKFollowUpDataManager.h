@@ -19,8 +19,6 @@
 
 - (void)getClinicalDetailsByCaseArray:(NSMutableArray *)caseArray andProcedureId:(NSString*)procID  handler:(void(^)(NSString *errorMsg, NSMutableArray *dataArray))handler;
 
-//- (void)addFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
-
 - (void)getFollowUpDataForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID  handler:(void(^)(NSString *errorMsg, OKOngoingData *ongoingData ))handler;
 
 @end
