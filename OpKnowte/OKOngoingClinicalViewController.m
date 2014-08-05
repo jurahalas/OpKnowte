@@ -119,7 +119,6 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
-///////////////////////////////
     [dict setObject:@"stoneLocationComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
     [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
@@ -133,8 +132,6 @@
     [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
-
-   ///////
     
     [dict setObject:@"stoneSizeComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
@@ -149,8 +146,6 @@
     [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
-
-///////
     
     [dict setObject:@"numberOfShockwavesComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
@@ -166,8 +161,6 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
-    ///////
-    
     [dict setObject:@"shockwaveRateComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
     [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
@@ -181,7 +174,6 @@
     [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
-/////
 
     [dict setObject:@"twoMinutePauseComplications_on" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
@@ -228,9 +220,18 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
+    [dict setObject:@"mortality_on" forKey:@"name"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
+    [dict setObject:@"Mortality" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
     [dict setObject:@"mortality" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Mortality, %" forKey:@"placeholder"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"from other causes", @"prostate cancer related"] forKey:@"items"];
+    [dict setObject:@"Mortality if (YES) " forKey:@"placeholder"];
+    [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
 }
@@ -579,7 +580,11 @@
             pickerArray = [elementDict objectForKey:@"items"];
         }
         [picker setDataArray:pickerArray];
+        if ([[elementDict valueForKey:@"name"] isEqualToString:@"mortality_on"]) {
+            picker.customTextField.text = [pickerArray lastObject];
+        }
         lastElement = picker;
+
     }else if ([[elementDict valueForKey:@"type"] isEqualToString:@"symbolicTextField"]){
         OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, yPoint, 320, 43)];
         [symbolicTextField setType:0];

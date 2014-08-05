@@ -397,7 +397,7 @@ float s_creatinineDiffSum;
                     break;
                 }
                 case 4:{
-                    [self changeBUN];
+                    [self margins];
                     break;
                 }
                 default:
@@ -937,8 +937,15 @@ float s_creatinineDiffSum;
                 
                 if([dict objectForKey:@"mortality"]){
                     
-                    float preob = [[dict objectForKey:@"mortality"] floatValue];
-                    bunDiffSum+=preob;
+                    NSString *margins = [dict objectForKey:@"mortality"];
+                    //NSLog(@"%@", margins);
+                    if (margins.length > 0) {
+                        if ([margins isEqualToString:@"NO"])
+                            mNegative++;
+                        else
+                            mPositive++;
+                    }
+                    
                 }
                 
             }
@@ -1614,12 +1621,17 @@ float s_creatinineDiffSum;
                     }
                 }
                 
-                
-                
                 if([dict objectForKey:@"mortality"]){
                     
-                    float preob = [[dict objectForKey:@"mortality"] floatValue];
-                    s_bunDiffSum+=preob;
+                    NSString *margins = [dict objectForKey:@"mortality"];
+                    //NSLog(@"%@", margins);
+                    if (margins.length > 0) {
+                        if ([margins isEqualToString:@"NO"])
+                            s_mNegative++;
+                        else
+                            s_mPositive++;
+                    }
+                    
                 }
                 
             }

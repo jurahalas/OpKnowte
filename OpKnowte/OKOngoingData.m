@@ -76,7 +76,7 @@
         [dict setObject:self.continence forKey:@"Continence, %"];
         [dict setObject:self.erectileFunction forKey:@"Erectile Function, %"];
         [dict setObject:self.bladderNeckContracture forKey:@"Bladder Neck Contracture, %"];
-        [dict setObject:self.mortality forKey:@"Mortality, %"];
+        [dict setObject:self.mortality forKey:@"Mortality"];
     }
     @catch (NSException *exception) {
         NSLog(@"OKOngoing data exception in roboticItems6Weeks: %@",exception);

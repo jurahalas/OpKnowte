@@ -536,6 +536,32 @@
         
         [_scrollView addSubview:self.marginsView];
 
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        _marginsLabel.text = @"Mortality";
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.marginsView.frame;
+            frame.origin.y = 57;
+            [self.marginsView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.marginsView.frame;
+            frame.origin.y = 45;
+            [self.marginsView setFrame:frame];
+        }
+        [self.MNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.MSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.mPositiveView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.mPositive]];
+        [self.mNegativeView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.mNegative]];
+        [self.s_mPositiveView setText:[NSString stringWithFormat:@" YES = %.0f %%",self.s_mPositive]];
+        [self.s_mNegativeView setText:[NSString stringWithFormat:@" NO = %.0f %%",self.s_mNegative]];
+        
+        //[self.view addSubview:self.marginsView];
+        _scrollView.contentSize = self.marginsView.bounds.size;
+        self.marginsView.frame = CGRectMake(self.marginsView.frame.origin.x, self.marginsView.frame.origin.y-64, self.marginsView.frame.size.width, self.marginsView.frame.size.height);
+        
+        [_scrollView addSubview:self.marginsView];
     }else{
         if (IS_IPHONE_5) {
             
@@ -844,59 +870,31 @@
 
 
 -(void)showChangeBUNGraph{
-    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
-        
-        changeTitle.text = @"Mortality";
-        if (IS_IPHONE_5) {
+        if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+            changeTitle.text = @"Change in BUN";
+            if (IS_IPHONE_5) {
+                
+                CGRect frame = self.changeBUNView.frame;
+                frame.origin.y = 57;
+                [self.changeBUNView setFrame:frame];
+                
+            }else{
+                CGRect frame = self.changeBUNView.frame;
+                frame.origin.y = 45;
+                [self.changeBUNView setFrame:frame];
+            }
             
-            CGRect frame = self.changeBUNView.frame;
-            frame.origin.y = 57;
-            [self.changeBUNView setFrame:frame];
+            [self.BUNNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+            [self.BUNSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
             
-        }else{
-            CGRect frame = self.changeBUNView.frame;
-            frame.origin.y = 45;
-            [self.changeBUNView setFrame:frame];
-        }
-        
-        [self.BUNNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
-        [self.BUNSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-        
-        [self.bunView setText:[NSString stringWithFormat:@"Average value = %.1f ",self.bunSum]];
-        [self.s_bunView setText:[NSString stringWithFormat:@"Average value = %.1f ",self.s_bunSum]];
-        //[self.view addSubview:self.changeBUNView];
-        
-        _scrollView.contentSize = self.changeBUNView.bounds.size;
-        self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
-        
-        [_scrollView addSubview:self.changeBUNView];
-        
-    } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
-        
-        changeTitle.text = @"Change in BUN";
-        if (IS_IPHONE_5) {
+            [self.bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.bunSum]];
+            [self.s_bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.s_bunSum]];
+            //[self.view addSubview:self.changeBUNView];
             
-            CGRect frame = self.changeBUNView.frame;
-            frame.origin.y = 57;
-            [self.changeBUNView setFrame:frame];
+            _scrollView.contentSize = self.changeBUNView.bounds.size;
+            self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
             
-        }else{
-            CGRect frame = self.changeBUNView.frame;
-            frame.origin.y = 45;
-            [self.changeBUNView setFrame:frame];
-        }
-        
-        [self.BUNNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
-        [self.BUNSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-        
-        [self.bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.bunSum]];
-        [self.s_bunView setText:[NSString stringWithFormat:@"Average Change = %.1f ",self.s_bunSum]];
-        //[self.view addSubview:self.changeBUNView];
-        
-        _scrollView.contentSize = self.changeBUNView.bounds.size;
-        self.changeBUNView.frame = CGRectMake(self.changeBUNView.frame.origin.x, self.changeBUNView.frame.origin.y-64, self.changeBUNView.frame.size.width, self.changeBUNView.frame.size.height);
-        
-        [_scrollView addSubview:self.changeBUNView];
+            [_scrollView addSubview:self.changeBUNView];
         
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9){
     
