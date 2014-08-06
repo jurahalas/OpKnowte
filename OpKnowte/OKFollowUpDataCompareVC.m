@@ -1500,37 +1500,7 @@
 
 
 -(void)showAverageBUNGraph{
-   
-    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
-        
-        averageViewTitleLabel.text = @"Bladder Neck Contracture";
-        
-        if (IS_IPHONE_5) {
-            
-            CGRect frame = self.averageView.frame;
-            frame.origin.y = 57;
-            [self.averageView setFrame:frame];
-            
-        }else{
-            CGRect frame = self.averageView.frame;
-            frame.origin.y = 45;
-            [self.averageView setFrame:frame];
-        }
-        
-        [self.AVNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
-        [self.AVSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-        
-        [self.averageLabel setText:[NSString stringWithFormat:@"Average value = %.1f",self.averageBun]];
-        [self.s_averageLabel setText:[NSString stringWithFormat:@"Average value = %.1f",self.s_averageBun]];
-        
-        //[self.view addSubview:self.averageView];
-        
-        _scrollView.contentSize = self.averageView.bounds.size;
-        self.averageView.frame = CGRectMake(self.averageView.frame.origin.x, self.averageView.frame.origin.y-64, self.averageView.frame.size.width, self.averageView.frame.size.height);
-        
-        [_scrollView addSubview:self.averageView];
-        
-    } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
+   if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
         
         averageViewTitleLabel.text = @"Average BUN";
         if (IS_IPHONE_5) {

@@ -1,4 +1,4 @@
-//
+ //
 //  OKSelectFUDVariablesVC.m
 //  OpKnowte
 //
@@ -393,7 +393,7 @@ float s_creatinineDiffSum;
                     break;
                 }
                 case 3:{
-                    [self BUN];
+                    [self xray];
                     break;
                 }
                 case 4:{
@@ -917,21 +917,15 @@ float s_creatinineDiffSum;
                         }
                     }
                 }
+
                 
-                
-                if([dict objectForKey:@"bladderNeckContracture"]){
-                    float bun = [[dict objectForKey:@"bladderNeckContracture"] floatValue];
-                    bunSum+=bun;
-                    if(sixMonths == 1){
-                        minBun = bun;
-                        maxBun = bun;
-                    }else{
-                        if(bun>maxBun){
-                            maxBun = bun;
-                        }
-                        if(bun<minBun){
-                            minBun = bun;
-                        }
+                NSString *xray = [dict objectForKey:@"bladderNeckContracture"];
+                //NSLog(@"%@", xray);
+                if (xray.length > 0) {
+                    if ([xray isEqualToString:@"YES"]) {
+                        xrayPositive++;
+                    }else if ([xray isEqualToString:@"NO"]){
+                        xrayNegative++;
                     }
                 }
                 
@@ -1084,7 +1078,6 @@ float s_creatinineDiffSum;
                     }
                 }
                 
-                
                 NSString *dMargins = [dict objectForKey:@"deepMargin"];
                 //NSLog(@"%@", dMargins);
                 if (dMargins.length > 0) {
@@ -1094,8 +1087,6 @@ float s_creatinineDiffSum;
                         dmNegative++;
                     }
                 }
-                
-                
                 
                 if([dict objectForKey:@"lengthOfStay"]){
                     NSString *nights = [dict objectForKey:@"lengthOfStay"];
@@ -1561,8 +1552,6 @@ float s_creatinineDiffSum;
             }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <25){
                 s_sixMonths++;
                 
-                
-                
                 NSString *hernia = [dict objectForKey:@"PSA"];
                 //NSLog(@"%@", hernia);
                 if (hernia.length > 0) {
@@ -1604,32 +1593,25 @@ float s_creatinineDiffSum;
                     }
                 }
                 
-                
-                if([dict objectForKey:@"bladderNeckContracture"]){
-                    float bun = [[dict objectForKey:@"bladderNeckContracture"] floatValue];
-                    s_bunSum+=bun;
-                    if(s_sixMonths == 1){
-                        s_minBun = bun;
-                        s_maxBun = bun;
-                    }else{
-                        if(bun>s_maxBun){
-                            s_maxBun = bun;
-                        }
-                        if(bun<s_minBun){
-                            s_minBun = bun;
-                        }
+                NSString *xray = [dict objectForKey:@"bladderNeckContracture"];
+                //NSLog(@"%@", xray);
+                if (xray.length > 0) {
+                    if ([xray isEqualToString:@"YES"]) {
+                        s_xrayPositive++;
+                    }else if ([xray isEqualToString:@"NO"]){
+                        s_xrayNegative++;
                     }
                 }
                 
                 if([dict objectForKey:@"mortality"]){
-                    
                     NSString *margins = [dict objectForKey:@"mortality"];
                     //NSLog(@"%@", margins);
                     if (margins.length > 0) {
-                        if ([margins isEqualToString:@"NO"])
+                        if ([margins isEqualToString:@"NO"]){
                             s_mNegative++;
-                        else
+                        }else{
                             s_mPositive++;
+                        }
                     }
                     
                 }
@@ -1781,8 +1763,6 @@ float s_creatinineDiffSum;
                         s_dmNegative++;
                     }
                 }
-                
-                
                 
                 if([dict objectForKey:@"lengthOfStay"]){
                     NSString *nights = [dict objectForKey:@"lengthOfStay"];
@@ -2411,7 +2391,7 @@ float s_creatinineDiffSum;
         [self calculate];
         [self calculateSurgeonData];
     
-    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10 || [[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
     
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
         if(sixMonths>0){
@@ -2818,23 +2798,39 @@ float s_creatinineDiffSum;
         [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
-
-    
-    if(twoWeeks>0)
-        {
-            controller.xrayPositive = (xrayPositive/twoWeeks)*100;
-            controller.xrayNegative = (xrayNegative/twoWeeks)*100;
+        if ([_cameFromVC isEqualToString:@"weeks"]) {
+            if(twoWeeks>0)
+                {
+                    controller.xrayPositive = (xrayPositive/twoWeeks)*100;
+                    controller.xrayNegative = (xrayNegative/twoWeeks)*100;
+                }
+                if(s_twoWeeks>0)
+                {
+                    controller.s_xrayPositive = (s_xrayPositive/s_twoWeeks)*100;
+                    controller.s_xrayNegative = (s_xrayNegative/s_twoWeeks)*100;
+                }
+                
+                controller.NationalSize = twoWeeks;
+                controller.SurgeonSize = s_twoWeeks;
+                controller.graphView = @"xray";
+                controller.showNationalData = _showNationalData;
+        }else{
+            if(sixMonths>0)
+            {
+                controller.xrayPositive = (xrayPositive/sixMonths)*100;
+                controller.xrayNegative = (xrayNegative/sixMonths)*100;
+            }
+            if(s_sixMonths>0)
+            {
+                controller.s_xrayPositive = (s_xrayPositive/s_sixMonths)*100;
+                controller.s_xrayNegative = (s_xrayNegative/s_sixMonths)*100;
+            }
+            
+            controller.NationalSize = sixMonths;
+            controller.SurgeonSize = s_sixMonths;
+            controller.graphView = @"xray";
+            controller.showNationalData = _showNationalData;
         }
-        if(s_twoWeeks>0)
-        {
-            controller.s_xrayPositive = (s_xrayPositive/s_twoWeeks)*100;
-            controller.s_xrayNegative = (s_xrayNegative/s_twoWeeks)*100;
-        }
-        
-        controller.NationalSize = twoWeeks;
-        controller.SurgeonSize = s_twoWeeks;
-        controller.graphView = @"xray";
-        controller.showNationalData = _showNationalData;
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
         
         if(sixMonths>0)

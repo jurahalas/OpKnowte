@@ -215,8 +215,9 @@
     [dict removeAllObjects];
     
     [dict setObject:@"bladderNeckContracture" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Bladder neck contracture, %" forKey:@"placeholder"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"NO", @"YES"] forKey:@"items"];
+    [dict setObject:@"Bladder neck contracture" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
@@ -580,11 +581,7 @@
             pickerArray = [elementDict objectForKey:@"items"];
         }
         [picker setDataArray:pickerArray];
-        if ([[elementDict valueForKey:@"name"] isEqualToString:@"mortality_on"]) {
-            picker.customTextField.text = [pickerArray lastObject];
-        }
         lastElement = picker;
-
     }else if ([[elementDict valueForKey:@"type"] isEqualToString:@"symbolicTextField"]){
         OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, yPoint, 320, 43)];
         [symbolicTextField setType:0];
