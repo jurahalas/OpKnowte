@@ -204,7 +204,7 @@
     
     [dict setObject:@"continence" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Continence, %" forKey:@"placeholder"];
+    [dict setObject:@"Continence" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
@@ -344,7 +344,7 @@
     
     [dict setObject:@"chestXray" forKey:@"name"];
     [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Chest X-Ray" forKey:@"placeholder"];
+    [dict setObject:@"Chest X-Ray(complications)" forKey:@"placeholder"];
     [dict setObject:@"yes" forKey:@"depends"];
     
     [self addCustomElement:dict];
@@ -374,7 +374,7 @@
     
     [dict setObject:@"liverEnzymes" forKey:@"name"];
     [dict setObject:@"symbolicTextField" forKey:@"type"];
-    [dict setObject:@"Liver Enzymes" forKey:@"placeholder"];
+    [dict setObject:@"Liver Enzymes(complications)" forKey:@"placeholder"];
     [dict setObject:@"yes" forKey:@"depends"];
     
     [self addCustomElement:dict];
