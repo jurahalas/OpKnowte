@@ -7,6 +7,7 @@
 //
 
 #import "OKSelectContactsVC.h"
+#import "OKInstituteVC.h"
 
 @interface OKSelectContactsVC () <OKSelectContactsCellDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *contactsTableView;
@@ -30,13 +31,19 @@
     _contactsTableView.frame = CGRectMake(_contactsTableView.frame.origin.x, _contactsTableView.frame.origin.y, _contactsTableView.frame.size.width, (_contactsTableView.frame.size.height - 57.f));
     [self getContactsList];
     _choosedContacts = [[NSMutableArray alloc] init];
+    [self addRightButtonsToNavbar];
     [self.contactsTableView reloadData];
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self getContactsList];
+}
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -46,6 +53,26 @@
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
     self.navigationItem.leftBarButtonItem = anotherButton;
+}
+
+
+-(void) addRightButtonsToNavbar
+{
+    UIButton *addContact = [[UIButton alloc] init];
+    addContact.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"plusGreenIcon"].size.width, [UIImage imageNamed:@"plusGreenIcon"].size.height );
+    [addContact setImage:[UIImage imageNamed:@"plusGreenIcon"] forState:UIControlStateNormal];
+    [addContact addTarget:self action:@selector(addContactTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithCustomView:addContact];
+    
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:add, nil];
+}
+
+-(void) addContactTapped
+{
+    _selectedContactID = nil;
+    [self performSegueWithIdentifier:@"fromSelectContactsToInstitute" sender:_contactID];
+    
 }
 
 -(void) getContactsList
@@ -119,6 +146,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"fromSelectContactsToInstitute"]){
+        OKInstituteVC *instVC = (OKInstituteVC*)segue.destinationViewController;
+        instVC.contactID = self.contactID;
+        instVC.cameFromVC = @"reminder";
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
