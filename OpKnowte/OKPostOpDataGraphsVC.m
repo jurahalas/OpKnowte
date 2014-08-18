@@ -7,6 +7,7 @@
 //
 
 #import "OKPostOpDataGraphsVC.h"
+#import "OKProceduresManager.h"
 #define IS_IPHONE_5                     ([[UIScreen mainScreen] bounds].size.height == 568)
 
 @interface OKPostOpDataGraphsVC ()
@@ -65,6 +66,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //averageAge = 70;
+    
     self.navigationItem.title = @"Post-Op Data";
     _nationalDataView.hidden = YES;
     if([self.graphToDraw isEqualToString:@"AverageAge"]){
@@ -559,8 +561,12 @@
 
 
 -(void)drawAnomoliesGraph{
-    
-    averageViewTitleLabel.text = @"Vascular Anomolies";
+    NSString *procId = [OKProceduresManager instance].selectedProcedure.identifier;
+    if ([[NSString stringWithFormat:@"%@",procId] isEqualToString:@"1"]) {
+        averageViewTitleLabel.text = @"Bladder Neck Recon";
+    }else{
+        averageViewTitleLabel.text = @"Vascular Anomolies";
+    }
     oneLabel.text = [NSString stringWithFormat:@"%i %% No",(100-anomoliesPercentage)];
     twoLabel.text = [NSString stringWithFormat:@"%i %% Yes",anomoliesPercentage];
     

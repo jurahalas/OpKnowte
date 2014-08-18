@@ -38,7 +38,12 @@
                            @"Average Age of Patient",
 //                           @"Male vs. Female",
                            @"BMI",
+                           @"Blood Loss",
                            @"Room Time",
+                           @"Console Time",
+                           @"Adhesiolysis",
+                           @"Bladder Neck Recon",
+
                            ];
 
     } else if ([_procID isEqualToString:@"2"]) {
@@ -120,6 +125,8 @@
         [self BMI];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Average Age of Patient"]){
         [self AverageAgeOfPatient];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Bladder Neck Recon"]){
+        [self VascularAnomoly];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Male vs. Female"]){
         [self MaleFemale];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Left vs. Right Renal Mass"]){
@@ -130,7 +137,7 @@
         [self TumorSize];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Tumor Characteristics"]){
         [self TumorCharacteristics];
-    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Adhesiolysis"]){
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Adhesiolysis"] || [cell.immediateDataLabel.text isEqualToString:@"Adhesiolysis"]){
         [self AdhesiolysisRequired];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases with Vascular Anomoly"]){
         [self VascularAnomoly];
@@ -154,7 +161,7 @@
         [self RoomTime];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Complications"]){
         [self Complications];
-    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Transfusion"]){
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Transfusion"] || [cell.immediateDataLabel.text isEqualToString:@"Intra-Op Transfusion"]){
         [self TransfusionRequired];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -978,213 +985,163 @@
 
 -(void)CalculateValues{
     
-//    if ([_procID isEqualToString:@"1"]) {
-//        
-//        for(int i=0;i<self.selectedCases.count;i++){
-//////blood loss
-//            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
-//            if([dic valueForKey:@"var_bloodLoss"]){
-//                NSString *str = [dic valueForKey:@"var_bloodLoss"];
-//                NSArray *ary = [str componentsSeparatedByString:@" "];
-//                int val = [[ary objectAtIndex:0] intValue];
-//                NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
-//                bloodLossCount+=val;
-//                if(i == 0){
-//                    minBloodLoss = val;
-//                    maxBloodLoss = val;
-//                }else{
-//                    if(val>maxBloodLoss){
-//                        maxBloodLoss = val;
-//                    }
-//                    if(val<minBloodLoss){
-//                        minBloodLoss = val;
-//                    }
-//                }
-//            }
-//        }
-//        for(int i=0;i<self.surgeonCases.count;i++){
-//
-//            NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
-//            if([dic valueForKey:@"var_bloodLoss"]){
-//                NSString *str = [dic valueForKey:@"var_bloodLoss"];
-//                NSArray *ary = [str componentsSeparatedByString:@" "];
-//                int val = [[ary objectAtIndex:0] intValue];
-//                NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
-//                sur_bloodLossCount+=val;
-//                if(i == 0){
-//                    sur_minBloodLoss = val;
-//                    sur_maxBloodLoss = val;
-//                }else{
-//                    if(val>sur_maxBloodLoss){
-//                        sur_maxBloodLoss = val;
-//                    }
-//                    if(val<sur_minBloodLoss){
-//                        sur_minBloodLoss = val;
-//                    }
-//                }
-//            }
-//        
-//        }
-//
-//        
-//    }else
-        if ([_procID isEqualToString:@"2"]) {
+    if ([_procID isEqualToString:@"2"]) {
         
     
-    for(int i=0;i<self.selectedCases.count;i++){
-        
-        NSDictionary *dic = [self.selectedCases objectAtIndex:i];
-        NSString *dob = [dic valueForKey:@"var_patientDOB"];
-        // NSString *dos = [dic objectForKey:@"DateOfService"];
-        float age = [self CalculateAge:dob];
-        NSLog(@" ^^^^ Age Retreived :: %f",age);
-        sumOfAges+= age;
-        if(i == 0){
-            maxAge = age;
-            minAge = age;
-        }
-        else{
-            if(age>maxAge){
+        for(int i=0;i<self.selectedCases.count;i++){
+            
+            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sumOfAges+= age;
+            if(i == 0){
                 maxAge = age;
-            }
-            if(age<minAge){
                 minAge = age;
             }
-        }
-        if(![[dic valueForKey:@"var_margin"] isEqualToString:@"NO"]){
-            positiveDMargins+=1;
-        }
-        if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
-            maleCount+=1;
-        }
-        if([[dic valueForKey:@"var_preOp"] isEqualToString:@"Left renal mass"]){
-            LRMCount+=1;
-        }
-        if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"NO"]){
-            cytoStentCount+=1;
-        }
-        if(![[dic valueForKey:@"var_adhTook"] isEqualToString:@"NO"]){
-            adhesiolysisCount+=1;
-        }
-        if(![[dic valueForKey:@"var_vasAnomolies"] isEqualToString:@"NO"]){
-            vasAnomolyCount+=1;
-        }
-        if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"NO"]){
-            intraOpUSCount+=1;
-        }
-        if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"NO"]){
-            renalSRCount+=1;
-        }
-        if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"NO"]){
-            coagulantCount+=1;
-        }
-        if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"NO"]){
-            transfusionCount+=1;
-        }
-        if([dic valueForKey:@"var_tumorSize"]){
-            float tsize =[[dic valueForKey:@"var_tumorSize"] floatValue];
-            tumorSizeCount+=tsize;
-            if(i == 0){
-                minTumorSize = tsize;
-                maxTumorSize = tsize;
-            }else{
-                if(tsize>maxTumorSize){
-                    maxTumorSize = tsize;
+            else{
+                if(age>maxAge){
+                    maxAge = age;
                 }
-                if(tsize<minTumorSize){
+                if(age<minAge){
+                    minAge = age;
+                }
+            }
+            if(![[dic valueForKey:@"var_margin"] isEqualToString:@"NO"]){
+                positiveDMargins+=1;
+            }
+            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+                maleCount+=1;
+            }
+            if([[dic valueForKey:@"var_preOp"] isEqualToString:@"Left renal mass"]){
+                LRMCount+=1;
+            }
+            if(![[dic valueForKey:@"var_cysto"] isEqualToString:@"NO"]){
+                cytoStentCount+=1;
+            }
+            if(![[dic valueForKey:@"var_adhTook"] isEqualToString:@"NO"]){
+                adhesiolysisCount+=1;
+            }
+            if(![[dic valueForKey:@"var_vasAnomolies"] isEqualToString:@"NO"]){
+                vasAnomolyCount+=1;
+            }
+            if(![[dic valueForKey:@"var_renalUltraSound"] isEqualToString:@"NO"]){
+                intraOpUSCount+=1;
+            }
+            if(![[dic valueForKey:@"var_RCSRepair"] isEqualToString:@"NO"]){
+                renalSRCount+=1;
+            }
+            if(![[dic valueForKey:@"var_coagulant"] isEqualToString:@"NO"]){
+                coagulantCount+=1;
+            }
+            if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"NO"]){
+                transfusionCount+=1;
+            }
+            if([dic valueForKey:@"var_tumorSize"]){
+                float tsize =[[dic valueForKey:@"var_tumorSize"] floatValue];
+                tumorSizeCount+=tsize;
+                if(i == 0){
                     minTumorSize = tsize;
+                    maxTumorSize = tsize;
+                }else{
+                    if(tsize>maxTumorSize){
+                        maxTumorSize = tsize;
+                    }
+                    if(tsize<minTumorSize){
+                        minTumorSize = tsize;
+                    }
                 }
             }
-        }
-        if([dic valueForKey:@"var_bmi"]){
-            float bmi = [[dic valueForKey:@"var_bmi"] floatValue];
-            bmiCount+= bmi;
-            if(i == 0){
-                minBmi = bmi;
-                maxBmi = bmi;
-            }else{
-                if(bmi>maxBmi){
-                    maxBmi = bmi;
-                }
-                if(bmi<minBmi){
+            if([dic valueForKey:@"var_bmi"]){
+                float bmi = [[dic valueForKey:@"var_bmi"] floatValue];
+                bmiCount+= bmi;
+                if(i == 0){
                     minBmi = bmi;
+                    maxBmi = bmi;
+                }else{
+                    if(bmi>maxBmi){
+                        maxBmi = bmi;
+                    }
+                    if(bmi<minBmi){
+                        minBmi = bmi;
+                    }
                 }
             }
-        }
-        if([dic valueForKey:@"var_counselTime"]){
-            NSString *str = [dic valueForKey:@"var_counselTime"];
-            NSArray *ary = [str componentsSeparatedByString:@" "];
-            int val = [[ary objectAtIndex:0] intValue];
-            NSLog(@" ***** Value Retreived  ::  %i",val);
-            consoleTimeCount+=val;
-            if(i == 0){
-                minConsoleTime = val;
-                maxConsoleTime = val;
-            }else{
-                if(val>maxConsoleTime){
-                    maxConsoleTime = val;
-                }
-                if(val<minConsoleTime){
+            if([dic valueForKey:@"var_counselTime"]){
+                NSString *str = [dic valueForKey:@"var_counselTime"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value Retreived  ::  %i",val);
+                consoleTimeCount+=val;
+                if(i == 0){
                     minConsoleTime = val;
+                    maxConsoleTime = val;
+                }else{
+                    if(val>maxConsoleTime){
+                        maxConsoleTime = val;
+                    }
+                    if(val<minConsoleTime){
+                        minConsoleTime = val;
+                    }
                 }
             }
-        }
-        if([dic valueForKey:@"var_roomTime"]){
-            NSString *str = [dic valueForKey:@"var_roomTime"];
-            NSArray *ary = [str componentsSeparatedByString:@" "];
-            int val = [[ary objectAtIndex:0] intValue];
-            NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
-            roomTimeCount+=val;
-            if(i == 0){
-                minRoomTime = val;
-                maxRoomTime = val;
-            }else{
-                if(val>maxRoomTime){
-                    maxRoomTime = val;
-                }
-                if(val<minRoomTime){
+            if([dic valueForKey:@"var_roomTime"]){
+                NSString *str = [dic valueForKey:@"var_roomTime"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
+                roomTimeCount+=val;
+                if(i == 0){
                     minRoomTime = val;
+                    maxRoomTime = val;
+                }else{
+                    if(val>maxRoomTime){
+                        maxRoomTime = val;
+                    }
+                    if(val<minRoomTime){
+                        minRoomTime = val;
+                    }
                 }
             }
-        }
-        if([dic valueForKey:@"var_clamp"]){
-            NSString *str = [dic valueForKey:@"var_clamp"];
-            NSArray *ary = [str componentsSeparatedByString:@" "];
-            int val = [[ary objectAtIndex:0] intValue];
-            NSLog(@" ***** Value for Clamp Time Retreived  ::  %i",val);
-            clampTimeCount+=val;
-            if(i == 0){
-                minClampTime = val;
-                maxClampTime = val;
-            }else{
-                if(val>maxClampTime){
-                    maxClampTime = val;
-                }
-                if(val<minClampTime){
+            if([dic valueForKey:@"var_clamp"]){
+                NSString *str = [dic valueForKey:@"var_clamp"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value for Clamp Time Retreived  ::  %i",val);
+                clampTimeCount+=val;
+                if(i == 0){
                     minClampTime = val;
+                    maxClampTime = val;
+                }else{
+                    if(val>maxClampTime){
+                        maxClampTime = val;
+                    }
+                    if(val<minClampTime){
+                        minClampTime = val;
+                    }
                 }
+                
             }
-            
-        }
-        if([dic valueForKey:@"var_bloodLoss"]){
-            NSString *str = [dic valueForKey:@"var_bloodLoss"];
-            NSArray *ary = [str componentsSeparatedByString:@" "];
-            int val = [[ary objectAtIndex:0] intValue];
-            NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
-            bloodLossCount+=val;
-            if(i == 0){
-                minBloodLoss = val;
-                maxBloodLoss = val;
-            }else{
-                if(val>maxBloodLoss){
-                    maxBloodLoss = val;
-                }
-                if(val<minBloodLoss){
+            if([dic valueForKey:@"var_bloodLoss"]){
+                NSString *str = [dic valueForKey:@"var_bloodLoss"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
+                bloodLossCount+=val;
+                if(i == 0){
                     minBloodLoss = val;
+                    maxBloodLoss = val;
+                }else{
+                    if(val>maxBloodLoss){
+                        maxBloodLoss = val;
+                    }
+                    if(val<minBloodLoss){
+                        minBloodLoss = val;
+                    }
                 }
             }
         }
-    }
     //isCalculated = YES;
     // }
     
@@ -1396,65 +1353,119 @@
 
         }
   
-    }else{
-        for(int i=0;i<self.selectedCases.count;i++){
+    }else if ([_procID isEqualToString:@"1"]) {
             
-            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
-            NSString *dob = [dic valueForKey:@"var_patientDOB"];
-            // NSString *dos = [dic objectForKey:@"DateOfService"];
-            float age = [self CalculateAge:dob];
-            NSLog(@" ^^^^ Age Retreived :: %f",age);
-            sumOfAges+= age;
-            if(i == 0){
-                maxAge = age;
-                minAge = age;
-            }
-            else{
-                if(age>maxAge){
+            for(int i=0;i<self.selectedCases.count;i++){
+                
+                NSDictionary *dic = [self.selectedCases objectAtIndex:i];
+                NSString *dob = [dic valueForKey:@"var_patientDOB"];
+                // NSString *dos = [dic objectForKey:@"DateOfService"];
+                float age = [self CalculateAge:dob];
+                NSLog(@" ^^^^ Age Retreived :: %f",age);
+                sumOfAges+= age;
+                if(i == 0){
                     maxAge = age;
-                }
-                if(age<minAge){
                     minAge = age;
                 }
-            }
-            
-            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
-                maleCount+=1;
-            }
-            if([dic valueForKey:@"var_BMI"]){
-                float bmi = [[dic valueForKey:@"var_BMI"] floatValue];
-                bmiCount+= bmi;
-                if(i == 0){
-                    minBmi = bmi;
-                    maxBmi = bmi;
-                }else{
-                    if(bmi>maxBmi){
-                        maxBmi = bmi;
+                else{
+                    if(age>maxAge){
+                        maxAge = age;
                     }
-                    if(bmi<minBmi){
+                    if(age<minAge){
+                        minAge = age;
+                    }
+                }
+                
+                if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+                    maleCount+=1;
+                }
+//                if(![[dic valueForKey:@"var_transfusion"] isEqualToString:@"NO"]){
+//                    transfusionCount+=1;
+//                }
+                
+                if([dic valueForKey:@"var_BMI"]){
+                    float bmi = [[dic valueForKey:@"var_BMI"] floatValue];
+                    bmiCount+= bmi;
+                    if(i == 0){
                         minBmi = bmi;
+                        maxBmi = bmi;
+                    }else{
+                        if(bmi>maxBmi){
+                            maxBmi = bmi;
+                        }
+                        if(bmi<minBmi){
+                            minBmi = bmi;
+                        }
                     }
                 }
-            }
-            if([dic valueForKey:@"var_roomTime"]){
-                NSString *str = [dic valueForKey:@"var_roomTime"];
-                NSArray *ary = [str componentsSeparatedByString:@" "];
-                int val = [[ary objectAtIndex:0] intValue];
-                NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
-                roomTimeCount+=val;
-                if(i == 0){
-                    minRoomTime = val;
-                    maxRoomTime = val;
-                }else{
-                    if(val>maxRoomTime){
-                        maxRoomTime = val;
-                    }
-                    if(val<minRoomTime){
+                if([dic valueForKey:@"var_roomTime"]){
+                    NSString *str = [dic valueForKey:@"var_roomTime"];
+                    NSArray *ary = [str componentsSeparatedByString:@" "];
+                    int val = [[ary objectAtIndex:0] intValue];
+                    NSLog(@" ***** Value for Room Time Retreived  ::  %i",val);
+                    roomTimeCount+=val;
+                    if(i == 0){
                         minRoomTime = val;
+                        maxRoomTime = val;
+                    }else{
+                        if(val>maxRoomTime){
+                            maxRoomTime = val;
+                        }
+                        if(val<minRoomTime){
+                            minRoomTime = val;
+                        }
                     }
                 }
+                
+                ////blood loss
+                if([dic valueForKey:@"var_EBL"]){
+                    NSString *str = [dic valueForKey:@"var_EBL"];
+                    NSArray *ary = [str componentsSeparatedByString:@" "];
+                    int val = [[ary objectAtIndex:0] intValue];
+                    NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
+                    bloodLossCount+=val;
+                    if(i == 0){
+                        minBloodLoss = val;
+                        maxBloodLoss = val;
+                    }else{
+                        if(val>maxBloodLoss){
+                            maxBloodLoss = val;
+                        }
+                        if(val<minBloodLoss){
+                            minBloodLoss = val;
+                        }
+                    }
+                }
+        
+                if([dic valueForKey:@"var_consulTime"]){
+                    NSString *str = [dic valueForKey:@"var_consulTime"];
+                    NSArray *ary = [str componentsSeparatedByString:@" "];
+                    int val = [[ary objectAtIndex:0] intValue];
+                    NSLog(@" ***** Value Retreived  ::  %i",val);
+                    consoleTimeCount+=val;
+                    if(i == 0){
+                        minConsoleTime = val;
+                        maxConsoleTime = val;
+                    }else{
+                        if(val>maxConsoleTime){
+                            maxConsoleTime = val;
+                        }
+                        if(val<minConsoleTime){
+                            minConsoleTime = val;
+                        }
+                    }
+                }
+                
+                if(![[dic valueForKey:@"var_lysisOfAdhesions"] isEqualToString:@"NO"]){
+                    adhesiolysisCount+=1;
+                }
+                
+                if(![[dic valueForKey:@"var_bladderNeckReconstruction"] isEqualToString:@"NO"]){
+                    vasAnomolyCount+=1;
+                }
+
+            
             }
-        }
         
         
         for(int i=0;i<self.surgeonCases.count;i++){
@@ -1477,9 +1488,9 @@
                     sur_minAge = age;
                 }
             }
-            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
-                sur_maleCount+=1;
-            }
+//            if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
+//                sur_maleCount+=1;
+//            }
             if([dic valueForKey:@"var_BMI"]){
                 float bmi = [[dic valueForKey:@"var_BMI"] floatValue];
                 sur_bmiCount+= bmi;
@@ -1512,6 +1523,50 @@
                         sur_minRoomTime = val;
                     }
                 }
+            }
+            if([dic valueForKey:@"var_EBL"]){
+                NSString *str = [dic valueForKey:@"var_EBL"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value for  Blood Loss Retreived  ::  %i",val);
+                sur_bloodLossCount+=val;
+                if(i == 0){
+                    sur_minBloodLoss = val;
+                    sur_maxBloodLoss = val;
+                }else{
+                    if(val>sur_maxBloodLoss){
+                        sur_maxBloodLoss = val;
+                    }
+                    if(val<sur_minBloodLoss){
+                        sur_minBloodLoss = val;
+                    }
+                }
+            }
+            if([dic valueForKey:@"var_consulTime"]){
+                NSString *str = [dic valueForKey:@"var_consulTime"];
+                NSArray *ary = [str componentsSeparatedByString:@" "];
+                int val = [[ary objectAtIndex:0] intValue];
+                NSLog(@" ***** Value Retreived  ::  %i",val);
+                sur_consoleTimeCount+=val;
+                if(i == 0){
+                    sur_minConsoleTime = val;
+                    sur_maxConsoleTime = val;
+                }else{
+                    if(val>sur_maxConsoleTime){
+                        sur_maxConsoleTime = val;
+                    }
+                    if(val<sur_minConsoleTime){
+                        sur_minConsoleTime = val;
+                    }
+                }
+            }
+            
+            if(![[dic valueForKey:@"var_lysisOfAdhesions"] isEqualToString:@"NO"]){
+                sur_adhesiolysisCount+=1;
+            }
+            
+            if(![[dic valueForKey:@"var_bladderNeckReconstruction"] isEqualToString:@"NO"]){
+                sur_vasAnomolyCount+=1;
             }
             
         }

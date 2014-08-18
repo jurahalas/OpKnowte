@@ -24,11 +24,9 @@
 @property (nonatomic) BOOL animatedKeyboard;
 @property (nonatomic) int currentTextFieldTag;
 @property (strong, nonatomic) IBOutlet UIView *bottonTabBarButton;
-
 @property (nonatomic, strong) OKProcedurePicker *pickerObject;
 @property (nonatomic, strong) NSArray *pickerData;
 @property (nonatomic, strong) NSMutableDictionary *activeFieldsDict;
-
 @property (strong, nonatomic) NSMutableArray *interactionItems;
 
 - (IBAction)updateTapped:(id)sender;
@@ -203,7 +201,8 @@
     [dict removeAllObjects];
     
     [dict setObject:@"continence" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"0", @"safety pad", @"1 pad", @"2 pad", @"3pad", @">3pads"] forKey:@"items"];
     [dict setObject:@"Continence" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -670,7 +669,7 @@
     NSRange onRange = [name rangeOfString:@"_on"];
 
     if (([name isEqualToString:@"mortality"] || [name isEqualToString:@"bladderNeckContracture"] ||
-         [name isEqualToString:@"erectileFunction"] || [name isEqualToString:@"continence"] ||
+         [name isEqualToString:@"erectileFunction"] ||
          [name isEqualToString:@"PSA"] || [name isEqualToString:@"Ileus"] ||
          [name isEqualToString:@"transfusion"] ||
          [name isEqualToString:@"woundInfection"] || [name isEqualToString:@"urineLeak"] ||
