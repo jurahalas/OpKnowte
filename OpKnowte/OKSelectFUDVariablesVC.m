@@ -1613,11 +1613,8 @@ float s_creatinineDiffSum;
                             s_mPositive++;
                         }
                     }
-                    
                 }
-                
             }
-            
         }
         
     }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
