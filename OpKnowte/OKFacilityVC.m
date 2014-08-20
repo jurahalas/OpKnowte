@@ -11,6 +11,7 @@
 #import "OKInstituteVC.h"
 #import "OKProcedureTemplateVariablesModel.h"
 #import "OKContactModel.h"
+#import "OKProceduresManager.h"
 
 
 @interface OKFacilityVC ()<OKFacilityTableViewCellDelegate>
@@ -414,14 +415,40 @@
 
 -(NSString *)getEmailBodyForProcedure{
     NSString *body = [[NSString alloc] init];
+    NSString *procID = [[NSString alloc] initWithFormat:@"%@", [OKProceduresManager instance].selectedProcedure.identifier];
+//    NSString *perProcedure  = [[NSString alloc] init];
+//    NSString *perProcedure2 = @"";
     
     body = [body stringByAppendingString:@"\n\n"];
     
+//    if ([[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"] isEqualToString:@"Right renal mass"]) {
+//        perProcedure = [NSString stringWithFormat:@"right"];
+//    }else{
+//        perProcedure = [NSString stringWithFormat:@"left"];
+//    }
+
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
         
-        body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
-
+        if ([procID isEqualToString:@"1"]) {
+           NSString *nerveSparring = [[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:9] valueForKey:@"value"];
+            
+            if ([caseDataModel.key isEqualToString:@"Procedure"]) {
+                body = [body stringByAppendingFormat:@"%@: %@ with %@\n",caseDataModel.key, caseDataModel.value, nerveSparring];
+            }else{
+                body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
+            }
+        }else if ([procID isEqualToString:@"2"]){
+        
+            if ([caseDataModel.key isEqualToString:@"Procedure"] && [[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:7] valueForKey:@"value"] isEqualToString:@"YES"]) {
+                    body = [body stringByAppendingFormat:@"%@: %@ with cysto and right stent placement\n", caseDataModel.key, caseDataModel.value];
+            }
+            body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
+            
+        }else{
+            body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
+        }
     }
+    
     
     body = [body stringByAppendingFormat:@"\nIndications: %@ \n\n Procedures: %@", [_templateDictionary objectForKey:@"indicationText"], [_templateDictionary objectForKey:@"procedureText"]];
     

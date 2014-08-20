@@ -13,6 +13,7 @@
 #import "OKTimer.h"
 #import "OKViewController.h"
 #import "OKBaseProcedureVC.h"
+#import "OKLRPartialNephrectomyModel.h"
 
 @implementation OKAppDelegate
 
@@ -111,5 +112,15 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@",url];
+    NSLog(@"%@",[urlString lowercaseString]);
+    if ([[urlString lowercaseString] isEqualToString:@"opknowte://enterpatientsdetails"]){
+        NSLog(@":p");
+    }
+    
+    return YES;
+}
 
 @end

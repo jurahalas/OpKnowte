@@ -92,7 +92,7 @@
 				<string>Nerve Sparing</string>
 				<key>items</key>
 				<array>
-					<string>Bilateral</string>
+					<string>Bilateral Nerve Sparing</string>
 					<string>Right Nerve Sparing</string>
 					<string>Left Nerve Sparing</string>
 					<string>Non-Nerve Sparing</string>

@@ -173,9 +173,18 @@
                     }
                 }];
             }else
+//            {
+//                UIAlertView *accessAlert = [[UIAlertView alloc] initWithTitle:@"Error"
+//                                                                                     message:@"you haven't access for entering data to this case "
+//                                                                                    delegate:self
+//                                                                           cancelButtonTitle:@"OK"
+//                                                                           otherButtonTitles:nil, nil];
+//                [accessAlert show];
                 [[OKLoadingViewController instance]hide];
+//            }
         }];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
