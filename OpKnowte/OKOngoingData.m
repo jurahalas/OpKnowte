@@ -74,7 +74,7 @@
     @try {
         [dict setObject:self.PSA forKey:@"PSA"];
         [dict setObject:self.continence forKey:@"Continence"];
-        [dict setObject:self.erectileFunction forKey:@"Erectile Function, %"];
+        [dict setObject:self.erectileFunction forKey:@"Erectile Function"];
         [dict setObject:self.bladderNeckContracture forKey:@"Bladder Neck Contracture"];
         [dict setObject:self.mortality forKey:@"Mortality"];
     }
