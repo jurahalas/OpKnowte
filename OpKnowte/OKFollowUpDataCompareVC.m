@@ -1206,10 +1206,10 @@
         [self.HNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
         [self.HSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
         
-        [self.herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.herniaYES]];
-        [self.herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.herniaNO]];
-        [self.s_herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_herniaYES]];
-        [self.s_herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_herniaNO]];
+        [self.herniaYESView setText:[NSString stringWithFormat:@"Undetectable = %.0f %%",self.herniaYES]];
+        [self.herniaNOView setText:[NSString stringWithFormat:@"Biochemical Rescurrence = %.0f %%",self.herniaNO]];
+        [self.s_herniaYESView setText:[NSString stringWithFormat:@"Undetectable = %.0f %%",self.s_herniaYES]];
+        [self.s_herniaNOView setText:[NSString stringWithFormat:@"Biochemical Rescurrence = %.0f %%",self.s_herniaNO]];
         //[self.view addSubview:self.herniaGraph];
         
         _scrollView.contentSize = self.herniaGraph.bounds.size;
@@ -1272,33 +1272,35 @@
         self.herniaGraph.frame = CGRectMake(self.herniaGraph.frame.origin.x, self.herniaGraph.frame.origin.y-64, self.herniaGraph.frame.size.width, self.herniaGraph.frame.size.height);
         
         [_scrollView addSubview:self.herniaGraph];
+    } else {
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.herniaGraph.frame;
+            frame.origin.y = 57;
+            [self.herniaGraph setFrame:frame];
+            
+        }else{
+            CGRect frame = self.herniaGraph.frame;
+            frame.origin.y = 45;
+            [self.herniaGraph setFrame:frame];
+        }
+        
+        [self.HNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.HSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.herniaYES]];
+        [self.herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.herniaNO]];
+        [self.s_herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_herniaYES]];
+        [self.s_herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_herniaNO]];
+        //[self.view addSubview:self.herniaGraph];
+        
+        _scrollView.contentSize = self.herniaGraph.bounds.size;
+        self.herniaGraph.frame = CGRectMake(self.herniaGraph.frame.origin.x, self.herniaGraph.frame.origin.y-64, self.herniaGraph.frame.size.width, self.herniaGraph.frame.size.height);
+        
+        [_scrollView addSubview:self.herniaGraph];
     }
     
-    if (IS_IPHONE_5) {
-        
-        CGRect frame = self.herniaGraph.frame;
-        frame.origin.y = 57;
-        [self.herniaGraph setFrame:frame];
-        
-    }else{
-        CGRect frame = self.herniaGraph.frame;
-        frame.origin.y = 45;
-        [self.herniaGraph setFrame:frame];
-    }
-    
-    [self.HNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
-    [self.HSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-    
-    [self.herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.herniaYES]];
-    [self.herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.herniaNO]];
-    [self.s_herniaYESView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_herniaYES]];
-    [self.s_herniaNOView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_herniaNO]];
-    //[self.view addSubview:self.herniaGraph];
-    
-    _scrollView.contentSize = self.herniaGraph.bounds.size;
-    self.herniaGraph.frame = CGRectMake(self.herniaGraph.frame.origin.x, self.herniaGraph.frame.origin.y-64, self.herniaGraph.frame.size.width, self.herniaGraph.frame.size.height);
-    
-    [_scrollView addSubview:self.herniaGraph];
+   
 }
 
 

@@ -876,13 +876,13 @@ float s_creatinineDiffSum;
                 
             }else if ([[dict objectForKey:@"timePointID"] intValue] >12){
                 sixMonths++;
-                
                 NSString *hernia = [dict objectForKey:@"PSA"];
                 //NSLog(@"%@", hernia);
+                
                 if (hernia.length > 0) {
-                    if ([hernia isEqualToString:@"YES"]) {
+                    if ([hernia isEqualToString:@"Undetectable"]) {
                         herniaYES++;
-                    }else if ([hernia isEqualToString:@"NO"]){
+                    }else if ([hernia isEqualToString:@"Biochemical Rescurrence"]){
                         herniaNO++;
                     }
                 }
@@ -1555,9 +1555,9 @@ float s_creatinineDiffSum;
                 NSString *hernia = [dict objectForKey:@"PSA"];
                 //NSLog(@"%@", hernia);
                 if (hernia.length > 0) {
-                    if ([hernia isEqualToString:@"YES"]) {
+                    if ([hernia isEqualToString:@"Undetectable"]) {
                         s_herniaYES++;
-                    }else if ([hernia isEqualToString:@"NO"]){
+                    }else if ([hernia isEqualToString:@"Biochemical Rescurrence"]){
                         s_herniaNO++;
                     }
                 }

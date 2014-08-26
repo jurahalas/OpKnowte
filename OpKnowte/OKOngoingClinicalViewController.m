@@ -195,7 +195,7 @@
     
     [dict setObject:@"PSA" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"YES", @"NO"] forKey:@"items"];
+    [dict setObject:@[@"Undetectable", @"Biochemical Rescurrence"] forKey:@"items"];
     [dict setObject:@"PSA" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
