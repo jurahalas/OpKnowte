@@ -202,14 +202,15 @@
     
     [dict setObject:@"continence" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"0", @"safety pad", @"1 pad", @"2 pad", @"3pad", @">3pads"] forKey:@"items"];
+    [dict setObject:@[@"not actively seeking recovery", @"no erections", @"25% erections", @"50% erections", @"75% erections", @"erections suff. with PDE-5 inh.", @"erections suff. without PDE-5 inh."] forKey:@"items"];
     [dict setObject:@"Continence" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
     [dict setObject:@"erectileFunction" forKey:@"name"];
-    [dict setObject:@"numericTextField" forKey:@"type"];
-    [dict setObject:@"Erectile function, %" forKey:@"placeholder"];
+    [dict setObject:@"picker" forKey:@"type"];
+    [dict setObject:@[@"0", @"safety pad", @"1 pad", @"2 pad", @"3pad", @">3pads"] forKey:@"items"];
+    [dict setObject:@"Erectile function" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
@@ -669,7 +670,6 @@
     NSRange onRange = [name rangeOfString:@"_on"];
 
     if (([name isEqualToString:@"mortality"] || [name isEqualToString:@"bladderNeckContracture"] ||
-         [name isEqualToString:@"erectileFunction"] ||
          [name isEqualToString:@"PSA"] || [name isEqualToString:@"Ileus"] ||
          [name isEqualToString:@"transfusion"] ||
          [name isEqualToString:@"woundInfection"] || [name isEqualToString:@"urineLeak"] ||
