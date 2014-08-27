@@ -34,4 +34,6 @@
 
 -(void)logout;
 
+-(void)searchUserByKeyword:(NSString*)keyword AndPage:(NSString*)page Count:(NSString*)count handler:(void (^)(NSString *errorMsg, NSMutableArray *users))handler;
+
 @end

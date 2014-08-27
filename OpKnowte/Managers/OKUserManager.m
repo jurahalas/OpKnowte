@@ -178,4 +178,14 @@
 }
 
 
+-(void)searchUserByKeyword:(NSString*)keyword AndPage:(NSString*)page Count:(NSString*)count handler:(void (^)(NSString *errorMsg, NSMutableArray *users))handler
+{
+    NSString *url = [NSString stringWithFormat:@"getPaginatedUserByKeyword?keyword=%@&page=%@&count=%@",keyword,page,count];
+    [self requestWithMethod:@"GET" path:url params:nil handler:^(NSError *error, id json){
+        NSLog(@"%@",json);
+        handler ([self getErrorMessageFromJSON:json error:error],json);
+    }];
+}
+
+
 @end

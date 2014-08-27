@@ -9,12 +9,14 @@
 #import "OKUserListVC.h"
 #import "OKUserListTableViewCell.h"
 #import "OKFakeTableViewCell.h"
+#import "OKUserManager.h"
 
 @interface OKUserListVC ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *shareButtonView;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
 @property (assign, nonatomic) int countOfCell;
+@property (strong, nonatomic) NSMutableArray *usersArray;
 
 - (IBAction)shareButtonTapped:(id)sender;
 
@@ -30,9 +32,27 @@
     self.shareButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     self.shareButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     self.shareButton.layer.cornerRadius = 14;
+    [self addLeftButtonToNavbar];
     self.countOfCell = 4;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self searchUserByKeyword:@"" WihtPage:@"1" Count:@"10"];
+}
+
+-(void)searchUserByKeyword:(NSString *)keyword WihtPage:(NSString *)page Count:(NSString *)count;
+{
+    [[OKUserManager instance]searchUserByKeyword:keyword AndPage:page Count:count handler:^(NSString *errorMsg, NSMutableArray *users){
+        if (!errorMsg) {
+            self.usersArray = users;
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:errorMsg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -77,7 +97,24 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)backButton:(id)sender
+-(void) addLeftButtonToNavbar
+{
+    UIButton *right = [[UIButton alloc] init];
+    if (IS_IOS7) {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width, [UIImage imageNamed:@"back"].size.height );
+    } else {
+        right.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"back"].size.width +27, [UIImage imageNamed:@"back"].size.height );
+    }
+    [right setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [right addTarget:self action:@selector(backButton) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.leftBarButtonItem = anotherButton;
+    
+}
+
+
+- (IBAction)backButton;
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
