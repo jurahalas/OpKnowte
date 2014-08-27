@@ -353,44 +353,84 @@
 -(void)showTumorChGraph
 {
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.tumorChView.frame;
+            frame.origin.y = 57;
+            [self.tumorChView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.tumorChView.frame;
+            frame.origin.y = 45;
+            [self.tumorChView setFrame:frame];
+        }
+        self.tumorCharacteristicsLabel.text = @"Continence";
+        [self.TCNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.TCSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+        
+        [self.ClearAllView setText:[NSString stringWithFormat:@"0 pads = %.0f %%",self.ClearAll]];
+        [self.PapillaryView setText:[NSString stringWithFormat:@"1 pad = %.0f %%",self.Papillary]];
+        [self.ChromophobeView setText:[NSString stringWithFormat:@"2 pads = %.0f %%",self.Chromophobe]];
+        [self.SarcomatoidView setText:[NSString stringWithFormat:@"3 pads = %.0f %%",self.Sarcomatoid]];
+        [self.angiomyolipomaView setText:[NSString stringWithFormat:@">3 pads = %.0f %%",self.angiomyolipoma]];
+//        [self.oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.oncocytoma]];
+//        [self.otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.other]];
+        self.oncocytomaView.hidden = YES;
+        self.otherView.hidden = YES;
+        
+        [self.s_ClearAllView setText:[NSString stringWithFormat:@"0 pads = %.0f %%",self.s_ClearAll]];
+        [self.s_PapillaryView setText:[NSString stringWithFormat:@"1 pad = %.0f %%",self.s_Papillary]];
+        [self.s_ChromophobeView setText:[NSString stringWithFormat:@"2 pads = %.0f %%",self.s_Chromophobe]];
+        [self.s_SarcomatoidView setText:[NSString stringWithFormat:@"3 pads = %.0f %%",self.s_Sarcomatoid]];
+        [self.s_angiomyolipomaView setText:[NSString stringWithFormat:@">3 pads = %.0f %%",self.s_angiomyolipoma]];
+//        [self.s_oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.s_oncocytoma]];
+//        [self.s_otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.s_other]];
+        self.s_oncocytomaView.hidden = YES;
+        self.s_otherView.hidden = YES;
+        
+        _scrollView.contentSize = self.tumorChView.bounds.size;
+        self.tumorChView.frame = CGRectMake(self.tumorChView.frame.origin.x, self.tumorChView.frame.origin.y-64, self.tumorChView.frame.size.width, self.tumorChView.frame.size.height);
+        [_scrollView addSubview:self.tumorChView];
     } else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2){
-    }
-    if (IS_IPHONE_5) {
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.tumorChView.frame;
+            frame.origin.y = 57;
+            [self.tumorChView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.tumorChView.frame;
+            frame.origin.y = 45;
+            [self.tumorChView setFrame:frame];
+        }
         
-        CGRect frame = self.tumorChView.frame;
-        frame.origin.y = 57;
-        [self.tumorChView setFrame:frame];
+        [self.TCNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.TCSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
         
-    }else{
-        CGRect frame = self.tumorChView.frame;
-        frame.origin.y = 45;
-        [self.tumorChView setFrame:frame];
+        [self.ClearAllView setText:[NSString stringWithFormat:@"Clear Cell = %.0f %%",self.ClearAll]];
+        [self.PapillaryView setText:[NSString stringWithFormat:@"Papillary = %.0f %%",self.Papillary]];
+        [self.ChromophobeView setText:[NSString stringWithFormat:@"Chromophobe = %.0f %%",self.Chromophobe]];
+        [self.SarcomatoidView setText:[NSString stringWithFormat:@"Sarcomatoid = %.0f %%",self.Sarcomatoid]];
+        [self.angiomyolipomaView setText:[NSString stringWithFormat:@"Angiomyolipoma = %.0f %%",self.angiomyolipoma]];
+        [self.oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.oncocytoma]];
+        [self.otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.other]];
+        
+        [self.s_ClearAllView setText:[NSString stringWithFormat:@"Clear Cell = %.0f %%",self.s_ClearAll]];
+        [self.s_PapillaryView setText:[NSString stringWithFormat:@"Papillary = %.0f %%",self.s_Papillary]];
+        [self.s_ChromophobeView setText:[NSString stringWithFormat:@"Chromophobe = %.0f %%",self.s_Chromophobe]];
+        [self.s_SarcomatoidView setText:[NSString stringWithFormat:@"Sarcomatoid = %.0f %%",self.s_Sarcomatoid]];
+        [self.s_angiomyolipomaView setText:[NSString stringWithFormat:@"Angiomyolipoma = %.0f %%",self.s_angiomyolipoma]];
+        [self.s_oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.s_oncocytoma]];
+        [self.s_otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.s_other]];
+        
+        //[self.view addSubview:self.tumorChView];
+        
+        _scrollView.contentSize = self.tumorChView.bounds.size;
+        self.tumorChView.frame = CGRectMake(self.tumorChView.frame.origin.x, self.tumorChView.frame.origin.y-64, self.tumorChView.frame.size.width, self.tumorChView.frame.size.height);
+        [_scrollView addSubview:self.tumorChView];
     }
-    
-    [self.TCNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
-    [self.TCSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
-    
-    [self.ClearAllView setText:[NSString stringWithFormat:@"Clear Cell = %.0f %%",self.ClearAll]];
-    [self.PapillaryView setText:[NSString stringWithFormat:@"Papillary = %.0f %%",self.Papillary]];
-    [self.ChromophobeView setText:[NSString stringWithFormat:@"Chromophobe = %.0f %%",self.Chromophobe]];
-    [self.SarcomatoidView setText:[NSString stringWithFormat:@"Sarcomatoid = %.0f %%",self.Sarcomatoid]];
-    [self.angiomyolipomaView setText:[NSString stringWithFormat:@"Angiomyolipoma = %.0f %%",self.angiomyolipoma]];
-    [self.oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.oncocytoma]];
-    [self.otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.other]];
-    
-    [self.s_ClearAllView setText:[NSString stringWithFormat:@"Clear Cell = %.0f %%",self.s_ClearAll]];
-    [self.s_PapillaryView setText:[NSString stringWithFormat:@"Papillary = %.0f %%",self.s_Papillary]];
-    [self.s_ChromophobeView setText:[NSString stringWithFormat:@"Chromophobe = %.0f %%",self.s_Chromophobe]];
-    [self.s_SarcomatoidView setText:[NSString stringWithFormat:@"Sarcomatoid = %.0f %%",self.s_Sarcomatoid]];
-    [self.s_angiomyolipomaView setText:[NSString stringWithFormat:@"Angiomyolipoma = %.0f %%",self.s_angiomyolipoma]];
-    [self.s_oncocytomaView setText:[NSString stringWithFormat:@"Oncocytoma = %.0f %%",self.s_oncocytoma]];
-    [self.s_otherView setText:[NSString stringWithFormat:@"Other = %.0f %%",self.s_other]];
-    
-    //[self.view addSubview:self.tumorChView];
-    
-    _scrollView.contentSize = self.tumorChView.bounds.size;
-    self.tumorChView.frame = CGRectMake(self.tumorChView.frame.origin.x, self.tumorChView.frame.origin.y-64, self.tumorChView.frame.size.width, self.tumorChView.frame.size.height);
-    [_scrollView addSubview:self.tumorChView];
+
 }
 
 

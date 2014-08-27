@@ -385,7 +385,8 @@ float s_creatinineDiffSum;
                     break;
                 }
                 case 1:{
-                    [self fuhrmanGrade];
+                    //[self fuhrmanGrade];
+                    [self tumorCh];
                     break;
                 }
                 case 2:{
@@ -888,19 +889,36 @@ float s_creatinineDiffSum;
                 }
                 
                 
-                NSString *FGrade = [dict objectForKey:@"continence"];
-                //NSLog(@"%@", FGrade);
-               // float frGradeFloat = [[dict objectForKey:@"continence"] floatValue];
-                if (FGrade.length > 0) {
-                    if ([FGrade isEqualToString:@"0"]) {
-                        FGoneByFour++;
-                    }else if ([FGrade isEqualToString:@"1"] || [FGrade isEqualToString:@"2"] || [FGrade isEqualToString:@"2"]){
-                        FGoneByFour++;
-                    }else {
-                        FGoneByFour++;
-                    }
-                }
+//                NSString *FGrade = [dict objectForKey:@"continence"];
+//                //NSLog(@"%@", FGrade);
+//               // float frGradeFloat = [[dict objectForKey:@"continence"] floatValue];
+//                if (FGrade.length > 0) {
+//                    if ([FGrade isEqualToString:@"0"]) {
+//                        FGoneByFour++;
+//                    }else if ([FGrade isEqualToString:@"1"] || [FGrade isEqualToString:@"2"] || [FGrade isEqualToString:@"2"]){
+//                        FGoneByFour++;
+//                    }else {
+//                        FGoneByFour++;
+//                    }
+//                }
+                NSString *tumorCh = [dict objectForKey:@"continence"];
                 
+                if ([tumorCh isEqualToString:@"0 pads"]) {
+                    ClearAll++;
+                }else if ([tumorCh isEqualToString:@"1 pad"]){
+                    Papillary++;
+                }else if ([tumorCh isEqualToString:@"2 pads"]){
+                    Chromophobe++;
+                }else if ([tumorCh isEqualToString:@"3 pads"]){
+                    Sarcomatoid++;
+                }else if ([tumorCh isEqualToString:@">3 pads"]){
+                    angiomyolipoma++;
+                }
+//                    else if ([tumorCh isEqualToString:@"oncocytoma"]){
+//                        s_oncocytoma++;
+//                    }else if ([tumorCh isEqualToString:@"other"]){
+//                        s_other++;
+//                    }
                 
                 if([dict objectForKey:@"erectileFunction"]){
                     float crt = [[dict objectForKey:@"erectileFunction"] floatValue];
@@ -1563,17 +1581,30 @@ float s_creatinineDiffSum;
                 }
                 
                 
-                NSString *FGrade = [dict objectForKey:@"continence"];
-                //NSLog(@"%@", FGrade);
-               // float frGradeFloat = [dict objectForKey:@"continence"];
-                if (FGrade.length > 0) {
-                    if ([FGrade isEqualToString:@"0"]) {
-                        s_FGoneByFour++;
-                    }else if ([FGrade isEqualToString:@"1"] || [FGrade isEqualToString:@"2"] || [FGrade isEqualToString:@"2"]){
-                        s_FGtwoByFour++;
-                    }else {
-                        s_FGthreeByFour++;
-                    }
+//                NSString *FGrade = [dict objectForKey:@"continence"];
+//                //NSLog(@"%@", FGrade);
+//               // float frGradeFloat = [dict objectForKey:@"continence"];
+//                if (FGrade.length > 0) {
+//                    if ([FGrade isEqualToString:@"0"]) {
+//                        s_FGoneByFour++;
+//                    }else if ([FGrade isEqualToString:@"1"] || [FGrade isEqualToString:@"2"] || [FGrade isEqualToString:@"2"]){
+//                        s_FGtwoByFour++;
+//                    }else {
+//                        s_FGthreeByFour++;
+//                    }
+//                }
+                NSString *tumorCh = [dict objectForKey:@"continence"];
+                
+                if ([tumorCh isEqualToString:@"0 pads"]) {
+                    s_ClearAll++;
+                }else if ([tumorCh isEqualToString:@"1 pad"]){
+                    s_Papillary++;
+                }else if ([tumorCh isEqualToString:@"2 pads"]){
+                    s_Chromophobe++;
+                }else if ([tumorCh isEqualToString:@"3 pads"]){
+                    s_Sarcomatoid++;
+                }else if ([tumorCh isEqualToString:@">3 pads"]){
+                    s_angiomyolipoma++;
                 }
                 
                 
@@ -2236,6 +2267,51 @@ float s_creatinineDiffSum;
 
         [self.navigationController pushViewController:controller animated:YES];
    
+    }else if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1){
+        
+        OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
+        if(sixMonths>0){
+            controller.ClearAll = (ClearAll/sixMonths)*100;
+            controller.Papillary = (Papillary/sixMonths)*100;
+            controller.Chromophobe = (Chromophobe/sixMonths)*100;
+            controller.Sarcomatoid = (Sarcomatoid/sixMonths)*100;
+            controller.oncocytoma = (oncocytoma/sixMonths)*100;
+            controller.other = (other/sixMonths)*100;
+            controller.angiomyolipoma = (angiomyolipoma/sixMonths)*100;
+        }else{
+            controller.ClearAll = 0;
+            controller.Papillary = 0;
+            controller.Chromophobe = 0;
+            controller.Sarcomatoid = 0;
+            controller.oncocytoma = 0;
+            controller.other = 0;
+            controller.angiomyolipoma = 0;
+        }
+        if(s_sixMonths>0){
+            controller.s_ClearAll = (s_ClearAll/s_sixMonths)*100;
+            controller.s_Papillary = (s_Papillary/s_sixMonths)*100;
+            controller.s_Chromophobe = (s_Chromophobe/s_sixMonths)*100;
+            controller.s_Sarcomatoid = (s_Sarcomatoid/s_sixMonths)*100;
+            controller.s_oncocytoma = (s_oncocytoma/s_sixMonths)*100;
+            controller.s_other = (s_other/s_sixMonths)*100;
+            controller.s_angiomyolipoma = (s_angiomyolipoma/s_sixMonths)*100;
+        }else{
+            controller.s_ClearAll = 0;
+            controller.s_Papillary = 0;
+            controller.s_Chromophobe = 0;
+            controller.s_Sarcomatoid = 0;
+            controller.s_oncocytoma = 0;
+            controller.s_other = 0;
+            controller.s_angiomyolipoma = 0;
+        }
+        
+        controller.NationalSize = sixMonths;
+        controller.SurgeonSize = s_sixMonths;
+        controller.graphView = @"tumorCh";
+        controller.showNationalData = _showNationalData;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+        
     }else{
 
         OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
