@@ -30,7 +30,7 @@
     self.shareButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     self.shareButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     self.shareButton.layer.cornerRadius = 14;
-    self.countOfCell = 20;
+    self.countOfCell = 4;
 }
 
 
@@ -49,16 +49,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"userList";
-    OKUserListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OKUserListTableViewCell *cell = [[OKUserListTableViewCell alloc] init];
     static NSString *FakeCellIdentifier = @"FakeCell";
     OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
 
     if (indexPath.row < self.countOfCell) {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         [cell setCellBGImageLight:indexPath.row];
         
         return cell;
     } else{
         FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        
         return FakeCell;
     }
 }
