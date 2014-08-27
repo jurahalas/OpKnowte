@@ -80,8 +80,8 @@
         
         // need key -----
         
-        [dict setObject:self.aua forKey:@"<#string#>"];
-        [dict setObject:self.shim forKey:@"<#string#>"];
+        [dict setObject:self.aua forKey:@"aua"];
+        [dict setObject:self.shim forKey:@"shim"];
         
         //----------------- //
     }
