@@ -705,7 +705,9 @@
             }
         }
     }
-    if([self.ongoingData respondsToSelector:NSSelectorFromString(name)])
+    if ([name isEqualToString:@"complications"] && [newValue isEqualToString:@""]) {
+        [self.ongoingData setValue:@"None" forKey:name];
+    } else if([self.ongoingData respondsToSelector:NSSelectorFromString(name)])
         [self.ongoingData setValue:newValue forKey:name];
 }
 
@@ -764,6 +766,10 @@
 {
     NSString *forProcedure = [[NSString alloc] init];
      int tp = [[OKTimePointsManager instance].selectedTimePoint.identifier integerValue];
+    
+    if ([[self.ongoingData valueForKey:@"complications"] isEqualToString:@""]) {
+        [self.ongoingData setValue:@"None" forKey:@"complications"];
+    }
     
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 2 && self.detailPeriod==OKProcedureSummaryDetailTwoWeeks) {
         forProcedure = @"1";

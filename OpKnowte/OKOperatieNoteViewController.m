@@ -522,7 +522,6 @@
         caseDataObject.value = variableValue;
         [_caseDataArray addObject:caseDataObject];
         
-        
         [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
         [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
         return cell;
