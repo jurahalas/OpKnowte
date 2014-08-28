@@ -36,4 +36,6 @@
 
 -(void)searchUserByKeyword:(NSString*)keyword AndPage:(NSString*)page Count:(NSString*)count handler:(void (^)(NSString *errorMsg, NSMutableArray *users))handler;
 
+-(void)shareProcedureWithCaseID:(NSString*)caseID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler;
+
 @end

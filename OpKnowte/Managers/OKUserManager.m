@@ -188,4 +188,15 @@
 }
 
 
+-(void)shareProcedureWithCaseID:(NSString*)caseID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"caseID":caseID,
+                             @"userIDs":usersIDs};
+    [self requestWithMethod:@"POST" path:@"shareProcedure" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+    }];
+}
+
+
 @end

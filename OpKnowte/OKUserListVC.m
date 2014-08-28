@@ -202,7 +202,13 @@
 
 - (IBAction)shareButtonTapped:(id)sender
 {
-    
+    NSString * userIDs = [self.userIDSArray componentsJoinedByString:@","];
+    [[OKUserManager instance]shareProcedureWithCaseID:self.caseID andUsersIDs:userIDs handler:^(NSString* error){
+        if(error){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
     NSLog(@"Share Button Tapped");
 }
 
