@@ -8,7 +8,6 @@
 
 #import "OKCaseListViewController.h"
 #import "OKCaseListTableViewCell.h"
-#import "OKFakeTableViewCell.h"
 #import "OKCaseManager.h"
 #import "OKUserManager.h"
 #import "OKCase.h"
@@ -18,15 +17,12 @@
 #import "OKSelectTimePointViewController.h"
 #import "OKUserListVC.h"
 
-@interface OKCaseListViewController ()<UITableViewDelegate, UITableViewDataSource, OKCaseDelegate>
+@interface OKCaseListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) IBOutlet UIView *goToListView;
-@property (strong, nonatomic) IBOutlet UIButton *goToUserListButton;
-- (IBAction)goToUsersListTapped:(id)sender;
 
 @property (strong, nonatomic) NSArray *cases;
-@property (strong, nonatomic) NSMutableArray *caseArray;
+@property (strong, nonatomic) NSString *caseID;
 
 @end
 
@@ -37,14 +33,11 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 50.f));
     [self setupData];
     [self addLeftButtonToNavbar];
-
-    self.goToListView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
-    self.goToUserListButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
-    self.goToUserListButton.layer.cornerRadius = 14;
-    
-    self.caseArray = [[NSMutableArray alloc]init];
+    [self addBottomTabBar];
+    self.caseID = [[NSString alloc]init];
 }
 
 
@@ -90,7 +83,7 @@
 #pragma mark Table View datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cases.count +1;
+    return self.cases.count;
 }
 
 
@@ -104,21 +97,20 @@
 {
     static NSString *cellIdentifier = @"selectCase";
     OKCaseListTableViewCell *cell =[[OKCaseListTableViewCell alloc]init];
-    static NSString *FakeCellIdentifier = @"FakeCell";
-    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
-    
-    if (indexPath.row < self.cases.count) {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        cell.delegate = self;
-        OKCase *selCase = self.cases[indexPath.row];
-        cell.caseModel = selCase;
-        cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];
-        [cell setCellBGImageLight:indexPath.row];
-        return cell;
-    } else {
-        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
-        return FakeCell;
-    }
+    cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OKCase *selCase = self.cases[indexPath.row];
+    cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];
+    [cell setCellBGImageLight:indexPath.row];
+    return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    OKCase *selCase = self.cases[indexPath.row];
+    self.caseID = selCase.caseID;
+    [self performSegueWithIdentifier:@"goToUsersList" sender:nil];
 }
 
 
@@ -127,36 +119,10 @@
     if ([segue.identifier isEqualToString:@"goToUsersList"]) {
         OKUserListVC *usersVC = (OKUserListVC*)segue.destinationViewController;
         usersVC.procID = self.procID;
-        usersVC.detailsArray = self.caseArray;
+        usersVC.caseID = self.caseID;
     }
 }
 
-
-- (IBAction)goToUsersListTapped:(id)sender
-{
-    if (self.caseArray.count == 0) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"You must choose at least one case" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    } else {
-        [self performSegueWithIdentifier:@"goToUsersList" sender:nil];
-    }
-}
-
-
--(void)addCaseToArray:(OKCase *)contact
-{
-    [self.caseArray addObject:contact.caseID];
-}
-
-
--(void)deleteCaseFromArray:(OKCase *)contact
-{
-    for (int i = 0; i<self.caseArray.count; i++) {
-        if ([[self.caseArray objectAtIndex:i]isEqualToString:contact.caseID]) {
-            [self.caseArray removeObjectAtIndex:i];
-        }
-    }
-}
 
 - (void)didReceiveMemoryWarning
 {

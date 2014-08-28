@@ -11,8 +11,9 @@
 #import "OKFakeTableViewCell.h"
 #import "OKUserManager.h"
 #import "OKLoadingViewController.h"
+#import "OKUserModel.h"
 
-@interface OKUserListVC ()
+@interface OKUserListVC () <OKUserDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *shareButtonView;
 @property (strong, nonatomic) IBOutlet UIButton *shareButton;
@@ -26,6 +27,7 @@
 @property (assign, nonatomic) int totalUSer;
 @property (strong, nonatomic) NSString *keyword;
 @property (assign, nonatomic) int numberPages;
+@property (strong, nonatomic) NSMutableArray *userIDSArray;
 
 - (IBAction)shareButtonTapped:(id)sender;
 
@@ -36,7 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:YES ];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.userIDSArray = [[NSMutableArray alloc]init];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.shareButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     self.shareButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
@@ -109,9 +112,10 @@
 
     if (indexPath.row < self.totalUSer) {
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-        
+        cell.delegate = self;
+
         NSString *number = [NSString stringWithFormat:@"%i",indexPath.row];
-        
+        cell.userID = [[self.usersArray valueForKey:number]valueForKey:@"USERID"];
         cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@",[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"FIRSTNAME"],[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"LASTNAME"],[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"TITLE"]];;
         cell.emaillabel.text = [NSString stringWithFormat:@"%@",[[self.usersArray valueForKey:number]valueForKey:@"EMAILADDRESS"]];
         [cell setCellBGImageLight:indexPath.row];
@@ -174,6 +178,22 @@
 }
 
 
+-(void)addUserToArray:(NSString *)userID
+{
+    [self.userIDSArray addObject:userID];
+}
+
+
+-(void)deleteUserFromArray:(NSString *)userID
+{
+    for (int i = 0; i<self.userIDSArray.count; i++) {
+        if ([[self.userIDSArray objectAtIndex:i]isEqualToString:userID]) {
+            [self.userIDSArray removeObjectAtIndex:i];
+        }
+    }
+}
+
+
 - (IBAction)backButton;
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -182,6 +202,7 @@
 
 - (IBAction)shareButtonTapped:(id)sender
 {
+    
     NSLog(@"Share Button Tapped");
 }
 

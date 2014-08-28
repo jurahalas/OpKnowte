@@ -13,7 +13,6 @@
 
 @property(strong, nonatomic) NSString *procID;
 @property(strong, nonatomic) NSString *detailID;
-
-@property (strong, nonatomic) NSMutableArray *detailsArray;
+@property (strong, nonatomic) NSString *caseID;
 
 @end

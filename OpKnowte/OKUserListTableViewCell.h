@@ -7,13 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OKUserModel.h"
+
+@protocol OKUserDelegate <NSObject>
+
+-(void) addUserToArray:(NSString*)userID;
+-(void) deleteUserFromArray:(NSString*)userID;
+
+@end
 
 @interface OKUserListTableViewCell : UITableViewCell
 
+@property (nonatomic, weak) id <OKUserDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
 @property (strong, nonatomic) IBOutlet UILabel *emaillabel;
 @property (nonatomic) BOOL buttonIsTapped;
+@property (strong, nonatomic) NSString *userID;
 
 - (IBAction)plusButtonTapped:(id)sender;
 

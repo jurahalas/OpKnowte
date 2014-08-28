@@ -3233,7 +3233,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="3XA-mW-FGv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="3XA-mW-FGv">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3252,31 +3252,16 @@
                                                     <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9bt-0f-cFt">
-                                                    <rect key="frame" x="265" y="0.0" width="55" height="60"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right.png" id="hmR-Po-q6v">
+                                                    <rect key="frame" x="288" y="18" width="20" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="plusWhiteIcon.png">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="plusButtonTapped:" destination="Lc6-gK-dxI" eventType="touchUpInside" id="xVx-Hf-dil"/>
-                                                    </connections>
-                                                </button>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="caseName" destination="GaS-u9-AUD" id="dZo-eY-E81"/>
-                                            <outlet property="plusButton" destination="9bt-0f-cFt" id="DMq-Yv-tOS"/>
                                         </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FakeCell" id="UwU-YL-O2b" customClass="OKFakeTableViewCell">
-                                        <rect key="frame" x="0.0" y="82" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UwU-YL-O2b" id="L0U-kf-Qib">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -3284,31 +3269,11 @@
                                     <outlet property="delegate" destination="VZB-o0-y25" id="uJK-vz-vDG"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" id="ZO4-AE-asR">
-                                <rect key="frame" x="0.0" y="510" width="320" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zwH-wA-8lV">
-                                        <rect key="frame" x="48" y="15" width="225" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Go To Users List">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goToUsersListTapped:" destination="VZB-o0-y25" eventType="touchUpInside" id="5fX-mG-JUm"/>
-                                            <action selector="shareButtonTapped:" destination="96q-aL-gMj" eventType="touchUpInside" id="o5B-Gh-QG7"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Select Case" id="h7t-mF-W5f"/>
                     <connections>
-                        <outlet property="goToListView" destination="ZO4-AE-asR" id="sZp-Cd-vG3"/>
-                        <outlet property="goToUserListButton" destination="zwH-wA-8lV" id="NKA-CP-2Pq"/>
                         <outlet property="tableView" destination="3XA-mW-FGv" id="WMM-R8-oSQ"/>
                         <segue destination="96q-aL-gMj" kind="push" identifier="goToUsersList" id="vNF-XH-Jvo"/>
                     </connections>
@@ -4068,7 +4033,6 @@
         <image name="logo.png" width="223" height="56"/>
         <image name="logoNB.png" width="130" height="33"/>
         <image name="plusGreenIcon.png" width="25" height="25"/>
-        <image name="plusWhiteIcon.png" width="25" height="25"/>
         <image name="redCross.png" width="25" height="25"/>
         <image name="register.png" width="56" height="23"/>
         <image name="right.png" width="20" height="20"/>

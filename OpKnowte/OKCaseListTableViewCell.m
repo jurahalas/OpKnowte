@@ -10,6 +10,7 @@
 
 @implementation OKCaseListTableViewCell
 
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -19,6 +20,7 @@
     return self;
 }
 
+
 -(void)awakeFromNib{
     UIImageView *cellIsSelected = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellActiveBG"]];
     
@@ -26,16 +28,15 @@
     self.selectedBackgroundView  = cellIsSelected;
     self.backgroundColor = [UIColor clearColor];
     
-    [self.plusButton setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-    self.buttonIsTapped = NO;
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
+
+
 -(void) setCellBGImageLight:(int) cellCount {
     UIImageView *cellBG = [[UIImageView alloc]init];
     if (cellCount%2 == 1) {
@@ -45,27 +46,6 @@
     }
     
     self.backgroundView = cellBG;
-}
-
-- (IBAction)plusButtonTapped:(id)sender
-{
-    if (!self.buttonIsTapped) {
-        [self setCellButtonBGImageWithGreenMinusIcon:YES];
-        [self.delegate addCaseToArray:self.caseModel];
-    } else {
-        [self setCellButtonBGImageWithGreenMinusIcon:NO];
-        [self.delegate deleteCaseFromArray:self.caseModel];
-    }
-}
-
-
--(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
-    if (minusIcon) {
-        [self.plusButton setImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
-    } else {
-        [self.plusButton setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
-    }
-    self.buttonIsTapped = minusIcon;
 }
 
 
