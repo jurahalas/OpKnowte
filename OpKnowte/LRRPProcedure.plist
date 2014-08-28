@@ -365,13 +365,10 @@
 				<key>items</key>
 				<array>
 					<string>None</string>
-					<string>Adhesions</string>
-					<string>Large prostate</string>
-					<string>Previous TUR</string>
-					<string>Obese</string>
-					<string>Blood loss</string>
-					<string>Bowel</string>
+					<string>Converted to open</string>
+					<string>Bowel injury</string>
 					<string>Rectal injury</string>
+					<string>Transfusion</string>
 				</array>
 			</dict>
 			<dict>

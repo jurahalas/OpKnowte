@@ -39,11 +39,12 @@
 //                           @"Male vs. Female",
                            @"BMI",
                            @"Blood Loss",
+                           @"Intra-Op Transfusion",
                            @"Room Time",
                            @"Console Time",
                            @"Adhesiolysis",
                            @"Bladder Neck Recon",
-
+                           @"Complications"
                            ];
 
     } else if ([_procID isEqualToString:@"2"]) {
@@ -1471,6 +1472,13 @@
         for(int i=0;i<self.surgeonCases.count;i++){
             
             NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
+            
+            
+            NSString *factors = [dic valueForKey:@"var_factors"];
+            
+            
+            
+            
             NSString *dob = [dic valueForKey:@"var_patientDOB"];
             // NSString *dos = [dic objectForKey:@"DateOfService"];
             float age = [self CalculateAge:dob];

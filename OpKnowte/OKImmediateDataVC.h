@@ -16,6 +16,10 @@
 @property (nonatomic) int totalSurgeonCount;
 @property (nonatomic) int totalNationalCount;
 
+
+@property
+
+
 @property (nonatomic, retain) NSMutableArray *selectedCases;
 @property (nonatomic, retain) NSMutableArray *surgeonCases;
 @property (nonatomic) int sumOfAges;

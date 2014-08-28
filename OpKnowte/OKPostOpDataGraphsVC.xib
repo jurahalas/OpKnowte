@@ -20,7 +20,17 @@
                 <outlet property="averageViewTitleLabel" destination="195" id="210"/>
                 <outlet property="bloodLossView" destination="154" id="168"/>
                 <outlet property="bloodView" destination="167" id="169"/>
-                <outlet property="compareButton" destination="m57-1O-bxx" id="OAH-FH-pp2"/>
+                <outlet property="comp_bowel" destination="89i-HW-eQz" id="Ksb-x1-cJh"/>
+                <outlet property="comp_compareButton" destination="ZLc-Sd-THF" id="RkM-tU-5H9"/>
+                <outlet property="comp_nationalDataView" destination="bow-C1-0yV" id="5Pj-E5-Rbk"/>
+                <outlet property="comp_none" destination="myx-39-v18" id="vdI-5H-JWc"/>
+                <outlet property="comp_open" destination="vFw-lx-CaN" id="nae-If-cqu"/>
+                <outlet property="comp_rectal" destination="pbj-OH-zdD" id="VcM-pf-4CP"/>
+                <outlet property="comp_removeButton" destination="4iE-TG-4T6" id="xoU-8g-yQK"/>
+                <outlet property="comp_sampleSize" destination="zFJ-iB-QoO" id="VFv-bo-eeI"/>
+                <outlet property="comp_transfusion" destination="O28-ad-bhL" id="xcn-br-jx1"/>
+                <outlet property="comp_view" destination="gGa-vj-gBd" id="kxb-iD-ZqS"/>
+                <outlet property="compareButton" destination="m57-1O-bxx" id="QiV-Z7-ctH"/>
                 <outlet property="cytoNoView" destination="91" id="186"/>
                 <outlet property="cytoStentView" destination="90" id="96"/>
                 <outlet property="cytoYesView" destination="92" id="97"/>
@@ -33,14 +43,20 @@
                 <outlet property="leftRightRenalView" destination="81" id="87"/>
                 <outlet property="maleFemaleView" destination="72" id="78"/>
                 <outlet property="maleView" destination="74" id="79"/>
-                <outlet property="nationalDataView" destination="2lZ-Kh-EQt" id="FCO-N0-Hb4"/>
+                <outlet property="nationalDataView" destination="2lZ-Kh-EQt" id="mdV-uV-3VV"/>
                 <outlet property="oneLabel" destination="205" id="207"/>
                 <outlet property="oneSurLabel" destination="218" id="221"/>
-                <outlet property="removeButton" destination="Xb6-I2-y5r" id="Gga-fc-eoy"/>
+                <outlet property="removeButton" destination="Xb6-I2-y5r" id="2oS-ha-xf3"/>
                 <outlet property="renalRSView" destination="134" id="139"/>
                 <outlet property="renalRSYesView" destination="135" id="140"/>
                 <outlet property="requiredView" destination="114" id="116"/>
                 <outlet property="rightRenalView" destination="86" id="89"/>
+                <outlet property="s_comp_bowel" destination="VnW-pn-m79" id="WxB-G1-jF6"/>
+                <outlet property="s_comp_none" destination="JlL-E9-El8" id="9Y6-nV-c0q"/>
+                <outlet property="s_comp_open" destination="qmj-f3-RSc" id="sqM-4I-ZZj"/>
+                <outlet property="s_comp_rectal" destination="CcQ-se-qHH" id="Vwf-OK-b6M"/>
+                <outlet property="s_comp_sampleSize" destination="bnW-QX-Feu" id="JYo-3e-eg2"/>
+                <outlet property="s_comp_transfusion" destination="xhD-hP-aKs" id="ND1-2A-UDB"/>
                 <outlet property="titleLabel" destination="137" id="141"/>
                 <outlet property="tumorSizeView" destination="170" id="184"/>
                 <outlet property="tumorView" destination="183" id="185"/>
@@ -883,6 +899,177 @@
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+        </view>
+        <view contentMode="scaleToFill" id="gGa-vj-gBd" userLabel="View-Complications">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Complications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jqg-Ge-BjQ">
+                    <rect key="frame" x="20" y="20" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="horizontalDevider.png" id="Z5Z-2E-Ndy">
+                    <rect key="frame" x="20" y="57" width="280" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Surgeon Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c4b-Rs-EWt">
+                    <rect key="frame" x="20" y="66" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bnW-QX-Feu">
+                    <rect key="frame" x="20" y="99" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T0 = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JlL-E9-El8" userLabel="Label - s_T0">
+                    <rect key="frame" x="20" y="122" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tx = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qmj-f3-RSc" userLabel="Label - Tx">
+                    <rect key="frame" x="20" y="145" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tx = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VnW-pn-m79" userLabel="Label - s_Tx">
+                    <rect key="frame" x="20" y="168" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tx = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CcQ-se-qHH" userLabel="Label - s_Tx">
+                    <rect key="frame" x="20" y="191" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T1 = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xhD-hP-aKs" userLabel="Label - T1">
+                    <rect key="frame" x="20" y="214" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="horizontalDevider.png" id="peg-JS-rip">
+                    <rect key="frame" x="20" y="250" width="280" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <view contentMode="scaleToFill" id="bow-C1-0yV">
+                    <rect key="frame" x="0.0" y="260" width="320" height="238"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="National Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="REk-Am-6Cm">
+                            <rect key="frame" x="20" y="0.0" width="280" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zFJ-iB-QoO">
+                            <rect key="frame" x="20" y="33" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T0 = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="myx-39-v18" userLabel="Label - T0">
+                            <rect key="frame" x="20" y="56" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T1b = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vFw-lx-CaN" userLabel="Label - T1b">
+                            <rect key="frame" x="20" y="79" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T1 = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="89i-HW-eQz" userLabel="Label - T1">
+                            <rect key="frame" x="20" y="102" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="T1 = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pbj-OH-zdD" userLabel="Label - T1">
+                            <rect key="frame" x="20" y="125" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tx = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O28-ad-bhL" userLabel="Label - s_Tx">
+                            <rect key="frame" x="20" y="148" width="280" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="horizontalDevider.png" id="66I-Ln-lSn">
+                            <rect key="frame" x="20" y="179" width="280" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4iE-TG-4T6">
+                            <rect key="frame" x="20" y="202" width="280" height="36"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                            <state key="normal" title="Remove">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                    <color key="value" red="0.89411764709999997" green="0.1333333333" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="14"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="compareButtonTapped:" destination="-1" eventType="touchUpInside" id="Csv-YP-vka"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZLc-Sd-THF">
+                    <rect key="frame" x="20" y="260" width="280" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                    <state key="normal" title="Compare National Averages">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                            <color key="value" red="0.89411764709999997" green="0.1333333333" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="14"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="compareButtonTapped:" destination="-1" eventType="touchUpInside" id="Ikr-as-FMC"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
         </view>
     </objects>
     <resources>

@@ -15,6 +15,25 @@
 @property (strong, nonatomic) IBOutlet UIButton *compareButton;
 @property (strong, nonatomic) IBOutlet UIButton *removeButton;
 
+@property (strong, nonatomic) IBOutlet UIButton *comp_compareButton;
+@property (strong, nonatomic) IBOutlet UIButton *comp_removeButton;
+@property (strong, nonatomic) IBOutlet UIView *comp_nationalDataView;
+
+@property (strong, nonatomic) IBOutlet UIView *comp_view;
+@property (strong, nonatomic) IBOutlet UILabel *s_comp_sampleSize;
+@property (strong, nonatomic) IBOutlet UILabel *s_comp_none;
+@property (strong, nonatomic) IBOutlet UILabel *s_comp_open;
+@property (strong, nonatomic) IBOutlet UILabel *s_comp_bowel;
+@property (strong, nonatomic) IBOutlet UILabel *s_comp_rectal;
+@property (strong, nonatomic) IBOutlet UILabel *s_comp_transfusion;
+
+@property (strong, nonatomic) IBOutlet UILabel *comp_sampleSize;
+@property (strong, nonatomic) IBOutlet UILabel *comp_none;
+@property (strong, nonatomic) IBOutlet UILabel *comp_open;
+@property (strong, nonatomic) IBOutlet UILabel *comp_bowel;
+@property (strong, nonatomic) IBOutlet UILabel *comp_rectal;
+@property (strong, nonatomic) IBOutlet UILabel *comp_transfusion;
+
 @end
 
 @implementation OKPostOpDataGraphsVC
@@ -58,6 +77,8 @@
 - (IBAction)compareButtonTapped:(id)sender {
     _nationalDataView.hidden = !_nationalDataView.hidden;
     _compareButton.hidden = !_compareButton.hidden;
+    _comp_nationalDataView.hidden = !_comp_nationalDataView.hidden;
+    _comp_compareButton.hidden = !_comp_compareButton.hidden;
 }
 
 
@@ -69,6 +90,7 @@
     
     self.navigationItem.title = @"Post-Op Data";
     _nationalDataView.hidden = YES;
+    _comp_nationalDataView.hidden = YES;
     if([self.graphToDraw isEqualToString:@"AverageAge"]){
         [self drawAverageAgeGraph];
     }else if([self.graphToDraw isEqualToString:@"DeepMargins"]){
@@ -152,7 +174,58 @@
 }
 
 
--(void)drawAverageAgeGraph{
+-(void) drawComplications {
+ //   averageViewTitleLabel.text = @"Average Age";
+//    oneLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",averageAge,minAge,maxAge];
+    
+//    oneSurLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",sur_averageAge,sur_minAge,sur_maxAge];
+    [self.comp_sampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+    [self.s_comp_sampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+    
+    [self.s_comp_none setText:[NSString stringWithFormat:@"None - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_none"]]];
+    [self.s_comp_open setText:[NSString stringWithFormat:@"Converted to open - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_open"]]];
+    [self.s_comp_bowel setText:[NSString stringWithFormat:@"Bowel injury - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_bowel"]]];
+    [self.s_comp_rectal setText:[NSString stringWithFormat:@"Rectal injury - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_rectal"]]];
+    [self.s_comp_transfusion setText:[NSString stringWithFormat:@"Transfusion - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_transfusion"]]];
+
+    [self.comp_none setText:[NSString stringWithFormat:@"None - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_none"]]];
+    [self.comp_open setText:[NSString stringWithFormat:@"Converted to open - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_open"]]];
+    [self.comp_bowel setText:[NSString stringWithFormat:@"Bowel injury - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_bowel"]]];
+    [self.comp_rectal setText:[NSString stringWithFormat:@"Rectal injury - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_rectal"]]];
+    [self.comp_transfusion setText:[NSString stringWithFormat:@"Transfusion - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_transfusion"]]];
+
+    
+//    [twoLabel setHidden:YES];
+//    [twoSurLabel setHidden:YES];
+    
+//    [self.NationalSampleSize setFrame:CGRectMake(self.NationalSampleSize.frame.origin.x, self.NationalSampleSize.frame.origin.y-27, self.NationalSampleSize.frame.size.width, self.NationalSampleSize.frame.size.height)];
+//    [self.SurgeonSampleSize setFrame:CGRectMake(self.SurgeonSampleSize.frame.origin.x, self.SurgeonSampleSize.frame.origin.y-27, self.SurgeonSampleSize.frame.size.width, self.SurgeonSampleSize.frame.size.height)];
+//    
+//    if (!self.isNationalData) {
+//        [self.oneSurLabel setHidden:YES];
+//        [self.twoSurLabel setHidden:YES];
+//        [self.Surgeon setHidden:YES];
+//    }
+//    
+//    if (IS_IPHONE_5) {
+//        
+//        CGRect frame = self.averageView.frame;
+//        frame.origin.y = 57;
+//        [self.averageView setFrame:frame];
+//        
+//    }else{
+//        CGRect frame = self.averageView.frame;
+//        frame.origin.y = 45;
+//        [self.averageView setFrame:frame];
+//    }
+    [self.view addSubview:self.comp_view];
+    
+}
+
+
+
+
+-(void)drawAverageAgeGraph {
     
     averageViewTitleLabel.text = @"Average Age";
     oneLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",averageAge,minAge,maxAge];

@@ -11,6 +11,16 @@
 @interface OKPostOpDataGraphsVC : OKBaseViewController
 
 {}
+
+@property (nonatomic) NSMutableDictionary * comp_dictionary;
+
+
+
+
+
+
+
+
 @property (nonatomic)int averageAge;
 @property (nonatomic)int dmPositive;
 @property (nonatomic)int malePercentage;
