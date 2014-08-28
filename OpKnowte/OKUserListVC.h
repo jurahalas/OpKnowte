@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "OKAppDelegate.h"
 
-@interface OKUserListVC : OKBaseViewController <UITableViewDelegate,UITableViewDataSource>
+@interface OKUserListVC : OKBaseViewController <UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate>
 
 @end

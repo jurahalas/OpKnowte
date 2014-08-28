@@ -372,7 +372,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-                                <rect key="frame" x="0.0" y="21.000002613125226" width="320" height="487"/>
+                                <rect key="frame" x="0.0" y="21" width="320" height="487"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -3110,7 +3110,7 @@
             </objects>
             <point key="canvasLocation" x="2411" y="-1480"/>
         </scene>
-        <!--User ListVC-->
+        <!--User ListVC - Users List-->
         <scene sceneID="1yT-FS-3K4">
             <objects>
                 <viewController id="96q-aL-gMj" customClass="OKUserListVC" sceneMemberID="viewController">
@@ -3118,8 +3118,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="rgc-aU-8MZ">
+                                <rect key="frame" x="0.0" y="70" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search..." minimumFontSize="17" id="9UA-er-vu2" customClass="OKCustomTextField">
+                                        <rect key="frame" x="35" y="10" width="250" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="96q-aL-gMj" id="LpD-6L-HOf"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="lM9-FS-2Ta">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="120" width="320" height="450"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3169,7 +3185,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="0ob-7W-jCm">
-                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="510" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SIG-p7-9BC">
@@ -3188,8 +3204,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YU8-vg-k9V"/>
+                    <navigationItem key="navigationItem" title="Users List" id="YU8-vg-k9V"/>
                     <connections>
+                        <outlet property="searchTextField" destination="9UA-er-vu2" id="qp5-Jp-IA4"/>
+                        <outlet property="searchTextFieldView" destination="rgc-aU-8MZ" id="XhC-zg-mZ4"/>
                         <outlet property="shareButton" destination="SIG-p7-9BC" id="Fgw-Ec-7jg"/>
                         <outlet property="shareButtonView" destination="0ob-7W-jCm" id="gDU-EN-fZ3"/>
                         <outlet property="tableView" destination="lM9-FS-2Ta" id="Z3Y-gr-9d3"/>

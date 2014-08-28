@@ -76,6 +76,8 @@
         textFieldImage = [UIImage imageNamed:@"degree"];
     }else if ([placeholder isEqualToString:@"State"]){
         textFieldImage = nil;
+    } else if ([placeholder isEqualToString:@"Search..."]){
+        textFieldImage =nil;
     }    else {
         textFieldImage = [UIImage imageNamed:@"password"];
     }
@@ -85,7 +87,7 @@
     textFieldIcon.image = textFieldImage;
     
     UIView *textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
-    if ([placeholder isEqualToString:@"State"])
+    if ([placeholder isEqualToString:@"State"] || [placeholder isEqualToString:@"Search..."])
         textFieldIconView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     textFieldIconView.backgroundColor = [UIColor clearColor];
     [textFieldIconView addSubview:textFieldIcon];

@@ -12,9 +12,11 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
+@property (nonatomic) BOOL buttonIsTapped;
 
 - (IBAction)plusButtonTapped:(id)sender;
 
 -(void) setCellBGImageLight:(int) cellCount;
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon;
 
 @end

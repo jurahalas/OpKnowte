@@ -25,6 +25,9 @@
     self.contentView.backgroundColor = [UIColor clearColor];
     self.selectedBackgroundView  = cellIsSelected;
     self.backgroundColor = [UIColor clearColor];
+
+    [self.plusButton setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
+    self.buttonIsTapped = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -46,9 +49,24 @@
 
 - (IBAction)plusButtonTapped:(id)sender
 {
-    
+    if (!self.buttonIsTapped) {
+        [self setCellButtonBGImageWithGreenMinusIcon:YES];
+ //       [self.delegate addContactToList:self.contactModel];
+    } else {
+        [self setCellButtonBGImageWithGreenMinusIcon:NO];
+ //       [self.delegate deleteContactFromList:self.contactModel];
+    }
 }
 
+
+-(void) setCellButtonBGImageWithGreenMinusIcon:(BOOL) minusIcon{
+    if (minusIcon) {
+        [self.plusButton setImage:[UIImage imageNamed:@"minusGreenIcon"] forState:UIControlStateNormal];
+    } else {
+        [self.plusButton setImage:[UIImage imageNamed:@"plusWhiteIcon"] forState:UIControlStateNormal];
+    }
+    self.buttonIsTapped = minusIcon;
+}
 
 
 @end
