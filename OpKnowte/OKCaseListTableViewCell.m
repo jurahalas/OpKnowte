@@ -51,10 +51,10 @@
 {
     if (!self.buttonIsTapped) {
         [self setCellButtonBGImageWithGreenMinusIcon:YES];
-        //       [self.delegate addContactToList:self.contactModel];
+        [self.delegate addCaseToArray:self.caseModel];
     } else {
         [self setCellButtonBGImageWithGreenMinusIcon:NO];
-        //       [self.delegate deleteContactFromList:self.contactModel];
+        [self.delegate deleteCaseFromArray:self.caseModel];
     }
 }
 

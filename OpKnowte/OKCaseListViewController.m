@@ -16,8 +16,9 @@
 #import "OKProcedureModel.h"
 #import "OKTemplateManager.h"
 #import "OKSelectTimePointViewController.h"
+#import "OKUserListVC.h"
 
-@interface OKCaseListViewController ()<UITableViewDelegate , UITableViewDataSource>
+@interface OKCaseListViewController ()<UITableViewDelegate, UITableViewDataSource, OKCaseDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIView *goToListView;
@@ -25,6 +26,7 @@
 - (IBAction)goToUsersListTapped:(id)sender;
 
 @property (strong, nonatomic) NSArray *cases;
+@property (strong, nonatomic) NSMutableArray *caseArray;
 
 @end
 
@@ -35,13 +37,14 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, (self.tableView.frame.size.height - 57.f));
-    [self addBottomTabBar];
     [self setupData];
     [self addLeftButtonToNavbar];
 
+    self.goToListView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     self.goToUserListButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
     self.goToUserListButton.layer.cornerRadius = 14;
+    
+    self.caseArray = [[NSMutableArray alloc]init];
 }
 
 
@@ -87,7 +90,7 @@
 #pragma mark Table View datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.cases.count;
+    return self.cases.count +1;
 }
 
 
@@ -100,56 +103,65 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"selectCase";
-    OKCaseListTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    OKCaseListTableViewCell *cell =[[OKCaseListTableViewCell alloc]init];
+    static NSString *FakeCellIdentifier = @"FakeCell";
+    OKFakeTableViewCell *FakeCell = [[OKFakeTableViewCell alloc] init];
     
-    OKCase *selCase = self.cases[indexPath.row];
-
-    cell.textLabel.text = selCase.patientName;
-    cell.dataLable.text = selCase.dateOfServiceString;
-    [cell setCellBGImageLight:indexPath.row];
-    return cell;
-}
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-//        [[OKLoadingViewController instance]showWithText:@"Loading"];
-//        [[OKUserManager instance] updateDataSharingSettingsWithProcID:self.procID userID:[OKUserManager instance].currentUser.identifier isSharing:@"no" handler:^(NSString* error){
-//            [[OKLoadingViewController instance]hide];
-//            OKCase *selCase = self.cases[indexPath.row];
-//            [OKCaseManager instance].selectedCase = selCase;
-//            _followUp = selCase.followup;
-//            _stonesCount = selCase.stonesCount;
-//        }];
+    if (indexPath.row < self.cases.count) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        cell.delegate = self;
+        OKCase *selCase = self.cases[indexPath.row];
+        cell.caseModel = selCase;
+        cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];
+        [cell setCellBGImageLight:indexPath.row];
+        return cell;
+    } else {
+        FakeCell = [tableView dequeueReusableCellWithIdentifier:FakeCellIdentifier forIndexPath:indexPath];
+        return FakeCell;
+    }
 }
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([_procID isEqualToString:@"9"] && [segue.identifier isEqualToString:@"fromCasesToReminder"]) {
-        OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
-        timePoint.procID = _procID;
-    }else{
-        if([segue.identifier isEqualToString:@"fromCasesToReminder"]){
-            OKCaseListViewController *caseVC = (OKCaseListViewController*)segue.destinationViewController;
-            caseVC.procID = _procID;
-            caseVC.detailID = _detailID;
-        }else if ([segue.identifier isEqualToString:@"selectTimepoint"]){
-            OKSelectTimePointViewController *timePoint = (OKSelectTimePointViewController*)segue.destinationViewController;
-            timePoint.procID = _procID;
-            timePoint.followUp = _followUp;
-            timePoint.stonesCount = _stonesCount;
-        }
+    if ([segue.identifier isEqualToString:@"goToUsersList"]) {
+        OKUserListVC *usersVC = (OKUserListVC*)segue.destinationViewController;
+        usersVC.procID = self.procID;
+        usersVC.detailsArray = self.caseArray;
     }
 }
 
+
+- (IBAction)goToUsersListTapped:(id)sender
+{
+    if (self.caseArray.count == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"You must choose at least one case" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        [self performSegueWithIdentifier:@"goToUsersList" sender:nil];
+    }
+}
+
+
+-(void)addCaseToArray:(OKCase *)contact
+{
+    [self.caseArray addObject:contact.caseID];
+}
+
+
+-(void)deleteCaseFromArray:(OKCase *)contact
+{
+    for (int i = 0; i<self.caseArray.count; i++) {
+        if ([[self.caseArray objectAtIndex:i]isEqualToString:contact.caseID]) {
+            [self.caseArray removeObjectAtIndex:i];
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)goToUsersListTapped:(id)sender {
-}
+
 @end

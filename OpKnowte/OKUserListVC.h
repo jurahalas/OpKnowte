@@ -11,4 +11,9 @@
 
 @interface OKUserListVC : OKBaseViewController <UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate>
 
+@property(strong, nonatomic) NSString *procID;
+@property(strong, nonatomic) NSString *detailID;
+
+@property (strong, nonatomic) NSMutableArray *detailsArray;
+
 @end

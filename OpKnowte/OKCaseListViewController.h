@@ -11,14 +11,8 @@
 
 @interface OKCaseListViewController : OKBaseViewController
 
-@property (nonatomic) BOOL isReminderSetting;
-@property (nonatomic) BOOL fromSettings;
-
 @property(strong, nonatomic) NSString *procID;
 @property(strong, nonatomic) NSString *detailID;
-@property(strong, nonatomic) NSString *cameFromVC;
-@property(strong, nonatomic) NSString *followUp;
-@property(strong, nonatomic) NSString *stonesCount;
 
 
 @end

@@ -59,7 +59,7 @@
     self.drainplaced = [dictionary objectForKey:@"drainplaced"];
     self.followup = [dictionary objectForKey:@"FollowUp"];
     self.gender = [dictionary objectForKey:@"gender"];
-    self.caseID = [dictionary objectForKey:@"id"];
+    self.caseID = [dictionary objectForKey:@"DetailID"];
     self.leftdistal = [dictionary objectForKey:@"leftdistal"];
     self.leftproximal = [dictionary objectForKey:@"leftproximal"];
     self.mrNumber = [dictionary objectForKey:@"mrNumber"];
