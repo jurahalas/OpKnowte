@@ -202,14 +202,14 @@
     
     [dict setObject:@"continence" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"not actively seeking recovery", @"no erections", @"25% erections", @"50% erections", @"75% erections", @"erections suff. with PDE-5 inh.", @"erections suff. without PDE-5 inh."] forKey:@"items"];
+    [dict setObject:@[@"0 pads", @"1 pad", @"2 pads", @"3 pads", @">3 pads"] forKey:@"items"];
     [dict setObject:@"Continence" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
     [dict setObject:@"erectileFunction" forKey:@"name"];
     [dict setObject:@"picker" forKey:@"type"];
-    [dict setObject:@[@"0", @"safety pad", @"1 pad", @"2 pad", @"3pad", @">3pads"] forKey:@"items"];
+    [dict setObject:@[@"not actively seeking recovery", @"no erections", @"25% erections", @"50% erections", @"75% erections", @"erections suff. with PDE-5 inh.", @"erections suff. without PDE-5 inh."] forKey:@"items"];
     [dict setObject:@"Erectile function" forKey:@"placeholder"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
@@ -235,6 +235,21 @@
     [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
+    
+    //
+    
+    [dict setObject:@"aua" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"AUA" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"shim" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"SHIM" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
 }
 
 

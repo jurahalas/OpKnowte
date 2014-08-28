@@ -9,6 +9,7 @@
 #import "OKBaseViewController.h"
 @interface OKFollowUpDataCompareVC : OKBaseViewController
 
+@property (strong, nonatomic) IBOutlet UILabel *tumorCharacteristicsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *TMNStagingLabel;
 @property (strong, nonatomic) IBOutlet UILabel *CTScanLabel;
 
