@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UIButton *plusButton;
+@property (strong, nonatomic) IBOutlet UILabel *emaillabel;
 @property (nonatomic) BOOL buttonIsTapped;
 
 - (IBAction)plusButtonTapped:(id)sender;

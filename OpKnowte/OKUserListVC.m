@@ -45,6 +45,7 @@
     self.searchTextFieldView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"segmentControllBG.png"]];
     [self.searchTextField setCustomTextFieldPlaceholder:@"Search..." Secured:NO DownArrow:NO];
     self.keyword = @"";
+    [[OKLoadingViewController instance]showWithText:@"Loading..."];
     [[OKUserManager instance]searchUserByKeyword:@"" AndPage:@"1" Count:@"1" handler:^(NSString *errorMsg, NSMutableArray *users){
         if (!errorMsg) {
             self.usersArray = users;
@@ -112,6 +113,7 @@
         NSString *number = [NSString stringWithFormat:@"%i",indexPath.row];
         
         cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@",[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"FIRSTNAME"],[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"LASTNAME"],[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"TITLE"]];;
+        cell.emaillabel.text = [NSString stringWithFormat:@"%@",[[self.usersArray valueForKey:number]valueForKey:@"EMAILADDRESS"]];
         [cell setCellBGImageLight:indexPath.row];
         
         return cell;
@@ -153,9 +155,8 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    
     self.keyword = self.searchTextField.text;
-    
+    [[OKLoadingViewController instance]showWithText:@"Loading..."];
     [[OKUserManager instance]searchUserByKeyword:self.keyword AndPage:@"1" Count:@"1" handler:^(NSString *errorMsg, NSMutableArray *users){
         if (!errorMsg) {
             self.usersArray = users;
