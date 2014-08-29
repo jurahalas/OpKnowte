@@ -1067,14 +1067,18 @@
             frame.origin.y = 45;
             [self.xrayGraph setFrame:frame];
         }
-        _XRayLabel.text = @"Positive Margin";
+        _XRayLabel.text = @"Bladder Neck Contracture";
         [self.XRNationalSampleSize setText:[NSString stringWithFormat:@"(N = %i)",self.NationalSize]];
         [self.XRSurgeonSampleSize setText:[NSString stringWithFormat:@"(N = %i)",self.SurgeonSize]];
         
         [self.xrayNegativeView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.xrayNegative]];
-        [self.xrayPositiveView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.xrayPositive]];
-        [self.s_xrayNegativeView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.s_xrayNegative]];
-        [self.s_xrayPositiveView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_xrayPositive]];
+        self.xrayNegativeView.hidden = YES;
+        [self.xrayPositiveView setText:[NSString stringWithFormat:@"Bladder Neck Contracture = %.0f %%",self.xrayPositive]];
+        
+        
+        [self.s_xrayNegativeView setText:[NSString stringWithFormat:@"NO= %.0f %%",self.s_xrayNegative]];
+        self.s_xrayNegativeView.hidden = YES;
+        [self.s_xrayPositiveView setText:[NSString stringWithFormat:@"Bladder Neck Contracture = %.0f %%",self.s_xrayPositive]];
         //[self.view addSubview:self.xrayGraph];
         
         _scrollView.contentSize = self.xrayGraph.bounds.size;
