@@ -25,6 +25,8 @@
 #import "OKIntraOperativeDataViewController.h"
 #import "OKFollowUpDataVC.h"
 
+#import "OKCaseListViewController.h"
+
 
 @interface OKSelectProcedureViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *selectProcedureTableView;
@@ -192,7 +194,7 @@
         sharVC.procID = sender;
         
     } else if ([segue.identifier isEqualToString:@"fromSelectProcToAccessSettings"]){
-       OKAccessConfirmViewController *sharVC = (OKAccessConfirmViewController*)segue.destinationViewController;
+       OKCaseListViewController *sharVC = (OKCaseListViewController*)segue.destinationViewController;
         sharVC.procID = sender;
         
     }  else if ([segue.identifier isEqualToString:@"fromSelectProcToEditTemplate"]){

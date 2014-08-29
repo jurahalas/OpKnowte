@@ -178,4 +178,37 @@
 }
 
 
+-(void)searchUserByKeyword:(NSString*)keyword AndPage:(NSString*)page Count:(NSString*)count handler:(void (^)(NSString *errorMsg, NSMutableArray *users))handler
+{
+    NSString *url = [NSString stringWithFormat:@"getPaginatedUserByKeyword?keyword=%@&page=%@&count=%@",keyword,page,count];
+    [self requestWithMethod:@"GET" path:url params:nil handler:^(NSError *error, id json){
+        NSLog(@"%@",json);
+        handler ([self getErrorMessageFromJSON:json error:error],json);
+    }];
+}
+
+
+-(void)shareProcedureWithCaseID:(NSString*)caseID andProcedureID:(NSString*)procID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"caseID":caseID,
+                             @"procedureID":procID,
+                             @"userIDs":usersIDs};
+    [self requestWithMethod:@"POST" path:@"shareProcedure" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+    }];
+}
+
+
+-(void)unshareProcedureWithCaseID:(NSString*)caseID andProcedureID:(NSString*)procID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"caseID":caseID,
+                             @"procedureID":procID,
+                             @"userIDs":usersIDs};
+    [self requestWithMethod:@"POST" path:@"unshareProcedure" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+    }];
+}
+
 @end

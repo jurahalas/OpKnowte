@@ -78,6 +78,8 @@
 @property (nonatomic, strong) NSString *surgeonID;
 @property (nonatomic, strong) NSString *volumeofirrigation;
 
+@property (nonatomic, strong) NSString *usersID;
+
 -(NSString*)dateOfServiceString;
 
 @end
