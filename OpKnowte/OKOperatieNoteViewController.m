@@ -520,7 +520,16 @@
         OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
         caseDataObject.key = variableModel.key;
         caseDataObject.value = variableValue;
-        [_caseDataArray addObject:caseDataObject];
+        
+        [self.caseDataArray addObject:caseDataObject];
+
+        
+//        NSMutableArray *caseData = [[NSMutableArray alloc]init];
+//        [caseData addObject:caseDataObject];
+        
+        
+//       if([[caseData objectAtIndex:indexPath.row] valueForKey:@"key"] isEqualToString:[self.caseDataArray objectAtIndex:inde])
+
         
         [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
         [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
@@ -535,6 +544,24 @@
     }
 }
 - (IBAction)saveButtonTapped:(id)sender {
+    
+    NSMutableSet * mySet = [[NSMutableSet alloc]initWithArray:self.caseDataArray ];
+    self.caseDataArray = nil;
+    self.caseDataArray = [[NSMutableArray alloc]initWithArray:[mySet allObjects]];
+    NSMutableSet * newSet = [[NSMutableSet alloc]initWithArray:self.caseDataArray ];
+    self.caseDataArray = nil;
+    self.caseDataArray = [[NSMutableArray alloc]initWithArray:[newSet allObjects]];
+    
+//  if(self.procedureID == 1)
+//    NSMutableArray *caseData = [[NSMutableArray alloc]init];
+//
+//    for(int i = 0; i<=self.caseDataArray.count; i++){
+//        if(caseData.count ==0 || ![caseData containsObject:self.caseDataArray]){
+//            [caseData addObject:[self.caseDataArray objectAtIndex:i]];
+//        }
+//    }
+//    self.caseDataArray = caseData;
+    
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     OKProceduresManager *proceduresManager = [OKProceduresManager instance];
     

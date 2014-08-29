@@ -445,11 +445,13 @@
                 NSString *right = [NSString stringWithFormat:@"%@",[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"]];
                 if ([right isEqualToString:@"Right renal mass"]) {
                     right = @"Right";
+                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
+                    body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, newValue ];
                 } else {
                     right = @"Left";
+                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
+                    body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, newValue ];
                 }
-                NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, newValue ];
             } else {
                 body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
             }
