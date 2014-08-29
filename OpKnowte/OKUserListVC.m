@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSString *keyword;
 @property (assign, nonatomic) int numberPages;
 @property (strong, nonatomic) NSMutableArray *userIDSArray;
+@property (strong, nonatomic) NSMutableArray *deleteUsersIDs;
 
 - (IBAction)shareButtonTapped:(id)sender;
 
@@ -40,6 +41,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.userIDSArray = [[NSMutableArray alloc]init];
+    self.deleteUsersIDs = [[NSMutableArray alloc]init];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.shareButtonView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"gradientBG"]];
     self.shareButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
@@ -119,6 +121,13 @@
         cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@, %@",[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"FIRSTNAME"],[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"LASTNAME"],[[self.usersArray valueForKeyPath:number] valueForKeyPath:@"TITLE"]];;
         cell.emaillabel.text = [NSString stringWithFormat:@"%@",[[self.usersArray valueForKey:number]valueForKey:@"EMAILADDRESS"]];
         [cell setCellBGImageLight:indexPath.row];
+// need update from api side to finish
+//        if(self.usersArray){
+//            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+//            [self.userIDSArray addObject:[[self.usersArray valueForKey:number]valueForKey:@"USERID"]];
+//        } else {
+//            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
+//        }
         
         return cell;
     } else{
@@ -180,6 +189,11 @@
 
 -(void)addUserToArray:(NSString *)userID
 {
+    for(int i = 0; i<self.deleteUsersIDs.count;i++){
+        if([[self.deleteUsersIDs objectAtIndex:i]isEqualToString:userID]){
+            [self.deleteUsersIDs removeObjectAtIndex:i];
+        }
+    }
     [self.userIDSArray addObject:userID];
 }
 
@@ -188,6 +202,7 @@
 {
     for (int i = 0; i<self.userIDSArray.count; i++) {
         if ([[self.userIDSArray objectAtIndex:i]isEqualToString:userID]) {
+            [self.deleteUsersIDs addObject:[self.userIDSArray objectAtIndex:i]];
             [self.userIDSArray removeObjectAtIndex:i];
         }
     }
