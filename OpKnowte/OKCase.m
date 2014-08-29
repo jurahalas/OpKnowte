@@ -74,6 +74,7 @@
     self.surgeonID = [dictionary objectForKey:@"surgeonID"];
     self.volumeofirrigation = [dictionary objectForKey:@"volumeofirrigation"];
     self.stonesCount = [dictionary objectForKey:@"Stones_Count"];
+    self.usersID = [dictionary objectForKey:@"usersId"];
 }
 
 

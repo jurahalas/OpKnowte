@@ -29,6 +29,7 @@
 @property (assign, nonatomic) int numberPages;
 @property (strong, nonatomic) NSMutableArray *userIDSArray;
 @property (strong, nonatomic) NSMutableArray *deleteUsersIDs;
+@property (strong, nonatomic) NSMutableArray *selectedUsers;
 
 - (IBAction)shareButtonTapped:(id)sender;
 
@@ -122,12 +123,12 @@
         cell.emaillabel.text = [NSString stringWithFormat:@"%@",[[self.usersArray valueForKey:number]valueForKey:@"EMAILADDRESS"]];
         [cell setCellBGImageLight:indexPath.row];
 // need update from api side to finish
-//        if(self.usersArray){
-//            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
-//            [self.userIDSArray addObject:[[self.usersArray valueForKey:number]valueForKey:@"USERID"]];
-//        } else {
-//            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
-//        }
+        if( [self.shareUsersIDs containsObject:[[self.usersArray valueForKey:number]valueForKey:@"USERID"]]){
+            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+            [self.userIDSArray addObject:[[self.usersArray valueForKey:number]valueForKey:@"USERID"]];
+        } else {
+            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
+        }
         
         return cell;
     } else{
@@ -194,6 +195,7 @@
             [self.deleteUsersIDs removeObjectAtIndex:i];
         }
     }
+
     [self.userIDSArray addObject:userID];
 }
 
@@ -218,13 +220,28 @@
 - (IBAction)shareButtonTapped:(id)sender
 {
     NSString * userIDs = [self.userIDSArray componentsJoinedByString:@","];
-    [[OKUserManager instance]shareProcedureWithCaseID:self.caseID andUsersIDs:userIDs handler:^(NSString* error){
+    [[OKUserManager instance]shareProcedureWithCaseID:self.caseID andProcedureID:self.procID andUsersIDs:userIDs handler:^(NSString* error){
         if(error){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
+        } else {
+            if (self.deleteUsersIDs.count != 0) {
+                NSString * deleteUsersIDs = [self.deleteUsersIDs componentsJoinedByString:@","];
+                [[OKUserManager instance]unshareProcedureWithCaseID:self.caseID andProcedureID:self.procID andUsersIDs:deleteUsersIDs handler:^(NSString* error){
+                    if(error){
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        [alert show];
+                    } else {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Case was update successfully" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        [alert show];
+                    }
+                }];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Case was update successfully" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alert show];
+            }
         }
     }];
-    NSLog(@"Share Button Tapped");
 }
 
 

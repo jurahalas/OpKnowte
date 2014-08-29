@@ -188,9 +188,10 @@
 }
 
 
--(void)shareProcedureWithCaseID:(NSString*)caseID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler
+-(void)shareProcedureWithCaseID:(NSString*)caseID andProcedureID:(NSString*)procID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler
 {
     NSDictionary *params = @{@"caseID":caseID,
+                             @"procedureID":procID,
                              @"userIDs":usersIDs};
     [self requestWithMethod:@"POST" path:@"shareProcedure" params:params handler:^(NSError *error, id json) {
         handler([self getErrorMessageFromJSON:json error:error]);
@@ -198,5 +199,16 @@
     }];
 }
 
+
+-(void)unshareProcedureWithCaseID:(NSString*)caseID andProcedureID:(NSString*)procID andUsersIDs:(NSString*)usersIDs handler:(void(^)(NSString *errorMsg))handler
+{
+    NSDictionary *params = @{@"caseID":caseID,
+                             @"procedureID":procID,
+                             @"userIDs":usersIDs};
+    [self requestWithMethod:@"POST" path:@"unshareProcedure" params:params handler:^(NSError *error, id json) {
+        handler([self getErrorMessageFromJSON:json error:error]);
+        NSLog(@"%@",json);
+    }];
+}
 
 @end

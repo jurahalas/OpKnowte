@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSArray *cases;
 @property (strong, nonatomic) NSString *caseID;
+@property (strong, nonatomic) NSMutableArray * usersIDsArray;
 
 @end
 
@@ -38,6 +39,7 @@
     [self addLeftButtonToNavbar];
     [self addBottomTabBar];
     self.caseID = [[NSString alloc]init];
+    self.usersIDsArray = [[NSMutableArray alloc]init];
 }
 
 
@@ -57,6 +59,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setupData];
 }
 
 
@@ -99,7 +102,11 @@
     OKCaseListTableViewCell *cell =[[OKCaseListTableViewCell alloc]init];
     cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     OKCase *selCase = self.cases[indexPath.row];
-    cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];
+    if ([_procID isEqualToString:@"9"]) {
+        cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientNameNineProc];;
+    } else {
+        cell.caseName.text = [NSString stringWithFormat:@"%i. %@",indexPath.row+1, selCase.patientName];
+    }
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
@@ -109,6 +116,8 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     OKCase *selCase = self.cases[indexPath.row];
+    NSString *usersID = selCase.usersID;
+    self.usersIDsArray = [usersID componentsSeparatedByString:@","];
     self.caseID = selCase.caseID;
     [self performSegueWithIdentifier:@"goToUsersList" sender:nil];
 }
@@ -120,6 +129,8 @@
         OKUserListVC *usersVC = (OKUserListVC*)segue.destinationViewController;
         usersVC.procID = self.procID;
         usersVC.caseID = self.caseID;
+        usersVC.shareUsersIDs = [[NSMutableArray alloc]init];
+        usersVC.shareUsersIDs = self.usersIDsArray;
     }
 }
 
