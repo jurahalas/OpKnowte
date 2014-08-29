@@ -45,6 +45,8 @@ enum OKProcedureSummaryDetailPeriod
 @property (nonatomic, strong) NSString *positiveMargin;
 @property (nonatomic, strong) NSString *cystogram;
 @property (nonatomic, strong) NSString *lengthOfStay;
+@property (nonatomic, strong) NSString *aua;
+@property (nonatomic, strong) NSString *shim;
 
 //penile
 @property (nonatomic, strong) NSString *averageCyclingTime;

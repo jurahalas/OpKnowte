@@ -235,6 +235,21 @@
     [dict setObject:@"yes" forKey:@"depends"];
     [self addCustomElement:dict];
     [dict removeAllObjects];
+    
+    //
+    
+    [dict setObject:@"aua" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"AUA" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    [dict setObject:@"shim" forKey:@"name"];
+    [dict setObject:@"numericTextField" forKey:@"type"];
+    [dict setObject:@"SHIM" forKey:@"placeholder"];
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+
 }
 
 
