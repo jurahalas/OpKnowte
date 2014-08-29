@@ -17,7 +17,7 @@
 @property (nonatomic) int totalNationalCount;
 
 
-@property
+@property (nonatomic) NSMutableDictionary * comp_dictionary;
 
 
 @property (nonatomic, retain) NSMutableArray *selectedCases;

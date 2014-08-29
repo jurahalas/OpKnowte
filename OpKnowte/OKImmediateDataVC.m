@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.comp_dictionary = [[NSMutableDictionary alloc] init];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     if ([_procID isEqualToString:@"1"]) {
@@ -39,7 +40,7 @@
 //                           @"Male vs. Female",
                            @"BMI",
                            @"Blood Loss",
-                           @"Intra-Op Transfusion",
+   //                        @"Intra-Op Transfusion",
                            @"Room Time",
                            @"Console Time",
                            @"Adhesiolysis",
@@ -208,6 +209,175 @@
     }
     return self;
 }
+
+-(void)Complications{
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"Complications";
+//    if (!self.selectedCases.count) {
+//
+//    }else {
+//        if(sumOfAges<=0)
+//            sumOfAges = 100;
+//        controller.averageAge = sumOfAges/self.selectedCases.count;
+//        controller.maxAge = maxAge;
+//        controller.minAge = minAge;
+//        
+//    }
+//    
+//    
+//    if (!self.isNationalData) {
+//        
+//        if(!self.surgeonCases.count){
+//            if(sur_sumOfAges<=0)
+//                sur_sumOfAges = 100;
+//            controller.sur_averageAge = 0;
+//            controller.sur_maxAge = 0;
+//            controller.sur_minAge = 0;
+//            controller.isNationalData = YES;
+//        }else{
+//            if(sur_sumOfAges<=0)
+//                sur_sumOfAges = 100;
+//            controller.sur_averageAge = sur_sumOfAges/self.surgeonCases.count;
+//            controller.sur_maxAge = sur_maxAge;
+//            controller.sur_minAge = sur_minAge;
+//            controller.isNationalData = YES;
+//        }
+//        
+//        
+//        
+//    }
+    controller.comp_dictionary = [[NSMutableDictionary alloc] init];
+
+    if ([self.comp_dictionary valueForKey:@"comp_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.comp_dictionary valueForKey:@"comp_none"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_none"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_none"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_none"];
+        }
+        if ([self.comp_dictionary valueForKey:@"comp_open"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_open"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_open"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_open"];
+        }
+        if ([self.comp_dictionary valueForKey:@"comp_bowel"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_bowel"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_bowel"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_bowel"];
+        }
+        if ([self.comp_dictionary valueForKey:@"comp_rectal"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_rectal"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_rectal"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_rectal"];
+        }
+        if ([self.comp_dictionary valueForKey:@"comp_transfusion"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_transfusion"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_transfusion"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"comp_transfusion"];
+        }
+    }
+    if ([self.comp_dictionary valueForKey:@"s_comp_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.comp_dictionary valueForKey:@"s_comp_none"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_none"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_none"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_none"];
+        }
+        if ([self.comp_dictionary valueForKey:@"s_comp_open"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_open"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_open"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_open"];
+        }
+        if ([self.comp_dictionary valueForKey:@"s_comp_bowel"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_bowel"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_bowel"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_bowel"];
+        }
+        if ([self.comp_dictionary valueForKey:@"s_comp_rectal"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_rectal"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_rectal"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_rectal"];
+        }
+        if ([self.comp_dictionary valueForKey:@"s_comp_transfusion"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_transfusion"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_transfusion"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.comp_dictionary setObject:noneN forKey:@"s_comp_transfusion"];
+        }
+    }
+
+    controller.comp_dictionary = self.comp_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+
+    
+}
+
 
 -(void)AverageAgeOfPatient{
 
@@ -1358,6 +1528,7 @@
             
             for(int i=0;i<self.selectedCases.count;i++){
                 
+                
                 NSDictionary *dic = [self.selectedCases objectAtIndex:i];
                 NSString *dob = [dic valueForKey:@"var_patientDOB"];
                 // NSString *dos = [dic objectForKey:@"DateOfService"];
@@ -1376,6 +1547,71 @@
                         minAge = age;
                     }
                 }
+                
+                
+                
+                NSString *factors = [dic valueForKey:@"var_factors"];
+                NSNumber *s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+                [self.comp_dictionary setObject:s_comp_sumNumber forKey:@"comp_sum"];
+                if ([factors isEqualToString:@"None"]) {
+                    if ([self.comp_dictionary valueForKey:@"comp_none"] == nil) {
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_none"];
+                    } else {
+                        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_none"] ;
+                        int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                        s_comp_noneInt++;
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_none"];
+                    }
+                } else if ([factors isEqualToString:@"Converted to open"]) {
+                    if ([self.comp_dictionary valueForKey:@"comp_open"] == nil) {
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_open"];
+                    } else {
+                        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_open"] ;
+                        int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                        s_comp_noneInt++;
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_open"];
+                    }
+                } else if ([factors isEqualToString:@"Bowel injury"]) {
+                    if ([self.comp_dictionary valueForKey:@"comp_bowel"] == nil) {
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_bowel"];
+                    } else {
+                        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_bowel"] ;
+                        int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                        s_comp_noneInt++;
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_bowel"];
+                    }
+                } else if ([factors isEqualToString:@"Rectal injury"]) {
+                    if ([self.comp_dictionary valueForKey:@"comp_rectal"] == nil) {
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_rectal"];
+                    } else {
+                        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_rectal"] ;
+                        int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                        s_comp_noneInt++;
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_rectal"];
+                    }
+                } else if ([factors isEqualToString:@"Transfusion"]) {
+                    if ([self.comp_dictionary valueForKey:@"comp_transfusion"] == nil) {
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_transfusion"];
+                    } else {
+                        NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_transfusion"];
+                        int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                        s_comp_noneInt++;
+                        NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                        [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"comp_transfusion"];
+                    }
+                }
+                
+                
+                
                 
                 if([[dic valueForKey:@"var_sex"] isEqualToString:@"Male"]){
                     maleCount+=1;
@@ -1473,11 +1709,67 @@
             
             NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
             
-            
+           
             NSString *factors = [dic valueForKey:@"var_factors"];
-            
-            
-            
+            NSNumber *s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.comp_dictionary setObject:s_comp_sumNumber forKey:@"s_comp_sum"];
+            if ([factors isEqualToString:@"None"]) {
+                if ([self.comp_dictionary valueForKey:@"s_comp_none"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_none"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_none"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_none"];
+                }
+            } else if ([factors isEqualToString:@"Converted to open"]) {
+                if ([self.comp_dictionary valueForKey:@"s_comp_open"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_open"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_open"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_open"];
+                }
+            } else if ([factors isEqualToString:@"Bowel injury"]) {
+                if ([self.comp_dictionary valueForKey:@"s_comp_bowel"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_bowel"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_bowel"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_bowel"];
+                }
+            } else if ([factors isEqualToString:@"Rectal injury"]) {
+                if ([self.comp_dictionary valueForKey:@"s_comp_rectal"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_rectal"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_rectal"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_rectal"];
+                }
+            } else if ([factors isEqualToString:@"Transfusion"]) {
+                if ([self.comp_dictionary valueForKey:@"s_comp_transfusion"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_transfusion"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_transfusion"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.comp_dictionary setObject:s_comp_noneNumber forKey:@"s_comp_transfusion"];
+                }
+            }
+
             
             NSString *dob = [dic valueForKey:@"var_patientDOB"];
             // NSString *dos = [dic objectForKey:@"DateOfService"];

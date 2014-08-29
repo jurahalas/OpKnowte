@@ -57,6 +57,7 @@
                 <outlet property="s_comp_rectal" destination="CcQ-se-qHH" id="Vwf-OK-b6M"/>
                 <outlet property="s_comp_sampleSize" destination="bnW-QX-Feu" id="JYo-3e-eg2"/>
                 <outlet property="s_comp_transfusion" destination="xhD-hP-aKs" id="ND1-2A-UDB"/>
+                <outlet property="scrollview" destination="hrG-R4-Sch" id="OWF-He-4WA"/>
                 <outlet property="titleLabel" destination="137" id="141"/>
                 <outlet property="tumorSizeView" destination="170" id="184"/>
                 <outlet property="tumorView" destination="183" id="185"/>
@@ -72,6 +73,12 @@
         <view contentMode="scaleToFill" id="1">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="hrG-R4-Sch">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -1069,7 +1076,6 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
         </view>
     </objects>
     <resources>

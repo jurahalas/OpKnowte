@@ -11,6 +11,7 @@
 #define IS_IPHONE_5                     ([[UIScreen mainScreen] bounds].size.height == 568)
 
 @interface OKPostOpDataGraphsVC ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (strong, nonatomic) IBOutlet UIView *nationalDataView;
 @property (strong, nonatomic) IBOutlet UIButton *compareButton;
 @property (strong, nonatomic) IBOutlet UIButton *removeButton;
@@ -87,7 +88,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //averageAge = 70;
-    
+    self.scrollview.hidden = YES;
     self.navigationItem.title = @"Post-Op Data";
     _nationalDataView.hidden = YES;
     _comp_nationalDataView.hidden = YES;
@@ -125,6 +126,8 @@
         [self drawTumorSizeGraph];
     }else if([self.graphToDraw isEqualToString:@"BMI"]){
         [self drawBMIGraph];
+    }else if([self.graphToDraw isEqualToString:@"Complications"]){
+        [self drawComplications];
     }
     
     
@@ -179,27 +182,49 @@
 //    oneLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",averageAge,minAge,maxAge];
     
 //    oneSurLabel.text = [NSString stringWithFormat:@"Average Age of Patient = %i (%i to %i years old )",sur_averageAge,sur_minAge,sur_maxAge];
+    self.scrollview.hidden = NO;
     [self.comp_sampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
     [self.s_comp_sampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+    NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_none"];
+    int none = [getNumberFromDictionary integerValue] ;
+    [self.s_comp_none setText:[NSString stringWithFormat:@"None - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_open"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.s_comp_open setText:[NSString stringWithFormat:@"Converted to open - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_bowel"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.s_comp_bowel setText:[NSString stringWithFormat:@"Bowel injury - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_rectal"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.s_comp_rectal setText:[NSString stringWithFormat:@"Rectal injury - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_transfusion"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.s_comp_transfusion setText:[NSString stringWithFormat:@"Transfusion - %i %%",none]];
     
-    [self.s_comp_none setText:[NSString stringWithFormat:@"None - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_none"]]];
-    [self.s_comp_open setText:[NSString stringWithFormat:@"Converted to open - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_open"]]];
-    [self.s_comp_bowel setText:[NSString stringWithFormat:@"Bowel injury - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_bowel"]]];
-    [self.s_comp_rectal setText:[NSString stringWithFormat:@"Rectal injury - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_rectal"]]];
-    [self.s_comp_transfusion setText:[NSString stringWithFormat:@"Transfusion - %i %%",(int)[self.comp_dictionary objectForKey:@"s_comp_transfusion"]]];
+    
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_none"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.comp_none setText:[NSString stringWithFormat:@"None - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_open"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.comp_open setText:[NSString stringWithFormat:@"Converted to open - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_bowel"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.comp_bowel setText:[NSString stringWithFormat:@"Bowel injury - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_rectal"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.comp_rectal setText:[NSString stringWithFormat:@"Rectal injury - %i %%",none]];
+    getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_transfusion"];
+    none = [getNumberFromDictionary integerValue] ;
+    [self.comp_transfusion setText:[NSString stringWithFormat:@"Transfusion - %i %%",none]];
 
-    [self.comp_none setText:[NSString stringWithFormat:@"None - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_none"]]];
-    [self.comp_open setText:[NSString stringWithFormat:@"Converted to open - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_open"]]];
-    [self.comp_bowel setText:[NSString stringWithFormat:@"Bowel injury - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_bowel"]]];
-    [self.comp_rectal setText:[NSString stringWithFormat:@"Rectal injury - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_rectal"]]];
-    [self.comp_transfusion setText:[NSString stringWithFormat:@"Transfusion - %i %%",(int)[self.comp_dictionary objectForKey:@"comp_transfusion"]]];
 
     
 //    [twoLabel setHidden:YES];
 //    [twoSurLabel setHidden:YES];
     
-//    [self.NationalSampleSize setFrame:CGRectMake(self.NationalSampleSize.frame.origin.x, self.NationalSampleSize.frame.origin.y-27, self.NationalSampleSize.frame.size.width, self.NationalSampleSize.frame.size.height)];
-//    [self.SurgeonSampleSize setFrame:CGRectMake(self.SurgeonSampleSize.frame.origin.x, self.SurgeonSampleSize.frame.origin.y-27, self.SurgeonSampleSize.frame.size.width, self.SurgeonSampleSize.frame.size.height)];
+    [self.NationalSampleSize setFrame:CGRectMake(self.NationalSampleSize.frame.origin.x, self.NationalSampleSize.frame.origin.y-27, self.NationalSampleSize.frame.size.width, self.NationalSampleSize.frame.size.height)];
+    [self.SurgeonSampleSize setFrame:CGRectMake(self.SurgeonSampleSize.frame.origin.x, self.SurgeonSampleSize.frame.origin.y-27, self.SurgeonSampleSize.frame.size.width, self.SurgeonSampleSize.frame.size.height)];
 //    
 //    if (!self.isNationalData) {
 //        [self.oneSurLabel setHidden:YES];
@@ -207,18 +232,21 @@
 //        [self.Surgeon setHidden:YES];
 //    }
 //    
-//    if (IS_IPHONE_5) {
-//        
-//        CGRect frame = self.averageView.frame;
-//        frame.origin.y = 57;
-//        [self.averageView setFrame:frame];
-//        
-//    }else{
-//        CGRect frame = self.averageView.frame;
-//        frame.origin.y = 45;
-//        [self.averageView setFrame:frame];
-//    }
-    [self.view addSubview:self.comp_view];
+    if (IS_IPHONE_5) {
+        CGRect frame = self.comp_view.frame;
+        frame.origin.y = 57;
+        [self.comp_view setFrame:frame];
+        
+    }else{
+        CGRect frame = self.comp_view.frame;
+        frame.origin.y = 45;
+        [self.comp_view setFrame:frame];
+    }
+    self.scrollview.contentSize = self.comp_view.bounds.size;
+    self.comp_view.frame = CGRectMake(self.comp_view.frame.origin.x, self.comp_view.frame.origin.y-64, self.comp_view.frame.size.width, self.comp_view.frame.size.height);
+    
+    [self.scrollview addSubview:self.comp_view];
+    //[self.view addSubview:self.comp_view];
     
 }
 
