@@ -75,6 +75,7 @@
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
+    
 }
 
 
@@ -809,10 +810,39 @@
         }
         self.ongoingData.caseID = _caseNumber;
     
+    if (self.isComingFromUrl) {
+        self.isComingFromUrl = YES;
+        self.urlCaseID = self.caseNumber;
+        self.urlTimepointID = self.timePoint;
+        self.urlProcedureID = self.procID;
+
+        if ([self.procID isEqualToString:@"2"] && self.detailPeriod==OKProcedureSummaryDetailTwoWeeks) {
+            forProcedure = @"1";
+        }else if ([self.procID isEqualToString:@"2"] && self.detailPeriod==OKProcedureSummaryDetailSixWeeks){
+            forProcedure = @"2";
+        }else if ([self.procID isEqualToString:@"9"]){
+            forProcedure = @"3";
+        }else if ([self.procID isEqualToString:@"1"] &&  [self.urlTimepointID intValue] <= 12){
+            forProcedure = @"4";
+        }else if ([self.procID isEqualToString:@"1"] &&  [self.urlTimepointID intValue] > 12){
+            forProcedure = @"7";
+        }else if ([self.procID isEqualToString:@"10"]){
+            forProcedure = @"5";
+        }
+        
+        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:self.urlCaseID timePointID:self.urlTimepointID procedureID:self.urlProcedureID ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
+            [[OKLoadingViewController instance]hide];
+            [self goToDashboard];
+        }];
+
+    }else{
         [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
+
+    }
+
 }
 
 

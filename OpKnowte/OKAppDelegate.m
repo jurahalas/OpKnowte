@@ -7,13 +7,13 @@
 //
 
 
-#define DELEGATE ((OKAppDelegate*)[[UIApplication sharedApplication] delegate])
-
 #import "OKAppDelegate.h"
 #import "OKTimer.h"
 #import "OKViewController.h"
 #import "OKBaseProcedureVC.h"
 #import "OKLRPartialNephrectomyModel.h"
+#import "OKOngoingClinicalViewController.h"
+#import "OKTimePointsManager.h"
 
 @implementation OKAppDelegate
 
@@ -34,6 +34,7 @@
         
     [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AvenirNextBold" size:10.f], nil]];
     }
+    self.fromUrl = NO;
     
     [self restoreCurrentUser];
     return YES;
@@ -112,12 +113,81 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     NSString *urlString = [NSString stringWithFormat:@"%@",url];
     NSLog(@"%@",[urlString lowercaseString]);
     if ([[urlString lowercaseString] isEqualToString:@"opknowte://enterpatientsdetails"]){
         NSLog(@":p");
+    }else{
+        NSArray *components = [urlString componentsSeparatedByString:@"?"];
+        components = [[components objectAtIndex:1] componentsSeparatedByString:@"&"];
+        NSLog(@"compoooooooooo %@",components);
+        NSString *foo;
+        NSString *trimmed;
+        NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+        
+        //OpKnowte://EnterPatientDetail?surgeonID=88&procedureID=10&caseID=17&timePointID=6%20Months"&patientName=Atif&patientDOB=16-11-1990&mrNumber=46&gender=male&patientDOS=16-11-1990&stonesCount=2
+        
+        foo = [components objectAtIndex:0];
+        trimmed = [foo stringByTrimmingCharactersInSet:set];
+        [data setObject:trimmed forKey:@"SurgeonID"];
+        
+        foo = [components objectAtIndex:1];
+        trimmed = [foo stringByTrimmingCharactersInSet:set];
+        [data setObject:trimmed forKey:@"procedureID"];
+        
+        foo = [components objectAtIndex:2];
+        trimmed = [foo stringByTrimmingCharactersInSet:set];
+        [data setObject:trimmed forKey:@"caseID"];
+        
+        foo = [components objectAtIndex:3];
+        trimmed = [foo stringByTrimmingCharactersInSet:set];
+        [data setObject:trimmed forKey:@"timePointID"];
+        
+        [data setObject:foo = [[[[components objectAtIndex:4] componentsSeparatedByString:@"="] objectAtIndex:1]stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"patientName"];
+        
+        [data setObject:foo = [[[components objectAtIndex:5] componentsSeparatedByString:@"="] objectAtIndex:1] forKey:@"patientDOB"];
+        
+        foo = [components objectAtIndex:6];
+        trimmed = [foo stringByTrimmingCharactersInSet:set];
+        [data setObject:trimmed forKey:@"mrNumber"];
+        
+        [data setObject:foo = [[[components objectAtIndex:7] componentsSeparatedByString:@"="] objectAtIndex:1] forKey:@"gender"];
+        
+        [data setObject:foo = [[[components objectAtIndex:8] componentsSeparatedByString:@"="] objectAtIndex:1] forKey:@"patientDOS"];
+    }
+    
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main_iPhone"
+                                                  bundle:nil];
+    OKOngoingClinicalViewController* controller = [sb instantiateViewControllerWithIdentifier:@"OKOngoingClinicalViewController"];
+    
+    controller.timePoint = [data objectForKey:@"timePointID"];
+    controller.isComingFromUrl = YES;
+    controller.caseNumber = [data objectForKey:@"caseID"];
+    controller.urlTimepointID = [data objectForKey:@"timePointID"];
+    controller.urlUserID = [data objectForKey:@"SurgeonID"];
+    controller.procID = [data objectForKey:@"procedureID"];
+    controller.urlPatientName = [data objectForKey:@"patientName"];
+    controller.urlPatientDOB = [data objectForKey:@"patientDOB"];
+    controller.urlPatientMR = [data objectForKey:@"mrNumber"];
+    controller.urlPatientGender = [data objectForKey:@"gender"];
+    controller.urlPatientDOS = [data objectForKey:@"patientDOS"];
+   
+    if (![defaults objectForKey:@"user"]) {
+        self.fromUrl = YES;
+        self.url = url;
+        UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
+        
+        [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];   
+    }else{
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+        [nav setNavigationBarHidden:YES];
+        [(UINavigationController *)self.window.rootViewController presentViewController:nav animated:YES completion:nil];
     }
     
     return YES;

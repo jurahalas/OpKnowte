@@ -13,5 +13,6 @@
 @interface OKBaseViewController : UIViewController
 
 -(void) addBottomTabBar;
+-(void) goToDashboard;
 
 @end

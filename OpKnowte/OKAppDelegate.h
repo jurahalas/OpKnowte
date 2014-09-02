@@ -14,6 +14,7 @@
 #import "OKConstants.h"
 #import "OKCustomTextField.h"
 #import "OKLoadingViewController.h"
+//#import "OKOngoingClinicalViewController.h"
 
 // cells
 #import "OKSelectProcedureCell.h"
@@ -40,6 +41,9 @@
 @interface OKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (assign, nonatomic) BOOL fromUrl;
+@property (assign, nonatomic) NSURL *url;
+//@property (assign, nonatomic) OKOngoingClinicalViewController* controller;
 
 - (UIViewController*)topViewController;
 
