@@ -117,7 +117,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     NSString *urlString = [NSString stringWithFormat:@"%@",url];
     NSLog(@"%@",[urlString lowercaseString]);
@@ -177,18 +177,19 @@
     controller.urlPatientMR = [data objectForKey:@"mrNumber"];
     controller.urlPatientGender = [data objectForKey:@"gender"];
     controller.urlPatientDOS = [data objectForKey:@"patientDOS"];
-   
-    if (![defaults objectForKey:@"user"]) {
-        self.fromUrl = YES;
-        self.url = url;
-        UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
-        
-        [(UINavigationController *)self.window.rootViewController pushViewController:controller animated:YES];   
-    }else{
+//
+//    if (![defaults objectForKey:@"user"]) {
+//        self.fromUrl = YES;
+//        self.url = url;
+//        UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
+//        
+//        [(UINavigationController *)self.window.rootViewController presentViewController:controller animated:NO completion:nil];
+//    }else{
+//        self.fromUrl = NO;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
         [nav setNavigationBarHidden:YES];
         [(UINavigationController *)self.window.rootViewController presentViewController:nav animated:YES completion:nil];
-    }
+//    }
     
     return YES;
 }

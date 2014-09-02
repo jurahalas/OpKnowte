@@ -811,11 +811,9 @@
         self.ongoingData.caseID = _caseNumber;
     
     if (self.isComingFromUrl) {
-        self.isComingFromUrl = YES;
         self.urlCaseID = self.caseNumber;
         self.urlTimepointID = self.timePoint;
         self.urlProcedureID = self.procID;
-
         if ([self.procID isEqualToString:@"2"] && self.detailPeriod==OKProcedureSummaryDetailTwoWeeks) {
             forProcedure = @"1";
         }else if ([self.procID isEqualToString:@"2"] && self.detailPeriod==OKProcedureSummaryDetailSixWeeks){
@@ -830,19 +828,27 @@
             forProcedure = @"5";
         }
         
-        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:self.urlCaseID timePointID:self.urlTimepointID procedureID:self.urlProcedureID ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
+        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:self.urlCaseID userID:self.urlUserID timePointID:self.urlTimepointID procedureID:self.urlProcedureID ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
-            [self goToDashboard];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults removeObjectForKey:@"user"];
+            [defaults synchronize];
+            [OKUserManager instance].currentUser = nil;
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"offAlertBMI" object:nil];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"offTimeAlert" object:nil];
+            
+            UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
+            [self presentViewController:controller animated:NO completion:nil];
         }];
 
     }else{
-        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
+        [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber userID:[OKUserManager instance].currentUser.identifier timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
             [self.navigationController popViewControllerAnimated:YES];
         }];
-
     }
-
 }
 
 

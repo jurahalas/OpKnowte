@@ -63,10 +63,10 @@
 }
 
 
-- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler;
+- (void)addOngoingClinicalDetailsForCaseID:(NSString*)caseID userID:(NSString*)userID timePointID:(NSString *)timePointID procedureID:(NSString *)procedureID ongoingData:(OKOngoingData*)ongoingData forProcedure:(NSString*)forProcedure handler:(void(^)(NSString *errorMsg))handler
 {
     NSDictionary *params1 = @{@"procedureID":procedureID,
-                             @"userID":[OKUserManager instance].currentUser.identifier,
+                             @"userID":userID,
                              @"caseID":caseID,
                              @"timePointID":timePointID};
     
