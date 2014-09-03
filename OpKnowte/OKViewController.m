@@ -166,9 +166,9 @@
                 _loginButton.enabled = YES;
                 } else {
                         [self.view endEditing:YES];
-                        [[NSUserDefaults standardUserDefaults] setValue:_emailTextField.text forKey:@"lastUserEmail"];
-                        [self performSegueWithIdentifier:@"loginSegue" sender:self];
-                        _loginButton.enabled = YES;
+                    [[NSUserDefaults standardUserDefaults] setValue:_emailTextField.text forKey:@"lastUserEmail"];
+                    [self performSegueWithIdentifier:@"loginSegue" sender:self];
+                    _loginButton.enabled = YES;
                 }
                 [[OKLoadingViewController instance] hide];
             }];
@@ -193,9 +193,6 @@
     
     customAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [customAlertView textFieldAtIndex:0].placeholder = @"Email";
-    
-    
-    
     [customAlertView show];
 }
 

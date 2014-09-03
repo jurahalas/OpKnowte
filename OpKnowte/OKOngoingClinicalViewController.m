@@ -14,6 +14,7 @@
 #import "OKTimePointsManager.h"
 #import "OKProceduresManager.h"
 #import "OKFollowUpDataManager.h"
+#import "OKViewController.h"
 
 @interface OKOngoingClinicalViewController ()<OKProcedurePickerDelegate>
 
@@ -57,7 +58,30 @@
     
     PikerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
-    if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks){
+    if (_isComingFromUrl) {
+        if ([_procID isEqualToString:@"9"]) {
+            self.detailPeriod = OKProcedureSummaryDetailPenile;
+        }else if ([_procID isEqualToString:@"1"]){
+            if ([_timePoint intValue] <= 13) {
+                self.detailPeriod = OKProcedureSummaryDetailRobotic;
+            }else{
+                self.detailPeriod = OKProcedureSummaryDetailRobotic6Weeks;
+            }
+        }else if ([_procID isEqualToString:@"9"]){
+            self.detailPeriod = OKProcedureSummaryDetailPenile;
+        }else if ([_procID isEqualToString:@"10"]){
+            self.detailPeriod = OKProcedureSummaryDetailShockwave;
+        }else if([_procID isEqualToString:@"2"]){
+            if ([_timePoint intValue] == 1) {
+                self.detailPeriod = OKProcedureSummaryDetailTwoWeeks;
+            }else{
+                self.detailPeriod = OKProcedureSummaryDetailSixWeeks;
+            }
+        }
+
+    }
+    
+   if(self.detailPeriod == OKProcedureSummaryDetailTwoWeeks){
         [self setupTwoWeeksElements];
     }else if(self.detailPeriod == OKProcedureSummaryDetailSixWeeks){
         [self setupSixWeeksElements];
@@ -70,6 +94,7 @@
     }else{
         [self setupPenileElements];
     }
+    
     [self setupKeyboardNotifications];
     if (IS_IOS6) {
         [self.navigationItem setHidesBackButton:NO];
@@ -830,18 +855,13 @@
         
         [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:self.urlCaseID userID:self.urlUserID timePointID:self.urlTimepointID procedureID:self.urlProcedureID ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
             [[OKLoadingViewController instance]hide];
-            
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults removeObjectForKey:@"user"];
-            [defaults synchronize];
-            [OKUserManager instance].currentUser = nil;
-            
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"offAlertBMI" object:nil];
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"offTimeAlert" object:nil];
-            
-            UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
-            [self presentViewController:controller animated:NO completion:nil];
+
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You have added your ongoing data" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert setTag:99];
+
+            [alert show];
         }];
+
 
     }else{
         [[OKCaseManager instance]addOngoingClinicalDetailsForCaseID:_caseNumber userID:[OKUserManager instance].currentUser.identifier timePointID:[OKTimePointsManager instance].selectedTimePoint.identifier procedureID:[OKProceduresManager instance].selectedProcedure.identifier ongoingData:self.ongoingData forProcedure:forProcedure handler:^(NSString *errorMsg) {
@@ -851,6 +871,17 @@
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 99 && buttonIndex==0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main_iPhone"                                        bundle:nil];
+        OKViewController *controller = [sb instantiateViewControllerWithIdentifier:@"OKOngoingClinicalViewController"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+        [nav setNavigationBarHidden:YES];
+        [(UINavigationController *)DELEGATE.window.rootViewController presentViewController:nav animated:YES completion:nil];
+    }
+}
 
 -(NSArray*)postOpHospitalStayItems
 {

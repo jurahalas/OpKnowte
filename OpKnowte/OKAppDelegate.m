@@ -117,7 +117,6 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
     NSString *urlString = [NSString stringWithFormat:@"%@",url];
     NSLog(@"%@",[urlString lowercaseString]);
@@ -130,8 +129,6 @@
         NSString *foo;
         NSString *trimmed;
         NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
-        
-        //OpKnowte://EnterPatientDetail?surgeonID=88&procedureID=10&caseID=17&timePointID=6%20Months"&patientName=Atif&patientDOB=16-11-1990&mrNumber=46&gender=male&patientDOS=16-11-1990&stonesCount=2
         
         foo = [components objectAtIndex:0];
         trimmed = [foo stringByTrimmingCharactersInSet:set];
@@ -177,19 +174,10 @@
     controller.urlPatientMR = [data objectForKey:@"mrNumber"];
     controller.urlPatientGender = [data objectForKey:@"gender"];
     controller.urlPatientDOS = [data objectForKey:@"patientDOS"];
-//
-//    if (![defaults objectForKey:@"user"]) {
-//        self.fromUrl = YES;
-//        self.url = url;
-//        UIViewController *controller = [[UIStoryboard storyboardWithName:@"Main_iPhone" bundle:NULL] instantiateViewControllerWithIdentifier:@"LoginView"];
-//        
-//        [(UINavigationController *)self.window.rootViewController presentViewController:controller animated:NO completion:nil];
-//    }else{
-//        self.fromUrl = NO;
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
         [nav setNavigationBarHidden:YES];
         [(UINavigationController *)self.window.rootViewController presentViewController:nav animated:YES completion:nil];
-//    }
     
     return YES;
 }
