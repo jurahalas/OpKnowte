@@ -81,6 +81,8 @@
                 <outlet property="TNMStagingView" destination="15" id="820"/>
                 <outlet property="TNMSurgeonSampleSize" destination="1086" id="1098"/>
                 <outlet property="TransfusionView" destination="929" id="951"/>
+                <outlet property="TumorCharBottomLine" destination="qyN-wc-DHO" id="op0-6v-W12"/>
+                <outlet property="TumorCharLine" destination="fgI-ZG-Jif" id="tdx-qY-LF9"/>
                 <outlet property="Tx" destination="738" id="780"/>
                 <outlet property="UrineLeakView" destination="919" id="941"/>
                 <outlet property="XRNationalSampleSize" destination="1065" id="1099"/>
@@ -2411,6 +2413,44 @@
         </view>
     </objects>
     <resources>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
         <image name="horizontalDevider.png" width="280" height="1"/>
     </resources>
 </document>

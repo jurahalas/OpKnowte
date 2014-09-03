@@ -18,6 +18,14 @@
 
 
 @property (nonatomic) NSMutableDictionary * comp_dictionary;
+@property (nonatomic) NSMutableDictionary * irri_dictionary;
+@property (nonatomic) NSMutableDictionary * diag_dictionary;
+@property (nonatomic) NSMutableDictionary * devimp_dictionary;
+@property (nonatomic) NSMutableDictionary * diluse_dictionary;
+@property (nonatomic) NSMutableDictionary * dilwas_dictionary;
+@property (nonatomic) NSMutableDictionary * restyp_dictionary;
+@property (nonatomic) NSMutableDictionary * dilto_dictionary;
+
 
 
 @property (nonatomic, retain) NSMutableArray *selectedCases;

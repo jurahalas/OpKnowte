@@ -32,6 +32,15 @@
 {
     [super viewDidLoad];
     self.comp_dictionary = [[NSMutableDictionary alloc] init];
+    self.irri_dictionary = [[NSMutableDictionary alloc] init];
+    self.diag_dictionary = [[NSMutableDictionary alloc] init];
+    self.devimp_dictionary = [[NSMutableDictionary alloc] init];
+    self.diluse_dictionary = [[NSMutableDictionary alloc] init];
+    self.dilwas_dictionary = [[NSMutableDictionary alloc] init];
+    self.restyp_dictionary = [[NSMutableDictionary alloc] init];
+    self.dilto_dictionary= [[NSMutableDictionary alloc] init];
+
+
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     if ([_procID isEqualToString:@"1"]) {
@@ -61,7 +70,7 @@
                            @"Cases with Vascular Anomoly",
                            @"Intra-Operative Ultra Sound",
                            @"Deep Margins",
-                           //                       @"Margins",
+    //                       @"Margins",
                            @"Renal Collecting System Repair",
                            @"Average Clamp Time",
                            @"Coagulants",
@@ -70,20 +79,31 @@
                            @"Room Time",
 //                           @"Complications",
                            @"Cases Requiring Transfusion"
-                           //                       @"Advanced Options"
+//                           @"Advanced Options"
                            ];
 
     } else if ([_procID isEqualToString:@"9"]) {
         self.tableData = @[
                            @"Average Age of Patient",
-                           @"Male vs. Female"
+                           @"Diagnosis",
+                           @"Device Implanted",
+                           @"Dilators used",
+                           @"Dilated to",
+                           @"Dilation was",
+                           @"Average device length",
+                           @"Reservoir side",
+                           @"Reservoir type",
+                           @"Reservoir filled to",
+                           @"Drain Placed",
+                           @"Irrigation antibiotics used",
+                           @"Complications  "
+                           
                            ];
 
     } else if ([_procID isEqualToString:@"10"]) {
         self.tableData = @[
                            @"Average Age of Patient",
                            @"Male vs. Female"
-
                            ];
 
     }
@@ -123,19 +143,19 @@
 {
     OKImmediateDataCell *cell = [[OKImmediateDataCell alloc] init];
     cell = (OKImmediateDataCell*)[_immediateDataTable cellForRowAtIndexPath:indexPath];
-    if ([cell.immediateDataLabel.text isEqualToString:@"BMI"]) {
+    if ([cell.immediateDataLabel.text isEqualToString:@"BMI"] || [cell.immediateDataLabel.text isEqualToString:@"Average device length" ]) {
         [self BMI];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Average Age of Patient"]){
         [self AverageAgeOfPatient];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Bladder Neck Recon"]){
         [self VascularAnomoly];
-    }else if ([cell.immediateDataLabel.text isEqualToString:@"Male vs. Female"]){
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Male vs. Female"]|| [cell.immediateDataLabel.text isEqualToString:@"Drain Placed"]){
         [self MaleFemale];
-    }else if ([cell.immediateDataLabel.text isEqualToString:@"Left vs. Right Renal Mass"]){
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Left vs. Right Renal Mass"] || [cell.immediateDataLabel.text isEqualToString:@"Reservoir side"]){
         [self LeftRightRenalMass];
-    }else if ([cell.immediateDataLabel.text isEqualToString:@"Patients with Cysto/Stent"]){
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Patients with Cysto/Stent"] || [cell.immediateDataLabel.text isEqualToString:@"Complications  "]){
         [self CytoStent];
-    }else if ([cell.immediateDataLabel.text isEqualToString:@"Tumor Size"]){
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Tumor Size"] || [cell.immediateDataLabel.text isEqualToString:@"Reservoir filled to"]){
         [self TumorSize];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Tumor Characteristics"]){
         [self TumorCharacteristics];
@@ -165,7 +185,22 @@
         [self Complications];
     }else if ([cell.immediateDataLabel.text isEqualToString:@"Cases Requiring Transfusion"] || [cell.immediateDataLabel.text isEqualToString:@"Intra-Op Transfusion"]){
         [self TransfusionRequired];
+    } else if ([cell.immediateDataLabel.text isEqualToString:@"Irrigation antibiotics used"]){
+        [self irrigationAntiUsed];
+    } else if ([cell.immediateDataLabel.text isEqualToString:@"Diagnosis"]){
+        [self Diagnosis];
+    } else if ([cell.immediateDataLabel.text isEqualToString:@"Device Implanted"]){
+        [self DeviceImplanted];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Dilators used"]){
+        [self DilatorsUsed];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Dilation was"]){
+        [self DilationWas];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Reservoir type"]){
+        [self ReservoirType];
+    }else if ([cell.immediateDataLabel.text isEqualToString:@"Dilated to"]){
+        [self Dilatedto];
     }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -210,6 +245,1088 @@
     return self;
 }
 
+
+
+
+-(void) Dilatedto {
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"Dilatedto";
+    
+    controller.dilto_dictionary = [[NSMutableDictionary alloc] init];
+    //s_dilto_9mm;
+    //s_dilto_10mm;
+    //s_dilto_11mm;
+
+    if ([self.dilto_dictionary valueForKey:@"s_dilto_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_9mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_9mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_9mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_9mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_10mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_10mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_10mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_10mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_11mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_11mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_11mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_11mm"];
+        }
+        
+        //+++++++
+        //s_dilto_12mm;
+        //s_dilto_13mm;
+        //s_dilto_14mm;
+        //s_dilto_na;
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_12mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_12mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_12mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_12mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_13mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_13mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_13mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_13mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_14mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_14mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_14mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_14mm"];
+        }
+        
+        //+++++++
+
+        if ([self.dilto_dictionary valueForKey:@"s_dilto_na"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_na"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_na"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"s_dilto_na"];
+        }
+
+        
+    }
+    //    restyp_Conceal
+    //    restyp_Spherical
+    //    restyp_Cloverleaf
+    //s_dilto_9mm;
+    //s_dilto_10mm;
+    //s_dilto_11mm;
+    
+    if ([self.dilto_dictionary valueForKey:@"dilto_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.dilto_dictionary valueForKey:@"dilto_9mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_9mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_9mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_9mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"dilto_10mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_10mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_10mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_10mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"dilto_11mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_11mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_11mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_11mm"];
+        }
+        
+        //+++++++
+        //s_dilto_12mm;
+        //s_dilto_13mm;
+        //s_dilto_14mm;
+        //s_dilto_na;
+        if ([self.dilto_dictionary valueForKey:@"dilto_12mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_12mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_12mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_12mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"dilto_13mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_13mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_13mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_13mm"];
+        }
+        if ([self.dilto_dictionary valueForKey:@"dilto_14mm"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_14mm"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_14mm"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_14mm"];
+        }
+        
+        //+++++++
+        
+        if ([self.dilto_dictionary valueForKey:@"dilto_na"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_na"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_na"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilto_dictionary setObject:noneN forKey:@"dilto_na"];
+        }
+        
+        
+    }
+    
+    
+    controller.dilto_dictionary = self.dilto_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+
+-(void) ReservoirType{
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"ReservoirType";
+    
+    controller.restyp_dictionary = [[NSMutableDictionary alloc] init];
+//    s_restyp_Conceal
+//    s_restyp_Spherical
+//    s_restyp_Cloverleaf
+    if ([self.restyp_dictionary valueForKey:@"s_restyp_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.restyp_dictionary valueForKey:@"s_restyp_Conceal"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_Conceal"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.restyp_dictionary setObject:noneN forKey:@"s_restyp_Conceal"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.restyp_dictionary setObject:noneN forKey:@"s_restyp_Conceal"];
+        }
+        if ([self.restyp_dictionary valueForKey:@"s_restyp_Spherical"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_Spherical"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.restyp_dictionary setObject:noneN forKey:@"s_restyp_Spherical"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.restyp_dictionary setObject:noneN forKey:@"s_restyp_Spherical"];
+        }
+        if ([self.restyp_dictionary valueForKey:@"s_restyp_Cloverleaf"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_Cloverleaf"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.restyp_dictionary setObject:noneN forKey:@"s_restyp_Cloverleaf"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.restyp_dictionary setObject:noneN forKey:@"s_restyp_Cloverleaf"];
+        }
+        
+    }
+    //    restyp_Conceal
+    //    restyp_Spherical
+    //    restyp_Cloverleaf
+    if ([self.restyp_dictionary valueForKey:@"restyp_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.restyp_dictionary valueForKey:@"restyp_Conceal"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_Conceal"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.restyp_dictionary setObject:noneN forKey:@"restyp_Conceal"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.restyp_dictionary setObject:noneN forKey:@"restyp_Conceal"];
+        }
+        if ([self.restyp_dictionary valueForKey:@"restyp_Spherical"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_Spherical"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.restyp_dictionary setObject:noneN forKey:@"restyp_Spherical"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.restyp_dictionary setObject:noneN forKey:@"restyp_Spherical"];
+        }
+        if ([self.restyp_dictionary valueForKey:@"restyp_Cloverleaf"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_Cloverleaf"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.restyp_dictionary setObject:noneN forKey:@"restyp_Cloverleaf"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.restyp_dictionary setObject:noneN forKey:@"restyp_Cloverleaf"];
+        }
+        
+        
+    }
+    
+    
+    controller.restyp_dictionary = self.restyp_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+-(void)DilationWas {
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"DilationWas";
+    
+    controller.dilwas_dictionary = [[NSMutableDictionary alloc] init];
+    //s_dilwas_straightforward
+    //s_dilwas_difficultduetoscarring
+    //s_dilwas_difficultduetoanatomy
+    if ([self.dilwas_dictionary valueForKey:@"s_dilwas_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.dilwas_dictionary valueForKey:@"s_dilwas_straightforward"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_straightforward"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilwas_dictionary setObject:noneN forKey:@"s_dilwas_straightforward"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilwas_dictionary setObject:noneN forKey:@"s_dilwas_straightforward"];
+        }
+        if ([self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilwas_dictionary setObject:noneN forKey:@"s_dilwas_difficultduetoscarring"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilwas_dictionary setObject:noneN forKey:@"s_dilwas_difficultduetoscarring"];
+        }
+        if ([self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilwas_dictionary setObject:noneN forKey:@"s_dilwas_difficultduetoanatomy"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilwas_dictionary setObject:noneN forKey:@"s_dilwas_difficultduetoanatomy"];
+        }
+        
+    }
+    //s_dilwas_straightforward
+    //s_dilwas_difficultduetoscarring
+    //s_dilwas_difficultduetoanatomy
+    if ([self.dilwas_dictionary valueForKey:@"dilwas_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.dilwas_dictionary valueForKey:@"dilwas_straightforward"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_straightforward"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilwas_dictionary setObject:noneN forKey:@"dilwas_straightforward"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilwas_dictionary setObject:noneN forKey:@"dilwas_straightforward"];
+        }
+        if ([self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoscarring"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoscarring"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilwas_dictionary setObject:noneN forKey:@"dilwas_difficultduetoscarring"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilwas_dictionary setObject:noneN forKey:@"dilwas_difficultduetoscarring"];
+        }
+        if ([self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.dilwas_dictionary setObject:noneN forKey:@"dilwas_difficultduetoanatomy"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.dilwas_dictionary setObject:noneN forKey:@"dilwas_difficultduetoanatomy"];
+        }
+        
+        
+    }
+    
+    
+    controller.dilwas_dictionary = self.dilwas_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+
+}
+
+-(void) DilatorsUsed{
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"DilatorsUsed";
+    
+    controller.diluse_dictionary = [[NSMutableDictionary alloc] init];
+    
+    if ([self.diluse_dictionary valueForKey:@"s_diluse_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.diluse_dictionary valueForKey:@"s_diluse_Brooks"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_Brooks"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diluse_dictionary setObject:noneN forKey:@"s_diluse_Brooks"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diluse_dictionary setObject:noneN forKey:@"s_diluse_Brooks"];
+        }
+        if ([self.diluse_dictionary valueForKey:@"s_diluse_Hegar"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_Hegar"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diluse_dictionary setObject:noneN forKey:@"s_diluse_Hegar"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diluse_dictionary setObject:noneN forKey:@"s_diluse_Hegar"];
+        }
+        if ([self.diluse_dictionary valueForKey:@"s_diluse_Furlow"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_Furlow"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diluse_dictionary setObject:noneN forKey:@"s_diluse_Furlow"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diluse_dictionary setObject:noneN forKey:@"s_diluse_Furlow"];
+        }
+        
+    }
+    
+    if ([self.diluse_dictionary valueForKey:@"diluse_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.diluse_dictionary valueForKey:@"diluse_Brooks"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_Brooks"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diluse_dictionary setObject:noneN forKey:@"diluse_Brooks"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diluse_dictionary setObject:noneN forKey:@"diluse_Brooks"];
+        }
+        if ([self.diluse_dictionary valueForKey:@"diluse_Hegar"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_Hegar"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diluse_dictionary setObject:noneN forKey:@"diluse_Hegar"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diluse_dictionary setObject:noneN forKey:@"diluse_Hegar"];
+        }
+        if ([self.diluse_dictionary valueForKey:@"diluse_Furlow"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_Furlow"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diluse_dictionary setObject:noneN forKey:@"diluse_Furlow"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diluse_dictionary setObject:noneN forKey:@"diluse_Furlow"];
+        }
+
+        
+    }
+    
+    
+    controller.diluse_dictionary = self.diluse_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+
+-(void) DeviceImplanted{
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"DeviceImplanted";
+
+    controller.devimp_dictionary = [[NSMutableDictionary alloc] init];
+
+    if ([self.devimp_dictionary valueForKey:@"devimp_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.devimp_dictionary valueForKey:@"devimp_AMS700CX"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_AMS700CX"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_AMS700CX"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_AMS700CX"];
+        }
+        if ([self.devimp_dictionary valueForKey:@"devimp_AMS700CXR"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_AMS700CXR"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_AMS700CXR"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_AMS700CXR"];
+        }
+        if ([self.devimp_dictionary valueForKey:@"devimp_AMS700LGX"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_AMS700LGX"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_AMS700LGX"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_AMS700LGX"];
+        }
+        if ([self.devimp_dictionary valueForKey:@"devimp_ColoplastTitan"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_ColoplastTitan"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_ColoplastTitan"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"devimp_ColoplastTitan"];
+        }
+
+    }
+
+    if ([self.devimp_dictionary valueForKey:@"s_devimp_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700CX"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_AMS700CX"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_AMS700CX"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_AMS700CX"];
+        }
+        if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700CXR"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_AMS700CXR"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_AMS700CXR"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_AMS700CXR"];
+        }
+        if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700LGX"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_AMS700LGX"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_AMS700LGX"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_AMS700LGX"];
+        }
+        if ([self.devimp_dictionary valueForKey:@"s_devimp_ColoplastTitan"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_ColoplastTitan"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_ColoplastTitan"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.devimp_dictionary setObject:noneN forKey:@"s_devimp_ColoplastTitan"];
+        }
+
+    }
+    
+    
+    controller.devimp_dictionary = self.devimp_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+
+}
+
+
+-(void) Diagnosis{
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"Diagnosis";
+    
+    controller.diag_dictionary = [[NSMutableDictionary alloc] init];
+    //    s_diag_ErectileDysfunction;
+    //    s_diag_PeyroniesDisease;
+    //   s_diag_ProstateCancer;
+    //
+    //    s_diag_Hypertension;
+    //    s_diag_Dyslipidemia;
+    //    s_diag_CoronaryArteryDisease;
+    //
+    //    s_diag_DiabetesMellitus;
+    //    s_diag_SpinalCordInjury;
+    //    s_diag_PelvicTrauma;
+    //    s_diag_PenileTrauma;
+    //=============================================================================================================================================================
+    if ([self.diag_dictionary valueForKey:@"diag_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.diag_dictionary valueForKey:@"diag_ErectileDysfunction"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_ErectileDysfunction"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_ErectileDysfunction"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_ErectileDysfunction"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"diag_PeyroniesDisease"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_PeyroniesDisease"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_PeyroniesDisease"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_PeyroniesDisease"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"diag_ProstateCancer"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_ProstateCancer"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_ProstateCancer"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_ProstateCancer"];
+        }
+        
+        //++++++++++++++++++++++++++
+        
+        if ([self.diag_dictionary valueForKey:@"diag_Hypertension"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_Hypertension"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_Hypertension"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_Hypertension"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"diag_Dyslipidemia"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_Dyslipidemia"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_Dyslipidemia"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_Dyslipidemia"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"diag_CoronaryArteryDisease"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_CoronaryArteryDisease"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_CoronaryArteryDisease"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+           [self.diag_dictionary setObject:noneN forKey:@"diag_CoronaryArteryDisease"];
+        }
+        
+        //+++++++++++++++++++++
+        //    s_diag_DiabetesMellitus;
+        //    s_diag_SpinalCordInjury;
+        //    s_diag_PelvicTrauma;
+        //    s_diag_PenileTrauma;
+
+        if ([self.diag_dictionary valueForKey:@"diag_DiabetesMellitus"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_DiabetesMellitus"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_DiabetesMellitus"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_DiabetesMellitus"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"diag_SpinalCordInjury"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_SpinalCordInjury"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_SpinalCordInjury"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_SpinalCordInjury"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"diag_PelvicTrauma"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_PelvicTrauma"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_PelvicTrauma"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_PelvicTrauma"];
+        }
+        
+        //+++++++++++++++++++++++++++++
+        
+        if ([self.diag_dictionary valueForKey:@"diag_PenileTrauma"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_PenileTrauma"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_PenileTrauma"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"diag_PenileTrauma"];
+        }
+    }
+    //=============================================================================================================================================================
+    //=============================================================================================================================================================
+
+    if ([self.diag_dictionary valueForKey:@"s_diag_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.diag_dictionary valueForKey:@"s_diag_ErectileDysfunction"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_ErectileDysfunction"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_ErectileDysfunction"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_ErectileDysfunction"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"s_diag_PeyroniesDisease"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_PeyroniesDisease"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_PeyroniesDisease"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_PeyroniesDisease"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"s_diag_ProstateCancer"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_ProstateCancer"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_ProstateCancer"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_ProstateCancer"];
+        }
+        
+        //++++++++++++++++++++++++++++++++
+        
+        if ([self.diag_dictionary valueForKey:@"s_diag_Hypertension"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_Hypertension"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_Hypertension"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_Hypertension"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"s_diag_Dyslipidemia"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_Dyslipidemia"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_Dyslipidemia"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_Dyslipidemia"];
+        }
+        
+        if ([self.diag_dictionary valueForKey:@"s_diag_CoronaryArteryDisease"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_CoronaryArteryDisease"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_CoronaryArteryDisease"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_CoronaryArteryDisease"];
+        }
+        
+        //++++++++++++++++++++++++++++++
+        //    s_diag_DiabetesMellitus;
+        //    s_diag_SpinalCordInjury;
+        //    s_diag_PelvicTrauma;
+        //    s_diag_PenileTrauma;
+        if ([self.diag_dictionary valueForKey:@"s_diag_DiabetesMellitus"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_DiabetesMellitus"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_DiabetesMellitus"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_DiabetesMellitus"];
+        }
+        if ([self.diag_dictionary valueForKey:@"s_diag_SpinalCordInjury"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_SpinalCordInjury"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_SpinalCordInjury"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_SpinalCordInjury"];
+        }
+        if ([self.diag_dictionary valueForKey:@"s_diag_PelvicTrauma"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_PelvicTrauma"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_PelvicTrauma"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_PelvicTrauma"];
+        }
+        if ([self.diag_dictionary valueForKey:@"s_diag_PenileTrauma"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_PenileTrauma"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_PenileTrauma"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.diag_dictionary setObject:noneN forKey:@"s_diag_PenileTrauma"];
+        }
+    }
+    //=============================================================================================================================================================
+    //=============================================================================================================================================================
+    //=============================================================================================================================================================
+
+    
+    controller.diag_dictionary = self.diag_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+
+}
+
+
+
+
+-(void) irrigationAntiUsed{
+    [self reset];
+    [self CalculateValues];
+    
+    OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
+    
+    controller.graphToDraw = @"Irrigation";
+    
+    controller.irri_dictionary = [[NSMutableDictionary alloc] init];
+    //irri_Neomycin
+    //irri_Bacitracin
+    //irri_Gentamicin
+    //irri_Vancomycin
+    //irri_AmphotericinB
+    //irri_Rifampin
+    if ([self.irri_dictionary valueForKey:@"irri_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.irri_dictionary valueForKey:@"irri_Neomycin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Neomycin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Neomycin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Neomycin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"irri_Bacitracin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Bacitracin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Bacitracin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Bacitracin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"irri_Gentamicin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Gentamicin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Gentamicin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Gentamicin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"irri_Vancomycin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Vancomycin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Vancomycin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Vancomycin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"irri_AmphotericinB"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_AmphotericinB"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_AmphotericinB"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_AmphotericinB"];
+        }
+        if ([self.irri_dictionary valueForKey:@"irri_Rifampin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Rifampin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Rifampin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"irri_Rifampin"];
+        }
+    }
+    if ([self.irri_dictionary valueForKey:@"s_irri_sum"] != nil) {
+        NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_sum"] ;
+        int sum = [getNumberFromDictionary integerValue];
+        if ([self.irri_dictionary valueForKey:@"s_irri_Neomycin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Neomycin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Neomycin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Neomycin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"s_irri_Bacitracin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Bacitracin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Bacitracin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Bacitracin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"s_irri_Gentamicin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Gentamicin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Gentamicin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Gentamicin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"s_irri_Vancomycin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Vancomycin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Vancomycin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Vancomycin"];
+        }
+        if ([self.irri_dictionary valueForKey:@"s_irri_AmphotericinB"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_AmphotericinB"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_AmphotericinB"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_AmphotericinB"];
+        }
+        if ([self.irri_dictionary valueForKey:@"s_irri_Rifampin"] != nil) {
+            NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Rifampin"] ;
+            int none = [getNumberFromDictionary integerValue] ;
+            none = none*100/sum;
+            NSNumber *noneN = [NSNumber numberWithInt:none];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Rifampin"];
+        } else {
+            NSNumber *noneN = [NSNumber numberWithInt:0];
+            [self.irri_dictionary setObject:noneN forKey:@"s_irri_Rifampin"];
+        }
+    }
+
+    
+    controller.irri_dictionary = self.irri_dictionary;
+    
+    
+    
+    controller.NationalSize = self.totalNationalCount;
+    controller.SurgeonSize = self.totalSurgeonCount;
+    //controller.NationalSize = [self.selectedCases count];
+    //controller.SurgeonSize = [self.surgeonCases count];
+    NSLog(@"%i",self.totalSurgeonCount);
+    NSLog(@"%i",controller.SurgeonSize);
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
 -(void)Complications{
     [self reset];
     [self CalculateValues];
@@ -217,41 +1334,8 @@
     OKPostOpDataGraphsVC *controller = [[OKPostOpDataGraphsVC alloc] initWithNibName:@"OKPostOpDataGraphsVC" bundle:nil];
     
     controller.graphToDraw = @"Complications";
-//    if (!self.selectedCases.count) {
-//
-//    }else {
-//        if(sumOfAges<=0)
-//            sumOfAges = 100;
-//        controller.averageAge = sumOfAges/self.selectedCases.count;
-//        controller.maxAge = maxAge;
-//        controller.minAge = minAge;
-//        
-//    }
-//    
-//    
-//    if (!self.isNationalData) {
-//        
-//        if(!self.surgeonCases.count){
-//            if(sur_sumOfAges<=0)
-//                sur_sumOfAges = 100;
-//            controller.sur_averageAge = 0;
-//            controller.sur_maxAge = 0;
-//            controller.sur_minAge = 0;
-//            controller.isNationalData = YES;
-//        }else{
-//            if(sur_sumOfAges<=0)
-//                sur_sumOfAges = 100;
-//            controller.sur_averageAge = sur_sumOfAges/self.surgeonCases.count;
-//            controller.sur_maxAge = sur_maxAge;
-//            controller.sur_minAge = sur_minAge;
-//            controller.isNationalData = YES;
-//        }
-//        
-//        
-//        
-//    }
-    controller.comp_dictionary = [[NSMutableDictionary alloc] init];
 
+    controller.comp_dictionary = [[NSMutableDictionary alloc] init];
     if ([self.comp_dictionary valueForKey:@"comp_sum"] != nil) {
         NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"comp_sum"] ;
         int sum = [getNumberFromDictionary integerValue];
@@ -305,6 +1389,7 @@
             NSNumber *noneN = [NSNumber numberWithInt:0];
             [self.comp_dictionary setObject:noneN forKey:@"comp_transfusion"];
         }
+        
     }
     if ([self.comp_dictionary valueForKey:@"s_comp_sum"] != nil) {
         NSNumber *getNumberFromDictionary = [self.comp_dictionary valueForKey:@"s_comp_sum"] ;
@@ -359,6 +1444,7 @@
             NSNumber *noneN = [NSNumber numberWithInt:0];
             [self.comp_dictionary setObject:noneN forKey:@"s_comp_transfusion"];
         }
+        
     }
 
     controller.comp_dictionary = self.comp_dictionary;
@@ -1470,7 +2556,1169 @@
             }
         }
     }
-    } else if([_procID isEqualToString:@"9"] || [_procID isEqualToString:@"10"]) {
+//==============================================================================================================================
+//==============================================================================================================================
+//==============================================================================================================================
+    } else if([_procID isEqualToString:@"9"]){
+        for(int i=0;i<self.selectedCases.count;i++){
+            
+            NSDictionary *dic = [self.selectedCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sumOfAges+= age;
+            if(i == 0){
+                maxAge = age;
+                minAge = age;
+            }
+            else{
+                if(age>maxAge){
+                    maxAge = age;
+                }
+                if(age<minAge){
+                    minAge = age;
+                }
+            }
+            //male - drain placed
+            if([[dic valueForKey:@"var_drainplaced"] isEqualToString:@"YES"]){
+                maleCount+=1;
+            }
+            
+            //tumor
+            if([dic valueForKey:@"var_reservoirfilled"]){
+                float tsize =[[dic valueForKey:@"var_reservoirfilled"] floatValue];
+                tumorSizeCount+=tsize;
+                if(i == 0){
+                    minTumorSize = tsize;
+                    maxTumorSize = tsize;
+                }else{
+                    if(tsize>maxTumorSize){
+                        maxTumorSize = tsize;
+                    }
+                    if(tsize<minTumorSize){
+                        minTumorSize = tsize;
+                    }
+                }
+            }
+            //bmi
+            if([dic valueForKey:@"var_devicelength"]){
+                float bmi = [[dic valueForKey:@"var_devicelength"] floatValue];
+                bmiCount+= bmi;
+                if(i == 0){
+                    minBmi = bmi;
+                    maxBmi = bmi;
+                }else{
+                    if(bmi>maxBmi){
+                        maxBmi = bmi;
+                    }
+                    if(bmi<minBmi){
+                        minBmi = bmi;
+                    }
+                }
+            }
+            //cysto
+            if(![[dic valueForKey:@"var_complications"] isEqualToString:@"NO"]){
+                cytoStentCount+=1;
+            }
+            //preop - renal mass
+            if([[dic valueForKey:@"var_reservoirside"] isEqualToString:@"Left renal mass"]){
+                LRMCount+=1;
+            }
+            
+            //===============================================================================================
+            //Irrigation antibiotics used (Neomycin, Bacitracin, Gentamicin, Vancomycin, Amphotericin B, Rifampin), multiple choices can be selected
+            NSString *factors = [dic valueForKey:@"var_irrigationantibiotics"];
+            NSArray *factorsA = [factors componentsSeparatedByString:@"; "];
+            NSNumber *s_irri_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.irri_dictionary setObject:s_irri_sumNumber forKey:@"irri_sum"];
+            if ([factorsA containsObject:@"Neomycin"]) {
+                if ([self.irri_dictionary valueForKey:@"irri_Neomycin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Neomycin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Neomycin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Neomycin"];
+                }
+            }
+            if ([factorsA containsObject:@"Bacitracin"]) {
+                if ([self.irri_dictionary valueForKey:@"irri_Bacitracin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Bacitracin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Bacitracin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Bacitracin"];
+                }
+            }
+            if ([factorsA containsObject:@"Gentamicin"]) {
+                if ([self.irri_dictionary valueForKey:@"irri_Gentamicin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Gentamicin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Gentamicin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Gentamicin"];
+                }
+            }
+            if ([factorsA containsObject:@"Vancomycin"]) {
+                if ([self.irri_dictionary valueForKey:@"irri_Vancomycin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Vancomycin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Vancomycin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Vancomycin"];
+                }
+            }
+            if ([factorsA containsObject:@"Amphotericin B"]) {
+                if ([self.irri_dictionary valueForKey:@"irri_AmphotericinB"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_AmphotericinB"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_AmphotericinB"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_AmphotericinB"];
+                }
+            }
+            if ([factorsA containsObject:@"Rifampin"]) {
+                if ([self.irri_dictionary valueForKey:@"irri_Rifampin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Rifampin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"irri_Rifampin"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"irri_Rifampin"];
+                }
+            }
+            
+            
+            
+            
+            
+            //===============================================================================================
+            //Diagnosis (Erectile Dysfunction, Peyronie’s Disease, Prostate Cancer,
+            //Hypertension, Dyslipidemia, Coronary Artery Disease,
+            //Diabetes Mellitus, Spinal Cord Injury, Pelvic Trauma,
+            //Penile Trauma), multiple may be chosen
+            
+            //    s_diag_ErectileDysfunction;
+            //    s_diag_PeyroniesDisease;
+            //   s_diag_ProstateCancer;
+            //
+
+            NSString *diag_factors = [dic valueForKey:@"var_diagnosis"];
+            NSArray *diag_factorsA = [diag_factors componentsSeparatedByString:@"; "];
+            NSNumber *diag_s_irri_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.diag_dictionary setObject:diag_s_irri_sumNumber forKey:@"diag_sum"];
+            if ([diag_factorsA containsObject:@"Erectile Dysfunction"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_ErectileDysfunction"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_ErectileDysfunction"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_ErectileDysfunction"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_ErectileDysfunction"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Peyronie’s Disease"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_PeyroniesDisease"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_PeyroniesDisease"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_PeyroniesDisease"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_PeyroniesDisease"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Prostate Cancer"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_ProstateCancer"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_ProstateCancer"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_ProstateCancer"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_ProstateCancer"];
+                }
+            }
+            //    s_diag_Hypertension;
+            //    s_diag_Dyslipidemia;
+            //    s_diag_CoronaryArteryDisease;
+            //
+
+            //++++++++
+            if ([diag_factorsA containsObject:@"Hypertension"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_Hypertension"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_Hypertension"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_Hypertension"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_Hypertension"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Dyslipidemia"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_Dyslipidemia"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_Dyslipidemia"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_Dyslipidemia"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_Dyslipidemia"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Coronary Artery Disease"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_CoronaryArteryDisease"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_CoronaryArteryDisease"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_CoronaryArteryDisease"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_CoronaryArteryDisease"];
+                }
+            }
+            //    s_diag_DiabetesMellitus;
+            //    s_diag_SpinalCordInjury;
+            //    s_diag_PelvicTrauma;
+            //    s_diag_PenileTrauma;
+            //++++++++
+            if ([diag_factorsA containsObject:@"Diabetes Mellitus"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_DiabetesMellitus"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_DiabetesMellitus"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_DiabetesMellitus"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_DiabetesMellitus"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Spinal Cord Injury"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_SpinalCordInjury"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_SpinalCordInjury"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_SpinalCordInjury"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_SpinalCordInjury"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Pelvic Trauma"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_PelvicTrauma"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_PelvicTrauma"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_PelvicTrauma"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_PelvicTrauma"];
+                }
+            }
+            //++++++++
+            if ([diag_factorsA containsObject:@"Penile Trauma"]) {
+                if ([self.diag_dictionary valueForKey:@"diag_PenileTrauma"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_PenileTrauma"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"diag_PenileTrauma"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"diag_PenileTrauma"];
+                }
+            }
+
+            
+            
+           
+            
+            
+            NSString *devimp_factors = [dic valueForKey:@"var_deviceimplaned"];
+            NSNumber *devimp_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.devimp_dictionary setObject:devimp_s_comp_sumNumber forKey:@"devimp_sum"];
+            if ([devimp_factors isEqualToString:@"AMS 700 CX"]) {
+                if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700CX"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_AMS700CX"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_AMS700CX"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_AMS700CX"];
+                }
+            } else if ([devimp_factors isEqualToString:@"AMS 700 CXR"]) {
+                if ([self.devimp_dictionary valueForKey:@"devimp_AMS700CXR"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_AMS700CXR"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_AMS700CXR"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_AMS700CXR"];
+                }
+            } else if ([devimp_factors isEqualToString:@"AMS 700 LGX"]) {
+                if ([self.devimp_dictionary valueForKey:@"devimp_AMS700LGX"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_AMS700LGX"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_AMS700LGX"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_AMS700LGX"];
+                }
+            } else if ([devimp_factors isEqualToString:@"Coloplast Titan"]) {
+                if ([self.devimp_dictionary valueForKey:@"devimp_ColoplastTitan"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_ColoplastTitan"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"devimp_ColoplastTitan"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"devimp_ColoplastTitan"];
+                }
+            }
+
+            
+            
+            
+            //diluse_dictionary
+            NSString *diluse_factors = [dic valueForKey:@"var_dilatorsused"];
+            NSNumber *diluse_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.diluse_dictionary setObject:diluse_s_comp_sumNumber forKey:@"diluse_sum"];
+            if ([diluse_factors isEqualToString:@"Brooks"]) {
+                if ([self.diluse_dictionary valueForKey:@"diluse_Brooks"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"diluse_Brooks"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_Brooks"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"diluse_Brooks"];
+                }
+            } else if ([diluse_factors isEqualToString:@"Hegar"]) {
+                if ([self.diluse_dictionary valueForKey:@"diluse_Hegar"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"diluse_Hegar"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_Hegar"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"diluse_Hegar"];
+                }
+            } else if ([diluse_factors isEqualToString:@"Furlow"]) {
+                if ([self.diluse_dictionary valueForKey:@"diluse_Furlow"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"diluse_Furlow"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"diluse_Furlow"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"diluse_Furlow"];
+                }
+            }
+            
+            
+            
+            //s_dilwas_straightforward
+            //s_dilwas_difficultduetoscarring
+            //s_dilwas_difficultduetoanatomy
+            NSString *dilwas_factors = [dic valueForKey:@"var_dilationwas"];
+            NSNumber *dilwas_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.diluse_dictionary setObject:dilwas_s_comp_sumNumber forKey:@"dilwas_sum"];
+            if ([dilwas_factors isEqualToString:@"straightforward"]) {
+                if ([self.diluse_dictionary valueForKey:@"dilwas_straightforward"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_straightforward"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"dilwas_straightforward"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_straightforward"];
+                }
+            } else if ([dilwas_factors isEqualToString:@"difficult due to scarring"]) {
+                if ([self.diluse_dictionary valueForKey:@"dilwas_difficultduetoscarring"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoscarring"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"dilwas_difficultduetoscarring"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoscarring"];
+                }
+            } else if ([dilwas_factors isEqualToString:@"difficult due to anatomy"]) {
+                if ([self.diluse_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoanatomy"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoanatomy"];
+                }
+            }
+            
+            //    s_restyp_Conceal
+            //    s_restyp_Spherical
+            //    s_restyp_Cloverleaf
+            NSString *restyp_factors = [dic valueForKey:@"var_reservoirtype"];
+            NSNumber *restyp_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.restyp_dictionary setObject:restyp_s_comp_sumNumber forKey:@"restyp_sum"];
+            if ([restyp_factors isEqualToString:@"Conceal"]) {
+                if ([self.restyp_dictionary valueForKey:@"restyp_Conceal"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"restyp_Conceal"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_Conceal"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"restyp_Conceal"];
+                }
+            } else if ([restyp_factors isEqualToString:@"Spherical"]) {
+                if ([self.restyp_dictionary valueForKey:@"restyp_Spherical"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"restyp_Spherical"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_Spherical"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"restyp_Spherical"];
+                }
+            } else if ([restyp_factors isEqualToString:@"Cloverleaf"]) {
+                if ([self.restyp_dictionary valueForKey:@"restyp_Cloverleaf"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"restyp_Cloverleaf"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"restyp_Cloverleaf"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"restyp_Cloverleaf"];
+                }
+            }
+            
+            //s_dilto_9mm;
+            //s_dilto_10mm;
+            //s_dilto_11mm;
+            //s_dilto_12mm;
+            //s_dilto_13mm;
+            //s_dilto_14mm;
+            //s_dilto_na;
+            NSString *dilto_factors = [dic valueForKey:@"var_dilatedto"];
+            NSNumber *dilto_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.dilto_dictionary setObject:dilto_s_comp_sumNumber forKey:@"dilto_sum"];
+            if ([dilto_factors isEqualToString:@"9mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_9mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_9mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_9mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_9mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"10mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_10mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_10mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_10mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_10mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"11mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_11mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_11mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_11mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_11mm"];
+                }
+                
+                //s_dilto_12mm;
+                //s_dilto_13mm;
+                //s_dilto_14mm;
+                //s_dilto_na;
+            } else if ([dilto_factors isEqualToString:@"12mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_12mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_12mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_12mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_12mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"13mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_13mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_13mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_13mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_13mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"14mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_14mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_14mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_14mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_14mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"n/a"]) {
+                if ([self.dilto_dictionary valueForKey:@"dilto_na"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_na"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"dilto_na"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"dilto_na"];
+                }
+            }
+
+        }
+//==============================================================================================================================
+//==============================================================================================================================
+//==============================================================================================================================
+        
+        for(int i=0;i<self.surgeonCases.count;i++){
+            
+            NSDictionary *dic = [self.surgeonCases objectAtIndex:i];
+            NSString *dob = [dic valueForKey:@"var_patientDOB"];
+            // NSString *dos = [dic objectForKey:@"DateOfService"];
+            float age = [self CalculateAge:dob];
+            NSLog(@" ^^^^ Age Retreived :: %f",age);
+            sur_sumOfAges+= age;
+            if(i == 0){
+                sur_maxAge = age;
+                sur_minAge = age;
+            }
+            else{
+                if(age>sur_maxAge){
+                    sur_maxAge = age;
+                }
+                if(age<sur_minAge){
+                    sur_minAge = age;
+                }
+            }
+            //male - drain placed
+            if([[dic valueForKey:@"var_drainplaced"] isEqualToString:@"YES"]){
+                maleCount+=1;
+            }
+            
+            //tumor
+            if([dic valueForKey:@"var_reservoirfilled"]){
+                float tsize =[[dic valueForKey:@"var_reservoirfilled"] floatValue];
+                sur_tumorSizeCount+=tsize;
+                if(i == 0){
+                    sur_minTumorSize = tsize;
+                    sur_maxTumorSize = tsize;
+                }else{
+                    if(tsize>sur_maxTumorSize){
+                        sur_maxTumorSize = tsize;
+                    }
+                    if(tsize<sur_minTumorSize){
+                        sur_minTumorSize = tsize;
+                    }
+                }
+            }
+            //bmi
+            if([dic valueForKey:@"var_devicelength"]){
+                float bmi = [[dic valueForKey:@"var_devicelength"] floatValue];
+                sur_bmiCount+= bmi;
+                if(i == 0){
+                    sur_minBmi = bmi;
+                    sur_maxBmi = bmi;
+                }else{
+                    if(bmi>sur_maxBmi){
+                        sur_maxBmi = bmi;
+                    }
+                    if(bmi<sur_minBmi){
+                        sur_minBmi = bmi;
+                    }
+                }
+            }
+            //cysto
+            if(![[dic valueForKey:@"var_complications"] isEqualToString:@"NO"]){
+                sur_cytoStentCount+=1;
+            }
+            //preop - renal mass
+            if([[dic valueForKey:@"var_reservoirside"] isEqualToString:@"Left renal mass"]){
+                sur_LRMCount+=1;
+            }
+            
+            NSString *factors = [dic valueForKey:@"var_irrigationantibiotics"];
+            NSArray *factorsA = [factors componentsSeparatedByString:@"; "];
+            NSNumber *s_irri_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.irri_dictionary setObject:s_irri_sumNumber forKey:@"s_irri_sum"];
+            if ([factorsA containsObject:@"Neomycin"]) {
+                if ([self.irri_dictionary valueForKey:@"s_irri_Neomycin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Neomycin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Neomycin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Neomycin"];
+                }
+            }
+            if ([factorsA containsObject:@"Bacitracin"]) {
+                if ([self.irri_dictionary valueForKey:@"s_irri_Bacitracin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Bacitracin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Bacitracin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Bacitracin"];
+                }
+            }
+            if ([factorsA containsObject:@"Gentamicin"]) {
+                if ([self.irri_dictionary valueForKey:@"s_irri_Gentamicin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Gentamicin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Gentamicin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Gentamicin"];
+                }
+            }
+            if ([factorsA containsObject:@"Vancomycin"]) {
+                if ([self.irri_dictionary valueForKey:@"s_irri_Vancomycin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Vancomycin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Vancomycin"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Vancomycin"];
+                }
+            }
+            if ([factorsA containsObject:@"Amphotericin B"]) {
+                if ([self.irri_dictionary valueForKey:@"s_irri_AmphotericinB"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_AmphotericinB"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_AmphotericinB"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_AmphotericinB"];
+                }
+            }
+            if ([factorsA containsObject:@"Rifampin"]) {
+                if ([self.irri_dictionary valueForKey:@"s_irri_Rifampin"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Rifampin"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.irri_dictionary valueForKey:@"s_irri_Rifampin"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.irri_dictionary setObject:s_comp_noneNumber forKey:@"s_irri_Rifampin"];
+                }
+            }
+            
+            //===============================================================================================
+            //Diagnosis (Erectile Dysfunction, Peyronie’s Disease, Prostate Cancer,
+            //Hypertension, Dyslipidemia, Coronary Artery Disease,
+            //Diabetes Mellitus, Spinal Cord Injury, Pelvic Trauma,
+            //Penile Trauma), multiple may be chosen
+            
+            //    s_diag_ErectileDysfunction;
+            //    s_diag_PeyroniesDisease;
+            //   s_diag_ProstateCancer;
+            //
+            
+            NSString *diag_factors = [dic valueForKey:@"var_diagnosis"];
+            NSArray *diag_factorsA = [diag_factors componentsSeparatedByString:@"; "];
+            NSNumber *diag_s_irri_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.diag_dictionary setObject:diag_s_irri_sumNumber forKey:@"s_diag_sum"];
+            if ([diag_factorsA containsObject:@"Erectile Dysfunction"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_ErectileDysfunction"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_ErectileDysfunction"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_ErectileDysfunction"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_ErectileDysfunction"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Peyronie’s Disease"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_PeyroniesDisease"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_PeyroniesDisease"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_PeyroniesDisease"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_PeyroniesDisease"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Prostate Cancer"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_ProstateCancer"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_ProstateCancer"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_ProstateCancer"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_ProstateCancer"];
+                }
+            }
+            //    s_diag_Hypertension;
+            //    s_diag_Dyslipidemia;
+            //    s_diag_CoronaryArteryDisease;
+            //
+            
+            //++++++++
+            if ([diag_factorsA containsObject:@"Hypertension"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_Hypertension"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_Hypertension"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_Hypertension"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_Hypertension"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Dyslipidemia"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_Dyslipidemia"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_Dyslipidemia"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_Dyslipidemia"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_Dyslipidemia"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Coronary Artery Disease"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_CoronaryArteryDisease"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_CoronaryArteryDisease"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_CoronaryArteryDisease"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_CoronaryArteryDisease"];
+                }
+            }
+            //    s_diag_DiabetesMellitus;
+            //    s_diag_SpinalCordInjury;
+            //    s_diag_PelvicTrauma;
+            //    s_diag_PenileTrauma;
+            //++++++++
+            if ([diag_factorsA containsObject:@"Diabetes Mellitus"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_DiabetesMellitus"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_DiabetesMellitus"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_DiabetesMellitus"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_DiabetesMellitus"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Spinal Cord Injury"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_SpinalCordInjury"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_SpinalCordInjury"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_SpinalCordInjury"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_SpinalCordInjury"];
+                }
+            }
+            if ([diag_factorsA containsObject:@"Pelvic Trauma"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_PelvicTrauma"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_PelvicTrauma"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_PelvicTrauma"];
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_PelvicTrauma"];
+                }
+            }
+            //++++++++
+            if ([diag_factorsA containsObject:@"Penile Trauma"]) {
+                if ([self.diag_dictionary valueForKey:@"s_diag_PenileTrauma"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_PenileTrauma"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diag_dictionary valueForKey:@"s_diag_PenileTrauma"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diag_dictionary setObject:s_comp_noneNumber forKey:@"s_diag_PenileTrauma"];
+                }
+            }
+            
+            
+            
+            
+            
+            //    s_devimp_AMS700CX;
+            //    s_devimp_AMS700CXR;
+            //    s_devimp_AMS700LGX;
+            //    s_devimp_ColoplastTitan;
+            NSString *devimp_factors = [dic valueForKey:@"var_deviceimplaned"];
+            NSNumber *devimp_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.devimp_dictionary setObject:devimp_s_comp_sumNumber forKey:@"s_devimp_sum"];
+            if ([devimp_factors isEqualToString:@"AMS 700 CX"]) {
+                if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700CX"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_AMS700CX"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_AMS700CX"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_AMS700CX"];
+                }
+            } else if ([devimp_factors isEqualToString:@"AMS 700 CXR"]) {
+                if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700CXR"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_AMS700CXR"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_AMS700CXR"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_AMS700CXR"];
+                }
+            } else if ([devimp_factors isEqualToString:@"AMS 700 LGX"]) {
+                if ([self.devimp_dictionary valueForKey:@"s_devimp_AMS700LGX"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_AMS700LGX"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_AMS700LGX"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_AMS700LGX"];
+                }
+            } else if ([devimp_factors isEqualToString:@"Coloplast Titan"]) {
+                if ([self.devimp_dictionary valueForKey:@"s_devimp_ColoplastTitan"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_ColoplastTitan"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.devimp_dictionary valueForKey:@"s_devimp_ColoplastTitan"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.devimp_dictionary setObject:s_comp_noneNumber forKey:@"s_devimp_ColoplastTitan"];
+                }
+            }
+            
+            
+            
+            
+            //diluse_dictionary
+            NSString *diluse_factors = [dic valueForKey:@"var_dilatorsused"];
+            NSNumber *diluse_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.diluse_dictionary setObject:diluse_s_comp_sumNumber forKey:@"s_diluse_sum"];
+            if ([diluse_factors isEqualToString:@"Brooks"]) {
+                if ([self.diluse_dictionary valueForKey:@"s_diluse_Brooks"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_diluse_Brooks"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_Brooks"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_diluse_Brooks"];
+                }
+            } else if ([diluse_factors isEqualToString:@"Hegar"]) {
+                if ([self.diluse_dictionary valueForKey:@"s_diluse_Hegar"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_diluse_Hegar"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_Hegar"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_diluse_Hegar"];
+                }
+            } else if ([diluse_factors isEqualToString:@"Furlow"]) {
+                if ([self.diluse_dictionary valueForKey:@"s_diluse_Furlow"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_diluse_Furlow"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_diluse_Furlow"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_diluse_Furlow"];
+                }
+            }
+            
+            //s_dilwas_straightforward
+            //s_dilwas_difficultduetoscarring
+            //s_dilwas_difficultduetoanatomy
+            NSString *dilwas_factors = [dic valueForKey:@"var_dilationwas"];
+            NSNumber *dilwas_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.diluse_dictionary setObject:dilwas_s_comp_sumNumber forKey:@"s_dilwas_sum"];
+            if ([dilwas_factors isEqualToString:@"straightforward"]) {
+                if ([self.diluse_dictionary valueForKey:@"s_dilwas_straightforward"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_straightforward"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_dilwas_straightforward"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_straightforward"];
+                }
+            } else if ([dilwas_factors isEqualToString:@"difficult due to scarring"]) {
+                if ([self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoscarring"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoscarring"];
+                }
+            } else if ([dilwas_factors isEqualToString:@"difficult due to anatomy"]) {
+                if ([self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoanatomy"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoanatomy"];
+                }
+            }
+            
+           
+            
+            
+            //    s_restyp_Conceal
+            //    s_restyp_Spherical
+            //    s_restyp_Cloverleaf
+            NSString *restyp_factors = [dic valueForKey:@"var_reservoirtype"];
+            NSNumber *restyp_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.restyp_dictionary setObject:restyp_s_comp_sumNumber forKey:@"s_restyp_sum"];
+            if ([restyp_factors isEqualToString:@"Conceal"]) {
+                if ([self.restyp_dictionary valueForKey:@"s_restyp_Conceal"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"s_restyp_Conceal"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_Conceal"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"s_restyp_Conceal"];
+                }
+            } else if ([restyp_factors isEqualToString:@"Spherical"]) {
+                if ([self.restyp_dictionary valueForKey:@"s_restyp_Spherical"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"s_restyp_Spherical"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_Spherical"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"s_restyp_Spherical"];
+                }
+            } else if ([restyp_factors isEqualToString:@"Cloverleaf"]) {
+                if ([self.restyp_dictionary valueForKey:@"s_restyp_Cloverleaf"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"s_restyp_Cloverleaf"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.restyp_dictionary valueForKey:@"s_restyp_Cloverleaf"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.restyp_dictionary setObject:s_comp_noneNumber forKey:@"s_restyp_Cloverleaf"];
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+            //s_dilto_9mm;
+            //s_dilto_10mm;
+            //s_dilto_11mm;
+            //s_dilto_12mm;
+            //s_dilto_13mm;
+            //s_dilto_14mm;
+            //s_dilto_na;
+            NSString *dilto_factors = [dic valueForKey:@"var_dilatedto"];
+            NSNumber *dilto_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
+            [self.dilto_dictionary setObject:dilto_s_comp_sumNumber forKey:@"s_dilto_sum"];
+            if ([dilto_factors isEqualToString:@"9mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_9mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_9mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_9mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_9mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"10mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_10mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_10mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_10mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_10mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"11mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_11mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_11mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_11mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_11mm"];
+                }
+                
+                //s_dilto_12mm;
+                //s_dilto_13mm;
+                //s_dilto_14mm;
+                //s_dilto_na;
+            } else if ([dilto_factors isEqualToString:@"12mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_12mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_12mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_12mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_12mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"13mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_13mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_13mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_13mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_13mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"14mm"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_14mm"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_14mm"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_14mm"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_14mm"];
+                }
+            } else if ([dilto_factors isEqualToString:@"n/a"]) {
+                if ([self.dilto_dictionary valueForKey:@"s_dilto_na"] == nil) {
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_na"];
+                } else {
+                    NSNumber *getNumberFromDictionary = [self.dilto_dictionary valueForKey:@"s_dilto_na"] ;
+                    int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
+                    s_comp_noneInt++;
+                    NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
+                    [self.dilto_dictionary setObject:s_comp_noneNumber forKey:@"s_dilto_na"];
+                }
+            }
+            
+            
+            
+            
+        }
+//==============================================================================================================================
+//==============================================================================================================================
+//==============================================================================================================================
+    } else if([_procID isEqualToString:@"10"]) {
         for(int i=0;i<self.selectedCases.count;i++){
             
             NSDictionary *dic = [self.selectedCases objectAtIndex:i];
@@ -1873,7 +4121,6 @@
     }
     
 }
-
 
 -(int)CalculateAge:(NSString *)DateOfBirth{
     
