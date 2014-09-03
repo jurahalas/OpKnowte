@@ -2960,39 +2960,39 @@
             //s_dilwas_difficultduetoanatomy
             NSString *dilwas_factors = [dic valueForKey:@"var_dilationwas"];
             NSNumber *dilwas_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
-            [self.diluse_dictionary setObject:dilwas_s_comp_sumNumber forKey:@"dilwas_sum"];
+            [self.dilwas_dictionary setObject:dilwas_s_comp_sumNumber forKey:@"dilwas_sum"];
             if ([dilwas_factors isEqualToString:@"straightforward"]) {
-                if ([self.diluse_dictionary valueForKey:@"dilwas_straightforward"] == nil) {
+                if ([self.dilwas_dictionary valueForKey:@"dilwas_straightforward"] == nil) {
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_straightforward"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_straightforward"];
                 } else {
-                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"dilwas_straightforward"] ;
+                    NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_straightforward"] ;
                     int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
                     s_comp_noneInt++;
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_straightforward"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_straightforward"];
                 }
             } else if ([dilwas_factors isEqualToString:@"difficult due to scarring"]) {
-                if ([self.diluse_dictionary valueForKey:@"dilwas_difficultduetoscarring"] == nil) {
+                if ([self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoscarring"] == nil) {
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoscarring"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoscarring"];
                 } else {
-                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"dilwas_difficultduetoscarring"] ;
+                    NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoscarring"] ;
                     int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
                     s_comp_noneInt++;
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoscarring"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoscarring"];
                 }
             } else if ([dilwas_factors isEqualToString:@"difficult due to anatomy"]) {
-                if ([self.diluse_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] == nil) {
+                if ([self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] == nil) {
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoanatomy"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoanatomy"];
                 } else {
-                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] ;
+                    NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"dilwas_difficultduetoanatomy"] ;
                     int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
                     s_comp_noneInt++;
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoanatomy"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"dilwas_difficultduetoanatomy"];
                 }
             }
             
@@ -3531,39 +3531,39 @@
             //s_dilwas_difficultduetoanatomy
             NSString *dilwas_factors = [dic valueForKey:@"var_dilationwas"];
             NSNumber *dilwas_s_comp_sumNumber = [NSNumber numberWithInt:i+1];
-            [self.diluse_dictionary setObject:dilwas_s_comp_sumNumber forKey:@"s_dilwas_sum"];
+            [self.dilwas_dictionary setObject:dilwas_s_comp_sumNumber forKey:@"s_dilwas_sum"];
             if ([dilwas_factors isEqualToString:@"straightforward"]) {
-                if ([self.diluse_dictionary valueForKey:@"s_dilwas_straightforward"] == nil) {
+                if ([self.dilwas_dictionary valueForKey:@"s_dilwas_straightforward"] == nil) {
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_straightforward"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_straightforward"];
                 } else {
-                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_dilwas_straightforward"] ;
+                    NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_straightforward"] ;
                     int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
                     s_comp_noneInt++;
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_straightforward"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_straightforward"];
                 }
             } else if ([dilwas_factors isEqualToString:@"difficult due to scarring"]) {
-                if ([self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] == nil) {
+                if ([self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] == nil) {
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoscarring"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoscarring"];
                 } else {
-                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] ;
+                    NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoscarring"] ;
                     int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
                     s_comp_noneInt++;
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoscarring"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoscarring"];
                 }
             } else if ([dilwas_factors isEqualToString:@"difficult due to anatomy"]) {
-                if ([self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] == nil) {
+                if ([self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] == nil) {
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:1];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoanatomy"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoanatomy"];
                 } else {
-                    NSNumber *getNumberFromDictionary = [self.diluse_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] ;
+                    NSNumber *getNumberFromDictionary = [self.dilwas_dictionary valueForKey:@"s_dilwas_difficultduetoanatomy"] ;
                     int s_comp_noneInt = [getNumberFromDictionary integerValue] ;
                     s_comp_noneInt++;
                     NSNumber *s_comp_noneNumber = [NSNumber numberWithInt:s_comp_noneInt];
-                    [self.diluse_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoanatomy"];
+                    [self.dilwas_dictionary setObject:s_comp_noneNumber forKey:@"s_dilwas_difficultduetoanatomy"];
                 }
             }
             
