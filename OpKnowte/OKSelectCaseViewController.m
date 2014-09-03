@@ -131,6 +131,7 @@
         }
     }
     cell.dataLable.text = selCase.dateOfServiceString;
+    cell.selCase = selCase;
     [cell setCellBGImageLight:indexPath.row];
     return cell;
 }
