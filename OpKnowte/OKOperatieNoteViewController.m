@@ -106,7 +106,7 @@
                     }
                 }
             }
-            
+            [self updateCaseDataArray];
             [self.caseDataTableView reloadData];
             [self indicationMethod];
             [self procedureMethod];
@@ -177,6 +177,41 @@
     }
     [self setupNotifications];
 }
+
+
+
+-(void) updateCaseDataArray{
+    for (int i = 0; i<[_caseDataValues count]; i++) {
+        OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[i];
+        NSString *variableValue = [[NSString alloc] init];
+        if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+            valuesArray = [_model valueForKey:variableModel.value];
+            for (int i = 0; i < valuesArray.count; i++) {
+                if ([valuesArray[i] isEqualToString:@" "]) {
+                    [valuesArray removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+            
+            variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+        }
+        //        else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value    isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
+        //            variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
+        //        }
+        else {
+            variableValue = [_model valueForKey:variableModel.value];
+        }
+        
+        OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
+        caseDataObject.key = variableModel.key;
+        caseDataObject.value = variableValue;
+        
+        [self.caseDataArray addObject:caseDataObject];
+    }
+    
+}
+
 
 
 -(void)setupNotifications
@@ -397,6 +432,30 @@
             }
         }
     }
+    else if (_procedureID == 10) {
+
+        if ([[[_model valueForKey:@"var_totalShocks"]objectAtIndex:0] isEqualToString:@"1"]) {
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"A total of (var_totalShocks) were delivered to the" withString:@"A total of (var_totalShocks) shockwave was delivered to the"];
+        }else{
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"A total of (var_totalShocks) were delivered to the" withString:@"A total of (var_totalShocks) shockwaves were delivered to the"];
+        }
+       
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"to the (var_stonesSizes) (var_stonesLocations)." withString:@"to the (var_stonesSizes) mm (var_stonesLocations) stone."];
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"Shockwaves were delivered at a rate of (var_rateOfWaves) and (var_KVWaves)." withString:@"Shockwaves were delivered at a rate of (var_rateOfWaves) and (var_KVWaves) Kv."];
+        
+        if ([[_model valueForKey:@"var_pausePerformed"] isEqualToString:@"YES"]) {
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(var_pausePerformed). " withString:@"A 2 minute pause was performed at the beginning of the procedure. "];
+        }else{
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(var_pausePerformed). " withString:@""];
+        }
+        if ([[_model valueForKey:@"var_complications"] isEqualToString:@"None"]) {
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(var_complications)." withString:@"There were no complications."];
+        }else{
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(var_complications)." withString:@"Complications included: (var_complications)."];
+        }
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"There was (var_fragmentations) fragmentation of the (var_stonesSizes) (var_stonesLocations)." withString:@"There was (var_fragmentations) fragmentation of the (var_stonesSizes) mm (var_stonesLocations) stone."];
+        
+    }
     
     for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
         
@@ -495,33 +554,33 @@
         if (!cell) {
             cell = [[OKOperatieNoteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
-        //      OKContactManager *contactsManager = [OKContactManager instance];
-        OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
-        NSString *variableValue = [[NSString alloc] init];
-        if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
-            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
-            valuesArray = [_model valueForKey:variableModel.value];
-            for (int i = 0; i < valuesArray.count; i++) {
-                if ([valuesArray[i] isEqualToString:@" "]) {
-                    [valuesArray removeObjectAtIndex:i];
-                    i--;
-                }
-            }
-            
-            variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
-        }
-        //        else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value    isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
-        //            variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
-        //        }
-        else {
-            variableValue = [_model valueForKey:variableModel.value];
-        }
-        
-        OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
-        caseDataObject.key = variableModel.key;
-        caseDataObject.value = variableValue;
-        
-        [self.caseDataArray addObject:caseDataObject];
+//        //      OKContactManager *contactsManager = [OKContactManager instance];
+//        OKProcedureTemplateVariablesModel *variableModel = _caseDataValues[indexPath.row];
+//        NSString *variableValue = [[NSString alloc] init];
+//        if ([[[_model valueForKey:variableModel.value] class] isSubclassOfClass:[NSMutableArray class]] ) {
+//            NSMutableArray *valuesArray = [[NSMutableArray alloc] init];
+//            valuesArray = [_model valueForKey:variableModel.value];
+//            for (int i = 0; i < valuesArray.count; i++) {
+//                if ([valuesArray[i] isEqualToString:@" "]) {
+//                    [valuesArray removeObjectAtIndex:i];
+//                    i--;
+//                }
+//            }
+//            
+//            variableValue = [[_model valueForKey:variableModel.value] componentsJoinedByString:@"; "];
+//        }
+//        //        else if([variableModel.value isEqualToString:@"var_physicans"] || [variableModel.value    isEqualToString:@"var_assistant"] || [variableModel.value isEqualToString:@"var_anesthesiologist"]){
+//        //            variableValue = [_model valueForKey:[NSString stringWithFormat:@"%@_names",variableModel.value]];
+//        //        }
+//        else {
+//            variableValue = [_model valueForKey:variableModel.value];
+//        }
+//        
+//        OKProcedureTemplateVariablesModel *caseDataObject = [[OKProcedureTemplateVariablesModel alloc]init];
+//        caseDataObject.key = variableModel.key;
+//        caseDataObject.value = variableValue;
+//        
+//        [self.caseDataArray addObject:caseDataObject];
 
         
 //        NSMutableArray *caseData = [[NSMutableArray alloc]init];
@@ -531,7 +590,8 @@
 //       if([[caseData objectAtIndex:indexPath.row] valueForKey:@"key"] isEqualToString:[self.caseDataArray objectAtIndex:inde])
 
         
-        [cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
+        //[cell setLabelsWithKey:variableModel.key AndValue:variableValue ];
+        [cell setLabelsWithKey:[[_caseDataArray objectAtIndex:indexPath.row] valueForKey:@"key"] AndValue:[[_caseDataArray objectAtIndex:indexPath.row] valueForKey:@"value"]];
         [tableView setContentInset:UIEdgeInsetsMake(1.0, 0.0, 0.0, 0.0)];
         return cell;
         
@@ -573,7 +633,14 @@
             
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             OKFacilityVC *vc = [storyboard instantiateViewControllerWithIdentifier:@"FacilityVC"];
+//            NSSet *caseSet = [NSSet setWithArray:_caseDataArray];
+//            NSMutableArray *arrayFromSet = [[NSMutableArray alloc] init];
+//            for (id model in caseSet) {
+//                [arrayFromSet addObject:model];
+//            }
+//            
             [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
+            
             vc.templateDictionary = _templateDictionary;
             [self.navigationController pushViewController:vc animated:YES];
             //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
