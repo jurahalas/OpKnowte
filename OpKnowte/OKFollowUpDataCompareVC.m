@@ -186,7 +186,11 @@
         [self showAverageCreatinineGraph];
     }else if([self.graphView isEqualToString:@"AverageBUN"]){
         [self showAverageBUNGraph];
+    }else if ([self.graphView isEqualToString:@"er_tumorCh"]){
+        [self er_showTumorChGraph];
     }
+    
+    
     _marginsNationalView.hidden = _showNationalData;
     _changeInBunNationalView.hidden = _showNationalData;
     _deepMarginsNationalView.hidden = _showNationalData;
@@ -431,6 +435,68 @@
         [_scrollView addSubview:self.tumorChView];
     }
 
+}
+
+-(void)er_showTumorChGraph
+{
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        
+        if (IS_IPHONE_5) {
+            CGRect frame = self.tumorChView.frame;
+            frame.origin.y = 57;
+            [self.tumorChView setFrame:frame];
+            
+        }else{
+            CGRect frame = self.tumorChView.frame;
+            frame.origin.y = 45;
+            [self.tumorChView setFrame:frame];
+        }
+        self.tumorCharacteristicsLabel.text = @"Erectile Function";
+        [self.TCNationalSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.NationalSize]];
+        [self.TCSurgeonSampleSize setText:[NSString stringWithFormat:@"Sample size (N = %i)",self.SurgeonSize]];
+
+        [self.ClearAllView setText:[NSString stringWithFormat:@"not actively seeking recovery = %.0f %%",self.er_ClearAll]];
+        [self.PapillaryView setText:[NSString stringWithFormat:@"no erections = %.0f %%",self.er_Papillary]];
+        [self.ChromophobeView setText:[NSString stringWithFormat:@"25%% erections = %.0f %%",self.er_Chromophobe]];
+        [self.SarcomatoidView setText:[NSString stringWithFormat:@"50%% erections = %.0f %%",self.er_Sarcomatoid]];
+        [self.angiomyolipomaView setText:[NSString stringWithFormat:@"75%% erections = %.0f %%",self.er_angiomyolipoma]];
+        [self.oncocytomaView setText:[NSString stringWithFormat:@"Eerections sufficent for intercourse with PDE-5 inhibitor = %.0f %%",self.er_oncocytoma]];
+        [self.otherView setText:[NSString stringWithFormat:@"Erections sufficient for intercourse without PDE-5 inhibitor = %.0f %%",self.er_other]];
+
+        
+        [self.s_ClearAllView setText:[NSString stringWithFormat:@"Not actively seeking recovery = %.0f %%",self.s_er_ClearAll]];
+        [self.s_PapillaryView setText:[NSString stringWithFormat:@"No erections = %.0f %%",self.s_er_Papillary]];
+        [self.s_ChromophobeView setText:[NSString stringWithFormat:@"25%% erections = %.0f %%",self.s_er_Chromophobe]];
+        [self.s_SarcomatoidView setText:[NSString stringWithFormat:@"50%% erections = %.0f %%",self.s_er_Sarcomatoid]];
+        [self.s_angiomyolipomaView setText:[NSString stringWithFormat:@"75%% erections = %.0f %%",self.s_er_angiomyolipoma]];
+        [self.s_oncocytomaView setText:[NSString stringWithFormat:@"Eerections sufficent for intercourse with PDE-5 inhibitor = %.0f %%",self.s_er_oncocytoma]];
+        [self.s_otherView setText:[NSString stringWithFormat:@"Erections sufficient for intercourse without PDE-5 inhibitor = %.0f %%",self.s_er_other]];
+
+        for (UIButton *button in self.compareButtons) {
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y+50, button.frame.size.width, button.frame.size.height);
+        }
+        for (UIButton *button in self.removeButtons) {
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y+50, button.frame.size.width, button.frame.size.height);
+        }
+        _tumorChView.frame = CGRectMake(_tumorChView.frame.origin.x, _tumorChView.frame.origin.y, _tumorChView.frame.size.width, _tumorChView.frame.size.height+100);
+        _tumorChNationalView.frame = CGRectMake(_tumorChNationalView.frame.origin.x, _tumorChNationalView.frame.origin.y+50, _tumorChNationalView.frame.size.width, _tumorChNationalView.frame.size.height+50);
+        _TumorCharLine.frame = CGRectMake(_TumorCharLine.frame.origin.x, _TumorCharLine.frame.origin.y+50, _TumorCharLine.frame.size.width, _TumorCharLine.frame.size.height);
+        _TumorCharBottomLine.frame = CGRectMake(_TumorCharBottomLine.frame.origin.x, _TumorCharBottomLine.frame.origin.y+50, _TumorCharBottomLine.frame.size.width, _TumorCharBottomLine.frame.size.height);
+        self.s_oncocytomaView.frame = CGRectMake(self.s_oncocytomaView.frame.origin.x, self.s_oncocytomaView.frame.origin.y, self.s_oncocytomaView.frame.size.width, self.s_oncocytomaView.frame.size.height+25);
+        self.s_otherView.frame = CGRectMake(self.s_otherView.frame.origin.x, self.s_otherView.frame.origin.y+25, self.s_otherView.frame.size.width, self.s_otherView.frame.size.height+25);
+        self.oncocytomaView.frame = CGRectMake(self.oncocytomaView.frame.origin.x, self.oncocytomaView.frame.origin.y, self.oncocytomaView.frame.size.width, self.oncocytomaView.frame.size.height+25);
+        self.otherView.frame = CGRectMake(self.otherView.frame.origin.x, self.otherView.frame.origin.y+25, self.otherView.frame.size.width, self.otherView.frame.size.height+25);
+        
+        self.s_oncocytomaView.numberOfLines = 2;
+        self.s_otherView.numberOfLines = 2;
+        self.oncocytomaView.numberOfLines = 2;
+        self.otherView.numberOfLines = 2;
+        
+        _scrollView.contentSize = self.tumorChView.bounds.size;
+        self.tumorChView.frame = CGRectMake(self.tumorChView.frame.origin.x, self.tumorChView.frame.origin.y-64, self.tumorChView.frame.size.width, self.tumorChView.frame.size.height);
+        [_scrollView addSubview:self.tumorChView];
+    }
+    
 }
 
 

@@ -9,6 +9,8 @@
 #import "OKBaseViewController.h"
 @interface OKFollowUpDataCompareVC : OKBaseViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *TumorCharLine;
+@property (strong, nonatomic) IBOutlet UIImageView *TumorCharBottomLine;
 @property (strong, nonatomic) IBOutlet UILabel *tumorCharacteristicsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *TMNStagingLabel;
 @property (strong, nonatomic) IBOutlet UILabel *CTScanLabel;
@@ -150,6 +152,14 @@
 @property (nonatomic) float oncocytoma;
 @property (nonatomic) float other;
 
+@property (nonatomic) float er_ClearAll;
+@property (nonatomic) float er_Papillary;
+@property (nonatomic) float er_Chromophobe;
+@property (nonatomic) float er_Sarcomatoid;
+@property (nonatomic) float er_angiomyolipoma;
+@property (nonatomic) float er_oncocytoma;
+@property (nonatomic) float er_other;
+
 @property (nonatomic) float s_ClearAll;
 @property (nonatomic) float s_Papillary;
 @property (nonatomic) float s_Chromophobe;
@@ -157,6 +167,14 @@
 @property (nonatomic) float s_angiomyolipoma;
 @property (nonatomic) float s_oncocytoma;
 @property (nonatomic) float s_other;
+
+@property (nonatomic) float s_er_ClearAll;
+@property (nonatomic) float s_er_Papillary;
+@property (nonatomic) float s_er_Chromophobe;
+@property (nonatomic) float s_er_Sarcomatoid;
+@property (nonatomic) float s_er_angiomyolipoma;
+@property (nonatomic) float s_er_oncocytoma;
+@property (nonatomic) float s_er_other;
 
 @property (nonatomic, retain) IBOutlet UILabel *ClearAllView;
 @property (nonatomic, retain) IBOutlet UILabel *PapillaryView;
