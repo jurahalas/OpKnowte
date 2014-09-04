@@ -31,14 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.comp_dictionary = [[NSMutableDictionary alloc] init];
-    self.irri_dictionary = [[NSMutableDictionary alloc] init];
-    self.diag_dictionary = [[NSMutableDictionary alloc] init];
-    self.devimp_dictionary = [[NSMutableDictionary alloc] init];
-    self.diluse_dictionary = [[NSMutableDictionary alloc] init];
-    self.dilwas_dictionary = [[NSMutableDictionary alloc] init];
-    self.restyp_dictionary = [[NSMutableDictionary alloc] init];
-    self.dilto_dictionary= [[NSMutableDictionary alloc] init];
+
 
 
     
@@ -120,6 +113,20 @@
     }
 	// Do any additional setup after loading the view.
 }
+
+
+-(void) viewWillAppear:(BOOL)animated {
+    self.comp_dictionary = [[NSMutableDictionary alloc] init];
+    self.irri_dictionary = [[NSMutableDictionary alloc] init];
+    self.diag_dictionary = [[NSMutableDictionary alloc] init];
+    self.devimp_dictionary = [[NSMutableDictionary alloc] init];
+    self.diluse_dictionary = [[NSMutableDictionary alloc] init];
+    self.dilwas_dictionary = [[NSMutableDictionary alloc] init];
+    self.restyp_dictionary = [[NSMutableDictionary alloc] init];
+    self.dilto_dictionary= [[NSMutableDictionary alloc] init];
+}
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
