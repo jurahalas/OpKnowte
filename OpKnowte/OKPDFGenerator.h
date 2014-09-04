@@ -20,6 +20,7 @@
 }
 
 -(void)genratePdfFile:(NSString *)str withPath:(NSString *)fileName size:(int)count;
+-(void)genratePdfFile2:(NSString *)str withPath:(NSString *)fileName size:(int)count;
 +(void)deletePdfFile:(NSString *)fileName;
 
 @end

@@ -346,13 +346,21 @@
         
         
         if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Shockwave Lithotripsy"]) {
-             body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
+            
+             body = [body stringByAppendingFormat:@"%i:\nPATIENT NAME: %@\nPROCEDURE NAME: %@\nDATE OF SERVICE: %@\nMEDICAL RECORD NO. %@\nCOMPLICATIONS: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
+            
         }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Laparoscopic Robotic Radical Prostatectomy"]) {
-            body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"]];
+            
+            body = [body stringByAppendingFormat:@"%i:\nPATIENT NAME: %@\nPROCEDURE NAME: %@\nDATE OF SERVICE: %@\nMEDICAL RECORD NO. %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"]];
+            
         }else if ([[caseData valueForKey:@"var_procedureName"] isEqualToString:@"Insertion of Penile Prosthesis"]) {
-            body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
+            
+            body = [body stringByAppendingFormat:@"%i:\nPATIENT NAME: %@\nPROCEDURE NAME: %@\nDATE OF SERVICE: %@\nMEDICAL RECORD NO. %@\nCOMPLICATIONS: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complications"]];
+            
         }else {
-             body = [body stringByAppendingFormat:@"%i:\nPatient Name: %@\nProcedure Name: %@\nDate Of Service: %@\nMedical record No. %@\nComplications: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complation"]];
+            
+             body = [body stringByAppendingFormat:@"%i:\nPATIENT NAME: %@\nPROCEDURE NAME: %@\nDATE OF SERVICE: %@\nMEDICAL RECORD NO. %@\nCOMPLICATIONS: %@",i+1,[caseData valueForKey:@"var_patientName"],[caseData valueForKey:@"var_procedureName"],str,[caseData valueForKey:@"var_MRNumber"],[caseData valueForKey:@"var_complation"]];
+            
         }
        
         

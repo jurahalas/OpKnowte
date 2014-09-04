@@ -9,6 +9,7 @@
 #import "OKPDFGenerator.h"
 @interface OKPDFGenerator (Private)
 - (void) generatePdfWithFilePath: (NSString *)thefilePath;
+-(void)genratePdfFile2:(NSString *)str withPath:(NSString *)fileName size:(int)count;
 - (void)drawPageNumber:(NSInteger)pageNum;
 - (void) drawBorder;
 - (void) drawText;
@@ -110,7 +111,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     NSString *documentsDirectoryPath = [paths objectAtIndex:0];
-    NSString *str =[NSString stringWithFormat:@"AppImageThumb.png"];
+    NSString *str =[NSString stringWithFormat:@"logoNB.png"];
     
     NSString *myFilePath = [documentsDirectoryPath stringByAppendingPathComponent:str];
     demoImage = [UIImage imageWithContentsOfFile:myFilePath];
@@ -155,6 +156,35 @@
     UIGraphicsEndPDFContext();
 }
 
+-(void)genratePdfFile2:(NSString *)str withPath:(NSString *)fileName size:(int)count{
+    //NSLog(@"%@",str);
+    
+    printingString = str;
+    UIFont *font = [UIFont fontWithName:@"PTSans-NarrowBold" size:15];
+    
+    
+    [str sizeWithFont:font];
+    
+    //NSString* stringToFind = @"\n";
+    //NSArray *listItems = [str componentsSeparatedByString:stringToFind];
+    //int count = [listItems count] - 1;
+    
+    // if (count > 1) {
+    //   pageSize = CGSizeMake(400, count*175);
+    //}else{
+    pageSize = CGSizeMake(400, count);
+    //}
+    
+    
+    //NSString *fileName = @"opNote.pdf";
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *pdfFilePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    
+    NSLog(@"%@",pdfFilePath);
+    
+    [self generatePdfWithFilePath:pdfFilePath];
+}
 
 -(void)genratePdfFile:(NSString *)str withPath:(NSString *)fileName size:(int)count{
     //NSLog(@"%@",str);

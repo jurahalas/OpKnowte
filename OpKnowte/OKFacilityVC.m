@@ -12,6 +12,7 @@
 #import "OKProcedureTemplateVariablesModel.h"
 #import "OKContactModel.h"
 #import "OKProceduresManager.h"
+#import "OKPDFGenerator.h"
 
 
 @interface OKFacilityVC ()<OKFacilityTableViewCellDelegate>
@@ -232,15 +233,25 @@
 -(void) sendEmailIfPossible{
     if ([MFMailComposeViewController canSendMail])
     {
+        [self generatePDF];
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         [mailer setSubject:@"Operative Note"];
         [mailer setToRecipients:[self getEmailAddress:_contactsSendTo]];
-        [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:NO];
+        [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:YES];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"report.pdf"]];
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        [mailer addAttachmentData:data mimeType:@"application/pdf" fileName: [NSString stringWithFormat:@"Patients Log"]];
+        
+        
         [self presentViewController:mailer animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
         mailer = nil;
+        
     }else{
         UIAlertView *alertFailure = [[UIAlertView alloc] initWithTitle:@"No Email Account"
                                                                message:@"There are no Email accounts configured. You can add or create Email account in Settings."
@@ -412,6 +423,11 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void) generatePDF {
+    OKPDFGenerator *pdfController = [[OKPDFGenerator alloc] init];
+    [pdfController genratePdfFile2:[self getEmailBodyForProcedure] withPath:[NSString stringWithFormat:@"report.pdf"] size:10000];
+    
+}
 
 -(NSString *)getEmailBodyForProcedure{
     NSString *body = [[NSString alloc] init];
@@ -426,43 +442,46 @@
 //    }else{
 //        perProcedure = [NSString stringWithFormat:@"left"];
 //    }
-
+    
+    
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
+
+        
         
         if ([procID isEqualToString:@"1"]) {
            NSString *nerveSparring = [[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:9] valueForKey:@"value"];
             
             if ([caseDataModel.key isEqualToString:@"Procedure"]) {
-                body = [body stringByAppendingFormat:@"%@: %@ with %@\n",caseDataModel.key, caseDataModel.value, nerveSparring];
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@ with %@\n",[caseDataModel.key uppercaseString], caseDataModel.value, nerveSparring];
             }else{
-                body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
             }
         }else if ([procID isEqualToString:@"2"]){
         
             if ([caseDataModel.key isEqualToString:@"Procedure"] && [[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:7] valueForKey:@"value"] isEqualToString:@"YES"]) {
-                    body = [body stringByAppendingFormat:@"%@: %@ with cysto and right stent placement\n", caseDataModel.key, caseDataModel.value];
+                    body = [body stringByAppendingFormat:@"%@: %@ with cysto and right stent placement\n", [caseDataModel.key uppercaseString], caseDataModel.value];
             } else if ([caseDataModel.key isEqualToString:@"Procedure"]) {
                 NSString *right = [NSString stringWithFormat:@"%@",[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"]];
                 if ([right isEqualToString:@"Right renal mass"]) {
                     right = @"Right";
                     NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                    body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, newValue ];
+                    body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], newValue ];
                 } else {
                     right = @"Left";
                     NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                    body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, newValue ];
+                    body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], newValue ];
                 }
             } else {
-                body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
+                body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
             }
             
         }else{
-            body = [body stringByAppendingFormat:@"%@: %@\n",caseDataModel.key, caseDataModel.value ];
+            body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
         }
     }
     
     
-    body = [body stringByAppendingFormat:@"\nIndications: %@ \n\n Procedures: %@", [_templateDictionary objectForKey:@"indicationText"], [_templateDictionary objectForKey:@"procedureText"]];
+    body = [body stringByAppendingFormat:@"\nINDICATIONS: %@ \n\n PROCEDURES: %@", [_templateDictionary objectForKey:@"indicationText"], [_templateDictionary objectForKey:@"procedureText"]];
     
     return body;
 }
