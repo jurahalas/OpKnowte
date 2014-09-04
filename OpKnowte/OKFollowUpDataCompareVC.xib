@@ -1149,7 +1149,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Clear Cell = 100 %" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="825">
-                    <rect key="frame" x="20" y="122" width="280" height="21"/>
+                    <rect key="frame" x="20" y="116" width="300" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2413,6 +2413,44 @@
         </view>
     </objects>
     <resources>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
+        <image name="horizontalDevider.png" width="280" height="1"/>
         <image name="horizontalDevider.png" width="280" height="1"/>
     </resources>
 </document>

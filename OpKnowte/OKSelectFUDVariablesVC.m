@@ -909,7 +909,7 @@ float s_creatinineDiffSum;
                 }
                 
                 
-            }else if ([[dict objectForKey:@"timePointID"] intValue] >12){
+            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 || [[dict objectForKey:@"timePointID"] isEqualToString:@"30"]){
                 sixMonths++;
                 NSString *hernia = [dict objectForKey:@"PSA"];
                 //NSLog(@"%@", hernia);
@@ -1618,7 +1618,7 @@ float s_creatinineDiffSum;
                 }
                 
                 
-            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <25){
+            }else if ([[dict objectForKey:@"timePointID"] intValue] >12 && [[dict objectForKey:@"timePointID"] intValue] <31){
                 s_sixMonths++;
                 
                 NSString *hernia = [dict objectForKey:@"PSA"];
