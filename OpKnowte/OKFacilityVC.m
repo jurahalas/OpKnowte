@@ -186,7 +186,7 @@
 -(void) sendFaxTo:(NSString*)faxNumberList
 {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
-    NSString *faxBody = [self getEmailBodyForProcedure];
+    NSString *faxBody = [self getFaxBodyForProcedure];
     OKSendFaxManager *sendFaxManager = [OKSendFaxManager instance];
     [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList handler:^(NSString *errorMsg, NSDictionary *json) {
         [[OKLoadingViewController instance] hide];
@@ -233,20 +233,11 @@
 -(void) sendEmailIfPossible{
     if ([MFMailComposeViewController canSendMail])
     {
-        [self generatePDF];
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         [mailer setSubject:@"Operative Note"];
         [mailer setToRecipients:[self getEmailAddress:_contactsSendTo]];
         [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:YES];
-        
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *filePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"report.pdf"]];
-        NSData *data = [NSData dataWithContentsOfFile:filePath];
-        [mailer addAttachmentData:data mimeType:@"application/pdf" fileName: [NSString stringWithFormat:@"Patients Log"]];
-        
-        
         [self presentViewController:mailer animated:YES completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
@@ -435,7 +426,7 @@
 //    NSString *perProcedure  = [[NSString alloc] init];
 //    NSString *perProcedure2 = @"";
     
-    body = [body stringByAppendingString:@"\n\n"];
+    body = [body stringByAppendingString:@"<br><br>"];
     
 //    if ([[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"] isEqualToString:@"Right renal mass"]) {
 //        perProcedure = [NSString stringWithFormat:@"right"];
@@ -443,23 +434,81 @@
 //        perProcedure = [NSString stringWithFormat:@"left"];
 //    }
     
-    
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
-
-        
         
         if ([procID isEqualToString:@"1"]) {
            NSString *nerveSparring = [[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:9] valueForKey:@"value"];
             
             if ([caseDataModel.key isEqualToString:@"Procedure"]) {
-                body = [body stringByAppendingFormat:@"<b>%@:</b> %@ with %@\n",[caseDataModel.key uppercaseString], caseDataModel.value, nerveSparring];
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@ with %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value, nerveSparring];
             }else{
-                body = [body stringByAppendingFormat:@"<b>%@:</b> %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
             }
         }else if ([procID isEqualToString:@"2"]){
         
             if ([caseDataModel.key isEqualToString:@"Procedure"] && [[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:7] valueForKey:@"value"] isEqualToString:@"YES"]) {
-                    body = [body stringByAppendingFormat:@"%@: %@ with cysto and right stent placement\n", [caseDataModel.key uppercaseString], caseDataModel.value];
+                    body = [body stringByAppendingFormat:@"<b>%@:</b> %@ with cysto and right stent placement<br>", [caseDataModel.key uppercaseString], caseDataModel.value];
+            } else if ([caseDataModel.key isEqualToString:@"Procedure"]) {
+                NSString *right = [NSString stringWithFormat:@"%@",[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"]];
+                if ([right isEqualToString:@"Right renal mass"]) {
+                    right = @"Right";
+                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
+                    body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], newValue ];
+                } else {
+                    right = @"Left";
+                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
+                    body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], newValue ];
+                }
+            } else {
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            }
+            
+        }else{
+            body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+        }
+    }
+    
+    
+    body = [body stringByAppendingFormat:@"<br><b>INDICATIONS:</b> %@ <br><br> <b>PROCEDURES:</b> %@", [_templateDictionary objectForKey:@"indicationText"], [_templateDictionary objectForKey:@"procedureText"]];
+    
+    body = [body stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
+    
+    return body;
+    
+}
+
+
+-(NSString *)getFaxBodyForProcedure{
+    NSString *body = [[NSString alloc] init];
+    NSString *procID = [[NSString alloc] initWithFormat:@"%@", [OKProceduresManager instance].selectedProcedure.identifier];
+    //    NSString *perProcedure  = [[NSString alloc] init];
+    //    NSString *perProcedure2 = @"";
+    
+    body = [body stringByAppendingString:@"\n\n"];
+    
+    //    if ([[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"] isEqualToString:@"Right renal mass"]) {
+    //        perProcedure = [NSString stringWithFormat:@"right"];
+    //    }else{
+    //        perProcedure = [NSString stringWithFormat:@"left"];
+    //    }
+    
+    
+    for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
+        
+        
+        
+        if ([procID isEqualToString:@"1"]) {
+            NSString *nerveSparring = [[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:9] valueForKey:@"value"];
+            
+            if ([caseDataModel.key isEqualToString:@"Procedure"]) {
+                body = [body stringByAppendingFormat:@"%@: %@ with %@\n",[caseDataModel.key uppercaseString], caseDataModel.value, nerveSparring];
+            }else{
+                body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            }
+        }else if ([procID isEqualToString:@"2"]){
+            
+            if ([caseDataModel.key isEqualToString:@"Procedure"] && [[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:7] valueForKey:@"value"] isEqualToString:@"YES"]) {
+                body = [body stringByAppendingFormat:@"%@: %@ with cysto and right stent placement\n", [caseDataModel.key uppercaseString], caseDataModel.value];
             } else if ([caseDataModel.key isEqualToString:@"Procedure"]) {
                 NSString *right = [NSString stringWithFormat:@"%@",[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"]];
                 if ([right isEqualToString:@"Right renal mass"]) {
@@ -485,8 +534,6 @@
     
     return body;
 }
-
-
 
 
 @end

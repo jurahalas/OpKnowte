@@ -890,7 +890,7 @@ float s_creatinineDiffSum;
                         BowelInjury++;
                     }else if ([complication isEqualToString:@"Wound Infection"]){
                         Infection++;
-                    }else if ([complication isEqualToString:@"Urine leak"]){
+                    }else if ([complication isEqualToString:@"Urine Leak"]){
                         UrineLeak++;
                     }else if ([complication isEqualToString:@"DVT"]){
                         DVT++;
@@ -1599,7 +1599,7 @@ float s_creatinineDiffSum;
                         s_BowelInjury++;
                     }else if ([complication isEqualToString:@"Wound Infection"]){
                         s_Infection++;
-                    }else if ([complication isEqualToString:@"Urine leak"]){
+                    }else if ([complication isEqualToString:@"Urine Leak"]){
                         s_UrineLeak++;
                     }else if ([complication isEqualToString:@"DVT"]){
                         s_DVT++;
@@ -2997,7 +2997,7 @@ float s_creatinineDiffSum;
                 
                 controller.NationalSize = twoWeeks;
                 controller.SurgeonSize = s_twoWeeks;
-                controller.graphView = @"xray";
+                controller.graphView = @"xray2";
                 controller.showNationalData = _showNationalData;
         }else{
             if(sixMonths>0)

@@ -176,6 +176,8 @@
         [self showChangeCreatinineGraph];
     }else if([self.graphView isEqualToString:@"xray"]){
         [self showXrayGraph];
+    }else if([self.graphView isEqualToString:@"xray2"]){
+        [self showXrayGraph2];
     }else if([self.graphView isEqualToString:@"liver"]){
         [self showLiverGraph];
     }else if([self.graphView isEqualToString:@"hernia"]){
@@ -1117,8 +1119,38 @@
         [_scrollView addSubview:self.changeBUNView];
     }
 }
-
-
+-(void)showXrayGraph2{
+    if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
+        
+        if (IS_IPHONE_5) {
+            
+            CGRect frame = self.xrayGraph.frame;
+            frame.origin.y = 57;
+            [self.xrayGraph setFrame:frame];
+            
+        }else{
+            CGRect frame = self.xrayGraph.frame;
+            frame.origin.y = 45;
+            [self.xrayGraph setFrame:frame];
+        }
+        _XRayLabel.text = @"Positive Margin";
+        [self.XRNationalSampleSize setText:[NSString stringWithFormat:@"(N = %i)",self.NationalSize]];
+        [self.XRSurgeonSampleSize setText:[NSString stringWithFormat:@"(N = %i)",self.SurgeonSize]];
+        
+        [self.xrayNegativeView setText:[NSString stringWithFormat:@"NO = %.0f %%",self.xrayNegative]];
+        [self.xrayPositiveView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.xrayPositive]];
+        
+        
+        [self.s_xrayNegativeView setText:[NSString stringWithFormat:@"NO= %.0f %%",self.s_xrayNegative]];
+        [self.s_xrayPositiveView setText:[NSString stringWithFormat:@"YES = %.0f %%",self.s_xrayPositive]];
+        //[self.view addSubview:self.xrayGraph];
+        
+        _scrollView.contentSize = self.xrayGraph.bounds.size;
+        self.xrayGraph.frame = CGRectMake(self.xrayGraph.frame.origin.x, self.xrayGraph.frame.origin.y-64, self.xrayGraph.frame.size.width, self.xrayGraph.frame.size.height);
+        
+        [_scrollView addSubview:self.xrayGraph];
+    }
+}
 -(void)showXrayGraph{
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
         
