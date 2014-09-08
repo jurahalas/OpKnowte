@@ -23,5 +23,6 @@
 @property (strong, nonatomic) NSMutableDictionary *templateDictionary;
 @property (strong, nonatomic) NSString *cameFromVC;
 @property (strong, nonatomic) NSString *roleID;
+@property (strong, nonatomic) id model;
 
 @end

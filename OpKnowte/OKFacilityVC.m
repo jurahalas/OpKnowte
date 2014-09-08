@@ -433,36 +433,256 @@
 //    }else{
 //        perProcedure = [NSString stringWithFormat:@"left"];
 //    }
-    
+    NSMutableDictionary * caseDataOrderChange = [[NSMutableDictionary alloc] init];
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
-        
-        if ([procID isEqualToString:@"1"]) {
-           NSString *nerveSparring = [[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:9] valueForKey:@"value"];
-            
-            if ([caseDataModel.key isEqualToString:@"Procedure"]) {
-                body = [body stringByAppendingFormat:@"<b>%@:</b> %@ with %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value, nerveSparring];
-            }else{
-                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+        [caseDataOrderChange setValue:caseDataModel forKey:caseDataModel.key];
+    }
+    
+    
+    NSMutableArray *caseDataChangeOrderArray = [[NSMutableArray alloc] init];
+    if ([procID isEqualToString:@"1"]) {
+        for (int i = 0; i<11; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
             }
-        }else if ([procID isEqualToString:@"2"]){
-        
-            if ([caseDataModel.key isEqualToString:@"Procedure"] && [[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:7] valueForKey:@"value"] isEqualToString:@"YES"]) {
-                    body = [body stringByAppendingFormat:@"<b>%@:</b> %@ with cysto and right stent placement<br>", [caseDataModel.key uppercaseString], caseDataModel.value];
-            } else if ([caseDataModel.key isEqualToString:@"Procedure"]) {
-                NSString *right = [NSString stringWithFormat:@"%@",[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"]];
+            else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+            }
+            else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+            }
+            else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
+            }
+            else if (i == 4){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
+            }
+            else if (i == 5){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
+            }
+            else if (i == 6){
+                NSString *nerveSparring = [self.model valueForKey:@"var_nervesparing"];
+                OKProcedureTemplateVariablesModel *caseDataModel = [caseDataOrderChange objectForKey:@"Procedure"];
+                caseDataModel.value =[NSString stringWithFormat:@"%@ with %@",caseDataModel.value, nerveSparring];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            else if (i == 8){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+            }
+            else if (i == 9){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesia"]];
+            }
+            else if (i == 10){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Anesthesiologist";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiologist"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            
+        }
+    } else if ([procID isEqualToString:@"2"]) {
+        for (int i = 0; i<10; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
+            } else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+                
+            }else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+                
+            }else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date of Service"]];
+                
+            }else if (i == 4){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
+                
+            }else if (i == 5){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
+                
+            }else if (i == 6){
+                OKProcedureTemplateVariablesModel *caseDataModel = [caseDataOrderChange objectForKey:@"Procedure"];
+                
+                if ([[self.model valueForKey:@"var_cysto"] isEqualToString:@"YES"]) {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ with cysto and right stent placement",caseDataModel.value];
+                }
+                NSString *right = [self.model valueForKey:@"var_preOp"];
                 if ([right isEqualToString:@"Right renal mass"]) {
                     right = @"Right";
-                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                    body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], newValue ];
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ %@",right,caseDataModel.value];
                 } else {
                     right = @"Left";
-                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                    body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], newValue ];
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ %@",right,caseDataModel.value];
                 }
-            } else {
-                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+               
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }else if (i == 8){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+                
+            }
+//            else if (i == 9){
+//                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesia"]];
+//                
+//            }
+            else if (i == 9){
+                //_var_anesthesiologist
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Anesthesiologist";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiologist"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
             }
             
+        }
+ 
+    } else if ([procID isEqualToString:@"9"]) {
+        for (int i = 0; i<9; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
+            } else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+                
+            }else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+                
+            }else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
+                
+            }else if (i == 4){
+                //var_diagnosis
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Pre-operative Diagnosis";
+                caseDataModel.value = [self.model valueForKey:@"var_diagnosis"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                //[caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
+                
+            }else if (i == 5){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Post-operative Diagnosis";
+                caseDataModel.value = @"Same";
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                //[caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
+                
+            }else if (i == 6){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Procedure"]];
+                
+            }else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+
+            }
+//            else if (i == 8){
+//                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+//                
+//            }
+            else if (i == 8){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesia performed"]];
+                
+            }
+//            else if (i == 10){
+//                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesiologist"]];
+//                
+//            }
+            
+        }
+
+    } else if ([procID isEqualToString:@"10"]) {
+        for (int i = 0; i<9; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
+            }
+            else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+                
+            }
+            else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+                
+            }
+            else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
+                
+            }
+            else if (i == 4){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Pre-operative Diagnosis";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiaLocation"];
+                if ([[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Upper pole, renal"] || [[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Mid-renal"] || [[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Lower pole, renal"] || [[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Renal pelvis"]) {
+                    
+                   caseDataModel.value = [NSString stringWithFormat:@"%@ Renal",caseDataModel.value ];
+                } else {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ Uretral",caseDataModel.value ];
+                }
+                
+                if ([[self.model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ calculus",caseDataModel.value ];
+                } else {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ calculi",caseDataModel.value ];
+                }
+                
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }
+            else if (i == 5){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Post-operative Diagnosis";
+                caseDataModel.value = @"Same";
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }
+            else if (i == 6){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Procedure"]];
+                
+            }
+            else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+//            else if (i == 8){
+//                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+//                
+//            }
+            else if (i == 8){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Anesthesia";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiaPerformed"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+//            else if (i == 10){
+//                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesiologist"]];
+//                
+//            }
+            
+        }
+
+    }
+
+    
+    
+    
+    
+    for (OKProcedureTemplateVariablesModel *caseDataModel in caseDataChangeOrderArray) {
+        
+        if ([procID isEqualToString:@"1"]) {
+            body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+        }else if ([procID isEqualToString:@"2"]){
+            body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
         }else{
             body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
         }
@@ -492,38 +712,254 @@
     //        perProcedure = [NSString stringWithFormat:@"left"];
     //    }
     
-    
+    NSMutableDictionary * caseDataOrderChange = [[NSMutableDictionary alloc] init];
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
-        
-        
-        
-        if ([procID isEqualToString:@"1"]) {
-            NSString *nerveSparring = [[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:9] valueForKey:@"value"];
-            
-            if ([caseDataModel.key isEqualToString:@"Procedure"]) {
-                body = [body stringByAppendingFormat:@"%@: %@ with %@\n",[caseDataModel.key uppercaseString], caseDataModel.value, nerveSparring];
-            }else{
-                body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+        [caseDataOrderChange setValue:caseDataModel forKey:caseDataModel.key];
+    }
+    
+    NSMutableArray *caseDataChangeOrderArray = [[NSMutableArray alloc] init];
+    if ([procID isEqualToString:@"1"]) {
+        for (int i = 0; i<11; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
             }
-        }else if ([procID isEqualToString:@"2"]){
+            else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+            }
+            else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+            }
+            else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
+            }
+            else if (i == 4){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
+            }
+            else if (i == 5){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
+            }
+            else if (i == 6){
+                NSString *nerveSparring = [self.model valueForKey:@"var_nervesparing"];
+                OKProcedureTemplateVariablesModel *caseDataModel = [caseDataOrderChange objectForKey:@"Procedure"];
+                caseDataModel.value =[NSString stringWithFormat:@"%@ with %@",caseDataModel.value, nerveSparring];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            else if (i == 8){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+            }
+            else if (i == 9){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesia"]];
+            }
+            else if (i == 10){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Anesthesiologist";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiologist"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
             
-            if ([caseDataModel.key isEqualToString:@"Procedure"] && [[[[_templateDictionary objectForKey:@"caseData"] objectAtIndex:7] valueForKey:@"value"] isEqualToString:@"YES"]) {
-                body = [body stringByAppendingFormat:@"%@: %@ with cysto and right stent placement\n", [caseDataModel.key uppercaseString], caseDataModel.value];
-            } else if ([caseDataModel.key isEqualToString:@"Procedure"]) {
-                NSString *right = [NSString stringWithFormat:@"%@",[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:4] valueForKey:@"value"]];
+        }
+    } else if ([procID isEqualToString:@"2"]) {
+        for (int i = 0; i<10; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
+            } else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+                
+            }else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+                
+            }else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date of Service"]];
+                
+            }else if (i == 4){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
+                
+            }else if (i == 5){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
+                
+            }else if (i == 6){
+                OKProcedureTemplateVariablesModel *caseDataModel = [caseDataOrderChange objectForKey:@"Procedure"];
+                
+                if ([[self.model valueForKey:@"var_cysto"] isEqualToString:@"YES"]) {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ with cysto and right stent placement",caseDataModel.value];
+                }
+                NSString *right = [self.model valueForKey:@"var_preOp"];
                 if ([right isEqualToString:@"Right renal mass"]) {
                     right = @"Right";
-                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                    body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], newValue ];
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ %@",right,caseDataModel.value];
                 } else {
                     right = @"Left";
-                    NSString *newValue = [NSString stringWithFormat:@"%@ %@",right,[[[self.templateDictionary objectForKey:@"caseData"] objectAtIndex:8] valueForKey:@"value"]];
-                    body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], newValue ];
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ %@",right,caseDataModel.value];
                 }
-            } else {
-                body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+                
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }else if (i == 8){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+                
+            }
+            //            else if (i == 9){
+            //                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesia"]];
+            //
+            //            }
+            else if (i == 9){
+                //_var_anesthesiologist
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Anesthesiologist";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiologist"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
             }
             
+        }
+        
+    } else if ([procID isEqualToString:@"9"]) {
+        for (int i = 0; i<9; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
+            } else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+                
+            }else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+                
+            }else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
+                
+            }else if (i == 4){
+                //var_diagnosis
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Pre-operative Diagnosis";
+                caseDataModel.value = [self.model valueForKey:@"var_diagnosis"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                //[caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
+                
+            }else if (i == 5){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Post-operative Diagnosis";
+                caseDataModel.value = @"Same";
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                //[caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
+                
+            }else if (i == 6){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Procedure"]];
+                
+            }else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }
+            //            else if (i == 8){
+            //                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+            //
+            //            }
+            else if (i == 8){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesia performed"]];
+                
+            }
+            //            else if (i == 10){
+            //                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesiologist"]];
+            //
+            //            }
+            
+        }
+        
+    } else if ([procID isEqualToString:@"10"]) {
+        for (int i = 0; i<9; i++) {
+            if (i == 0) {
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient Name"]];
+            }
+            else if (i == 1){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Patient DOB"]];
+                
+            }
+            else if (i == 2){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Medical Record Number"]];
+                
+            }
+            else if (i == 3){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
+                
+            }
+            else if (i == 4){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Pre-operative Diagnosis";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiaLocation"];
+                if ([[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Upper pole, renal"] || [[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Mid-renal"] || [[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Lower pole, renal"] || [[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] isEqualToString:@"Renal pelvis"]) {
+                    
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ Renal",caseDataModel.value ];
+                } else {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ Uretral",caseDataModel.value ];
+                }
+                
+                if ([[self.model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ calculus",caseDataModel.value ];
+                } else {
+                    caseDataModel.value = [NSString stringWithFormat:@"%@ calculi",caseDataModel.value ];
+                }
+                
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }
+            else if (i == 5){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Post-operative Diagnosis";
+                caseDataModel.value = @"Same";
+                [caseDataChangeOrderArray addObject:caseDataModel];
+                
+            }
+            else if (i == 6){
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Procedure"]];
+                
+            }
+            else if (i == 7){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Surgeon";
+                caseDataModel.value = [NSString stringWithFormat:@"%@ %@, %@", [OKUserManager instance].currentUser.firstName, [OKUserManager instance].currentUser.lastName , [OKUserManager instance].currentUser.title];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            //            else if (i == 8){
+            //                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Assistant"]];
+            //
+            //            }
+            else if (i == 8){
+                OKProcedureTemplateVariablesModel *caseDataModel = [[OKProcedureTemplateVariablesModel alloc] init];
+                caseDataModel.key = @"Anesthesia";
+                caseDataModel.value = [self.model valueForKey:@"var_anesthesiaPerformed"];
+                [caseDataChangeOrderArray addObject:caseDataModel];
+            }
+            //            else if (i == 10){
+            //                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Anesthesiologist"]];
+            //                
+            //            }
+            
+        }
+        
+    }
+    
+    
+    
+    for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
+        if ([procID isEqualToString:@"1"]) {
+
+            body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            
+        }else if ([procID isEqualToString:@"2"]){
+            body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
         }else{
             body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
         }

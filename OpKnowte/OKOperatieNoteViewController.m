@@ -642,6 +642,7 @@
             [_templateDictionary setObject:_caseDataArray forKey:@"caseData"];
             
             vc.templateDictionary = _templateDictionary;
+            vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];
             //[self performSegueWithIdentifier:@"fromOpNoteToFacility" sender:self];
             
