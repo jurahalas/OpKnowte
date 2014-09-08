@@ -38,6 +38,8 @@ float xrayPositive;
 float xrayNegative;
 float xrayPositive2;
 float xrayNegative2;
+float xrayPositive3;
+float xrayNegative3;
 
 float liverNormal;
 float liverAbNormal;
@@ -67,6 +69,8 @@ float s_xrayPositive;
 float s_xrayNegative;
 float s_xrayPositive2;
 float s_xrayNegative2;
+float s_xrayPositive3;
+float s_xrayNegative3;
 
 float s_liverNormal;
 float s_liverAbNormal;
@@ -669,7 +673,11 @@ float s_creatinineDiffSum;
     xrayNegative = 0;
     xrayPositive2 = 0;
     xrayNegative2 = 0;
-
+    xrayPositive3 = 0;
+    xrayNegative3 = 0;
+    
+    
+    
     liverAbNormal = 0;
     liverNormal = 0;
     
@@ -775,6 +783,8 @@ float s_creatinineDiffSum;
     s_xrayNegative = 0;
     s_xrayPositive2 = 0;
     s_xrayNegative2 = 0;
+    s_xrayPositive3 = 0;
+    s_xrayNegative3 = 0;
     
     s_liverAbNormal = 0;
     s_liverNormal = 0;
@@ -854,9 +864,9 @@ float s_creatinineDiffSum;
                 //NSLog(@"%@", xray);
                 if (xray.length > 0) {
                     if ([xray isEqualToString:@"YES"]) {
-                        xrayPositive++;
+                        xrayPositive3++;
                     }else if ([xray isEqualToString:@"NO"]){
-                        xrayNegative++;
+                        xrayNegative3++;
                     }
                 }
 
@@ -1272,9 +1282,9 @@ float s_creatinineDiffSum;
                 NSString *hernia = [dict objectForKey:@"portSiteHemia"];
                 //NSLog(@"%@", hernia);
                 if (hernia.length > 0) {
-                    if ([hernia isEqualToString:@"Yes"]) {
+                    if ([hernia isEqualToString:@"YES"]) {
                         herniaYES++;
-                    }else if ([hernia isEqualToString:@"No"]){
+                    }else if ([hernia isEqualToString:@"NO"]){
                         herniaNO++;
                     }
                 }
@@ -1563,9 +1573,9 @@ float s_creatinineDiffSum;
                 //NSLog(@"%@", xray);
                 if (xray.length > 0) {
                     if ([xray isEqualToString:@"YES"]) {
-                        s_xrayPositive++;
+                        s_xrayPositive3++;
                     }else if ([xray isEqualToString:@"NO"]){
-                        s_xrayNegative++;
+                        s_xrayNegative3++;
                     }
                 }
                 
@@ -1976,9 +1986,9 @@ float s_creatinineDiffSum;
                 NSString *hernia = [dict objectForKey:@"portSiteHemia"];
                 NSLog(@"%@", hernia);
                 if (hernia.length > 0) {
-                    if ([hernia isEqualToString:@"Yes"]) {
+                    if ([hernia isEqualToString:@"YES"]) {
                         s_herniaYES++;
-                    }else if ([hernia isEqualToString:@"No"]){
+                    }else if ([hernia isEqualToString:@"NO"]){
                         s_herniaNO++;
                     }
                 }
@@ -2994,15 +3004,15 @@ float s_creatinineDiffSum;
         if ([_cameFromVC isEqualToString:@"weeks"]) {
             if(twoWeeks>0)
             {
-                controller.xrayPositive = (xrayPositive/twoWeeks)*100;
-                controller.xrayNegative = (xrayNegative/twoWeeks)*100;
+                controller.xrayPositive = (xrayPositive3/twoWeeks)*100;
+                controller.xrayNegative = (xrayNegative3/twoWeeks)*100;
             }
             
             NSLog(@"%f , %f",s_xrayPositive, s_xrayNegative );
             if(s_twoWeeks>0)
             {
-                controller.s_xrayPositive = (s_xrayPositive2/s_twoWeeks)*100;
-                controller.s_xrayNegative = (s_xrayNegative2/s_twoWeeks)*100;
+                controller.s_xrayPositive = (s_xrayPositive3/s_twoWeeks)*100;
+                controller.s_xrayNegative = (s_xrayNegative3/s_twoWeeks)*100;
             }
                 
             controller.NationalSize = twoWeeks;
@@ -3012,13 +3022,13 @@ float s_creatinineDiffSum;
         }else{
             if(sixMonths>0)
             {
-                controller.xrayPositive = (xrayPositive/sixMonths)*100;
-                controller.xrayNegative = (xrayNegative/sixMonths)*100;
+                controller.xrayPositive = (xrayPositive2/sixMonths)*100;
+                controller.xrayNegative = (xrayNegative2/sixMonths)*100;
             }
             if(s_sixMonths>0)
             {
-                controller.s_xrayPositive = (s_xrayPositive/s_sixMonths)*100;
-                controller.s_xrayNegative = (s_xrayNegative/s_sixMonths)*100;
+                controller.s_xrayPositive = (s_xrayPositive2/s_sixMonths)*100;
+                controller.s_xrayNegative = (s_xrayNegative2/s_sixMonths)*100;
             }
             
             controller.NationalSize = sixMonths;
