@@ -29,7 +29,7 @@
 @property (strong, nonatomic) NSString *caseNumber;
 @property (strong, nonatomic) NSString *selectedCases;
 @property (strong, nonatomic) OKCase *caseObj;
-
+@property (nonatomic, assign) int selectedRow;
 @end
 
 @implementation OKSelectTimePointViewController
@@ -108,7 +108,8 @@
 {
     OKTimePointModel *timePoint = self.timePointsArray[indexPath.row];
     [OKTimePointsManager instance].selectedTimePoint = timePoint;
-
+    self.selectedRow =indexPath.row;
+    
     NSString *cameFromVC = [[NSString alloc] init];
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 9 || [[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 10) {
         cameFromVC = @"months";
@@ -184,6 +185,7 @@
 //            }
         }];
     }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -217,8 +219,9 @@
         }else if ([_procID isEqualToString:@"10"]){
             summaryVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{
-            summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
-        }
+            //summaryVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+            summaryVC.detailPeriod = self.selectedRow == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+                    }
     }else if ([segue.identifier isEqualToString:@"ongoingClinical"]){
         OKOngoingClinicalViewController *ongVC = (OKOngoingClinicalViewController*)segue.destinationViewController;
         ongVC.ongoingData = sender;
@@ -239,7 +242,8 @@
         }else if ([_procID isEqualToString:@"10"]){
             ongVC.detailPeriod = OKProcedureSummaryDetailShockwave;
         }else{
-            ongVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+            //ongVC.detailPeriod = self.selectTimePointTableView.indexPathForSelectedRow.row == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
+            ongVC.detailPeriod = self.selectedRow == 0 ? OKProcedureSummaryDetailTwoWeeks:OKProcedureSummaryDetailSixWeeks;
         }
     }
 }

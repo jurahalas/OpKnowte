@@ -36,6 +36,8 @@ float maxCreatinine;
 
 float xrayPositive;
 float xrayNegative;
+float xrayPositive2;
+float xrayNegative2;
 
 float liverNormal;
 float liverAbNormal;
@@ -63,6 +65,8 @@ float s_maxCreatinine;
 
 float s_xrayPositive;
 float s_xrayNegative;
+float s_xrayPositive2;
+float s_xrayNegative2;
 
 float s_liverNormal;
 float s_liverAbNormal;
@@ -663,7 +667,9 @@ float s_creatinineDiffSum;
     
     xrayPositive = 0;
     xrayNegative = 0;
-    
+    xrayPositive2 = 0;
+    xrayNegative2 = 0;
+
     liverAbNormal = 0;
     liverNormal = 0;
     
@@ -767,6 +773,8 @@ float s_creatinineDiffSum;
     
     s_xrayPositive = 0;
     s_xrayNegative = 0;
+    s_xrayPositive2 = 0;
+    s_xrayNegative2 = 0;
     
     s_liverAbNormal = 0;
     s_liverNormal = 0;
@@ -992,9 +1000,9 @@ float s_creatinineDiffSum;
                 //NSLog(@"%@", xray);
                 if (xray.length > 0) {
                     if ([xray isEqualToString:@"YES"]) {
-                        xrayPositive++;
+                        xrayPositive2++;
                     }else if ([xray isEqualToString:@"NO"]){
-                        xrayNegative++;
+                        xrayNegative2++;
                     }
                 }
                 
@@ -1696,9 +1704,9 @@ float s_creatinineDiffSum;
                 //NSLog(@"%@", xray);
                 if (xray.length > 0) {
                     if ([xray isEqualToString:@"YES"]) {
-                        s_xrayPositive++;
+                        s_xrayPositive2++;
                     }else if ([xray isEqualToString:@"NO"]){
-                        s_xrayNegative++;
+                        s_xrayNegative2++;
                     }
                 }
                 
@@ -2979,26 +2987,28 @@ float s_creatinineDiffSum;
 
 -(void)xray{
     
-        [self calculate];
-        [self calculateSurgeonData];
+    [self calculate];
+    [self calculateSurgeonData];
     OKFollowUpDataCompareVC *controller = [[OKFollowUpDataCompareVC alloc] initWithNibName:@"OKFollowUpDataCompareVC" bundle:nil];
     if ([[OKProceduresManager instance].selectedProcedure.identifier integerValue] == 1) {
         if ([_cameFromVC isEqualToString:@"weeks"]) {
             if(twoWeeks>0)
-                {
-                    controller.xrayPositive = (xrayPositive/twoWeeks)*100;
-                    controller.xrayNegative = (xrayNegative/twoWeeks)*100;
-                }
-                if(s_twoWeeks>0)
-                {
-                    controller.s_xrayPositive = (s_xrayPositive/s_twoWeeks)*100;
-                    controller.s_xrayNegative = (s_xrayNegative/s_twoWeeks)*100;
-                }
+            {
+                controller.xrayPositive = (xrayPositive/twoWeeks)*100;
+                controller.xrayNegative = (xrayNegative/twoWeeks)*100;
+            }
+            
+            NSLog(@"%f , %f",s_xrayPositive, s_xrayNegative );
+            if(s_twoWeeks>0)
+            {
+                controller.s_xrayPositive = (s_xrayPositive2/s_twoWeeks)*100;
+                controller.s_xrayNegative = (s_xrayNegative2/s_twoWeeks)*100;
+            }
                 
-                controller.NationalSize = twoWeeks;
-                controller.SurgeonSize = s_twoWeeks;
-                controller.graphView = @"xray2";
-                controller.showNationalData = _showNationalData;
+            controller.NationalSize = twoWeeks;
+            controller.SurgeonSize = s_twoWeeks;
+            controller.graphView = @"xray2";
+            controller.showNationalData = _showNationalData;
         }else{
             if(sixMonths>0)
             {
