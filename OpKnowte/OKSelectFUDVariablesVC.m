@@ -1282,9 +1282,9 @@ float s_creatinineDiffSum;
                 NSString *hernia = [dict objectForKey:@"portSiteHemia"];
                 //NSLog(@"%@", hernia);
                 if (hernia.length > 0) {
-                    if ([hernia isEqualToString:@"Yes"]) {
+                    if ([hernia isEqualToString:@"YES"]) {
                         herniaYES++;
-                    }else if ([hernia isEqualToString:@"No"]){
+                    }else if ([hernia isEqualToString:@"NO"]){
                         herniaNO++;
                     }
                 }
@@ -1986,9 +1986,9 @@ float s_creatinineDiffSum;
                 NSString *hernia = [dict objectForKey:@"portSiteHemia"];
                 NSLog(@"%@", hernia);
                 if (hernia.length > 0) {
-                    if ([hernia isEqualToString:@"Yes"]) {
+                    if ([hernia isEqualToString:@"YES"]) {
                         s_herniaYES++;
-                    }else if ([hernia isEqualToString:@"No"]){
+                    }else if ([hernia isEqualToString:@"NO"]){
                         s_herniaNO++;
                     }
                 }
