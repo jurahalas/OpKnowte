@@ -266,8 +266,31 @@
     
     IndicationView.backgroundColor = [UIColor clearColor];
     
-    
     NSString *indicationText = _templateModel.indicationText;
+    
+     if (_procedureID == 10) {
+         
+        if (![[_model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
+            NSString *str = @"";
+            NSString * stonesCount = [NSString stringWithFormat:@"%@",[_model valueForKey:@"var_stonesCount"]];
+            int numberOfStones = [stonesCount intValue];
+            
+            for (int i = 0; i<numberOfStones; i++) {
+                
+                NSString *stoneDesc = [NSString stringWithFormat:@"(var_stonesSizes%d) mm (var_stonesLocations%d) stone, ",i,i];
+                
+                str = [str stringByAppendingString:
+                       [NSString stringWithFormat:@"%@",stoneDesc]];
+                
+            }
+            
+            indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(var_stonesSizes)mm (var_stonesLocations) stone, " withString:str];
+        }
+         indicationText = [indicationText stringByReplacingOccurrencesOfString:@", (var_complications)" withString:@""];
+     }
+    
+    
+
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"None;" withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO;" withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO" withString:@""];
@@ -275,8 +298,6 @@
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"YES," withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(" withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@")" withString:@""];
-    
-    
     
     
     for (OKProcedureTemplateVariablesModel *allKeys in self.keysForValues) {
@@ -297,7 +318,40 @@
             variableValue = [_model valueForKey:allKeys.value];
         }
         if (variableValue != nil) {
-            indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+            
+            if (_procedureID == 10) {
+                if ([[self.model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
+                    indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                } else {
+                    if ([allKeys.value isEqualToString:@"var_totalShocks"]) {
+                        NSArray * array = [_model valueForKey:allKeys.value];
+                        for (int i = 0; i<array.count; i++) {
+                            NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_totalShocks"] objectAtIndex:i]];
+                        }
+                    } else if ([allKeys.value isEqualToString:@"var_stonesSizes"]){
+                        NSArray * array = [_model valueForKey:allKeys.value];
+                        for (int i = 0; i<array.count; i++) {
+                            NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_stonesSizes"] objectAtIndex:i]];
+                        }
+                    } else if ([allKeys.value isEqualToString:@"var_stonesLocations"]) {
+                        NSArray * array = [_model valueForKey:allKeys.value];
+                        for (int i = 0; i<array.count; i++) {
+                            NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:i]];
+                        }
+                    } else if ([allKeys.value isEqualToString:@"var_fragmentations"]) {
+                        NSArray * array = [_model valueForKey:allKeys.value];
+                        for (int i = 0; i<array.count; i++) {
+                            NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_fragmentations"] objectAtIndex:i]];
+                        }
+                    }else{
+                        indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                    }
+                }
+            }
         } else {
             indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
         }
@@ -447,6 +501,7 @@
         } else {
             
             NSString *str = @"";
+            NSString *string = @"";
             NSString * stonesCount = [NSString stringWithFormat:@"%@",[_model valueForKey:@"var_stonesCount"]];
             int numberOfStones = [stonesCount intValue];
             
@@ -465,9 +520,13 @@
                 str = [str stringByAppendingString:
                        [NSString stringWithFormat:@"%@%@",wasWere,stoneDesc]];
                 
+                NSString *description = [NSString stringWithFormat:@" There was (var_fragmentations%d) fragmentation of the (var_stonesSizes%d) mm (var_stonesLocations%d) stone.",i,i,i];
+                string = [string stringByAppendingString:[NSString stringWithFormat:@"%@",description]];
+                
             }
             
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"A total of (var_totalShocks) were delivered to the (var_stonesSizes) (var_stonesLocations)." withString:str];
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:@"There was (var_fragmentations) fragmentation of the (var_stonesSizes) (var_stonesLocations)." withString:string];
         }
 
         
