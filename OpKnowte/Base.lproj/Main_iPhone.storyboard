@@ -372,7 +372,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="rtS-FP-IrK">
-                                <rect key="frame" x="0.0" y="21" width="320" height="487"/>
+                                <rect key="frame" x="0.0" y="21.000001233705987" width="320" height="487"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -381,7 +381,7 @@
                             </scrollView>
                             <view contentMode="scaleToFill" id="uoE-eM-bsQ">
                                 <rect key="frame" x="0.0" y="510" width="320" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aPE-UF-SnF">
                                         <rect key="frame" x="43" y="14" width="236" height="30"/>
@@ -401,7 +401,7 @@
                             </view>
                             <view contentMode="scaleToFill" id="UvD-Ns-I2q">
                                 <rect key="frame" x="0.0" y="430" width="320" height="138"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <pickerView hidden="YES" contentMode="scaleToFill" id="phN-dy-0fT">
                                         <rect key="frame" x="0.0" y="-18" width="320" height="162"/>
