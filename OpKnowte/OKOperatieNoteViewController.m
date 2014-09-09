@@ -400,6 +400,11 @@
     }else if (_procedureID == 9){
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"[" withString:@""];
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"]" withString:@""];
+        
+        if ([_model valueForKey:@"var_dilatedto"] != nil ) {
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:@"dilators (var_dilatedto) mm bilaterally" withString:@"dilators (var_dilatedto) bilaterally"];
+        }
+        
         if ([[_model valueForKey:@"var_reservoirplacement"] isEqualToString:@"inguinal retropubic"]) {
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
                               @"If Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline."
