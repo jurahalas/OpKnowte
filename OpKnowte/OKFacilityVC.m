@@ -13,6 +13,7 @@
 #import "OKContactModel.h"
 #import "OKProceduresManager.h"
 #import "OKPDFGenerator.h"
+#import "OKFakeTableViewCell.h"
 
 
 @interface OKFacilityVC ()<OKFacilityTableViewCellDelegate>
@@ -331,7 +332,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _contactsArray.count;
+    return _contactsArray.count +1;
 }
 
 
@@ -344,19 +345,30 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"facilityCell";
-    OKFacilityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[OKFacilityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-
-    OKContactModel *contact = (OKContactModel*)self.contactsArray[indexPath.row];
-    cell.contact = contact;
-    cell.delegate = self;
-    cell.facilityNameLabel.text = contact.name;
-    cell.emailLabel.text = contact.contactEmail;
-    [cell setCellBGImageLight:indexPath.row];
+    static NSString *fakeCellIdentifier = @"FakeCell";
+    OKFacilityTableViewCell *cell = [[OKFacilityTableViewCell alloc]init];
+    OKFakeTableViewCell *fakeCell = [[OKFakeTableViewCell alloc]init];
     
-    return cell;
+    if (indexPath.row < _contactsArray.count) {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[OKFacilityTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        OKContactModel *contact = (OKContactModel*)self.contactsArray[indexPath.row];
+        cell.contact = contact;
+        cell.delegate = self;
+        cell.facilityNameLabel.text = contact.name;
+        cell.emailLabel.text = contact.contactEmail;
+        [cell setCellBGImageLight:indexPath.row];
+        return cell;
+        
+    } else {
+        fakeCell = [tableView dequeueReusableCellWithIdentifier:fakeCellIdentifier forIndexPath:indexPath];
+        if (!fakeCell) {
+            fakeCell = [[OKFakeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:fakeCellIdentifier];
+        }
+        return fakeCell;
+    }
 }
 
 

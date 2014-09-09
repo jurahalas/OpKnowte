@@ -351,6 +351,8 @@
                         indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
                     }
                 }
+            }else{
+                indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
             }
         } else {
             indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];

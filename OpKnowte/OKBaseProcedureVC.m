@@ -630,6 +630,18 @@
             
             [picker setupWithValue:[customElementDictionary objectForKey:@"items"][0]];
         }
+        
+        if ((_procedureID == 2 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"]) || (_procedureID ==9 && [[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_reservoirplacement?"])) {
+            UIView *textFieldDownArrowView = [[UIView alloc] init];
+            UIImageView *textFieldDownArrow = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] ;
+            textFieldDownArrow.image = [UIImage imageNamed:@"down"];
+            textFieldDownArrowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+            textFieldDownArrowView.backgroundColor = [UIColor clearColor];
+            [textFieldDownArrowView addSubview:textFieldDownArrow];
+            picker.customTextField.rightView = textFieldDownArrowView;
+            picker.customTextField.rightViewMode = UITextFieldViewModeAlways;
+        }
+        
         if (self.model) {
             if (![[customElementDictionary objectForKey:@"name"] isEqualToString:@"anterior/posterior"] && ![[customElementDictionary objectForKey:@"name"] isEqualToString:@"var_reservoirplacement?"]){
                 
