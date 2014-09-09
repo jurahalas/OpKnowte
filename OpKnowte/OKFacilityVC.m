@@ -1033,7 +1033,7 @@
 
     
     
-    for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
+    for (OKProcedureTemplateVariablesModel *caseDataModel in caseDataChangeOrderArray) {
         if ([procID isEqualToString:@"1"]) {
 
             body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
