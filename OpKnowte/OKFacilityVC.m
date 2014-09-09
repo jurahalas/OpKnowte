@@ -169,9 +169,11 @@
 #pragma mark IBAction metods
 - (IBAction)faxButtonTapped:(id)sender {
     NSString *faxNumbersList = [self getFaxNumbersFromContactsArray:_contactsSendTo];
+    NSString *address = [self getAddressFromContactsArray:_contactsSendTo];
+    NSString *institutionNames = [self getNameFromContactsArray:_contactsSendTo];
+    NSString *faxNumbersList2 = [self getFaxNumbersFromContactsArray2:_contactsSendTo];
     if (faxNumbersList.length) {
-
-        [self sendFaxTo:faxNumbersList];
+        [self sendFaxTo:faxNumbersList addressList:address andNames:institutionNames institutionFax: faxNumbersList2];
     }else {
         UIAlertView *alertNoContacts = [[UIAlertView alloc] initWithTitle:@""
                                                                   message:@"Please select atleast one institute with fax number."
@@ -183,19 +185,20 @@
 }
 
 
--(void) sendFaxTo:(NSString*)faxNumberList
+-(void) sendFaxTo:(NSString*)faxNumberList addressList:(NSString*)addressList andNames:(NSString*)namesList institutionFax:(NSString*)faxNumberList2
 {
     [[OKLoadingViewController instance] showWithText:@"Loading..."];
     NSString *faxBody = [self getFaxBodyForProcedure];
     OKSendFaxManager *sendFaxManager = [OKSendFaxManager instance];
-    [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList handler:^(NSString *errorMsg, NSDictionary *json) {
+
+    [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList AndFaxNumbers2:faxNumberList2 addressList:addressList andNames:namesList     handler:^(NSString *errorMsg, NSDictionary *json) {
         [[OKLoadingViewController instance] hide];
         if (!errorMsg) {
             UIAlertView *alertSuccess = [[UIAlertView alloc] initWithTitle:@""
-                                                                      message:[json objectForKey:@"msg"]
-                                                                     delegate:nil
-                                                            cancelButtonTitle:@"OK"
-                                                            otherButtonTitles: nil];
+                                                                   message:[json objectForKey:@"msg"]
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"OK"
+                                                         otherButtonTitles: nil];
             [alertSuccess show];
         } else {
             NSLog(@"Error - %@", errorMsg);
@@ -207,6 +210,10 @@
             [alertFailure show];
         }
     }];
+    
+    
+     
+
 }
      
      
@@ -399,6 +406,7 @@
     for(OKContactModel *contact in contacts) {
         if (contact.contactFax) {
             [faxesArray addObject:[NSString stringWithFormat:@"%@@smartfax.com",contact.contactFax]];
+            //[faxesArray addObject:[NSString stringWithFormat:@"%@",contact.contactFax]];
         }
     }
     
@@ -408,6 +416,78 @@
     return listFaxNumbers;
     
 }
+
+-(NSString *) getFaxNumbersFromContactsArray2:(NSMutableArray*)contacts{
+    NSString *listFaxNumbers = [[NSString alloc] init];
+    NSMutableArray *faxesArray = [[NSMutableArray alloc]init];
+    for(OKContactModel *contact in contacts) {
+        if (contact.contactFax) {
+            //[faxesArray addObject:[NSString stringWithFormat:@"%@@smartfax.com",contact.contactFax]];
+            [faxesArray addObject:[NSString stringWithFormat:@"%@",contact.contactFax]];
+        }
+    }
+    
+    listFaxNumbers = [faxesArray componentsJoinedByString:@","];
+    
+    NSLog(@"%@",listFaxNumbers);
+    return listFaxNumbers;
+    
+}
+
+-(NSString *) getAddressFromContactsArray:(NSMutableArray*)contacts{
+    NSString *listOfAddress = [[NSString alloc] init];
+    NSMutableArray *addressArray = [[NSMutableArray alloc]init];
+    for(OKContactModel *contact in contacts) {
+        NSString *fullAddress = @"";
+        if (contact.contactStreetAddress) {
+            fullAddress = [fullAddress stringByAppendingString:[NSString stringWithFormat:@"\n%@, ",contact.contactStreetAddress]];
+        } else {
+            fullAddress = [fullAddress stringByAppendingString:@"\nNo Address, "];
+        }
+
+        if (contact.contactCity) {
+            fullAddress = [fullAddress stringByAppendingString:[NSString stringWithFormat:@"%@, ",contact.contactCity]];
+        } else {
+            fullAddress = [fullAddress stringByAppendingString:@"No City, "];
+        }
+        
+        if (contact.contactState) {
+            fullAddress = [fullAddress stringByAppendingString:[NSString stringWithFormat:@"%@, ",contact.contactState]];
+        } else {
+            fullAddress = [fullAddress stringByAppendingString:@"No State, "];
+        }
+        if (contact.contactZip) {
+            fullAddress = [fullAddress stringByAppendingString:[NSString stringWithFormat:@"%@",contact.contactZip]];
+        } else {
+            fullAddress = [fullAddress stringByAppendingString:@"No Zip"];
+        }
+        
+        [addressArray addObject:[NSString stringWithFormat:@"%@",fullAddress]];
+    }
+    
+    listOfAddress = [addressArray componentsJoinedByString:@";"];
+    
+    NSLog(@"%@",listOfAddress);
+    return listOfAddress;
+    
+}
+
+-(NSString *) getNameFromContactsArray:(NSMutableArray*)contacts{
+    NSString *listOfNames = [[NSString alloc] init];
+    NSMutableArray *namesArray = [[NSMutableArray alloc]init];
+    for(OKContactModel *contact in contacts) {
+        if (contact.name) {
+            [namesArray addObject:[NSString stringWithFormat:@"%@",contact.name]];
+        }
+    }
+    
+    listOfNames = [namesArray componentsJoinedByString:@";"];
+    
+    NSLog(@"%@",listOfNames);
+    return listOfNames;
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -711,11 +791,11 @@
     //    }else{
     //        perProcedure = [NSString stringWithFormat:@"left"];
     //    }
-    
     NSMutableDictionary * caseDataOrderChange = [[NSMutableDictionary alloc] init];
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {
         [caseDataOrderChange setValue:caseDataModel forKey:caseDataModel.key];
     }
+    
     
     NSMutableArray *caseDataChangeOrderArray = [[NSMutableArray alloc] init];
     if ([procID isEqualToString:@"1"]) {
@@ -950,7 +1030,7 @@
         }
         
     }
-    
+
     
     
     for (OKProcedureTemplateVariablesModel *caseDataModel in [_templateDictionary objectForKey:@"caseData"]) {

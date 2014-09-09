@@ -11,7 +11,7 @@
 @interface OKSendFaxManager : OKBaseManager
 + (OKSendFaxManager *)instance;
 
-- (void)sendFaxWithUserID:(NSString*) userID Message:(NSString*) message AndFaxNumbers:(NSString*) faxNumbers  handler:(void(^)(NSString *errorMsg, NSDictionary *json))handler;
+- (void)sendFaxWithUserID:(NSString*) userID Message:(NSString*) message AndFaxNumbers:(NSString*) faxNumbers  AndFaxNumbers2:(NSString*)faxNumbers2 addressList:(NSString*)addressList andNames:(NSString*)namesList  handler:(void(^)(NSString *errorMsg, NSDictionary *json))handler;
 
 
 @end

@@ -18,11 +18,20 @@
 }
 
 
-- (void)sendFaxWithUserID:(NSString*) userID Message:(NSString*) message AndFaxNumbers:(NSString*) faxNumbers  handler:(void(^)(NSString *errorMsg, NSDictionary *json))handler
+- (void)sendFaxWithUserID:(NSString*) userID Message:(NSString*) message AndFaxNumbers:(NSString*) faxNumbers  AndFaxNumbers2:(NSString*)faxNumbers2 addressList:(NSString*)addressList andNames:(NSString*)namesList  handler:(void(^)(NSString *errorMsg, NSDictionary *json))handler
 {
+
+
+
     NSDictionary *params = @{@"userId":     userID,
                              @"message":    message,
-                             @"faxNumber":  faxNumbers
+                             @"faxNumber":  faxNumbers,
+                             @"institution_fax": faxNumbers2,
+                             @"outgoing_fax": @"855-369-5427**",
+                             @"institution_address": addressList,
+                             @"institution_names": namesList
+                             
+                             
                             };
    
     [self requestWithMethod:@"POST" path:@"sendFaxByUserId" params:params handler:^(NSError *error, id json) {

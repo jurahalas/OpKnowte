@@ -256,8 +256,9 @@
                 [[OKLoadingViewController instance] showWithText:@"Loading..."];
                 NSString *faxNumber = [[NSString alloc] init];
                 faxNumber = [NSString stringWithFormat:@"%@@smartfax.com",[alertView textFieldAtIndex:0].text];
-
-                [self sendFaxTo:faxNumber];
+                NSString *faxNumber2 = [[NSString alloc] init];
+                faxNumber2 = [NSString stringWithFormat:@"%@",[alertView textFieldAtIndex:0].text];
+                [self sendFaxTo:faxNumber faxNumber2:faxNumber2];
                 
             } else {
  
@@ -266,13 +267,13 @@
         }
     }
 }
--(void) sendFaxTo:(NSString*)faxNumberList{
+-(void) sendFaxTo:(NSString*)faxNumberList faxNumber2:(NSString*)faxNumber2{
     
     NSString *faxBody = [self getMessageBody];
     OKSendFaxManager *sendFaxManager = [OKSendFaxManager instance];
-    
-    [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList handler:^(NSString *errorMsg, NSDictionary *json) {
-        
+    [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList AndFaxNumbers2:faxNumber2 addressList:@"" andNames:@""     handler:^(NSString *errorMsg, NSDictionary *json) {
+//    [sendFaxManager sendFaxWithUserID:[OKUserManager instance].currentUser.identifier Message:faxBody AndFaxNumbers:faxNumberList handler:^(NSString *errorMsg, NSDictionary *json) {
+//        
         [[OKLoadingViewController instance] hide];
         
         if (!errorMsg) {
@@ -293,7 +294,7 @@
             
         }
     }];
-    
+
     
 }
 
