@@ -547,10 +547,10 @@
                 [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
             }
             else if (i == 4){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Preoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
             }
             else if (i == 5){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Postoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
             }
             else if (i == 6){
                 NSString *nerveSparring = [self.model valueForKey:@"var_nervesparing"];
@@ -592,10 +592,10 @@
                 [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date of Service"]];
                 
             }else if (i == 4){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Preoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
                 
             }else if (i == 5){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Postoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
                 
             }else if (i == 6){
                 OKProcedureTemplateVariablesModel *caseDataModel = [caseDataOrderChange objectForKey:@"Procedure"];
@@ -805,9 +805,22 @@
     for (OKProcedureTemplateVariablesModel *caseDataModel in caseDataChangeOrderArray) {
         
         if ([procID isEqualToString:@"1"]) {
-            body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            NSString *str = @"";
+            if ([caseDataModel.key isEqualToString:@"Pre-operative Diagnosis"] || [caseDataModel.key isEqualToString:@"Post-operative Diagnosis"]  ) {
+                str = [caseDataModel.key stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[str uppercaseString], caseDataModel.value ];
+            } else {
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+
+            }
         }else if ([procID isEqualToString:@"2"]){
-            body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            NSString *str = @"";
+            if ([caseDataModel.key isEqualToString:@"Pre-operative Diagnosis"] || [caseDataModel.key isEqualToString:@"Post-operative Diagnosis"]  ) {
+                str = [caseDataModel.key stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[str uppercaseString], caseDataModel.value ];
+            } else {
+                body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            }
         } else if ([procID isEqualToString:@"10"]){
             if ([caseDataModel.key isEqualToString:@"Date Of Service"]) {
                 body = [body stringByAppendingFormat:@"<b>%@:</b> %@<br><br>",[caseDataModel.key uppercaseString], caseDataModel.value ];
@@ -865,10 +878,10 @@
                 [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date Of Service"]];
             }
             else if (i == 4){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Preoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
             }
             else if (i == 5){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Postoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
             }
             else if (i == 6){
                 NSString *nerveSparring = [self.model valueForKey:@"var_nervesparing"];
@@ -910,10 +923,10 @@
                 [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Date of Service"]];
                 
             }else if (i == 4){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Preoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Pre-operative Diagnosis"]];
                 
             }else if (i == 5){
-                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Postoperative Diagnosis"]];
+                [caseDataChangeOrderArray addObject:[caseDataOrderChange objectForKey:@"Post-operative Diagnosis"]];
                 
             }else if (i == 6){
                 OKProcedureTemplateVariablesModel *caseDataModel = [caseDataOrderChange objectForKey:@"Procedure"];
@@ -1117,15 +1130,28 @@
         
     }
 
-    
+    //Pre-operative Diagnosis
+    //Post-operative Diagnosis
     
     for (OKProcedureTemplateVariablesModel *caseDataModel in caseDataChangeOrderArray) {
         if ([procID isEqualToString:@"1"]) {
-
-            body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
-            
+            NSString *str = @"";
+            if ([caseDataModel.key isEqualToString:@"Pre-operative Diagnosis"] || [caseDataModel.key isEqualToString:@"Post-operative Diagnosis"]  ) {
+                str = [caseDataModel.key stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                body = [body stringByAppendingFormat:@"%@: %@\n",[str uppercaseString], caseDataModel.value ];
+            } else {
+                body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            }
         }else if ([procID isEqualToString:@"2"]){
-            body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+            
+            NSString *str = @"";
+            if ([caseDataModel.key isEqualToString:@"Pre-operative Diagnosis"] || [caseDataModel.key isEqualToString:@"Post-operative Diagnosis"]  ) {
+                str = [caseDataModel.key stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                body = [body stringByAppendingFormat:@"%@: %@\n",[str uppercaseString], caseDataModel.value ];
+            } else {
+                body = [body stringByAppendingFormat:@"%@: %@\n",[caseDataModel.key uppercaseString], caseDataModel.value ];
+ 
+            }
         
         } else if ([procID isEqualToString:@"10"]){
             if ([caseDataModel.value isEqualToString:@"Date Of Service"]) {
