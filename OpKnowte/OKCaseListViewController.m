@@ -16,6 +16,7 @@
 #import "OKTemplateManager.h"
 #import "OKSelectTimePointViewController.h"
 #import "OKUserListVC.h"
+#import "OKAccessSettingsViewController.h"
 
 @interface OKCaseListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -119,14 +120,14 @@
     NSString *usersID = selCase.usersID;
     self.usersIDsArray = [usersID componentsSeparatedByString:@","];
     self.caseID = selCase.caseID;
-    [self performSegueWithIdentifier:@"goToUsersList" sender:nil];
+    [self performSegueWithIdentifier:@"goToContact" sender:nil];
 }
 
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"goToUsersList"]) {
-        OKUserListVC *usersVC = (OKUserListVC*)segue.destinationViewController;
+        OKAccessSettingsViewController *usersVC = (OKAccessSettingsViewController*)segue.destinationViewController;
         usersVC.procID = self.procID;
         usersVC.caseID = self.caseID;
         usersVC.shareUsersIDs = [[NSMutableArray alloc]init];

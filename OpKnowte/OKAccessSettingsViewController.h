@@ -19,5 +19,7 @@
 @property(strong, nonatomic) NSMutableArray *accessArray;
 @property(strong, nonatomic) NSMutableArray *selectedContacts;
 @property(strong, nonatomic) NSMutableArray *choosedContacts;
+@property(strong, nonatomic) NSString *caseID;
+@property(strong, nonatomic) NSMutableArray *shareUsersIDs;
 
 @end

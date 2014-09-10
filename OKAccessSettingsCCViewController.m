@@ -14,6 +14,7 @@
 #import "OKUserModel.h"
 #import "OKAccessSettingsViewController.h"
 #import "OKAccessSettingManager.h"
+#import "OKFakeTableViewCell.h"
 
 @interface OKAccessSettingsCCViewController ()<OKAccessSettingsCC>
 
@@ -22,7 +23,10 @@
 @property(strong, nonatomic) NSArray *contactsArray;
 @property(strong, nonatomic) NSString *selectedContactID;
 @property(strong, nonatomic) NSMutableArray * containsWithAccesArray;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+@property (weak, nonatomic) IBOutlet UIView *shareButtonView;
 
+- (IBAction)shareButtonTapped:(id)sender;
 
 @end
 
@@ -34,28 +38,33 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES ];
     accessSettingsTableView.backgroundColor = [UIColor clearColor];
+    self.shareButton.backgroundColor = [UIColor colorWithRed:228/255.0 green:34/255.0 blue:57/255.0 alpha:1];
+    self.shareButton.layer.cornerRadius = 14.f;
+    
+    [self.view bringSubviewToFront:self.shareButtonView];
     
     self.accessSettingsTableView.dataSource = self;
     self.accessSettingsTableView.delegate = self;
     
-    accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height - 50.f));
+  // accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y + 65, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height));
     
     _choosedContacts = [[NSMutableArray alloc]init];
     for (NSDictionary * chosedM in accessArray) {
         [_choosedContacts addObject:[chosedM valueForKeyPath:@"emailAddress"]];
     }
     
-
     //containsWithAccesArray = [[NSMutableArray alloc]init];
     
-    [self addBottomTabBar];
-    [self addRightButtonsToNavbar];
+//    [self addBottomTabBar];
+//    [self addRightButtonsToNavbar];
     if (!IS_IOS7) {
         [self.navigationItem setHidesBackButton:NO];
         [self addLeftButtonToNavbar];
     }
-	// Do any additional setup after loading the view.
+    
 }
+
+
 -(void) addLeftButtonToNavbar
 {
     UIButton *right = [[UIButton alloc] init];
@@ -83,23 +92,23 @@
     }
 }
 
--(void) addRightButtonsToNavbar
-{
-    UIButton *addContact = [[UIButton alloc] init];
-    addContact.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"plusGreenIcon"].size.width, [UIImage imageNamed:@"plusGreenIcon"].size.height );
-    [addContact setImage:[UIImage imageNamed:@"plusGreenIcon"] forState:UIControlStateNormal];
-    [addContact addTarget:self action:@selector(addContactTapped) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *deleteContact = [[UIButton alloc] init];
-    deleteContact.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"redCross"].size.width, [UIImage imageNamed:@"redCross"].size.height );
-    [deleteContact setImage:[UIImage imageNamed:@"redCross"] forState:UIControlStateNormal];
-    [deleteContact addTarget:self action:@selector(deleteContactTapped) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithCustomView:addContact];
-    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithCustomView:deleteContact];
-    
-    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:add,delete, nil];
-}
+//-(void) addRightButtonsToNavbar
+//{
+//    UIButton *addContact = [[UIButton alloc] init];
+//    addContact.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"plusGreenIcon"].size.width, [UIImage imageNamed:@"plusGreenIcon"].size.height );
+//    [addContact setImage:[UIImage imageNamed:@"plusGreenIcon"] forState:UIControlStateNormal];
+//    [addContact addTarget:self action:@selector(addContactTapped) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton *deleteContact = [[UIButton alloc] init];
+//    deleteContact.bounds = CGRectMake( 0, 0, [UIImage imageNamed:@"redCross"].size.width, [UIImage imageNamed:@"redCross"].size.height );
+//    [deleteContact setImage:[UIImage imageNamed:@"redCross"] forState:UIControlStateNormal];
+//    [deleteContact addTarget:self action:@selector(deleteContactTapped) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithCustomView:addContact];
+//    UIBarButtonItem *delete = [[UIBarButtonItem alloc] initWithCustomView:deleteContact];
+//    
+//    self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:add,delete, nil];
+//}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -170,49 +179,57 @@
 #pragma mark - Table View methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return contactsArray.count;
+    return contactsArray.count + 1;
 }
 
--(void)addContactToList:(OKContactModel *)contact{
-
-    [_choosedContacts addObject:contact.contactEmail];
-}
-
--(void)deleteContactFromList:(OKContactModel *)contact{
-    
-
-    for (int i = 0; i<_choosedContacts.count; i++) {
-        if ([[_choosedContacts objectAtIndex:i]isEqualToString:contact.contactEmail]) {
-            [_choosedContacts removeObjectAtIndex:i];
-        }
-    }
-}
+//-(void)addContactToList:(OKContactModel *)contact{
+//
+//    [_choosedContacts addObject:contact.contactEmail];
+//}
+//
+//-(void)deleteContactFromList:(OKContactModel *)contact{
+//    
+//
+//    for (int i = 0; i<_choosedContacts.count; i++) {
+//        if ([[_choosedContacts objectAtIndex:i]isEqualToString:contact.contactEmail]) {
+//            [_choosedContacts removeObjectAtIndex:i];
+//        }
+//    }
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"contactCell";
-    OKAccessSettingsCCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[OKAccessSettingsCCTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    static NSString *fakeCellIdentifier = @"fakeCell";
     
-    OKContactModel * contact  = (OKContactModel*)self.contactsArray[indexPath.row];
+    OKAccessSettingsCCTableViewCell *cell = [[OKAccessSettingsCCTableViewCell alloc] init];
+    OKFakeTableViewCell *fakeCell = [[OKFakeTableViewCell alloc]init];
     
-    cell.contactNameLabel.text = contact.name;
-    cell.emailLabel.text = contact.contactEmail;
-    cell.contactModel = contact;
-    [cell setCellBGImageLight:indexPath.row];
-    cell.delegate = self;
-    
-    for (NSDictionary * chosedM in accessArray) {
-        if ([[chosedM valueForKey:@"contactID"] isEqualToString:contact.identifier]) {
-            
-            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+    if (indexPath.row < self.contactsArray.count) {
 
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+        OKContactModel * contact  = (OKContactModel*)self.contactsArray[indexPath.row];
+        cell.contactNameLabel.text = contact.name;
+        cell.emailLabel.text = contact.contactEmail;
+        cell.contactModel = contact;
+        [cell setCellBGImageLight:indexPath.row];
+        cell.delegate = self;
+        
+        for (NSDictionary * chosedM in accessArray) {
+            if ([[chosedM valueForKey:@"contactID"] isEqualToString:contact.identifier]) {
+                [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+            }
         }
+        
+        return cell;
+        
+    } else {
+        
+        fakeCell = [tableView dequeueReusableCellWithIdentifier:fakeCellIdentifier forIndexPath:indexPath];
+        
+        return fakeCell;
     }
     
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -225,31 +242,33 @@
 }
 
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete;
-}
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
-}
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        OKContactModel *contact = [OKContactModel new];
-        contact = self.contactsArray[indexPath.row];
-        NSString *selectedContactID = contact.identifier;
-        OKContactManager *manager = [OKContactManager instance];
-        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
-            if (!errorMsg) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                                message:@"Сontact was successfully removed"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil, nil];
-                [alert show];
-            }
-            [self getContactsList];
-        }];
-    }
-}
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewCellEditingStyleDelete;
+//}
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return YES;
+//}
+
+//
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        OKContactModel *contact = [OKContactModel new];
+//        contact = self.contactsArray[indexPath.row];
+//        NSString *selectedContactID = contact.identifier;
+//        OKContactManager *manager = [OKContactManager instance];
+//        [manager deleteContactWithContactID:selectedContactID handler:^(NSString *errorMsg) {
+//            if (!errorMsg) {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+//                                                                message:@"Сontact was successfully removed"
+//                                                               delegate:self
+//                                                      cancelButtonTitle:@"OK"
+//                                                      otherButtonTitles:nil, nil];
+//                [alert show];
+//            }
+//            [self getContactsList];
+//        }];
+//    }
+//}
 
 
 
@@ -258,4 +277,12 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+
+- (IBAction)shareButtonTapped:(id)sender
+{
+    
+}
+
+
 @end

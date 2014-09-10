@@ -27,7 +27,7 @@
     
     self.dataDict =  @{@"Surgeons":@"1",
                        @"Assistants":@"2",
-                       @"Others":@"6"};
+                       @"Referring Physicians":@"5"};
     
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
