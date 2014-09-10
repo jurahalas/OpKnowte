@@ -26,5 +26,6 @@
 
 -(void) setDataArray:(NSMutableArray *)dataArray;
 -(void) setButtonEnabled:(BOOL) enabled;
+-(void) setPickerText:(NSString *)text;
 
 @end

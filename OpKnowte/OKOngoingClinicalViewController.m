@@ -632,6 +632,7 @@
         picker.customTextField.inputView = self.MDPiker;
         [picker setDataArray:[elementDict objectForKey:@"items"]];
         NSMutableArray *pickerArray = [[NSMutableArray alloc] init];
+        
         if ([[[elementDict objectForKey:@"items"] objectAtIndex:0] isEqualToString:@"0,1"] ){
             pickerArray = [NSMutableArray arrayWithArray:[self stoneSizeArray]];
         } else {
@@ -639,6 +640,13 @@
         }
         [picker setDataArray:pickerArray];
         lastElement = picker;
+        
+        if ([[elementDict valueForKey:@"name"] isEqualToString:@"complications"]) {
+            picker.customTextField.text = @"None";
+            [self.pickerObject.delegate updateField:self.pickerObject.fieldName withValue:self.pickerObject.customTextField.text andTag:self.pickerObject.tagOfTextField];
+            [self.ongoingData setValue:@"None" forKey:@"complications"];
+        }
+        
     }else if ([[elementDict valueForKey:@"type"] isEqualToString:@"symbolicTextField"]){
         OKProcedureTextField *symbolicTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, yPoint, 320, 43)];
         [symbolicTextField setType:0];
@@ -687,8 +695,12 @@
         CGSize newContSize = CGSizeMake(320, lastElement.frame.origin.y+lastElement.frame.size.height);
         
         self.scrollView.contentSize = newContSize;
-
+        
     }
+    if ([[elementDict valueForKey:@"name"] isEqualToString:@"complications"]) {
+        [self.ongoingData setValue:@"None" forKey:fieldName];
+    }
+
 }
 
 

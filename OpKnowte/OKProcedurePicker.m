@@ -91,4 +91,9 @@
     [self endEditing:YES];
 }
 
+-(void) setPickerText:(NSString *)text
+{
+    self.customTextField.text = text;
+}
+
 @end
