@@ -15,6 +15,7 @@
 #import "OKProceduresManager.h"
 #import "OKFollowUpDataManager.h"
 #import "OKViewController.h"
+#import "OKProcedureLabel.h"
 
 @interface OKOngoingClinicalViewController ()<OKProcedurePickerDelegate>
 
@@ -348,6 +349,21 @@
     [self addCustomElement:dict];
     [dict removeAllObjects];
     
+    
+    //=========================================
+    
+    
+    [dict setObject:@"no" forKey:@"name"];
+    [dict setObject:@"label" forKey:@"type"];
+    [dict setObject:@"Complications:" forKey:@"placeholder"];
+    
+    [self addCustomElement:dict];
+    [dict removeAllObjects];
+    
+    
+    //=========================================
+    
+    
     [dict setObject:@"percentOfErosion" forKey:@"name"];
     [dict setObject:@"numericTextField" forKey:@"type"];
     [dict setObject:@"Occurrence of erosion, %" forKey:@"placeholder"];
@@ -602,7 +618,7 @@
 {
     int yPoint = 0;
     UIControl *lastElement = nil;
-    
+    UIControl *lastLabelView = nil;
     NSString *fieldName = [elementDict objectForKey:@"name"];
     
     if(self.interactionItems.count > 0){
@@ -636,26 +652,43 @@
         OKProcedureTextField *numericTextField = [[OKProcedureTextField alloc] initWithFrame:CGRectMake(0, yPoint, 320, 43)];
         [numericTextField setType:OKProcedureNumericTF];
         lastElement = numericTextField;
+    }else if ([[elementDict valueForKey:@"type"] isEqualToString:@"label"]){
+        
+        
+        OKProcedureLabel *label = [[OKProcedureLabel alloc] initWithFrame:CGRectMake(0, yPoint, 320, 43)];
+        [label setLabelText:[elementDict objectForKey:@"placeholder"]];
+        lastLabelView = label;
     }
     
-    if([elementDict objectForKey:@"depends"])
-        lastElement.enabled = NO;
-    if([self.ongoingData respondsToSelector:NSSelectorFromString(fieldName)]){
-        id value = [self.ongoingData valueForKey:fieldName];
-        if(value)
-            [lastElement setValue:value forKey:@"value"];
-    }
-    
-    [lastElement setValue:self forKey:@"delegate"];
-    [lastElement setValue:[elementDict objectForKey:@"placeholder"] forKey:@"placeHolder"];
-    [lastElement setValue:fieldName forKey:@"fieldName"];
-    
-    [self.scrollView addSubview:lastElement];
-    [self.interactionItems addObject:lastElement];
+    if ([[elementDict valueForKey:@"type"] isEqualToString:@"label"]) {
+        
+        [self.scrollView addSubview:lastLabelView];
+        [self.interactionItems addObject:lastLabelView];
+        CGSize newContSize = CGSizeMake(320, lastLabelView.frame.origin.y+lastLabelView.frame.size.height);
+        
+        self.scrollView.contentSize = newContSize;
 
-    CGSize newContSize = CGSizeMake(320, lastElement.frame.origin.y+lastElement.frame.size.height);
-    
-    self.scrollView.contentSize = newContSize;
+    } else {
+        if([elementDict objectForKey:@"depends"])
+            lastElement.enabled = NO;
+        if([self.ongoingData respondsToSelector:NSSelectorFromString(fieldName)]){
+            id value = [self.ongoingData valueForKey:fieldName];
+            if(value)
+                [lastElement setValue:value forKey:@"value"];
+        }
+        
+        [lastElement setValue:self forKey:@"delegate"];
+        [lastElement setValue:[elementDict objectForKey:@"placeholder"] forKey:@"placeHolder"];
+        [lastElement setValue:fieldName forKey:@"fieldName"];
+        
+        [self.scrollView addSubview:lastElement];
+        [self.interactionItems addObject:lastElement];
+        
+        CGSize newContSize = CGSizeMake(320, lastElement.frame.origin.y+lastElement.frame.size.height);
+        
+        self.scrollView.contentSize = newContSize;
+
+    }
 }
 
 

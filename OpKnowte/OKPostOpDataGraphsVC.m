@@ -1446,11 +1446,23 @@
 -(void)drawAdhesiolysisGraph{
     
     averageViewTitleLabel.text = @"Adhesiolysis Required";
-    oneLabel.text = [NSString stringWithFormat:@"%i %% No",(100-requiredPercentage)];
-    twoLabel.text = [NSString stringWithFormat:@"%i %% Yes",requiredPercentage];
+    if (self.NationalSize) {
+        oneLabel.text = [NSString stringWithFormat:@"%i %% No",(100-requiredPercentage)];
+        twoLabel.text = [NSString stringWithFormat:@"%i %% Yes",requiredPercentage];
+
+    }else {
+        oneLabel.text = [NSString stringWithFormat:@"%i %% No",0];
+        twoLabel.text = [NSString stringWithFormat:@"%i %% Yes",0];
+    }
+
+    if (self.SurgeonSize) {
+        self.oneSurLabel.text = [NSString stringWithFormat:@"%i %% No",(100-sur_requiredPercentage)];
+        self.twoSurLabel.text = [NSString stringWithFormat:@"%i %% Yes",sur_requiredPercentage];
+    } else {
+        self.oneSurLabel.text = [NSString stringWithFormat:@"%i %% No",0];
+        self.twoSurLabel.text = [NSString stringWithFormat:@"%i %% Yes",0];
+    }
     
-    self.oneSurLabel.text = [NSString stringWithFormat:@"%i %% No",(100-sur_requiredPercentage)];
-    self.twoSurLabel.text = [NSString stringWithFormat:@"%i %% Yes",sur_requiredPercentage];
     
     [twoLabel setHidden:NO];
     if (!self.isNationalData) {
