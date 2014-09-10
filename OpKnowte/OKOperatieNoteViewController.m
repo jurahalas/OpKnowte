@@ -274,23 +274,41 @@
             NSString *str = @"";
             NSString * stonesCount = [NSString stringWithFormat:@"%@",[_model valueForKey:@"var_stonesCount"]];
             int numberOfStones = [stonesCount intValue];
-            
+            int x = numberOfStones;
             for (int i = 0; i<numberOfStones; i++) {
                 
-                NSString *stoneDesc = [NSString stringWithFormat:@"(var_stonesSizes%d) mm (var_stonesLocations%d) stone, ",i,i];
+                NSString *and = @"";
+                if (x - 2 == 0) {
+                    and = @" and ";
+                    x --;
+                }else{
+                    and = @",";
+                    x --;
+                }
+                
+                NSString *stoneDesc = [NSString stringWithFormat:@"(var_stonesSizes%d) mm (var_stonesLocations%d) ",i,i];
                 
                 str = [str stringByAppendingString:
-                       [NSString stringWithFormat:@"%@",stoneDesc]];
+                       [NSString stringWithFormat:@"%@%@",stoneDesc,and]];
                 
+                indicationText = [indicationText stringByReplacingOccurrencesOfString:@"" withString:@""];
             }
             
-            indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(var_stonesSizes)mm (var_stonesLocations) stone, " withString:str];
+            indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"(var_stonesSizes)mm (var_stonesLocations) " withString:str];
         }
-         indicationText = [indicationText stringByReplacingOccurrencesOfString:@", (var_complications)" withString:@""];
+         NSString * stonesCount = [NSString stringWithFormat:@"%@",[_model valueForKey:@"var_stonesCount"]];
+         int numberOfStones = [stonesCount intValue];
+         
+         if (numberOfStones == 1) {
+             indicationText = [indicationText stringByReplacingOccurrencesOfString:@"stone, (var_complications)." withString:@"stone."];
+         } else {
+             indicationText = [indicationText stringByReplacingOccurrencesOfString:@",stone, (var_complications)" withString:@"stones"];
+         }
+         
+         indicationText = [indicationText stringByReplacingOccurrencesOfString:@"(var_complications)" withString:@""];
      }
     
-    
-
+    indicationText = [indicationText stringByReplacingOccurrencesOfString:@"Risks including but not limited to infections, bleeding, hematoma, residual stone, recurrent stone, steinstrasse, need for further or additional procedures were discussed with the patient and they have asked me to proceed." withString:@"Risks including but not limited to infection, bleeding, hematoma, residual stone, recurrent stone, steinstrasse, need for further or additional procedures were discussed with the patient and they have asked me to proceed."];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"None;" withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO;" withString:@""];
     indicationText =  [indicationText stringByReplacingOccurrencesOfString:@"NO" withString:@""];
@@ -322,6 +340,19 @@
             if (_procedureID == 10) {
                 if ([[self.model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
                     indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+                    
+                    if ([allKeys.value isEqualToString:@"var_stonesLocations"]) {
+                    
+                    NSString *value = [NSString stringWithFormat:@"%@",allKeys.value];
+                    NSString *stoneLocation = [NSString stringWithFormat:@"%@",[[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:0] lowercaseString]];
+                    stoneLocation = [stoneLocation stringByReplacingOccurrencesOfString:@"," withString:@""];
+                        
+                        if ([stoneLocation isEqualToString:@"upper pole renal"]) {
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:@"upper pole, renal" withString:stoneLocation];
+                        } else if ([stoneLocation isEqualToString:@"lower pole, renal"]){
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:@"lower pole, renal" withString:stoneLocation];
+                        }
+                    }
                 } else {
                     if ([allKeys.value isEqualToString:@"var_totalShocks"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
