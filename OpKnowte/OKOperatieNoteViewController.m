@@ -321,38 +321,49 @@
             
             if (_procedureID == 10) {
                 if ([[self.model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
-                    indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                    indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
                 } else {
                     if ([allKeys.value isEqualToString:@"var_totalShocks"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_totalShocks"] objectAtIndex:i]];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_totalShocks"] objectAtIndex:i] lowercaseString]];
                         }
                     } else if ([allKeys.value isEqualToString:@"var_stonesSizes"]){
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_stonesSizes"] objectAtIndex:i]];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_stonesSizes"] objectAtIndex:i] lowercaseString]];
                         }
                     } else if ([allKeys.value isEqualToString:@"var_stonesLocations"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:i]];
+                            
+                            NSString *stoneLocation = [NSString stringWithFormat:@"%@",[[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:i] lowercaseString]];
+                            
+                            stoneLocation = [stoneLocation stringByReplacingOccurrencesOfString:@"," withString:@""];
+                            
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:stoneLocation];
                         }
                     } else if ([allKeys.value isEqualToString:@"var_fragmentations"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_fragmentations"] objectAtIndex:i]];
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_fragmentations"] objectAtIndex:i] lowercaseString]];
                         }
-                    }else{
-                        indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                    } else if ([allKeys.value isEqualToString:@"var_patientName"]){
+                         indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                    } else{
+                            indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
                     }
                 }
             }else{
-                indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                if ([self.model valueForKey:@"var_patientName"]) {
+                    indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                } else {
+                    indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+                }
             }
         } else {
             indicationText = [indicationText stringByReplacingOccurrencesOfString:allKeys.value withString:@" "];
@@ -511,29 +522,49 @@
             NSString *string = @"";
             NSString * stonesCount = [NSString stringWithFormat:@"%@",[_model valueForKey:@"var_stonesCount"]];
             int numberOfStones = [stonesCount intValue];
+            int x = numberOfStones - 1;
+            int k = numberOfStones;
             
             for (int i = 0; i<numberOfStones; i++) {
                 
                 NSString *wasWere = @"";
                 
                 if ([[[_model valueForKey:@"var_totalShocks"]objectAtIndex:i] isEqualToString:@"1"]) {
-                    wasWere = [NSString stringWithFormat:@"A total of (var_totalShocks%d) shockwave was delivered ",i];
+                    wasWere = [NSString stringWithFormat:@" (var_totalShocks%d) shockwave was delivered ",i];
                 } else {
-                    wasWere = [NSString stringWithFormat:@"A total of (var_totalShocks%d) shockwaves were delivered ",i];
+                    wasWere = [NSString stringWithFormat:@" (var_totalShocks%d) shockwaves were delivered ",i];
                 }
                 
-                NSString *stoneDesc = [NSString stringWithFormat:@"to the (var_stonesSizes%d) mm (var_stonesLocations%d) stone. ",i,i];
-
-                str = [str stringByAppendingString:
-                       [NSString stringWithFormat:@"%@%@",wasWere,stoneDesc]];
+                NSString *stoneDesc = [NSString stringWithFormat:@"to the (var_stonesSizes%d)mm (var_stonesLocations%d) stone",i,i];
+    
+                NSString *and = @"";
+                if ( x != 0 ) {
+                    x--;
+                    and = @" and";
+                }
                 
-                NSString *description = [NSString stringWithFormat:@" There was (var_fragmentations%d) fragmentation of the (var_stonesSizes%d) mm (var_stonesLocations%d) stone.",i,i,i];
-                string = [string stringByAppendingString:[NSString stringWithFormat:@"%@",description]];
+                NSString *andForFragmentation = @"";
+                if (k != 0) {
+                    if (k == numberOfStones || numberOfStones == 1) {
+                        andForFragmentation = @"";
+                        k --;
+                    } else {
+                        k --;
+                        andForFragmentation = @" and";
+                    }
+                }
+                
+                str = [str stringByAppendingString:
+                       [NSString stringWithFormat:@"%@%@%@",wasWere,stoneDesc,and]];
+                
+                NSString *description = [NSString stringWithFormat:@" (var_fragmentations%d) fragmentation of the (var_stonesSizes%d) mm (var_stonesLocations%d) stone",i,i,i];
+                string = [string stringByAppendingString:[NSString stringWithFormat:@" %@%@",andForFragmentation,description]];
                 
             }
             
-            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"A total of (var_totalShocks) were delivered to the (var_stonesSizes) (var_stonesLocations)." withString:str];
-            procedureText = [procedureText stringByReplacingOccurrencesOfString:@"There was (var_fragmentations) fragmentation of the (var_stonesSizes) (var_stonesLocations)." withString:string];
+            procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"(var_totalShocks) were delivered to the (var_stonesSizes) (var_stonesLocations)" withString:str];
+            
+            procedureText = [procedureText stringByReplacingOccurrencesOfString:@" (var_fragmentations) fragmentation of the (var_stonesSizes) (var_stonesLocations)" withString:string];
         }
 
         
@@ -576,38 +607,43 @@
         if (variableValue != nil) {
             if (_procedureID == 10) {
                 if ([[self.model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
-                    procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                    procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
                 } else {
                     if ([allKeys.value isEqualToString:@"var_totalShocks"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_totalShocks"] objectAtIndex:i]];
+                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_totalShocks"] objectAtIndex:i] lowercaseString]];
                         }
                     } else if ([allKeys.value isEqualToString:@"var_stonesSizes"]){
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_stonesSizes"] objectAtIndex:i]];
+                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_stonesSizes"] objectAtIndex:i] lowercaseString]];
                         }
                     } else if ([allKeys.value isEqualToString:@"var_stonesLocations"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:i]];
+                            
+                            NSString *stoneLocation = [NSString stringWithFormat:@"%@",[[[self.model valueForKey:@"var_stonesLocations"] objectAtIndex:i] lowercaseString]];
+                            stoneLocation = [stoneLocation stringByReplacingOccurrencesOfString:@"," withString:@""];
+                            
+                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:stoneLocation];
                         }
                     } else if ([allKeys.value isEqualToString:@"var_fragmentations"]) {
                         NSArray * array = [_model valueForKey:allKeys.value];
                         for (int i = 0; i<array.count; i++) {
                             NSString *value = [NSString stringWithFormat:@"%@%d",allKeys.value, i];
-                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[self.model valueForKey:@"var_fragmentations"] objectAtIndex:i]];
+                            procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_fragmentations"] objectAtIndex:i] lowercaseString]];
                         }
                     }else{
-                       procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                        
+                       procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
                     }
                 }
             } else {
-                procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:variableValue];
+                procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
 
             }
 
