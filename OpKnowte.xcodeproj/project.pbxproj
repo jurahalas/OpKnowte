@@ -148,6 +148,8 @@
 		00A64D9719067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9619067E0D00740DC7 /* OKSurgeonPerformanceDataComparisonViewController.m */; };
 		00A64D9B1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9A1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m */; };
 		00A64D9E1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */; };
+		00BB20B519C03BCF00770CF5 /* OKProcedureLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BB20B419C03BCF00770CF5 /* OKProcedureLabel.m */; };
+		00BB20B719C03BE400770CF5 /* OKProcedureLabel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00BB20B619C03BE400770CF5 /* OKProcedureLabel.xib */; };
 		00BEAB1C18F697D300E0C6B2 /* OKBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */; };
 		00C3DBB5191A45F300F7B6A9 /* LRRPProcedure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00C3DBB4191A45F300F7B6A9 /* LRRPProcedure.plist */; };
 		00C3DBB8191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C3DBB7191A466600F7B6A9 /* OKLRRadicalProstatectomyVC.m */; };
@@ -484,6 +486,9 @@
 		00A64D9A1906BFE700740DC7 /* OKSurgeonPerformanceDataComparisonTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgeonPerformanceDataComparisonTitleCell.m; sourceTree = "<group>"; };
 		00A64D9C1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKSurgeonPerformanceDataComparisonContentCell.h; sourceTree = "<group>"; };
 		00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKSurgeonPerformanceDataComparisonContentCell.m; sourceTree = "<group>"; };
+		00BB20B319C03BCF00770CF5 /* OKProcedureLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKProcedureLabel.h; sourceTree = "<group>"; };
+		00BB20B419C03BCF00770CF5 /* OKProcedureLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKProcedureLabel.m; sourceTree = "<group>"; };
+		00BB20B619C03BE400770CF5 /* OKProcedureLabel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OKProcedureLabel.xib; sourceTree = "<group>"; };
 		00BEAB1A18F697D300E0C6B2 /* OKBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OKBaseViewController.h; sourceTree = "<group>"; };
 		00BEAB1B18F697D300E0C6B2 /* OKBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OKBaseViewController.m; sourceTree = "<group>"; };
 		00C3DBB4191A45F300F7B6A9 /* LRRPProcedure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LRRPProcedure.plist; sourceTree = "<group>"; };
@@ -1001,6 +1006,7 @@
 		008D5B571907DC600039E8B7 /* Custom elements */ = {
 			isa = PBXGroup;
 			children = (
+				00BB20B219C03B8E00770CF5 /* Label */,
 				AC61C8F2194587AF001A11F1 /* BMI */,
 				009E084C192E056C00DA61C6 /* Select Contact */,
 				0061E2CF1918BA79007170D3 /* Base Procedure Element */,
@@ -1298,6 +1304,16 @@
 				00A64D9D1906C00000740DC7 /* OKSurgeonPerformanceDataComparisonContentCell.m */,
 			);
 			name = "Surgeon Performance Data Comparison";
+			sourceTree = "<group>";
+		};
+		00BB20B219C03B8E00770CF5 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				00BB20B319C03BCF00770CF5 /* OKProcedureLabel.h */,
+				00BB20B419C03BCF00770CF5 /* OKProcedureLabel.m */,
+				00BB20B619C03BE400770CF5 /* OKProcedureLabel.xib */,
+			);
+			name = Label;
 			sourceTree = "<group>";
 		};
 		00BEAB1118F67DCE00E0C6B2 /* Resources */ = {
@@ -2100,6 +2116,7 @@
 				00A64D5919064DB400740DC7 /* horizontalDevider.png in Resources */,
 				AC2F0AB3192D3106004FF9E0 /* navbarBG6.png in Resources */,
 				00A64D8B19065A5400740DC7 /* cellActiveBG.png in Resources */,
+				00BB20B719C03BE400770CF5 /* OKProcedureLabel.xib in Resources */,
 				AC1A9DBE19387A4500595CC2 /* 2SegmentControll.png in Resources */,
 				0090176A1929E170006C4C7C /* OKFollowUpDataCompareVC.xib in Resources */,
 				188608F1190FA1CB00BD1D77 /* plusWhiteIcon.png in Resources */,
@@ -2174,6 +2191,7 @@
 				00D8437C1923AAEF00515281 /* OKAccessConfirmViewController.m in Sources */,
 				189F45141909480700372C55 /* OKInstituteVC.m in Sources */,
 				18949E9A1918D45200B4B38C /* OKContactsTableViewCell.m in Sources */,
+				00BB20B519C03BCF00770CF5 /* OKProcedureLabel.m in Sources */,
 				AC1ACA27191EBA49004FA1BB /* OKAccessSettingManager.m in Sources */,
 				184BD764192C941C00442FDF /* OKPostOpDataGraphsVC.m in Sources */,
 				AC87A84619ADD3C20067213A /* OKUserListTableViewCell.m in Sources */,
