@@ -118,6 +118,9 @@
         vc.cameFromVC = @"Access Settings View Controller";
         vc.accessArray = [[NSMutableArray alloc]init];
         vc.accessArray = self.accessArray;
+        vc.caseID = self.caseID;
+        vc.shareUsersIDs = [[NSMutableArray alloc]init];
+        vc.shareUsersIDs = self.shareUsersIDs;
         vc.delegate = self;
     }
 }

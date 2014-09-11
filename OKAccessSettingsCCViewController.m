@@ -232,14 +232,21 @@
         [cell setCellBGImageLight:indexPath.row];
         cell.delegate = self;
         
-        for (NSDictionary * chosedM in accessArray) {
-            if ([[chosedM valueForKey:@"contactID"] isEqualToString:contact.identifier]) {
-                [cell setCellButtonBGImageWithGreenMinusIcon:YES];
-            }
+//        for (NSDictionary * chosedM in accessArray) {
+//            if ([[chosedM valueForKey:@"contactID"] isEqualToString:contact.identifier]) {
+//                [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+//            }
+//        }
+        
+        if( [self.shareUsersIDs containsObject:contact.identifier]){
+            [cell setCellButtonBGImageWithGreenMinusIcon:YES];
+            [self.choosedContacts addObject:contact.contactEmail];
+            
+        } else {
+            [cell setCellButtonBGImageWithGreenMinusIcon:NO];
         }
         
         return cell;
-        
     } else {
         
         fakeCell = [tableView dequeueReusableCellWithIdentifier:fakeCellIdentifier forIndexPath:indexPath];
@@ -298,6 +305,12 @@
 
 - (IBAction)shareButtonTapped:(id)sender
 {
+    NSOrderedSet *mySetForChossedContact = [[NSOrderedSet alloc] initWithArray:self.choosedContacts];
+    self.choosedContacts = [[NSMutableArray alloc] initWithArray:[mySetForChossedContact array]];
+    
+    NSOrderedSet *mySetForDeletedContact = [[NSOrderedSet alloc] initWithArray:self.deletedContact];
+    self.deletedContact = [[NSMutableArray alloc] initWithArray:[mySetForDeletedContact array]];
+    
     NSString *contact = [self.choosedContacts componentsJoinedByString:@","];
     NSString *deleteContact = [self.deletedContact componentsJoinedByString:@","];
     NSLog(@"contact: %@",contact);

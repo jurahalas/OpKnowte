@@ -126,7 +126,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"goToUsersList"]) {
+    if ([segue.identifier isEqualToString:@"goToContact"]) {
         OKAccessSettingsViewController *usersVC = (OKAccessSettingsViewController*)segue.destinationViewController;
         usersVC.procID = self.procID;
         usersVC.caseID = self.caseID;

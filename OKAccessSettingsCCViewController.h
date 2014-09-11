@@ -28,6 +28,7 @@
 @property(strong, nonatomic) NSMutableArray *choosedContacts;
 @property (nonatomic, weak) id <OKAccessSettingsCCDelegate> delegate;
 @property(nonatomic,strong) NSMutableArray * accessArray;
-
+@property(strong, nonatomic) NSString *caseID;
+@property(strong, nonatomic) NSMutableArray *shareUsersIDs;
 
 @end
