@@ -50,6 +50,7 @@
         self.currentUser.password = password;
         NSLog(@"%@",self.currentUser.firstName);
         NSLog(@"%@",self.currentUser.identifier);
+        NSLog(@"%@",self.currentUser.email);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         
