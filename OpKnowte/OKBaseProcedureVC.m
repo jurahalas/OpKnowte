@@ -759,6 +759,7 @@
         self.pickerData = pickerData;
         _pickerBGView.hidden = NO;
         self.picker.hidden = NO;
+        self.doneButtonForDatePicker.hidden = YES;
         self.datePicker.hidden = YES;
         [self.picker reloadAllComponents];
         
