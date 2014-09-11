@@ -244,6 +244,7 @@
         MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
         mailer.mailComposeDelegate = self;
         [mailer setSubject:@"Operative Note"];
+        mailer.navigationBar.tintColor = [UIColor whiteColor];
         [mailer setToRecipients:[self getEmailAddress:_contactsSendTo]];
         [mailer setMessageBody:[self getEmailBodyForProcedure] isHTML:YES];
         [self presentViewController:mailer animated:YES completion:^{
@@ -374,30 +375,36 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (![_roleID isEqualToString:@"4"]) {
-        OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
-
-        if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
-            [self.navigationController popViewControllerAnimated:YES];
-        
-            NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
-            [contactsArray addObject:cell.contact];
-            [self.delegate setContactFieldWithContactArray:contactsArray];
+    if (indexPath.row < self.contactsArray.count) {
+        if (![_roleID isEqualToString:@"4"]) {
+            OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+            
+            if ([_cameFromVC isEqualToString:@"createProcedureVC"]){
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                NSMutableArray *contactsArray = [[NSMutableArray alloc] init];
+                [contactsArray addObject:cell.contact];
+                [self.delegate setContactFieldWithContactArray:contactsArray];
+            }
+        }else{
+            
+            OKFacilityTableViewCell * cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+            [cell facilityButton:cell.contact];
         }
-    }else{
-        
-        OKFacilityTableViewCell * cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
-        [cell facilityButton:cell.contact];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_roleID isEqualToString:@"4"]) {
-        if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFacilityTableViewCell class]]) {
-            OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
-            [cell facilityButton:cell.contact];
+    if (indexPath.row < self.contactsArray.count) {
+        if ([_roleID isEqualToString:@"4"]) {
+            if ([[tableView cellForRowAtIndexPath:indexPath] isKindOfClass:[OKFacilityTableViewCell class]]) {
+                OKFacilityTableViewCell *cell = (OKFacilityTableViewCell *)[_facilityTableView cellForRowAtIndexPath:indexPath];
+                [cell facilityButton:cell.contact];
+            }
         }
     }
 }
