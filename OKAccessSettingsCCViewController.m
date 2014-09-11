@@ -23,8 +23,9 @@
 @property(strong, nonatomic) NSArray *contactsArray;
 @property(strong, nonatomic) NSString *selectedContactID;
 @property(strong, nonatomic) NSMutableArray * containsWithAccesArray;
-@property (weak, nonatomic) IBOutlet UIButton *shareButton;
-@property (weak, nonatomic) IBOutlet UIView *shareButtonView;
+@property(weak, nonatomic) IBOutlet UIButton *shareButton;
+@property(weak, nonatomic) IBOutlet UIView *shareButtonView;
+@property(strong, nonatomic) NSMutableArray *deletedContact;
 
 - (IBAction)shareButtonTapped:(id)sender;
 
@@ -48,7 +49,8 @@
     
   // accessSettingsTableView.frame = CGRectMake(accessSettingsTableView.frame.origin.x, accessSettingsTableView.frame.origin.y + 65, accessSettingsTableView.frame.size.width, (accessSettingsTableView.frame.size.height));
     
-    _choosedContacts = [[NSMutableArray alloc]init];
+    self.choosedContacts = [[NSMutableArray alloc]init];
+    self.deletedContact = [[NSMutableArray alloc]init];
     for (NSDictionary * chosedM in accessArray) {
         [_choosedContacts addObject:[chosedM valueForKeyPath:@"emailAddress"]];
     }
@@ -125,34 +127,34 @@
 }
 
 
--(void) deleteContactTapped
-{
-    
-    [self.accessSettingsTableView setEditing:!self.accessSettingsTableView.editing animated:YES];
-//    if (selectedContactID==nil) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-//                                                        message:@"You must select contact to delete it"
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil, nil];
-//        [alert show];
-//        [self.view endEditing:YES];
-//        
-//    }else{
-//        OKContactManager *manager = [OKContactManager instance];
-//        [manager deleteContactWithContactID:self.selectedContactID handler:^(NSString *errorMsg) {
-//            if (!errorMsg) {
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-//                                                                message:@"Сontact was successfully removed"
-//                                                               delegate:self
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil, nil];
-//                [alert show];
-//            }
-//            [self getContactsList];
-//        }];
-//    }
-}
+//-(void) deleteContactTapped
+//{
+//    
+//    [self.accessSettingsTableView setEditing:!self.accessSettingsTableView.editing animated:YES];
+////    if (selectedContactID==nil) {
+////        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+////                                                        message:@"You must select contact to delete it"
+////                                                       delegate:self
+////                                              cancelButtonTitle:@"OK"
+////                                              otherButtonTitles:nil, nil];
+////        [alert show];
+////        [self.view endEditing:YES];
+////        
+////    }else{
+////        OKContactManager *manager = [OKContactManager instance];
+////        [manager deleteContactWithContactID:self.selectedContactID handler:^(NSString *errorMsg) {
+////            if (!errorMsg) {
+////                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+////                                                                message:@"Сontact was successfully removed"
+////                                                               delegate:self
+////                                                      cancelButtonTitle:@"OK"
+////                                                      otherButtonTitles:nil, nil];
+////                [alert show];
+////            }
+////            [self getContactsList];
+////        }];
+////    }
+//}
 
 
 -(void) getContactsList
@@ -182,20 +184,35 @@
     return contactsArray.count + 1;
 }
 
-//-(void)addContactToList:(OKContactModel *)contact{
-//
-//    [_choosedContacts addObject:contact.contactEmail];
-//}
-//
-//-(void)deleteContactFromList:(OKContactModel *)contact{
-//    
-//
-//    for (int i = 0; i<_choosedContacts.count; i++) {
-//        if ([[_choosedContacts objectAtIndex:i]isEqualToString:contact.contactEmail]) {
-//            [_choosedContacts removeObjectAtIndex:i];
-//        }
-//    }
-//}
+-(void)addContactToList:(OKContactModel *)contact
+{
+    if ([contact.contactEmail isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please choose contact with email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        for(int i = 0; i<self.deletedContact.count;i++){
+            if([[self.deletedContact objectAtIndex:i]isEqualToString:contact.contactEmail]){
+                [self.deletedContact removeObjectAtIndex:i];
+            }
+        }
+        [self.choosedContacts addObject:contact.contactEmail];
+    }
+}
+
+-(void)deleteContactFromList:(OKContactModel *)contact
+{
+    if (contact.contactEmail == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please choose contact with email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    } else {
+        for (int i = 0; i<self.choosedContacts.count; i++) {
+            if ([[self.choosedContacts objectAtIndex:i]isEqualToString:contact.contactEmail]) {
+                [self.deletedContact addObject:[self.choosedContacts objectAtIndex:i]];
+                [self.choosedContacts removeObjectAtIndex:i];
+            }
+        }
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -234,9 +251,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    OKContactModel *contact = [OKContactModel new];
-    contact = self.contactsArray[indexPath.row];
-    self.selectedContactID = contact.identifier;
+//    OKContactModel *contact = [OKContactModel new];
+//    contact = self.contactsArray[indexPath.row];
+//    self.selectedContactID = contact.identifier;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
@@ -281,7 +298,10 @@
 
 - (IBAction)shareButtonTapped:(id)sender
 {
-    
+    NSString *contact = [self.choosedContacts componentsJoinedByString:@","];
+    NSString *deleteContact = [self.deletedContact componentsJoinedByString:@","];
+    NSLog(@"contact: %@",contact);
+    NSLog(@"delete contact: %@",deleteContact);
 }
 
 

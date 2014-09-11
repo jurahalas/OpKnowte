@@ -64,6 +64,9 @@
     if (!buttonIsTapped) {
         [self setCellButtonBGImageWithGreenMinusIcon:YES];
         [self.delegate addContactToList:self.contactModel];
+        if ([self.contactModel.contactEmail isEqualToString:@""]) {
+            [self setCellButtonBGImageWithGreenMinusIcon:NO];
+        }
     } else {
         [self setCellButtonBGImageWithGreenMinusIcon:NO];
         [self.delegate deleteContactFromList:self.contactModel];
