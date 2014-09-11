@@ -443,6 +443,23 @@
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"[" withString:@""];
         procedureText =  [procedureText stringByReplacingOccurrencesOfString:@"]" withString:@""];
         
+        
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:
+                          @"Corporotomy stay sutures were placed in the usual fashion."
+          withString:     @"Corporal stay sutures were placed in the usual fashion."
+                          ];
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:
+                          @"Dilation was "
+          withString:     @"Dilation was to "
+                          ];
+        
+
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:
+                          @"The patient is to followup in (var_followup) weeks."
+          withString:     @"The patient is to followup in (var_followup)."
+                          ];
+        
+        
         if ([_model valueForKey:@"var_dilatedto"] != nil ) {
             procedureText = [procedureText stringByReplacingOccurrencesOfString:@"dilators (var_dilatedto) mm bilaterally" withString:@"dilators (var_dilatedto) bilaterally"];
         }
@@ -452,56 +469,56 @@
                               @"If Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline."
                                                                       withString:@" Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline."];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline."
+                              @"\nIf Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection."
+                              @"\nIf Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details."
+                              @"\nIf Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details.\n \n"
                                                                       withString:@""];
             
         }else if ([[_model valueForKey:@"var_reservoirplacement"] isEqualToString:@"inguinal ectopic"]){
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details."
+                              @"\nIf Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
                               @"If Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline."
                                                                       withString:@" Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline."];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection."
+                              @"\nIf Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details."
+                              @"\nIf Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details.\n \n"
                                                                       withString:@""];
             
         }else if ([[_model valueForKey:@"var_reservoirplacement"] isEqualToString:@"ectopic extraperitoneal"]){
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline."
+                              @"\nIf Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline."
+                              @"\nIf Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
                               @"If Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection."
                                                                       withString:@"An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection."];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details."
+                              @"\nIf Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details.\n \n"
                                                                       withString:@""];
             
         }else{
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline."
+                              @"\nIf Reservoir placement is “inguinal retropubic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified and the transversalis pierced to create a retropubic space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline."
+                              @"\nIf Reservoir placement is “inguinal ectopic” use this paragraph Using blunt dissection, the (var_reservoirside) inguinal ring was identified.  A space above the transversalis but below the anterior fascia was created bluntly and the (var_reservoirplacement) reservoir was placed and filled with(var_reservoirfilled)ml of saline.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection."
+                              @"\nIf Reservoir placement is “ectopic extraperitoneal” use this paragraph An incision was made lateral near the (var_reservoirside) anterior superior iliac spine.  Blunt dissection was performed to expose the fascia and a small opening in the fascia was made.  Stay sutures were placed and blunt dissection was performed deep to the fascia to create a lateral extraperitoneal space.  The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline.  The fascia was closed using the stay sutures.  The tubing was tunneled to the scrotum with blunt dissection.\n"
                                                                       withString:@""];
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details."
-                                                                      withString:@"An ectopic reservoir placement was performed.  See comments at end of report for details."];
+                              @"\nIf Reservoir placement is “other” use this paragraph An ectopic reservoir placement was performed.  See comments at end of report for details.\n \n"
+                                                                      withString:@"\nAn ectopic reservoir placement was performed.  See comments at end of report for details.\n"];
             
         }
         if ([[_model valueForKey:@"var_drainplaced"] isEqualToString:@"YES"]) {
@@ -510,7 +527,7 @@
                                                                       withString:@" A JP drain was placed low in the scrotum and secured using a suture."];
         }else{
             procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                              @"If Drain placed? is “yes” then use the following paragraph, if Drain placed? is “no” then exclude the paragraph  A JP drain was placed low in the scrotum and secured using a suture."
+                              @"\nIf Drain placed? is “yes” then use the following paragraph, if Drain placed? is “no” then exclude the paragraph  A JP drain was placed low in the scrotum and secured using a suture.\n"
                                                                       withString:@""];
         }
         if (![[_model valueForKey:@"var_reservoirplacement"] isEqualToString:@"inguinal retropubic"] && ![[_model valueForKey:@"var_reservoirplacement"] isEqualToString:@"inguinal ectopic"] && ![[_model valueForKey:@"var_reservoirplacement"] isEqualToString:@"ectopic extraperitoneal"]) {
@@ -532,10 +549,19 @@
                                                                           withString:@"Reservoir placement: (var_reservoirplacement). Complications: (var_complications)."];
             }else{
                 procedureText =  [procedureText stringByReplacingOccurrencesOfString:
-                                  @"Additional surgical notes include: If Reservoir placement was “other”, or if Complications? was “yes”, then insert the free text entered here, if neither of those were selected then leave this paragraph out "
+                                  @"\nAdditional surgical notes include: If Reservoir placement was “other”, or if Complications? was “yes”, then insert the free text entered here, if neither of those were selected then leave this paragraph out\n \n"
                                                                           withString:@""];
             }
         }
+
+        procedureText =  [procedureText stringByReplacingOccurrencesOfString:
+                          @"The (var_reservoirplacement) reservoir was placed and filled with (var_reservoirfilled)ml of saline."
+          withString:     @"The (var_reservoirtype) reservoir was placed (var_reservoirplacement) and filled with (var_reservoirfilled)ml of saline."
+                          ];
+        
+        
+        
+        
     }
     else if (_procedureID == 10) {
         if ([[_model valueForKey:@"var_stonesCount"] isEqualToString:@"1"]) {
@@ -669,12 +695,54 @@
                             procedureText = [procedureText stringByReplacingOccurrencesOfString:value withString:[[[self.model valueForKey:@"var_fragmentations"] objectAtIndex:i] lowercaseString]];
                         }
                     }else{
-                        
-                       procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+                        if ([allKeys.value isEqualToString:@"var_patientName"]) {
+                            procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue capitalizedString]];
+
+                        } else {
+                            procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+
+                        }
                     }
                 }
+            } else if (_procedureID == 9) {
+
+//                if ([self.model valueForKey:@"var_irrigationantibiotics"]) {
+//                    
+//                }
+                NSString *str =@"";
+                if ([allKeys.value isEqualToString:@"var_irrigationantibiotics"]) {
+                    NSArray *arr = [[NSArray alloc] init];
+                    arr = [variableValue componentsSeparatedByString:@"; "];
+                    for (int i = 0; i < arr.count; i++) {
+                        if (i == 0) {
+                            str = [arr objectAtIndex:i];
+                        } else if (i< (arr.count -1)){
+                            str = [str stringByAppendingString:[NSString stringWithFormat:@", %@",[arr objectAtIndex:i]]];
+                        } else {
+                            str = [str stringByAppendingString:[NSString stringWithFormat:@" and %@",[arr objectAtIndex:i]]];
+                        }
+                    }
+                    procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[str lowercaseString]];
+
+                } else {
+                    if ([allKeys.value isEqualToString:@"var_patientName"]) {
+                        procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue capitalizedString]];
+                        
+                    } else {
+                        procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+                        
+                    }
+
+                }
+
             } else {
-                procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+                if ([allKeys.value isEqualToString:@"var_patientName"]) {
+                    procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue capitalizedString]];
+                    
+                } else {
+                    procedureText = [procedureText stringByReplacingOccurrencesOfString:allKeys.value withString:[variableValue lowercaseString]];
+                    
+                }
 
             }
 
